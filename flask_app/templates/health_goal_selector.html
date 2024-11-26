@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <title>Health Goal Filters</title>
+    <style>
+        body {
+            background-image: url('/static/img/mountain_background.png');
+            background-size: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="card shadow w-100 p-3 opacity-75 text-center">
+        <h1 class="display-4 mb-3 text-primary">Are you ready, {{ user.first_name }}? </h1>
+        <h4 class="display-6">Let's get this party started!</h4>
+        <div class="text-end">
+            <form action="/users/logout" method="post">
+                <button class="btn btn-link" type="submit" name="logout">logout</button>
+            </form>
+        </div>
+
+    </div>
+    <div class="container my-4 m-auto">
+        <div class="card shadow w-75 m-auto p-3 opacity-75 text-center">
+            <div class="card-body">
+                <h4 class="display-6 text-primary">Your Vision - Health</h4>
+                <p class="lead">The following are common health related goals, check all that appeal to you.</p>
+                <p class="lead">You will get a chance to refine these in the next step.</p>
+            </div>
+        </div>
+        <div class="container my-4">
+            <form action="/goals/health/select/save" method="post">
+                <div class="card shadow w-100 p-3 opacity-75">
+                    <div class="d-flex justify-content-evenly gap-2">
+                        <div class="card-body border border-1 rounded">
+                            <h5 class="text-primary text-center"><u>Mental Health</u></h5>
+
+                            <input type="checkbox" id="is_mood" name="is_mood" value="1">
+                            <label for="is_mood">Improve mood</label>
+                            <br>
+                            <input type="checkbox" id="is_stress_resilience" name="is_stress_resilience" value="2">
+                            <label for="is_stress_resilience">Be more stress resilient</label>
+                            <br>
+                            <input type="checkbox" id="is_memory" name="is_memory" value="3">
+                            <label for="is_memory">Better memory</label>
+                            <br>
+                            <input type="checkbox" id="is_focus_attention" name="is_focus_attention" value="4">
+                            <label for="is_focus_attention">Increase focus and attention</label>
+                        </div>
+                        <div class="card-body border border-1 rounded">
+                            <h5 class="text-primary text-center"><u>Physical Health</u></h5>
+                            <input type="checkbox" id="is_fitness" name="is_fitness" value="5">
+                            <label for="is_fitness">Improve cardiovascular fitness</label>
+                            <br>
+                            <input type="checkbox" id="is_strength" name="is_strength" value="6">
+                            <label for="is_strength">Get stronger/build muscle</label>
+                            <br>
+                            <input type="checkbox" id="is_flexibility" name="is_flexibility" value="7">
+                            <label for="is_flexibility">Be more flexible</label>
+                            <br>
+                            <input type="checkbox" id="is_balance" name="is_balance" value="8">
+                            <label for="is_balance">Better balance</label>
+                            <br>
+                            <input type="checkbox" id="is_new_activity" name="is_new_activity" value="9">
+                            <label for="is_new_activity">Try a new sport/activity</label>
+                        </div>
+                        <div class="card-body border border-1 rounded">
+                            <h5 class="text-primary text-center"><u>General Health</u></h5>
+                            <input type="checkbox" id="is_energy" name="is_energy" value="10">
+                            <label for="is_energy">Have more energy</label>
+                            <br>
+                            <input type="checkbox" id="is_sleep" name="is_sleep" value="11">
+                            <label for="is_sleep">Improve sleep</label>
+                            <br>
+                            <input type="checkbox" id="is_nutrition" name="is_nutrition" value="12">
+                            <label for="is_nutrition">Balance nutrition</label>
+                            <br>
+                            <input type="checkbox" id="is_lose_weight" name="is_lose_weight" value="13">
+                            <label for="is_lose_weight">Lose weight</label>
+                        </div>
+                        <div class="card-body border border-1 rounded">
+                            <h5 class="text-primary text-center"><u>Behavioral Health</u></h5>
+                            <input type="checkbox" id="is_habit_reduction" name="is_habit_reduction" value="14">
+                            <label for="is_habit_reduction">Reduce an unwanted habit</label>
+                            <br>
+                            <input type="checkbox" id="is_positive_habit" name="is_positive_habit" value="15">
+                            <label for="is_positive_habit">Increase a positive habit</label>
+                            <br>
+                            <input type="checkbox" id="is_digital_moderation" name="is_digital_moderation" value="16">
+                            <label for="is_digital_moderation">Limit screen time</label>
+                        </div>
+                </div>
+                <div class="text-center my-3">
+                    <button class="btn btn-primary text-center w-75" type="submit">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</body>
+</html>
