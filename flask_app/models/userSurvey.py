@@ -1,6 +1,6 @@
 from flask_app.config.mysqlconnection import connectToMySQL
 from pprint import pprint
-from flask import flash, session, jsonify, flash, redirect
+from flask import flash, session, jsonify, redirect
 import asyncio, aiomysql, logging
 from flask_app.models.user import User
 from flask_app.models import healthQuiz
