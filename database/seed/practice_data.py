@@ -1,5 +1,74 @@
 practice_data = {
 # Health & Wellness Practices
+"AM Routine Recommendations": [
+    {
+        "name": "Morning Hydration",
+        "description": "Drink a glass of water to start your day hydrated and support your body's metabolism.",
+        "recommended_durations": [{"duration_label": "5 minutes"}],
+        "impact_rating_id": 3,
+        "difficulty_level_id": 1,
+        "frequency": "Every morning",
+        "is_common": True,
+        "notes": "Hydration improves digestion, energy levels, and cognitive function.",
+        "objectives": ["hydrate", "boost_energy_levels", "promote_healthy_digestion"]
+    },
+    {
+        "name": "Cold Exposure",
+        "description": "Incorporate cold exposure through a cold shower or face immersion to invigorate the body.",
+        "recommended_durations": [{"duration_label": "2-5 minutes"}],
+        "impact_rating_id": 4,
+        "difficulty_level_id": 2,
+        "frequency": "Every morning",
+        "is_common": False,
+        "notes": "Cold exposure supports resilience, boosts energy, and may improve mood.",
+        "objectives": ["boost_energy_levels", "build_resilience", "improve_circulation"]
+    },
+    {
+        "name": "Morning Mindfulness",
+        "description": "Begin your day with mindfulness practices such as meditation, gratitude journaling, or breathing exercises.",
+        "recommended_durations": [{"duration_label": "5-10 minutes"}],
+        "impact_rating_id": 5,
+        "difficulty_level_id": 1,
+        "frequency": "Every morning",
+        "is_common": True,
+        "notes": "Mindfulness enhances focus, reduces stress, and fosters emotional balance.",
+        "objectives": ["reduce_stress", "improve_focus", "promote_emotional_wellbeing"]
+    },
+    {
+        "name": "Morning Movement",
+        "description": "Engage in light stretching, yoga, or other gentle movement to wake up the body.",
+        "recommended_durations": [{"duration_label": "10-15 minutes"}],
+        "impact_rating_id": 4,
+        "difficulty_level_id": 1,
+        "frequency": "Every morning",
+        "is_common": True,
+        "notes": "Movement increases circulation, reduces stiffness, and promotes flexibility.",
+        "objectives": ["increase_circulation", "reduce_stiffness", "improve_flexibility"]
+    },
+    {
+        "name": "Morning Sunlight",
+        "description": "Spend a few minutes outside or near a window to get natural sunlight exposure.",
+        "recommended_durations": [{"duration_label": "10-20 minutes"}],
+        "impact_rating_id": 5,
+        "difficulty_level_id": 1,
+        "frequency": "Every morning",
+        "is_common": True,
+        "notes": "Natural sunlight supports circadian rhythm and boosts vitamin D levels.",
+        "objectives": ["regulate_circadian_rhythm", "boost_vitamin_d", "improve_mood"]
+    },
+    {
+        "name": "Set Daily Intentions",
+        "description": "Take time to reflect and set intentions for the day, focusing on your goals and priorities.",
+        "recommended_durations": [{"duration_label": "5-10 minutes"}],
+        "impact_rating_id": 4,
+        "difficulty_level_id": 1,
+        "frequency": "Every morning",
+        "is_common": True,
+        "notes": "Setting intentions helps create focus, purpose, and motivation for the day.",
+        "objectives": ["improve_focus", "enhance_motivation", "build_consistency"]
+    }
+],
+
 'General Health': [
     {
         "name": "Morning Hydration",
@@ -2097,6 +2166,162 @@ practice_data = {
         "objectives": ["enhance_mood_stability", "reduce_stress", "promote_positivity"]
     }
 ],
+
+'Sports': [
+    {
+        "name": "Racquetball",
+        "description": "A fast-paced indoor sport that enhances agility, reflexes, and cardiovascular fitness.",
+        "impact_rating_id": 4,
+        "difficulty_level_id": 3,
+        "frequency": "Weekly",
+        "is_common": True,
+        "notes": "Ensure you wear protective eyewear and warm up properly before playing.",
+        "objectives": ["improve_fitness", "enhance_agility", "increase_endurance"]
+    },
+    {
+        "name": "Pickleball",
+        "description": "A paddle sport that combines elements of tennis, badminton, and ping-pong, perfect for light activity and social engagement.",
+        "impact_rating_id": 3,
+        "difficulty_level_id": 2,
+        "frequency": "Twice weekly",
+        "is_common": True,
+        "notes": "Great for all skill levels and a fun way to stay active.",
+        "objectives": ["improve_cardio_health", "social_interaction", "boost_coordination"]
+    },
+    {
+        "name": "Basketball",
+        "description": "A dynamic team sport that builds endurance, coordination, and strategic thinking.",
+        "impact_rating_id": 5,
+        "difficulty_level_id": 3,
+        "frequency": "Weekly",
+        "is_common": True,
+        "notes": "Play on a court with proper footwear to avoid injuries.",
+        "objectives": ["build_strength", "promote_teamwork", "enhance_endurance"]
+    },
+    {
+        "name": "Soccer",
+        "description": "A globally loved team sport that combines skill, strategy, and cardiovascular fitness.",
+        "impact_rating_id": 5,
+        "difficulty_level_id": 4,
+        "frequency": "Weekly",
+        "is_common": True,
+        "notes": "Ideal for improving stamina and teamwork skills.",
+        "objectives": ["increase_stamina", "improve_coordination", "build_team_skills"]
+    },
+    {
+        "name": "Tennis",
+        "description": "A skill-based sport that promotes cardiovascular health and strategic thinking.",
+        "impact_rating_id": 4,
+        "difficulty_level_id": 3,
+        "frequency": "Weekly",
+        "is_common": True,
+        "notes": "Consider joining a local tennis club for regular practice.",
+        "objectives": ["improve_fitness", "develop_strategy", "enhance_agility"]
+    },
+    {
+        "name": "Volleyball",
+        "description": "A popular team sport that strengthens coordination and upper body muscles.",
+        "impact_rating_id": 4,
+        "difficulty_level_id": 3,
+        "frequency": "Twice monthly",
+        "is_common": True,
+        "notes": "Beach volleyball is a great outdoor variation.",
+        "objectives": ["build_strength", "enhance_coordination", "promote_teamwork"]
+    },
+    {
+        "name": "Baseball",
+        "description": "A classic team sport that hones hand-eye coordination and teamwork.",
+        "impact_rating_id": 4,
+        "difficulty_level_id": 3,
+        "frequency": "Monthly",
+        "is_common": True,
+        "notes": "Join a local league for competitive or recreational play.",
+        "objectives": ["improve_coordination", "build_team_skills", "enhance_strategy"]
+    },
+    {
+        "name": "Softball",
+        "description": "A recreational variation of baseball, suitable for all ages and skill levels.",
+        "impact_rating_id": 3,
+        "difficulty_level_id": 2,
+        "frequency": "Monthly",
+        "is_common": True,
+        "notes": "Great for casual, friendly games with friends or family.",
+        "objectives": ["promote_social_bonding", "build_coordination", "enhance_teamwork"]
+    },
+    {
+        "name": "Golf",
+        "description": "A relaxing sport that combines precision, focus, and moderate physical activity.",
+        "impact_rating_id": 3,
+        "difficulty_level_id": 2,
+        "frequency": "Monthly",
+        "is_common": True,
+        "notes": "A good walk on a course can also improve mental clarity.",
+        "objectives": ["improve_focus", "enhance_precision", "promote_relaxation"]
+    },
+    {
+        "name": "Bowling",
+        "description": "An enjoyable indoor activity that develops hand-eye coordination and social connections.",
+        "recommended_durations": [{"duration_label": "90 minutes"}],
+        "impact_rating_id": 3,
+        "difficulty_level_id": 1,
+        "frequency": "Occasionally",
+        "is_common": True,
+        "notes": "Great for all skill levels and ages, often paired with social outings.",
+        "objectives": ["promote_social_interaction", "improve_hand_eye_coordination", "provide_recreational_fun"]
+    },
+    {
+        "name": "Badminton",
+        "description": "A fast-paced racquet sport that improves agility and coordination.",
+        "impact_rating_id": 4,
+        "difficulty_level_id": 2,
+        "frequency": "Twice monthly",
+        "is_common": True,
+        "notes": "Indoor courts are ideal for maintaining consistent play conditions.",
+        "objectives": ["boost_coordination", "improve_fitness", "enhance_agility"]
+    },
+    {
+        "name": "Hockey",
+        "description": "A high-intensity team sport played on ice or field, requiring speed and strategy.",
+        "impact_rating_id": 5,
+        "difficulty_level_id": 4,
+        "frequency": "Weekly",
+        "is_common": True,
+        "notes": "Proper protective gear is essential for safety during play.",
+        "objectives": ["enhance_teamwork", "improve_fitness", "build_resilience"]
+    },
+    {
+        "name": "Lacrosse",
+        "description": "A fast-paced team sport combining elements of basketball, soccer, and hockey.",
+        "impact_rating_id": 5,
+        "difficulty_level_id": 4,
+        "frequency": "Weekly",
+        "is_common": True,
+        "notes": "Requires good hand-eye coordination and stamina.",
+        "objectives": ["enhance_coordination", "promote_teamwork", "increase_endurance"]
+    },
+    {
+        "name": "Table Tennis",
+        "description": "A quick-paced indoor game that enhances reflexes and precision.",
+        "impact_rating_id": 3,
+        "difficulty_level_id": 2,
+        "frequency": "Weekly",
+        "is_common": True,
+        "notes": "A great way to enjoy light exercise and improve focus.",
+        "objectives": ["improve_reflexes", "enhance_precision", "boost_focus"]
+    },
+    {
+        "name": "Surfing",
+        "description": "A water sport that combines balance, strength, and agility on waves.",
+        "recommended_durations": [{"duration_label": "60 minutes"}],
+        "impact_rating_id": 4,
+        "difficulty_level_id": 4,
+        "frequency": "Monthly",
+        "is_common": True,
+        "notes": "Excellent for building core strength and balance.",
+        "objectives": ["improve_balance", "build_core_strength", "enhance_focus"]
+    },
+]
+
 # Addiction and substance related abstinence
 }
 

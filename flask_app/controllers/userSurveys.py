@@ -6,14 +6,7 @@ from database.seed import survey_seed
 from pprint import pprint
 from datetime import datetime
 
-@app.get("/test")
-def test_route():
-    user = User.get_logged_in_user()
-    print(user)
-    if not user:
-        return redirect("/")
 
-    return render_template("surveys/survey_template.html")
 
 # THIS ROUTE RETRIEVES SURVEY QUESTIONS FOR SURVEYS IN JS
 @app.post("/surveys/questions/retrieve")

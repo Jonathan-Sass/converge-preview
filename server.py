@@ -4,6 +4,8 @@ from flask_app.controllers import userHealthGoals
 from flask_app.controllers import healthQuizzes
 from flask_app.controllers import recreationQuizzes
 from flask_app.controllers import userSurveys
+from flask_app.controllers import usersRoutines
+
 
 if __name__ == "__main__":
     app.run(debug=True)

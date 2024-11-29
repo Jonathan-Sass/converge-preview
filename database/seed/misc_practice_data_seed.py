@@ -80,10 +80,11 @@ def seed_frequency_data():
             ('At least 5 servings daily', 35),
             ('Each meal', 36),
             ('Before meals', 37),
-            ('Nightly', 38),
-            ('Ongoing', 39),
-            ('Occasional', 40),
-            ('Custom', 41);
+            ('Every morning', 38),
+            ('Nightly', 39),
+            ('Ongoing', 40),
+            ('Occasional', 41),
+            ('Custom', 42);
     """
     execute_seed_query(query, table_name)
 
