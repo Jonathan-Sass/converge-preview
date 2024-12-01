@@ -43,11 +43,11 @@ def seed_frequency_data():
         INSERT IGNORE INTO frequencies 
             (frequency_label, frequency_value)
         VALUES
-            ('As needed', 1),
-            ('Throughout the day', 2),
-            ('Three times daily', 3),
-            ('Twice daily', 4),
-            ('Daily', 5),
+            ('Daily', 1),
+            ('As needed', 2),
+            ('Throughout the day', 3),
+            ('Three times daily', 4),
+            ('Twice daily', 5),
             ('Every other day', 6),
             ('6 times per week', 7),
             ('5 times per week', 8),

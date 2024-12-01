@@ -1,5 +1,7 @@
 practice_data = {
 # Health & Wellness Practices
+
+# These will shift toward "categorical recommendations", from which users will select 
 "AM Routine Recommendations": [
     {
         "name": "Morning Hydration",
@@ -14,19 +16,20 @@ practice_data = {
     },
     {
         "name": "Cold Exposure",
-        "description": "Incorporate cold exposure through a cold shower or face immersion to invigorate the body.",
-        "recommended_durations": [{"duration_label": "2-5 minutes"}],
+        "description": "Incorporate cold exposure through a cold face rinse, cold shower or cold plunge to invigorate the body.",
+        "recommended_durations": [{"duration_label": "1 minute"}, {"duration_label": "2 minutes"}, {"duration_label": "5 minutes"}],
         "impact_rating_id": 4,
         "difficulty_level_id": 2,
         "frequency": "Every morning",
         "is_common": False,
         "notes": "Cold exposure supports resilience, boosts energy, and may improve mood.",
+        "literature summary": "Research on cold immersion demonstrates its profound physiological impact, including a significant and sustained increase in dopamine levels—greater than that observed from most other natural stimuli—while also enhancing mood, focus, and resilience",
         "objectives": ["boost_energy_levels", "build_resilience", "improve_circulation"]
     },
     {
         "name": "Morning Mindfulness",
         "description": "Begin your day with mindfulness practices such as meditation, gratitude journaling, or breathing exercises.",
-        "recommended_durations": [{"duration_label": "5-10 minutes"}],
+        "recommended_durations": [{"duration_label": "5 minutes"}, {"duration_label": "10 minutes"}, {"duration_label": "20 minutes"}],
         "impact_rating_id": 5,
         "difficulty_level_id": 1,
         "frequency": "Every morning",
@@ -37,7 +40,7 @@ practice_data = {
     {
         "name": "Morning Movement",
         "description": "Engage in light stretching, yoga, or other gentle movement to wake up the body.",
-        "recommended_durations": [{"duration_label": "10-15 minutes"}],
+        "recommended_durations": [{"duration_label": "10 minutes"}, {"duration_label": "15 minutes"}, {"duration_label": "20 minutes"}, {"duration_label": "30 minutes"}],
         "impact_rating_id": 4,
         "difficulty_level_id": 1,
         "frequency": "Every morning",
@@ -46,9 +49,20 @@ practice_data = {
         "objectives": ["increase_circulation", "reduce_stiffness", "improve_flexibility"]
     },
     {
+        "name": "Morning Sun/Walk",
+        "description": "Start your day with exposure to natural sunlight and light physical activity to boost mood and regulate your circadian rhythm.",
+        "recommended_durations": [{"duration_label": "10 minutes"}, {"duration_label": "30 minutes"}],
+        "impact_rating_id": 5,
+        "difficulty_level_id": 2,
+        "frequency": "Daily",
+        "is_common": True,
+        "notes": "Aim to spend time outdoors in the morning sun, whether through a walk, sitting in natural light, or light activity.",
+        "objectives": ["regulate_circadian_rhythm", "boost_mood", "enhance_energy_levels"]
+    },
+    {
         "name": "Morning Sunlight",
         "description": "Spend a few minutes outside or near a window to get natural sunlight exposure.",
-        "recommended_durations": [{"duration_label": "10-20 minutes"}],
+        "recommended_durations": [{"duration_label": "5 minutes"}, {"duration_label": "10 minutes"}, {"duration_label": "20 minutes"}, {"duration_label": "30 minutes"}],
         "impact_rating_id": 5,
         "difficulty_level_id": 1,
         "frequency": "Every morning",
@@ -59,7 +73,7 @@ practice_data = {
     {
         "name": "Set Daily Intentions",
         "description": "Take time to reflect and set intentions for the day, focusing on your goals and priorities.",
-        "recommended_durations": [{"duration_label": "5-10 minutes"}],
+        "recommended_durations": [{"duration_label": "5 minutes"}, {"duration_label": "10 minutes"}],
         "impact_rating_id": 4,
         "difficulty_level_id": 1,
         "frequency": "Every morning",
@@ -157,6 +171,17 @@ practice_data = {
         "is_common": True,
         "notes": "Adjust your chair, desk, and screen height to maintain an ergonomic setup.",
         "objectives": ["reduce_muscle_tension", "enhance_mobility", "promote_energy_efficiency"]
+    },
+    {
+        "name": "AM Digital Wellness",
+        "description": "Begin your day with intentional screen-free time to foster mental clarity and set a focused tone for the day.",
+        "recommended_durations": [{"duration_label": "30 minutes"}, {"duration_label": "1 hour"}],
+        "impact_rating_id": 5,
+        "difficulty_level_id": 3,
+        "frequency": "Daily",
+        "is_common": True,
+        "notes": "This time can be used for mindfulness practices, light exercise, or preparing for the day without digital distractions.",
+        "objectives": ["reduce_digital_dependency", "enhance_focus", "improve_overall_wellness"]
     },
     {
         "name": "Digital Detox Period",
@@ -395,6 +420,17 @@ practice_data = {
 ],
 
 "Movement": [
+    {
+        "name": "Movement/Stretch",
+        "description": "Incorporate gentle movements and stretches to wake up your body and improve flexibility.",
+        "recommended_durations": [{"duration_label": "5 minutes"}, {"duration_label": "15 minutes"}],
+        "impact_rating_id": 4,
+        "difficulty_level_id": 1,
+        "frequency": "Daily",
+        "is_common": True,
+        "notes": "Focus on light stretching, yoga poses, or dynamic movements to energize and prepare for the day.",
+        "objectives": ["improve_flexibility", "boost_energy", "reduce_muscle_tension"]
+    },
     {
         "name": "General Workout",
         "description": "Engage in a workout of your choice, including strength training, cardio, or a mix of both.",
@@ -1195,7 +1231,7 @@ practice_data = {
         "objectives": ["enhance_spiritual_connection", "increase_optimism", "promote_emotional_resilience"]
     },
     {
-        "name": "Ritual of Intention",
+        "name": "Daily Intention",
         "description": "Set a daily intention or affirmation to align your actions with your values and goals.",
         "recommended_durations": [
             {"duration_label": "5 minutes"}
@@ -1315,7 +1351,7 @@ practice_data = {
     {
         'name': 'Deep Work Session',
         'description': 'Dedicate time to focused, undistracted work on a high-value task.',
-        'recommended_durations': [{'duration_label': '20 minutes'}],
+        'recommended_durations': [{'duration_label': '20 minutes'}, {'duration_label': '30 minutes'}, {'duration_label': '45 minutes'}, {'duration_label': '1 hour'}],
         'impact_rating_id': 5,
         'difficulty_level_id': 2,
         'frequency': 'Twice daily',
@@ -1746,6 +1782,17 @@ practice_data = {
         "objectives": ["enhance_relationships", "develop_empathy", "boost_optimism"]
     },
     {
+        "name": "Check-In Message or Call",
+        "description": "Reach out to a friend, family member, or colleague to strengthen connections and build supportive relationships.",
+        "recommended_durations": [{"duration_label": "5 minutes"}, {"duration_label": "10 minutes"}],
+        "impact_rating_id": 3,
+        "difficulty_level_id": 1,
+        "frequency": "Daily",
+        "is_common": True,
+        "notes": "A quick message or call can brighten someone’s day and nurture your social network.",
+        "objectives": ["strengthen_relationships", "reduce_feelings_of_isolation", "enhance_social_support"]
+    },
+    {
         "name": "Coffee Chat",
         "description": "Meet a friend or colleague for coffee to foster meaningful interaction.",
         "recommended_durations": [{"duration_label": "1 hour"}],
@@ -2164,10 +2211,55 @@ practice_data = {
         "is_common": True,
         "notes": "Think of specific moments or things that brought joy or comfort to your day.",
         "objectives": ["enhance_mood_stability", "reduce_stress", "promote_positivity"]
+    },
+    {
+        "name": "Gratitude or Reflection Journaling",
+        "description": "Spend time writing down things you're grateful for or reflecting on your thoughts to cultivate a positive mindset and increase self-awareness.",
+        "recommended_durations": [{"duration_label": "5 minutes"}, {"duration_label": "10 minutes"}, {"duration_label": "15 minutes"}],
+        "impact_rating_id": 4,
+        "difficulty_level_id": 1,
+        "frequency": "Daily",
+        "is_common": True,
+        "notes": "Consider noting three things you're grateful for or journaling about your experiences and feelings.",
+        "objectives": ["enhance_mood_stability", "increase_self_awareness", "reduce_stress"]
     }
 ],
 
+
 'Sports': [
+    {
+        "name": "Structured Training Block",
+        "description": "Structure dedicated training time for your sport or discipline to improve performance and achieve your athletic goals.",
+        "recommended_durations": [{"duration_label": "1 hour"}, {"duration_label": "2 hours"}],
+        "impact_rating_id": 5,
+        "difficulty_level_id": 4,
+        "frequency": "Daily",
+        "is_common": True,
+        "notes": "Use this time to focus on sport-specific drills, conditioning, or skill refinement, tailored to your training objectives.",
+        "objectives": ["enhance_performance", "build_strength_and_endurance", "improve_technical_skills"]
+    },
+    {
+        "name": "Skill Practice or Morning Mobility",
+        "description": "Dedicate time in the morning to practice specific skills or engage in mobility exercises to prepare your body for peak performance.",
+        "recommended_durations": [{"duration_label": "15 minutes"}, {"duration_label": "30 minutes"}],
+        "impact_rating_id": 4,
+        "difficulty_level_id": 2,
+        "frequency": "Daily",
+        "is_common": True,
+        "notes": "Focus on refining technical skills or performing mobility exercises to enhance flexibility, prevent injury, and optimize readiness for training or competition.",
+        "objectives": ["improve_flexibility", "refine_technical_skills", "enhance_performance"]
+    },
+    {
+        "name": "Performance Visualization",
+        "description": "Take time to mentally rehearse your performance, focusing on executing skills, strategies, and achieving success in your sport or discipline.",
+        "recommended_durations": [{"duration_label": "5 minutes"}, {"duration_label": "15 minutes"}],
+        "impact_rating_id": 5,
+        "difficulty_level_id": 2,
+        "frequency": "Daily",
+        "is_common": True,
+        "notes": "Visualize yourself performing at your best, overcoming challenges, and achieving your goals to build confidence and sharpen focus.",
+        "objectives": ["boost_confidence", "enhance_focus", "improve_performance"]
+    },
     {
         "name": "Racquetball",
         "description": "A fast-paced indoor sport that enhances agility, reflexes, and cardiovascular fitness.",
@@ -2264,7 +2356,7 @@ practice_data = {
         "recommended_durations": [{"duration_label": "90 minutes"}],
         "impact_rating_id": 3,
         "difficulty_level_id": 1,
-        "frequency": "Occasionally",
+        "frequency": "Occasional",
         "is_common": True,
         "notes": "Great for all skill levels and ages, often paired with social outings.",
         "objectives": ["promote_social_interaction", "improve_hand_eye_coordination", "provide_recreational_fun"]

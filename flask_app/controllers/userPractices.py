@@ -5,10 +5,10 @@ from flask_app.models.userSurvey import UserSurvey
 from pprint import pprint
 from datetime import datetime
 
-@app.get("/practices/intro")
-def building_practices_intro():
-    user = User.get_logged_in_user()
-    if not user:
-        return redirect("/")
+# @app.get("/practices/intro")
+# def building_practices_intro():
+#     user = User.get_logged_in_user()
+#     if not user:
+#         return redirect("/")
     
-    return render_template("practices/building_practices_intro.html")
+#     return render_template("practices/building_practices_intro.html")

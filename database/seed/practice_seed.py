@@ -54,7 +54,7 @@ def fetch_categories():
     if results:
         return results
     else:
-        RuntimeError("No practice_categories found in the database.")
+        raise RuntimeError("No practice_categories found in the database.")
 
 def fetch_durations():
     """
@@ -112,11 +112,11 @@ def fetch_frequencies():
     if results:
         return results
     else:
-        RuntimeError("No frequencies found in the database.")
+        raise RuntimeError("No frequencies found in the database.")
 
 def prepare_practice_data(db_categories, frequencies):
     """
-    This function prepares and batches practice_data for seeding into the practices table
+    This function batches and flattens practice_data for seeding into the practices table
 
     Returns: 
 
@@ -159,24 +159,34 @@ def prepare_practice_data(db_categories, frequencies):
                 # Append prepared data to the batch list
                 batched_data.append(prepared_practice_data)
 
-    values = ", ".join(
-        f"({data['category_id']}, {data['impact_rating_id']}, {data['difficulty_level_id']}, {data['frequency_id']}, '{data['name']}', '{data['description']}', {data['is_common']}, '{data['notes']}', '{data['literature_summary']}', NOW(), NOW())"
+    values = [
+        (
+            data ["category_id"],
+            data["impact_rating_id"], 
+            data["difficulty_level_id"], 
+            data["frequency_id"], 
+            data["name"], 
+            data["description"], 
+            data["is_common"], 
+            data["notes"], 
+            data["literature_summary"]
+        )
         for data in batched_data
-    )
-
+    ]
     return values
 
 def execute_practice_data_seed(values):
     if not values:
         return print("No values in values")
     
-    query = f"""
+    query = """
         INSERT IGNORE INTO practices
             (practice_category_id, impact_rating_id, difficulty_level_id, frequency_id, name, description, is_common, notes, literature_summary, created_at, updated_at)
         VALUES
-            {values};
+            (%s, %s, %s, %s, %s, %s, %s, %s, %s, NOW(), NOW());
     """
-    db.query_db(query)
+    for value in values:
+        db.query_db(query, value)
 
 def prepare_recommended_durations_data(durations, engagement_levels):
     duration_id_lookup = {dur['duration_label']: dur['id'] for dur in durations}
@@ -194,33 +204,42 @@ def prepare_recommended_durations_data(durations, engagement_levels):
 
     for category, practices in practice_data.items():
         for practice in practices:
-            practice_id = practice_id_lookup[practice['name']]
-            print("***IDs from lookups:")
-            pprint(practice['name'])
-            pprint(practice_id_lookup[practice['name']])
+            prepared_recommended_durations_data = {}
+            
+            prepared_recommended_durations_data["practice_id"] = practice_id_lookup[practice['name']]
+           
             if 'recommended_durations' in practice:
 
                 for rd in practice['recommended_durations']:
                     
-                    duration_id = duration_id_lookup[rd['duration_label']]
-                    engagement_level_id = engagement_level_id_lookup.get(rd.get('engagement_level'), 'NULL')
+                    prepared_recommended_durations_data["duration_id"] = duration_id_lookup[rd['duration_label']]
+                    prepared_recommended_durations_data["engagement_level_id"] = engagement_level_id_lookup.get(rd.get('engagement_level'), 'NULL')
 
                     # Add the tuple to the batch
                     batched_recommended_durations.append(
-                        f"({duration_id}, {engagement_level_id}, {practice_id})"
+                       prepared_recommended_durations_data
                     )
 
-    values = ", ".join(batched_recommended_durations)
+    values = [
+        (
+            recommended_duration["duration_id"], 
+            recommended_duration["engagement_level_id"], 
+            recommended_duration["practice_id"]
+        )
+        for recommended_duration in batched_recommended_durations
+    ]
+
     return values
 
 def execute_recommended_duration_seed(values):
-    query = f"""
+    query = """
         INSERT IGNORE INTO recommended_durations
             (duration_id, engagement_level_id, practice_id)
         VALUES
-            {values};
+            (%s, %s, %s);
     """
-    db.query_db(query)
+    for value in values:
+        db.query_db(query, value)
 
 def fetch_practice_ids():
     query = "SELECT id, name FROM practices"
