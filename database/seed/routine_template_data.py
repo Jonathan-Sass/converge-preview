@@ -9,7 +9,7 @@ routine_template_data = [
         "notes": "Designed for flexibility; suitable for users seeking structure without complexity.",
         "practices": [
             {"practice_name": "AM Digital Wellness", "position": 1}, 
-            {"practice_name": "AM Hydration", "position": 2}, 
+            {"practice_name": "Morning Hydration", "position": 2}, 
             {"practice_name": "Cold Exposure", "position": 3}, 
             {"practice_name": "Morning Mindfulness", "position": 4}, 
             {"practice_name": "Movement/Stretch", "position": 5}, 

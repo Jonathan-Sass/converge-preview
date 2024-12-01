@@ -117,7 +117,14 @@ def execute_seed_routine_templates(values):
         INSERT INTO routine_templates
             (frequency_id, name, description, category, notes, created_at, updated_at)
         VALUES
-            (%s, %s, %s, %s, %s, NOW(), NOW());
+            (%s, %s, %s, %s, %s, NOW(), NOW())
+        ON DUPLICATE KEY UPDATE
+            frequency_id = VALUES(frequency_id),
+            name = name,
+            description = VALUES(description),
+            category = VALUES(category),
+            notes = VALUES(notes),
+            updated_at = NOW();
     """
 
     for value in values:
@@ -129,7 +136,12 @@ def execute_seed_routine_template_practices(values):
         INSERT INTO routine_template_practices
             (routine_template_id, practice_id, position, created_at, updated_at)
         VALUES
-            (%s, %s, %s, NOW(), NOW());
+            (%s, %s, %s, NOW(), NOW())
+        ON DUPLICATE KEY UPDATE
+            routine_template_id = routine_template_id,
+            practice_id = practice_id,
+            position = VALUES(position),
+            updated_at = VALUES(updated_at);
     """
 
     for value in values:

@@ -183,7 +183,18 @@ def execute_practice_data_seed(values):
         INSERT IGNORE INTO practices
             (practice_category_id, impact_rating_id, difficulty_level_id, frequency_id, name, description, is_common, notes, literature_summary, created_at, updated_at)
         VALUES
-            (%s, %s, %s, %s, %s, %s, %s, %s, %s, NOW(), NOW());
+            (%s, %s, %s, %s, %s, %s, %s, %s, %s, NOW(), NOW())
+        ON DUPLICATE KEY UPDATE
+            practice_category_id = VALUES(practice_category_id),
+            impact_rating_id = VALUES(impact_rating_id),
+            difficulty_level_id = VALUES(difficulty_level_id),
+            frequency_id = VALUES(frequency_id),
+            name = name,
+            description = VALUES(description),
+            is_common = VALUES(is_common),
+            notes = VALUES(notes),
+            literature_summary = VALUES(literature_summary),
+            updated_at = NOW();
     """
     for value in values:
         db.query_db(query, value)
@@ -236,7 +247,11 @@ def execute_recommended_duration_seed(values):
         INSERT IGNORE INTO recommended_durations
             (duration_id, engagement_level_id, practice_id)
         VALUES
-            (%s, %s, %s);
+            (%s, %s, %s)
+        ON DUPLICATE KEY UPDATE
+            duration_id = duration_id,
+            engagement_level_id = VALUES(engagement_level_id),
+            practice_id = practice_id;
     """
     for value in values:
         db.query_db(query, value)

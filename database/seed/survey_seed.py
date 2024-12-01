@@ -153,7 +153,12 @@ def survey_question_seed(batched_data):
         query = """
             INSERT INTO survey_questions (survey_topic_id, question_slug, question_text, type, created_at, updated_at)
             VALUES %s
-            ON DUPLICATE KEY UPDATE updated_at = NOW();
+            ON DUPLICATE KEY UPDATE 
+                survey_topic_id = VALUES(survey_topic_id),
+                question_slug = question_slug,
+                question_text = question_text,
+                type = VALUES(type),
+                updated_at = NOW();
         """
         # Prepare values for each question
         query_values = [
