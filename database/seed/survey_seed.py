@@ -648,7 +648,11 @@ def survey_generic_answer_seed():
         query = """
             INSERT INTO survey_answers (answer_type, answer_text, answer_value, created_at, updated_at)
             VALUES %s
-            ON DUPLICATE KEY UPDATE updated_at = NOW();
+            ON DUPLICATE KEY UPDATE 
+                answer_type = answer_type,
+                answer_text = answer_text,
+                answer_value = VALUES(answer_value),
+                updated_at = NOW();
         """
         # Convert the list of tuples into a format MySQL can handle
         query_values = [
@@ -666,8 +670,12 @@ def survey_generic_answer_seed():
     # Insert the mappings into the intermediate table
     if question_answer_map:
         map_query = """
-            INSERT INTO question_answer_map (survey_question_id, survey_answer_id, created_at, updated_at)
-            VALUES %s
+            INSERT INTO question_answer_map
+                (survey_question_id, survey_answer_id, created_at, updated_at)
+            VALUES 
+                %s
+            ON DUPLICATE KEY UPDATE
+                updated_at = NOW();
         """
         map_query_values = [
             (mapping['survey_question_id'], mapping['answer_id']) for mapping in question_answer_map

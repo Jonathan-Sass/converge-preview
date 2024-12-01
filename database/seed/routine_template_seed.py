@@ -61,6 +61,7 @@ def prepare_routine_template_data(frequencies, practices):
             "frequency_id": frequency_lookup.get(routine_template["frequency"], 1),
             "name": routine_template["name"],
             "description": routine_template["description"],
+            "routine_type": routine_template["routine_type"],
             "category": routine_template["category"],
             "notes": routine_template.get("notes", None)
         }
@@ -80,6 +81,7 @@ def prepare_routine_template_data(frequencies, practices):
             data["frequency_id"], 
             data["name"], 
             data["description"], 
+            data["routine_type"],
             data["category"],
             data["notes"]
         )
@@ -115,13 +117,14 @@ def prepare_routine_template_practices_data(routine_templates, batched_incomplet
 def execute_seed_routine_templates(values):
     query = """
         INSERT INTO routine_templates
-            (frequency_id, name, description, category, notes, created_at, updated_at)
+            (frequency_id, name, description, routine_type, category, notes, created_at, updated_at)
         VALUES
-            (%s, %s, %s, %s, %s, NOW(), NOW())
+            (%s, %s, %s, %s, %s, %s, NOW(), NOW())
         ON DUPLICATE KEY UPDATE
             frequency_id = VALUES(frequency_id),
             name = name,
             description = VALUES(description),
+            routine_type = VALUES(routine_type),
             category = VALUES(category),
             notes = VALUES(notes),
             updated_at = NOW();

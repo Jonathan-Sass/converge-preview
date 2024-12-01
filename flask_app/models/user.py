@@ -23,9 +23,10 @@ class User:
         self.created_at = data['created_at']
         self.updated_at = data['updated_at']
         # self.health_quiz_id = data["health_quiz_id"]
+        self.responses = []
         self.health_goals = []
         self.user_health_goals = []
-        self.am_routines = []
+        self.personal_routines = []
         self.day_flex_items = []
 
     @staticmethod

@@ -5,6 +5,7 @@ routine_template_data = [
         "name": "Balanced Start",
         "description": "A simple and effective routine to kickstart the day with focus and energy.",
         "frequency": "Daily",
+        "routine_type": "AM",
         "category":"Generic",
         "notes": "Designed for flexibility; suitable for users seeking structure without complexity.",
         "practices": [
@@ -21,6 +22,7 @@ routine_template_data = [
         "name": "Energized Focus",
         "description": "A morning routine designed to help ADHD users transition smoothly into the day.",
         "frequency": "Daily",
+        "routine_type": "AM",
         "category": "ADHD",
         "notes": "Includes sensory engagement and dopamine-building practices to maintain focus.",
         "practices": [
@@ -38,6 +40,7 @@ routine_template_data = [
         "name": "Connected Start",
         "description": "A structured routine for ADHD individuals, with an emphasis on fostering meaningful connections.",
         "frequency": "Daily",
+        "routine_type": "AM",
         "category": "ADHD",
         "notes": "Encourages focus and connection early in the day.",
         "practices": [
@@ -56,6 +59,7 @@ routine_template_data = [
         "name": "Peak Performance Start",
         "description": "A performance-driven routine focusing on hydration, movement, and mental preparation.",
         "frequency": "Daily",
+        "routine_type": "AM",
         "category": "Athlete",
         "notes": "Supports physical and mental readiness for peak performance.",
         "practices": [
@@ -73,6 +77,7 @@ routine_template_data = [
         "name": "Momentum Builder",
         "description": "A routine for ADHD athletes to harness energy and focus on training goals.",
         "frequency": "Daily",
+        "routine_type": "AM",
         "category": "Athlete",
         "notes": "Combines physical activity with practices to reinforce focus and discipline.",
         "practices": [

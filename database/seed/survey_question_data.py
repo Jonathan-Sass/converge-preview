@@ -50,7 +50,7 @@ survey_question_data = [
                 {
                     'question_slug': 'stress-responsibility-management', 
                     'question_text': "How would you describe your daily workload - are you able to keep up with what's on your plate?", 
-                    'type': 'frequency',
+                    'type': 'guided-choice',
                     'answers': [
                         {'answer_text': 'Yes, I keep up well', 'answer_value': 4},
                         {'answer_text': 'Mostly, but it can be a challenge', 'answer_value': 3},

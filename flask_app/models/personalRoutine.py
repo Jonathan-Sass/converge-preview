@@ -16,3 +16,18 @@ class PersonalRoutine:
         self.notes = data["notes"] or None
         self.created_at = data["created_at"]
         self.updated_at = data["updated_at"]
+        self.practices = []
+
+
+    def fetch_personal_routines():
+        query = """
+            SELECT 
+        """
+
+
+
+    # def save_personal_routine():
+
+    # def update_personal_routine():
+
+    # def delete_personal_routine()
