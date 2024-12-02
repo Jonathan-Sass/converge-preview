@@ -5,6 +5,7 @@ import re
 
 from flask_app.models.healthGoal import HealthGoal
 from flask_app.models.userHealthGoal import UserHealthGoal
+from flask_app.models.userResponse import UserResponse
 
 
 EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$')
@@ -12,7 +13,7 @@ EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$')
 PASSWORD_REGEX = re.compile(r'^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$')
 
 class User: 
-    _db = "converge_schema"
+    db = connectToMySQL("converge_schema")
 
     def __init__ (self, data):
         self.id = data['id']
@@ -28,6 +29,103 @@ class User:
         self.user_health_goals = []
         self.personal_routines = []
         self.day_flex_items = []
+    
+    
+    @classmethod
+    def find_all(cls):
+        query = "SELECT * FROM users"
+        users = User.db.query_db(query)
+        return users
+
+    @classmethod
+    def find_by_email(cls, form_data):
+        query = "SELECT * FROM users WHERE email = %(email)s;"
+        data = {"email": form_data["email"]}
+        result = User.db.query_db(query, data)
+        
+        if len(result) == 0:
+            return None
+        return User(result[0])
+    
+    @classmethod
+    def get_logged_in_user(cls):
+        user_id = session.get("user_id")
+        if not user_id:
+            flash("Please log in.", "login")
+            return None
+        
+        user = User.find_by_id(user_id)
+        if not user:
+            flash("Invalid user. Please log in again.", "login")
+            return None
+        
+        return user
+
+    @classmethod
+    def find_by_id(cls, user_id):
+        query = "SELECT * FROM users WHERE id = %(id)s;"
+        data = {"id": user_id}
+        result = User.db.query_db(query, data)
+        if len(result) == 0:
+            return None
+        user = User(result[0])
+        return user
+    
+    # WILL LIKELY NEED TWEAKING DEPENDING ON USER ATTRIBUTES
+    @classmethod
+    def save(cls, data):
+        query = """
+                INSERT INTO users
+                (first_name, last_name, email, password, created_at, updated_at)
+                VALUES
+                (%(first_name)s, %(last_name)s, %(email)s, %(password)s, NOW(), NOW());
+                """
+        return User.db.query_db(query, data)
+
+    # METHODS FOR USER RESPONSES
+    def fetch_user_responses_by_survey_topic_slug(self, survey_topic_slug_string):
+        query = """
+            SELECT 
+                user_responses.user_id,
+                survey_topics.topic_slug,
+                user_responses.survey_question_id,
+                survey_questions.question_text AS survey_question_text,
+                user_responses.survey_answer_id,
+                survey_answers.answer_text AS survey_answer_text,
+                survey_answers.answer_value AS survey_answer_value
+            FROM
+                user_responses
+            JOIN
+                survey_questions ON user_responses.survey_question_id = survey_questions.id
+            JOIN
+                survey_answers ON user_responses.survey_answer_id = survey_answers.id
+            JOIN
+                survey_topics ON survey_questions.survey_topic_id = survey_topics.id
+            WHERE
+                user_responses.user_id = %(user_id)s
+            AND
+                survey_topics.topic_slug = %(survey_topic_slug)s
+            ORDER BY
+                user_responses.survey_question_id;
+        """
+
+        data = {
+            "user_id": self.id,
+            "survey_topic_slug": survey_topic_slug_string
+        }
+
+        results = User.db.query_db(query, data)
+
+        # user_responses = []
+        if results:
+            for result in results:
+                self.responses.append(UserResponse(result))
+                print("*****user_response result*****")
+                pprint(result)
+        else:
+            print(f"No responses found for user: {self.id} and survey_topic: {survey_topic_slug_string}")
+        
+        return self
 
     @staticmethod
     def validate_registration(user):
@@ -86,46 +184,8 @@ class User:
 
         return is_valid
 
-    @classmethod
-    def find_all(cls):
-        query = "SELECT * FROM users"
-        users = connectToMySQL(User._db).query_db(query)
-        return users
-
-    @classmethod
-    def find_by_email(cls, form_data):
-        query = "SELECT * FROM users WHERE email = %(email)s;"
-        data = {"email": form_data["email"]}
-        result = connectToMySQL(User._db).query_db(query, data)
-        
-        if len(result) == 0:
-            return None
-        return User(result[0])
     
-    @classmethod
-    def get_logged_in_user(cls):
-        user_id = session.get("user_id")
-        if not user_id:
-            flash("Please log in.", "login")
-            return None
-        
-        user = User.find_by_id(user_id)
-        if not user:
-            flash("Invalid user. Please log in again.", "login")
-            return None
-        
-        return user
 
-    @classmethod
-    def find_by_id(cls, user_id):
-        query = "SELECT * FROM users WHERE id = %(id)s;"
-        data = {"id": user_id}
-        result = connectToMySQL(User._db).query_db(query, data)
-        if len(result) == 0:
-            return None
-        user = User(result[0])
-        return user
-    
     @classmethod
     def find_by_id_with_health_goals(cls, user_id):
         query = """
@@ -136,7 +196,7 @@ class User:
                 """
 
         data = {"id": user_id}
-        results = connectToMySQL(User._db).query_db(query, data)
+        results = User.db.query_db(query, data)
         if len(results) == 0:
             return None
         user = User(User.find_by_id(session["user_id"]))
@@ -173,7 +233,7 @@ class User:
                 WHERE users.id = %(user_id)s;
                 """
         data = {"user_id": user_id}
-        results = connectToMySQL(User._db).query_db(query, data)
+        results = User.db.query_db(query, data)
         print("*****users health goals with time domains results*****")
         for result in results:
             pprint(result)
@@ -210,17 +270,6 @@ class User:
             pprint(user.health_goals)
             print("**************")
         return user
-
-# WILL LIKELY NEED TWEAKING DEPENDING ON USER ATTRIBUTES
-    @classmethod
-    def save(cls, data):
-        query = """
-                INSERT INTO users
-                (first_name, last_name, email, password, created_at, updated_at)
-                VALUES
-                (%(first_name)s, %(last_name)s, %(email)s, %(password)s, NOW(), NOW());
-                """
-        return connectToMySQL(User._db).query_db(query, data)
     
     @classmethod
     def save_health_quiz_id(cls):
@@ -231,4 +280,4 @@ class User:
 
         query = "UPDATE users SET health_quiz_id = %(health_quiz_id)s WHERE id = %(user_id)s"
         print("******HEALTH QUIZ ID SAVING...*****")
-        return connectToMySQL(User._db).query_db(query, data)
+        return User.db.query_db(query, data)

@@ -1,6 +1,9 @@
 from flask_app.config.mysqlconnection import connectToMySQL
 from flask import flash, session, redirect
+
 from flask_app.models.user import User
+from flask_app.models.userResponse import UserResponse
+from flask_app.models.routineTemplate import RoutineTemplate
 
 class PersonalRoutine:
     db = connectToMySQL("converge_schema")
@@ -18,16 +21,31 @@ class PersonalRoutine:
         self.updated_at = data["updated_at"]
         self.practices = []
 
-
+    @classmethod
     def fetch_personal_routines():
         query = """
             SELECT 
         """
+        return
 
+    @staticmethod
+    def build_initial_am_routine(user, survey_topic_slug_string):
 
+        user.fetch_user_responses_by_survey_topic_slug(survey_topic_slug_string)
+        # UserResponse.process_user_responses(user.responses)
+        template_name = PersonalRoutine.am_routine_template_selector(user.responses)
+        RoutineTemplate.fetch_routine_templates(template_name)
+
+    @classmethod
+    def select_am_routine_template(self, user_responses):
+        if user_responses.survey_topic_slug == "getting-to-know-you":
+            
+        
+        return
 
     # def save_personal_routine():
 
     # def update_personal_routine():
 
-    # def delete_personal_routine()
+    # def delete_personal_routine():
+        # return

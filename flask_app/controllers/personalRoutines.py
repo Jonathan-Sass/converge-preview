@@ -31,7 +31,9 @@ def set_initial_am_routines():
     if not user:
         return redirect("/")
 
-    UserResponses.fetch_user_responses()
-    RoutineTemplate.am_routine_template_selector()
+    
+
+    user_with_am_personal_routine = PersonalRoutine.build_initial_am_routine(user, "getting-to-know-you")
+    # RoutineTemplate.am_routine_template_selector(user, survey_topic_slug_string)
 
     return render_template("routines/am_routine_builder.html")
