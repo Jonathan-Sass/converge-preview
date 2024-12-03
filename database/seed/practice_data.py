@@ -180,6 +180,7 @@ practice_data = {
         "difficulty_level_id": 3,
         "frequency": "Daily",
         "is_common": True,
+        "literature_summary": "Neuroscience literature shows that early exposure to screens can overstimulate the brain, impairing focus and increasing stress. Screen-free time fosters dopamine balance, aiding in sustained attention and reducing anxiety.",
         "notes": "This time can be used for mindfulness practices, light exercise, or preparing for the day without digital distractions.",
         "objectives": ["reduce_digital_dependency", "enhance_focus", "improve_overall_wellness"]
     },

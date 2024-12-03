@@ -32,6 +32,6 @@ def set_initial_am_routines():
         return redirect("/")
     
     recommended_routine = PersonalRoutine.select_and_fetch_initial_am_routine(user, "getting-to-know-you")
-    # RoutineTemplate.am_routine_template_selector(user, survey_topic_slug_string)
+    # TODO: Implement Personal Routine Progress - allows user to slowly build habits without being overwhelming/defeating
 
     return render_template("routines/am_routine_builder.html", recommended_routine = recommended_routine)

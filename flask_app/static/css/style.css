@@ -7,3 +7,41 @@ body {
 h1, h2, h3, h4, h5, h6, p {
     font-weight: 400;
 }
+
+
+/* For drag-and-drop items */
+.practice-card {
+    border: 1px solid #ccc; /* Light border to match Bootstrap shadow styles */
+    /* margin-bottom: 10px; Space between cards */
+    /* padding: 15px; Slightly larger padding for better readability */
+    /* background-color: white; Keep the card background clean */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    cursor: grab; /* Indicates draggable items */
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.practice-card:hover {
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15); /* Slightly deeper shadow on hover */
+}
+
+.practice-card:active {
+    cursor: grabbing; /* Visual feedback when dragging */
+    transform: scale(1.05); /* Slightly larger to emphasize selection */
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2); /* Deeper shadow during drag */
+}
+
+.practice-card.drag-over {
+    border: 2px dashed #007bff; /* Highlighted border for drop target */
+    background-color: #e9f7ff; /* Light blue background for clarity */
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+#practice-container {
+    display: flex;
+    flex-direction: column; /* Stack the cards vertically */
+    gap: 1rem; /* Space between cards */
+    width: 100%; /* Full-width for responsive layout */
+    max-width: 800px; /* Optional: Constrain width for readability */
+    margin: 0 auto; /* Center align */
+    padding: 1rem; /* Padding for the container */
+}
