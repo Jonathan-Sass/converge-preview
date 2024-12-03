@@ -180,7 +180,7 @@ def execute_practice_data_seed(values):
         return print("No values in values")
     
     query = """
-        INSERT IGNORE INTO practices
+        INSERT INTO practices
             (practice_category_id, impact_rating_id, difficulty_level_id, frequency_id, name, description, is_common, notes, literature_summary, created_at, updated_at)
         VALUES
             (%s, %s, %s, %s, %s, %s, %s, %s, %s, NOW(), NOW())
@@ -224,7 +224,7 @@ def prepare_recommended_durations_data(durations, engagement_levels):
                 for rd in practice['recommended_durations']:
                     
                     prepared_recommended_durations_data["duration_id"] = duration_id_lookup[rd['duration_label']]
-                    prepared_recommended_durations_data["engagement_level_id"] = engagement_level_id_lookup.get(rd.get('engagement_level'), 'NULL')
+                    prepared_recommended_durations_data["engagement_level_id"] = engagement_level_id_lookup.get(rd.get('engagement_level'), None)
 
                     # Add the tuple to the batch
                     batched_recommended_durations.append(
@@ -240,11 +240,22 @@ def prepare_recommended_durations_data(durations, engagement_levels):
         for recommended_duration in batched_recommended_durations
     ]
 
+    print("******values in prepare_recommended_durations_data*****")
+    for value in values:
+        pprint(value)
+    print("**************************************************************************")
+    print("**************************************************************************")
+    print("**************************************************************************")
+    print("**************************************************************************")
+    print("**************************************************************************")
+    print("**************************************************************************")
+
+
     return values
 
 def execute_recommended_duration_seed(values):
     query = """
-        INSERT IGNORE INTO recommended_durations
+        INSERT INTO recommended_durations
             (duration_id, engagement_level_id, practice_id)
         VALUES
             (%s, %s, %s)

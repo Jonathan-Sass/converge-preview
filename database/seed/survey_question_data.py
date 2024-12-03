@@ -79,7 +79,18 @@ survey_question_data = [
                     'question_text': "How satisfied are you with your level of resilience to stress?", 
                     'type': 'satisfaction'
                 },
-                
+                {
+                    'question_slug': 'current-fitness-level',
+                    'question_text': "How would you describe your current activity level?",
+                    'type': 'guided-choice',
+                    'answers': [
+                        {'answer_text': 'Mostly sedentary.', 'answer_value': 0},
+                        {'answer_text': 'Some light activity, such as walking.', 'answer_value': 1},
+                        {'answer_text': 'Casually active.', 'answer_value': 2},
+                        {'answer_text': 'Consistently active, including both cardio and strength training.', 'answer_value': 3},
+                        {'answer_text': 'I am an athlete with structured training that includes both cardio and resistance training.', 'answer_value': 4}
+                    ]
+                },
                 {
                     'question_slug': 'satisfaction-current-fitness', 
                     'question_text': "How satisfied are you with your current fitness level?", 

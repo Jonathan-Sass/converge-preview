@@ -1,5 +1,6 @@
 from flask_app.config.mysqlconnection import connectToMySQL
 from flask import flash, session, redirect
+from pprint import pprint
 
 from flask_app.models.user import User
 from flask_app.models.userResponse import UserResponse
@@ -29,19 +30,29 @@ class PersonalRoutine:
         return
 
     @staticmethod
-    def build_initial_am_routine(user, survey_topic_slug_string):
+    def select_and_fetch_initial_am_routine(user, survey_topic_slug_string):
+        # print("**** Before fetch_responses_...*****")
+        # pprint(vars(user))
 
         user.fetch_user_responses_by_survey_topic_slug(survey_topic_slug_string)
-        # UserResponse.process_user_responses(user.responses)
-        template_name = PersonalRoutine.am_routine_template_selector(user.responses)
-        RoutineTemplate.fetch_routine_templates(template_name)
 
-    @classmethod
-    def select_am_routine_template(self, user_responses):
-        if user_responses.survey_topic_slug == "getting-to-know-you":
-            
+        print("**** After fetch_responses_...*****")
+        pprint(vars(user))
+
+        recommended_routine_template_name = UserResponse.process_user_responses(user.responses)
+        # template_name = PersonalRoutine.am_routine_template_selector(user.responses)
+        recommended_routine_template = RoutineTemplate.fetch_routine_template_with_practices(recommended_routine_template_name)
+
+        print("****RECOMMENDED ROUTINE TEMPLATE!!!!...?****")
+        print(vars(recommended_routine_template))
+
+        return recommended_routine_template
+    # @classmethod
+    # def select_am_routine_template(self, user_responses):
+    #     if user_responses.survey_topic_slug == "getting-to-know-you":
+
         
-        return
+    #     return
 
     # def save_personal_routine():
 

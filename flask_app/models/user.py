@@ -89,6 +89,7 @@ class User:
                 user_responses.user_id,
                 survey_topics.topic_slug,
                 user_responses.survey_question_id,
+                survey_questions.question_slug,
                 survey_questions.question_text AS survey_question_text,
                 user_responses.survey_answer_id,
                 survey_answers.answer_text AS survey_answer_text,
@@ -120,10 +121,11 @@ class User:
         if results:
             for result in results:
                 self.responses.append(UserResponse(result))
-                print("*****user_response result*****")
-                pprint(result)
         else:
             print(f"No responses found for user: {self.id} and survey_topic: {survey_topic_slug_string}")
+        
+        # print("*****user.responses result*****")
+        # pprint(self.responses)
         
         return self
 

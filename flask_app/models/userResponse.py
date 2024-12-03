@@ -1,5 +1,6 @@
 from flask_app.config.mysqlconnection import connectToMySQL
 from flask_app.models import user
+from pprint import pprint
 
 
 class UserResponse:
@@ -7,12 +8,51 @@ class UserResponse:
 
     def __init__(self, data):
         self.user_id = data["user_id"]
-        self.survey_topic_slug = data["topic_slug"]
+        self.topic_slug = data["topic_slug"]
+        self.question_slug = data["question_slug"]
         self.question_id = data["survey_question_id"]
         self.question_text = data["survey_question_text"]
         self.answer_id = data["survey_answer_id"]
         self.answer_text = data["survey_answer_text"]
         self.answer_value = data["survey_answer_value"]
+
+
+    @staticmethod
+    def process_user_responses(responses):
+        # CURRENT LOGIC FOR TESTING ONLY - ALL SUBSEQUENT FUNCTIONS WILL UNDERGO SIGNIFICANT REWORK FOR A MORE MEANINGFUL FILTERING PROCESS
+
+        if not responses:
+            print("No responses to process")
+            return None
+        
+        for response in responses:
+            pprint(response)
+
+        topic_slug = responses[0].topic_slug 
+
+        if topic_slug == "getting-to-know-you":
+            return UserResponse.process_getting_to_know_you_responses(responses)
+        
+    @staticmethod
+    def process_getting_to_know_you_responses(responses):
+        recommended_routine_template = "Balanced Start"
+
+        for i, response in enumerate(responses):
+            print(f"*****Index: {i}")
+            print(vars(response))
+            print("*****")
+        
+            if response.question_slug == "current-fitness-level":
+                if response.answer_value == 4:
+                    recommended_routine_template = "Peak Performance Start"
+            if response.question_slug == "adhd-self-assessment":
+                if response.answer_value >= 2:
+                    recommended_routine_template = "Energized Focus"
+            if response.question_slug == "satisfaction-relationships":
+                if response.answer_value < 2:
+                    recommended_routine_template = "Connected Start"
+        
+        return recommended_routine_template
 
 
     # def fetch_user_and_responses_by_survey_topic_slug(user, survey_topic_slug_string):

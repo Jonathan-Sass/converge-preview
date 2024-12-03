@@ -70,10 +70,6 @@
                     </div>
                 </div>
             </nav>
-            <header class="bg-dark opacity-75 w-100 p-2 pb-3 text-center">
-                <h1 class="display-2 mb-3 text-primary">Define Your WHY</h1>
-                <h4 class="display-6 mx-5">What fuels you?</h4>
-            </header>
         <!-- Content and Sidebar Div-->
         <div class="container-fluid m-auto my-3 d-flex align-items-start gap-3">
             <!-- Progress Nav Sidebar -->
@@ -111,61 +107,18 @@
             </div>
             <!-- Main Content -->
             <div class="container col-9">
-                <div class="card shadow opacity-75 text-center mb-2">
-                    <div class="card-body">
-                        <div class="card-title">
-                            <h2 class="display-6">AM Routine</h2>
-                            <h6>Create a framework to feel and be at your best every day.</h6>
-                        </div>
-                    </div>
-                    <!-- Div for pretty picture background -->
-                </div>
                 <div class="container-fluid d-flex gap-2 justify-content-between">
+                    {% for practice in recommended_routine.practices %}
                     <div class="card shadow p-2 opacity-75">
                         <div class="card-body">
                             <div class="card-title">
-                                <h5 class="text-primary">Hydrate</h5>
+                                <h5 class="text-primary">{{ practice.name }}</h5>
                                 <hr class="border border-1 border-light" />
                             </div>
-                            <div class="card-text"></div>
+                            <div class="card-text">{{ practice.description }}</div>
                         </div>
                     </div>
-                    <div class="card shadow p-2 opacity-75">
-                        <div class="card-body">
-                            <div class="card-title">
-                                <h5 class="text-primary">Cold Exposure</h5>
-                                <hr class="border border-1 border-light" />
-                            </div>
-                            <div class="card-text"></div>
-                        </div>
-                    </div>
-                    <div class="card shadow p-2 opacity-75">
-                        <div class="card-body">
-                            <div class="card-title">
-                                <h5 class="text-primary">Mindfulness</h5>
-                                <hr class="border border-1 border-light" />
-                            </div>
-                            <div class="card-text"></div>
-                        </div>
-                    </div>
-                    <div class="card shadow p-2 opacity-75">
-                        <div class="card-body">
-                            <div class="card-title">
-                                <h5 class="text-primary">Movement</h5>
-                                <hr class="border border-1 border-light" />
-                            </div>
-                            <div class="card-text"></div>
-                        </div>
-                    </div>
-                    <div class="card shadow p-2 opacity-75">
-                        <div class="card-body">
-                            <div class="card-title">
-                                <h5 class="text-primary">Morning Sun</h5>
-                                <hr class="border border-1 border-light" />
-                            </div>
-                            <div class="card-text"></div>
-                        </div>
-                    </div>
+                    {% endfor %}
                 </div>
             </div>
         </div>

@@ -8,14 +8,13 @@ class RoutineTemplate:
     db = connectToMySQL("converge_schema")
 
     def __init__(self, data):
-        self.id = data["id"]
+        self.id = data["routine_template_id"]
         self.frequency = data["routine_template_frequency"]
         self.name = data["routine_template_name"]
         self.description = data["routine_template_description"]
         self.category = data["routine_template_category"]
         self.notes = data["routine_template_notes"] or None
-        self.created_at = data["created_at"]
-        self.updated_at = data["updated_at"]
+        self.practices = []
 
     def am_routine_template_selector(user, survey_topic_slug_string):
         
@@ -23,25 +22,30 @@ class RoutineTemplate:
         UserResponse.process_user_responses(user_with_responses)
    
 
-    def fetch_routine_templates(routine_template_name):
+    def fetch_routine_template_with_practices(routine_template_name):
+        print(f"Routine Template Name in fetch_routine_template: {routine_template_name}")
+        
         query = """
             SELECT
+                routine_templates.id AS routine_template_id,
                 routine_templates.name AS routine_template_name,
                 routine_templates.description AS routine_template_description,
                 routine_templates.routine_type,
                 routine_templates.category AS routine_template_category,
                 routine_templates.notes AS routine_template_notes,
                 frequencies.frequency_label AS routine_template_frequency,
+                practices.id AS practice_id,
                 practices.name AS practice_name,
                 practices.description AS practice_description,
                 practices.is_common AS practice_is_common,
                 practices.notes AS practice_notes,
                 practices.literature_summary,
                 practice_categories.name AS practice_category,
+                impact_ratings.impact_rating_description,
                 impact_ratings.impact_rating_value,
                 difficulty_levels.difficulty_label AS practice_difficulty
             FROM
-                routine_templates 
+                routine_templates
             JOIN
                 frequencies ON routine_templates.frequency_id = frequencies.id
             JOIN
@@ -60,9 +64,15 @@ class RoutineTemplate:
                 routine_template_practices.position;
         """
 
-        result = RoutineTemplate.db.query_db(query, routine_template_name)
+        data = {"routine_template_name": routine_template_name}
 
-        if result:
-            routine_template = result
-        
+        results = RoutineTemplate.db.query_db(query, data)
+
+        if results:
+            routine_template = RoutineTemplate(results[0])
+            
+            for result in results:
+                # Add associated practices to routine_template
+                routine_template.practices.append(Practice.create_practice_with_durations(result))
+
         return routine_template
