@@ -1,22 +1,23 @@
 let draggedElement = null;
+let placeholder = null;
 
+// Save the new order when navigating to the next page
 document.getElementById('next-page-button').addEventListener('click', () => {
     saveOrder();
     window.location.href = '/next-page'; // Navigate to the next page
 });
 
+// Save the updated order to the server
 function saveOrder() {
-    // Collect the new order from the DOM
     const updatedOrder = [...document.querySelectorAll('.practice-card')].map((card, index) => ({
-        id: card.id.split('-')[1], // Extract the ID from the card's ID attribute
-        position: index + 1 // Use the new index as the position
+        id: card.id.split('-')[1], // Extract the ID
+        position: index + 1        // Use the index as the new position
     }));
 
-    // Send the new order to the server via fetch or AJAX
     fetch('/update-order', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(updatedOrder) // Send as JSON
+        body: JSON.stringify(updatedOrder)
     }).then(response => {
         if (response.ok) {
             console.log('Order updated successfully in the database!');
@@ -24,44 +25,66 @@ function saveOrder() {
     });
 }
 
-// Called when a drag starts
+// Start dragging
 function drag(event) {
-    draggedElement = event.target; // Store the element being dragged
-    event.dataTransfer.setData("text", event.target.id); // Pass the ID of the dragged element
+    draggedElement = event.target;
+    placeholder = document.createElement('div');
+    placeholder.className = 'placeholder';
+    placeholder.style.height = `${draggedElement.offsetHeight}px`; // Match dragged element's height
+    draggedElement.parentNode.insertBefore(placeholder, draggedElement.nextSibling); // Insert the placeholder
+    event.dataTransfer.setData('text/plain', draggedElement.id); // Required for drag API
 }
 
-// Allow drop by preventing the default behavior
+// Allow drop and handle dynamic placeholder placement
 function allowDrop(event) {
     event.preventDefault();
-    event.target.closest('.practice-card')?.classList.add('drag-over');
 
-}
-
-// Called when an element is dropped
-function drop(event) {
-    event.preventDefault();
-    const droppedOn = event.target.closest('.practice-card');
-    droppedOn?.classList.remove('drag-over'); // Remove visual feedback
-
-    if (droppedOn && droppedOn !== draggedElement) {
+    const target = event.target.closest('.practice-card');
+    if (target && target !== draggedElement && target !== placeholder) {
         const container = document.getElementById('practice-container');
+        const targetRect = target.getBoundingClientRect();
+        const offset = event.clientY - targetRect.top;
 
-        // Swap positions of draggedElement and droppedOn
-        const draggedIndex = [...container.children].indexOf(draggedElement);
-        const droppedIndex = [...container.children].indexOf(droppedOn);
-
-        if (draggedIndex > droppedIndex) {
-            container.insertBefore(draggedElement, droppedOn);
+        // Place the placeholder based on mouse position
+        if (offset < targetRect.height / 2) {
+            container.insertBefore(placeholder, target);
         } else {
-            container.insertBefore(draggedElement, droppedOn.nextSibling);
+            container.insertBefore(placeholder, target.nextSibling);
         }
-
-        // Update the order attribute for all practice cards
-        updateOrder();
     }
 }
 
-// Update order data after drag-and-drop
+// Handle drag enter to add visual feedback
+function dragEnter(event) {
+    const target = event.target.closest('.practice-card');
+    if (target && target !== draggedElement) {
+        target.classList.add('drag-over');
+    }
+}
+
+// Handle drag leave to remove visual feedback
+function dragLeave(event) {
+    const target = event.target.closest('.practice-card');
+    if (target) {
+        target.classList.remove('drag-over');
+    }
+}
+
+// Finish dragging and update the DOM
+function dragEnd(event) {
+    placeholder.parentNode.insertBefore(draggedElement, placeholder); // Move the dragged element to the placeholder's position
+    placeholder.remove(); // Remove the placeholder
+    placeholder = null;   // Reset placeholder
+    updateOrder();        // Update the DOM order
+}
+
+// Drop the element
+function drop(event) {
+    event.preventDefault();
+    document.querySelectorAll('.drag-over').forEach(el => el.classList.remove('drag-over')); // Clean up visual effects
+}
+
+// Update order dynamically
 function updateOrder() {
     const cards = document.querySelectorAll('.practice-card');
     cards.forEach((card, index) => {

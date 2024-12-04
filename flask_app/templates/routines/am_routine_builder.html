@@ -141,6 +141,9 @@
                             draggable="true" 
                             ondragstart="drag(event)" 
                             ondragover="allowDrop(event)" 
+                            ondragenter="dragEnter(event)" 
+                            ondragleave="dragLeave(event)" 
+                            ondragend="dragEnd(event)"
                             ondrop="drop(event)" 
                             id="practice-{{ loop.index }}">
                                 <div class="card-body">
