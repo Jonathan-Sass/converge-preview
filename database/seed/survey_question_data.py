@@ -74,13 +74,13 @@ survey_question_data = [
                     'question_text': "Do you believe that you can change your resilience to stress?", 
                     'type': 'yes-no-alittle',
                 },
+                # {
+                #     'question_slug': 'stress-resilience-satisfaction', 
+                #     'question_text': "How satisfied are you with your level of resilience to stress?", 
+                #     'type': 'satisfaction'
+                # },
                 {
-                    'question_slug': 'stress-resilience-satisfaction', 
-                    'question_text': "How satisfied are you with your level of resilience to stress?", 
-                    'type': 'satisfaction'
-                },
-                {
-                    'question_slug': 'current-fitness-level',
+                    'question_slug': 'current-activity-level',
                     'question_text': "How would you describe your current activity level?",
                     'type': 'guided-choice',
                     'answers': [
@@ -104,7 +104,15 @@ survey_question_data = [
                 {
                     'question_slug': 'satisfaction-relationships', 
                     'question_text': "How satisfied are you with your current relationships (friends, family, partners)?", 
-                    'type': 'satisfaction'
+                    'type': 'guided-choice',
+                    'answers':[
+                        {'answer_text': "My relationships are deeply fulfilling and provide strong emotional support and connection.", 'answer_value': 5},
+                        {'answer_text': "I feel connected and valued, but I sometimes wish for deeper emotional support or shared experiences.", 'answer_value': 4},
+                        {'answer_text': "My relationships are generally positive, but I occasionally feel distant or misunderstood.", 'answer_value': 3},
+                        {'answer_text': "I have relationships, but they don’t provide the emotional support or connection I need.", 'answer_value': 2},
+                        {'answer_text': "I often feel lonely or isolated, and I lack meaningful connections in my life.", 'answer_value': 1}
+                    ]
+
                 },
                 # {
                 #     'question_slug': 'satisfaction-current-energy', 
@@ -122,7 +130,16 @@ survey_question_data = [
                         {'answer_text': "I don't think I exhibit symptoms of ADHD", 'answer_value': 0},
                     ]
                 },
-                
+                {
+                    'question_slug': 'current-am-routine', 
+                    'question_text': "Do you currently have a morning routine that you follow?", 
+                    'type': 'yes-no-inconsistent'
+                },
+                {
+                    'question_slug': 'current-am-time-available', 
+                    'question_text': "How much time do you have available for a morning routine/self-care practices?", 
+                    'type': 'range-mins-hours-10-2'
+                }
 
 
                 

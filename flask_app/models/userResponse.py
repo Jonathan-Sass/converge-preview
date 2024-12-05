@@ -37,20 +37,37 @@ class UserResponse:
     def process_getting_to_know_you_responses(responses):
         recommended_routine_template = "Balanced Start"
 
-        for i, response in enumerate(responses):
-            print(f"*****Index: {i}")
-            print(vars(response))
-            print("*****")
+        response_values = {response.question_slug: response.answer_value for response in responses}
+
+        if response_values.get("adhd-self-assessment") >= 2:
+            if response_values.get("current-fitness-level") == 4:
+                recommended_routine_template = "Momentum Builder"
+                return recommended_routine_template
+            elif response_values.get("satisfaction-relationships") < 2:
+                recommended_routine_template = "Connected Start"
+                return recommended_routine_template
+            else:
+                recommended_routine_template = "Energized Focus"
+                return recommended_routine_template
         
-            if response.question_slug == "current-fitness-level":
-                if response.answer_value == 4:
-                    recommended_routine_template = "Peak Performance Start"
-            if response.question_slug == "adhd-self-assessment":
-                if response.answer_value >= 2:
-                    recommended_routine_template = "Energized Focus"
-            if response.question_slug == "satisfaction-relationships":
-                if response.answer_value < 2:
-                    recommended_routine_template = "Connected Start"
+        if response_values.get("current-fitness-level"):
+            recommended_routine_template = "Peak Performance Start"
+            return recommended_routine_template
+
+        # for i, response in enumerate(responses):
+        #     print(f"*****Index: {i}")
+        #     print(vars(response))
+        #     print("*****")
+        
+        #     if response.question_slug == "current-fitness-level":
+        #         if response.answer_value == 4:
+        #             recommended_routine_template = "Peak Performance Start"
+        #     if response.question_slug == "adhd-self-assessment":
+        #         if response.answer_value >= 2:
+        #             recommended_routine_template = "Energized Focus"
+        #     if response.question_slug == "satisfaction-relationships":
+        #         if response.answer_value < 2:
+        #             recommended_routine_template = "Connected Start"
         
         return recommended_routine_template
 

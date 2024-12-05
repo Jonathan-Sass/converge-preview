@@ -476,11 +476,20 @@ def survey_generic_answer_seed():
                 {"answer_text": "Sometimes", "answer_value": 1},
                 {"answer_text": "No", "answer_value": 0}
             ]
-        },{
+        },
+        {
             'answer_type': 'yes-no-alittle',
             'answers': [
                 {"answer_text": "Yes", "answer_value": 2},
                 {"answer_text": "Maybe a little", "answer_value": 1},
+                {"answer_text": "No", "answer_value": 0}
+            ]
+        },
+        {
+            'answer_type': 'yes-no-inconsistent',
+            'answers': [
+                {"answer_text": "Yes", "answer_value": 2},
+                {"answer_text": "Yes, but it's inconsistent", "answer_value": 1},
                 {"answer_text": "No", "answer_value": 0}
             ]
         },
@@ -552,7 +561,18 @@ def survey_generic_answer_seed():
         },
         # RANGE ANSWER SETS
         
-        # Range 0-10
+        {
+            'answer_type': 'range-mins-hours-10-2',
+            'answers': [
+                {"answer_text": "10 minutes", "answer_value": 0},
+                {"answer_text": "20 minutes", "answer_value": 1},
+                {"answer_text": "30 minutes", "answer_value": 2},
+                {"answer_text": "45 minutes", "answer_value": 3},
+                {"answer_text": "1 hour", "answer_value": 4},
+                {"answer_text": "90 minutes", "answer_value": 5},
+                {"answer_text": "2 hours", "answer_value": 6}
+            ]
+        }, 
         {
             'answer_type': 'range-hours-0-10+',
             'answers': [

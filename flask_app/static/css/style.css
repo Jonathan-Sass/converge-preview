@@ -32,7 +32,7 @@ h1, h2, h3, h4, h5, h6, p {
 
 .practice-card.drag-over {
     border: 2px dashed #007bff; /* Highlighted border for drop target */
-    background-color: #e9f7ff; /* Light blue background for clarity */
+    background-color: #ebf8ff; /* Light blue background for clarity */
     transition: background-color 0.2s ease, border-color 0.2s ease;
 }
 
