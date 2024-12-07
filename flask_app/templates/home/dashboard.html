@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='img/Enso_Blue_and_Black.jpg') }}">
+    <title>Home</title>
+</head>
+<body>
+    <div class="border-box">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark w-100 m-auto d-flex justify-content-between position-sticky top-0 z-3 p-3">
+            <div class="container-fluid">
+                <a class="navbar-brand d-inline-flex align-items-center gap-4" href="/home">
+                    <img src="/static/img/Enso_Blue_and_Black.jpg" class="rounded-circle" width="60" height="60" alt="Converge Logo">
+                    <h1 class="display-5 text-primary">Converge</h1>
+                </a>
+            </div>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDarkDropdown" aria-controls="navbarNavDarkDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
+                <div class="navbar-nav">
+                    <a class="nav-link active" aria-current="page" href="/home">Home</a>
+                    <a class="nav-link" href="/calendar">Calendar</a>
+                    <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
+                        <ul class="navbar-nav">
+                            <li class="nav-item dropdown">
+                                <button class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                Goals
+                                </button>
+                                <ul class="dropdown-menu dropdown-menu-dark">
+                                    <li><a class="dropdown-item" href="/goals/recreation-travel">Recreation and Travel</a></li>
+                                    <li><a class="dropdown-item" href="/goals/health-wellness">Health and Wellness</a></li>
+                                    <li><a class="dropdown-item" href="/goals/social-community">Social and Community Engagement</a></li>
+                                    <li><a class="dropdown-item" href="/goals/spirituality">Spirituality and Life Purpose</a></li>
+                                    <li><a class="dropdown-item" href="/goals/career-professional-development">Career and Professional Development</a></li>
+                                    <li><a class="dropdown-item" href="/goals/wealth-finance">Wealth Building and Financial Health</a></li>
+                                    <li><a class="dropdown-item" href="/goals/creative-expression-hobbies">Creative Expression and Hobbies</a></li>
+                                    <li><a class="dropdown-item" href="/goals/environment-success">Environment and Success</a></li>
+                                    <li><a class="dropdown-item" href="/goals">Something else here</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
+                        <ul class="navbar-nav">
+                            <li class="nav-item dropdown">
+                                <button class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                Practices
+                                </button>
+                                <ul class="dropdown-menu dropdown-menu-dark">
+                                <li><a class="dropdown-item" href="/practices/AM">AM Practices</a></li>
+                                <li><a class="dropdown-item" href="/practices/PM">PM Practices</a></li>
+                                <li><a class="dropdown-item" href="/practices/daily">Daily Practices</a></li>
+                                <li><a class="dropdown-item" href="/practices/discipline">Discipline</a></li>
+                                <li><a class="dropdown-item" href="/practices">Something else?</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                    <a class="nav-link disabled" aria-disabled="true">Disabled</a>
+                    <form action="/users/logout" method="post">
+                        <button class="btn btn-link" type="submit" name="logout">logout</button>
+                    </form>
+                </div>
+            </div>
+        </nav>
+        <header class="bg-dark opacity-75 w-100 p-3 mt-0 text-center">
+            <h1 class="display-2 mb-3 text-primary">Converge</h1>
+            <h4 class="display-6 mx-5">Converge with your potential. Converge with your dreams.</h4>
+        </header>
+        <!-- Content and Sidebar Div-->
+        <div class="container my-3 d-flex align-items-start gap-3">
+            <!-- Main Content -->
+            <div class="card shadow w-100 p-3 opacity-75 flex-4">
+                {% if not user.health_goals %}
+                    <div class="card-body">
+                        <h3 class="card-title display-5 text-primary text-center">What are we doing here?</h3>
+                        <hr class="border border-light w-75 m-auto mb-3">
+                            <p class="card-text lead text-center diplay-6">Let us start off by saying the following:</p>
+                            <ul class="list-group list-group-flush">
+                                <li class="lead list-group-item">
+                                    Converge is NOT about buying into hustle culture, or adding meaningless items to your busy schedule.
+                                </li>
+                                <li class="lead list-group-item">Converge IS about crystallizing your vision for life, and working with the human system to create sustainable progress toward realizing that vision.</li>
+                            </ul>
+                    </div>
+                    <div class="card-body">
+                        <!-- <hr class="border border-light w-75 m-auto my-3"> -->
+                        <p class="lead text-center mt-3">Converge is built to be a coach and facilitator with three primary objectives.</p>
+                        <ol class="list-group list-group-numbered">
+                            <li class="lead list-group-item">Reflecting deeply about your desires and goals in life.</li>
+                            <li class="lead list-group-item">Breaking down your goals into actionable items, and tracking your progress.</li>
+                            <li class="lead list-group-item">Suggesting/implementing neuroscience and literature backed lifestyle practices to help you function your best and get the most out of life.</li>
+                        </ol>
+                        <p class="lead"> As the Converge community grows, we would also like Converge to serve as a community building, networking tool to connect you with people of similar goals and interests, and if the community grows enough, maybe, just maybe help build deep, meaningful real life connections with people, for those that are seeing them.</p>
+                            You. Leveled. is built around principles like Growth Mindset, Self-Compassion, and the Japanese concept of Kaizen, loosely translated as change for good or continuous improvement.  You. Leveled. is also about embracing authenticity, recognizing our strengths and weaknesses and working with these traits to improve your quality of life and achieve your dreams.</p>
+                        <!-- work systematically through how you plan to get there, to include: education and career aspirations, financial health, social connections, philanthropy, and we will finish with a heavy hitting foray through health and wellness. -->
+                        <hr class="border-primary border-3">
+                        <h3 class="display-6">But first, a note about our mission...</h3>
+                        <p class="lead">Everything here is about helping you get the most out of life, maximizing your quality of life both now and as you age.</p>
+                        <p class="lead">Based on your goals and aspirations, we will suggest daily practices to aid you in feeling and performing your best.  Everything suggested is based on extensive health and wellness literature, regardless don't feel pressured to do them all.  This is merely about giving you ideas backed by science, what you ultimately choose to implement or not should be based on what resonates with you.  </p>
+                        <p class="lead">Let us start off by saying, this isn't about adding more to your busy schedule, or buying into hustle culture, the point here is to provide a framework to help you clarify your vision for your future, and if needed, to help you create more structure in your daily life to fulfill that vision. </p>
+                        <p class="lead">Cheers!</p>
+                        <div class="card-body text-center">
+                            <p class="lead">The following is meant to be an exhaustive list of goals that will ultimately define your vision for your future... We did our best to not be exhausting... You'll see what we mean...</p>
+                            <p class="lead">Many people find that even if they have worked through goals in the past, there are many categories here they may not have considered.  Our goal here is not to merely give you some longer list of chores to work through as you approach retirement, etc., but to optimize your work-life balance and overall well-being as you work toward doing things you love.  We will be encouraging you think through your lifestyle, patterns and habits that might not be serving you in the long-run, and will likely recommend some new activities that will help you function at your best.  </p>
+                            <p class="lead">This is intended to be a framework to serve you over the long-run, one of the most important things to consider in personal growth is being kind to yourself and your process.  We will all experience set-backs and delays, all we can do is use these as learning experiences and trust that we will overcome these obstacles through perseverance.  With this in mind, treat these goals as moving targets, be ok with moving timelines forward or back.  Learn from your mistakes, and remember that you grow stronger with every obstacle you face.  </p>
+                            <a href="/home">
+                        <a href="/surveys/foundations/getting-to-know-you">
+                            <button class="btn btn-primary w-25">Continue</button>
+                        </a>
+                    </div>
+                {% else %}
+                    <h3 class="display-6">Your Health Goals:</h3>
+                    <div class="container-fluid bg-body-primary">
+                        <table class="table table-striped table-info table-hover">
+                            <thead>
+                                <tr class="d-flex-grow">
+                                    <th>Goal</th>
+                                    <th>Action Item</th>
+                                    <th>1 Month</th>
+                                    <th>3 Months</th>
+                                    <th>6 Months</th>
+                                    <th>1 Year</th>
+                                    <th>3 Years</th>
+                                    <th>5 Years</th>
+                                    <th>Modify</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for health_goal in user.health_goals %}
+                                    <tr>
+                                        <td class="align-middle"><b>{{ health_goal.name }}</b></td>
+                                        <td class="align-middle">{{ health_goal.time_domains.action_item }}</td>
+                                        <td class="align-middle">{{ health_goal.time_domains.time_domain_1_month }}</td>
+                                        <td class="align-middle">{{ health_goal.time_domains.time_domain_3_month }}</td>
+                                        <td class="align-middle">{{ health_goal.time_domains.time_domain_6_month }}</td>
+                                        <td class="align-middle">{{ health_goal.time_domains.time_domain_1_year }}</td>
+                                        <td class="align-middle">{{ health_goal.time_domains.time_domain_3_year }}</td>
+                                        <td class="align-middle">{{ health_goal.time_domains.time_domain_5_year }}</td>
+                                        <td>
+                                            <a href="/goals/health/{{ health_goal.id }}/edit" class="btn btn-warning btn-sm mb-1">Edit</a>
+                                            <form action="/goals/health/{{ health_goal.id }}/delete" method="post"><button class="btn btn-danger btn-sm">Delete</button></form>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                    <a href="/goals/health/select" class="btn btn-primary">Add a Health Goal</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</body>
+</html>

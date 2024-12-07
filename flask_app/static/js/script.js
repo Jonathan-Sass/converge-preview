@@ -8,6 +8,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const quizInput = document.getElementById('quiz-input')
     const answerButtons = document.getElementById("answer-buttons")
     const checkboxContainer = document.getElementById('answer-checkboxes')
+    const surveyIntro = document.getElementById('survey-intro')
+    const nextSectionButton = document.getElementById('next-section-btn')
     
     let currentQuestionSet = [];
     let currentQuestionIndex = 0;
@@ -107,6 +109,7 @@ finishButton.addEventListener('click', async (event) => {
         alert('Error: ' + error.message);
     }
     finishButton.classList.add("d-none")
+    nextSectionButton.classList.remove("d-none")
     // window.location.href = '/goals/health/select';
 });
 
@@ -115,9 +118,10 @@ finishButton.addEventListener('click', async (event) => {
 async function startGame() {
     resetState()
     startButton.classList.add("d-none");
+    surveyIntro.classList.add("d-none");
     
     // QUERY DB TO FETCH QUESTIONS
-    await fetchSurveyQuestions()
+    await fetchSurveyQuestions();
         
     // console.log("***STARTING GAME*****")
     currentQuestionIndex = 0;
