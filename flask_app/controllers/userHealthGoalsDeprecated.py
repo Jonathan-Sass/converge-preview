@@ -2,10 +2,10 @@ from flask_app import app
 from flask import render_template, redirect, session, request, flash
 from flask_app.models.user import User
 from flask_app.models.userSurvey import UserSurvey
-from flask_app.models.userHealthGoal import UserHealthGoal
-from flask_app.models.healthGoal import HealthGoal
+from flask_app.models.userHealthGoalDeprecated import UserHealthGoal
+from flask_app.models.healthGoalDeprecated import HealthGoal
 from flask_app.models.timeDomain import TimeDomain
-from flask_app.models.healthQuiz import HealthQuiz
+from flask_app.models.healthQuizDeprecated import HealthQuiz
 
 from pprint import pprint
 

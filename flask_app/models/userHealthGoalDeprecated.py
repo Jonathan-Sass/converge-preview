@@ -2,7 +2,6 @@ from flask_app.config.mysqlconnection import connectToMySQL
 from pprint import pprint
 from flask import flash, session
 from flask_app.models import timeDomain
-from flask_app.models import healthGoal
 
 class UserHealthGoal: 
     _db = "converge_schema"
@@ -81,7 +80,7 @@ class UserHealthGoal:
         time_domain_id = user_health_goal.time_domain_id
 
         time_domain = timeDomain.TimeDomain.find_by_id(time_domain_id)
-        health_goal = healthGoal.HealthGoal.find_by_id(user_health_goal.health_goal_id)
+        health_goal = healthGoalDeprecated.HealthGoal.find_by_id(user_health_goal.health_goal_id)
         
         user_health_goal.time_domains = time_domain
         user_health_goal.health_goal = health_goal

@@ -20,7 +20,7 @@ routine_template_data = [
     },
     {
         "name": "Energized Focus",
-        "description": "A morning routine designed to help ADHD users transition smoothly into the day.",
+        "description": "A morning routine designed to help individuals expressing ADHD symptoms or tendencies transition smoothly into the day.",
         "frequency": "Daily",
         "routine_type": "AM",
         "category": "ADHD",
@@ -38,7 +38,7 @@ routine_template_data = [
     },
     {
         "name": "Connected Start",
-        "description": "A structured routine for ADHD individuals, with an emphasis on fostering meaningful connections.",
+        "description": "A structured routine for individuals expressing ADHD symptoms or tendencies, with an emphasis on fostering meaningful connections.",
         "frequency": "Daily",
         "routine_type": "AM",
         "category": "ADHD",

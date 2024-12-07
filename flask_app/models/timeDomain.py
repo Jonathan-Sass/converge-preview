@@ -1,7 +1,6 @@
 from flask_app.config.mysqlconnection import connectToMySQL
 from pprint import pprint
 from flask import flash
-from flask_app.models import userHealthGoal
 
 class TimeDomain: 
     _db = "converge_schema"

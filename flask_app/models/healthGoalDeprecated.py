@@ -2,7 +2,7 @@ from flask_app.config.mysqlconnection import connectToMySQL
 from pprint import pprint
 from flask import flash, session
 from flask_app.models import user
-from flask_app.models import userHealthGoal
+from flask_app.models import userHealthGoalDeprecated
 from flask_app.models.timeDomain import TimeDomain
 
 class HealthGoal: 

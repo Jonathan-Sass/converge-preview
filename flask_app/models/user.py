@@ -3,8 +3,6 @@ from pprint import pprint
 from flask import flash, session
 import re
 
-from flask_app.models.healthGoal import HealthGoal
-from flask_app.models.userHealthGoal import UserHealthGoal
 from flask_app.models.userResponse import UserResponse
 
 
