@@ -91,7 +91,7 @@ finishButton.addEventListener('click', async (event) => {
     try {
         // Send the collected answers to the backend as a single request
         console.log("Posting to: /surveys/" + surveyCategory + "/answers")
-        const response = await fetch(`http://localhost:5000/surveys/${surveyCategory}/answers`, {
+        const response = await fetch(`/surveys/${surveyCategory}/answers`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

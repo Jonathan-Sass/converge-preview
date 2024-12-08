@@ -1,5 +1,5 @@
 from flask_app import app
-from flask import render_template, redirect, session
+from flask import render_template, redirect, session, request
 from flask_app.models.user import User
 from flask_app.models.personalRoutine import PersonalRoutine
 from flask_app.models.routineTemplate import RoutineTemplate
@@ -35,3 +35,16 @@ def set_initial_am_routines():
     # TODO: Implement Personal Routine Progress - allows user to slowly build habits without being overwhelming/defeating
 
     return render_template("routines/am_routine_builder.html", recommended_routine = recommended_routine)
+
+@app.post("/routines/am/builder/initial/save")
+def save_am_routine():
+    user = User.get_logged_in_user()
+    print(user)
+    if not user:
+        return redirect("/")
+    
+    am_routine = request.json
+    PersonalRoutine.create_am_routine(am_routine)
+    
+    return redirect ("/surveys/foundations/current-habits-patterns")
+
