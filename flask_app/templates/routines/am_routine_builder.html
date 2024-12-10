@@ -112,7 +112,7 @@
                                         <select class="form-select duration" aria-label="Default select example">
                                             {% for duration in practice.durations %}
                                                 <option value = "{{ duration.id }}" >{{ duration.duration_label }}
-                                                    {% if duration.engagement_level %} ({{ duration.engagement_level }}}) {% endif %}
+                                                    {% if duration.engagement_level %} ({{ duration.engagement_level }}) {% endif %}
                                                 </option>
                                             {% endfor %}
                                           </select>

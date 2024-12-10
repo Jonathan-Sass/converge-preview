@@ -214,17 +214,17 @@ def prepare_recommended_durations_data(durations, engagement_levels):
     batched_recommended_durations = []
 
     for category, practices in practice_data.items():
-        for practice in practices:
-            prepared_recommended_durations_data = {}
-            
-            prepared_recommended_durations_data["practice_id"] = practice_id_lookup[practice['name']]
+        for practice in practices:    
+            practice_id = practice_id_lookup[practice['name']]
            
             if 'recommended_durations' in practice:
 
                 for rd in practice['recommended_durations']:
-                    
-                    prepared_recommended_durations_data["duration_id"] = duration_id_lookup[rd['duration_label']]
-                    prepared_recommended_durations_data["engagement_level_id"] = engagement_level_id_lookup.get(rd.get('engagement_level'), None)
+                    prepared_recommended_durations_data = {
+                        "practice_id": practice_id,
+                        "duration_id": duration_id_lookup[rd['duration_label']],
+                        "engagement_level_id": engagement_level_id_lookup.get(rd.get('engagement_level'), None)
+                    }
 
                     # Add the tuple to the batch
                     batched_recommended_durations.append(
@@ -240,17 +240,6 @@ def prepare_recommended_durations_data(durations, engagement_levels):
         for recommended_duration in batched_recommended_durations
     ]
 
-    print("******values in prepare_recommended_durations_data*****")
-    for value in values:
-        pprint(value)
-    print("**************************************************************************")
-    print("**************************************************************************")
-    print("**************************************************************************")
-    print("**************************************************************************")
-    print("**************************************************************************")
-    print("**************************************************************************")
-
-
     return values
 
 def execute_recommended_duration_seed(values):
@@ -260,9 +249,7 @@ def execute_recommended_duration_seed(values):
         VALUES
             (%s, %s, %s)
         ON DUPLICATE KEY UPDATE
-            duration_id = duration_id,
-            engagement_level_id = VALUES(engagement_level_id),
-            practice_id = practice_id;
+            engagement_level_id = VALUES(engagement_level_id);
     """
     for value in values:
         db.query_db(query, value)

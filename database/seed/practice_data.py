@@ -29,7 +29,7 @@ practice_data = {
     {
         "name": "Morning Mindfulness",
         "description": "Begin your day with mindfulness practices such as meditation, gratitude journaling, or breathing exercises.",
-        "recommended_durations": [{"duration_label": "5 minutes"}, {"duration_label": "10 minutes"}, {"duration_label": "20 minutes"}],
+        "recommended_durations": [{"duration_label": "2 minutes", "engagement_level": "Introductory"}, {"duration_label": "5 minutes", "engagement_level": "Introductory"}, {"duration_label": "10 minutes", "engagement_level": "Beginner"}, {"duration_label": "20 minutes", "engagement_level": "Intermediate"}, {"duration_label": "30 minutes", "engagement_level": "Advanced"}, {"duration_label": "1 hour", "engagement_level": "Expert"}, {"duration_label": "2 hours", "engagement_level": "Master"}],
         "impact_rating_id": 5,
         "difficulty_level_id": 1,
         "frequency": "Every morning",
