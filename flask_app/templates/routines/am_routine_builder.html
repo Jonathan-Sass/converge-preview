@@ -77,7 +77,7 @@
             <div class="container col-9">
                 <!-- <div class="container-fluid d-flex gap-2 justify-content-between"> -->
                 <div class="container-fluid">
-                    <div class="card shadow p-2 text-center opacity-75 mb-5">
+                    <div class="card shadow p-2 text-center opacity-75 mb-3">
                         <div class="card-body">
                             <div class="card-title">
                                 <h6 class="lead">The following morning routine has been recommended based on your answers:</h6 class="display-6">
@@ -93,9 +93,65 @@
                         <button id="scroll-left" class="scroll-btn position-absolute top-50 start-0 translate-middle-y btn btn-secondary rounded-circle">
                             <i class="bi bi-chevron-left"></i> <!-- Bootstrap Icon -->
                         </button>
-                        <div class="container d-flex overflow-auto gap-2" id="practice-container">
+                        <div class="container d-flex overflow-auto gap-3 hide-scrollbar" id="practice-container">
                             {% for practice in recommended_routine.practices %}
+                                <!-- NEW CARD? -->
                                 <div class="practice-card card shadow p-2 text-center opacity-75 mb-3 col-4"
+                                data-practice-id="{{ practice.practice_id }}
+                                data-order="{{ loop.index }}"
+                                draggable="true" 
+                                ondragstart="drag(event)" 
+                                ondragover="allowDrop(event)" 
+                                ondragenter="dragEnter(event)" 
+                                ondragleave="dragLeave(event)" 
+                                ondragend="dragEnd(event)"
+                                ondrop="drop(event)" 
+                                id="practice-{{ loop.index }}">
+                                    <div class="card-body compact-card">
+                                        <div class="card-header">
+                                            <h5 class="practice-name">{{ loop.index }}. {{ practice.name }}</h5>
+                                            <span class="badge difficulty-badge">{{ practice.difficulty }}</span>
+                                            <span class="badge impact-badge">Impact: {{ practice.impact_rating }}</span>
+                                        </div>
+                                        <p class="short-description">{{ practice.description | truncate(100) }}</p>
+                                        <div class="card-footer">
+                                            <button class="btn btn-link details-button" data-bs-toggle="modal" data-bs-target="#practiceDetails{{ loop.index }}">
+                                                Learn More
+                                            </button>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Modal for detailed view -->
+                                    <div class="modal fade" id="practiceDetails{{ loop.index }}" tabindex="-1" aria-labelledby="practiceDetailsLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="practiceDetailsLabel">{{ practice.name }}</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <p><strong>Description:</strong> {{ practice.description }}</p>
+                                                    <select class="form-select duration" aria-label="Default select example">
+                                                        {% for duration in practice.durations %}
+                                                            <option value = "{{ duration.id }}" >{{ duration.duration_label }}
+                                                                {% if duration.engagement_level %} ({{ duration.engagement_level }}) {% endif %}
+                                                            </option>
+                                                        {% endfor %}
+                                                    </select>
+                                                    <p><strong>Additional Notes:</strong> {{ practice.notes }}</p>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+
+                            <!-- {% for practice in recommended_routine.practices %} -->
+                                <!-- OLD CARD -->
+                                <!-- <div class="practice-card card shadow p-2 text-center opacity-75 mb-3 col-4"
                                 data-practice-id="{{ practice.practice_id }}
                                 data-order="{{ loop.index }}"
                                 draggable="true" 
@@ -128,7 +184,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            {% endfor %}
+                            {% endfor %} -->
                         </div>
                         <button id="scroll-right" class="scroll-btn position-absolute top-50 end-0 translate-middle-y btn btn-secondary rounded-circle">
                             <i class="bi bi-chevron-right"></i> <!-- Bootstrap Icon -->

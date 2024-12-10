@@ -57,6 +57,10 @@ h1, h2, h3, h4, h5, h6, p {
     transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
+.scroll-btn i {
+    font-size: 1.5rem;
+}
+
 /* Button Hover Effect */
 .scroll-btn:hover {
     opacity: 1; /* Fully visible on hover */
@@ -66,4 +70,12 @@ h1, h2, h3, h4, h5, h6, p {
 /* Button Icon Size */
 .scroll-btn i {
     font-size: 1.5rem; /* Adjust the arrow size */
+}
+
+.hide-scrollbar {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+.hide-scrollbar::-webkit-scrollbar {
+    display: none;                 /* Chrome, Safari, and Edge */
 }
