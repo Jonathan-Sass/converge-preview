@@ -36,12 +36,3 @@ h1, h2, h3, h4, h5, h6, p {
     transition: background-color 0.2s ease, border-color 0.2s ease;
 }
 
-#practice-container {
-    display: flex;
-    flex-direction: column; /* Stack the cards vertically */
-    gap: 1rem; /* Space between cards */
-    width: 100%; /* Full-width for responsive layout */
-    max-width: 800px; /* Optional: Constrain width for readability */
-    margin: 0 auto; /* Center align */
-    padding: 1rem; /* Padding for the container */
-}

@@ -24,7 +24,9 @@ class Practice:
     def create_practice_with_durations(routine_template_and_practice_data):
         practice = Practice(routine_template_and_practice_data)
 
-        practice.durations.append(Duration.fetch_durations_by_practice_id(practice))
+        durations = Duration.fetch_durations_by_practice_id(practice)
+        for duration in durations:
+           practice.durations.append(duration)
 
         return practice
 

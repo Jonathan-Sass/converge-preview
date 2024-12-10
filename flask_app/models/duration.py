@@ -5,14 +5,17 @@ class Duration:
     db = connectToMySQL("converge_schema")
 
     def __init__(self, data):
+        self.id = data["id"]
         self.duration_label = data["duration_label"]
         self.duration_seconds = data["duration_seconds"]
         self.engagement_level = data["engagement_level"] or None
         
 
     def fetch_durations_by_practice_id(practice):
+        # (TODO:add to name: with_engagement_levels)
         query = """
             SELECT
+                durations.id,
                 durations.duration_label,
                 durations.duration_seconds,
                 engagement_levels.level AS engagement_level
@@ -36,3 +39,16 @@ class Duration:
             practice_durations.append(Duration(result))
 
         return practice_durations
+    
+    def fetch_all_durations():
+        query = """
+            SELECT * FROM durations;
+        """
+
+        results = Duration.db.query_db(query)
+
+        if results:
+            durations = results
+            return durations
+        else:
+            raise RuntimeError("No durations found in database.")

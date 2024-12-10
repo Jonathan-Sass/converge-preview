@@ -4,6 +4,9 @@ from flask_app.models.user import User
 from flask_app.models.personalRoutine import PersonalRoutine
 from flask_app.models.routineTemplate import RoutineTemplate
 from flask_app.models.userResponse import UserResponse
+from flask_app.models.duration import Duration
+
+from pprint import pprint
 
 
 @app.get("/test")
@@ -32,7 +35,15 @@ def set_initial_am_routines():
         return redirect("/")
     
     recommended_routine = PersonalRoutine.select_and_fetch_initial_am_routine(user, "getting-to-know-you")
+    durations = Duration.fetch_all_durations()
     # TODO: Implement Personal Routine Progress - allows user to slowly build habits without being overwhelming/defeating
+
+    print("*****recommended_routine in controllers*****")
+    pprint(vars(recommended_routine))
+    for practice in recommended_routine.practices:
+        pprint(vars(practice))
+        for duration in practice.durations:
+            pprint(vars(duration))
 
     return render_template("routines/am_routine_builder.html", recommended_routine = recommended_routine)
 

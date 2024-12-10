@@ -72,38 +72,7 @@
             </nav>
         <!-- Content and Sidebar Div-->
         <div class="container-fluid m-auto my-3 d-flex align-items-start gap-3">
-            <!-- Progress Nav Sidebar -->
-            <div class="card shadow p-2 opacity-75 col-3">
-                <nav id="progress-navbar" class="h-100 flex-column align-items-stretch p-3">
-                    <h4 class="display-6 text-primary text-center">You are here</h4>
-                    <hr class="border border-1 border-light">
-                    <nav class="nav nav-pills flex-column">
-                        <a class="nav-link text-light" href="#your-why">Define Your WHY</a>
-                        <nav class="nav nav-pills flex-column">
-                            <a class="nav-link ms-3 my-1 text-light" href="/surveys/your-why/intro">- Introduction</a>
-                            <a class="nav-link ms-3 my-1 text-light" href="/surveys/your-why/define-your-purpose">- Define Your Purpose</a>
-                            <a class="nav-link ms-3 my-1 text-light" href="/surveys/your-why/define-your-values">- Define Your Values</a>
-                            <a class="nav-link ms-3 my-1 text-light" href="/surveys/your-why/growth-drivers">- What Drives Your Growth</a>
-                            <a class="nav-link ms-3 my-1 text-light" href="/surveys/your-why/long-term-vision">- Long-Term Vision</a>
-                        </nav>
-                    </nav>
-                    <nav class="nav nav-pills flex-column">
-                        <a class="nav-link text-light" href="#recreation-travel">Recreation and Travel</a>
-                        <a class="nav-link text-light" href="#health-wellness">Health and Wellness</a>
-                        <a class="nav-link text-light" href="#social-community">Social and Community Engagement</a>
-                        <a class="nav-link text-light" href="#spirituality-life-purpose">Spirituality and Life Purpose</a>
-                        <a class="nav-link text-light" href="#career-professional-development">Career and Professional Development</a>
-                        <a class="nav-link text-light" href="#wealth-finance">Wealth Building and Financial Health</a>
-                        <a class="nav-link text-light" href="#creative-expression-hobbies">Creative Expression and Hobbies</a>
-                        <a class="nav-link text-light" href="#environment-success">Environment and Success</a>
-                        <a class="nav-link text-light" href="#item-3">Item 3</a>
-                        <nav class="nav nav-pills flex-column">
-                            <a class="nav-link ms-3 my-1 text-light" href="#item-3-1">Item 3-1</a>
-                            <a class="nav-link ms-3 my-1 text-light" href="#item-3-2">Item 3-2</a>
-                        </nav>
-                    </nav>
-                </nav>
-            </div>
+            
             <!-- Main Content -->
             <div class="container col-9">
                 <!-- <div class="container-fluid d-flex gap-2 justify-content-between"> -->
@@ -119,9 +88,10 @@
                         </div>
                     </div>
                     <!-- Drag and Drop Containers for practices -->
-                    <div id="practice-container">
+                    <div id="practice-container d-flex justify-content-evenly">
                         {% for practice in recommended_routine.practices %}
                             <div class="practice-card card shadow p-2 text-center opacity-75 mb-3"
+                            data-practice-id="{{ practice.practice_id }}
                             data-order="{{ loop.index }}"
                             draggable="true" 
                             ondragstart="drag(event)" 
@@ -133,11 +103,19 @@
                             id="practice-{{ loop.index }}">
                                 <div class="card-body">
                                     <div class="card-title">
-                                        <h5 class="text-primary">{{loop.index}}. {{ practice.name }}</h5>
+                                        <h5 class="text-primary d-inline">{{loop.index}}.</h5>
+                                        <h5 class="text-primary practice-name d-inline"> {{ practice.name }}</h5>
                                         <hr class="border border-1 border-light" />
                                     </div>
                                     <div class="card-text">
                                         <p>{{ practice.description }}</p>
+                                        <select class="form-select duration" aria-label="Default select example">
+                                            {% for duration in practice.durations %}
+                                                <option value = "{{ duration.id }}" >{{ duration.duration_label }}
+                                                    {% if duration.engagement_level %} ({{ duration.engagement_level }}}) {% endif %}
+                                                </option>
+                                            {% endfor %}
+                                          </select>
                                         {% if practice.literature_summary %}
                                             <p>Why would I do this?</p>
                                             <p>{{ practice.literature_summary }}</p>
