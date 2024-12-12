@@ -1,4 +1,3 @@
-// Ensure Sortable.js is included in your project
 const practiceContainer = document.getElementById('practice-container');
 
 new Sortable(practiceContainer, {
@@ -7,16 +6,6 @@ new Sortable(practiceContainer, {
     updateCardOrder(); // Update data-order attributes after drag-and-drop
   },
 });
-
-// Function to update the data-order attributes
-function updateCardOrder() {
-  const cards = document.querySelectorAll('.practice-card');
-  cards.forEach((card, index) => {
-    card.dataset.order = index + 1; // Update data-order with new position
-  });
-  console.log('Card order updated:', [...cards].map(card => card.dataset.order));
-}
-
 
 
 // let draggedElement = null;

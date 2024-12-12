@@ -47,8 +47,8 @@ def save_am_routine():
     if not user:
         return redirect("/")
     
-    am_routine = request.json
-    PersonalRoutine.create_am_routine(am_routine)
+    am_routine_data = request.json
+    PersonalRoutine.create_personal_routine(am_routine_data)
     
-    return redirect ("/goals/intro")
+    return redirect ("/home")
 

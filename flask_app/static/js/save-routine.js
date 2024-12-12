@@ -1,24 +1,37 @@
+// Function to update the data-order attributes
+function updateCardOrder() {
+  const cards = document.querySelectorAll('.practice-card');
+  cards.forEach((card, index) => {
+    card.dataset.order = index + 1; // Update data-order with new position
+  });
+  console.log('Card order updated:', [...cards].map(card => card.dataset.order));
+}
 
 // Function to collect and prepare routine data
 const collectRoutineData = () => {
+  const startTimeElement = document.getElementById('routine-start-time')
+  const startTime = startTimeElement.value === '' ? null : startTimeElement.value;
+
   let personalRoutineData = {
-    user_id: sessionStorage.getItem('user_id'), // Ensure this is populated server-side
     name: document.getElementById('routine-name').innerText,
     description: document.getElementById('routine-description').innerText,
-    routine_type: document.getElementById('practice-container').dataset.routineType,
-    start_time: document.getElementById('routine-start-time').innerText,
-    is_active: true,
+    routineType: document.getElementById('practice-container').dataset.routineType,
+    startTime: startTime,
+    isActive: true,
     notes: null,
     practices: [],
   };
+  console.log()
+  console.log("PersonalRoutineData")
+  console.log(personalRoutineData)
 
   const cards = document.querySelectorAll('.practice-card');
   const selectedDuration = document.querySelector('.duration option:checked');
 
   const practices = Array.from(cards).map((card) => ({
-    personal_routine_id: null,
-    practice_id: card.dataset.practiceId,
-    duration_id: selectedDuration ? selectedDuration.value : null,
+    personalRoutineId: null,
+    practiceId: card.dataset.practiceId,
+    durationId: selectedDuration ? selectedDuration.value : null,
     position: card.dataset.order, // Use the updated data-order
   }));
 
@@ -32,7 +45,7 @@ const saveRoutine = () => {
   updateCardOrder(); // Ensure the order is up-to-date
   const routineData = collectRoutineData();
 
-  fetch('/routines/builder/am/initial/save', {
+  fetch('/routines/am/builder/initial/save', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -42,7 +55,7 @@ const saveRoutine = () => {
     .then((response) => response.json())
     .then((data) => {
       console.log('Routine saved successfully:', data);
-      window.location.href = '/next-page'; // Navigate to the next page
+      window.location.href = '/home'; // Navigate to the next page
     })
     .catch((error) => {
       console.error('Error saving routine:', error);

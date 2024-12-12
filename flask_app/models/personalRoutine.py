@@ -51,23 +51,34 @@ class PersonalRoutine:
 
     def create_personal_routine(routine_data):
         print("***routine_data in create_personal_routine***")
-        pprint(vars(routine_data))
+        pprint(routine_data)
 
         query = """
             INSERT INTO
-                personal_routines (user_id, name, desription, routine_type, start_time, end_time, is_active, notes, created_at, updated_at)
+                personal_routines (user_id, name, description, routine_type, start_time, end_time, is_active, notes, created_at, updated_at)
             VALUES
-                (%(user_id)s, %(description)s, %(routine_type)s, %(start_time)s, %(end_time)s, %(is_active)s, %(notes)s, NOW(), NOW())
+                (%(user_id)s, %(name)s, %(description)s, %(routine_type)s, %(start_time)s, %(end_time)s, %(is_active)s, %(notes)s, NOW(), NOW())
             ON DUPLICATE KEY UPDATE
-                description = VALUE(description),
-                start_time = VALUE(start_time),
-                end_time = VALUE(end_time),
-                is_active = VALUE(is_active),
-                notes = VALUE(notes), 
-                updated_at = NOW)();
+                description = VALUES(description),
+                start_time = VALUES(start_time),
+                end_time = VALUES(end_time),
+                is_active = VALUES(is_active),
+                notes = VALUES(notes), 
+                updated_at = NOW();
         """
 
-        result = PersonalRoutine.db.query_db(query, routine_data)
+        data = {
+            'user_id': session['user_id'],
+            'name': routine_data['name'],
+            'description': routine_data['description'],
+            'routine_type': routine_data['routineType'],
+            'start_time': routine_data['startTime'],
+            'end_time': routine_data.get('endTime', None),
+            'is_active': True,
+            'notes': routine_data.get('notes', None)
+        }
+
+        result = PersonalRoutine.db.query_db(query, data)
 
         if result:
             print("****result in create_personal_routine****")
@@ -82,6 +93,10 @@ class PersonalRoutine:
 
 
     def create_personal_routine_practices(routine_data, personal_routine_id):
+        query = """
+            INSERT INTO
+                personal_routine_practices (personal_routine_id, practice_id, duration_id, position, created_at, updated_at)
+        """
         return
 
     # def update_personal_routine():
