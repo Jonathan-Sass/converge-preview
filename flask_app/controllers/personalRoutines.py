@@ -1,5 +1,5 @@
 from flask_app import app
-from flask import render_template, redirect, session, request
+from flask import render_template, redirect, jsonify, request
 from flask_app.models.user import User
 from flask_app.models.personalRoutine import PersonalRoutine
 from flask_app.models.routineTemplate import RoutineTemplate
@@ -50,5 +50,5 @@ def save_am_routine():
     am_routine_data = request.json
     PersonalRoutine.create_personal_routine(am_routine_data)
     
-    return redirect ("/home")
+    return jsonify({'success': True, 'redirect': '/home'})
 

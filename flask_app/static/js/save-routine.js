@@ -52,10 +52,20 @@ const saveRoutine = () => {
     },
     body: JSON.stringify(routineData),
   })
-    .then((response) => response.json())
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error('Failed to save routine');
+      }
+      return response.json(); // Parse JSON response
+    })    
     .then((data) => {
+      if(data.success) {
       console.log('Routine saved successfully:', data);
       window.location.href = '/home'; // Navigate to the next page
+      } else {
+        console.error('Save failed. Redirecting to login...');
+        window.location.href = data.redirect; // Redirect to login
+      }
     })
     .catch((error) => {
       console.error('Error saving routine:', error);

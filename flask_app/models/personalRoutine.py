@@ -104,8 +104,6 @@ class PersonalRoutine:
                 updated_at = NOW();
         """
 
-        batched_personal_routine_practice_data = []
-
         for practice in routine_data["practices"]:
             personal_routine_practice_data = {
                 'personal_routine_id': personal_routine_id,
@@ -117,10 +115,9 @@ class PersonalRoutine:
             result = PersonalRoutine.db.query_db(query, personal_routine_practice_data)
             if result:
                 print(f"Insert successful for routine: {routine_data["name"]}, practice id: {practice["practiceId"]}" )
+                return result
             else:
                 raise RuntimeError(f"Error inserting data for routine: {routine_data["name"]}, practice id: {practice["practice_id"]}")
-            
-        return
 
     # def update_personal_routine():
 
