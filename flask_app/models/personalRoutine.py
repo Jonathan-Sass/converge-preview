@@ -96,7 +96,30 @@ class PersonalRoutine:
         query = """
             INSERT INTO
                 personal_routine_practices (personal_routine_id, practice_id, duration_id, position, created_at, updated_at)
+            VALUES
+                (%(personal_routine_id)s, %(practice_id)s, %(duration_id)s, %(position)s, NOW(), NOW())
+            ON DUPLICATE KEY UPDATE
+                duration_id = VALUES(duration_id),
+                position = VALUES(position),
+                updated_at = NOW();
         """
+
+        batched_personal_routine_practice_data = []
+
+        for practice in routine_data["practices"]:
+            personal_routine_practice_data = {
+                'personal_routine_id': personal_routine_id,
+                'practice_id': practice['practiceId'],
+                'duration_id': practice['durationId'],
+                'position': practice.get('position', None)
+            }
+
+            result = PersonalRoutine.db.query_db(query, personal_routine_practice_data)
+            if result:
+                print(f"Insert successful for routine: {routine_data["name"]}, practice id: {practice["practiceId"]}" )
+            else:
+                raise RuntimeError(f"Error inserting data for routine: {routine_data["name"]}, practice id: {practice["practice_id"]}")
+            
         return
 
     # def update_personal_routine():
