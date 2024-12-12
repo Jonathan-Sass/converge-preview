@@ -1,11 +1,11 @@
 document.addEventListener("DOMContentLoaded", () => {
     const container = document.getElementById("practice-container");
+    const cards = Array.from(container.querySelectorAll(".practice-card"));
     const scrollLeftButton = document.getElementById("scroll-left");
     const scrollRightButton = document.getElementById("scroll-right");
 
     // Helper function to find the next scrollable card
     const findNextCard = (direction) => {
-        const cards = Array.from(container.querySelectorAll(".practice-card"));
         const containerRect = container.getBoundingClientRect();
 
         if (direction === "left") {
@@ -52,4 +52,27 @@ document.addEventListener("DOMContentLoaded", () => {
             container.scrollBy({ left: 10, behavior: "auto" });
         }
     });
+
+    // In-View Detection
+    const checkInView = () => {
+        const containerRect = container.getBoundingClientRect();
+
+        cards.forEach((card) => {
+            const cardRect = card.getBoundingClientRect();
+
+            // Check if the card is fully in the container's visible area
+            if (
+                cardRect.left >= containerRect.left &&
+                cardRect.right <= containerRect.right
+            ) {
+                card.classList.add("in-view");
+            } else {
+                card.classList.remove("in-view");
+            }
+        });
+    };
+
+    // Check on scroll and when DOM is fully loaded
+    container.addEventListener("scroll", checkInView);
+    checkInView(); // Initial check
 });

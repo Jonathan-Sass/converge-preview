@@ -38,13 +38,6 @@ def set_initial_am_routines():
     durations = Duration.fetch_all_durations()
     # TODO: Implement Personal Routine Progress - allows user to slowly build habits without being overwhelming/defeating
 
-    # print("*****recommended_routine in controllers*****")
-    # pprint(vars(recommended_routine))
-    # for practice in recommended_routine.practices:
-    #     pprint(vars(practice))
-    #     for duration in practice.durations:
-    #         pprint(vars(duration))
-
     return render_template("routines/am_routine_builder.html", recommended_routine = recommended_routine)
 
 @app.post("/routines/am/builder/initial/save")
@@ -57,5 +50,5 @@ def save_am_routine():
     am_routine = request.json
     PersonalRoutine.create_am_routine(am_routine)
     
-    return redirect ("/surveys/foundations/current-habits-patterns")
+    return redirect ("/goals/intro")
 

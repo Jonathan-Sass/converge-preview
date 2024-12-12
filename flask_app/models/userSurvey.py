@@ -89,6 +89,7 @@ class UserSurvey:
 
         return list(question_set.values())
 
+    # TODO: MOVE TO userResponse
     @classmethod
     def process_user_responses(cls, collected_answers):
         user = User.get_logged_in_user()

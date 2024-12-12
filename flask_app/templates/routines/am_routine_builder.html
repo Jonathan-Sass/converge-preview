@@ -74,7 +74,7 @@
         <div class="container-fluid m-auto my-3 d-flex align-items-start gap-3">
             
             <!-- Main Content -->
-            <div class="container col-9">
+            <div class="container col-12">
                 <!-- <div class="container-fluid d-flex gap-2 justify-content-between"> -->
                 <div class="container-fluid">
                     <div class="card shadow p-2 text-center opacity-75 mb-3">
@@ -84,6 +84,8 @@
                                 <hr class="border border-1 border-light">
                                 <h2 class="text-primary" id="routine-name">{{ recommended_routine.name }}</h2>
                                 <p class="lead" id="routine-description">{{ recommended_routine.description }}</p>
+                                <p class="lead align-self-start d-inline"><strong>What time do you start your morning? </strong></p>
+                                <input type="time" class="d-inline" id="routine-start-time">
                             </div>
                         </div>
                     </div>
@@ -93,11 +95,11 @@
                         <button id="scroll-left" class="scroll-btn position-absolute top-50 start-0 translate-middle-y btn btn-secondary rounded-circle">
                             <i class="bi bi-chevron-left"></i> <!-- Bootstrap Icon -->
                         </button>
-                        <div class="container d-flex overflow-auto gap-3 hide-scrollbar" id="practice-container">
+                        <div class="container d-flex gap-3 mask-container" id="practice-container" data-routine-type="AM">
                             {% for practice in recommended_routine.practices %}
                                 <!-- NEW CARD? -->
-                                <div class="practice-card card shadow p-2 text-center opacity-75 mb-3 col-4"
-                                data-practice-id="{{ practice.practice_id }}
+                                <div class="practice-card card shadow p-2 text-center opacity-75 mb-3 col-3"
+                                data-practice-id="{{ practice.practice_id }}"
                                 data-order="{{ loop.index }}"
                                 draggable="true" 
                                 ondragstart="drag(event)" 
@@ -109,7 +111,7 @@
                                 id="practice-{{ loop.index }}">
                                     <div class="card-body compact-card d-flex flex-column">
                                         <div class="card-header">
-                                            <h5 class="practice-name">{{ loop.index }}. {{ practice.name }}</h5>
+                                            <h5 class="practice-name text-primary">{{ loop.index }}. {{ practice.name }}</h5>
                                             <span class="badge difficulty-badge d-block">Difficulty: {{ practice.difficulty }}</span>
                                             <span class="badge impact-badge">{{ practice.impact_rating_description | truncate(30) }}</span>
                                         </div>
@@ -151,58 +153,24 @@
                                     </div>
                                 </div>
                             {% endfor %}
-
-                            <!-- {% for practice in recommended_routine.practices %} -->
-                                <!-- OLD CARD -->
-                                <!-- <div class="practice-card card shadow p-2 text-center opacity-75 mb-3 col-4"
-                                data-practice-id="{{ practice.practice_id }}
-                                data-order="{{ loop.index }}"
-                                draggable="true" 
-                                ondragstart="drag(event)" 
-                                ondragover="allowDrop(event)" 
-                                ondragenter="dragEnter(event)" 
-                                ondragleave="dragLeave(event)" 
-                                ondragend="dragEnd(event)"
-                                ondrop="drop(event)" 
-                                id="practice-{{ loop.index }}">
-                                    <div class="card-body">
-                                        <div class="card-title">
-                                            <h5 class="text-primary d-inline">{{loop.index}}.</h5>
-                                            <h5 class="text-primary practice-name d-inline"> {{ practice.name }}</h5>
-                                            <hr class="border border-1 border-light" />
-                                        </div>
-                                        <div class="card-text">
-                                            <p>{{ practice.description }}</p>
-                                            <select class="form-select duration" aria-label="Default select example">
-                                                {% for duration in practice.durations %}
-                                                    <option value = "{{ duration.id }}" >{{ duration.duration_label }}
-                                                        {% if duration.engagement_level %} ({{ duration.engagement_level }}) {% endif %}
-                                                    </option>
-                                                {% endfor %}
-                                            </select>
-                                            {% if practice.literature_summary %}
-                                                <p>Why would I do this?</p>
-                                                <p>{{ practice.literature_summary }}</p>
-                                            {% endif %}
-                                        </div>
-                                    </div>
-                                </div>
-                            {% endfor %} -->
                         </div>
                         <button id="scroll-right" class="scroll-btn position-absolute top-50 end-0 translate-middle-y btn btn-secondary rounded-circle">
                             <i class="bi bi-chevron-right"></i> <!-- Bootstrap Icon -->
                         </button>
                     </div>
-                    <div class="card shadow p-2 w-50 opacity-75 m-auto text-center">
-                        <div class="card-body"><a href="/routines/am/save" class="btn btn-primary w-25">Save</a></div>
+                    <div class="card shadow p-3 w-50 opacity-75 m-auto text-center">
+                        <button class="btn btn-primary w-25 m-auto my-2" id="save-button">Save</button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script src="{{ url_for('static', filename='js/drag-and-drop.js') }}" defer></script>
     <script src="{{ url_for('static', filename='js/horizontal-scroll.js') }}" defer></script>
+    <script src="{{ url_for('static', filename='js/save-routine.js') }}" defer></script>
+
 
 </body>
 </html>

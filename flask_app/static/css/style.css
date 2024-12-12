@@ -8,16 +8,63 @@ h1, h2, h3, h4, h5, h6, p {
     font-weight: 400;
 }
 
+/* Main container */
+.mask-container {
+    position: relative;
+    overflow-x: scroll;            /* Allow horizontal scrolling */
+    padding: 1rem;
+    scroll-behavior: smooth;
+}
 
+/* .mask-container::before,
+.mask-container::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 50px; Adjust for desired fade size
+    pointer-events: none; Allow interaction with underlying cards
+    z-index: 10;
+    background: linear-gradient(to right, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0));
+}
+
+.mask-container::before {
+    left: 0;
+}
+
+.mask-container::after {
+    right: 0;
+    transform: rotate(180deg);
+} */
+
+/* Gray out cards partially outside the container */
+.mask-container .practice-card {
+    opacity: 0.5;                  /* Default opacity for all cards */
+    transition: opacity 0.3s ease;
+}
+
+/* Fully visible cards */
+.mask-container .practice-card.in-view {
+    opacity: 1;                    /* Full opacity for cards fully in view */
+}
+
+.practice-card {
+    transition: transform 0.2s;
+  }
+  .practice-card.sortable-ghost {
+    opacity: 0.5;
+  }
+  .practice-card.sortable-chosen {
+    /* opacity: 0.25; */
+    background: #818181;
+    border: 1px dashed #007bff;
+  }
+/* 
+/* Cards inside the container */
 /* For drag-and-drop items */
 .practice-card {
-    border: 1px solid #ccc; /* Light border to match Bootstrap shadow styles */
-    /* margin-bottom: 10px; Space between cards */
-    /* padding: 15px; Slightly larger padding for better readability */
-    /* background-color: white; Keep the card background clean */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
     cursor: grab; /* Indicates draggable items */
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.3s ease;
 }
 
 .practice-card:hover {
@@ -34,7 +81,7 @@ h1, h2, h3, h4, h5, h6, p {
     border: 2px dashed #007bff; /* Highlighted border for drop target */
     background-color: #ebf8ff; /* Light blue background for clarity */
     transition: background-color 0.2s ease, border-color 0.2s ease;
-}
+} */
 
 #practice-container {
     scrollbar-width: none;         /* For Firefox */
@@ -78,4 +125,11 @@ h1, h2, h3, h4, h5, h6, p {
 }
 .hide-scrollbar::-webkit-scrollbar {
     display: none;                 /* Chrome, Safari, and Edge */
+}
+
+.placeholder {
+    border: 2px dashed #007bff; /* Highlighted border for drop target */
+    border-radius: 8px;
+    min-width: 100px;
+    max-width: 100px;
 }
