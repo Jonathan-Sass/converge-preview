@@ -28,6 +28,16 @@ def seed_route():
 
     return render_template("dashboard/new_user.html")
 
+@app.get("/dashboard")
+def user_dashboard():
+    if "user_id" not in session:
+        flash("Please log in.", "login")
+        return redirect("/")
+
+    user = User.get_logged_in_user()
+
+    return render_template("home/dashboard.html", user = user)
+
 @app.get("/home")
 def home_page():
     """This route renders a table with daily practices"""
@@ -126,10 +136,3 @@ def logout():
     session.clear()
     return redirect("/")
 
-
-@app.get("/dashboard")
-def dashboard():
-    user = {
-        "first_name": session["first_name"]
-    }
-    return render_template("dashboard/dashboard.html", user = user)

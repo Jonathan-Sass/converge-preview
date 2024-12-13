@@ -77,6 +77,23 @@
             <div class="container col-12">
                 <!-- <div class="container-fluid d-flex gap-2 justify-content-between"> -->
                 <div class="container-fluid">
+                    <div class="card shadow p-4 text-center bg-light opacity-90 mb-4">
+                        <div class="card-body">
+                            <h6 class="text-muted mb-3">
+                                <em>The following morning routine has been tailored based on your answers:</em>
+                            </h6>
+                            <h2 class="text-primary display-4 mb-3" id="routine-name">
+                                {{ recommended_routine.name }}
+                            </h2>
+                            <p class="text-secondary lead mb-4" id="routine-description">
+                                {{ recommended_routine.description }}
+                            </p>
+                            <div class="d-flex justify-content-center align-items-center">
+                                <strong class="me-3">Start your morning at:</strong>
+                                <input type="time" class="form-control w-auto" id="routine-start-time" />
+                            </div>
+                        </div>
+                    </div>
                     <div class="card shadow p-2 text-center opacity-75 mb-3">
                         <div class="card-body">
                             <div class="card-title">
