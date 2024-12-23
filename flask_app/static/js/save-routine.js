@@ -60,11 +60,11 @@ const saveRoutine = () => {
     })    
     .then((data) => {
       if(data.success) {
-      console.log('Routine saved successfully:', data);
-      window.location.href = '/home'; // Navigate to the next page
-      } else {
-        console.error('Save failed. Redirecting to login...');
+        console.log('Routine saved successfully:', data);
         window.location.href = data.redirect; // Redirect to login
+    } else {
+        console.error('Save failed. Redirecting to login...');
+        window.location.href = '/login'; // Redirect to login
       }
     })
     .catch((error) => {

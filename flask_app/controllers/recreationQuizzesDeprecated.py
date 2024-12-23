@@ -8,8 +8,8 @@ from flask_app.models.healthQuizDeprecated import HealthQuiz
 
 from pprint import pprint
 
-@app.get("/goals/recreation/quiz")
+@app.get("/goals/recreation/survey")
 def recreation_and_travel_quiz():
     # user = User.find_all_user_health_goals_with_time_domains(session["user_id"])
 
-    return render_template("quiz_rec_and_travel_goals.html")
+    return render_template("/surveys/survey_rec_and_travel_goals.html")

@@ -118,7 +118,9 @@ finishButton.addEventListener('click', async (event) => {
 async function startGame() {
     resetState()
     startButton.classList.add("d-none");
-    surveyIntro.classList.add("d-none");
+    if (surveyIntro) {
+        surveyIntro.classList.add("d-none");
+    }
     
     // QUERY DB TO FETCH QUESTIONS
     await fetchSurveyQuestions();

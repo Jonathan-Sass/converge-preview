@@ -50,5 +50,5 @@ def save_am_routine():
     am_routine_data = request.json
     PersonalRoutine.create_personal_routine(am_routine_data)
     
-    return jsonify({'success': True, 'redirect': '/home'})
+    return jsonify({'success': True, 'redirect': '/goals/intro'})
 
