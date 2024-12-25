@@ -660,62 +660,64 @@ survey_question_data = [
             'topic_slug': 'frequent-hobbies-activities',
             'questions': [
                 {
+                    'question_text': "How often do you currently engage in hobbies or activities that bring you joy?",
+                    'question_slug': 'frequency-joyful-activities',
+                    'type': 'frequency-often'
+                },
+                {
+                    'question_text': "Are you interested in exploring new hobbies or activities?",
+                    'question_slug': 'interest-make-time-new-activities',
+                    'type': 'yes-no-alittle'
+                },
+                {
                     'question_text': "How often do you think about engaging in new hobbies or activities?",
                     'question_slug': 'new-hobby-activity-interest',
                     'type': 'frequency'
                 },
+                # Deprecated for lack of relevance?
+                # {
+                #     'question_text': "How much time do you spend considering your personal interests, such as traveling or exploring new hobbies?",
+                #     'question_slug': 'time-exploring-new-interests',
+                #     'type': 'scale-agree-disagree'
+                # },
                 {
-                    "question_text": "How much time do you spend considering your personal interests, such as traveling or exploring new hobbies?",
-                    'question_slug': 'time-exploring-new-interests',
-                    'type': 'scale-agree-disagree'
-                },
-                {
-                    "question_text": "What is your interest level in local or international travel?",
+                    'question_text': "What is your interest level in local or international travel?",
                     'question_slug': 'interest-local-international-travel',
-                    'type': 'scale-agree-disagree'
+                    'type': 'scale-interest'
                 },
                 {
-                    "question_text": "How interested are you in pursuing hobbies like crafting or DIY projects on a daily basis?",
+                    'question_text': "How interested are you in pursuing hobbies like crafting or DIY projects on a regular basis?",
                     'question_slug': 'interest-crafts-projects',
-                    'type': 'scale-agree-disagree'
+                    'type': 'scale-interest'
                 },
                 {
-                    "question_text": "How interested are you in participating in events, competitions, or skill-based activities?",
+                    'question_text': "How interested are you in participating in events, competitions, or skill-based activities?",
                     'question_slug': 'interest-competitive-skill-based',
-                    'type': 'scale-agree-disagree'
+                    'type': 'scale-interest'
                 },
                 {
-                    "question_text": "How spontaneous are you when it comes to trying random new activities or experiences?",
+                    'question_text': "Are you spontaneous when it comes to trying random new activities or experiences?",
                     'question_slug': 'spontaneity-new-experiences',
                     'type': 'scale-agree-disagree'
                 },
                 {
-                    "question_text": "How often do you currently engage in hobbies or activities that bring you joy?",
-                    'question_slug': 'frequency-joyful-activities',
-                    'type': 'frequency'
-                },
-                {
-                    "question_text": "How much time per week do you currently dedicate to activities like traveling, crafting, sports, or other personal hobbies?",
+                    'question_text': "How much time per week do you currently dedicate to activities like traveling, crafting, sports, or other personal hobbies?",
                     'question_slug': 'time-dedicated-various-activities',
-                    'type': 'range-hours-0-10'
+                    'type': 'range-hours-0-20+'
                 },
                 {
-                    "question_text": "Are you interested in setting specific goals to prioritize hobbies or activities?",
+                    'question_text': "Are you interested in setting specific goals to prioritize hobbies or activities?",
                     'question_slug': 'interest-goals-prioritizing-hobbies',
-                    'type': 'yes-no'
+                    'type': 'yes-no-alittle'
                 },
-                {
-                    "question_text": "Do you feel motivated to make time for hobbies or activities that you haven’t yet explored?",
-                    'question_slug': 'interest-make-time-new-activities',
-                    'type': 'yes-no'
-                },
+                # Open ended answer formats pending
                 # {
-                #     "question_text": "Describe an activity or hobby you’ve always wanted to explore but haven’t yet started.",
+                #     'question_text': "Describe an activity or hobby you’ve always wanted to explore but haven’t yet started.",
                 #     'slug': 'describe-unexplored-activity',
                 #     'type': 'open-ended'
                 # },
                 # {
-                #     "question_text": "What barriers, if any, prevent you from engaging in your preferred hobbies or activities?",
+                #     'question_text': "What barriers, if any, prevent you from engaging in your preferred hobbies or activities?",
                 #     'slug': 'barriers-to-hobbies',
                 #     'type': 'open-ended'
                 # }
@@ -725,17 +727,17 @@ survey_question_data = [
             'topic_slug': 'adventure-travel',
             'questions': [
                 {
-                    "question_text": "How interested are you in traveling to remote or adventurous locations?",
+                    'question_text': "How interested are you in traveling to remote or adventurous locations?",
                     'question_slug': 'interest-remote-travel',
-                    'type': 'scale-agree-disagree'
+                    'type': 'scale-interest'
                 },
                 {
-                    "question_text": "How often do you participate in outdoor adventure activities like hiking, camping, or mountain climbing?",
+                    'question_text': "How often do you participate in outdoor adventure activities like hiking, camping, or mountain climbing?",
                     'question_slug': 'frequency-adventure-activities',
                     'type': 'frequency'
                 },
                 {
-                    "question_text": "Are you interested in trying extreme sports or adventure travel?",
+                    'question_text': "Are you interested in trying extreme sports or adventure travel?",
                     'question_slug': 'interest-extreme-sports',
                     'type': 'yes-no'
                 }
@@ -745,17 +747,17 @@ survey_question_data = [
             'topic_slug': 'family-group-events',
             'questions': [
                 {
-                    "question_text": "How often do you plan events or activities with family or friends?",
+                    'question_text': "How often do you plan events or activities with family or friends?",
                     'question_slug': 'frequency-family-friend-events',
                     'type': 'frequency'
                 },
                 {
-                    "question_text": "What is your interest level in organizing group activities such as reunions or community events?",
+                    'question_text': "What is your interest level in organizing group activities such as reunions or community events?",
                     'question_slug': 'interest-group-activities-community-events',
                     'type': 'scale-agree-disagree'
                 },
                 {
-                    "question_text": "Do you enjoy being part of group activities or social gatherings?",
+                    'question_text': "Do you enjoy being part of group activities or social gatherings?",
                     'question_slug': 'enjoyment-group-social-activities',
                     'type': 'yes-no'
                 }
@@ -765,17 +767,17 @@ survey_question_data = [
             'topic_slug': 'cultural-exploration',
             'questions': [
                 {
-                    "question_text": "How often do you seek out new cultural experiences (e.g., art exhibits, music, cuisine)?",
+                    'question_text': "How often do you seek out new cultural experiences (e.g., art exhibits, music, cuisine)?",
                     'question_slug': 'frequency-new-cultural-experiences',
                     'type': 'frequency'
                 },
                 {
-                    "question_text": "How interested are you in learning about different cultures or traditions?",
+                    'question_text': "How interested are you in learning about different cultures or traditions?",
                     'question_slug': 'interest-cultures-traditions',
                     'type': 'scale-agree-disagree'
                 },
                 {
-                    "question_text": "Are you open to trying new foods, art forms, or cultural events?",
+                    'question_text': "Are you open to trying new foods, art forms, or cultural events?",
                     'question_slug': 'interest-new-foods-events',
                     'type': 'yes-no'
                 }
@@ -785,12 +787,12 @@ survey_question_data = [
             'topic_slug': 'special-events',
             'questions': [
                 {
-                    "question_text": "How often do you plan or attend special events (e.g., weddings, concerts, parties)?",
+                    'question_text': "How often do you plan or attend special events (e.g., weddings, concerts, parties)?",
                     'question_slug': 'frequency-plan-attend-special-events',
                     'type': 'frequency'
                 },
                 {
-                    "question_text": "How much do you enjoy organizing or hosting special events?",
+                    'question_text': "How much do you enjoy organizing or hosting special events?",
                     'question_slug': 'enjoyment-organizing-hosting-special-events',
                     'type': 'scale-agree-disagree'
                 }
@@ -800,17 +802,17 @@ survey_question_data = [
             'topic_slug': 'competitive-events',
             'questions': [
                 {
-                    "question_text": "How often do you participate in competitive events such as races or tournaments?",
+                    'question_text': "How often do you participate in competitive events such as races or tournaments?",
                     'question_slug': 'frequency-competitions',
                     'type': 'frequency'
                 },
                 {
-                    "question_text": "How interested are you in training for or competing in an event?",
+                    'question_text': "How interested are you in training for or competing in an event?",
                     'question_slug': 'interest-training-competitive-events',
                     'type': 'scale-agree-disagree'
                 },
                 {
-                    "question_text": "Do you have specific competitive goals you would like to achieve?",
+                    'question_text': "Do you have specific competitive goals you would like to achieve?",
                     'question_slug': 'specific-competitive-goals',
                     'type': 'yes-no'
                 }
@@ -820,17 +822,17 @@ survey_question_data = [
             'topic_slug': 'bucket-list',
             'questions': [
                 {
-                    "question_text": "How often do you think about your bucket list goals or dreams?",
+                    'question_text': "How often do you think about your bucket list goals or dreams?",
                     'question_slug': 'frequency-thinking-goals-dreams',
                     'type': 'frequency'
                 },
                 {
-                    "question_text": "How interested are you in working towards checking off items from your bucket list?",
+                    'question_text': "How interested are you in working towards checking off items from your bucket list?",
                     'question_slug': 'interest-checking-off-bucket-list',
                     'type': 'scale-agree-disagree'
                 },
                 {
-                    "question_text": "Do you feel motivated to take steps towards achieving your bucket list dreams?",
+                    'question_text': "Do you feel motivated to take steps towards achieving your bucket list dreams?",
                     'question_slug': 'motivation-bucket-list-dreams',
                     'type': 'yes-no'
                 }

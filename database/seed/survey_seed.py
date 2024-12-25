@@ -478,6 +478,14 @@ def survey_generic_answer_seed():
             ]
         },
         {
+            'answer_type': 'yes-no-unsure',
+            'answers': [
+                {"answer_text": "Yes", "answer_value": 2},
+                {"answer_text": "I am not sure", "answer_value": 1},
+                {"answer_text": "No", "answer_value": 0}
+            ]
+        },
+        {
             'answer_type': 'yes-no-alittle',
             'answers': [
                 {"answer_text": "Yes", "answer_value": 2},
@@ -515,6 +523,16 @@ def survey_generic_answer_seed():
             ]
         },
         {
+            'answer_type': 'scale-interest',
+            'answers': [
+                {"answer_text": "Very Interested", "answer_value": 4},
+                {"answer_text": "Interested", "answer_value": 3},
+                {"answer_text": "Neutral", "answer_value": 2},
+                {"answer_text": "Not Interested", "answer_value": 1},
+                {"answer_text": "Not at All Interested", "answer_value": 0}
+            ]
+        },
+        {
             'answer_type': 'scale-stress-resilience',
             'answers': [
                 {"answer_text": "Yes, very resilient, I can handle just about anything.", "answer_value": 4},
@@ -535,6 +553,16 @@ def survey_generic_answer_seed():
                 {"answer_text": "Sometimes", "answer_value": 2},
                 {"answer_text": "Rarely", "answer_value": 1},
                 {"answer_text": "Never/Almost Never", "answer_value": 0}
+            ]
+        },
+        {
+            'answer_type': 'frequency-often',
+            'answers': [
+                {"answer_text": "Very Often", "answer_value": 4},
+                {"answer_text": "Often", "answer_value": 3},
+                {"answer_text": "Sometimes", "answer_value": 2},
+                {"answer_text": "Rarely", "answer_value": 1},
+                {"answer_text": "Never", "answer_value": 0}
             ]
         },
         {
@@ -580,6 +608,16 @@ def survey_generic_answer_seed():
                 {"answer_text": "1-5 hours", "answer_value": 1},
                 {"answer_text": "5-10 hours", "answer_value": 2},
                 {"answer_text": "10+ hours", "answer_value": 3}
+            ]
+        }, 
+        {
+            'answer_type': 'range-hours-0-20+',
+            'answers': [
+                {"answer_text": "0-1 hour", "answer_value": 0},
+                {"answer_text": "1-5 hours", "answer_value": 1},
+                {"answer_text": "5-10 hours", "answer_value": 2},
+                {"answer_text": "10-20 hours", "answer_value": 3},
+                {"answer_text": "20+ hours", "answer_value": 3}
             ]
         }, 
         # Range Less 5, Greater 8 Hours
