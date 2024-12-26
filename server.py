@@ -5,7 +5,6 @@ from flask_app.controllers import personalRoutines
 from flask_app.controllers import routineTemplates
 from flask_app.controllers import practices
 from flask_app.controllers import userGoals
-from flask_app.controllers import recreationSurveys
 
 if __name__ == "__main__":
     app.run(debug=True)

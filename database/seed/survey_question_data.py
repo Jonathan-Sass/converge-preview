@@ -670,24 +670,13 @@ survey_question_data = [
                     'type': 'yes-no-alittle'
                 },
                 {
-                    'question_text': "How often do you think about engaging in new hobbies or activities?",
-                    'question_slug': 'new-hobby-activity-interest',
-                    'type': 'frequency'
-                },
-                # Deprecated for lack of relevance?
-                # {
-                #     'question_text': "How much time do you spend considering your personal interests, such as traveling or exploring new hobbies?",
-                #     'question_slug': 'time-exploring-new-interests',
-                #     'type': 'scale-agree-disagree'
-                # },
-                {
-                    'question_text': "What is your interest level in local or international travel?",
-                    'question_slug': 'interest-local-international-travel',
+                    'question_text': "What is your interest level in domestic travel?",
+                    'question_slug': 'interest-domestic-travel',
                     'type': 'scale-interest'
                 },
                 {
-                    'question_text': "How interested are you in pursuing hobbies like crafting or DIY projects on a regular basis?",
-                    'question_slug': 'interest-crafts-projects',
+                    'question_text': "What is your interest level in international travel?",
+                    'question_slug': 'interest-international-travel',
                     'type': 'scale-interest'
                 },
                 {
@@ -701,14 +690,25 @@ survey_question_data = [
                     'type': 'scale-agree-disagree'
                 },
                 {
+                    'question_text': "Are you interested in setting specific goals to prioritize hobbies or activities?",
+                    'question_slug': 'interest-goals-prioritizing-hobbies',
+                    'type': 'yes-no-alittle'
+                },
+                {
                     'question_text': "How much time per week do you currently dedicate to activities like traveling, crafting, sports, or other personal hobbies?",
                     'question_slug': 'time-dedicated-various-activities',
                     'type': 'range-hours-0-20+'
                 },
+                # Deprecated for lack of relevance?
+                # {
+                #     'question_text': "How much time do you spend considering your personal interests, such as traveling or exploring new hobbies?",
+                #     'question_slug': 'time-exploring-new-interests',
+                #     'type': 'scale-agree-disagree'
+                # },
                 {
-                    'question_text': "Are you interested in setting specific goals to prioritize hobbies or activities?",
-                    'question_slug': 'interest-goals-prioritizing-hobbies',
-                    'type': 'yes-no-alittle'
+                    'question_text': "How interested are you in pursuing hobbies like crafting or DIY projects on a regular basis?",
+                    'question_slug': 'interest-crafts-projects',
+                    'type': 'scale-interest'
                 },
                 # Open ended answer formats pending
                 # {
