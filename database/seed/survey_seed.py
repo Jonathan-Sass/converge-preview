@@ -46,6 +46,23 @@ def survey_category_seed():
             """
     UserSurvey.db.query_db(query)
 
+    # Temporary secondary query to seed goal related categories, merge pending
+    query_2 = """
+        INSERT INTO categories (category_slug, name, created_at, updated_at)
+        VALUES
+            ('foundations', 'Foundations', NOW(), NOW()),
+            ('your-why', 'Defining Your Why', NOW(), NOW()),
+            ('health-wellness', 'Health and Wellness', NOW(), NOW()),
+            ('social-community', 'Social and Community Engagement', NOW(), NOW()),
+            ('recreation-travel', 'Recreation and Travel', NOW(), NOW()),
+            ('spirituality-life-purpose', 'Spirituality and Life Purpose', NOW(), NOW()),
+            ('career-professional-development', 'Career and Professional Development', NOW(), NOW()),
+            ('creative-expression-hobbies', 'Creative Expression and Hobbies', NOW(), NOW()),
+            ('wealth-finance', 'Wealth Building and Financial Health', NOW(), NOW()),
+            ('environment-success', 'Environment and Success', NOW(), NOW())
+        ON DUPLICATE KEY UPDATE updated_at = NOW();
+            """
+    UserSurvey.db.query_db(query_2)
 
 def survey_topic_seed():
     # Fetch all survey_topic_id and topic_name pairs once
@@ -77,18 +94,33 @@ def survey_topic_seed():
         # Create the base query
         query = "INSERT INTO survey_topics (survey_category_id, topic_slug, name, created_at, updated_at) VALUES "
         query_values = []
-        
+
+        # Temporary secondary seed to subcategories, merge pending
+        query_2 = "INSERT INTO subcategories (category_id, subcategory_slug, name, created_at, updated_at) VALUES "
+        query_values_2 = []
+
         # Add the topic values to the query
         for topic in topic_batch:
             values = f"({survey_category_id}, '{topic['topic_slug']}', '{topic['topic_name']}', NOW(), NOW())"
             query_values.append(values)
 
+            # # Temporary secondary snippet, merge pending, OOPS, REDUNDANT?
+            # values_2 = f"({survey_category_id}, '{topic['topic_slug']}', '{topic['topic_name']}', NOW(), NOW())"
+            # query_values_2.append(values_2)
+
         # Combine the query and execute it
         query += ", ".join(query_values)
         query += " ON DUPLICATE KEY UPDATE updated_at = NOW();"
         
+        # TEMPORARY SECONDARY SNIPPET, MERGE PENDING
+        query_2 += ", ".join(query_values)
+        query_2 += " ON DUPLICATE KEY UPDATE updated_at = NOW();"
+
         # Execute the query using your database method
         UserSurvey.db.query_db(query)
+
+        # TEMPORARY SECONDARY QUERY, MERGE PENDING
+        UserSurvey.db.query_db(query_2)
 
     print(f"{sum(len(v) for v in survey_topic_data.values())} survey topics have been seeded.")
 

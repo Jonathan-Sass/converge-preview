@@ -437,7 +437,6 @@ function resetState() {
     
     // Remove Next button and Next Section button from page
     nextButton.classList.add('d-none')
-    nextSectionButton.classList.add('d-none')
     
     // Remove selectable answers from page
     if (checkboxContainer) {

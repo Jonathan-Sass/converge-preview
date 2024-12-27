@@ -7,7 +7,7 @@
         <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
         <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='img/Enso_Blue_and_Black.jpg') }}">
         <script defer src="/static/js/user-surveys.js"></script>
-        <title>Survey Category/Topic</title>
+        <title>Set Recreation and Travel Goals</title>
     </head>
     <body>
         <div class="border-box">
@@ -70,7 +70,7 @@
                 </div>
             </nav>
         <header class="bg-dark opacity-75 w-100 p-2 pb-3 text-center">
-            <h1 class="display-2 mb-3 text-primary">Recreation and Travel</h1>
+            <h1 class="display-2 mb-3 text-primary">Recreation and Travel Goals</h1>
             <h4 class="display-6 mx-5">What do you enjoy now? What would you like to enjoy in the future?</h4>
         </header>
         <!-- Content and Sidebar Div-->
@@ -125,33 +125,53 @@
                         <!-- <h2 class="display-6 text-primary">Let's start with something fun.</h2> -->
                     </div>
                     <div data-bs-spy="scroll" data-bs-target="#progress-navbar" data-bs-smooth-scroll="true" class="scrollspy-example-2" tabindex="0">
-                        <div class="card shadow p-2 opacity-75 text-center mb-3">
-                            <!-- ID NEEDS TO BE THE SURVEY TOPIC SLUG TO PULL FROM DB -->
-                            <div id="frequent-hobbies-activities">
-                                <div class="card-title">
-                                    <h2 class="display-6 text-primary">Frequent Hobbies and Activities</h2>
-                                    <hr class="border border-1 border-light">
-                                </div>
-                                <div class="card-body">
-                                    <!-- TODO - Interactive quiz -->
-                                    <div id="question-container" class="d-none mb-3">
-                                        <div id="question" class="display-6 mb-3">Question</div>
-                                        <div id="answer-buttons" class="d-flex justify-content-evenly gap-2">
-                                            <div class="btn btn-outline-light col">Answer 1</div>
-                                            <div class="btn btn-outline-light col">Answer 2</div>
-                                            <div class="btn btn-outline-light col">Answer 3</div>
-                                            <div class="btn btn-outline-light col">Answer 4</div>
+                        <div class="card shadow opacity-card mb-3">
+                            <div class="accordion" id="goalSettingAccordion">
+                                    {% for subcategory in category.subcategories %}
+                                    <!-- Subcategory Template -->
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header" id="subcategoryOne">
+                                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                                {{ subcategory.name }}
+                                            </button>
+                                        </h2>
+                                        <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="subcategoryOne" data-bs-parent="#goalSettingAccordion">
+                                            <div class="accordion-body">
+                                                <div class="goal-section">
+                                                    <div class="mb-3">
+                                                        <label for="goal1" class="form-label">Goal Name</label>
+                                                        <input type="text" class="form-control" id="goal1" placeholder="Enter your goal">
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <label for="timeInterval1" class="form-label">Desired Completion:</label>
+                                                        <select class="form-select" name="timeframe" id="timeframe">
+                                                            <option value="" selected>Select a timeframe</option>
+                                                            <option value="1_month">1 Month</option>
+                                                            <option value="2_month">2 Months</option>
+                                                            <option value="3_month">3 Months</option>
+                                                            <option value="6_month">6 Months</option>
+                                                            <option value="9_month">9 Months</option>
+                                                            <option value="1_year">1 Year</option>
+                                                            <option value="2_year">2 Years</option>
+                                                            <option value="3_year">3 Years</option>
+                                                            <option value="5_year">5 Years</option>
+                                                            <option value="10_year">10 Years</option>
+                                                            <option value="15_year">15 Years</option>
+                                                            <option value="20_year">20 Years</option>
+                                                            <option value="30_year">30 Years</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <button class="btn btn-outline-primary btn-sm mb-3 add-goal-btn" type="button">
+                                                    + Add Goal
+                                                </button>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="controls">
-                                        <button id="start-btn" data-topic-id="frequent-hobbies-activities" class="btn btn-lg btn-primary">Start</button>
-                                        <button id="next-btn" type="submit" class="btn btn-lg btn-primary d-none">Next</button>
-                                        <button id="finish-btn" class="btn btn-lg btn-primary d-none">Submit Answers</button>
-                                    </div>
-                                </div>
+                                {% endfor %}
                             </div>
                         </div>
-                        <a href="/goals/recreation-travel" class="btn btn-lg w-25 btn-primary mb-3 d-none" id="next-section-btn">Next Section</a>
+                        <a href="/goals/recreation-travel/frequent-hobbies-activities" class="btn btn-lg w-25 btn-primary mb-3 d-none" id="next-section-btn">Next Section</a>
                     </div>
                 </div>
             </div>
