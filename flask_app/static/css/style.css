@@ -16,6 +16,17 @@ h1, h2, h3, h4, h5, h6, p {
     scroll-behavior: smooth;
 }
 
+/* .swiper-wrapper {
+  display: flex; /* Ensure flexbox alignment */
+  /* gap: 16px; /* Set gap between slides (16px is like Bootstrap's gap-2) */
+/* } */ 
+
+.swiper-slide {
+  flex-shrink: 0; /* Prevent slides from shrinking */
+  width: auto; /* Adjust width to fit content or define a specific width */
+}
+
+
 /* .mask-container::before,
 .mask-container::after {
     content: '';
