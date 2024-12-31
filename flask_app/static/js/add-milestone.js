@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", () => {
               <div class="swiper-slide milestone-card card p-3 border shadow" 
                    id="${subcategorySlug}-goal-${goalId}-milestone-${milestoneIndex}" 
                    data-milestone-id="${milestoneIndex}">
-                  <div class="card-title">
+                  <div class="card-title mb-3">
                       <h5 class="time-interval-title">Target completion:</h5>
                   </div>
                   <div class="d-flex gap-2 mb-3">
@@ -40,7 +40,12 @@ document.addEventListener("DOMContentLoaded", () => {
           `;
 
           // Append the new milestone to the container
-          container.insertAdjacentHTML("beforeend", milestoneHtml);
+          container.insertAdjacentHTML("afterbegin", milestoneHtml);
+
+            // Update Swiper instance (if Swiper is in use)
+          if (window.myswiper) {
+            myswiper.update();
+      }
       });
   });
 });
