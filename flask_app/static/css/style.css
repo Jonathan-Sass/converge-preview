@@ -23,7 +23,14 @@ h1, h2, h3, h4, h5, h6, p {
 
 .swiper-slide {
   flex-shrink: 0; /* Prevent slides from shrinking */
-  width: auto; /* Adjust width to fit content or define a specific width */
+  max-width: 100%; /* Adjust width to fit content or define a specific width */
+  overflow-x: auto;
+}
+
+.milestone-card {
+  width: calc(100% / 3);
+  max-width: 300px; 
+  min-width: 200px;
 }
 
 

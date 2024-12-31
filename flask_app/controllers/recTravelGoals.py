@@ -22,8 +22,12 @@ def set_recreation_travel_goals(category_slug):
 
     print("*****Category with subcategories******")
     pprint(category)
+    for subcategory in category.subcategories:
+        pprint(subcategory)
 
-    return render_template("/goals/set_goals_for_category.html", user = user, category = category)
+    return render_template(
+        "/goals/set_goals_for_category.html", user=user, category=category
+    )
 
 
 # TODO: DETERMINE GOAL SETTING BREAKDOWN, CATEGORES OR SUBCATEGORIES

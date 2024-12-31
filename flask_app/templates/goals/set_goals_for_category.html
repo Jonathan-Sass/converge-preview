@@ -14,8 +14,6 @@
   <script defer src="/static/js/swiper.js"></script>
   <script defer src="/static/js/add-milestone.js"></script>
 
-
-
   <title>Set Recreation and Travel Goals</title>
 </head>
 
@@ -173,16 +171,19 @@
                     <button class="accordion-button" type="button" data-bs-toggle="collapse"
                       data-bs-target="#collapse-{{ subcategory.id }}" aria-expanded="true"
                       aria-controls="collapse-{{ subcategory.id }}">
-                      {{ subcategory.name }}
+                      Goals for {{ subcategory.name }}
                     </button>
                   </h2>
 
                   <div id="collapse-{{ subcategory.id }}" class="accordion-collapse collapse show"
                     aria-labelledby="subcategory-{{ subcategory.id }}" data-bs-parent="#goalSettingAccordion">
-                    <div class="accordion-body goal-section p-3">
-                      <h4 class="text-primary">Create goals for the {{ subcategory.name }} category</h4>
 
-                      <div class="card shadow p-3">
+                    <div class="accordion-body goal-section p-3"
+                      id="goals-container-{{ subcategory.subcategory_slug }}">
+                      <!-- <h4 class="text-primary">Create goals for the {{ subcategory.name }} category</h4> -->
+
+                      <!-- Container for an initial individual goal per subcategory -->
+                      <div class="card shadow p-3 mb-3">
                         <div class=" mb-3 form-floating">
                           <input type="text" class="form-control" id="goal1" placeholder=" " required>
                           <label for="goal1" class="form-label">Goal Name</label>
@@ -213,7 +214,7 @@
                           <!-- Add Milestone Button -->
                           <div class="mb-3">
                             <button type="button" id="add-milestone" class="btn btn-outline-primary add-milestone-btn"
-                              data-subcategory="{{ subcategory.slug }}" data-goal-id="1">
+                              data-subcategory="{{ subcategory.subcategory_slug }}" data-goal-id="1">
                               Add Milestone
                             </button>
                           </div>
@@ -222,19 +223,19 @@
                             <!-- Swiper Wrapper -->
                             <div class="swiper-wrapper d-flex gap-2 align-items-center">
                               <!-- Dynamically Added Milestones -->
-                              <div class=" d-flex swiper-slide gap-2 milestone-container"
-                                id="{{ subcategory.slug }}-goal-1-milestones">
+                              <div class="d-flex swiper-slide gap-2 milestone-container"
+                                id="{{ subcategory.subcategory_slug }}-goal-1-milestones">
                                 <!-- Example Milestone Slide -->
-                                <div class="milestone-card card p-3 shadow" id="{{ subcategory.slug }}-milestone-last"
-                                  data-milestone-id="last">
+                                <div class="milestone-card card p-3 shadow"
+                                  id="{{ subcategory.subcategory_slug }}-milestone-last" data-milestone-id="last">
                                   <div class="card-title">
                                     <h5 class="time-interval-title">Target completion:</h5>
                                   </div>
                                   <div class="d-flex gap-2 mb-3">
-                                    <input type="number" class="form-control w-50" name="time_value"
-                                      id="time-interval-value" placeholder="Enter number" min="1" required>
-                                    <select class="form-select w-50" name="time_unit" id="time-interval-unit" required>
-                                      <option value="" disabled selected>Select unit</option>
+                                    <input type="number" class="form-control w-25" name="time_value"
+                                      id="time-interval-value" placeholder="0" min="1" required>
+                                    <select class="form-select w-75" name="time_unit" id="time-interval-unit" required>
+                                      <option value="" disabled selected>Timeframe</option>
                                       <option value="day">Day(s)</option>
                                       <option value="week">Week(s)</option>
                                       <option value="month">Month(s)</option>
@@ -243,21 +244,21 @@
                                   </div>
                                   <hr class="w-75 m-auto mb-2">
                                   <textarea class="form-control mt-2"
-                                    name="{{ subcategory.slug }}-milestone_description[1]"
-                                    id="{{ subcategory.slug }}-milestone-description-1" rows="3"
+                                    name="{{ subcategory.subcategory_slug }}-milestone_description[1]"
+                                    id="{{ subcategory.subcategory_slug }}-milestone-description-1" rows="3"
                                     placeholder="Description" required></textarea>
                                 </div>
                               </div>
                             </div>
                             <!-- Optional Scroll Buttons (if needed) -->
-                            <button id="scroll-left"
+                            <!-- <button id="scroll-left"
                               class="scroll-btn position-absolute top-50 start-0 translate-middle-y btn btn-secondary rounded-circle">
                               <i class="bi bi-chevron-left"></i>
                             </button>
                             <button id="scroll-right"
                               class="scroll-btn position-absolute top-50 end-0 translate-middle-y btn btn-secondary rounded-circle">
                               <i class="bi bi-chevron-right"></i>
-                            </button>
+                            </button> -->
                           </div>
                         </div>
                         <p class="lead text-start">Enter an action you can take immediately to progress toward this
@@ -265,21 +266,20 @@
                         </p>
                         <div class="form-floating mb-3">
                           <input type="text" class="form-control" name="action_item"
-                            id="{{ subcategory.id }}-action-item-dynamic-index" value="{{ action_item }}"
-                            placeholder=" ">
+                            id="{{ subcategory.id }}-action-item-goal-last" value="{{ action_item }}" placeholder=" ">
                           <label for="action_item" class="form-label">Current action item</label>
                         </div>
                       </div>
+                    </div>
 
-                      <hr class="w-75 m-auto mb-3">
-
-                      <div id="additional-goals-{{ subcategory.id }}" class="mb-3"></div>
-                      <button type="button" class="btn btn-outline-primary btn-sm mb-3 add-goal"
-                        data-goal-id="{{ subcategory.id }}">+ Add Another Goal</button>
-                      <hr>
-                      <div class="text-end">
-                        <button type="submit" class="btn btn-primary">Save</button>
-                      </div>
+                    <button type="button" class="btn btn-outline-primary btn-sm mb-3 add-goal-button"
+                      data-subcategory-slug="{{ subcategory.subcategory_slug }}"
+                      data-subcategory-id="{{ subcategory.id }}">
+                      + Add Another Goal
+                    </button>
+                    <hr>
+                    <div class="text-end">
+                      <button type="submit" class="btn btn-primary">Save</button>
                     </div>
                   </div>
                 </div>

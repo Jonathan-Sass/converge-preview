@@ -21,11 +21,11 @@ document.addEventListener("DOMContentLoaded", () => {
                       <h5 class="time-interval-title">Target completion:</h5>
                   </div>
                   <div class="d-flex gap-2 mb-3">
-                      <input type="number" class="form-control w-50" name="time_value" 
+                      <input type="number" class="form-control w-25" name="time_value" 
                              id="time-interval-value-${milestoneIndex}" 
-                             placeholder="Enter number" min="1" required>
-                      <select class="form-select w-50" name="time_unit" id="time-interval-unit-${milestoneIndex}" required>
-                          <option value="" disabled selected>Select unit</option>
+                             placeholder="0" min="1" required>
+                      <select class="form-select w-75" name="time_unit" id="time-interval-unit-${milestoneIndex}" required>
+                          <option value="" disabled selected>Timeframe</option>
                           <option value="day">Day(s)</option>
                           <option value="week">Week(s)</option>
                           <option value="month">Month(s)</option>
