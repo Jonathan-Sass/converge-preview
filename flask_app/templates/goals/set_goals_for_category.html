@@ -188,30 +188,76 @@
                         data-goal-id="1" data-subcategory-slug="{{ subcategory.subcategory_slug }}">
 
                         <!-- Goal Name Input -->
-                        <div class=" mb-3 form-floating">
+                        <div class="mb-3 form-floating">
                           <input type="text" class="form-control" id="{{ subcategory.subcategory_slug }}-goal-1-name"
                             placeholder=" " required>
                           <label for="{{ subcategory.subcategory_slug }}-goal-1-name" class="form-label">Goal
                             Name</label>
                         </div>
 
+                        <!-- Goal Description Input -->
+                        <div class="mb-3 form-floating">
+                          <textarea class="form-control" id="{{ subcategory.subcategory_slug }}-goal-1-description"
+                            rows="3" placeholder=" " required></textarea>
+                          <label for="{{ subcategory.subcategory_slug }}-goal-1-description"
+                            class="form-label">Description</label>
+                        </div>
+
+                        <!-- Goal Type Selector -->
+                        <div class="mb-3">
+                          <label for="{{ subcategory.subcategory_slug }}-goal-1-type" class="form-label">Goal
+                            Type</label>
+                          <select class="form-select" id="{{ subcategory.subcategory_slug }}-goal-1-type" required>
+                            <option value="" disabled selected>Select goal type</option>
+                            <option value="short-term">Short-Term</option>
+                            <option value="long-term">Long-Term</option>
+                          </select>
+                        </div>
+
+                        <!-- Priority Selector -->
+                        <div class="mb-3">
+                          <label for="{{ subcategory.subcategory_slug }}-goal-1-priority"
+                            class="form-label">Priority</label>
+                          <select class="form-select" id="{{ subcategory.subcategory_slug }}-goal-1-priority" required>
+                            <option value="" disabled selected>Select priority</option>
+                            <option value="low">Low</option>
+                            <option value="medium">Medium</option>
+                            <option value="high">High</option>
+                            <option value="urgent">Urgent</option>
+                          </select>
+                        </div>
+
                         <!-- Estimated Goal Completion Input -->
-                        <div class="mb-3 text-start">
-                          <p>Estimated Completion:</p>
-                          <div class="d-flex gap-2 align-items-center">
+                        <div class="mb-3 text-center">
+                          <p>Estimated Completion</p>
+                          <div class="d-flex justify-content-around gap-3 align-items-center m-auto">
                             <!-- Input for Time Value -->
-                            <input type="number" class="form-control w-25" name="time_value"
-                              id="{{ subcategory.subcategory_slug }}-goal-1-time-interval-value"
-                              placeholder="Enter number" min="1" required>
-                            <!-- Dropdown for Time Unit -->
-                            <select class="form-select w-25" name="time_unit"
-                              id="{{ subcategory.subcategory_slug }}-goal-1-time-interval-unit" required>
-                              <option value="" disabled selected>Select unit</option>
-                              <option value="day">Day(s)</option>
-                              <option value="week">Week(s)</option>
-                              <option value="month">Month(s)</option>
-                              <option value="year">Year(s)</option>
-                            </select>
+                            <div class="col-4">
+                              <label for="{{ subcategory.subcategory_slug }}-goal-1-time-value"
+                                class="form-label">Select a time from now</label>
+                              <div class="d-flex gap-2 align-items-center">
+                                <input type="number" class="form-control w-auto"
+                                  id="{{ subcategory.subcategory_slug }}-goal-1-time-value" placeholder="Enter number"
+                                  min="1">
+                                <select class="form-select w-auto"
+                                  id="{{ subcategory.subcategory_slug }}-goal-1-time-unit">
+                                  <option value="" disabled selected>Time unit</option>
+                                  <option value="day">Day(s)</option>
+                                  <option value="week">Week(s)</option>
+                                  <option value="month">Month(s)</option>
+                                  <option value="year">Year(s)</option>
+                                </select>
+                              </div>
+                            </div>
+                            <div class="col-1">
+                              <p>OR</p>
+                            </div>
+                            <div class="col-4">
+                              <label for="{{ subcategory.subcategory_slug }}-goal-1-date" class="form-label">Select a
+                                date</label>
+                              <input type="date" class="form-control"
+                                id="{{ subcategory.subcategory_slug }}-goal-1-date">
+                            </div>
                           </div>
                         </div>
 
@@ -238,37 +284,30 @@
                                 id="{{ subcategory.subcategory_slug }}-goal-1-milestones">
                                 <!-- Example Milestone Slide -->
                                 <div class="milestone-card card p-3 shadow"
-                                  id="{{ subcategory.subcategory_slug }}-goal-1-milestone-last" data-goal-id="1"
-                                  data-milestone-id="last">
+                                  id="{{ subcategory.subcategory_slug }}-goal-1-milestone-1" data-goal-id="1"
+                                  data-milestone-id="1">
                                   <!-- <div class="card-title"> -->
                                   <h5 class="card-title mb-2">Target completion:</h5>
                                   <!-- </div> -->
                                   <div class="d-flex gap-2 mb-3">
-                                    <div class="form-floating w-50">
-                                      <input type="number" class="form-control" name="time_value"
-                                        id="{{subcategory.subcategory_slug }}-goal-1-completion-value" placeholder="0"
-                                        min="1" required>
-                                      <label for="{{subcategory.subcategory_slug }}-goal-1-completion-value"
-                                        class="form-label">Enter Number</label>
-                                    </div>
-                                    <div class="form-floating w-50">
-                                      <select class="form-select" name="time_unit"
-                                        id="{{subcategory.subcategory_slug }}-goal-1-completion-unit" required>
-                                        <option value="day">Day(s)</option>
-                                        <option value="week">Week(s)</option>
-                                        <option value="month">Month(s)</option>
-                                        <option value="year">Year(s)</option>
-                                      </select>
-                                      <label
-                                        for="{{subcategory.subcategory_slug }}-goal-1-completion-unit">Timeframe</label>
-                                    </div>
+                                    <input type="number" class="form-control" name="time_value"
+                                      id="{{subcategory.subcategory_slug }}-goal-1-completion-value" placeholder="0"
+                                      min="1" required>
+                                    <select class="form-select" name="time_unit"
+                                      id="{{subcategory.subcategory_slug }}-goal-1-completion-unit" required>
+                                      <option value=" " selected disabled hidden>Time Unit</option>
+                                      <option value="day">Day(s)</option>
+                                      <option value="week">Week(s)</option>
+                                      <option value="month">Month(s)</option>
+                                      <option value="year">Year(s)</option>
+                                    </select>
                                   </div>
                                   <hr class="w-75 m-auto mb-2">
                                   <textarea class="form-control mt-2"
                                     name="{{ subcategory.subcategory_slug }}-milestone_description[1]"
                                     id="{{ subcategory.subcategory_slug }}-milestone-description-1" data-goal-id="1"
-                                    data-milestone-id="1" rows="3" placeholder="Description" required>
-                                  </textarea>
+                                    data-milestone-id="1" rows="3" placeholder="Description (optional)" required>
+                                </textarea>
                                 </div>
                               </div>
                             </div>
@@ -292,7 +331,7 @@
                       + Add Another Goal
                     </button>
                     <hr>
-                    <div class="text-end">
+                    <div class="text-end mb-3">
                       <button type="submit" class="btn btn-primary">Save</button>
                     </div>
                   </div>

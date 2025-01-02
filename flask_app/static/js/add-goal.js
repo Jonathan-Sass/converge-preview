@@ -23,73 +23,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
       console.log("****goalCount: " + goalCount + "****")
     // Template for a new goal card
-    const newGoalHTMLDeprecated = `
-      <div class="card shadow p-3 mb-3" id="goal-card-${goalCount}">
-        <div class="mb-3 form-floating">
-          <input type="text" class="form-control" id="goal${goalCount}" placeholder=" " required>
-          <label for="goal${goalCount}" class="form-label">Goal Name</label>
-        </div>
-        <div class="mb-3 text-start">
-          <label for="time-interval-${goalCount}" class="form-label">Estimated Completion:</label>
-          <div class="d-flex gap-2 align-items-center">
-            <input type="number" class="form-control w-25" name="time_value" id="time-interval-value-${goalCount}"
-              placeholder="Enter number" min="1" required>
-            <select class="form-select w-25" name="time_unit" id="time-interval-unit-${goalCount}" required>
-              <option value="" disabled selected>Select unit</option>
-              <option value="day">Day(s)</option>
-              <option value="week">Week(s)</option>
-              <option value="month">Month(s)</option>
-              <option value="year">Year(s)</option>
-            </select>
-          </div>
-        </div>
-        <h4 class="text-center text-primary">Let's break it down.</h4>
-        <hr class="mb-3">
-        <h3 class="display-6">Milestones</h3>
-        <div class="container-fluid mb-3">
-          <div class="mb-3">
-            <button type="button" id="add-milestone-${goalCount}" class="btn btn-outline-primary add-milestone-btn"
-              data-goal-id="${goalCount}">
-              Add Milestone
-            </button>
-          </div>
-          <div class="swiper-container scroll-wrapper position-relative">
-            <div class="swiper-wrapper d-flex gap-2 align-items-center" id="goal-${goalCount}-milestones">
-              <!-- Milestone content will be dynamically added here -->
-              <!-- Example Milestone Slide -->
-              <div class="milestone-card card p-3 shadow"
-                id="${subcategorySlug}-milestone-last" data-milestone-id="last">
-                <div class="card-title">
-                  <h5 class="time-interval-title">Target completion:</h5>
-                </div>
-                <div class="d-flex gap-2 mb-3">
-                  <input type="number" class="form-control w-25" name="time_value"
-                    id="time-interval-value" placeholder="0" min="1" required>
-                  <select class="form-select w-75" name="time_unit" id="time-interval-unit" required>
-                    <option value="" disabled selected>Timeframe</option>
-                    <option value="day">Day(s)</option>
-                    <option value="week">Week(s)</option>
-                    <option value="month">Month(s)</option>
-                    <option value="year">Year(s)</option>
-                  </select>
-                </div>
-                <hr class="w-75 m-auto mb-2">
-                <textarea class="form-control mt-2"
-                  name="${subcategorySlug}-milestone_description[1]"
-                  id="${subcategorySlug}-milestone-description-1" rows="3"
-                  placeholder="Description" required></textarea>
-              </div>
-            </div>
-          </div>
-        </div>
-        <p class="lead text-start">Enter an action you can take immediately to progress toward this goal.</p>
-        <div class="form-floating mb-3">
-          <input type="text" class="form-control" name="action_item"
-            id="action-item-${goalCount}" placeholder=" ">
-          <label for="action-item-${goalCount}" class="form-label">Current action item</label>
-        </div>
-      </div>`;
-
       const newGoalHTML = `
       <div class="card shadow p-3 mb-3 goal-card" id="${subcategorySlug}-goal-${goalCount}-card"
                         data-goal-id="${goalCount}" data-subcategory-slug="${subcategorySlug}">
@@ -107,13 +40,13 @@ document.addEventListener("DOMContentLoaded", function () {
                           <p>Estimated Completion:</p>
                           <div class="d-flex gap-2 align-items-center">
                             <!-- Input for Time Value -->
-                            <input type="number" class="form-control w-25" name="time_value"
-                              id="${subcategorySlug}-goal-${goalCount}-time-interval-value"
+                            <input type="number" class="form-control w-auto" name="time_value"
+                              id="{{ subcategory.subcategory_slug }}-goal-${goalCount}-time-interval-value"
                               placeholder="Enter number" min="1" required>
                             <!-- Dropdown for Time Unit -->
-                            <select class="form-select w-25" name="time_unit"
-                              id="${subcategorySlug}-goal-${goalCount}-time-interval-unit" required>
-                              <option value="" disabled selected>Select unit</option>
+                            <select class="form-select w-auto" name="time_unit"
+                              id="{{ subcategory.subcategory_slug }}-goal-${goalCount}-time-interval-unit" required>
+                              <option value="" disabled selected>Time unit</option>
                               <option value="day">Day(s)</option>
                               <option value="week">Week(s)</option>
                               <option value="month">Month(s)</option>
@@ -145,30 +78,25 @@ document.addEventListener("DOMContentLoaded", function () {
                                 id="${subcategorySlug}-goal-${goalCount}-milestones">
                                 <!-- Example Milestone Slide -->
                                 <div class="milestone-card card p-3 shadow"
-                                  id="${subcategorySlug}-goal-${goalCount}-milestone-last" data-goal-id="${goalCount}"
+                                  id="${subcategorySlug}-goal-${goalCount}-milestone-1" data-goal-id="${goalCount}"
                                   data-milestone-id="last">
                                   <!-- <div class="card-title"> -->
                                   <h5 class="card-title mb-2">Target completion:</h5>
                                   <!-- </div> -->
                                   <div class="d-flex gap-2 mb-3">
-                                    <div class="form-floating w-50">
-                                      <input type="number" class="form-control" name="time_value"
-                                        id="${subcategorySlug}-goal-${goalCount}-completion-value" placeholder="0"
-                                        min="1" required>
-                                      <label for="${subcategorySlug}-goal-${goalCount}-completion-value"
-                                        class="form-label">Enter Number</label>
-                                    </div>
-                                    <div class="form-floating w-50">
-                                      <select class="form-select" name="time_unit"
-                                        id="${subcategorySlug}-goal-${goalCount}-completion-unit" required>
-                                        <option value="day">Day(s)</option>
-                                        <option value="week">Week(s)</option>
-                                        <option value="month">Month(s)</option>
-                                        <option value="year">Year(s)</option>
-                                      </select>
-                                      <label
-                                        for="${subcategorySlug}-goal-${goalCount}-completion-unit">Timeframe</label>
-                                    </div>
+                                    <input type="number" class="form-control" name="time_value"
+                                      id="{{subcategory.subcategory_slug }}-goal-${goalCount}-completion-value" placeholder="0"
+                                      min="1" required>
+                                    <!-- <label for="{{subcategory.subcategory_slug }}-goal-${goalCount}-completion-value"
+                                      class="form-label">Enter Number</label> -->
+                                    <select class="form-select" name="time_unit"
+                                      id="{{subcategory.subcategory_slug }}-goal-${goalCount}-completion-unit" required>
+                                      <option value=" " selected disabled hidden>Time unit</option>
+                                      <option value="day">Day(s)</option>
+                                      <option value="week">Week(s)</option>
+                                      <option value="month">Month(s)</option>
+                                      <option value="year">Year(s)</option>
+                                    </select>
                                   </div>
                                   <hr class="w-75 m-auto mb-2">
                                   <textarea class="form-control mt-2"
