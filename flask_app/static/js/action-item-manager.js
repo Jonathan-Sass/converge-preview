@@ -28,19 +28,20 @@ document.addEventListener("DOMContentLoaded", () => {
 
 function toggleEditActionItemsButton(milestoneCard, isChecked) {
   let editButton = milestoneCard.querySelector(".edit-action-items");
+  const lastChild = milestoneCard.lastElementChild;
 
   if (isChecked) {
     // If the button doesn't already exist, create it
     if (!editButton) {
       editButton = document.createElement("button");
-      editButton.classList.add("btn", "btn-outline-primary", "btn-sm", "edit-action-items", "mt-2");
+      editButton.classList.add("btn", "btn-primary", "btn-sm", "edit-action-items", "mb-3");
       editButton.textContent = "Edit Action Items";
       editButton.setAttribute("type", "button");
       editButton.setAttribute("data-bs-toggle", "modal");
       editButton.setAttribute("data-bs-target", "#actionItemsModal");
       editButton.setAttribute("data-milestone-id", milestoneCard.dataset.milestoneId);
 
-      milestoneCard.appendChild(editButton);
+      milestoneCard.insertBefore(editButton, lastChild);
     }
   } else {
     // If unchecked, remove the button

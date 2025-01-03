@@ -152,7 +152,8 @@
       <!-- Main Content -->
       <div class="container col-9">
         <!-- Data-category and id need to be the survey_category.slug for DB selection and sidebar selector -->
-        <div class="card shadow opacity-75 mb-2" id="recreation-travel" data-category="recreation-travel">
+        <div class="card shadow opacity-75 mb-2" id="recreation-travel-container"
+          data-category-slug="recreation-travel">
           <div class="card-title">
             <!-- <h2 class="display-6 text-primary">Let's start with something fun.</h2> -->
           </div>
@@ -169,12 +170,12 @@
                 {% for subcategory in category.subcategories %}
 
                 <!-- Subcategory Container -->
-                <div class="accordion-item text-center">
+                <div class="accordion-item text-center subcategory-section">
                   <h2 class="accordion-header" id="subcategory-{{ subcategory.id }}">
                     <button class="accordion-button" type="button" data-bs-toggle="collapse"
                       data-bs-target="#collapse-{{ subcategory.id }}" aria-expanded="true"
                       aria-controls="collapse-{{ subcategory.id }}">
-                      Goals for {{ subcategory.name }}
+                      {{ subcategory.name }}
                     </button>
                   </h2>
 
@@ -182,13 +183,13 @@
                     aria-labelledby="subcategory-{{ subcategory.id }}" data-bs-parent="#goalSettingAccordion">
 
                     <!-- Container for all goals in a subcategory -->
-                    <div class="accordion-body goal-section p-3"
-                      id="goals-container-{{ subcategory.subcategory_slug }}">
+                    <div class="accordion-body goal-section p-3" id="{{ subcategory.subcategory_slug }}-goals-container"
+                      data-subcategory-slug="{{subcategory.subcategory_slug}}">
                       <!-- <h4 class="text-primary">Create goals for the {{ subcategory.name }} category</h4> -->
 
                       <!-- Container for an initial example goal per subcategory -->
                       <div class="card shadow p-3 mb-3 goal-card" id="{{ subcategory.subcategory_slug }}-goal-1-card"
-                        data-goal-id="1" data-subcategory-slug="{{ subcategory.subcategory_slug }}">
+                        data-goal-id="1">
 
                         <!-- Goal Name Input -->
                         <div class="mb-3 form-floating">
@@ -262,7 +263,7 @@
                         <div class="container-fluid mb-3">
                           <!-- Add Milestone Button -->
                           <div class="mb-3">
-                            <button type="button" id="add-milestone" class="btn btn-outline-primary add-milestone-btn"
+                            <button type="button" id="add-milestone" class="btn btn-primary add-milestone-btn"
                               data-subcategory-slug="{{ subcategory.subcategory_slug }}" data-goal-id="1">
                               Add Milestone
                             </button>
@@ -277,9 +278,8 @@
                                 id="{{ subcategory.subcategory_slug }}-goal-1-milestones">
 
                                 <!-- Example Milestone Slide -->
-                                <div class="milestone-card card p-3 shadow"
-                                  id="{{ subcategory.subcategory_slug }}-goal-1-milestone-1" data-goal-id="1"
-                                  data-milestone-id="1">
+                                <div class="card shadow p-3 milestone-card "
+                                  id="{{ subcategory.subcategory_slug }}-goal-1-milestone-1" data-milestone-id="1">
                                   <h5 class="card-title mb-2">Target completion:</h5>
                                   <div class="d-flex gap-2 mb-3">
                                     <input type="number" class="form-control" name="time_value"
@@ -294,15 +294,15 @@
                                       <option value="year">Year(s)</option>
                                     </select>
                                   </div>
-                                  <hr class="w-75 m-auto mb-2">
-                                  <textarea class="form-control mt-2"
+                                  <hr class="w-75 m-auto mb-3">
+                                  <textarea class="form-control mb-2"
                                     name="{{ subcategory.subcategory_slug }}-milestone_description[1]"
-                                    id="{{ subcategory.subcategory_slug }}-milestone-description-1" data-goal-id="1"
-                                    data-milestone-id="1" rows="3" placeholder="Description (optional)" required>
+                                    id="{{ subcategory.subcategory_slug }}-milestone-description-1" rows="3"
+                                    placeholder="Description (optional)" required>
                                   </textarea>
 
                                   <!-- Separate Into Action Items Checkbox -->
-                                  <div class="form-check form-switch mt-3">
+                                  <div class="form-check form-switch mb-3">
                                     <input class="form-check-input separate-action-items-checkbox" type="checkbox"
                                       id="separate-action-items-{{ subcategory.subcategory_slug }}-goal-1-milestone-1">
                                     <label class="form-check-label"
@@ -318,14 +318,15 @@
                         </div>
                       </div>
 
-                      <button type="button" class="btn btn-outline-primary btn-sm mb-3 add-goal-button"
-                        data-subcategory-slug="{{ subcategory.subcategory_slug }}"
-                        data-subcategory-id="{{ subcategory.id }}">
+                      <button type="button" class="btn btn-primary btn-sm mb-3 add-goal-btn"
+                        id="{{ subcategory.subcategory_slug }}-add-goal-btn"
+                        data-subcategory-slug="{{ subcategory.subcategory_slug }}">
                         + Add Another Goal
                       </button>
                       <hr>
                       <div class="text-end mb-3">
-                        <button type="submit" class="btn btn-primary">Save</button>
+                        <button type="submit" class="btn btn-primary"
+                          id="{{subcategory.subcategory_slug }}-goals-save">Save</button>
                       </div>
                     </div>
                   </div>

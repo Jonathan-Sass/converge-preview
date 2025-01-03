@@ -22,7 +22,10 @@ function handleAddMilestone(event) {
   const subcategorySlug = this.dataset.subcategorySlug; // Subcategory slug
   const goalId = this.dataset.goalId; // Goal ID
   const containerId = `${subcategorySlug}-goal-${goalId}-milestones`; // Milestone container ID
+  console.log(containerId)
   const milestonesContainer = document.getElementById(`${subcategorySlug}-goal-${goalId}-milestones`);
+
+  
   const milestoneCount = milestonesContainer.querySelectorAll(".milestone-card").length + 1;
   
   // const container = document.getElementById(containerId);
@@ -38,33 +41,69 @@ function handleAddMilestone(event) {
   // Build the milestone HTML
 
   const milestoneHtml = `
-  <div class="milestone-card card p-3 shadow"
-  id="${subcategorySlug}-goal-${goalId}-milestone-${milestoneCount}" data-goal-id="${goalId}"
-  data-milestone-id="${milestoneCount}">
-    <!-- <div class="card-title"> -->
-    <h5 class="card-title mb-2">Target completion:</h5>
-    <!-- </div> -->
-    <div class="d-flex gap-2 mb-3">
-      <input type="number" class="form-control" name="time_value"
-        id="{{subcategory.subcategory_slug }}-goal-${goalId}-completion-value" placeholder="0"
-        min="1" required>
-      <select class="form-select" name="time_unit"
-        id="{{subcategory.subcategory_slug }}-goal-${goalId}-completion-unit" required>
-        <option value=" " selected disabled hidden>Time unit</option>
-        <option value="day">Day(s)</option>
-        <option value="week">Week(s)</option>
-        <option value="month">Month(s)</option>
-        <option value="year">Year(s)</option>
-      </select>
-    </div>
-    <hr class="w-75 m-auto mb-2">
-    <textarea class="form-control mt-2"
-      name="${subcategorySlug}-milestone_description[1]"
-      id="${subcategorySlug}-milestone-description-1" data-goal-id="${goalId}"
-      data-milestone-id="1" rows="3" placeholder="Description" required>
-    </textarea>
-  </div>
-  `;
+    <div class="card shadow p-3 milestone-card"
+      id="${subcategorySlug}-goal-${goalId}-milestone-${milestoneCount}" data-milestone-id="${milestoneCount}">
+      <h5 class="card-title mb-2">Target completion:</h5>
+      <div class="d-flex gap-2 mb-3">
+        <input type="number" class="form-control" name="time_value"
+          id="${subcategorySlug}-goal-${goalId}-completion-value" placeholder="0"
+          min="1" required>
+        <select class="form-select" name="time_unit"
+          id="${subcategorySlug}-goal-${goalId}-completion-unit" required>
+          <option value=" " selected disabled hidden>Time Unit</option>
+          <option value="day">Day(s)</option>
+          <option value="week">Week(s)</option>
+          <option value="month">Month(s)</option>
+          <option value="year">Year(s)</option>
+        </select>
+      </div>
+      <hr class="w-75 m-auto mb-3">
+      <textarea class="form-control mb-2"
+        name="${subcategorySlug}-milestone_description[${milestoneCount}]"
+        id="${subcategorySlug}-milestone-description-${milestoneCount}" rows="3"
+        placeholder="Description (optional)" required>
+      </textarea>
+
+      <!-- Separate Into Action Items Checkbox -->
+      <div class="form-check form-switch mb-3">
+        <input class="form-check-input separate-action-items-checkbox" type="checkbox"
+          id="separate-action-items-${subcategorySlug}-goal-${goalId}-milestone-${milestoneCount}">
+        <label class="form-check-label"
+          for="separate-action-items-${subcategorySlug}-goal-${goalId}-milestone-${milestoneCount}">Separate
+          into action items</label>
+      </div>
+      <button class="btn btn-danger btn-sm w-50 m-auto remove-milestone-btn">Remove
+        milestone</button>
+    </div>`;
+  
+  
+  // <div class="milestone-card card p-3 shadow"
+  // id="${subcategorySlug}-goal-${goalId}-milestone-${milestoneCount}" data-goal-id="${goalId}"
+  // data-milestone-id="${milestoneCount}">
+  //   <!-- <div class="card-title"> -->
+  //   <h5 class="card-title mb-2">Target completion:</h5>
+  //   <!-- </div> -->
+  //   <div class="d-flex gap-2 mb-3">
+  //     <input type="number" class="form-control" name="time_value"
+  //       id="{{subcategory.subcategory_slug }}-goal-${goalId}-completion-value" placeholder="0"
+  //       min="1" required>
+  //     <select class="form-select" name="time_unit"
+  //       id="{{subcategory.subcategory_slug }}-goal-${goalId}-completion-unit" required>
+  //       <option value=" " selected disabled hidden>Time unit</option>
+  //       <option value="day">Day(s)</option>
+  //       <option value="week">Week(s)</option>
+  //       <option value="month">Month(s)</option>
+  //       <option value="year">Year(s)</option>
+  //     </select>
+  //   </div>
+  //   <hr class="w-75 m-auto mb-2">
+  //   <textarea class="form-control mt-2"
+  //     name="${subcategorySlug}-milestone_description[1]"
+  //     id="${subcategorySlug}-milestone-description-1" data-goal-id="${goalId}"
+  //     data-milestone-id="${milestoneCount}" rows="3" placeholder="Description" required>
+  //   </textarea>
+  // </div>
+  // `;
   // Append the new milestone to the container
   milestonesContainer.insertAdjacentHTML("afterbegin", milestoneHtml);
 
