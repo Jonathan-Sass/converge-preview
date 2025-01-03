@@ -7,24 +7,26 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // Add event listener for dynamically adding more action items
-  document.querySelectorAll('.add-action-item-btn').forEach(button => {
-    button.addEventListener('click', event => {
-      const clickedButton = event.currentTarget;
-      addActionItem(clickedButton)
-      console.log("Add action clicked")
-
-    })
-  });
-
-  document.querySelectorAll('.remove-action-item-btn').forEach(button => {
-    button.addEventListener('click', event => {
-      const clickedButton = event.currentTarget
-      removeActionItem(clickedButton)
-    });
-    
-  });
+  initializeAddActionItemListeners();
+  initializeRemoveActionItemListeners();
 });
+
+
+export function initializeAddActionItemListeners() {
+  // Add event listener for adding action items
+  document.querySelectorAll('.add-action-item-btn').forEach(button => {
+    button.removeEventListener("click", handleAddActionItem)
+    button.addEventListener("click", handleAddActionItem)
+  })
+}
+
+export function initializeRemoveActionItemListeners() {
+  // Add event listener for removing action items
+  document.querySelectorAll('.remove-action-item-btn').forEach(button => {
+    button.removeEventListener('click', handleRemoveActionItem)
+    button.addEventListener('click', handleRemoveActionItem)
+    });
+  }
 
 function toggleEditActionItemsButton(milestoneCard, isChecked) {
   let editButton = milestoneCard.querySelector(".edit-action-items");
@@ -51,7 +53,8 @@ function toggleEditActionItemsButton(milestoneCard, isChecked) {
   }
 }
 
-function addActionItem(button) {
+function handleAddActionItem(event) {
+  const button = event.currentTarget;
   const actionItemSection = button.closest('.action-item-section')
   const actionItemCount = actionItemSection.querySelectorAll(".action-item-card").length + 1;
 
@@ -80,9 +83,12 @@ function addActionItem(button) {
   `;
 
   actionItemSection.insertBefore(actionItemCard, actionItemSection.querySelector(".add-action-item-btn"));
+
+  initializeRemoveActionItemListeners();
 }
 
-function removeActionItem(button) {
+function handleRemoveActionItem(event) {
+  const button = event.currentTarget
   const actionItemCard = button.closest('.action-item-card')
   
   if (actionItemCard) {

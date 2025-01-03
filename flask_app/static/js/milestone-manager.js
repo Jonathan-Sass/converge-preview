@@ -1,22 +1,26 @@
-document.addEventListener("DOMContentLoaded", () => {
-  initializeMilestoneListeners()
+import { initializeRemoveActionItemListeners } from "./action-item-manager.js";
 
-  document.querySelectorAll('.remove-milestone-btn').forEach(button => {
-    button.addEventListener('click', event => {
-      const clickedButton = event.currentTarget
-      removeMilestone(clickedButton)
-    })
-  })
+document.addEventListener("DOMContentLoaded", () => {
+  initializeAddMilestoneListeners();
+  initializeRemoveMilestoneListeners();
 });
   
 // Listen for clicks on the "Add Milestone" button
-export function initializeMilestoneListeners() {
-  document.querySelectorAll(".add-milestone-btn").forEach((button) => {
+export function initializeAddMilestoneListeners() {
+  document.querySelectorAll(".add-milestone-btn").forEach(button => {
     button.removeEventListener("click", handleAddMilestone); // Avoid duplicate listeners
     button.addEventListener("click", handleAddMilestone); // Attach the event listener
     console.log("***Initializing add-milestone-btn Event Listeners***")
   });
 }
+
+export function initializeRemoveMilestoneListeners() {
+  document.querySelectorAll(".remove-milestone-btn").forEach(button => {
+    button.removeEventListener("click", handleRemoveMilestone)
+    button.addEventListener("click", handleRemoveMilestone)
+
+    })
+  }
 
 function handleAddMilestone(event) {
   const subcategorySlug = this.dataset.subcategorySlug; // Subcategory slug
@@ -111,10 +115,14 @@ function handleAddMilestone(event) {
   if (window.myswiper) {
     myswiper.update();
   }
+  // Reinitialize event listeners for remove milestone and action-item buttons
+  initializeRemoveMilestoneListeners();
+  initializeRemoveActionItemListeners();
 };
 
-function removeMilestone(button) {
+function handleRemoveMilestone(event) {
   console.log("Remove milestone clicked");
+  const button = event.currentTarget
   const milestoneCard = button.closest('.milestone-card');
   milestoneCard.remove();
 }
