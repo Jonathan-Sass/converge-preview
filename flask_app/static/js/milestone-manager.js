@@ -10,7 +10,6 @@ export function initializeAddMilestoneListeners() {
   document.querySelectorAll(".add-milestone-btn").forEach(button => {
     button.removeEventListener("click", handleAddMilestone); // Avoid duplicate listeners
     button.addEventListener("click", handleAddMilestone); // Attach the event listener
-    console.log("***Initializing add-milestone-btn Event Listeners***")
   });
 }
 
@@ -22,28 +21,16 @@ export function initializeRemoveMilestoneListeners() {
     })
   }
 
-function handleAddMilestone(event) {
+function handleAddMilestone() {
   const subcategorySlug = this.dataset.subcategorySlug; // Subcategory slug
   const goalId = this.dataset.goalId; // Goal ID
   const containerId = `${subcategorySlug}-goal-${goalId}-milestones`; // Milestone container ID
-  console.log(containerId)
   const milestonesContainer = document.getElementById(`${subcategorySlug}-goal-${goalId}-milestones`);
-
-  
   const milestoneCount = milestonesContainer.querySelectorAll(".milestone-card").length + 1;
   
-  // const container = document.getElementById(containerId);
-
-  console.log("***Running handleAddMilestone***")
-  console.log("***Looking for: " + subcategorySlug + "-goal-" + goalId + "-milestones")
   if (!milestonesContainer) return; // Exit if container is not found
-  console.log("***Adding Milestone!***")
-
-  // Create a unique milestone ID
-  // const milestoneCount = container.children.length + 1; // Increment based on existing milestones
 
   // Build the milestone HTML
-
   const milestoneHtml = `
     <div class="card shadow p-3 milestone-card"
       id="${subcategorySlug}-goal-${goalId}-milestone-${milestoneCount}" data-milestone-id="${milestoneCount}">
@@ -120,10 +107,9 @@ function handleAddMilestone(event) {
   initializeRemoveActionItemListeners();
 };
 
-function handleRemoveMilestone(event) {
+function handleRemoveMilestone() {
   console.log("Remove milestone clicked");
-  const button = event.currentTarget
-  const milestoneCard = button.closest('.milestone-card');
+  const milestoneCard = this.closest('.milestone-card');
   milestoneCard.remove();
 }
 

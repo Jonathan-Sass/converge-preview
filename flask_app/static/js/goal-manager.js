@@ -3,19 +3,26 @@ import { initializeRemoveMilestoneListeners } from './milestone-manager.js';
 import { initializeRemoveActionItemListeners } from './action-item-manager.js';
 
 document.addEventListener("DOMContentLoaded", function () {
-  
-  // Select and create event listeners for all add-goal buttons
-  document.querySelectorAll(".add-goal-btn").forEach (button => {
-    button.addEventListener("click", event => {
-      const clickedButton = event.currentTarget
-      addGoal(clickedButton)
-    })
-  })
+  initializeAddGoalListener();
+  initializeRemoveGoalListener();
 });
 
-function addGoal(button) {
+function initializeAddGoalListener() {
+  document.querySelectorAll(".add-goal-btn").forEach (button => {
+    button.addEventListener("click", addGoal)
+  })
+}
+
+function initializeRemoveGoalListener() {
+  document.querySelectorAll(".remove-goal-btn").forEach( button => {
+    button.removeEventListener("click", handleRemoveGoal)
+    button.addEventListener("click", handleRemoveGoal)
+  })
+}
+
+function addGoal() {
   // Retrieve the category or subcategory from data attributes
-  const subcategorySlug = button.dataset.subcategorySlug;
+  const subcategorySlug = this.dataset.subcategorySlug;
 
   // Increment a counter for the specific category or subcategory
   const goalsContainer = document.getElementById(`${subcategorySlug}-goals-container`);
@@ -152,6 +159,7 @@ function addGoal(button) {
         </div>
       </div>
     </div>
+    <button class="btn btn-danger btn-sm w-50 m-auto mb-3 remove-goal-btn">Remove Goal</button>
     `;
   
 // Append the new goal card to the goals container
@@ -162,4 +170,10 @@ goalsContainer.insertBefore(goalCard, addGoalBtn);
 initializeAddMilestoneListeners();
 initializeRemoveMilestoneListeners();
 initializeRemoveActionItemListeners();
+initializeRemoveGoalListener();
+}
+
+function handleRemoveGoal() {
+  const goalCard = this.closest(".goal-card");
+  goalCard.remove();
 }

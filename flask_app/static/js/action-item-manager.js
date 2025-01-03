@@ -53,13 +53,9 @@ function toggleEditActionItemsButton(milestoneCard, isChecked) {
   }
 }
 
-function handleAddActionItem(event) {
-  const button = event.currentTarget;
-  const actionItemSection = button.closest('.action-item-section')
+function handleAddActionItem() {
+  const actionItemSection = this.closest('.action-item-section')
   const actionItemCount = actionItemSection.querySelectorAll(".action-item-card").length + 1;
-
-  console.log("action-item-section selected:")
-  console.log(actionItemSection)
   const actionItemCard = document.createElement("div");
   actionItemCard.classList.add("action-item-card", "card", "p-3", "mb-3", "shadow");
   actionItemCard.dataset.actionItemId = actionItemCount;
@@ -87,12 +83,8 @@ function handleAddActionItem(event) {
   initializeRemoveActionItemListeners();
 }
 
-function handleRemoveActionItem(event) {
-  const button = event.currentTarget
-  const actionItemCard = button.closest('.action-item-card')
-  
-  if (actionItemCard) {
-    actionItemCard.remove();
-  }
+function handleRemoveActionItem() {
+  const actionItemCard = this.closest('.action-item-card')
+  actionItemCard.remove();
 }
 
