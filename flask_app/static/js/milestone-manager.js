@@ -1,5 +1,12 @@
 document.addEventListener("DOMContentLoaded", () => {
   initializeMilestoneListeners()
+
+  document.querySelectorAll('.remove-milestone-btn').forEach(button => {
+    button.addEventListener('click', event => {
+      const clickedButton = event.currentTarget
+      removeMilestone(clickedButton)
+    })
+  })
 });
   
 // Listen for clicks on the "Add Milestone" button
@@ -67,4 +74,9 @@ function handleAddMilestone(event) {
   }
 };
 
+function removeMilestone(button) {
+  console.log("Remove milestone clicked");
+  const milestoneCard = button.closest('.milestone-card');
+  milestoneCard.remove();
+}
 

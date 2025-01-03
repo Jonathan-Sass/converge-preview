@@ -1,4 +1,4 @@
-import { initializeMilestoneListeners } from './add-milestone.js'
+import { initializeMilestoneListeners } from './milestone-manager.js'
 
 document.addEventListener("DOMContentLoaded", function () {
   // Select all add-goal buttons
