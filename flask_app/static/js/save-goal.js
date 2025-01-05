@@ -4,22 +4,76 @@ document.addEventListener("DOMContentLoaded", () => {
   const saveButtons = document.querySelectorAll("button[type='submit']");
 
   saveButtons.forEach(button => {
-    button.addEventListener("click", handleSaveGoals);
+    button.addEventListener("click", processGoalData);
   });
 });
 
-function handleSaveGoals(event) {
-  event.preventDefault();
+function processGoalData() {
+  // Loop through all goal sections
+  document.querySelectorAll(".goal-section").forEach(goalSection => {
+    // Set subcategorySlug from goal-section
+    const subcategorySlug = goalSection.dataset.subcategorySlug;
+    const subcategoryGoals = []
 
-  const subcategorySlug = event.target.closest(".accordion-item").querySelector(".goal-section").id.split("goals-container-")[1];
-  const goalCards = document.querySelectorAll(`#goals-container-${subcategorySlug} .goal-card`);
+    // Loop through each goal-card for a subcategory
+    goalSection.querySelectorAll(".goal-card").forEach(goalCard => {
+      const goal = {
+        name: "",
+        description: "", 
+        priority: "",
+        date: "",
+        projectedCompletion: null,
+        isComplete: false,
+        milestones: []
+      }
+      
+      const goalId = goalCard.dataset.goalId;
+      goal.name = goalCard.querySelector(`#${subcategorySlug}-goal-${goalId}-name`).value;
+      goal.description = goalCard.querySelector(`#${subcategorySlug}-goal-${goalId}-description`).value;
+      goal.priority = goalCard.querySelector(`#${subcategorySlug}-goal-${goalId}-priority`).value;
+      goal.projectedCompletion = goalCard.querySelector(`#${subcategorySlug}-goal-${goalId}-date`).value;
+
+      // Select all milestones
+      goalCard.querySelectorAll(".milestone-card").forEach(milestoneCard => {
+        const milestoneId = goalCard.dataset.milestoneId
+        const milestone = {
+          name: "",
+          description: "",
+          projectedCompletion: null,
+          isComplete: false,
+          actionItems: []
+        }
+
+        milestone.name = goalCard.querySelector(`#${subcategorySlug}-goal-${goalId}-milestone-${milestoneId}-name`).value
+        milestone.description = goalCard.querySelector(`#${subcategorySlug}-goal-${goalId}-milestone-${milestoneId}-description`).value
+        
+        // Needs conversion to a date
+        milestone.projectedCompletion = goalCard.querySelector(`#${subcategorySlug}-goal-${goalId}-milestone-${milestoneId}-projected-completion`).value
+
+        // TODO: REVERSE THE ARRAY BEFORE APPENDING... OR NOT?
+      
+        milestoneCard.querySelectorAll("action-item-card").forEach(actionItemCard => {
+          const actionItem = {
+            name: "",
+            description: "",
+            actionItemOrder: "",
+            isCompleted: false,
+            target_date: null, 
+            estimatedTimeCommitment: ""
+          }
+
+
+          milestone.actionItems.append(actionItem)
+          goal.milestones.append(milestone)
+          subcategoryGoals.append(goal)
+        });
+      });
+    });
+  });
+
 
   const goalsData = Array.from(goalCards).map(goalCard => {
-    const goalId = goalCard.dataset.goalId;
 
-    const goalName = goalCard.querySelector(`#${subcategorySlug}-goal-${goalId}-name`).value;
-    const timeValue = goalCard.querySelector(`#${subcategorySlug}-goal-${goalId}-time-interval-value`).value;
-    const timeUnit = goalCard.querySelector(`#${subcategorySlug}-goal-${goalId}-time-interval-unit`).value;
 
     const milestones = Array.from(goalCard.querySelectorAll(".milestone-card")).map(milestoneCard => {
       const milestoneId = milestoneCard.dataset.milestoneId;

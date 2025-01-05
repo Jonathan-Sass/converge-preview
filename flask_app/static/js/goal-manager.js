@@ -121,15 +121,24 @@ function addGoal() {
             id="${subcategorySlug}-goal-${goalCount}-milestones">
 
             <!-- Example Milestone Slide -->
-            <div class="card shadow p-3 milestone-card "
-              id="${subcategorySlug}-goal-${goalCount}-milestone-1" data-milestone-id="1">
+            <div class="card shadow p-3 milestone-card"
+              id="${subcategorySlug}-goal-${goalCount}-milestone-1" data-subcategory-slug="${subcategorySlug}" data-milestone-id="1" data-goal-id="${goalCount}">
+              <!-- Milestone name input -->
+              <div class="mb-3 form-floating">
+                <input type="text" class="form-control"
+                  id="${subcategorySlug}-goal-${goalCount}-milestone-1-name" placeholder=" "
+                  required>
+                <label for="${subcategorySlug}-goal-${goalCount}-milestone-1-name"
+                  class="form-label">Milestone
+                  Name</label>
+              </div>
               <h5 class="card-title mb-2">Target completion:</h5>
               <div class="d-flex gap-2 mb-3">
                 <input type="number" class="form-control" name="time_value"
-                  id="${subcategorySlug}-goal-${goalCount}-completion-value" placeholder="0"
+                  id="${subcategorySlug}-goal-${goalCount}-milestone-1-completion-value" placeholder="0"
                   min="1" required>
                 <select class="form-select" name="time_unit"
-                  id="${subcategorySlug}-goal-${goalCount}-completion-unit" required>
+                  id="${subcategorySlug}-goal-${goalCount}-milestone-1-completion-unit" required>
                   <option value=" " selected disabled hidden>Time Unit</option>
                   <option value="day">Day(s)</option>
                   <option value="week">Week(s)</option>
@@ -151,6 +160,50 @@ function addGoal() {
                 <label class="form-check-label"
                   for="separate-action-items-${subcategorySlug}-goal-${goalCount}-milestone-1">Separate
                   into action items</label>
+              </div>
+
+              <!-- Action Items Section for Milestone -->
+              <div class="panel d-none action-item-section">
+                <h5 class="text-primary fs-4">Action Items</h5>
+                <!-- Example action item card -->
+                <div class="card shadow p-3 mb-3 action-item-card text-bg-secondary">
+                  <div class="mb-3 form-floating">
+                    <input type="text" class="form-control action-item-name"
+                      placeholder="Action Name">
+                    <label>Action Name</label>
+                  </div>
+                  <div class="mb-3 form-floating">
+                    <textarea class="form-control action-item-description"
+                      placeholder="Description (optional)"></textarea>
+                    <label>Description (optional)</label>
+                  </div>
+                  <div class="mb-3">
+                    <label>Target Date</label>
+                    <input type="date" class="form-control action-item-target-date">
+                  </div>
+                  <h6 class="card-title mb-2">Est. time required:</h6>
+                  <div class="d-flex gap-2 mb-3">
+                    <input type="number" class="form-control" name="time_value"
+                      id="${subcategorySlug}-goal-${goalCount}-milestone-1-action-1-completion-value"
+                      placeholder="0" min="1" required>
+                    <select class="form-select" name="time_unit"
+                      id="${subcategorySlug}-goal-${goalCount}-milestone-1-action-1-completion-unit"
+                      required>
+                      <option value=" " selected disabled hidden>Unit</option>
+                      <option value="day">Day(s)</option>
+                      <option value="week">Week(s)</option>
+                      <option value="month">Month(s)</option>
+                      <option value="year">Year(s)</option>
+                    </select>
+                  </div>
+                  <button class="btn btn-danger btn-sm remove-action-item-btn w-50 m-auto">
+                    Remove action item
+                  </button>
+                </div>
+                <button class="btn btn-primary btn-sm add-action-item-btn w-75 m-auto mb-3">Add
+                  Action Item
+                </button>
+                <hr class="w-25 m-auto mb-3">
               </div>
               <button class="btn btn-danger btn-sm w-50 m-auto remove-milestone-btn">Remove
                 milestone</button>
