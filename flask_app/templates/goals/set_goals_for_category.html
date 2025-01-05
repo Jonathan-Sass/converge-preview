@@ -210,6 +210,38 @@
                             class="form-label">Description</label>
                         </div>
 
+                        <!-- Goal Type Input -->
+                        <div class="mb-3">
+                          <label for="{{ subcategory.subcategory_slug }}-goal-1-type" class="form-label">Goal
+                            Type</label>
+                          <select class="form-select" id="{{ subcategory.subcategory_slug }}-goal-1-type" required>
+                            <option value="" disabled selected>Select a Type of Goal</option>
+                            <option value="active">
+                              Active (goals you intend to pursue currently)
+                            </option>
+                            <option value="supportive">
+                              Supportive (goals that directly support or enable other goals)
+                            </option>
+                            <option value="experimental">
+                              Experimental (goals being explored without full commitment, to gauge interest or
+                              feasability)
+                            </option>
+                            <option value="collaborative">
+                              Collaborative (goals requiring contributions or coordination with others)
+                            </option>
+                            <option value="habitual">
+                              Habitual (goals that involve building or maintaining habits or routine practices)
+                            </option>
+                            <option value="self-care">
+                              Self-Care (goals focusing on personal well-being, mental health, or stress management)
+                            </option>
+                            <option value="archived">
+                              Archived (goals to be pursued later, possibly those that follow other goals or steps in
+                              life)
+                            </option>
+                          </select>
+                        </div>
+
                         <!-- Priority Selector -->
                         <div class="mb-3">
                           <label for="{{ subcategory.subcategory_slug }}-goal-1-priority"
@@ -225,7 +257,7 @@
 
                         <!-- Estimated Goal Completion Input -->
                         <div class="mb-3 text-center">
-                          <p>Estimated Completion</p>
+                          <p>Projected Completion</p>
                           <div class="d-flex justify-content-around gap-3 align-items-center m-auto">
                             <!-- Input for Time Value -->
                             <div class="col-4">
