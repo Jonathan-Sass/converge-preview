@@ -279,11 +279,11 @@
                             <div class="swiper-wrapper d-flex gap-2 align-items-center">
 
                               <!-- Dynamically Added Milestones -->
-                              <div class="d-flex swiper-slide gap-2 milestone-section"
+                              <div class="d-flex swiper-slide gap-2 milestone-section p-2 border rounded"
                                 id="{{ subcategory.subcategory_slug }}-goal-1-milestones">
 
                                 <!-- Example Milestone Slide -->
-                                <div class="card shadow p-3 milestone-card"
+                                <div class="card shadow p-3 milestone-card position-relative"
                                   id="{{ subcategory.subcategory_slug }}-goal-1-milestone-1"
                                   data-subcategory-slug="{{ subcategory.subcategory_slug }}" data-milestone-id="1"
                                   data-goal-id="1">
@@ -333,7 +333,7 @@
                                   </div>
 
                                   <!-- Action Items Section for Milestone -->
-                                  <div class="panel d-none action-item-section">
+                                  <div class=" border rounded shadow d-none action-item-section position-absolute">
                                     <h5 class="text-primary fs-4">Action Items</h5>
                                     <!-- Example action item card -->
                                     <div class="card shadow p-3 mb-3 action-item-card text-bg-secondary">

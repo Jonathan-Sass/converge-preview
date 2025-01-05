@@ -47,7 +47,7 @@ function handleAddActionItem() {
   const actionItemSection = this.closest('.action-item-section')
   const actionItemCount = actionItemSection.querySelectorAll(".action-item-card").length + 1;
   const actionItemCard = document.createElement("div");
-  actionItemCard.classList.add("action-item-card", "card", "p-3", "mb-3", "shadow");
+  actionItemCard.classList.add("action-item-card", "card", "p-3", "mb-3", "shadow", "text-bg-secondary");
   actionItemCard.dataset.actionItemId = actionItemCount;
 
   actionItemCard.innerHTML = `
@@ -60,10 +60,6 @@ function handleAddActionItem() {
       <textarea class="form-control action-item-description"
         placeholder="Description (optional)"></textarea>
       <label>Description (optional)</label>
-    </div>
-    <div class="mb-3">
-      <label>Target Date</label>
-      <input type="date" class="form-control action-item-target-date">
     </div>
     <h6 class="card-title mb-2">Est. time required:</h6>
     <div class="d-flex gap-2 mb-3">
