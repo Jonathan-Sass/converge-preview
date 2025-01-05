@@ -1,11 +1,9 @@
 document.addEventListener("DOMContentLoaded", () => {
   initializeSeparateActionItemsListeners();
-  // addFirstActionItem();
   initializeAddActionItemListeners();
-  initializeRemoveActionItemListeners();
 });
 
-function initializeSeparateActionItemsListeners() {
+export function initializeSeparateActionItemsListeners() {
   document.querySelectorAll(".separate-action-items-checkbox").forEach(checkbox => {
     checkbox.addEventListener("change", toggleActionItemSection)
   })
@@ -22,8 +20,6 @@ function toggleActionItemSection(event) {
     } else {
       actionItemSection.classList.add("d-none")
     }
-  
-
 }
 
 export function initializeAddActionItemListeners() {
@@ -42,35 +38,7 @@ export function initializeRemoveActionItemListeners() {
     });
   }
 
-function toggleEditActionItemsButton(milestoneCard, isChecked) {
-  let editButton = milestoneCard.querySelector(".edit-action-items");
-  const lastChild = milestoneCard.lastElementChild;
-  const subcategorySlug = milestoneCard.dataset.subcategorySlug;
-  const goalId = milestoneCard.dataset.goalId;
-  const milestoneId = milestoneCard.dataset.milestoneId
 
-  if (isChecked) {
-    // If the button doesn't already exist, create it
-    if (!editButton) {
-      editButton = document.createElement("button");
-      editButton.classList.add("btn", "btn-primary", "btn-sm", "edit-action-items", "mb-3");
-      editButton.textContent = "Edit Action Items";
-      editButton.setAttribute("type", "button");
-      editButton.setAttribute("data-bs-toggle", "modal");
-      editButton.setAttribute("data-bs-target", "#actionItemsModal");
-      editButton.setAttribute("data-goal-id", goalId);
-      editButton.setAttribute("data-milestone-id", milestoneId);
-      editButton.setAttribute("data-subcategory-slug", subcategorySlug)
-
-      milestoneCard.insertBefore(editButton, lastChild);
-    }
-  } else {
-    // If unchecked, remove the button
-    if (editButton) {
-      editButton.remove();
-    }
-  }
-}
 
 function handleAddActionItem() {
   const subcategorySlug = this.dataset.subcategorySlug;

@@ -1,6 +1,7 @@
 import { initializeAddMilestoneListeners } from './milestone-manager.js'
 import { initializeRemoveMilestoneListeners } from './milestone-manager.js';
 import { initializeRemoveActionItemListeners } from './action-item-manager.js';
+import { initializeSeparateActionItemsListeners } from './action-item-manager.js';
 
 document.addEventListener("DOMContentLoaded", function () {
   initializeAddGoalListener();
@@ -224,6 +225,7 @@ initializeAddMilestoneListeners();
 initializeRemoveMilestoneListeners();
 initializeRemoveActionItemListeners();
 initializeRemoveGoalListener();
+initializeSeparateActionItemsListeners();
 }
 
 function handleRemoveGoal() {

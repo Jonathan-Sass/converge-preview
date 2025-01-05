@@ -1,4 +1,6 @@
 import { initializeRemoveActionItemListeners } from "./action-item-manager.js";
+import { initializeAddActionItemListeners } from "./action-item-manager.js";
+import { initializeSeparateActionItemsListeners } from "./action-item-manager.js";
 
 document.addEventListener("DOMContentLoaded", () => {
   initializeAddMilestoneListeners();
@@ -119,34 +121,6 @@ function handleAddMilestone() {
         milestone</button>
     </div>`;
   
-  
-  // <div class="milestone-card card p-3 shadow"
-  // id="${subcategorySlug}-goal-${goalId}-milestone-${milestoneCount}" data-goal-id="${goalId}"
-  // data-milestone-id="${milestoneCount}">
-  //   <!-- <div class="card-title"> -->
-  //   <h5 class="card-title mb-2">Target completion:</h5>
-  //   <!-- </div> -->
-  //   <div class="d-flex gap-2 mb-3">
-  //     <input type="number" class="form-control" name="time_value"
-  //       id="{{subcategory.subcategory_slug }}-goal-${goalId}-completion-value" placeholder="0"
-  //       min="1" required>
-  //     <select class="form-select" name="time_unit"
-  //       id="{{subcategory.subcategory_slug }}-goal-${goalId}-completion-unit" required>
-  //       <option value=" " selected disabled hidden>Time unit</option>
-  //       <option value="day">Day(s)</option>
-  //       <option value="week">Week(s)</option>
-  //       <option value="month">Month(s)</option>
-  //       <option value="year">Year(s)</option>
-  //     </select>
-  //   </div>
-  //   <hr class="w-75 m-auto mb-2">
-  //   <textarea class="form-control mt-2"
-  //     name="${subcategorySlug}-milestone_description[1]"
-  //     id="${subcategorySlug}-milestone-description-1" data-goal-id="${goalId}"
-  //     data-milestone-id="${milestoneCount}" rows="3" placeholder="Description" required>
-  //   </textarea>
-  // </div>
-  // `;
   // Append the new milestone to the container
   milestonesContainer.insertAdjacentHTML("afterbegin", milestoneHtml);
 
@@ -156,7 +130,9 @@ function handleAddMilestone() {
   }
   // Reinitialize event listeners for remove milestone and action-item buttons
   initializeRemoveMilestoneListeners();
+  initializeAddActionItemListeners();
   initializeRemoveActionItemListeners();
+  initializeSeparateActionItemsListeners();
 };
 
 function handleRemoveMilestone() {
