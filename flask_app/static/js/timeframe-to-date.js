@@ -1,11 +1,33 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const timeValueInput = document.getElementById("time-value");
-  const timeUnitSelect = document.getElementById("time-unit");
-  const completionDateInput = document.getElementById("completion-date");
+  initializeCompletionTimeEventListeners();
+});
 
-  timeValueInput.addEventListener("input", updateCompletionDate);
-  timeUnitSelect.addEventListener("change", updateCompletionDate);
-  completionDateInput.addEventListener("input", clearTimeFromNow);
+export function initializeCompletionTimeEventListeners() {
+  document.querySelectorAll('[data-type="timeframe-value"]').forEach(input => {
+    input.addEventListener("input", processTimeframeToDateConversion)
+  })
+
+  document.querySelectorAll('[data-type="timeframe-unit"]').forEach(input => {
+    input.addEventListener("input", processTimeframeToDateConversion)
+  })
+}
+
+
+function processTimeframeToDateConversion(event) {
+  const projectedCompletionCard = event.target.closest(".projected-completion-card")
+
+  const valueInput = projectedCompletionCard.querySelector('[data-type="projected-completion-value]')
+  const valueUnit = projectedCompletionCard.querySelector('[data-type="projected-completion-unit"]')
+  const completionDateInput = projectedCompletionCard.querySelector('[data-type="projected-completion-date"]')
+
+  const value = valueInput.value;
+  const unit = unitInput.value;
+
+  if (value && unit) {
+    const currentDate = new Date();
+    let projectedDate;
+  }
+}
 
   function updateCompletionDate() {
     const timeValue = parseInt(timeValueInput.value, 10);
@@ -37,4 +59,3 @@ document.addEventListener("DOMContentLoaded", () => {
       timeUnitSelect.value = "";
     }
   }
-});

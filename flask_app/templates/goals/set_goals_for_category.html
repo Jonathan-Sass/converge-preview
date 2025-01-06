@@ -258,17 +258,19 @@
                         <!-- Estimated Goal Completion Input -->
                         <div class="mb-3 text-center">
                           <p>Projected Completion</p>
-                          <div class="d-flex justify-content-around gap-3 align-items-center m-auto">
+                          <div
+                            class="d-flex justify-content-around gap-3 align-items-center m-auto projected-completion-card">
                             <!-- Input for Time Value -->
                             <div class="col-4">
-                              <label for="{{ subcategory.subcategory_slug }}-goal-1-time-value"
-                                class="form-label">Select a time from now</label>
+                              <label for="{{ subcategory.subcategory_slug }}-goal-1-time-value" class="form-label"
+                                data-type="projected-completion-value">Select a time from now</label>
                               <div class="d-flex gap-2 align-items-center">
                                 <input type="number" class="form-control w-auto"
                                   id="{{ subcategory.subcategory_slug }}-goal-1-time-value" placeholder="Enter number"
                                   min="1">
                                 <select class="form-select w-auto"
-                                  id="{{ subcategory.subcategory_slug }}-goal-1-time-unit">
+                                  id="{{ subcategory.subcategory_slug }}-goal-1-time-unit"
+                                  data-type="projected-completion-unit">
                                   <option value="" disabled selected>Time unit</option>
                                   <option value="day">Day(s)</option>
                                   <option value="week">Week(s)</option>
@@ -281,7 +283,8 @@
                               <p>OR</p>
                             </div>
                             <div class="col-4">
-                              <label for="{{ subcategory.subcategory_slug }}-goal-1-date" class="form-label">
+                              <label for="{{ subcategory.subcategory_slug }}-goal-1-date" class="form-label"
+                                data-type="projected-completion-date">
                                 Select a date
                               </label>
                               <input type="date" class="form-control"
