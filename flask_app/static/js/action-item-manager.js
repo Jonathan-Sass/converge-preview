@@ -53,15 +53,17 @@ function handleAddActionItem() {
   actionItemCard.innerHTML = `
     <div class="mb-3 form-floating">
       <input type="text" class="form-control action-item-name"
+        id="${subcategorySlug}-goal-${goalId}-milestone-${milestoneId}-action-${actionItemCount}-name"
         placeholder="Action Name">
-      <label>Action Name</label>
+      <label for="${subcategorySlug}-goal-${goalId}-milestone-${milestoneId}-action-${actionItemCount}-name">Action Name</label>
     </div>
     <div class="mb-3 form-floating">
       <textarea class="form-control action-item-description"
+        id="${subcategorySlug}-goal-${goalId}-milestone-${milestoneId}-action-${actionItemCount}-description"
         placeholder="Description (optional)"></textarea>
-      <label>Description (optional)</label>
+      <label for="${subcategorySlug}-goal-${goalId}-milestone-${milestoneId}-action-${actionItemCount}-description">Description (optional)</label>
     </div>
-    <h6 class="card-title mb-2">Est. time required:</h6>
+    <h6 class="card-title mb-2 projected-completion-card">Est. time required:</h6>
     <div class="d-flex gap-2 mb-3">
       <input type="number" class="form-control" name="time_value"
         id="${subcategorySlug}-goal-${goalId}-milestone-${milestoneId}-action-${actionItemCount}-completion-value"

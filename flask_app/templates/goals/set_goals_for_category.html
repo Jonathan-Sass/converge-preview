@@ -18,6 +18,8 @@
   <script defer type="module" src="/static/js/milestone-manager.js"></script>
   <script defer type="module" src="/static/js/action-item-manager.js"></script>
   <script defer type="module" src="/static/js/save-goal.js"></script>
+  <script defer type="module" src="/static/js/timeframe-to-date.js"></script>
+
 
   <title>Set Recreation and Travel Goals</title>
 </head>
@@ -262,12 +264,13 @@
                             class="d-flex justify-content-around gap-3 align-items-center m-auto projected-completion-card">
                             <!-- Input for Time Value -->
                             <div class="col-4">
-                              <label for="{{ subcategory.subcategory_slug }}-goal-1-time-value" class="form-label"
-                                data-type="projected-completion-value">Select a time from now</label>
+                              <label for="{{ subcategory.subcategory_slug }}-goal-1-time-value" class="form-label">
+                                Select a time from now
+                              </label>
                               <div class="d-flex gap-2 align-items-center">
                                 <input type="number" class="form-control w-auto"
                                   id="{{ subcategory.subcategory_slug }}-goal-1-time-value" placeholder="Enter number"
-                                  min="1">
+                                  min="1" data-type="projected-completion-value">
                                 <select class="form-select w-auto"
                                   id="{{ subcategory.subcategory_slug }}-goal-1-time-unit"
                                   data-type="projected-completion-unit">
@@ -283,12 +286,12 @@
                               <p>OR</p>
                             </div>
                             <div class="col-4">
-                              <label for="{{ subcategory.subcategory_slug }}-goal-1-date" class="form-label"
-                                data-type="projected-completion-date">
+                              <label for="{{ subcategory.subcategory_slug }}-goal-1-date" class="form-label">
                                 Select a date
                               </label>
                               <input type="date" class="form-control"
-                                id="{{ subcategory.subcategory_slug }}-goal-1-date">
+                                id="{{ subcategory.subcategory_slug }}-goal-1-date"
+                                data-type="projected-completion-date">
                             </div>
                           </div>
                         </div>
@@ -335,7 +338,7 @@
                                   </div>
 
                                   <h5 class="card-title mb-2">Target completion:</h5>
-                                  <div class="d-flex gap-2 mb-3">
+                                  <div class="d-flex gap-2 mb-3 projected-completion-card">
                                     <input type="number" class="form-control" name="time_value"
                                       id="{{subcategory.subcategory_slug }}-goal-1-milestone-1-completion-value"
                                       placeholder="0" min="1" required>
@@ -374,17 +377,23 @@
                                     <div class="card shadow p-3 mb-3 action-item-card text-bg-secondary">
                                       <div class="mb-3 form-floating">
                                         <input type="text" class="form-control action-item-name"
+                                          id="{{ subcategory.subcategory_slug }}-goal-1-milestone-1-action-1-name"
                                           placeholder="Action Name">
-                                        <label>Action Name</label>
+                                        <label
+                                          for="{{ subcategory.subcategory_slug }}-goal-1-milestone-1-action-1-name">Action
+                                          Name</label>
                                       </div>
                                       <div class="mb-3 form-floating">
                                         <textarea class="form-control action-item-description"
+                                          id="{{ subcategory.subcategory_slug }}-goal-1-milestone-1-action-1-description"
                                           placeholder="Description (optional)"></textarea>
-                                        <label>Description (optional)</label>
+                                        <label
+                                          for="{{ subcategory.subcategory_slug }}-goal-1-milestone-1-action-1-description">Description
+                                          (optional)</label>
                                       </div>
 
                                       <h6 class="card-title mb-2">Est. time required:</h6>
-                                      <div class="d-flex gap-2 mb-3">
+                                      <div class="d-flex gap-2 mb-3 projected-completion-card">
                                         <input type="number" class="form-control" name="time_value"
                                           id="{{ subcategory.subcategory_slug }}-goal-1-milestone-1-action-1-completion-value"
                                           placeholder="0" min="1" required>

@@ -80,14 +80,14 @@ function handleAddMilestone() {
         <!-- Example action item card -->
         <div class="card shadow p-3 mb-3 action-item-card text-bg-secondary">
           <div class="mb-3 form-floating">
-            <input type="text" class="form-control action-item-name"
+            <input type="text" class="form-control action-item-name" id="${subcategorySlug}-goal-${goalId}-milestone-${milestoneCount}-action-1-name"
               placeholder="Action Name">
-            <label>Action Name</label>
+            <label for="${subcategorySlug}-goal-${goalId}-milestone-${milestoneCount}-action-1-name">Action Name</label>
           </div>
           <div class="mb-3 form-floating">
-            <textarea class="form-control action-item-description"
+            <textarea class="form-control action-item-description" id="${subcategorySlug}-goal-${goalId}-milestone-${milestoneCount}-action-1-description"
               placeholder="Description (optional)"></textarea>
-            <label>Description (optional)</label>
+            <labelfor ="${subcategorySlug}-goal-${goalId}-milestone-${milestoneCount}-action-1-description">Description (optional)</label>
           </div>
           <h6 class="card-title mb-2">Est. time required:</h6>
           <div class="d-flex gap-2 mb-3">

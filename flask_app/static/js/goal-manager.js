@@ -2,6 +2,7 @@ import { initializeAddMilestoneListeners } from './milestone-manager.js'
 import { initializeRemoveMilestoneListeners } from './milestone-manager.js';
 import { initializeRemoveActionItemListeners } from './action-item-manager.js';
 import { initializeSeparateActionItemsListeners } from './action-item-manager.js';
+import { initializeCompletionTimeEventListeners} from './timeframe-to-date.js';
 
 document.addEventListener("DOMContentLoaded", function () {
   initializeAddGoalListener();
@@ -99,17 +100,17 @@ function addGoal() {
     <!-- Projected Goal Completion Input -->
     <div class="mb-3 text-center">
       <p>Projected Completion</p>
-      <div class="d-flex justify-content-around gap-3 align-items-center m-auto">
+      <div class="d-flex justify-content-around gap-3 align-items-center m-auto projected-completion-card">
         <!-- Input for Time Value -->
         <div class="col-4">
           <label for="${subcategorySlug}-goal-${goalCount}-time-value"
             class="form-label">Select a time from now</label>
           <div class="d-flex gap-2 align-items-center">
-            <input type="number" class="form-control w-auto"
+            <input type="number" class="form-control w-auto" data-type="projected-completion-value"
               id="${subcategorySlug}-goal-${goalCount}-time-value" placeholder="Enter number"
               min="1">
             <select class="form-select w-auto"
-              id="${subcategorySlug}-goal-${goalCount}-time-unit">
+              id="${subcategorySlug}-goal-${goalCount}-time-unit" data-type="projected-completion-unit">
               <option value="" disabled selected>Time unit</option>
               <option value="day">Day(s)</option>
               <option value="week">Week(s)</option>
@@ -125,7 +126,8 @@ function addGoal() {
           <label for="${subcategorySlug}-goal-${goalCount}-date" class="form-label">Select a
             date</label>
           <input type="date" class="form-control"
-            id="${subcategorySlug}-goal-${goalCount}-date">
+            id="${subcategorySlug}-goal-${goalCount}-date"
+            data-type="projected-completion-date">
         </div>
       </div>
     </div>
@@ -166,7 +168,7 @@ function addGoal() {
                   Name</label>
               </div>
               <h5 class="card-title mb-2">Target completion:</h5>
-              <div class="d-flex gap-2 mb-3">
+              <div class="d-flex gap-2 mb-3 projected-completion-card">
                 <input type="number" class="form-control" name="time_value"
                   id="${subcategorySlug}-goal-${goalCount}-milestone-1-completion-value" placeholder="0"
                   min="1" required>
@@ -201,17 +203,17 @@ function addGoal() {
                 <!-- Example action item card -->
                 <div class="card shadow p-3 mb-3 action-item-card text-bg-secondary">
                   <div class="mb-3 form-floating">
-                    <input type="text" class="form-control action-item-name"
+                    <input type="text" class="form-control action-item-name" id="${subcategorySlug}-goal-${goalCount}-milestone-1-action-1-name"
                       placeholder="Action Name">
-                    <label>Action Name</label>
+                    <label for="${subcategorySlug}-goal-${goalCount}-milestone-1-action-1-name">Action Name</label>
                   </div>
                   <div class="mb-3 form-floating">
-                    <textarea class="form-control action-item-description"
+                    <textarea class="form-control action-item-description" id="${subcategorySlug}-goal-${goalCount}-milestone-1-action-1-description"
                       placeholder="Description (optional)"></textarea>
-                    <label>Description (optional)</label>
+                    <label for="${subcategorySlug}-goal-${goalCount}-milestone-1-action-1-description">Description (optional)</label>
                   </div>
                   <h6 class="card-title mb-2">Est. time required:</h6>
-                  <div class="d-flex gap-2 mb-3">
+                  <div class="d-flex gap-2 mb-3 projected-completion-card">
                     <input type="number" class="form-control" name="time_value"
                       id="${subcategorySlug}-goal-${goalCount}-milestone-1-action-1-completion-value"
                       placeholder="0" min="1" required>
@@ -254,6 +256,7 @@ initializeRemoveMilestoneListeners();
 initializeRemoveActionItemListeners();
 initializeRemoveGoalListener();
 initializeSeparateActionItemsListeners();
+initializeCompletionTimeEventListeners();
 }
 
 function handleRemoveGoal() {
