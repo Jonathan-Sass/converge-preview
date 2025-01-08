@@ -3,32 +3,35 @@ from pprint import pprint
 from flask import flash, session
 import re
 
-from flask_app.models.userResponse import UserResponse
+from flask_app.models.user_response import UserResponse
+from flask_app.models.health_goal import HealthGoal
 
 
-EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$')
+EMAIL_REGEX = re.compile(r"^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$")
 # PASSWORD_REGEX = re.compile(r"^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$")
-PASSWORD_REGEX = re.compile(r'^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$')
+PASSWORD_REGEX = re.compile(
+    r"^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$"
+)
 
-class User: 
+
+class User:
     db = connectToMySQL("converge_schema")
 
-    def __init__ (self, data):
-        self.id = data['id']
+    def __init__(self, data):
+        self.id = data["id"]
         self.first_name = data["first_name"]
         self.last_name = data["last_name"]
         self.email = data["email"]
         self.password = data["password"]
-        self.created_at = data['created_at']
-        self.updated_at = data['updated_at']
+        self.created_at = data["created_at"]
+        self.updated_at = data["updated_at"]
         # self.health_quiz_id = data["health_quiz_id"]
         self.responses = []
         self.health_goals = []
         self.user_health_goals = []
         self.personal_routines = []
         self.day_flex_items = []
-    
-    
+
     @classmethod
     def find_all(cls):
         query = "SELECT * FROM users"
@@ -40,23 +43,23 @@ class User:
         query = "SELECT * FROM users WHERE email = %(email)s;"
         data = {"email": form_data["email"]}
         result = User.db.query_db(query, data)
-        
+
         if len(result) == 0:
             return None
         return User(result[0])
-    
+
     @classmethod
     def get_logged_in_user(cls):
         user_id = session.get("user_id")
         if not user_id:
             flash("Please log in.", "login")
             return None
-        
+
         user = User.find_by_id(user_id)
         if not user:
             flash("Invalid user. Please log in again.", "login")
             return None
-        
+
         return user
 
     @classmethod
@@ -68,7 +71,7 @@ class User:
             return None
         user = User(result[0])
         return user
-    
+
     # WILL LIKELY NEED TWEAKING DEPENDING ON USER ATTRIBUTES
     @classmethod
     def save(cls, data):
@@ -108,10 +111,7 @@ class User:
                 user_responses.survey_question_id;
         """
 
-        data = {
-            "user_id": self.id,
-            "survey_topic_slug": survey_topic_slug_string
-        }
+        data = {"user_id": self.id, "survey_topic_slug": survey_topic_slug_string}
 
         results = User.db.query_db(query, data)
 
@@ -120,11 +120,13 @@ class User:
             for result in results:
                 self.responses.append(UserResponse(result))
         else:
-            print(f"No responses found for user: {self.id} and survey_topic: {survey_topic_slug_string}")
-        
+            print(
+                f"No responses found for user: {self.id} and survey_topic: {survey_topic_slug_string}"
+            )
+
         # print("*****user.responses result*****")
         # pprint(self.responses)
-        
+
         return self
 
     @staticmethod
@@ -141,7 +143,10 @@ class User:
             flash("Please enter your last name.", "registration")
             is_valid = False
         elif not str.isalpha(user["last_name"]):
-            flash("Your last name may only contain alphanumeric characters.", "registration")
+            flash(
+                "Your last name may only contain alphanumeric characters.",
+                "registration",
+            )
             is_valid = False
 
         if not EMAIL_REGEX.match(user["email"]):
@@ -156,14 +161,17 @@ class User:
             is_valid = False
 
         if not PASSWORD_REGEX.match(user["password"].strip()):
-            flash("Your password must contain at least 1 capital letter, 1 number and 1 special character.", "registration")
+            flash(
+                "Your password must contain at least 1 capital letter, 1 number and 1 special character.",
+                "registration",
+            )
             is_valid = False
         elif not user["password"] == user["confirm_password"]:
             flash("Your passwords must match.", "registration")
             is_valid = False
-            
+
         return is_valid
-    
+
     @staticmethod
     def login_is_valid(form_data):
         is_valid = True
@@ -184,8 +192,6 @@ class User:
 
         return is_valid
 
-    
-
     @classmethod
     def find_by_id_with_health_goals(cls, user_id):
         query = """
@@ -203,12 +209,12 @@ class User:
 
         for result in results:
             health_goal_data = {
-                "id": result["id"], 
-                "category": result["category"], 
-                "name": result["name"], 
+                "id": result["id"],
+                "category": result["category"],
+                "name": result["name"],
                 "details": result["details"],
-                "created_at": result["users_health_goals_has_time_domains.created_at"], 
-                "updated_at": result["users_health_goals_has_time_domains.updated_at"]
+                "created_at": result["users_health_goals_has_time_domains.created_at"],
+                "updated_at": result["users_health_goals_has_time_domains.updated_at"],
             }
             user.health_goals.append(health_goal_data)
 
@@ -218,7 +224,7 @@ class User:
         # print(user.health_goals[name])
 
         return user
-    
+
     @classmethod
     def find_all_user_health_goals_with_time_domains(cls, user_id):
         query = """
@@ -239,30 +245,30 @@ class User:
             pprint(result)
             print("")
         print("**************************")
-        
+
         user = User.find_by_id(user_id)
         for result in results:
             health_goal_data = {
-                "id": result["health_goals.id"], 
-                "category": result["category"], 
-                "name": result["name"], 
-                "created_at": result["health_goals.created_at"], 
-                "updated_at": result["health_goals.updated_at"], 
+                "id": result["health_goals.id"],
+                "category": result["category"],
+                "name": result["name"],
+                "created_at": result["health_goals.created_at"],
+                "updated_at": result["health_goals.updated_at"],
             }
             health_goal = HealthGoal(health_goal_data)
             time_domain_data = {
-                "id": result["time_domains.id"], 
-                "action_item": result["action_item"], 
-                "time_domain_10_year": result["time_domain_10_year"], 
-                "time_domain_5_year": result["time_domain_5_year"], 
-                "time_domain_3_year": result["time_domain_3_year"], 
-                "time_domain_2_year": result["time_domain_2_year"], 
-                "time_domain_1_year": result["time_domain_1_year"], 
-                "time_domain_6_month": result["time_domain_6_month"], 
-                "time_domain_3_month": result["time_domain_3_month"], 
-                "time_domain_1_month": result["time_domain_1_month"], 
-                "created_at": result["time_domains.created_at"], 
-                "updated_at": result["time_domains.updated_at"]
+                "id": result["time_domains.id"],
+                "action_item": result["action_item"],
+                "time_domain_10_year": result["time_domain_10_year"],
+                "time_domain_5_year": result["time_domain_5_year"],
+                "time_domain_3_year": result["time_domain_3_year"],
+                "time_domain_2_year": result["time_domain_2_year"],
+                "time_domain_1_year": result["time_domain_1_year"],
+                "time_domain_6_month": result["time_domain_6_month"],
+                "time_domain_3_month": result["time_domain_3_month"],
+                "time_domain_1_month": result["time_domain_1_month"],
+                "created_at": result["time_domains.created_at"],
+                "updated_at": result["time_domains.updated_at"],
             }
             health_goal.time_domains = time_domain_data
             user.health_goals.append(health_goal)
@@ -270,12 +276,12 @@ class User:
             pprint(user.health_goals)
             print("**************")
         return user
-    
+
     @classmethod
     def save_health_quiz_id(cls):
         data = {
-            "user_id": session["user_id"], 
-            "health_quiz_id": session["health_quiz_id"]
+            "user_id": session["user_id"],
+            "health_quiz_id": session["health_quiz_id"],
         }
 
         query = "UPDATE users SET health_quiz_id = %(health_quiz_id)s WHERE id = %(user_id)s"

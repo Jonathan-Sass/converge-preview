@@ -1,11 +1,11 @@
 from flask_app import app
 from flask import render_template, redirect, session, request, flash
 from flask_app.models.user import User
-from flask_app.models.userSurvey import UserSurvey
+from flask_app.models.user_survey import UserSurvey
 from flask_app.models.userHealthGoalDeprecated import UserHealthGoal
-from flask_app.models.healthGoalDeprecated import HealthGoal
-from flask_app.models.timeDomain import TimeDomain
-from flask_app.models.healthQuizDeprecated import HealthQuiz
+from flask_app.models.health_goal_deprecated import HealthGoal
+from flask_app.models.time_domain import TimeDomain
+from flask_app.models.health_quiz_deprecated import HealthQuiz
 
 from pprint import pprint
 
@@ -15,12 +15,14 @@ def new_user_quiz():
     if "user_id" not in session:
         flash("Please log in.", "login")
         return redirect("/")
-    
+
     return render_template("generic_page.html")
+
 
 @app.get("/goals/health/intro")
 def health_goals_intro():
     return render_template("health_goals_intro.html")
+
 
 @app.get("/goals/health/select")
 def health_goals_selector():
@@ -29,9 +31,10 @@ def health_goals_selector():
     if "user_id" not in session:
         flash("Please log in. ", "login")
         return redirect("/")
-    
+
     user = User.find_by_id(session["user_id"])
-    return render_template("health_goal_selector.html", user = user)
+    return render_template("health_goal_selector.html", user=user)
+
 
 @app.post("/goals/health/select/save")
 def save_selected_health_goals():
@@ -55,19 +58,21 @@ def refine_health_goals():
         return redirect("/")
 
     user = User.find_all_user_health_goals_with_time_domains(session["user_id"])
-    return render_template("health_goals_refine.html", user = user)
+    return render_template("health_goals_refine.html", user=user)
+
 
 @app.post("/goals/health/refine/save")
 def save_refined_health_goals():
-    
+
     if "user_id" not in session:
         flash("Please log in.", "login")
         return redirect("/")
-    
-    TimeDomain.update_time_domain( request.form)
+
+    TimeDomain.update_time_domain(request.form)
     # HealthGoal.update_details(request.form)
 
     return redirect("/home")
+
 
 @app.get("/goals/health/<int:user_health_goal_id>/edit")
 def edit_goal(user_health_goal_id):
@@ -76,22 +81,25 @@ def edit_goal(user_health_goal_id):
     if "user_id" not in session:
         flash("Please log in.", "login")
         return redirect("/")
-    
-    user_health_goal = UserHealthGoal.find_one_user_health_goal_with_time_domains(user_health_goal_id)
-    return render_template("edit_health_goal.html", user_health_goal = user_health_goal)
+
+    user_health_goal = UserHealthGoal.find_one_user_health_goal_with_time_domains(
+        user_health_goal_id
+    )
+    return render_template("edit_health_goal.html", user_health_goal=user_health_goal)
 
 
 @app.post("/goals/health/<int:time_domain_id>/update")
 def update_user_health_goal(time_domain_id):
     """This method updates a user_health_goal"""
-    
+
     if "user_id" not in session:
         flash("Please log in. ", "login")
         return redirect("/")
-    
+
     UserHealthGoal.update_user_health_goals(request.form)
-    
-    return redirect ("/home")
+
+    return redirect("/home")
+
 
 @app.post("/goals/health/<int:health_goal_id>/delete")
 def delete_goal(health_goal_id):

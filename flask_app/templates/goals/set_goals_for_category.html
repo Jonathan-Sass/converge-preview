@@ -175,7 +175,8 @@
                 {% for subcategory in category.subcategories %}
 
                 <!-- Subcategory Container -->
-                <div class="accordion-item text-center subcategory-section">
+                <div class="accordion-item text-center subcategory-section"
+                  data-subcategory-slug="{{ subcategory.subcategory_slug }}">
                   <h2 class="accordion-header" id="subcategory-{{ subcategory.id }}">
                     <button class="accordion-button" type="button" data-bs-toggle="collapse"
                       data-bs-target="#collapse-{{ subcategory.id }}" aria-expanded="true"

@@ -3,17 +3,18 @@ from pprint import pprint
 from flask import flash, session
 from flask_app.models import user
 from flask_app.models import userHealthGoalDeprecated
-from flask_app.models.timeDomain import TimeDomain
+from flask_app.models.time_domain import TimeDomain
 
-class HealthGoal: 
+
+class HealthGoal:
     _db = "dreamweaver_schema"
 
-    def __init__ (self, data):
-        self.id = data['id']
+    def __init__(self, data):
+        self.id = data["id"]
         self.category = data["category"]
         self.name = data["name"]
-        self.created_at = data['created_at']
-        self.updated_at = data['updated_at']
+        self.created_at = data["created_at"]
+        self.updated_at = data["updated_at"]
         self.time_domains = None
 
     @classmethod

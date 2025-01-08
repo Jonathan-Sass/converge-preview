@@ -1,8 +1,9 @@
 from flask_app.config.mysqlconnection import connectToMySQL
 from flask import flash, session, jsonify, redirect
 from flask_app.models.practice import Practice
-from flask_app.models.userResponse import UserResponse
+from flask_app.models.user_response import UserResponse
 from flask_app.models.user import User
+
 
 class RoutineTemplate:
     db = connectToMySQL("converge_schema")
@@ -17,14 +18,17 @@ class RoutineTemplate:
         self.practices = []
 
     def am_routine_template_selector(user, survey_topic_slug_string):
-        
-        user_with_responses = User.fetch_user_responses_by_survey_topic_slug(user, survey_topic_slug_string)
+
+        user_with_responses = User.fetch_user_responses_by_survey_topic_slug(
+            user, survey_topic_slug_string
+        )
         UserResponse.process_user_responses(user_with_responses)
-   
 
     def fetch_routine_template_with_practices(routine_template_name):
-        print(f"Routine Template Name in fetch_routine_template: {routine_template_name}")
-        
+        print(
+            f"Routine Template Name in fetch_routine_template: {routine_template_name}"
+        )
+
         query = """
             SELECT
                 routine_templates.id AS routine_template_id,
@@ -70,9 +74,11 @@ class RoutineTemplate:
 
         if results:
             routine_template = RoutineTemplate(results[0])
-            
+
             for result in results:
                 # Add associated practices to routine_template
-                routine_template.practices.append(Practice.create_practice_with_durations(result))
+                routine_template.practices.append(
+                    Practice.create_practice_with_durations(result)
+                )
 
         return routine_template
