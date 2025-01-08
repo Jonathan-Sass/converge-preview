@@ -41,9 +41,10 @@ export function initializeRemoveActionItemListeners() {
 
 
 function handleAddActionItem() {
-  const subcategorySlug = this.dataset.subcategorySlug;
-  const goalId = this.dataset.goalId;
-  const milestoneId = this.dataset.milestoneId;
+  const milestoneCard = this.closest(".milestone-card")
+  const subcategorySlug = milestoneCard.dataset.subcategorySlug;
+  const goalId = milestoneCard.dataset.goalId;
+  const milestoneId = milestoneCard.dataset.milestoneId;
   const actionItemSection = this.closest('.action-item-section')
   const actionItemCount = actionItemSection.querySelectorAll(".action-item-card").length + 1;
   const actionItemCard = document.createElement("div");
