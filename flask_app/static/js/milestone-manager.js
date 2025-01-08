@@ -61,8 +61,8 @@ function handleAddMilestone() {
       </div>
       <hr class="w-75 m-auto mb-3">
       <textarea class="form-control mb-2"
-        name="${subcategorySlug}-milestone_description[${milestoneCount}]"
-        id="${subcategorySlug}-milestone-description-${milestoneCount}" rows="3"
+        name="${subcategorySlug}-goal-${goalId}-milestone_description[${milestoneCount}]"
+        id="${subcategorySlug}-goal-${goalId}-milestone-description-${milestoneCount}" rows="3"
         placeholder="Description (optional)" required>
       </textarea>
 

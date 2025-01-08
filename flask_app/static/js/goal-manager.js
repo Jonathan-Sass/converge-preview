@@ -183,8 +183,8 @@ function addGoal() {
               </div>
               <hr class="w-75 m-auto mb-3">
               <textarea class="form-control mb-2"
-                name="${subcategorySlug}-milestone_description[1]"
-                id="${subcategorySlug}-milestone-description-1" rows="3"
+                name="${subcategorySlug}-goal-${goalCount}-milestone_description[1]"
+                id="${subcategorySlug}-goal-${goalCount}-milestone-description-1" rows="3"
                 placeholder="Description (optional)" required>
               </textarea>
 

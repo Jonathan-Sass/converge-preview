@@ -4,17 +4,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
 export function initializeCompletionTimeEventListeners() {
   document.querySelectorAll('[data-type="projected-completion-value"]').forEach(input => {
-    input.addEventListener("input", processTimeframeToDateConversion);
+    input.addEventListener("input", convertTimeframeToCompletionDate);
   })
 
   document.querySelectorAll('[data-type="projected-completion-unit"]').forEach(input => {
-    input.addEventListener("change", processTimeframeToDateConversion);
+    input.addEventListener("change", convertTimeframeToCompletionDate);
   })
 }
 
-
-function processTimeframeToDateConversion(event) {
-  console.log("Triggered processTimeframeToDateConversion");
+function convertTimeframeToCompletionDate(event) {
+  console.log("Triggered convertTimeframeToCompletionDate");
 
   
   const projectedCompletionCard = event.target.closest(".projected-completion-card")
@@ -30,9 +29,25 @@ function processTimeframeToDateConversion(event) {
   const timeUnit = unitInput.value;
 
   if (timeValue > 0 && timeUnit) {
-    const currentDate = new Date();
+   
+    const projectedDate = processTimeframeToDate(timeValue, timeUnit)
+
+    completionDateInput.value = projectedDate.toISOString().split("T")[0]; // Format as YYYY-MM-DD
+  } else {
+    completionDateInput.value = "";
+  }
+}
+
+export function convertTimeframeForDatabase(timeValue, timeUnit) {
+  processTimeframeToDate (timeValue, timeUnit)
+  return projectedDate;
+}
+
+function processTimeframeToDate (timeValue, timeUnit) {
+  const currentDate = new Date();
     let projectedDate = new Date();
 
+    if (timeValue > 0 && timeUnit) {
     switch (timeUnit) {
       case "day": 
         projectedDate.setDate(currentDate.getDate() + timeValue);
@@ -49,17 +64,6 @@ function processTimeframeToDateConversion(event) {
       default:
         return;
     }
-    console.log(projectedDate)
-
-    completionDateInput.value = projectedDate.toISOString().split("T")[0]; // Format as YYYY-MM-DD
-  } else {
-    completionDateInput.value = "";
+    return projectedDate
   }
 }
-
-  // function clearTimeFromNow() {
-  //   if (completionDateInput.value) {
-  //     timeValueInput.value = "";
-  //     timeUnitSelect.value = "";
-  //   }
-  // }
