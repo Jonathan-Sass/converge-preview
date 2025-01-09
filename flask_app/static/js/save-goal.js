@@ -104,7 +104,8 @@ function processGoalData(subcategorySection) {
       });
     });
   });
-  return subcategoryGoalsData
+  sendToBackend(subcategoryGoalsData);
+  return
 };
 
 function sendToBackend(payload) {
@@ -115,14 +116,19 @@ function sendToBackend(payload) {
     },
     body: JSON.stringify(payload),
   })
-    .then(response => {
+    .then((response) => {
       if (!response.ok) {
         throw new Error("Failed to save goals");
       }
       return response.json();
     })
-    .then(data => {
-      alert("Goals saved successfully!");
+    .then((data) => {
+      if(data.success) {
+        alert("Goals saved successfully!");
+        // window.location.href = data.redirect;
+        } else {
+          console.error("Save failed.  Try again.")
+        }
     })
     .catch(error => {
       console.error("Error saving goals:", error);

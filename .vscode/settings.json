@@ -1,0 +1,8 @@
+{
+  "editor.detectIndentation": false,
+  "editor.tabSize": 2,
+  "[python]": {
+    "editor.tabSize": 2,
+    "editor.detectIndentation": false
+  }
+}
