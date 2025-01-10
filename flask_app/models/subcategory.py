@@ -1,5 +1,6 @@
 from flask_app.config.mysqlconnection import connectToMySQL
 
+
 class Subcategory:
     db = connectToMySQL("converge_schema")
 
@@ -11,8 +12,10 @@ class Subcategory:
         self.created_at = data["created_at"]
         self.updated_at = data["updated_at"]
 
-    def find_subcategory_by_name(subcategory_slug):
-        query = "SELECT * FROM subcategories WHERE subcategory_slug = %(subcategory_slug)s"
+    def find_subcategory_by_slug(subcategory_slug):
+        query = (
+            "SELECT * FROM subcategories WHERE subcategory_slug = %(subcategory_slug)s"
+        )
 
         subcategory_slug_data = {"subcategory_slug": subcategory_slug}
 
@@ -23,7 +26,7 @@ class Subcategory:
             return subcategory
         else:
             raise RuntimeError("No subcategory found with slug: " + subcategory_slug)
-        
+
     def find_subcategories_by_category_id(category_id):
         query = "SELECT * FROM subcategories WHERE category_id = %(category_id)s;"
 

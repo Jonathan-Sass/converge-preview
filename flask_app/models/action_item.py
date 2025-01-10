@@ -20,6 +20,15 @@ class ActionItem:
 
     def save_action_item(data):
         query = """
+          INSERT INTO
+            action_items (goal_id, milestone_id, name, description, action_item_order, estimated_time_value, estimated_time_unit, is_complete, created_at, updated_at)
+          VALUES
+            (%(goal_id)s, %(milestone_id)s, %(name)s, %(description)s, %(action_item_order)s, %(estimated_time_value)s, %(estimated_time_unit)s, %(is_complete)s, NOW(), NOW());
+        """
 
-    """
-        return
+        result = ActionItem.db.query_db(query, data)
+
+        if result:
+            return result
+        else:
+            raise RuntimeError("Could not insert action item: " + data["name"])
