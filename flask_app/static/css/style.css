@@ -27,11 +27,11 @@ h1, h2, h3, h4, h5, h6, p {
   overflow-x: auto;
 }
 
-.milestone-card {
+.milestone-card { 
   width: calc(100% / 3);
   max-width: 300px; 
-  min-width: 200px;
-}
+  min-width: 250px;
+} 
 
 .action-item-section {
   top: 100%; /* Position the panel below the card */

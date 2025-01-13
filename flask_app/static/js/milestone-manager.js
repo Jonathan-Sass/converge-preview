@@ -35,7 +35,7 @@ function handleAddMilestone() {
 
   // Build the milestone HTML
   const milestoneHtml = `
-    <div class="card shadow p-2 d-flex flex-wrap milestone-card position-relative sortable-card"
+    <div class="card shadow p-2 milestone-card position-relative sortable-card"
       id="${subcategorySlug}-goal-${goalId}-milestone-${milestoneCount}"
       data-subcategory-slug="${subcategorySlug}" data-milestone-id="${milestoneCount}"
       data-order="1" data-goal-id="1">
@@ -75,7 +75,6 @@ function handleAddMilestone() {
           <div class="invalid-feedback">Unit required</div>
         </div>
       </div>
-      <hr class="w-75 m-auto mb-3">
       <div class="form-floating mb-3">
         <textarea class="form-control mb-2"
           name="${subcategorySlug}-milestone[${milestoneCount}]_description"
@@ -96,7 +95,7 @@ function handleAddMilestone() {
         </label>
       </div>
       <!-- Action Items Section for Milestone -->
-      <div class=" border rounded shadow d-none action-item-section position-absolute">
+      <div class=" border rounded shadow d-none action-item-section position-absolute text-bg-light">
         <h5 class="text-primary fs-4">Action Items</h5>
         <hr class="w-25 m-auto mb-3">
         <button class="btn btn-primary btn-sm add-action-item-btn w-75 m-auto mb-3">Add
