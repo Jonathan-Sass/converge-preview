@@ -27,6 +27,7 @@ export function initializeRemoveMilestoneListeners() {
 function handleAddMilestone() {
   const subcategorySlug = this.dataset.subcategorySlug; // Subcategory slug
   const goalId = this.dataset.goalId; // Goal ID
+  console.log("goal-id from add-milestone-btn?: ", goalId)
   const containerId = `${subcategorySlug}-goal-${goalId}-milestones`; // Milestone container ID
   const milestonesContainer = document.getElementById(`${subcategorySlug}-goal-${goalId}-milestones`);
   const milestoneCount = milestonesContainer.querySelectorAll(".milestone-card").length + 1;
@@ -38,7 +39,7 @@ function handleAddMilestone() {
     <div class="card shadow p-2 milestone-card position-relative sortable-card"
       id="${subcategorySlug}-goal-${goalId}-milestone-${milestoneCount}"
       data-subcategory-slug="${subcategorySlug}" data-milestone-id="${milestoneCount}"
-      data-order="1" data-goal-id="1">
+      data-order="1" data-goal-id="${goalId}">
       <!-- Milestone order number -->
       <div class="card-title">
         <h5 class="card-order">1.</h5>

@@ -14,7 +14,6 @@ function toggleActionItemSection(event) {
   const milestoneCard = checkbox.closest(".milestone-card")
   const actionItemSection = milestoneCard.querySelector(".action-item-section")
   
-  console.log("separate-action-items-checkbox clicked")
   if (checkbox.checked) {
       actionItemSection.classList.remove("d-none")
     } else {
@@ -44,6 +43,8 @@ function handleAddActionItem() {
   const milestoneCard = this.closest(".milestone-card")
   const subcategorySlug = milestoneCard.dataset.subcategorySlug;
   const goalId = milestoneCard.dataset.goalId;
+  console.log(milestoneCard)
+  console.log("milestoneCard goalId for new action-item: ", goalId)
   const milestoneId = milestoneCard.dataset.milestoneId;
   const actionItemSection = this.closest('.action-item-section')
   const actionItemCount = actionItemSection.querySelectorAll(".action-item-card").length + 1;
