@@ -1,8 +1,11 @@
 import { initializeAddMilestoneListeners } from './milestone-manager.js'
 import { initializeRemoveMilestoneListeners } from './milestone-manager.js';
-import { initializeRemoveActionItemListeners } from './action-item-manager.js';
-import { initializeSeparateActionItemsListeners } from './action-item-manager.js';
 import { initializeCompletionTimeEventListeners} from './timeframe-to-date.js';
+import { 
+  initializeAddActionItemListeners, 
+  initializeRemoveActionItemListeners, 
+  initializeSeparateActionItemsListeners
+  } from './action-item-manager.js';
 
 document.addEventListener("DOMContentLoaded", function () {
   initializeAddGoalListener();
@@ -252,6 +255,7 @@ goalsContainer.insertBefore(goalCard, addGoalBtn);
 // Reinitialize milestone and action item listeners to include new goal's milestones and action-items
 initializeAddMilestoneListeners();
 initializeRemoveMilestoneListeners();
+initializeAddActionItemListeners();
 initializeRemoveActionItemListeners();
 initializeRemoveGoalListener();
 initializeSeparateActionItemsListeners();
