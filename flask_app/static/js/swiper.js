@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
     slidesPerView: 'auto',
     spaceBetween: 16,
     centeredSlides: false,
+    allowTouchMove: false,
     breakpoints: {
       // Optionally configure for responsiveness
       768: {

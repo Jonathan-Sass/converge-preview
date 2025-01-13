@@ -126,8 +126,7 @@ function validateAndProcessGoalData(event) {
           milestoneData.projectedCompletion = convertTimeframeForDatabase(timeValue, timeUnit)
         }
         // TODO: REVERSE THE ARRAY BEFORE APPENDING... OR NOT?
-      
-        milestoneCard.querySelectorAll("action-item-card").forEach(actionItemCard => {
+        milestoneCard.querySelectorAll(".action-item-card").forEach(actionItemCard => {
           const actionItemId = actionItemCard.dataset.actionItemId;
 
           const actionItemData = {
@@ -139,16 +138,18 @@ function validateAndProcessGoalData(event) {
           }
 
           actionItemData.name = actionItemCard.querySelector(`#${subcategorySlug}-goal-${goalId}-milestone-${milestoneId}-action-item-${actionItemId}-name`).value;
-          actionItemData.description = actionItemCard.querySelector(`#${subcategorySlug}-goal-${goalId}-milestone-${milestoneId}-action-item-${actionItemId}-description`).value;
-          actionItemData.estimatedTimeValue = actionItemCard.querySelector(`#${subcategorySlug}-goal-${goalId}-milestone-${milestoneId}-action-item-${actionItemId}-estimated-time-value`).value;
-          actionItemData.estimateTimeUnit = actionItemCard.querySelector(`#${subcategorySlug}-goal-${goalId}-milestone-${milestoneId}-action-item-${actionItemId}-estimated-time-unit`).value;
+          const actionItemDescriptionElement = actionItemCard.querySelector(`#${subcategorySlug}-goal-${goalId}-milestone-${milestoneId}-action-item-${actionItemId}-description`);
+          actionItemData.description = actionItemDescriptionElement ? actionItemDescriptionElement.value : "";
+          const actionItemEstimatedTimeValue = actionItemCard.querySelector(`#${subcategorySlug}-goal-${goalId}-milestone-${milestoneId}-action-item-${actionItemId}-estimated-time-value`);
+          actionItemData.estimatedTimeValue = actionItemEstimatedTimeValue ? actionItemEstimatedTimeValue.value : null;
+          const actionItemEstimatedTimeUnit = actionItemCard.querySelector(`#${subcategorySlug}-goal-${goalId}-milestone-${milestoneId}-action-item-${actionItemId}-estimated-time-unit`);
+          actionItemData.estimateTimeUnit = actionItemEstimatedTimeUnit ? actionItemEstimatedTimeUnit.value : "";
 
-
-          milestoneData.actionItems.append(actionItemData)
-          goalData.milestones.append(milestoneData)
-          subcategoryGoalsData.goals.append(goalData)
+          milestoneData.actionItems.append(actionItemData);
         });
+        goalData.milestones.append(milestoneData);
       });
+      subcategoryGoalsData.goals.append(goalData);
     });
   });
   submitGoalData(subcategoryGoalsData);

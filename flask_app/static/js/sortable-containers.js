@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 
-function initializeSortableContainers() {
+ export function initializeSortableContainers() {
   document.querySelectorAll('.sortable-container').forEach(sortableContainer => {
   // Sortable container must have sortable children (cards or list items)
   // 
@@ -18,7 +18,7 @@ function initializeSortableContainers() {
 }
 
 // Update order dynamically
-function updateCardOrder(container) {
+export function updateCardOrder(container) {
   console.log("Selecting sortable-cards:")
   const cards = container.querySelectorAll('.sortable-card');
   console.log("Updating card order text...")

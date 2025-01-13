@@ -20,8 +20,8 @@ def user_survey_seed():
 
     # REVISIT VALIDATION FOR ENTIRETY OF SEEDING FUNCTIONS
     goal_category_seed()
-    goal_subcategory_seed()
     survey_category_seed()
+    goal_subcategory_seed()
     survey_topic_seed()
     prepared_question_data = prepare_survey_question_data()
     survey_question_seed(prepared_question_data)
@@ -217,10 +217,8 @@ def prepare_survey_question_data():
                 batched_data[survey_topic_id] = []
 
             batched_data[survey_topic_id].append(question_data)
-
     # print("*****BATCHED DATA*****")
     # pprint(batched_data)
-
     return batched_data
 
 
