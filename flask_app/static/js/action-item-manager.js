@@ -48,7 +48,7 @@ function handleAddActionItem() {
   const actionItemSection = this.closest('.action-item-section')
   const actionItemCount = actionItemSection.querySelectorAll(".action-item-card").length + 1;
   const actionItemCard = document.createElement("div");
-  actionItemCard.classList.add("action-item-card", "card", "p-3", "mb-3", "shadow", "text-bg-secondary");
+  actionItemCard.classList.add("card", "shadow", "p-2", "mb-3", "action-item-card");
   actionItemCard.dataset.actionItemId = actionItemCount;
 
   actionItemCard.innerHTML = `

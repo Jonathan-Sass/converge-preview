@@ -226,7 +226,7 @@ function addGoal() {
                     </label>
                   </div>
                   <!-- Action Items Section for Milestone -->
-                  <div class=" border rounded shadow d-none action-item-section position-absolute">
+                  <div class=" border rounded p-1 shadow d-none action-item-section position-absolute text-bg-secondary">
                     <h5 class="text-primary fs-4">Action Items</h5>
                     <hr class="w-25 m-auto mb-3">
                     <button class="btn btn-primary btn-sm add-action-item-btn w-75 m-auto mb-3">Add
