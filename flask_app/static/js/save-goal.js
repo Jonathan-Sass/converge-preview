@@ -36,33 +36,34 @@ async function submitGoalData(data) {
 
 
 function validateAndProcessGoalData(event) {
-  const requiredFields = document.querySelectorAll('input[required], select[required], textarea[required]');
-  let allFieldsValid = true;
+  validateAllRequiredFields();
+  // const requiredFields = document.querySelectorAll('input[required], select[required], textarea[required]');
+  // let allFieldsValid = true;
 
-  requiredFields.forEach(field => {
-    if (!field.value.trim()) {
-      allFieldsValid = false;
-      // Display error message or highlight the field
-      field.classList.add('error');
-      // Optionally, provide a specific error message
-      const errorMessage = document.createElement('span');
-      errorMessage.textContent = `${field.name} is required.`;
-      errorMessage.classList.add('error-message');
-      field.parentElement.appendChild(errorMessage);
-    } else {
-      field.classList.remove('error');
-      // Remove existing error message if field is valid
-      const existingError = field.parentElement.querySelector('.error-message');
-      if (existingError) {
-        existingError.remove();
-      }
-    }
-  });
+  // requiredFields.forEach(field => {
+  //   if (!field.value.trim()) {
+  //     allFieldsValid = false;
+  //     // Display error message or highlight the field
+  //     field.classList.add('error');
+  //     // Optionally, provide a specific error message
+  //     const errorMessage = document.createElement('span');
+  //     errorMessage.textContent = `${field.name} is required.`;
+  //     errorMessage.classList.add('error-message');
+  //     field.parentElement.appendChild(errorMessage);
+  //   } else {
+  //     field.classList.remove('error');
+  //     // Remove existing error message if field is valid
+  //     const existingError = field.parentElement.querySelector('.error-message');
+  //     if (existingError) {
+  //       existingError.remove();
+  //     }
+  //   }
+  // });
 
-  if (!allFieldsValid) {
-    alert('Please fill out all required fields.');
-    return; // Prevent further processing
-  }
+  // if (!allFieldsValid) {
+  //   alert('Please fill out all required fields.');
+  //   return; // Prevent further processing
+  // }
 
 
   const subcategorySection = event.target.closest(".subcategory-section")
@@ -94,7 +95,8 @@ function validateAndProcessGoalData(event) {
       
       const goalId = goalCard.dataset.goalId;
       goalData.name = goalCard.querySelector(`#${subcategorySlug}-goal-${goalId}-name`).value;
-      goalData.description = goalCard.querySelector(`#${subcategorySlug}-goal-${goalId}-description`).value;
+      const goalDescriptionElement = goalCard.querySelector(`#${subcategorySlug}-goal-${goalId}-description`)
+      goalData.description = goalDescriptionElement ? goalDescriptionElement.value : "";
       goalData.goalType = goalCard.querySelector(`#${subcategorySlug}-goal-${goalId}-type`).value;
       goalData.priority = goalCard.querySelector(`#${subcategorySlug}-goal-${goalId}-priority`).value;
       goalData.projectedCompletion = goalCard.querySelector(`#${subcategorySlug}-goal-${goalId}-date`).value;
@@ -110,15 +112,12 @@ function validateAndProcessGoalData(event) {
           actionItems: []
         }
 
-        const milestoneNameElement = milestoneCard.querySelector(`#${subcategorySlug}-goal-${goalId}-milestone-${milestoneId}-name`)
-        if (milestoneNameElement) {
-          milestoneData.name = milestoneNameElement.value;
-        }
+        milestoneData.name = milestoneCard.querySelector(`#${subcategorySlug}-goal-${goalId}-milestone-${milestoneId}-name`).value;
         console.log("Selector: " + milestoneCard.querySelector(`#${subcategorySlug}-goal-${goalId}-milestone-${milestoneId}-name`))
         // milestoneData.name = milestoneCard.querySelector(`#${subcategorySlug}-goal-${goalId}-milestone-${milestoneId}-name`).value
-        if (milestoneCard.querySelector(`#${subcategorySlug}-goal-${goalId}-milestone-${milestoneId}-description`).value) {
-          milestoneData.description = milestoneCard.querySelector(`#${subcategorySlug}-goal-${goalId}-milestone-${milestoneId}-description`).value
-        }
+        
+        const milestoneDescriptionElement = milestoneCard.querySelector(`#${subcategorySlug}-goal-${goalId}-milestone-${milestoneId}-description`)
+        milestoneData.description = milestoneDescriptionElement ? milestoneDescriptionElement.value : "";
         
         // timeValue and timeUnit conversion to projectedCompletion date
         if (milestoneCard.querySelector(`#${subcategorySlug}-goal-${goalId}-milestone-${milestoneId}-completion-value`).value && milestoneCard.querySelector(`#${subcategorySlug}-goal-${goalId}-milestone-${milestoneId}-completion-unit`).value) {
@@ -155,6 +154,33 @@ function validateAndProcessGoalData(event) {
   submitGoalData(subcategoryGoalsData);
   return
 };
+
+function validateAllRequiredFields() {
+  const requiredFields = document.querySelectorAll('input[required], select[required], textarea[required]');
+  let allFieldsValid = true;
+
+  requiredFields.forEach(field => {
+    if (!field.value.trim()) {
+      allFieldsValid = false;
+      // Display error message or highlight the field
+      field.classList.add('is-invalid');
+
+    } else {
+      field.classList.remove('is-invalid');
+      // Remove existing error message if field is valid
+      const existingError = field.parentElement.querySelector('.error-message');
+      if (existingError) {
+        existingError.remove();
+      }
+    }
+  });
+
+  if (!allFieldsValid) {
+    alert('Please fill out all required fields.');
+    return; // Prevent further processing
+  }
+
+}
 
 function sendToBackend(payload) {
   fetch("/api/save-goals", {

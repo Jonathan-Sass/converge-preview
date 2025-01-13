@@ -152,12 +152,18 @@ function addGoal() {
         <div class="swiper-wrapper d-flex gap-2 align-items-center">
 
           <!-- Dynamically Added Milestones -->
-          <div class="d-flex swiper-slide gap-2 milestone-section p-2 border rounded"
+          <div class="d-flex swiper-slide gap-2 milestone-section p-2 border rounded sortable-container"
             id="${subcategorySlug}-goal-${goalCount}-milestones">
 
             <!-- Example Milestone Slide -->
-            <div class="card shadow p-3 milestone-card position-relative"
+            <div class="card shadow p-3 milestone-card position-relative sortable-card"
               id="${subcategorySlug}-goal-${goalCount}-milestone-1" data-subcategory-slug="${subcategorySlug}" data-milestone-id="1" data-goal-id="${goalCount}">
+              
+              <!-- Milestone order number -->
+              <div class="card-title">
+                <h5 class="card-order">{{ loop.index }}.</h5>
+              </div>
+
               <!-- Milestone name input -->
               <div class="mb-3 form-floating">
                 <input type="text" class="form-control"

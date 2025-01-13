@@ -34,8 +34,14 @@ function handleAddMilestone() {
 
   // Build the milestone HTML
   const milestoneHtml = `
-    <div class="card shadow p-3 milestone-card position-relative"
+    <div class="card shadow p-3 milestone-card position-relative sortable-card"
       id="${subcategorySlug}-goal-${goalId}-milestone-${milestoneCount}" data-subcategory-slug="${subcategorySlug}" data-milestone-id="${milestoneCount}" data-goal-id="${goalId}">
+      
+      <!-- Milestone order number -->
+      <div class="card-title">
+        <h5 class="card-order">{{ loop.index }}.</h5>
+      </div>
+      
       <!-- Milestone name input -->
       <div class="mb-3 form-floating">
         <input type="text" class="form-control"

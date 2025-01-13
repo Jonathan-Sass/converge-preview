@@ -38,7 +38,7 @@ def set_initial_am_routines():
     recommended_routine = PersonalRoutine.select_and_fetch_initial_am_routine(
         user, "getting-to-know-you"
     )
-    durations = Duration.fetch_all_durations()
+    # durations = Duration.fetch_all_durations()
     # TODO: Implement Personal Routine Progress - allows user to slowly build habits without being overwhelming/defeating
 
     return render_template(
