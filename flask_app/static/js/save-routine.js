@@ -1,11 +1,11 @@
-// Function to update the data-order attributes
-function updateCardOrder() {
-  const cards = document.querySelectorAll('.practice-card');
-  cards.forEach((card, index) => {
-    card.dataset.order = index + 1; // Update data-order with new position
-  });
-  console.log('Card order updated:', [...cards].map(card => card.dataset.order));
-}
+// // Function to update the data-order attributes
+// function updateCardOrder() {
+//   const cards = document.querySelectorAll('.practice-card');
+//   cards.forEach((card, index) => {
+//     card.dataset.order = index + 1; // Update data-order with new position
+//   });
+//   console.log('Card order updated:', [...cards].map(card => card.dataset.order));
+// }
 
 // Function to collect and prepare routine data
 const collectRoutineData = () => {
