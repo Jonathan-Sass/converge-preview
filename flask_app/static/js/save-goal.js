@@ -117,7 +117,7 @@ function processGoalData(subcategoryCard) {
           actionItemData.description = actionItemDescriptionElement ? actionItemDescriptionElement.value : "";
           actionItemData.actionItemOrder = index + 1;
           const actionItemEstimatedTimeValue = actionItemCard.querySelector(`#${subcategorySlug}-goal-${goalId}-milestone-${milestoneId}-action-item-${actionItemId}-estimated-time-value`);
-          actionItemData.estimatedTimeValue = actionItemEstimatedTimeValue ? actionItemEstimatedTimeValue.value : null;
+          actionItemData.estimatedTimeValue = actionItemEstimatedTimeValue ? parseInt(actionItemEstimatedTimeValue.value) : null;
           const actionItemEstimatedTimeUnit = actionItemCard.querySelector(`#${subcategorySlug}-goal-${goalId}-milestone-${milestoneId}-action-item-${actionItemId}-estimated-time-unit`);
           actionItemData.estimatedTimeUnit = actionItemEstimatedTimeUnit ? actionItemEstimatedTimeUnit.value : "";
 
