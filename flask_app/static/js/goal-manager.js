@@ -43,7 +43,7 @@ function addGoal() {
     <!-- Goal Name Input -->
     <div class="mb-3 form-floating">
       <input type="text" class="form-control" id="${subcategorySlug}-goal-${goalCount}-name"
-        placeholder=" " name="name" required>
+        placeholder=" " name="name" autocomplete="on" required>
       <label for="${subcategorySlug}-goal-${goalCount}-name" class="form-label">Goal
         Name</label>
       <div class="invalid-feedback">Name is required.</div>
