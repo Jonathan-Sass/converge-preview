@@ -23,13 +23,16 @@ class Goal:
         self.created_at = (data["created_at"],)
         self.updated_at = (data["updated_at"],)
 
+    # CRUD methods
+    @staticmethod
     def process_and_save_subcategory_goals_data(subcategory_goal_data):
-        user_id = User.get_logged_in_user()
+        user = User.get_logged_in_user()
+        user_id = user.id
         subcategory = Subcategory.find_subcategory_by_slug(
             subcategory_goal_data["subcategorySlug"]
         )
         subcategory_id = subcategory.id
-        category_id = Category.find_category_by_id(subcategory.category_id)
+        category_id = subcategory.category_id
 
         for goal in subcategory_goal_data["goals"]:
             goal_data = {
@@ -55,10 +58,15 @@ class Goal:
                     "is_complete": milestone["isComplete"],
                 }
 
-                milestone_id = Milestone.save_milestones(milestone_data)
+                result = Milestone.save_milestone(milestone_data)
+                if result:
+                    milestone_id = result
+
+                print("Let's look at the data...")
+                pprint(milestone["actionItems"])
 
                 for action_item in milestone["actionItems"]:
-
+                    print("action_item loop achieved!")
                     action_item_data = {
                         "goal_id": goal_id,
                         "milestone_id": milestone_id,
@@ -72,14 +80,18 @@ class Goal:
 
                     ActionItem.save_action_item(action_item_data)
 
+        return
+
     def save_subcategory_goals(data):
         query = """
       INSERT INTO
-        goals (id, user_id, category_id, subcategory_id, name, description, goal_type, projected_completion, is_complete, priority, created_at, updated_at)
+        goals (user_id, category_id, subcategory_id, name, description, goal_type, projected_completion, is_complete, priority, created_at, updated_at)
       VALUES 
-        (%(id)s, %(user_id)s, %(category_id)s, %(subcategory_id)s, %(name)s, %(description)s, %(goal_type)s, %(projected_completion)s, %(is_complete)s, NOW(), NOW())
+        (%(user_id)s, %(category_id)s, %(subcategory_id)s, %(name)s, %(description)s, %(goal_type)s, %(projected_completion)s, %(is_complete)s, %(priority)s, NOW(), NOW())
       ON DUPLICATE KEY UPDATE
         updated_at = NOW();
     """
 
         result = Goal.db.query_db(query, data)
+        if result:
+            return result

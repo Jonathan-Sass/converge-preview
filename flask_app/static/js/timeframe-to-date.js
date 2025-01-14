@@ -13,9 +13,6 @@ export function initializeCompletionTimeEventListeners() {
 }
 
 function convertTimeframeToCompletionDate(event) {
-  console.log("Triggered convertTimeframeToCompletionDate");
-
-  
   const projectedCompletionCard = event.target.closest(".projected-completion-card")
   if (!projectedCompletionCard) return;
 
@@ -39,7 +36,8 @@ function convertTimeframeToCompletionDate(event) {
 }
 
 export function convertTimeframeForDatabase(timeValue, timeUnit) {
-  processTimeframeToDate (timeValue, timeUnit)
+  const projectedDateTime = processTimeframeToDate (timeValue, timeUnit)
+  const projectedDate = projectedDateTime.toISOString().split("T")[0];
   return projectedDate;
 }
 

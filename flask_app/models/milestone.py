@@ -17,11 +17,13 @@ class Milestone:
 
     def save_milestone(data):
         query = """
-        INSERT INTO
-          milestones (goal_id, name, description, projected_completion, is_complete, created_at, updated_at)
-        VALUES
-          (%(goal_id)s, %(name)s, %(description)s, %(projected_completion)s, %(is_complete)s, %(created_at)s, %(updated_at)s, NOW(), NOW());
-      """
+          INSERT INTO
+            milestones (goal_id, name, description, projected_completion, is_complete, created_at, updated_at)
+          VALUES
+            (%(goal_id)s, %(name)s, %(description)s, %(projected_completion)s, %(is_complete)s, NOW(), NOW())
+          ON DUPLICATE KEY UPDATE
+            updated_at = NOW();
+        """
 
         result = Milestone.db.query_db(query, data)
 

@@ -23,7 +23,9 @@ class ActionItem:
           INSERT INTO
             action_items (goal_id, milestone_id, name, description, action_item_order, estimated_time_value, estimated_time_unit, is_complete, created_at, updated_at)
           VALUES
-            (%(goal_id)s, %(milestone_id)s, %(name)s, %(description)s, %(action_item_order)s, %(estimated_time_value)s, %(estimated_time_unit)s, %(is_complete)s, NOW(), NOW());
+            (%(goal_id)s, %(milestone_id)s, %(name)s, %(description)s, %(action_item_order)s, %(estimated_time_value)s, %(estimated_time_unit)s, %(is_complete)s, NOW(), NOW())
+          ON DUPLICATE KEY UPDATE
+            updated_at = NOW();
         """
 
         result = ActionItem.db.query_db(query, data)

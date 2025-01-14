@@ -157,26 +157,25 @@
       <!-- Main Content -->
       <div class="container col-9">
         <!-- Data-category and id need to be the survey_category.slug for DB selection and sidebar selector -->
-        <div class="card shadow opacity-75 mb-2" id="recreation-travel-container"
-          data-category-slug="recreation-travel">
+        <div class="card shadow mb-2" id="recreation-travel-container" data-category-slug="recreation-travel">
           <div class="card-title">
             <!-- <h2 class="display-6 text-primary">Let's start with something fun.</h2> -->
           </div>
           <div data-bs-spy="scroll" data-bs-target="#progress-navbar" data-bs-smooth-scroll="true"
             class="scrollspy-example-2" tabindex="0">
-            <div class="container-fluid opacity-75 p-2 mb-3">
-              <ol class="text-primary display-6 m-3">
+            <div class="text-primary container-fluid p-2 mb-3">
+              <ol class="display-6 m-3">
                 <li>Name your goal</li>
                 <li>Estimate a completion date</li>
                 <li>Add milestones to track</li>
                 <li>If needed, separate additionally into action items</li>
               </ol>
+              <!-- Container/accordion for all subcategories -->
+              <div class="card shadow accordion subcategory-section" id="goalSettingAccordion">
 
-              <div class="accordion" id="goalSettingAccordion">
                 {% for subcategory in category.subcategories %}
-
                 <!-- Subcategory Container -->
-                <div class="accordion-item text-center subcategory-section"
+                <div class="accordion-item text-center subcategory-card text-bg-secondary"
                   data-subcategory-slug="{{ subcategory.subcategory_slug }}">
                   <h2 class="accordion-header" id="subcategory-{{ subcategory.id }}">
                     <button class="accordion-button" type="button" data-bs-toggle="collapse"
@@ -319,10 +318,11 @@
 
                           <!-- Swiper Container for Milestones, (Swiper functionality in question, may opt for sortable horizonal-scroll) -->
                           <div class="swiper-container scroll-wrapper position-relative">
-                            <div class="card shadow p-3 swiper-wrapper">
+                            <div class="card shadow swiper-wrapper m-auto">
                               <div class="swiper-slide">
                                 <!-- Dynamically Added Milestones go here -->
-                                <div class="d-flex gap-2 milestone-section p-2 sortable-container"
+                                <div
+                                  class="d-flex justify-content-around gap-2 p-3 milestone-section sortable-container m-auto"
                                   id="{{ subcategory.subcategory_slug }}-goal-1-milestones">
                                   <!-- Example Milestone Slide -->
                                   <div class="card shadow p-2 milestone-card position-relative sortable-card"
@@ -331,7 +331,7 @@
                                     data-order="1" data-goal-id="1">
                                     <!-- Milestone order number -->
                                     <div class="card-title">
-                                      <h5 class="card-order">{{ loop.index }}.</h5>
+                                      <h5 class="card-order">1.</h5>
                                     </div>
                                     <!-- Milestone name input -->
                                     <div class="mb-3 form-floating">
@@ -418,8 +418,8 @@
                       </div>
                     </div>
                   </div>
-                  {% endfor %}
                 </div>
+                {% endfor %}
               </div>
               <a href="/goals/recreation-travel/frequent-hobbies-activities"
                 class="btn btn-lg w-25 btn-primary mb-3 d-none" id="next-section-btn">Next Section</a>

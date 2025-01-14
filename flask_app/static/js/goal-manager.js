@@ -161,10 +161,10 @@ function addGoal() {
 
       <!-- Swiper Container for Milestones, (Swiper functionality in question, may opt for sortable horizonal-scroll) -->
       <div class="swiper-container scroll-wrapper position-relative">
-        <div class="card shadow p-3 swiper-wrapper">
+        <div class="card shadow p-3 swiper-wrapper m-auto">
           <div class="swiper-slide">
             <!-- Dynamically Added Milestones go here -->
-            <div class="d-flex gap-2 milestone-section p-2 sortable-container"
+            <div class="d-flex justify-content-around gap-2 milestone-section p-3 sortable-container m-auto"
               id="${subcategorySlug}-goal-${goalCount}-milestones">
               <!-- Example Milestone Slide -->
               <div class="card shadow p-2 milestone-card position-relative sortable-card"

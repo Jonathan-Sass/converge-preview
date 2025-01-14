@@ -42,7 +42,7 @@ def set_recreation_travel_goals(category_slug):
 
 # Save goals by subcategory
 @app.post("/goals/<string:subcategory_slug>/save")
-def save_goals_by_subcategory():
+def save_goals_by_subcategory(subcategory_slug=None):
     user = User.get_logged_in_user()
     if not user:
         # jsonify({"error": "Please log in"}), 401
