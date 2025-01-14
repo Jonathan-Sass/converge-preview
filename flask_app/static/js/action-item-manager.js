@@ -55,30 +55,32 @@ function handleAddActionItem() {
   actionItemCard.innerHTML = `
     <div class="mb-3 form-floating">
       <input type="text" class="form-control action-item-name"
-        id="${subcategorySlug}-goal-${goalId}-milestone-${milestoneId}-action-${actionItemCount}-name"
+        id="${subcategorySlug}-goal-${goalId}-milestone-${milestoneId}-action-item-${actionItemCount}-name"
         placeholder="Action Name" required>
       <label
-        for="${subcategorySlug}-goal-${goalId}-milestone-${milestoneId}-action-${actionItemCount}-name">Action
+        for="${subcategorySlug}-goal-${goalId}-milestone-${milestoneId}-action-item-${actionItemCount}-name">Action
         Name</label>
       <div class="invalid-feedback">Name is required.</div>
     </div>
     <div class="mb-3 form-floating">
       <textarea class="form-control action-item-description"
-        id="${subcategorySlug}-goal-${goalId}-milestone-${milestoneId}-action-${actionItemCount}-description"
+        id="${subcategorySlug}-goal-${goalId}-milestone-${milestoneId}-action-item-${actionItemCount}-description"
         placeholder="Description (optional)"></textarea>
       <label
-        for="${subcategorySlug}-goal-${goalId}-milestone-${milestoneId}-action-${actionItemCount}-description">Description
+        for="${subcategorySlug}-goal-${goalId}-milestone-${milestoneId}-action-item-${actionItemCount}-description">Description
         (optional)</label>
     </div>
 
     <h6 class="card-title mb-2">Estimated time required:</h6>
     <div class="d-flex gap-2 mb-3 projected-completion-card">
       <input type="number" class="form-control" name="time_value"
-        id="${subcategorySlug}-goal-${goalId}-milestone-${milestoneId}-action-${actionItemCount}-completion-value"
+        id="${subcategorySlug}-goal-${goalId}-milestone-${milestoneId}-action-item-${actionItemCount}-estimated-time-value"
         placeholder="0" min="1">
       <select class="form-select" name="time_unit"
-        id="${subcategorySlug}-goal-${goalId}-milestone-${milestoneId}-action-${actionItemCount}-completion-unit">
+        id="${subcategorySlug}-goal-${goalId}-milestone-${milestoneId}-action-item-${actionItemCount}-estimated-time-unit">
         <option value=" " selected disabled hidden>Unit</option>
+        <option value="minute">Minute(s)</option>
+        <option value="hour">Hour(s)</option>
         <option value="day">Day(s)</option>
         <option value="week">Week(s)</option>
         <option value="month">Month(s)</option>

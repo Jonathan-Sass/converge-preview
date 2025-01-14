@@ -108,7 +108,7 @@ function processGoalData(subcategoryCard) {
             description: "",
             actionItemOrder: null,
             estimatedTimeValue: null, 
-            estimateTimeUnit: "", 
+            estimatedTimeUnit: "", 
             isComplete: false,
           }
 
@@ -119,7 +119,7 @@ function processGoalData(subcategoryCard) {
           const actionItemEstimatedTimeValue = actionItemCard.querySelector(`#${subcategorySlug}-goal-${goalId}-milestone-${milestoneId}-action-item-${actionItemId}-estimated-time-value`);
           actionItemData.estimatedTimeValue = actionItemEstimatedTimeValue ? actionItemEstimatedTimeValue.value : null;
           const actionItemEstimatedTimeUnit = actionItemCard.querySelector(`#${subcategorySlug}-goal-${goalId}-milestone-${milestoneId}-action-item-${actionItemId}-estimated-time-unit`);
-          actionItemData.estimateTimeUnit = actionItemEstimatedTimeUnit ? actionItemEstimatedTimeUnit.value : "";
+          actionItemData.estimatedTimeUnit = actionItemEstimatedTimeUnit ? actionItemEstimatedTimeUnit.value : "";
 
           console.log(`Pushing actionItemData to milestone actionItems: ${actionItemData}`)
           milestoneData.actionItems.push(actionItemData);
