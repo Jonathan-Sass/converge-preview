@@ -1,5 +1,6 @@
 from flask_app.config.mysqlconnection import connectToMySQL
 from pprint import pprint
+import logging
 from flask_app.models.user import User
 from flask_app.models.milestone import Milestone
 from flask_app.models.action_item import ActionItem
@@ -26,6 +27,107 @@ class Goal:
     # CRUD methods
     @staticmethod
     def process_and_save_subcategory_goals_data(subcategory_goal_data):
+        try:
+            # Get user information
+            user = User.get_logged_in_user()
+            if not user:
+                raise ValueError("User is not logged in.")
+            user_id = user.id
+
+            # Find subcategory and associated IDs
+            subcategory = Subcategory.find_subcategory_by_slug(
+                subcategory_goal_data.get("subcategorySlug")
+            )
+            if not subcategory:
+                raise ValueError(
+                    f"Subcategory not found for slug: {subcategory_goal_data.get('subcategorySlug')}"
+                )
+            subcategory_id = subcategory.id
+            category_id = subcategory.category_id
+
+            # Process each goal in the subcategory
+            for goal in subcategory_goal_data.get("goals", []):
+                try:
+                    # Save goal data
+                    goal_data = {
+                        "user_id": user_id,
+                        "category_id": category_id,
+                        "subcategory_id": subcategory_id,
+                        "name": goal.get("name", "").strip(),
+                        "description": goal.get("description", "").strip(),
+                        "goal_type": goal.get("goalType"),
+                        "projected_completion": goal.get("projectedCompletion"),
+                        "is_complete": goal.get("isComplete", False),
+                        "priority": goal.get("priority"),
+                    }
+                    goal_id = Goal.save_subcategory_goals(goal_data)
+
+                    # Process milestones
+                    for milestone in goal.get("milestones", []):
+                        try:
+                            milestone_data = {
+                                "goal_id": goal_id,
+                                "name": milestone.get("name", "").strip(),
+                                "description": milestone.get("description", "").strip(),
+                                "projected_completion": milestone.get(
+                                    "projectedCompletion"
+                                ),
+                                "is_complete": milestone.get("isComplete", False),
+                            }
+                            result = Milestone.save_milestone(milestone_data)
+                            milestone_id = result if result else None
+
+                            if not milestone_id:
+                                logging.warning(
+                                    f"Failed to save milestone for goal ID {goal_id}. Skipping related action items."
+                                )
+                                continue
+
+                            # Process action items
+                            for action_item in milestone.get("actionItems", []):
+                                try:
+                                    action_item_data = {
+                                        "goal_id": goal_id,
+                                        "milestone_id": milestone_id,
+                                        "name": action_item.get("name", "").strip(),
+                                        "description": action_item.get(
+                                            "description", ""
+                                        ).strip(),
+                                        "action_item_order": action_item.get(
+                                            "actionItemOrder"
+                                        ),
+                                        "estimated_time_value": action_item.get(
+                                            "estimatedTimeValue"
+                                        ),
+                                        "estimated_time_unit": action_item.get(
+                                            "estimatedTimeUnit"
+                                        ),
+                                        "is_complete": action_item.get(
+                                            "isComplete", False
+                                        ),
+                                    }
+                                    ActionItem.save_action_item(action_item_data)
+                                except Exception as e:
+                                    logging.error(
+                                        f"Error saving action item: {action_item}, Error: {e}"
+                                    )
+                        except Exception as e:
+                            logging.error(
+                                f"Error processing milestone: {milestone}, Error: {e}"
+                            )
+                except Exception as e:
+                    logging.error(f"Error processing goal: {goal}, Error: {e}")
+
+        except Exception as e:
+            logging.critical(
+                f"Critical error in process_and_save_subcategory_goals_data: {e}"
+            )
+            raise  # Optionally re-raise the exception for higher-level handling
+
+    @staticmethod
+    def process_and_save_subcategory_goals_data_can_haz_more_error_handling(
+        subcategory_goal_data,
+    ):
         user = User.get_logged_in_user()
         user_id = user.id
         subcategory = Subcategory.find_subcategory_by_slug(
