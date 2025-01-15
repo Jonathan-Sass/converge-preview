@@ -21,10 +21,89 @@ class Goal:
         self.projected_completion = (data["projected_completion"],)
         self.is_complete = (data["is_complete"],)
         self.priority = (data["priority"],)
+        self.milestones = []
         self.created_at = (data["created_at"],)
         self.updated_at = (data["updated_at"],)
 
     # CRUD methods
+    def find_goals_with_milestones_and_action_items_by_user_id(user_id):
+        query = """
+          SELECT
+            g.id AS goal_id,
+            g.category_id,
+            g.subcategory_id,
+            g.name AS goal_name,
+            g.description AS goal_description,
+            g.goal_type,
+            g.projected_completion AS goal_projected_completion,
+            g.is_complete AS goal_is_complete,
+            g.completed_at AS goal_completed_at,
+            g.priority AS goal_priority,
+            m.id AS milestone_id,
+            m.goal_id,
+            m.name AS milestone_name,
+            m.projected_completion AS milestone_projected_completion,
+            m.is_complete AS milestone_is_complete,
+            m.completed_at AS milestone_completed_at,
+            a.id AS action_item_id,
+            a.name AS action_item_name,
+            a.action_item_order,
+            a.estimated_time_value,
+            a.estimated_time_unit,
+            a.is_complete AS action_item_is_complete
+          FROM
+            goals g
+          LEFT JOIN
+            milestones m ON g.id = m.goal_id
+          LEFT JOIN
+            action_items a ON m.id = a.milestone_id
+          WHERE 
+            user_id = %(user_id)s;
+        """
+
+        data = {"user_id": user_id}
+
+        results = Goal.db.query_db(query, data)
+
+        goals = {}
+        for row in results:
+            goal_id = row["goal_id"]
+            if goal_id not in goals:
+                goals[goal_id] = Goal(
+                    id=row["goal_id"],
+                    category_id=row["category_id"],
+                    subcategory_id=row["subcategory_id"],
+                    name=row["goal_name"],
+                    description=row["goal_description"],
+                    goal_type=row["goal_type"],
+                    projected_completion=row["goal_projected_completion"],
+                    is_complete=row["goal_is_complete"],
+                    completed_at=row["goal_completed_at"],
+                    priority=row["priority"],
+                    milestones=[],
+                    created_at=row["created_at"],
+                    updated_at=row["updated_at"],
+                )
+
+            milestone_id = row["milestone_id"]
+            if milestone_id not in goals[goal_id]["milestones"]:
+                goals[goal_id]["milestones"][milestone_id] = Milestone(
+                    id=row["milestone_id"],
+                    goal_id=row["goal_id"],
+                    name=row["milestone_name"],
+                    description=row["milestone_description"],
+                    projected_completion=row["milestone_projected_completion"],
+                    is_complete=row["milestone_is_complete"],
+                    completed_at=row["milestone_completed_at"],
+                    created_at=row["milestone_created_at"],
+                    updated_at=row["milestone_updated_at"],
+                )
+            
+            action_item_id = row["action_item_id"]
+            if action_item_id not in 
+
+        return goals
+
     @staticmethod
     def process_and_save_subcategory_goals_data(subcategory_goal_data):
         try:
@@ -124,66 +203,6 @@ class Goal:
             )
             raise  # Optionally re-raise the exception for higher-level handling
 
-    @staticmethod
-    def process_and_save_subcategory_goals_data_can_haz_more_error_handling(
-        subcategory_goal_data,
-    ):
-        user = User.get_logged_in_user()
-        user_id = user.id
-        subcategory = Subcategory.find_subcategory_by_slug(
-            subcategory_goal_data["subcategorySlug"]
-        )
-        subcategory_id = subcategory.id
-        category_id = subcategory.category_id
-
-        for goal in subcategory_goal_data["goals"]:
-            goal_data = {
-                "user_id": user_id,
-                "category_id": category_id,
-                "subcategory_id": subcategory_id,
-                "name": goal["name"],
-                "description": goal["description"],
-                "goal_type": goal["goalType"],
-                "projected_completion": goal["projectedCompletion"],
-                "is_complete": goal["isComplete"],
-                "priority": goal["priority"],
-            }
-
-            goal_id = Goal.save_subcategory_goals(goal_data)
-
-            for milestone in goal["milestones"]:
-                milestone_data = {
-                    "goal_id": goal_id,
-                    "name": milestone["name"],
-                    "description": milestone["description"],
-                    "projected_completion": milestone["projectedCompletion"],
-                    "is_complete": milestone["isComplete"],
-                }
-
-                result = Milestone.save_milestone(milestone_data)
-                if result:
-                    milestone_id = result
-
-                print("Let's look at the data...")
-                pprint(milestone["actionItems"])
-
-                for action_item in milestone["actionItems"]:
-                    print("action_item loop achieved!")
-                    action_item_data = {
-                        "goal_id": goal_id,
-                        "milestone_id": milestone_id,
-                        "name": action_item["name"],
-                        "description": action_item["description"],
-                        "action_item_order": action_item["actionItemOrder"],
-                        "estimated_time_value": action_item["estimatedTimeValue"],
-                        "estimated_time_unit": action_item["estimatedTimeUnit"],
-                        "is_complete": action_item["isComplete"],
-                    }
-
-                    ActionItem.save_action_item(action_item_data)
-
-        return
-
     def save_subcategory_goals(data):
         query = """
       INSERT INTO
@@ -197,3 +216,63 @@ class Goal:
         result = Goal.db.query_db(query, data)
         if result:
             return result
+
+    # @staticmethod
+    # def process_and_save_subcategory_goals_data_can_haz_more_error_handling(
+    #     subcategory_goal_data,
+    # ):
+    #     user = User.get_logged_in_user()
+    #     user_id = user.id
+    #     subcategory = Subcategory.find_subcategory_by_slug(
+    #         subcategory_goal_data["subcategorySlug"]
+    #     )
+    #     subcategory_id = subcategory.id
+    #     category_id = subcategory.category_id
+
+    #     for goal in subcategory_goal_data["goals"]:
+    #         goal_data = {
+    #             "user_id": user_id,
+    #             "category_id": category_id,
+    #             "subcategory_id": subcategory_id,
+    #             "name": goal["name"],
+    #             "description": goal["description"],
+    #             "goal_type": goal["goalType"],
+    #             "projected_completion": goal["projectedCompletion"],
+    #             "is_complete": goal["isComplete"],
+    #             "priority": goal["priority"],
+    #         }
+
+    #         goal_id = Goal.save_subcategory_goals(goal_data)
+
+    #         for milestone in goal["milestones"]:
+    #             milestone_data = {
+    #                 "goal_id": goal_id,
+    #                 "name": milestone["name"],
+    #                 "description": milestone["description"],
+    #                 "projected_completion": milestone["projectedCompletion"],
+    #                 "is_complete": milestone["isComplete"],
+    #             }
+
+    #             result = Milestone.save_milestone(milestone_data)
+    #             if result:
+    #                 milestone_id = result
+
+    #             print("Let's look at the data...")
+    #             pprint(milestone["actionItems"])
+
+    #             for action_item in milestone["actionItems"]:
+    #                 print("action_item loop achieved!")
+    #                 action_item_data = {
+    #                     "goal_id": goal_id,
+    #                     "milestone_id": milestone_id,
+    #                     "name": action_item["name"],
+    #                     "description": action_item["description"],
+    #                     "action_item_order": action_item["actionItemOrder"],
+    #                     "estimated_time_value": action_item["estimatedTimeValue"],
+    #                     "estimated_time_unit": action_item["estimatedTimeUnit"],
+    #                     "is_complete": action_item["isComplete"],
+    #                 }
+
+    #                 ActionItem.save_action_item(action_item_data)
+
+    #     return

@@ -9,8 +9,8 @@ class Duration:
         self.duration_label = data["duration_label"]
         self.duration_seconds = data["duration_seconds"]
         self.engagement_level = data["engagement_level"] or None
-        
 
+    # TODO: REFACTOR TO A SINGLE QUERY IN ROUTINE TEMPLATES
     def fetch_durations_by_practice_id(practice):
         # (TODO:add to name: with_engagement_levels)
         query = """
@@ -39,7 +39,7 @@ class Duration:
             practice_durations.append(Duration(result))
 
         return practice_durations
-    
+
     def fetch_all_durations():
         query = """
             SELECT * FROM durations;

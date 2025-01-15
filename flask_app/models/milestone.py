@@ -15,6 +15,11 @@ class Milestone:
         self.created_at = data["created_at"]
         self.updated_at = data["updated_at"]
 
+    # def find_milestone_and_action_items_by_goal_id(goal_id):
+    # query =
+
+    # return goal_milestones
+
     def save_milestone(data):
         query = """
           INSERT INTO

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='img/Enso_Blue_and_Black.jpg') }}">
+  <title>Home</title>
+</head>
+
+<body>
+  <div class="border-box">
+    <nav
+      class="navbar navbar-expand-lg navbar-dark bg-dark w-100 m-auto d-flex justify-content-between position-sticky top-0 z-3 p-3">
+      <div class="container-fluid">
+        <a class="navbar-brand d-inline-flex align-items-center gap-4" href="/home">
+          <img src="/static/img/Enso_Blue_and_Black.jpg" class="rounded-circle" width="60" height="60"
+            alt="Converge Logo">
+          <h1 class="display-5 text-primary">Converge</h1>
+        </a>
+      </div>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDarkDropdown"
+        aria-controls="navbarNavDarkDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
+        <div class="navbar-nav">
+          <a class="nav-link active" aria-current="page" href="/home">Home</a>
+          <a class="nav-link" href="/calendar">Calendar</a>
+          <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
+            <ul class="navbar-nav">
+              <li class="nav-item dropdown">
+                <button class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                  Goals
+                </button>
+                <ul class="dropdown-menu dropdown-menu-dark">
+                  <li><a class="dropdown-item" href="/goals/recreation-travel">Recreation and Travel</a></li>
+                  <li><a class="dropdown-item" href="/goals/health-wellness">Health and Wellness</a></li>
+                  <li><a class="dropdown-item" href="/goals/social-community">Social and Community Engagement</a></li>
+                  <li><a class="dropdown-item" href="/goals/spirituality">Spirituality and Life Purpose</a></li>
+                  <li><a class="dropdown-item" href="/goals/career-professional-development">Career and Professional
+                      Development</a></li>
+                  <li><a class="dropdown-item" href="/goals/wealth-finance">Wealth Building and Financial Health</a>
+                  </li>
+                  <li><a class="dropdown-item" href="/goals/creative-expression-hobbies">Creative Expression and
+                      Hobbies</a></li>
+                  <li><a class="dropdown-item" href="/goals/environment-success">Environment and Success</a></li>
+                  <li><a class="dropdown-item" href="/goals">Something else here</a></li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+          <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
+            <ul class="navbar-nav">
+              <li class="nav-item dropdown">
+                <button class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                  Practices
+                </button>
+                <ul class="dropdown-menu dropdown-menu-dark">
+                  <li><a class="dropdown-item" href="/practices/AM">AM Practices</a></li>
+                  <li><a class="dropdown-item" href="/practices/PM">PM Practices</a></li>
+                  <li><a class="dropdown-item" href="/practices/daily">Daily Practices</a></li>
+                  <li><a class="dropdown-item" href="/practices/discipline">Discipline</a></li>
+                  <li><a class="dropdown-item" href="/practices">Something else?</a></li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+          <a class="nav-link disabled" aria-disabled="true">Disabled</a>
+          <form action="/users/logout" method="post">
+            <button class="btn btn-link" type="submit" name="logout">logout</button>
+          </form>
+        </div>
+      </div>
+    </nav>
+    <header class="bg-dark opacity-75 w-100 p-3 mt-0 text-center">
+      <h1 class="display-2 mb-3 text-primary">Converge</h1>
+      <h4 class="display-6 mx-5">Converge with your potential. Converge with your dreams.</h4>
+    </header>
+
+    <!-- Content with Vertical Tabs -->
+    <div class="container my-4">
+      <div class="row">
+        <div class="col-md-3">
+          <!-- Left-Sided Vertical Tabs -->
+          <div class="nav flex-column nav-pills" id="vertical-tabs" role="tablist" aria-orientation="vertical">
+            <button class="nav-link active" id="day-minder-tab" data-bs-toggle="pill" data-bs-target="#day-minder"
+              type="button" role="tab" aria-controls="day-minder" aria-selected="true">Day Minder</button>
+            <button class="nav-link" id="goals-tab" data-bs-toggle="pill" data-bs-target="#goals" type="button"
+              role="tab" aria-controls="goals" aria-selected="false">Goals</button>
+            <button class="nav-link" id="at-a-glance-tab" data-bs-toggle="pill" data-bs-target="#at-a-glance"
+              type="button" role="tab" aria-controls="at-a-glance" aria-selected="false">At-A-Glance</button>
+          </div>
+        </div>
+
+        <div class="col-md-9">
+          <!-- Tab Content -->
+          <div class="tab-content" id="vertical-tabs-content">
+            <!-- Day Minder Section -->
+            <div class="tab-pane fade show active" id="day-minder" role="tabpanel" aria-labelledby="day-minder-tab">
+              <h2 class="text-primary">Day Minder</h2>
+              <p>Content for Day Minder goes here.</p>
+            </div>
+
+            <!-- Goals Section -->
+            <div class="tab-pane fade" id="goals" role="tabpanel" aria-labelledby="goals-tab">
+              <h2 class="text-primary">Goals</h2>
+              <p>Content for Goals goes here.</p>
+            </div>
+
+            <!-- At-A-Glance Section -->
+            <div class="tab-pane fade" id="at-a-glance" role="tabpanel" aria-labelledby="at-a-glance-tab">
+              <h2 class="text-primary">At-A-Glance</h2>
+              <p>Content for At-A-Glance goes here.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"></script>
+</body>
+
+</html>

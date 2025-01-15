@@ -102,7 +102,7 @@
     <!-- Content and Sidebar Div-->
     <div class="container-fluid m-auto my-3 d-flex align-items-start gap-3">
       <!-- Progress Nav Sidebar -->
-      <div class="card shadow p-2 opacity-75 col-3">
+      <!-- <div class="card shadow p-2 opacity-75 col-3">
         <nav id="progress-navbar" class="h-100 flex-column align-items-stretch p-3">
           <h4 class="display-6 text-primary text-center">You are here.</h4>
           <hr class="border border-1 border-light">
@@ -153,9 +153,10 @@
             </nav>
           </nav>
         </nav>
-      </div>
+      </div> -->
       <!-- Main Content -->
-      <div class="container col-9">
+      <!-- <div class="container col-9"> --> <!--div replaced by div below, if reintroducing sidebar, use this div-->
+      <div class="container-fluid opacity-75 m-auto w-75">
         <!-- Data-category and id need to be the survey_category.slug for DB selection and sidebar selector -->
         <div class="card shadow mb-2" id="recreation-travel-container" data-category-slug="recreation-travel">
           <div class="card-title">
@@ -387,7 +388,7 @@
                                     <!-- Action Items Section for Milestone -->
                                     <div
                                       class=" card shadow p-1 d-none action-item-section position-absolute text-bg-light">
-                                      <h5 class="text-dark fs-4">Action Items</h5>
+                                      <h5 class="text-primary fs-4">Action Items</h5>
                                       <hr class="w-25 m-auto mb-3">
                                       <button class="btn btn-primary btn-sm add-action-item-btn w-75 m-auto mb-3">Add
                                         Action Item

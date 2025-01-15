@@ -27,8 +27,7 @@ class User:
         self.updated_at = data["updated_at"]
         # self.health_quiz_id = data["health_quiz_id"]
         self.responses = []
-        self.health_goals = []
-        self.user_health_goals = []
+        self.goals = []
         self.personal_routines = []
         self.day_flex_items = []
 
