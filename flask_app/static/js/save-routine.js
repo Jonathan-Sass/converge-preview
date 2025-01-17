@@ -1,3 +1,5 @@
+import { updateCardOrder } from "./sortable-containers.js";
+
 // // Function to update the data-order attributes
 // function updateCardOrder() {
 //   const cards = document.querySelectorAll('.practice-card');
@@ -42,7 +44,7 @@ const collectRoutineData = () => {
 
 // Function to save the routine
 const saveRoutine = () => {
-  updateCardOrder(); // Ensure the order is up-to-date
+  // updateCardOrder(); // Ensure the order is up-to-date
   const routineData = collectRoutineData();
 
   fetch('/routines/am/builder/initial/save', {
