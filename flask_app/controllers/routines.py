@@ -1,7 +1,7 @@
 from flask_app import app
 from flask import render_template, redirect, jsonify, request
 from flask_app.models.user import User
-from flask_app.models.personal_routine import PersonalRoutine
+from flask_app.models.routine import Routine
 from flask_app.models.routine_template import RoutineTemplate
 from flask_app.models.user_response import UserResponse
 from flask_app.models.duration import Duration
@@ -35,7 +35,7 @@ def set_initial_am_routines():
     if not user:
         return redirect("/")
 
-    recommended_routine = PersonalRoutine.select_and_fetch_initial_am_routine(
+    recommended_routine = Routine.select_and_fetch_initial_am_routine(
         user, "getting-to-know-you"
     )
     # durations = Duration.fetch_all_durations()
@@ -54,6 +54,6 @@ def save_am_routine():
         return redirect("/")
 
     am_routine_data = request.json
-    PersonalRoutine.create_personal_routine(am_routine_data)
+    Routine.create_routine(am_routine_data)
 
     return jsonify({"success": True, "redirect": "/goals/intro"})
