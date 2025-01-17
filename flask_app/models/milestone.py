@@ -1,4 +1,7 @@
 from flask_app.config.mysqlconnection import connectToMySQL
+from typing import List
+
+from flask_app.models.action_item import ActionItem
 
 
 class Milestone:
@@ -14,6 +17,7 @@ class Milestone:
         self.completed_at = data["completed_at"]
         self.created_at = data["created_at"]
         self.updated_at = data["updated_at"]
+        self.action_items: List[ActionItem] = []
 
     # def find_milestone_and_action_items_by_goal_id(goal_id):
     # query =
