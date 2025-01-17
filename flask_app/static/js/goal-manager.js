@@ -96,10 +96,10 @@ function addGoal() {
         class="form-label">Priority</label>
       <select class="form-select" id="${subcategorySlug}-goal-${goalCount}-priority" required>
         <option value="" disabled selected>Select priority</option>
-        <option value="low">Low</option>
-        <option value="medium">Medium</option>
-        <option value="high">High</option>
-        <option value="urgent">Urgent</option>
+        <option value="4">Low</option>
+        <option value="3">Medium</option>
+        <option value="2">High</option>
+        <option value="1">Urgent</option>
       </select>
       <div class="invalid-feedback">Please assign a priority.</div>
     </div>

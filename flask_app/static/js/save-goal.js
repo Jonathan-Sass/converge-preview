@@ -61,7 +61,7 @@ function processGoalData(subcategoryCard) {
         name: "",
         description: "", 
         goalType: "",
-        priority: "",
+        priority: null,
         projectedCompletion: null,
         isComplete: false,
         milestones: []
@@ -85,9 +85,9 @@ function processGoalData(subcategoryCard) {
           isComplete: false,
           actionItems: []
         }
-        console.log(`Looking for: #${subcategorySlug}-goal-${goalId}-milestone-${milestoneId}-name`)
+        // console.log(`Looking for: #${subcategorySlug}-goal-${goalId}-milestone-${milestoneId}-name`)
         milestoneData.name = milestoneCard.querySelector(`#${subcategorySlug}-goal-${goalId}-milestone-${milestoneId}-name`).value;
-        console.log("Selector: " + milestoneCard.querySelector(`#${subcategorySlug}-goal-${goalId}-milestone-${milestoneId}-name`))
+        // console.log("Selector: " + milestoneCard.querySelector(`#${subcategorySlug}-goal-${goalId}-milestone-${milestoneId}-name`))
         // milestoneData.name = milestoneCard.querySelector(`#${subcategorySlug}-goal-${goalId}-milestone-${milestoneId}-name`).value
         
         const milestoneDescriptionElement = milestoneCard.querySelector(`#${subcategorySlug}-goal-${goalId}-milestone-${milestoneId}-description`)
@@ -121,12 +121,13 @@ function processGoalData(subcategoryCard) {
           const actionItemEstimatedTimeUnit = actionItemCard.querySelector(`#${subcategorySlug}-goal-${goalId}-milestone-${milestoneId}-action-item-${actionItemId}-estimated-time-unit`);
           actionItemData.estimatedTimeUnit = actionItemEstimatedTimeUnit ? actionItemEstimatedTimeUnit.value : "";
 
-          console.log(`Pushing actionItemData to milestone actionItems: ${actionItemData}`)
           milestoneData.actionItems.push(actionItemData);
         });
         goalData.milestones.push(milestoneData);
       });
+      console.log(goalData)
       subcategoryGoalsData.goals.push(goalData);
+      console.log(subcategoryGoalsData.goals)
     });
   });
   submitGoalData(subcategoryGoalsData);
