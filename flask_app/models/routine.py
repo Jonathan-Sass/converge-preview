@@ -1,10 +1,12 @@
 from flask_app.config.mysqlconnection import connectToMySQL
 from flask import flash, session, redirect
 from pprint import pprint
+from typing import List
 
 from flask_app.models.user import User
 from flask_app.models.user_response import UserResponse
 from flask_app.models.routine_template import RoutineTemplate
+from flask_app.models.practice import Practice
 
 
 class Routine:
@@ -14,14 +16,15 @@ class Routine:
         self.id = data["id"]
         self.user_id = data["user_id"]
         self.name = data["name"]
+        self.description = data["description"]
         self.routine_type = data["routine_type"]
-        self.start_time = data["start_time"]
-        self.end_time = data["end_time"]
+        self.start_time = data["start_time"] or None
+        self.end_time = data["end_time"] or None
         self.is_active = data["is_active"]
         self.notes = data["notes"] or None
         self.created_at = data["created_at"]
         self.updated_at = data["updated_at"]
-        self.practices = []
+        self.practices: List[Practice] = []
 
     @classmethod
     def fetch_routines_by_user_id(user_id):
@@ -37,19 +40,67 @@ class Routine:
               r.notes AS routine_notes,
               r.created_at AS routine_created_at,
               r.updated_at AS routine_updated_at,
-
+              rp.position,
+              p.practice_category_id,
+              p.impact_rating_id,
+              p.difficulty_level_id,
+              p.name AS practice_name,
+              p.description AS practice_description,
+              p.is_common,
+              p.notes AS practice_notes,
+              p.literature_summary,
+              p.created_at AS practice_created_at,
+              p.updated_at AS practice_updated_at,
+              d.duration_label,
+              d.duration_seconds
             FROM
               routines r
             LEFT JOIN 
-              routine_practices prp ON r.id = prp.routine_id
+              routine_practices rp ON r.id = rp.routine_id
             JOIN 
-              practices p ON prp.practice_id = p.id
+              practices p ON rp.practice_id = p.id
             JOIN
-              durations d ON prp.duration_id = d.id
+              durations d ON rp.duration_id = d.id
             WHERE
               r.user_id = %(user_id)s;
         """
-        return
+
+        data = {"user_id": user_id}
+
+        results = Routine.db.query_db(query, data)
+
+        if results:
+            routines = {}
+
+            for row in routines:
+                routine_id = row["routine_id"]
+                if routine_id not in routines:
+                    routine_data = {
+                        "id": row["routine_id"],
+                        "user_id": user_id,
+                        "name": row["routine_name"],
+                        "description": row["routine_description"],
+                        "routine_type": row["routine_type"],
+                        "start_time": row["start_time"],
+                        "end_time": row["end_time"],
+                        "is_active": row["is_active"],
+                        "notes": row["routine_notes"],
+                        "created_at": row["routine_created_at"],
+                        "updated_at": row["routine_updated_at"],
+                        "practices": [],
+                    }
+                    routines[routine_id] = Routine(routine_data)
+                    routine = routines[routine_id]
+
+                practice_id = row["practice_id"]
+                if practice_id and not any(
+                    p.id == practice_id for p in routine.practices
+                ):
+                    practice_data = {
+                        "id": row["practice_id"],
+                    }
+
+        return routines
 
     @staticmethod
     def select_and_fetch_initial_am_routine(user, survey_topic_slug_string):
