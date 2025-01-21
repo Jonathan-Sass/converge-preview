@@ -52,7 +52,6 @@ class Routine:
               pc.name AS practice_category,
               d.duration_label AS selected_duration,
               ir.impact_rating_description,
-              ir.impact_rating_value,
               dl.difficulty_label AS practice_difficulty
             FROM
               routines r
@@ -119,7 +118,6 @@ class Routine:
                             "impact_rating_description": row[
                                 "impact_rating_description"
                             ],
-                            "impact_rating_value": row["impact_rating_value"],
                             "practice_difficulty": row["practice_difficulty"],
                             "practice_is_common": row["practice_is_common"],
                             "practice_notes": row["practice_notes"],

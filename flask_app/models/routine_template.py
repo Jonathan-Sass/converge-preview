@@ -14,7 +14,7 @@ class RoutineTemplate:
         self.name = data["routine_template_name"]
         self.description = data["routine_template_description"]
         self.category = data["routine_template_category"]
-        self.notes = data["routine_template_notes"] or None
+        self.notes = data.get("routine_template_notes", None)
         self.practices = []
 
     def am_routine_template_selector(user, survey_topic_slug_string):
@@ -46,7 +46,6 @@ class RoutineTemplate:
                 practices.updated_at,
                 practice_categories.name AS practice_category,
                 impact_ratings.impact_rating_description,
-                impact_ratings.impact_rating_value,
                 difficulty_levels.difficulty_label AS practice_difficulty
             FROM
                 routine_templates

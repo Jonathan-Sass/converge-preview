@@ -15,9 +15,7 @@ class Practice:
         self.description = data["practice_description"]
         self.practice_category = data["practice_category"]
         self.impact_rating_description = data["impact_rating_description"]
-        # TODO: Remove impact_rating_value from constructor?
         # TODO: Condense difficulties and impact_ratings column names for consistency
-        self.impact_rating_value = data["impact_rating_value"]
         self.difficulty = data["practice_difficulty"]
         self.is_common = data["practice_is_common"]
         self.notes = data["practice_notes"]
