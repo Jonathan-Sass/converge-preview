@@ -103,37 +103,35 @@
               Goals
             </button>
           </li>
+          <li class="nav-item">
+            <button class="nav-link" id="trends-tab" data-bs-toggle="tab" data-bs-target="#trends" type="button"
+              role="tab">
+              Trends
+            </button>
+          </li>
         </ul>
-
         <div class="tab-content">
           <!-- Routines Tab -->
           <div class="tab-pane fade show active" id="routines" role="tabpanel">
             <div class="row gy-4">
               <!-- AM Routine -->
-              <!-- <div class="col-lg-6">
-                                <div class="card shadow">
-                                    <div class="card-body">
-                                        <h5 class="card-title text-primary">AM Routine</h5>
-                                        <ul class="list-group">
-                                            {% for item in am_routines %}
-                                            <li class="list-group-item d-flex justify-content-between align-items-center">
-                                                <span>{{ item.name }}</span>
-                                                <button class="btn btn-sm btn-outline-success" onclick="markAccomplished('{{ item.id }}')">Mark Done</button>
-                                            </li>
-                                            {% endfor %}
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div> -->
               <div class="col-lg-6">
                 <div class="card shadow">
                   <div class="card-body">
                     <h5 class="card-title text-primary">AM Routine</h5>
                     <ul class="list-group">
+                      {% for routine in routines %}
+                      {% if routine.routine_type == "AM" %}
+                      {% for practice in routine.practices %}
                       <li class="list-group-item d-flex justify-content-between align-items-center">
-                        <span>AM Routine Sample</span>
-                        <button class="btn btn-sm btn-outline-success">Mark Done</button>
+                        <span>{{ practice.name }}</span>
+                        <button class="btn btn-sm btn-outline-success"
+                          onclick="markAccomplished('{{ practice.id }}')">Mark
+                          Done</button>
                       </li>
+                      {% endfor %}
+                      {% endif %}
+                      {% endfor %}
                     </ul>
                   </div>
                 </div>
@@ -141,20 +139,20 @@
 
               <!-- Daily Flex Items -->
               <!-- <div class="col-lg-6">
-                                <div class="card shadow">
-                                    <div class="card-body">
-                                        <h5 class="card-title text-warning">Daily Flex Items</h5>
-                                        <ul class="list-group">
-                                            {% for item in daily_flex_items %}
-                                            <li class="list-group-item d-flex justify-content-between align-items-center">
-                                                <span>{{ item.name }}</span>
-                                                <button class="btn btn-sm btn-outline-success" onclick="markAccomplished('{{ item.id }}')">Mark Done</button>
-                                            </li>
-                                            {% endfor %}
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div> -->
+                <div class="card shadow">
+                    <div class="card-body">
+                        <h5 class="card-title text-warning">Daily Flex Items</h5>
+                        <ul class="list-group">
+                            {% for item in daily_flex_items %}
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <span>{{ item.name }}</span>
+                                <button class="btn btn-sm btn-outline-success" onclick="markAccomplished('{{ item.id }}')">Mark Done</button>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div> -->
               <div class="col-lg-6">
                 <div class="card shadow">
                   <div class="card-body">
@@ -170,42 +168,23 @@
               </div>
 
               <!-- PM Routine -->
-              <!-- <div class="col-lg-6">
-                                <div class="card shadow">
-                                    <div class="card-body">
-                                        <h5 class="card-title text-primary">PM Routine</h5>
-                                        <ul class="list-group">
-                                            {% for item in pm_routines %}
-                                            <li class="list-group-item d-flex justify-content-between align-items-center">
-                                                <span>{{ item.name }}</span>
-                                                <button class="btn btn-sm btn-outline-success" onclick="markAccomplished('{{ item.id }}')">Mark Done</button>
-                                            </li>
-                                            {% endfor %}
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div> -->
               <div class="col-lg-6">
                 <div class="card shadow">
                   <div class="card-body">
                     <h5 class="card-title text-primary">PM Routine</h5>
                     <ul class="list-group">
+                      {% for routine in routines %}
+                      {% if routine.routine_type == "PM" %}
+                      {% for practice in routine.practices %}
                       <li class="list-group-item d-flex justify-content-between align-items-center">
-                        <span>PM Routine Sample Name</span>
-                        <button class="btn btn-sm btn-outline-success">Mark Done</button>
+                        <span>{{ practice.name }}</span>
+                        <button class="btn btn-sm btn-outline-success"
+                          onclick="markAccomplished('{{ practice.id }}')">Mark
+                          Done</button>
                       </li>
-                      <li class="list-group-item d-flex justify-content-between align-items-center">
-                        <span>PM Routine Sample Name</span>
-                        <button class="btn btn-sm btn-outline-success">Mark Done</button>
-                      </li>
-                      <li class="list-group-item d-flex justify-content-between align-items-center">
-                        <span>PM Routine Sample Name</span>
-                        <button class="btn btn-sm btn-outline-success">Mark Done</button>
-                      </li>
-                      <li class="list-group-item d-flex justify-content-between align-items-center">
-                        <span>PM Routine Sample Name</span>
-                        <button class="btn btn-sm btn-outline-success">Mark Done</button>
-                      </li>
+                      {% endfor %}
+                      {% endif %}
+                      {% endfor %}
                     </ul>
                   </div>
                 </div>
@@ -306,15 +285,23 @@
               </div>
             </div>
           </div>
-        </div>
-      </div>
-      <!-- Main Content -->
 
+          <!-- Trends Tab -->
+          <div class="tab-pane fade" id="trends" role="tabpanel">
+            <div class="card shadow">
+              <div class="card-body">
+                <h5 class="card-title text-success">Your Trends</h5>
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
     </div>
-  </div>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-    crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"></script>
 </body>
 
 </html>

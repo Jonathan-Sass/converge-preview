@@ -132,6 +132,13 @@ class Routine:
                         practice = Practice(practice_data)
                         routine.practices.append(practice)
 
+        print("Routines in find_routines:")
+        for routine in routines:
+            pprint(vars(routine))
+            print("Routine's practices:")
+            for practice in routine.practices:
+                pprint(vars(practice))
+
         return routines
 
     @staticmethod

@@ -17,7 +17,7 @@ def dashboard():
     routine_data = Routine.find_routines_by_user_id(user_id)
     goal_data = Goal.find_goals_with_milestones_and_action_items_by_user_id(user_id)
 
-    dashboard_data = {"user": user, "routine": routine_data, "goals": goal_data}
+    dashboard_data = {"user": user, "routines": routine_data, "goals": goal_data}
 
     print("goals in /dashboard:")
     for goal in goal_data:
