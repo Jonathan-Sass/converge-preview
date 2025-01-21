@@ -10,7 +10,7 @@ class Practice:
     # TODO: Need to update routine/routine_template retrieving logic to account for changes to Practice class
     def __init__(self, data):
         self.id = data["practice_id"]
-        self.routine_id = data["routine_id"]
+        self.routine_id = data.get("routine_id", None)
         self.name = data["practice_name"]
         self.description = data["practice_description"]
         self.practice_category = data["practice_category"]
