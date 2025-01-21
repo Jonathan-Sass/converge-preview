@@ -16,7 +16,6 @@ class UserResponse:
         self.answer_text = data["survey_answer_text"]
         self.answer_value = data["survey_answer_value"]
 
-
     @staticmethod
     def process_user_responses(responses):
         # CURRENT LOGIC FOR TESTING ONLY - ALL SUBSEQUENT FUNCTIONS WILL UNDERGO SIGNIFICANT REWORK FOR A MORE MEANINGFUL FILTERING PROCESS
@@ -24,21 +23,24 @@ class UserResponse:
         if not responses:
             print("No responses to process")
             return None
-        
+
         for response in responses:
             pprint(response)
 
-        topic_slug = responses[0].topic_slug 
+        topic_slug = responses[0].topic_slug
 
         if topic_slug == "getting-to-know-you":
             return UserResponse.process_getting_to_know_you_responses(responses)
-        
+
     @staticmethod
     def process_getting_to_know_you_responses(responses):
         recommended_routine_template = "Balanced Start"
 
-        response_values = {response.question_slug: response.answer_value for response in responses}
+        response_values = {
+            response.question_slug: response.answer_value for response in responses
+        }
 
+        # TODO: Change to match-case syntax.
         if response_values.get("adhd-self-assessment") >= 2:
             if response_values.get("current-fitness-level") == 4:
                 recommended_routine_template = "Momentum Builder"
@@ -49,7 +51,7 @@ class UserResponse:
             else:
                 recommended_routine_template = "Energized Focus"
                 return recommended_routine_template
-        
+
         if response_values.get("current-fitness-level"):
             recommended_routine_template = "Peak Performance Start"
             return recommended_routine_template
@@ -58,7 +60,7 @@ class UserResponse:
         #     print(f"*****Index: {i}")
         #     print(vars(response))
         #     print("*****")
-        
+
         #     if response.question_slug == "current-fitness-level":
         #         if response.answer_value == 4:
         #             recommended_routine_template = "Peak Performance Start"
@@ -68,13 +70,12 @@ class UserResponse:
         #     if response.question_slug == "satisfaction-relationships":
         #         if response.answer_value < 2:
         #             recommended_routine_template = "Connected Start"
-        
-        return recommended_routine_template
 
+        return recommended_routine_template
 
     # def fetch_user_and_responses_by_survey_topic_slug(user, survey_topic_slug_string):
     #     query = """
-    #         SELECT 
+    #         SELECT
     #             user_responses.user_id,
     #             survey_topics.topic_slug AS survey_topic_slug,
     #             user_responses.survey_question_id,
@@ -111,6 +112,5 @@ class UserResponse:
     #             user["responses"].append(UserResponse(result))
     #     else:
     #         print("No responses found for user or survey_topic_id")
-        
-    #     return user
 
+    #     return user

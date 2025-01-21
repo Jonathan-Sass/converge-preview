@@ -262,15 +262,47 @@
             <div class="card shadow">
               <div class="card-body">
                 <h5 class="card-title text-success">Goals Overview</h5>
-                <ul class="list-group">
-                  {% for goal in goals %}
-                  <li class="list-group-item">
-                    <strong>{{ goal.name }}</strong>
-                    <p class="mb-1">{{ goal.description }}</p>
-                    <small class="text-muted">Target: {{ goal.target_date }}</small>
-                  </li>
-                  {% endfor %}
-                </ul>
+                <div class="tree-container">
+                  <ul class="tree-list">
+                    {% for goal in goals %}
+                    <li class="tree-item">
+                      <div class="goal-box">
+                        <strong>{{ goal.name }}</strong>
+                        <p>{{ goal.description }}</p>
+                        <small class="text-muted">Target: {{ goal.target_date }}</small>
+                      </div>
+                      <!-- Milestones for the goal -->
+                      {% if goal.milestones %}
+                      <ul class="tree-list">
+                        {% for milestone in goal.milestones %}
+                        <li class="tree-item">
+                          <div class="milestone-box">
+                            <strong>{{ milestone.name }}</strong>
+                            <p>{{ milestone.description }}</p>
+                            <small class="text-muted">Target: {{ milestone.target_date }}</small>
+                          </div>
+                          <!-- Action Items for the milestone -->
+                          {% if milestone.action_items %}
+                          <ul class="tree-list">
+                            {% for action_item in milestone.action_items %}
+                            <li class="tree-item">
+                              <div class="action-item-box">
+                                <strong>{{ action_item.name }}</strong>
+                                <p>{{ action_item.description }}</p>
+                                <small class="text-muted">Duration: {{ action_item.estimated_time }}</small>
+                              </div>
+                            </li>
+                            {% endfor %}
+                          </ul>
+                          {% endif %}
+                        </li>
+                        {% endfor %}
+                      </ul>
+                      {% endif %}
+                    </li>
+                    {% endfor %}
+                  </ul>
+                </div>
               </div>
             </div>
           </div>

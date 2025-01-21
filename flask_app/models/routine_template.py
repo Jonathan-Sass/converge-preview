@@ -23,11 +23,9 @@ class RoutineTemplate:
             user, survey_topic_slug_string
         )
         UserResponse.process_user_responses(user_with_responses)
+        return
 
     def fetch_routine_template_with_practices(routine_template_name):
-        print(
-            f"Routine Template Name in fetch_routine_template: {routine_template_name}"
-        )
 
         query = """
             SELECT
@@ -44,6 +42,8 @@ class RoutineTemplate:
                 practices.is_common AS practice_is_common,
                 practices.notes AS practice_notes,
                 practices.literature_summary,
+                practices.created_at,
+                practices.updated_at,
                 practice_categories.name AS practice_category,
                 impact_ratings.impact_rating_description,
                 impact_ratings.impact_rating_value,

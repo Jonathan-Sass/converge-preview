@@ -13,17 +13,18 @@ class Goal:
     db = connectToMySQL("converge_schema")
 
     def __init__(self, data):
-        self.id = (data["id"],)
-        self.category_id = (data["category_id"],)
-        self.subcategory_id = (data["subcategory_id"],)
-        self.name = (data["name"],)
-        self.description = (data["description"],)
-        self.goal_type = (data["goal_type"],)
-        self.projected_completion = (data["projected_completion"],)
-        self.is_complete = (data["is_complete"],)
-        self.priority = (data["priority"],)
-        self.created_at = (data["created_at"],)
-        self.updated_at = (data["updated_at"],)
+        self.id = data["id"]
+        self.user_id = data["user_id"]
+        self.category_id = data["category_id"]
+        self.subcategory_id = data["subcategory_id"]
+        self.name = data["name"]
+        self.description = data["description"]
+        self.goal_type = data["goal_type"]
+        self.projected_completion = data["projected_completion"]
+        self.is_complete = data["is_complete"]
+        self.priority = data["priority"]
+        self.created_at = data["created_at"]
+        self.updated_at = data["updated_at"]
         self.milestones: List[Milestone] = []
 
     # CRUD methods
@@ -38,13 +39,13 @@ class Goal:
               g.goal_type,
               g.projected_completion AS goal_projected_completion,
               g.is_complete AS goal_is_complete,
-              g.completed_at AS goal_completed_at,
               g.priority AS goal_priority,
               g.created_at AS goal_created_at,
               g.updated_at AS goal_updated_at,
               m.id AS milestone_id,
               m.goal_id AS milestone_goal_id,
               m.name AS milestone_name,
+              m.description AS milestone_description,
               m.projected_completion AS milestone_projected_completion,
               m.is_complete AS milestone_is_complete,
               m.completed_at AS milestone_completed_at,
@@ -54,6 +55,7 @@ class Goal:
               a.goal_id AS action_item_goal_id,
               a.milestone_id AS action_item_milestone_id,
               a.name AS action_item_name,
+              a.description AS action_item_description,
               a.action_item_order,
               a.estimated_time_value,
               a.estimated_time_unit,
@@ -74,77 +76,99 @@ class Goal:
         data = {"user_id": user_id}
         results = Goal.db.query_db(query, data)
 
-        goals = {}
+        goals = []
 
-        for row in results:
-            # Add goal if not already present
-            goal_id = row["goal_id"]
-            if goal_id not in goals:
-                goal_data = {
-                    "id": goal_id,
-                    "category_id": row["category_id"],
-                    "subcategory_id": row["subcategory_id"],
-                    "name": row["goal_name"],
-                    "description": row["goal_description"],
-                    "goal_type": row["goal_type"],
-                    "projected_completion": row["goal_projected_completion"],
-                    "is_complete": row["goal_is_complete"],
-                    "completed_at": row["goal_completed_at"],
-                    "priority": row["goal_priority"],
-                    "milestones": [],
-                    "created_at": row["goal_created_at"],
-                    "updated_at": row["goal_updated_at"],
-                }
+        if results:
+            for row in results:
+                # Add goal if not already present
+                goal = next((g for g in goals if g.id == row["goal_id"]), None)
+                if not goal:
 
-            goals[goal_id] = Goal(goal_data)
-            goal = goals[goal_id]
+                    # TODO: Create helper functions for mapping goals, milestones, action_items, ex: map_goal_data(row)
+                    goal_data = {
+                        "id": row["goal_id"],
+                        "user_id": user_id,
+                        "category_id": row["category_id"],
+                        "subcategory_id": row["subcategory_id"],
+                        "name": row["goal_name"],
+                        "description": row["goal_description"],
+                        "goal_type": row["goal_type"],
+                        "projected_completion": row["goal_projected_completion"],
+                        "is_complete": row["goal_is_complete"],
+                        "priority": row["goal_priority"],
+                        "milestones": [],
+                        "created_at": row["goal_created_at"],
+                        "updated_at": row["goal_updated_at"],
+                    }
 
-            # Add milestone if not already present
-            milestone_id = row["milestone_id"]
-            if milestone_id and not any(m.id == milestone_id for m in goal.milestones):
-                milestone_data = {
-                    "id": milestone_id,
-                    "goal_id": goal_id,
-                    "name": row["milestone_name"],
-                    "projected_completion": row["milestone_projected_completion"],
-                    "is_complete": row["milestone_is_complete"],
-                    "completed_at": row["milestone_completed_at"],
-                    "action_items": [],
-                    "created_at": row["milestone_created_at"],
-                    "updated_at": row["milestone_updated_at"],
-                }
-                milestone = Milestone(milestone_data)
-                goal.milestones.append(milestone)
-            else:
-                milestone = next(
-                    (m for m in goal.milestones if m.id == milestone_id), None
-                )
+                    goal = Goal(goal_data)
+                    goals.append(goal)
+                    # pprint(vars(goals[goal_id]))
 
-            # Add action item if not already present
-            action_item_id = row["action_item_id"]
-            if (
-                milestone
-                and action_item_id
-                and not any(ai.id == action_item_id for ai in milestone.action_items)
-            ):
-                action_item_data = {
-                    "id": action_item_id,
-                    "goal_id": row["action_item_goal_id"],
-                    "milestone_id": row["action_item_milestone_id"],
-                    "name": row["action_item_name"],
-                    "action_item_order": row["action_item_order"],
-                    "estimated_time_value": row["estimated_time_value"],
-                    "estimated_time_unit": row["estimated_time_unit"],
-                    "is_complete": row["action_item_is_complete"],
-                    "completed_at": row["action_item_completed_at"],
-                    "created_at": row["action_item_created_at"],
-                    "updated_at": row["action_item_updated_at"],
-                }
-                action_item = ActionItem(action_item_data)
-                milestone.action_items.append(action_item)
+                milestone = None
 
+                # Add milestone if not already present
+                milestone_id = row["milestone_id"]
+                if milestone_id and row["milestone_goal_id"] == goal.id:
+                    milestone = next(
+                        (m for m in goal.milestones if m.id == milestone_id), None
+                    )
+                    if not milestone:
+                        milestone_data = {
+                            "id": milestone_id,
+                            "goal_id": row["milestone_goal_id"],
+                            "name": row["milestone_name"],
+                            "description": row["milestone_description"],
+                            "projected_completion": row[
+                                "milestone_projected_completion"
+                            ],
+                            "is_complete": row["milestone_is_complete"],
+                            "completed_at": row["milestone_completed_at"],
+                            "action_items": [],
+                            "created_at": row["milestone_created_at"],
+                            "updated_at": row["milestone_updated_at"],
+                        }
+                        milestone = Milestone(milestone_data)
+                        goal.milestones.append(milestone)
+
+                # Add action item if not already present
+                action_item_id = row["action_item_id"]
+
+                if (
+                    milestone
+                    and action_item_id
+                    and row["action_item_milestone_id"] == milestone.id
+                ):
+                    action_item = next(
+                        (
+                            ai
+                            for ai in milestone.action_items
+                            if ai.id == action_item_id
+                        ),
+                        None,
+                    )
+                    if not action_item:
+                        action_item_data = {
+                            "id": action_item_id,
+                            "goal_id": row["action_item_goal_id"],
+                            "milestone_id": row["action_item_milestone_id"],
+                            "name": row["action_item_name"],
+                            "description": row["action_item_description"],
+                            "action_item_order": row["action_item_order"],
+                            "estimated_time_value": row["estimated_time_value"],
+                            "estimated_time_unit": row["estimated_time_unit"],
+                            "is_complete": row["action_item_is_complete"],
+                            "completed_at": row["action_item_completed_at"],
+                            "created_at": row["action_item_created_at"],
+                            "updated_at": row["action_item_updated_at"],
+                        }
+                        action_item = ActionItem(action_item_data)
+                        milestone.action_items.append(action_item)
+        print("goals in find_goals_with_m_a_i:")
+        for goal in goals:
+            pprint(vars(goal))
         # Convert dictionary to list
-        return list(goals.values())
+        return goals
 
     @staticmethod
     def process_and_save_subcategory_goals_data(subcategory_goal_data):

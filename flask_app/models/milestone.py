@@ -14,7 +14,7 @@ class Milestone:
         self.description = data["description"]
         self.projected_completion = data["projected_completion"]
         self.is_complete = data["is_complete"]
-        self.completed_at = data["completed_at"]
+        self.completed_at = data.get("completed_at", None)
         self.created_at = data["created_at"]
         self.updated_at = data["updated_at"]
         self.action_items: List[ActionItem] = []
