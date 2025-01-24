@@ -104,6 +104,15 @@ function addGoal() {
       <div class="invalid-feedback">Please assign a priority.</div>
     </div>
 
+    <!-- Display as an active goal -->
+    <div class="form-check form-switch mb-3">
+      <input class="form-check-input toggle-panels goal-is-active-checkbox" type="checkbox"
+        id="{{ subcategory.subcategory_slug }}-goal-${goalCount}-is-active">
+      <label class="form-check-label" for="{{ subcategory.subcategory_slug }}-goal-${goalCount}-is-active">
+        Display goal and associated milestones/action items on dashboard?
+      </label>
+    </div>
+
     <!-- Estimated Goal Completion Input -->
     <div class="mb-3 text-center">
       <p>Projected Completion</p>

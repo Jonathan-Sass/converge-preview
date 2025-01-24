@@ -62,6 +62,7 @@ function processGoalData(subcategoryCard) {
         description: "", 
         goalType: "",
         priority: null,
+        isActive: false,
         projectedCompletion: null,
         isComplete: false,
         milestones: []
@@ -73,6 +74,7 @@ function processGoalData(subcategoryCard) {
       goalData.description = goalDescriptionElement ? goalDescriptionElement.value.trim() : "";
       goalData.goalType = goalCard.querySelector(`#${subcategorySlug}-goal-${goalId}-type`).value;
       goalData.priority = goalCard.querySelector(`#${subcategorySlug}-goal-${goalId}-priority`).value;
+      goalData.isActive = goalCard.querySelector(`#${subcategorySlug}-goal-${goalId}-is-active`).checked;
       goalData.projectedCompletion = goalCard.querySelector(`#${subcategorySlug}-goal-${goalId}-date`).value;
 
       // Select all milestones
