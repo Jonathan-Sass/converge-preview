@@ -7,7 +7,7 @@ from flask_app.models.routine import Routine
 from flask_app.models.goal import Goal
 
 
-@app.get("/dashboard")
+@app.get("/home")
 def dashboard():
     user = User.get_logged_in_user()
     if not user:
@@ -17,14 +17,9 @@ def dashboard():
     routine_data = Routine.find_routines_by_user_id(user_id)
     goal_data = Goal.find_goals_with_milestones_and_action_items_by_user_id(user_id)
 
-    dashboard_data = {"user": user, "routines": routine_data, "goals": goal_data}
+    if not routine_data:
+        return render_template("/home/intro.html", user=user)
+    else:
+        dashboard_data = {"user": user, "routines": routine_data, "goals": goal_data}
 
-    print("goals in /dashboard:")
-    for goal in goal_data:
-        pprint(type(goal))
-
-    print("routine in /dashboard")
-    for routine in routine_data:
-        pprint(type(routine))
-
-    return render_template("/home/dashboard.html", **dashboard_data)
+        return render_template("/home/dashboard.html", **dashboard_data)

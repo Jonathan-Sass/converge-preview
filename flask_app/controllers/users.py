@@ -35,17 +35,17 @@ def seed_route():
     return render_template("dashboard/new_user.html")
 
 
-@app.get("/home")
-def home_page():
-    """This route renders a table with daily practices"""
+# @app.get("/home")
+# def home_page():
+#     """This route renders a table with daily practices"""
 
-    if "user_id" not in session:
-        flash("Please log in.", "login")
-        return redirect("/")
+#     if "user_id" not in session:
+#         flash("Please log in.", "login")
+#         return redirect("/")
 
-    user = User.get_logged_in_user()
+#     user = User.get_logged_in_user()
 
-    return render_template("home/home.html", user=user)
+#     return render_template("home/home.html", user=user)
 
 
 @app.get("/login")
