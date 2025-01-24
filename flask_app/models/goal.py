@@ -40,6 +40,7 @@ class Goal:
               g.projected_completion AS goal_projected_completion,
               g.is_complete AS goal_is_complete,
               g.priority AS goal_priority,
+              g.is_active,
               g.created_at AS goal_created_at,
               g.updated_at AS goal_updated_at,
               m.id AS milestone_id,
@@ -96,6 +97,7 @@ class Goal:
                         "projected_completion": row["goal_projected_completion"],
                         "is_complete": row["goal_is_complete"],
                         "priority": row["goal_priority"],
+                        "is_active": row["is_active"],
                         "milestones": [],
                         "created_at": row["goal_created_at"],
                         "updated_at": row["goal_updated_at"],
@@ -204,6 +206,7 @@ class Goal:
                         "projected_completion": goal.get("projectedCompletion"),
                         "is_complete": goal.get("isComplete", False),
                         "priority": goal.get("priority"),
+                        "is_active": goal.get("is_active"),
                     }
                     goal_id = Goal.save_subcategory_goals(goal_data)
 
@@ -272,9 +275,9 @@ class Goal:
     def save_subcategory_goals(data):
         query = """
       INSERT INTO
-        goals (user_id, category_id, subcategory_id, name, description, goal_type, projected_completion, is_complete, priority, created_at, updated_at)
+        goals (user_id, category_id, subcategory_id, name, description, goal_type, projected_completion, is_complete, priority, is_active, created_at, updated_at)
       VALUES 
-        (%(user_id)s, %(category_id)s, %(subcategory_id)s, %(name)s, %(description)s, %(goal_type)s, %(projected_completion)s, %(is_complete)s, %(priority)s, NOW(), NOW())
+        (%(user_id)s, %(category_id)s, %(subcategory_id)s, %(name)s, %(description)s, %(goal_type)s, %(projected_completion)s, %(is_complete)s, %(priority)s, %(is_active)s, NOW(), NOW())
       ON DUPLICATE KEY UPDATE
         updated_at = NOW();
     """
