@@ -38,6 +38,7 @@ def goal_category_seed():
     query = """
     INSERT INTO categories (category_slug, name, created_at, updated_at)
     VALUES
+      ('onboarding', 'Onboarding', NOW(), NOW()),
       ('foundations', 'Foundations', NOW(), NOW()),
       ('your-why', 'Defining Your Why', NOW(), NOW()),
       ('health-wellness', 'Health and Wellness', NOW(), NOW()),
@@ -106,6 +107,7 @@ def survey_category_seed():
     query = """
         INSERT INTO survey_categories (category_slug, name, created_at, updated_at)
         VALUES
+            ('onboarding', 'Onboarding', NOW(), NOW()),
             ('foundations', 'Foundations', NOW(), NOW()),
             ('your-why', 'Defining Your Why', NOW(), NOW()),
             ('health-wellness', 'Health and Wellness', NOW(), NOW()),
