@@ -17,54 +17,58 @@
       alt="Converge Logo">
     <h1 class="display-5 mb-3 text-primary">Converge</h1>
     <h4 class="lead mx-5">Converge with your potential. Converge with your dreams.</h4>
-    <div class="text-end">
-      <form action="/users/logout" method="post">
-        <button class="btn btn-link" type="submit" name="logout">logout</button>
-      </form>
-    </div>
   </header>
-  <div class="container my-3 d-flex gap-2">
-    <div id="infoCarousel" class="carousel slide" data-bs-ride="carousel">
+  <div class="container my-3 w-75">
+    <div id="infoCarousel" class="carousel slide opacity-75" data-bs-ride="false">
       <div class="carousel-inner">
-        <div class="carousel-item active" data-bs-interval="5000">
-          <div class="card p-4">
-            <h2 class="card-title">Welcome to Converge</h2>
-            <p class="card-text">This is your first step to achieving your goals.</p>
-            <button class="btn btn-primary" data-bs-target="#infoCarousel" data-bs-slide="next">OK</button>
+        <div class="carousel-item active" data-bs-interval="0">
+          <div class="card p-4 text-center align-items-center">
+            <h2 class="card-title text-primary">Welcome to Converge!</h2>
+            <p class="card-text">Our mission is to provide structure and motivation to help you achieve your goals.</p>
+            <div class="text-start">
+              <ol class="list-group list-group-numbered mb-3">
+                <li class="lead list-group-item">Personalized Routines: We'll suggest science-backed routines and
+                  practices to help you feel and function your best.</li>
+                <li class="lead list-group-item">Achievable Steps: Break down your goals into manageable pieces and
+                  visualize your progress.</li>
+                <li class="lead list-group-item">Motivation & Progress: Track your journey, stay inspired, and turn your
+                  dreams into reality.</li>
+              </ol>
+            </div>
+            <button class="btn btn-primary w-25" data-bs-target="#infoCarousel" data-bs-slide="next">OK</button>
           </div>
         </div>
-        <div class="carousel-item" data-bs-interval="5000">
-          <div class="card p-4">
-            <h2 class="card-title">Why Use Converge?</h2>
-            <p class="card-text">We provide actionable steps to achieve your dreams.</p>
-            <button class="btn btn-primary" data-bs-target="#infoCarousel" data-bs-slide="next">OK</button>
+        <div class="carousel-item text-center" data-bs-interval="0">
+          <div class="card p-4 text-center align-items-center">
+            <div class="card-body">
+              <h2 class="card-title text-primary mb-3">A note from our developers...</h2>
+              <div class="card-text">
+                <p>Converge is in its infancy.</p>
+                <hr class="border border-light border-1 w-75 m-auto mb-3">
+                <p>We are working toward providing a feature-rich, engaging experience. Please be
+                  patient
+                  as we are developing our vision.</p>
+                <p>We welcome any feedback, whether it be a desired functionality, or unexpected
+                  behavior
+                  and bugs.</p>
+                <hr class="border border-light border-1 w-75 m-auto mb-3">
+                <p>If you are reporting a bug, please share a screenshot of the error, and if possible,
+                  a
+                  description of what you were doing when the error occured.</p>
+                <p>Please send feedback to: <a href="mailto:info@convergeapp.com">info@convergeapp.com</a>
+                </p>
+              </div>
+            </div>
+            <button class="btn btn-primary w-25" data-bs-target="#infoCarousel" data-bs-slide="next">OK</button>
           </div>
         </div>
-        <div class="carousel-item" data-bs-interval="5000">
-          <div class="card p-4">
-            <h2 class="card-title">Get Started</h2>
+        <div class="carousel-item" data-bs-interval="0">
+          <div class="card p-4 text-center align-items-center">
+            <h2 class="card-title text-primary">Get Started</h2>
             <p class="card-text">Click below to begin your journey!</p>
-            <a href="/next-page" class="btn btn-success">Continue</a>
+            <a href="/goals/intro" class="btn btn-success w-25">Continue</a>
           </div>
         </div>
-      </div>
-    </div>
-
-
-    <div class="card shadow w-100 p-3 opacity-75 flex-4 text-center">
-      <div class="card-body">
-        <h3 class="display-6 text-primary text-center">A note from our developers:</h3>
-        <p class="lead">Converge is in its infancy. </p>
-        <p class="lead">We are working toward providing a feature-rich, engaging experience. Please be patient as we are
-          developing our vision. </p>
-        <p class="lead">We welcome any feedback whether it be desired functionality, or a bug you encounter.</p>
-        <p class="lead">Please send feedback to: info@convergeapp.com</p>
-        <p class="lead">If you are reporting a bug, please share a screenshot, and if possible, a detailed description
-          of what you were doing when it happened.</p>
-
-        <a href="/home">
-          <button class="btn btn-primary w-25">Continue</button>
-        </a>
       </div>
     </div>
   </div>
