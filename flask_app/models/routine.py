@@ -218,6 +218,8 @@ class Routine:
                 updated_at = NOW();
         """
 
+        success_count = 0
+
         for practice in routine_data["practices"]:
             routine_practice_data = {
                 "routine_id": routine_id,
@@ -231,13 +233,16 @@ class Routine:
                 print(
                     f"Insert successful for routine: {routine_data["name"]}, practice id: {practice["practiceId"]}"
                 )
-                return result
+                success_count += 1
             else:
                 raise RuntimeError(
                     f"Error inserting data for routine: {routine_data["name"]}, practice id: {practice["practice_id"]}"
                 )
 
+        print(
+            f"Successfully inserted {success_count} practices for routine: {routine_data['name']}"
+        )
+
     # def update_routine():
 
     # def delete_routine():
-    # return

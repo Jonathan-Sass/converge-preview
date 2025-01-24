@@ -54,6 +54,7 @@ def save_am_routine():
         return redirect("/")
 
     am_routine_data = request.json
+
     Routine.create_routine(am_routine_data)
 
     return jsonify({"success": True, "redirect": "/goals/intro"})

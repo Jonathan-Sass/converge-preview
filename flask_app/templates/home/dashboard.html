@@ -16,7 +16,7 @@
     <nav
       class="navbar navbar-expand-lg navbar-dark bg-dark w-100 m-auto d-flex justify-content-between position-sticky top-0 z-3 p-3">
       <div class="container-fluid">
-        <a class="navbar-brand d-inline-flex align-items-center gap-4" href="/home">
+        <a class="navbar-brand d-inline-flex align-items-center gap-4" href="/dashboard">
           <img src="/static/img/Enso_Blue_and_Black.jpg" class="rounded-circle" width="60" height="60"
             alt="Converge Logo">
           <h1 class="display-5 text-primary">Converge</h1>
@@ -92,9 +92,9 @@
         <!-- Tabs for Goals and Routines -->
         <ul class="nav nav-tabs mb-4" id="dashboard-tabs" role="tablist">
           <li class="nav-item">
-            <button class="nav-link active" id="routines-tab" data-bs-toggle="tab" data-bs-target="#routines"
+            <button class="nav-link active" id="your-day-tab" data-bs-toggle="tab" data-bs-target="#your-day"
               type="button" role="tab">
-              Routines
+              Your Day
             </button>
           </li>
           <li class="nav-item">
@@ -111,14 +111,15 @@
           </li>
         </ul>
         <div class="tab-content">
-          <!-- Routines Tab -->
-          <div class="tab-pane fade show active" id="routines" role="tabpanel">
+
+          <!-- ROUTINES TAB -->
+          <div class="tab-pane fade show active" id="your-day" role="tabpanel">
             <div class="row gy-4">
               <!-- AM Routine -->
               <div class="col-lg-6">
                 <div class="card shadow">
                   <div class="card-body">
-                    <h5 class="card-title text-primary">AM Routine</h5>
+                    <h5 class="card-title text-primary">Morning Routine</h5>
                     <ul class="list-group">
                       {% for routine in routines %}
                       {% if routine.routine_type == "AM" %}
@@ -171,7 +172,7 @@
               <div class="col-lg-6">
                 <div class="card shadow">
                   <div class="card-body">
-                    <h5 class="card-title text-primary">PM Routine</h5>
+                    <h5 class="card-title text-primary">Evening Routine</h5>
                     <ul class="list-group">
                       {% for routine in routines %}
                       {% if routine.routine_type == "PM" %}
@@ -191,21 +192,52 @@
               </div>
 
               <!-- Action Items -->
-              <!-- <div class="col-lg-6">
-                                <div class="card shadow">
-                                    <div class="card-body">
-                                        <h5 class="card-title text-danger">Action Items</h5>
-                                        <ul class="list-group">
-                                            {% for item in action_items %}
-                                            <li class="list-group-item d-flex justify-content-between align-items-center">
-                                                <span>{{ item.name }}</span>
-                                                <button class="btn btn-sm btn-outline-success" onclick="markAccomplished('{{ item.id }}')">Mark Done</button>
-                                            </li>
-                                            {% endfor %}
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div> -->
+              <div class="col-lg-6">
+                <div class="card shadow">
+                  <div class="card-body">
+                    <h5 class="card-title text-danger">Action Items</h5>
+                    <ul class="list-group">
+                      {% for goal in goals %}
+                      {% if goal.is_active %}
+                      <!-- Goal Title -->
+                      <li class="list-group-item active" aria-current="true">
+                        <strong>{{ goal.name }}</strong>
+                      </li>
+                      <!-- TODO: MILESTONE FILTER NEEDED ... for goal.milestones, if milestone.is_completed == false -->
+                      {% for milestone in goal.milestones %}
+                      {% if milestone.is_completed == false %}
+                      <!-- Display Milestones/Action Items -->
+                      {% if goal.milestone.action_items %}
+                      {% for action_item in goal.milestone.action_items %}
+                      <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <span>
+                          {{ action_item.name }}
+                          <small class="text-muted">({{ action_item.milestone_name }})</small>
+                        </span>
+                        <button class="btn btn-sm btn-outline-success"
+                          onclick="markAccomplished('{{ action_item.id }}')">
+                          Mark Done
+                        </button>
+                      </li>
+                      {% endfor %}
+                      {% else %}
+                      <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <span>
+                          {{ milestone.name }}
+                        </span>
+                        <button class="btn btn-sm btn-outline-success" onclick="markAccomplished('{{ milestone.id }}')">
+                          Mark Done
+                        </button>
+                      </li>
+                      {% endif %}
+                      {% endif %}
+                      {% endfor %}
+                      {% endif %}
+                      {% endfor %}
+                    </ul>
+                  </div>
+                </div>
+              </div>
               <!-- Render Test -->
               <div class="col-lg-6">
                 <div class="card shadow">
@@ -236,7 +268,7 @@
             </div>
           </div>
 
-          <!-- Goals Tab -->
+          <!-- GOALS TAB -->
           <div class="tab-pane fade" id="goals" role="tabpanel">
             <div class="card shadow">
               <div class="card-body">
@@ -286,7 +318,7 @@
             </div>
           </div>
 
-          <!-- Trends Tab -->
+          <!-- TRENDS TAB -->
           <div class="tab-pane fade" id="trends" role="tabpanel">
             <div class="card shadow">
               <div class="card-body">
