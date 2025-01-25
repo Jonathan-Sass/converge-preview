@@ -42,16 +42,45 @@ survey_question_data = [
         "topic_slug": "getting-started",
         "questions": [
             {
-                "question_slug": "am-self-care-time-current",
-                "question_text": "Do you currently have a morning routine for personal time or self-care? If so, how much time do you set aside for it?",
-                "type": "guided-choice",
+                "question_slug": "big-picture-goals",
+                "question_text": "Why are your big picture goals with Converge? Select any that apply.",
+                "type": "select-any",
                 "answers": [
-                    {"answer_text": "No, none", "answer_value": 0},
-                    {"answer_text": "Less than 10 minutes", "answer_value": 1},
-                    {"answer_text": "10-20 minutes", "answer_value": 2},
-                    {"answer_text": "20-40 minutes", "answer_value": 3},
-                    {"answer_text": "40-60 minutes", "answer_value": 4},
-                    {"answer_text": "More than an hour", "answer_value": 5},
+                    {"answer_text": "Increase longevity", "answer_value": 0},
+                    {"answer_text": "Increase quality of life", "answer_value": 1},
+                    {"answer_text": "Improve mental health", "answer_value": 2},
+                    {"answer_text": "Improve physical health", "answer_value": 3},
+                    {"answer_text": "Improve social connections", "answer_value": 4},
+                    {"answer_text": "Increase life balance", "answer_value": 5},
+                    {"answer_text": "Improve time management", "answer_value": 6},
+                    {
+                        "answer_text": "Reduce screentime/doom scrolling",
+                        "answer_value": 7,
+                    },
+                ],
+            },
+            {
+                "question_slug": "existing-routines-check",
+                "question_text": "Do you have established morning or daily routines/practices?",
+                "type": "select-any",
+                "answers": [
+                    {"answer_text": "Answer here", "answer_value": 0},
+                ],
+            },
+            {
+                "question_slug": "assistance-building-routines-check",
+                "question_text": "Would you like assistance building productive routines/practices in your day? These can be as simple as a few 1 minute morning tasks to help you wake up and feel better in your day.",
+                "type": "select-any",
+                "answers": [
+                    {"answer_text": "Answer here", "answer_value": 0},
+                ],
+            },
+            {
+                "question_slug": "routine-types-interest-check",
+                "question_text": "What types of routines/practices would you like to build and track?",
+                "type": "select-any",
+                "answers": [
+                    {"answer_text": "Answer here", "answer_value": 0},
                 ],
             },
         ],
