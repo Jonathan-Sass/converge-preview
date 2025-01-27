@@ -1,5 +1,5 @@
 from flask_app.config.mysqlconnection import connectToMySQL
-from database.seed.routine_template_data import routine_template_data
+from database.seed_data.routine_template_data import routine_template_data
 
 db = connectToMySQL("converge_schema")
 

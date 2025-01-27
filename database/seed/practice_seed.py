@@ -2,7 +2,7 @@ from flask_app.config.mysqlconnection import connectToMySQL
 # import asyncio, aiomysql, logging
 # from flask_app.models.user import User
 # from flask_app.models.userSurvey import UserSurvey
-from database.seed.practice_data import practice_data
+from database.seed_data.practice_data import practice_data
 import pymysql
 from pprint import pprint
 
