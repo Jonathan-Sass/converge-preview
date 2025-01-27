@@ -34,6 +34,12 @@ def seed_route():
 
     return render_template("dashboard/new_user.html")
 
+@app.get("/testseed")
+def test_seed_route():
+    survey_seed.test_seed()
+
+    return render_template("/dashboard/new_user.html")
+
 
 # @app.get("/home")
 # def home_page():
