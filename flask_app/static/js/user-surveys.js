@@ -17,12 +17,13 @@ document.addEventListener('DOMContentLoaded', () => {
     let selectedAnswers = [];
     let collectedAnswers = [];
     let currentQuestion = [];
+    let surveyBranches = [];
 
 // EVENT LISTENERS FOR SURVEYS
 
 startButton.addEventListener('click', async (event) => {
     event.preventDefault();
-    startGame();
+    startSurvey();
 });
 
 nextButton.addEventListener('click', (event) => {
@@ -84,8 +85,6 @@ nextButton.addEventListener('click', (event) => {
 
 
 finishButton.addEventListener('click', async (event) => {
-    // event.preventDefault();
-
     const surveyCategory = getSurveyCategory();
 
     try {
@@ -115,7 +114,7 @@ finishButton.addEventListener('click', async (event) => {
 
 // SURVEY MECHANICS
 
-async function startGame() {
+async function startSurvey() {
     resetState()
     startButton.classList.add('d-none');
     if (surveyIntro) {
@@ -153,9 +152,14 @@ async function fetchSurveyQuestions() {
             throw new Error(`An error occurred: ${response.statusText}`);
         }
         
+        const jsonResponse = await response.json();
+        console.log("Response JSON:", jsonResponse);
         // Parsing the response as JSON
-        currentQuestionSet = await response.json();
+        ({currentQuestionSet, surveyBranches } = jsonResponse);
         
+        // Opting for simultaneous branch data pull
+        // fetchSurveyBranching(currentQuestionSet)
+
         // console.log('*****Current Question Set in fetchSurveyQuestions*****')
         // console.log(currentQuestionSet)
 
@@ -166,6 +170,7 @@ async function fetchSurveyQuestions() {
         console.error('Error fetching survey questions:', error);
     }
 }
+
 
 // Function to render survey questions on the page
 function renderSurveyQuestion(currentQuestionSet) {
@@ -434,7 +439,6 @@ function selectAnswer(e) {
 }
 
 function resetState() {
-    
     // Remove Next button and Next Section button from page
     nextButton.classList.add('d-none')
     
@@ -465,6 +469,32 @@ function scrollToElement(element, offset = 250) {
     }
 }
 
+function getSurveyCategory() {
+  let surveyCategoryElement = startButton.closest('[data-category]');
+  
+  if (surveyCategoryElement) {
+    let surveyCategory = surveyCategoryElement.dataset.category;
+    return surveyCategory;
+  } else {
+    return null;
+  }
+}
+
+function getSurveyTopic() {
+  // Get the parent element of the button
+  let surveyTopic = startButton.getAttribute('data-topic-id');
+  
+  if (surveyTopic) {
+    return surveyTopic;
+  } else {
+    console.log('No survey_topic found in HTML');
+    return null;
+  }
+}
+
+// CLOSING DOMContentLoaded Wrapper
+});
+
 
 // DECPRECATED FOR MORE DYNAMIC LOGIC IN selectAnswer()
 // function highlightSelectedButton(selectedButton) {
@@ -482,29 +512,3 @@ function scrollToElement(element, offset = 250) {
 //     lastSelectedButton = selectedButton;
 //     return
 // }
-
-function getSurveyCategory() {
-    let surveyCategoryElement = startButton.closest('[data-category]');
-    
-    if (surveyCategoryElement) {
-        let surveyCategory = surveyCategoryElement.dataset.category;
-        return surveyCategory;
-    } else {
-        return null;
-    }
-}
-
-function getSurveyTopic() {
-    // Get the parent element of the button
-    let surveyTopic = startButton.getAttribute('data-topic-id');
-
-    if (surveyTopic) {
-        return surveyTopic;
-    } else {
-        console.log('No survey_topic found in HTML');
-        return null;
-    }
-}
-
-// CLOSING DOMContentLoaded Wrapper
-});

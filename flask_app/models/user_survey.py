@@ -23,33 +23,38 @@ class UserSurvey:
     def find_questions_by_survey_category_and_topic(cls, user_category_topic_data):
         query = """
             SELECT 
-                
                 survey_categories.name AS survey_category,
                 survey_topics.name AS survey_topic,
                 survey_questions.id AS question_id,
+                survey_questions.question_slug,
                 survey_questions.question_text,
                 survey_questions.type,
                 survey_answers.id AS answer_id,
                 survey_answers.answer_text, 
-                survey_answers.answer_value
-
+                survey_answers.answer_value,
+                survey_branching.next_question_id,
+                sq_next.question_slug AS next_question_slug
             FROM 
                 survey_questions
-			JOIN
-				survey_topics ON survey_questions.survey_topic_id  = survey_topics.id
-			JOIN
-				survey_categories ON survey_topics.survey_category_id = survey_categories.id
-			LEFT JOIN
+            JOIN
+              survey_topics ON survey_questions.survey_topic_id  = survey_topics.id
+            JOIN
+              survey_categories ON survey_topics.survey_category_id = survey_categories.id
+            LEFT JOIN
                 survey_question_answer_map ON survey_question_answer_map.survey_question_id = survey_questions.id
             LEFT JOIN
-				survey_answers ON survey_answers.id = survey_question_answer_map.survey_answer_id
+                survey_answers ON survey_answers.id = survey_question_answer_map.survey_answer_id
+            LEFT JOIN 
+                survey_branching ON survey_questions.id = survey_branching.survey_question_id
+            LEFT JOIN
+                survey_questions sq_next ON survey_branching.next_question_id = sq_next.id
             WHERE 
                 survey_categories.category_slug = %(survey_category)s
             AND
                 survey_topics.topic_slug = %(survey_topic)s
             ORDER BY
                 survey_questions.id, survey_answers.id;
-        """
+          """
         
         data = {
             'survey_category': user_category_topic_data['survey_category'], 
@@ -58,13 +63,40 @@ class UserSurvey:
 
 
         result = UserSurvey.db.query_db(query, data)
+        
         question_set = UserSurvey.process_question_data(result)
+        survey_branches = UserSurvey.process_survey_branch_data(result)
 
         # print("*****question_set in find questions by survey category and topic*****")
         # pprint(question_set)
 
-        return question_set
+        return question_set, survey_branches
+
     
+    def process_survey_branch_data(questions):
+
+        survey_branches = []
+
+        for question in questions:
+            if question["next_question_id"]:
+                survey_question_slug = question["question_slug"]
+                answer_text = question["answer_text"]
+                next_question_slug = question["next_question_slug"]
+                
+                branch_data = {
+                    "survey_question_slug": survey_question_slug,
+                    "answer_text": answer_text,
+                    "next_question_slug": next_question_slug
+                }
+
+                survey_branches.append(branch_data)
+
+        # print("survey_branches in process_survey_branch_data")
+        # pprint(survey_branches)
+
+        return survey_branches
+    
+
     @staticmethod
     def process_question_data(question_data):
         question_set = {}

@@ -30,15 +30,20 @@ def retrieve_survey_questions():
     # print(user_category_topic_data['survey_category'])
     # print(user_category_topic_data['survey_topic'])
 
-    questions = UserSurvey.find_questions_by_survey_category_and_topic(
+    question_set, survey_branches = UserSurvey.find_questions_by_survey_category_and_topic(
         user_category_topic_data
     )
+
+    # branches = UserSurvey.process_survey_branch_data(questions)
 
     # print("*****questions from DB (controller)*****")
     # pprint(questions)
 
     # Return the questions as JSON
-    return jsonify(questions)
+    return jsonify({
+        "currentQuestionSet": question_set, 
+        "surveyBranches": survey_branches
+        })
 
 
 # DYNAMIC ROUTE TO SAVE ANSWERS IN USER RESPONSES

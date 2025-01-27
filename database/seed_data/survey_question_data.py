@@ -39,6 +39,9 @@ question types, and guidelines for reusable answer sets.
 # ADD QUESTIONS ABOUT SCREEN TIME AND DOPAMINE RELATED DESIRES/DRIVERS/RESPONSES
 survey_question_data = [
     {
+      # TODO: Contemplation on the getting-started question set: This may provide too much flexibility for the user
+      # effectively allowing them to opt out of much of the functionality of the app.  Refine to allow personalization
+      # without negating too many of the app functions for tracking and forward movement.
         "topic_slug": "getting-started",
         "questions": [
             {
