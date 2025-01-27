@@ -134,7 +134,7 @@ def new_user():
     return render_template("dashboard/new_user.html")
 
 
-@app.get("/onboarding")
+@app.get("/getting-started")
 def new_user_onboarding():
     user = User.get_logged_in_user()
     if not user:
