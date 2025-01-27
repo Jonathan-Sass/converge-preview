@@ -4,28 +4,28 @@ survey_branching_data = [
   
   # Survey_topic: Getting started
   {
-    "survey_question_slug": "existing_routines_check",
-    "answer_text": "no",
+    "survey_question_slug": "existing-routines-check",
+    "answer_text": "No",
     "next_question_slug": "assistance-building-routines-check"
   },
   {
     "survey_question_slug": "existing-routines-comparison-check",
-    "answer_text": "yes",
+    "answer_text": "Yes",
     "next_question_slug": "routine-types-interest-check"
   },
   {
     "survey_question_slug": "existing-routines-comparison-check",
-    "answer_text": "no",
+    "answer_text": "No",
     "next_question_slug": "build-your-own-routine-check"
   },
   {
     "survey_question_slug": "assistance-building-routines-check",
-    "answer_text": "yes",
+    "answer_text": "Yes",
     "next_question_slug": "routine-types-interest-check"
   },
   {
     "survey_question_slug": "assistance-building-routines-check",
-    "answer_text": "no",
+    "answer_text": "No",
     "next_question_slug": "build-your-own-routine-check"
   },
 
