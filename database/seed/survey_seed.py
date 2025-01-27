@@ -8,9 +8,10 @@ from flask_app.models.user import User
 from flask_app.models.user_survey import UserSurvey
 
 # import pymysql
-from database.seed.survey_topic_data import survey_topic_data
-from database.seed.survey_question_data import survey_question_data
-from database.seed.generic_survey_answer_data import generic_survey_answer_data
+from database.seed_data.survey_topic_data import survey_topic_data
+from database.seed_data.survey_question_data import survey_question_data
+from database.seed_data.generic_survey_answer_data import generic_survey_answer_data
+from database.seed_data.survey_branching_data import survey_branching_data
 
 # LOOKS FOR AND SEEDS SURVEY DATA IN DB
 def user_survey_seed():
@@ -26,9 +27,15 @@ def user_survey_seed():
     prepared_question_data = prepare_survey_question_data()
     survey_question_seed(prepared_question_data)
     # Seed generic answers first, custom answers second
-    survey_generic_answer_seed()
+    generic_survey_answer_seed()
     process_survey_question_and_map_data(prepared_question_data)
     # survey_answer_seed and survey_example_seed in prepare_survey_question_data
+    survey_branching_seed(survey_branching_data)
+
+    return
+
+def test_seed():
+    survey_branching_seed(survey_branching_data)
 
     return
 
@@ -304,10 +311,10 @@ def process_survey_question_and_map_data(batched_data):
 
     # Seed custom answers
     seed_custom_question_answer_map(custom_survey_question_answer_map_data)
-
     # Seed generic answers
     seed_generic_question_answer_map(generic_survey_question_answer_map_data)
-
+    
+    return
 
 def _get_survey_question_id(survey_topic_id, question_slug):
     query = """
@@ -322,6 +329,21 @@ def _get_survey_question_id(survey_topic_id, question_slug):
     except Exception as e:
         print(f"Error retrieving survey question ID for topic {survey_topic_id}: {e}")
         return None
+    
+def _get_survey_question_id_by_question_slug(question_slug):
+    query = """
+        SELECT id FROM survey_questions
+        WHERE question_slug = %(question_slug)s;
+    """
+    try:
+        result = UserSurvey.db.query_db(
+            query, {"question_slug": question_slug}
+        )
+        return result[0]["id"] if result else None
+    except Exception as e:
+        print(f"Error retrieving survey question ID for question_slug {question_slug}: {e}")
+        return None
+
 
 
 def prepare_answer_data(answers, survey_question_id, custom_answer_map_data):
@@ -393,6 +415,7 @@ def _categorize_generic_question(question, survey_question_id, generic_answer_ma
                         "survey_answer_id": survey_answer_id,  # To be filled in later if applicable
                     }
                 )
+    return
 
 
 def seed_custom_question_answer_map(custom_answer_map_data):
@@ -427,7 +450,196 @@ def seed_generic_question_answer_map(generic_answer_map_data):
         print(f"Error inserting generic mappings: {e}")
 
 
-#
+def generic_survey_answer_seed():
+    # Answers data with dynamic mappings for questions
+    batched_queries = {}
+    question_answer_map = []
+
+    # Prepare data for batch insertion
+    for answer_set in generic_survey_answer_data:
+        answer_type = answer_set["answer_type"]
+        for answer in answer_set["answers"]:
+            # Create answer data structure
+            answer_data = {
+                "answer_type": answer_type,
+                "answer_text": answer["answer_text"],
+                "answer_value": answer["answer_value"],
+            }
+
+            # Batch answers by slug
+            if answer_type not in batched_queries:
+                batched_queries[answer_type] = []
+
+            batched_queries[answer_type].append(answer_data)
+
+    # Build and execute the batch insert queries for survey_answers
+    for answer_type, answers in batched_queries.items():
+        query = """
+            INSERT INTO survey_answers (answer_type, answer_text, answer_value, created_at, updated_at)
+            VALUES %s
+            ON DUPLICATE KEY UPDATE 
+                answer_type = answer_type,
+                answer_text = answer_text,
+                answer_value = VALUES(answer_value),
+                updated_at = NOW();
+        """
+        # Convert the list of tuples into a format MySQL can handle
+        query_values = [
+            (a["answer_type"], a["answer_text"], a["answer_value"]) for a in answers
+        ]
+
+        # Placeholder for each answer row
+        query_values_placeholder = ", ".join(
+            ["(%s, %s, %s, NOW(), NOW())" for _ in query_values]
+        )
+
+        final_query = query % query_values_placeholder
+        parameters = [item for sublist in query_values for item in sublist]
+
+        UserSurvey.db.query_db(final_query, parameters)
+
+    # Insert the mappings into the intermediate table
+    if question_answer_map:
+        map_query = """
+            INSERT INTO question_answer_map
+                (survey_question_id, survey_answer_id, created_at, updated_at)
+            VALUES 
+                %s
+            ON DUPLICATE KEY UPDATE
+                updated_at = NOW();
+        """
+        map_query_values = [
+            (mapping["survey_question_id"], mapping["answer_id"])
+            for mapping in question_answer_map
+        ]
+
+        map_query_placeholder = ", ".join(
+            ["(%s, %s, NOW(), NOW())" for _ in map_query_values]
+        )
+
+        final_map_query = map_query % map_query_placeholder
+        map_parameters = [item for sublist in map_query_values for item in sublist]
+
+        UserSurvey.db.query_db(final_map_query, map_parameters)
+
+    print("Survey answers and mappings seeded successfully!")
+    return
+
+
+def survey_branching_seed(survey_branching_data):
+    query = """
+      INSERT INTO survey_branching
+        (survey_question_id, next_question_id, answer_value, created_at, updated_at)
+      VALUES
+        (%(survey_question_id)s, %(next_question_id)s, %(answer_value)s, NOW(), NOW())
+      ON DUPLICATE KEY UPDATE
+        next_question_id = VALUES(next_question_id),
+        updated_at = NOW();
+    """
+
+    for branch in survey_branching_data:
+        survey_question_id = _get_survey_question_id_by_question_slug(branch["survey_question_slug"])
+        answer_value = _get_answer_value_by_question_id_and_answer_text(survey_question_id, branch["answer_text"])
+        next_question_id = _get_survey_question_id_by_question_slug(branch["next_question_slug"])
+        
+        # Ensure required data exists
+        if survey_question_id is None:
+            print(f"Error: survey_question_slug '{branch['survey_question_slug']}' not found.")
+            continue
+        if next_question_id is None and branch["next_question_slug"] != "end_survey":
+            print(f"Error: next_question_slug '{branch['next_question_slug']}' not found.")
+            continue
+        if answer_value is None:
+            print(f"Error: answer_text '{branch['answer_text']}' not found for question_slug '{branch['survey_question_slug']}'.")
+            continue
+
+        # Handle special "end_survey" case
+        if branch["next_question_slug"] == "end_survey":
+            next_question_id = None
+
+        branch_data = {
+            "survey_question_id": survey_question_id,
+            "answer_value": answer_value,
+            "next_question_id": next_question_id
+        }
+
+        UserSurvey.db.query_db(query, branch_data)
+
+        print("Survey branching seed complete.")
+
+    return
+
+
+def _get_answer_value_by_question_id_and_answer_text(survey_question_id, answer_text):
+    query = """
+      SELECT 
+        answer_value
+      FROM
+        survey_answers sa
+      JOIN 
+        survey_question_answer_map sqam ON sqam.survey_answer_id = sa.id
+      WHERE 
+        sqam.survey_question_id = %(survey_question_id)s
+      AND
+        sa.answer_text = %(answer_text)s;
+    """
+
+    data = {
+        "survey_question_id": survey_question_id,
+        "answer_text": answer_text
+    }
+
+    result = UserSurvey.db.query_db(query, data)
+    if result:
+        return result[0]["answer_value"]
+    else:
+        print(f"Warning: No answer_value found for question_id {survey_question_id} and answer_text '{answer_text}'.")
+        return None
+
+def get_all_survey_category_ids():
+    query = "SELECT id, category_slug FROM survey_categories"
+
+    # Fetch all category ids and names
+    results = UserSurvey.db.query_db(query)
+
+    if not results:  # Handle case where no results are found
+        return {}
+    # Create a dictionary mapping category names to their IDs
+    category_ids = {row["category_slug"]: row["id"] for row in results}
+
+    return category_ids
+
+
+def get_all_survey_topic_ids():
+    """
+    Fetch all survey_topic_id and topic_name pairs.
+    Returns a dictionary mapping topic names to topic IDs.
+    """
+    query = "SELECT id, topic_slug FROM survey_topics"
+    results = UserSurvey.db.query_db(query)
+
+    if not results:  # Handle case where no results are found
+        return {}
+
+    return {row["topic_slug"]: row["id"] for row in results}
+
+
+def get_all_survey_question_ids():
+    """
+    Fetch all survey_question_id and survey_answer pairs.
+    Returns a dictionary mapping topic names to topic IDs.
+    """
+    query = "SELECT id, question_text FROM survey_questions"
+    results = UserSurvey.db.query_db(query)
+
+    if not results:  # Handle case where no results are found
+        return {}
+
+    return {row["question_text"]: row["id"] for row in results}
+
+
+
+
 # def survey_custom_answer_seed(batched_data):
 #     custom_answer_types = ['open-answer', 'guided-choice', 'select-any', 'select-any-add']
 
@@ -528,122 +740,3 @@ def seed_generic_question_answer_map(generic_answer_map_data):
 #             UserSurvey.db.query_db(map_query, params)
 #     except Exception as e:
 #         print(f"Error while inserting answers for question {question_answer_map_data['survey_question_id']}: {e}")
-
-
-def survey_generic_answer_seed():
-    # Answers data with dynamic mappings for questions
-    
-
-    batched_queries = {}
-    question_answer_map = []
-
-    # Prepare data for batch insertion
-    for answer_set in generic_survey_answer_data:
-        answer_type = answer_set["answer_type"]
-        for answer in answer_set["answers"]:
-            # Create answer data structure
-            answer_data = {
-                "answer_type": answer_type,
-                "answer_text": answer["answer_text"],
-                "answer_value": answer["answer_value"],
-            }
-
-            # Batch answers by slug
-            if answer_type not in batched_queries:
-                batched_queries[answer_type] = []
-
-            batched_queries[answer_type].append(answer_data)
-
-    # Build and execute the batch insert queries for survey_answers
-    for answer_type, answers in batched_queries.items():
-        query = """
-            INSERT INTO survey_answers (answer_type, answer_text, answer_value, created_at, updated_at)
-            VALUES %s
-            ON DUPLICATE KEY UPDATE 
-                answer_type = answer_type,
-                answer_text = answer_text,
-                answer_value = VALUES(answer_value),
-                updated_at = NOW();
-        """
-        # Convert the list of tuples into a format MySQL can handle
-        query_values = [
-            (a["answer_type"], a["answer_text"], a["answer_value"]) for a in answers
-        ]
-
-        # Placeholder for each answer row
-        query_values_placeholder = ", ".join(
-            ["(%s, %s, %s, NOW(), NOW())" for _ in query_values]
-        )
-
-        final_query = query % query_values_placeholder
-        parameters = [item for sublist in query_values for item in sublist]
-
-        UserSurvey.db.query_db(final_query, parameters)
-
-    # Insert the mappings into the intermediate table
-    if question_answer_map:
-        map_query = """
-            INSERT INTO question_answer_map
-                (survey_question_id, survey_answer_id, created_at, updated_at)
-            VALUES 
-                %s
-            ON DUPLICATE KEY UPDATE
-                updated_at = NOW();
-        """
-        map_query_values = [
-            (mapping["survey_question_id"], mapping["answer_id"])
-            for mapping in question_answer_map
-        ]
-
-        map_query_placeholder = ", ".join(
-            ["(%s, %s, NOW(), NOW())" for _ in map_query_values]
-        )
-
-        final_map_query = map_query % map_query_placeholder
-        map_parameters = [item for sublist in map_query_values for item in sublist]
-
-        UserSurvey.db.query_db(final_map_query, map_parameters)
-
-    print("Survey answers and mappings seeded successfully!")
-
-
-def get_all_survey_category_ids():
-    query = "SELECT id, category_slug FROM survey_categories"
-
-    # Fetch all category ids and names
-    results = UserSurvey.db.query_db(query)
-
-    if not results:  # Handle case where no results are found
-        return {}
-    # Create a dictionary mapping category names to their IDs
-    category_ids = {row["category_slug"]: row["id"] for row in results}
-
-    return category_ids
-
-
-def get_all_survey_topic_ids():
-    """
-    Fetch all survey_topic_id and topic_name pairs.
-    Returns a dictionary mapping topic names to topic IDs.
-    """
-    query = "SELECT id, topic_slug FROM survey_topics"
-    results = UserSurvey.db.query_db(query)
-
-    if not results:  # Handle case where no results are found
-        return {}
-
-    return {row["topic_slug"]: row["id"] for row in results}
-
-
-def get_all_survey_question_ids():
-    """
-    Fetch all survey_question_id and survey_answer pairs.
-    Returns a dictionary mapping topic names to topic IDs.
-    """
-    query = "SELECT id, question_text FROM survey_questions"
-    results = UserSurvey.db.query_db(query)
-
-    if not results:  # Handle case where no results are found
-        return {}
-
-    return {row["question_text"]: row["id"] for row in results}
