@@ -1,3 +1,6 @@
+// TODO: Consider refactoring, numerous processes can likely be condensed
+// selectAnswer and subsequent answer processing handles all types of questions concurrently.
+// render functions should attach eventlisteners to processing functions for each question type rather than using conditionals throughout to determine question-types
 document.addEventListener('DOMContentLoaded', () => {
     const startButton = document.getElementById('start-btn')
     const nextButton = document.getElementById('next-btn')
@@ -11,16 +14,17 @@ document.addEventListener('DOMContentLoaded', () => {
     const surveyIntro = document.getElementById('survey-intro')
     const nextSectionButton = document.getElementById('next-section-btn')
     
+    let currentQuestion = [];
     let currentQuestionSet = [];
+    let surveyBranches = [];
     let currentQuestionIndex = 0;
     let selectedButton = null;
     let selectedAnswers = [];
+    let answerData = {}
     let collectedAnswers = [];
-    let currentQuestion = [];
-    let surveyBranches = [];
 
-// EVENT LISTENERS FOR SURVEYS
 
+    // EVENT LISTENERS FOR SURVEYS
 startButton.addEventListener('click', async (event) => {
     event.preventDefault();
     startSurvey();
@@ -38,7 +42,7 @@ nextButton.addEventListener('click', (event) => {
     // IF OPEN TEXT, answer.open_answer_text = text
     // ETC
 
-
+    // TODO: SEPARATE INTO collectAnswerData()
     // For multiple-choice (select-any) questions, use the selectedAnswers array
     if (selectedAnswers.length > 0) {
         selectedAnswers.forEach(answerData => {
@@ -58,7 +62,7 @@ nextButton.addEventListener('click', (event) => {
         });
     } else if (selectedButton) {
         // For single-choice questions, use selectedButton
-        const answerData = {
+        answerData = {
             question_id: selectedButton.getAttribute('data-question-id'),
             answer_id: selectedButton.getAttribute('data-answer-id'),
             answer_text: selectedButton.answer_text
@@ -76,13 +80,43 @@ nextButton.addEventListener('click', (event) => {
     selectedAnswers = [];
     selectedButton = null;
 
-    console.log('Collected Answers:', collectedAnswers);
+    // console.log('Collected Answers:', collectedAnswers);
 
-    // Move to the next question
-    currentQuestionIndex++;
+    updateCurrentQuestionIndex()
     setNextQuestion();
 });
 
+function updateCurrentQuestionIndex() {
+  let indexUpdated = false; 
+  // Move to the next question by following survey branching or incrementing the index
+  console.log("AnswerData: ")
+  console.log(answerData)
+
+  console.log("currentQuestion")
+  console.log(currentQuestionSet[currentQuestionIndex])
+
+   surveyBranches.forEach(question => {
+    console.log("question in surveyBranches.forEach")
+    console.log(question)
+    
+    // Check current questionId for survey_branch with matching questionId
+    if (question["questionId"] == currentQuestionSet[currentQuestionIndex]["questionId"]) {
+     
+      // IF answer_text matches survey_branch answer_text, update currentQuestionIndex to matching index for next_question_slug
+    //  FAULTY - question["questionText"] does not exist, see above
+      if (answerData.answer_text == question["questionText"]) {
+        const targetIndex = currentQuestionSet.findIndex(q => q["questionId"] === question["questionId"])
+        currentQuestionIndex = targetIndex !== -1 ? targetIndex : currentQuestionIndex + 1;
+        indexUpdated = true;
+      }
+    }
+  })
+  if (!indexUpdated) {
+    currentQuestionIndex++;
+  }
+  console.log(`currentQuestionIndex: ${currentQuestionIndex}`)
+  console.log("****************************************************")
+}
 
 finishButton.addEventListener('click', async (event) => {
     const surveyCategory = getSurveyCategory();
@@ -157,11 +191,9 @@ async function fetchSurveyQuestions() {
         // Parsing the response as JSON
         ({currentQuestionSet, surveyBranches } = jsonResponse);
         
-        // Opting for simultaneous branch data pull
-        // fetchSurveyBranching(currentQuestionSet)
 
-        // console.log('*****Current Question Set in fetchSurveyQuestions*****')
-        // console.log(currentQuestionSet)
+        console.log('*****Current Question Set in fetchSurveyQuestions*****')
+        console.log(currentQuestionSet)
 
         // Send question data to be rendered on the page
         renderSurveyQuestion(currentQuestionSet); 
@@ -256,8 +288,8 @@ function renderCheckboxSelectAny(currentQuestion) {
     // const answerContainer = document.getElementById('answer-buttons');
     // answerContainer.innerHTML = ''; // Clear previous answers
 
-    console.log('*****currentQuestion in renderCheckboxSelectAny()*****')
-    console.log(currentQuestion)
+    // console.log('*****currentQuestion in renderCheckboxSelectAny()*****')
+    // console.log(currentQuestion)
 
     currentQuestion.answers.forEach((answer, index) => {
         const label = document.createElement('label');
@@ -365,7 +397,7 @@ function selectAnswer(e) {
     
     if (questionType === 'select-any' || questionType === 'select-any-add') {
         answerData.checkbox_id = checkboxId
-        answerData.answer_text = selectedButton.value
+        // answerData.answer_text = selectedButton.value
 
         const answerIndex = selectedAnswers.findIndex(
             answer => answer.checkbox_id === checkboxId
@@ -380,22 +412,22 @@ function selectAnswer(e) {
             selectedButton.classList.add('btn-outline-light');
             // selectedAnswers.splice(answerIndex, 1);
 
-            console.log('*****selectedAnswers in selectAnswer()*****')
-            console.log('Spliced answerIndex:' + answerIndex);
-            console.log(selectedAnswers)
-            console.log('***************')
-            console.log('   ')
+            // console.log('*****selectedAnswers in selectAnswer()*****')
+            // console.log('Spliced answerIndex:' + answerIndex);
+            // console.log(selectedAnswers)
+            // console.log('***************')
+            // console.log('   ')
         } else {
             selectedAnswers = [...selectedAnswers, answerData]
             selectedButton.classList.add('btn-light');
             selectedButton.classList.remove('btn-outline-light');
             // selectedAnswers.push(answerData)
 
-            console.log('*****selectedAnswers in selectAnswer()*****')
-            console.log('Pushed answerIndex:' + answerIndex);
-            console.log(selectedAnswers)
-            console.log('***************')
-            console.log('   ')
+            // console.log('*****selectedAnswers in selectAnswer()*****')
+            // console.log('Pushed answerIndex:' + answerIndex);
+            // console.log(selectedAnswers)
+            // console.log('***************')
+            // console.log('   ')
 
         }
     // } else if (questionType === 'guided-choice') {
@@ -422,11 +454,12 @@ function selectAnswer(e) {
         selectedAnswers = [answerData]
         selectedButton.classList.add('btn-light');
         selectedButton.classList.remove('btn-outline-light');
-        console.log('*****selectedAnswers in selectAnswer()*****')
-        console.log('selectedAnswers reset to: ');
-        console.log(selectedAnswers)
-        console.log('***************')
-        console.log('   ')
+     
+        // console.log('*****selectedAnswers in selectAnswer()*****')
+        // console.log('selectedAnswers reset to: ');
+        // console.log(selectedAnswers)
+        // console.log('***************')
+        // console.log('   ')
     }
 
     // Show or hide the Next button based on selection

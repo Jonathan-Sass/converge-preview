@@ -63,12 +63,12 @@ class UserSurvey:
 
 
         result = UserSurvey.db.query_db(query, data)
-        
+
         question_set = UserSurvey.process_question_data(result)
         survey_branches = UserSurvey.process_survey_branch_data(result)
 
-        # print("*****question_set in find questions by survey category and topic*****")
-        # pprint(question_set)
+        print("*****question_set in find questions by survey category and topic*****")
+        pprint(question_set)
 
         return question_set, survey_branches
 
@@ -79,14 +79,11 @@ class UserSurvey:
 
         for question in questions:
             if question["next_question_id"]:
-                survey_question_slug = question["question_slug"]
-                answer_text = question["answer_text"]
-                next_question_slug = question["next_question_slug"]
-                
                 branch_data = {
-                    "survey_question_slug": survey_question_slug,
-                    "answer_text": answer_text,
-                    "next_question_slug": next_question_slug
+                    "questionId": question["question_id"],
+                    "surveyQuestionSlug": question["question_slug"],
+                    "answerText": question["answer_text"],
+                    "nextQuestionSlug": question["next_question_slug"]
                 }
 
                 survey_branches.append(branch_data)
@@ -113,11 +110,12 @@ class UserSurvey:
             
             # .get?
             if question['answer_text']:
-                question_set[question_id]['answers'].append({
-                    'answerId': question['answer_id'],
-                    'answerText': question['answer_text'], 
-                    'answerValue': question.get('answer_value', None)
-                })
+                if not any (answer['answerText'] == question['answer_text'] for answer in question_set[question_id]['answers']):
+                  question_set[question_id]['answers'].append({
+                      'answerId': question['answer_id'],
+                      'answerText': question['answer_text'], 
+                      'answerValue': question.get('answer_value', None)
+                  })
 
         return list(question_set.values())
 
