@@ -6,7 +6,7 @@ survey_branching_data = [
   {
     "survey_question_slug": "existing-routines-check",
     "answer_text": "No",
-    "next_question_slug": "assistance-building-routines-check"
+    "next_question_slug": "existing-routines-comparison-check"
   },
   {
     "survey_question_slug": "existing-routines-comparison-check",

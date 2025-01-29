@@ -120,7 +120,7 @@ survey_question_data = [
             },
             {
                 "question_slug": "build-your-own-routine-check",
-                "question_text": "Would you like to enter a routine in our build-your-own routine page? This will allow you to track you routine and us to provide encouragement for your successes!",
+                "question_text": "Would you like to enter a routine in our build-your-own routine page? This will allow you to track your progress and us to provide encouragement for your successes!",
                 "type": "yes-no",
             },
             {

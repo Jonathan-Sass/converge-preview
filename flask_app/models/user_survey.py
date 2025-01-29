@@ -67,8 +67,8 @@ class UserSurvey:
         question_set = UserSurvey.process_question_data(result)
         survey_branches = UserSurvey.process_survey_branch_data(result)
 
-        print("*****question_set in find questions by survey category and topic*****")
-        pprint(question_set)
+        # print("*****question_set in find questions by survey category and topic*****")
+        # pprint(question_set)
 
         return question_set, survey_branches
 
@@ -88,8 +88,8 @@ class UserSurvey:
 
                 survey_branches.append(branch_data)
 
-        # print("survey_branches in process_survey_branch_data")
-        # pprint(survey_branches)
+        print("survey_branches in process_survey_branch_data")
+        pprint(survey_branches)
 
         return survey_branches
     
@@ -104,6 +104,7 @@ class UserSurvey:
                 question_set[question_id] = {
                     'question': question['question_text'], 
                     'questionId': question_id, 
+                    'questionSlug': question['question_slug'],
                     'type': question['type'], 
                     'answers': []
                 }

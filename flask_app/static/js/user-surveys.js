@@ -1,6 +1,7 @@
 // TODO: Consider refactoring, numerous processes can likely be condensed
 // selectAnswer and subsequent answer processing handles all types of questions concurrently.
 // render functions should attach eventlisteners to processing functions for each question type rather than using conditionals throughout to determine question-types
+
 document.addEventListener('DOMContentLoaded', () => {
     const startButton = document.getElementById('start-btn')
     const nextButton = document.getElementById('next-btn')
@@ -62,11 +63,11 @@ nextButton.addEventListener('click', (event) => {
         });
     } else if (selectedButton) {
         // For single-choice questions, use selectedButton
-        answerData = {
-            question_id: selectedButton.getAttribute('data-question-id'),
-            answer_id: selectedButton.getAttribute('data-answer-id'),
-            answer_text: selectedButton.answer_text
-        };
+        // answerData = {
+        //     question_id: selectedButton.getAttribute('data-question-id'),
+        //     answer_id: selectedButton.getAttribute('data-answer-id'),
+        //     answer_text: selectedButton.answer_text
+        // };
 
         const existingAnswerIndex = collectedAnswers.findIndex(answer => answer.question_id === answerData.question_id);
         if (existingAnswerIndex > -1) {
@@ -94,24 +95,28 @@ function updateCurrentQuestionIndex() {
 
   console.log("currentQuestion")
   console.log(currentQuestionSet[currentQuestionIndex])
+  // console.log("surveyBranches: ")
+  // console.log(surveyBranches)
 
-   surveyBranches.forEach(question => {
-    console.log("question in surveyBranches.forEach")
-    console.log(question)
-    
-    // Check current questionId for survey_branch with matching questionId
-    if (question["questionId"] == currentQuestionSet[currentQuestionIndex]["questionId"]) {
+   for (const questionBranch of surveyBranches) {
      
-      // IF answer_text matches survey_branch answer_text, update currentQuestionIndex to matching index for next_question_slug
-    //  FAULTY - question["questionText"] does not exist, see above
-      if (answerData.answer_text == question["questionText"]) {
-        const targetIndex = currentQuestionSet.findIndex(q => q["questionId"] === question["questionId"])
+     // Check current questionId for survey_branch with matching questionId
+     if (questionBranch["questionId"] === currentQuestionSet[currentQuestionIndex]["questionId"]) {
+      //  console.log("matching question in surveyBranches.forEach: ", questionBranch)
+       console.log("Branch detected!")
+       // IF answer_text matches survey_branch answer_text, update currentQuestionIndex to matching index for next_question_slug
+       //  FAULTY - question["questionText"] does not exist, see above
+       if (answerData.answer_text == questionBranch["answerText"]) {
+        console.log("Answer Texts match: ", questionBranch)
+        const targetIndex = currentQuestionSet.findIndex(q => q["questionSlug"] === questionBranch["nextQuestionSlug"])
         currentQuestionIndex = targetIndex !== -1 ? targetIndex : currentQuestionIndex + 1;
         indexUpdated = true;
+        break;
       }
     }
-  })
+  }
   if (!indexUpdated) {
+    console.log("Branch not detected!")
     currentQuestionIndex++;
   }
   console.log(`currentQuestionIndex: ${currentQuestionIndex}`)
@@ -192,8 +197,8 @@ async function fetchSurveyQuestions() {
         ({currentQuestionSet, surveyBranches } = jsonResponse);
         
 
-        console.log('*****Current Question Set in fetchSurveyQuestions*****')
-        console.log(currentQuestionSet)
+        // console.log('*****Current Question Set in fetchSurveyQuestions*****')
+        // console.log(currentQuestionSet)
 
         // Send question data to be rendered on the page
         renderSurveyQuestion(currentQuestionSet); 
@@ -389,7 +394,7 @@ function selectAnswer(e) {
     // Check if the question allows multiple selections
     const questionType = currentQuestion.type;
     // const isTypeSelectAny = questionType === 'select-any' || questionType === 'select-any-add'
-    let answerData = {
+    answerData = {
         question_id: parseInt(selectedButton.getAttribute('data-question-id'), 10), 
         answer_id: parseInt(selectedButton.getAttribute('data-answer-id'), 10), 
         answer_type: currentQuestion.type
@@ -438,11 +443,13 @@ function selectAnswer(e) {
         
         if(selectedButton.value) {
             answerData.answer_value = parseInt(selectedButton.value)
+            answerData.answer_text = selectedButton.innerText
         }
-        if (selectedButton.answerText) {
-            answerData.answer_text = selectedButton.answerText
-        }
+        // if (selectedButton.answerText) {
+        // }
        
+        console.log("answerData in selectAnswer: ", answerData)
+
         // For single choice, deselect all other buttons first
         const allButtons = document.querySelectorAll('#answer-buttons > *');
         allButtons.forEach(button => {
