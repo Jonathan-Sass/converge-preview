@@ -3,7 +3,7 @@ from pprint import pprint
 from flask import flash, session
 import re
 
-from flask_app.models.user_response import UserResponse
+from flask_app import models
 from flask_app.models.health_goal import HealthGoal
 
 
@@ -83,6 +83,7 @@ class User:
         return User.db.query_db(query, data)
 
     # METHODS FOR USER RESPONSES
+    # TODO: Refactor to split query into user_responses
     def fetch_user_responses_by_survey_topic_slug(self, survey_topic_slug_string):
         query = """
             SELECT 
@@ -117,7 +118,7 @@ class User:
         # user_responses = []
         if results:
             for result in results:
-                self.responses.append(UserResponse(result))
+                self.responses.append(models.user_response.UserResponse(result))
         else:
             print(
                 f"No responses found for user: {self.id} and survey_topic: {survey_topic_slug_string}"
