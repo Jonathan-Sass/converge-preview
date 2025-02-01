@@ -2,8 +2,10 @@ from flask_app.config.mysqlconnection import connectToMySQL
 from pprint import pprint
 from flask import flash, session, jsonify, redirect
 import asyncio, aiomysql, logging
-from flask_app.models.user import User
 import pymysql
+
+from flask_app.models.user import User
+from flask_app.models.user_response import UserResponse
 
 class UserSurvey: 
     db = connectToMySQL("converge_schema")
@@ -64,7 +66,7 @@ class UserSurvey:
 
         result = UserSurvey.db.query_db(query, data)
 
-        question_set = UserSurvey.process_question_data(result)
+        question_set = UserSurvey.process_question_data_for_frontend(result)
         survey_branches = UserSurvey.process_survey_branch_data(result)
 
         # print("*****question_set in find questions by survey category and topic*****")
@@ -95,7 +97,7 @@ class UserSurvey:
     
 
     @staticmethod
-    def process_question_data(question_data):
+    def process_question_data_for_frontend(question_data):
         question_set = {}
         for question in question_data:
             question_id = question['question_id']
@@ -120,69 +122,6 @@ class UserSurvey:
 
         return list(question_set.values())
 
-    # TODO: MOVE TO userResponse
-    @classmethod
-    def process_user_responses(cls, collected_answers):
-        user = User.get_logged_in_user()
-        if not user:
-            # jsonify({"error": "Please log in"}), 401
-            return redirect("/")
-        
-        batched_responses = []
-
-        print("*****collected_answers in process_user_responses()*****")
-        pprint(collected_answers)
-
-        for answer in collected_answers:
-            # FOR OPEN ANSWERS? 
-            # if 'answer_text' in answer:
-            # answer_data ... 'answer_text': answer['answer_text']
-
-            answer_data = {
-                'user_id': session['user_id'],
-                'survey_question_id': answer['question_id'], 
-                'survey_answer_id': answer['answer_id']
-            }
-            batched_responses.append(answer_data)
-                
-        # print("*****batched_responses in process_user_responses*****")
-        # pprint(batched_responses)
-
-        return UserSurvey.save_user_responses(batched_responses)
-
-
-    @classmethod
-    def save_user_responses(cls, batched_responses):
-        # The following question types may contain 
-        # flagged_question_types
-        
-        query = """
-            INSERT INTO
-                user_responses (user_id, survey_question_id, survey_answer_id, created_at, updated_at)
-            VALUES
-                (%(user_id)s, %(survey_question_id)s, %(survey_answer_id)s, NOW(), NOW())
-            ON DUPLICATE KEY UPDATE
-                survey_answer_id = VALUES(survey_answer_id),
-                updated_at = NOW();
-        """
-
-        try:
-            print("Attempting to insert batched responses...")
-            pprint(batched_responses)  # Log the batched data for visibility
-
-            # Execute the batch insert
-            UserSurvey.db.query_db(query, batched_responses, many=True)
-
-            print("Batch insert completed successfully.")
-            return True  # Return success
-        except Exception as e:
-            logging.error("Error in save_user_responses: Failed to insert batched responses.")
-            logging.error("Exception details:", exc_info=True)  # Log full traceback
-            return False  # Return failure
-
-        # UserSurvey.db.query_db(query, batched_responses, many=True)
-
-  
     @classmethod
     def find_user_response_by_user_id_and_question_id(cls, survey_question_id):
         query = """

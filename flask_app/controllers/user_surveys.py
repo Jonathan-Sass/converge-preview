@@ -2,6 +2,7 @@ from flask_app import app
 from flask import render_template, redirect, session, request, flash, jsonify
 from flask_app.models.user import User
 from flask_app.models.user_survey import UserSurvey
+from flask_app.models.user_response import UserResponse
 from database.seed import survey_seed
 from pprint import pprint
 from datetime import datetime
@@ -61,7 +62,7 @@ def save_survey_answers(survey_category):
 
     try:
         # TODO:update survay answers to user responses from here forward ?
-        result = UserSurvey.process_user_responses(collected_answers)
+        result = UserResponse.process_user_responses_to_save(collected_answers)
         return jsonify({"success": True, "result": result}), 200
     except Exception as e:
         return jsonify({"success": False, "message": str(e)}), 500
