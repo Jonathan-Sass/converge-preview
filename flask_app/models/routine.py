@@ -140,12 +140,13 @@ class Routine:
         return routines
 
     @staticmethod
-    def select_and_fetch_initial_am_routine(user, survey_topic_slug_string):
-        user.fetch_user_responses_by_survey_topic_slug(survey_topic_slug_string)
+    def select_and_fetch_routine(user, survey_topic_slug_string):
+        if survey_topic_slug_string:
+          user.fetch_user_responses_by_survey_topic_slug(survey_topic_slug_string)
 
-        recommended_routine_template_name = UserResponse.process_user_responses(
-            user.responses
-        )
+          recommended_routine_template_name = UserResponse.process_responsees_for_routine_selection(user.responses)
+        else:
+            recommended_routine_template_name = "Balanced Start"
         # template_name = Routine.am_routine_template_selector(user.responses)
         recommended_routine_template = (
             RoutineTemplate.fetch_routine_template_with_practices(

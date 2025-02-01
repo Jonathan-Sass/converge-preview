@@ -35,7 +35,7 @@ def set_initial_am_routines():
     if not user:
         return redirect("/")
 
-    recommended_routine = Routine.select_and_fetch_initial_am_routine(
+    recommended_routine = Routine.select_and_fetch_routine(
         user, "getting-to-know-you"
     )
     # durations = Duration.fetch_all_durations()
@@ -44,6 +44,17 @@ def set_initial_am_routines():
     return render_template(
         "routines/am_routine_builder.html", recommended_routine=recommended_routine
     )
+
+@app.get("/routines/am/build-your-own")
+def build_your_own_am_routine():
+    user = User.get_logged_in_user()
+    print(user)
+    if not user:
+        return redirect("/")
+    
+    routine = Routine.select_and_fetch_routine(user, None)
+
+    return render_template("routines/am_routine_build_your_own.html", routine = routine)
 
 
 @app.post("/routines/am/builder/initial/save")
@@ -58,3 +69,4 @@ def save_am_routine():
     Routine.create_routine(am_routine_data)
 
     return jsonify({"success": True, "redirect": "/goals/intro"})
+
