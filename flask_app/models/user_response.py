@@ -12,13 +12,56 @@ class UserResponse:
         self.topic_slug = data["topic_slug"]
         self.question_slug = data["question_slug"]
         self.question_id = data["survey_question_id"]
-        self.question_text = data["survey_question_text"]
+        self.question_text = data["question_text"]
         self.answer_id = data["survey_answer_id"]
-        self.answer_text = data["survey_answer_text"]
-        self.answer_value = data["survey_answer_value"]
+        self.answer_text = data["answer_text"]
+        self.answer_value = data["answer_value"]
+
+    @classmethod
+    def find_user_responses_by_user_id_and_survey_topic_slug(self, user, survey_topic_slug):
+        query = """
+          SELECT
+            ur.user_id,
+            st.topic_slug,
+            ur.survey_question_id,
+            sq.question_slug,
+            sq.question_text,
+            ur.survey_answer_id,
+            sa.answer_text,
+            sa.answer_value
+          FROM
+            survey_topics st
+          JOIN
+            survey_questions sq ON st.id = sq.survey_topic_id
+          JOIN
+            user_responses ur on sq.id = ur.survey_question_id
+          JOIN
+            survey_answers sa on sa.id = ur.survey_answer_id
+          WHERE
+            ur.user_id = %(user_id)s
+          AND
+            st.topic_slug = %(survey_topic_slug)s
+          ORDER BY
+            ur.survey_question_id;
+        """
+
+        data = {
+            "user_id": user.id,
+            "survey_topic_slug": survey_topic_slug
+        }
+
+        results = UserResponse.db.query_db(query, data)
+
+        responses = []
+        if results:
+            for result in results:
+                pprint(result)
+                responses.append(UserResponse(result))
+
+        return responses
 
     @staticmethod
-    def process_responses_for_routine_selection(responses):
+    def process_responses_for_routine_template_selection(responses):
         # CURRENT LOGIC FOR TESTING ONLY - ALL SUBSEQUENT FUNCTIONS WILL UNDERGO SIGNIFICANT REWORK FOR A MORE MEANINGFUL FILTERING PROCESS
 
         if not responses:
@@ -31,12 +74,14 @@ class UserResponse:
         topic_slug = responses[0].topic_slug
 
         if topic_slug == "getting-to-know-you":
-            return UserResponse.process_getting_to_know_you_responses(responses)
-        
+            routine_template_name = UserResponse.select_routine_template_from_getting_to_know_you_responses(responses)
+            return routine_template_name
+
         return
 
     @staticmethod
-    def process_getting_to_know_you_responses(responses):
+    def select_routine_template_from_getting_to_know_you_responses(responses):
+        # Set default template
         recommended_routine_template = "Balanced Start"
 
         response_values = {
@@ -58,21 +103,6 @@ class UserResponse:
         if response_values.get("current-fitness-level"):
             recommended_routine_template = "Peak Performance Start"
             return recommended_routine_template
-
-        # for i, response in enumerate(responses):
-        #     print(f"*****Index: {i}")
-        #     print(vars(response))
-        #     print("*****")
-
-        #     if response.question_slug == "current-fitness-level":
-        #         if response.answer_value == 4:
-        #             recommended_routine_template = "Peak Performance Start"
-        #     if response.question_slug == "adhd-self-assessment":
-        #         if response.answer_value >= 2:
-        #             recommended_routine_template = "Energized Focus"
-        #     if response.question_slug == "satisfaction-relationships":
-        #         if response.answer_value < 2:
-        #             recommended_routine_template = "Connected Start"
 
         return recommended_routine_template
 
@@ -131,6 +161,7 @@ class UserResponse:
             return False
 
 
+
     # def fetch_user_and_responses_by_survey_topic_slug(user, survey_topic_slug_string):
     #     query = """
     #         SELECT
@@ -139,8 +170,8 @@ class UserResponse:
     #             user_responses.survey_question_id,
     #             survey_questions.question_text AS survey_question_text,
     #             user_responses.survey_answer_id,
-    #             survey_answers.answer_text AS survey_answer_text,
-    #             survey_answers.answer_value AS survey_answer_value
+    #             survey_answers.answer_text AS answer_text,
+    #             survey_answers.answer_value AS answer_value
     #         FROM
     #             user_responses
     #         JOIN
