@@ -35,14 +35,14 @@ class Practice:
 
         return practice
 
-    def find_all_practices():
+    def find_all_practices_with_practice_categories():
         query = """
           SELECT
             p.id AS practice_id,
-            p.name,
-            p.description,
-            p.is_common,
-            p.notes,
+            p.name AS practice_name,
+            p.description AS practice_description,
+            p.is_common AS practice_is_common,
+            p.notes AS practice_notes,
             p.literature_summary,
             p.created_at,
             p.updated_at,
@@ -68,13 +68,17 @@ class Practice:
                 return []
             
             practices = []
+            practice_categories = []
             seen_ids = set()
 
             for result in results:
               practice_id = result["practice_id"]
+              practice_category = result["practice_category"]
               if practice_id not in seen_ids:
                   seen_ids.add(practice_id)
                   practices.append(Practice(result))
-            return practices
+              if practice_category not in practice_categories:
+                  practice_categories.append(practice_category)
+            return practices, practice_categories
         except Exception as e:
             raise RuntimeError(f"Error retrieving all practices: {e}")
