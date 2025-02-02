@@ -5,6 +5,7 @@ from flask_app.models.routine import Routine
 from flask_app.models.routine_template import RoutineTemplate
 from flask_app.models.user_response import UserResponse
 from flask_app.models.duration import Duration
+from flask_app.models.practice import Practice
 
 from pprint import pprint
 
@@ -53,8 +54,9 @@ def build_your_own_am_routine():
         return redirect("/")
     
     routine = Routine.select_and_fetch_routine(user, None)
+    practices = Practice.find_all_practices()
 
-    return render_template("routines/am_routine_build_your_own.html", routine = routine)
+    return render_template("routines/am_routine_build_your_own.html", routine = routine, practices = practices)
 
 
 @app.post("/routines/am/builder/initial/save")
