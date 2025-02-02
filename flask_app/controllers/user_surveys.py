@@ -48,7 +48,6 @@ def retrieve_survey_questions():
 
 
 # DYNAMIC ROUTE TO SAVE ANSWERS IN USER RESPONSES
-# TODO: ADD /save to route path and links
 @app.post("/surveys/<string:survey_category>/answers")
 def save_survey_answers(survey_category):
     user = User.get_logged_in_user()
@@ -68,7 +67,44 @@ def save_survey_answers(survey_category):
         return jsonify({"success": False, "message": str(e)}), 500
 
 
-# SURVEY INTRO ROUTES
+# ROUTES FOR INDIVIDUAL SURVEYS
+@app.get("/getting-started")
+def new_user_getting_started():
+    user = User.get_logged_in_user()
+    if not user:
+        return redirect("/")
+
+    return render_template("/home/getting_started.html")
+
+@app.get("/process-getting-started")
+def process_getting_started_answers():
+    user = User.get_logged_in_user()
+    if not user:
+        return redirect("/")
+    
+    responses = UserResponse.find_user_responses_by_user_id_and_survey_topic_slug(user, "getting-started")
+
+    response_dict = {
+        res.question_slug: res.answer_text
+        for res in responses
+        if res.question_slug in {"existing-routines-check", "wellness-survey-check", "assistance-building-routines-check", "build-your-own-routine-check"}
+    }
+
+    existing_routines_check = response_dict.get("existing-routines-check")
+    wellness_survey_check = response_dict.get("wellness-survey-check")
+    assistance_building_routines_check = response_dict.get("assistance-building-routines-check")
+    build_your_own_routine_check = response_dict.get("build-your-own-routine-check")
+
+    print("*****responses in process_getting_started_answers*****")
+    print(existing_routines_check)
+    print(wellness_survey_check)
+
+    if existing_routines_check == "Yes" and wellness_survey_check == "No":
+        return redirect ("/routines/am/build-your-own")
+    
+    return redirect("surveys/foundations/getting-to-know-you")
+
+
 @app.get("/surveys/foundations/getting-to-know-you")
 def survey_introduction_getting_to_know_you():
     user = User.get_logged_in_user()
