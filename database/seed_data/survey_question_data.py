@@ -109,7 +109,7 @@ survey_question_data = [
                 "type": "satisfaction",
             },
             {
-                "question_slug": "existing-routines-comparison-check",
+                "question_slug": "wellness-survey-check",
                 "question_text": "Would you like to complete our wellness survey to see a list of suggested practices that aligns with your current wellness needs/goals?",
                 "type": "yes-no",
             },

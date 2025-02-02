@@ -6,15 +6,15 @@ survey_branching_data = [
   {
     "survey_question_slug": "existing-routines-check",
     "answer_text": "No",
-    "next_question_slug": "existing-routines-comparison-check"
+    "next_question_slug": "wellness-survey-check"
   },
   {
-    "survey_question_slug": "existing-routines-comparison-check",
+    "survey_question_slug": "wellness-survey-check",
     "answer_text": "Yes",
     "next_question_slug": "routine-types-interest-check"
   },
   {
-    "survey_question_slug": "existing-routines-comparison-check",
+    "survey_question_slug": "wellness-survey-check",
     "answer_text": "No",
     "next_question_slug": "build-your-own-routine-check"
   },
