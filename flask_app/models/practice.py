@@ -34,3 +34,47 @@ class Practice:
             practice.durations.append(duration)
 
         return practice
+
+    def find_all_practices():
+        query = """
+          SELECT
+            p.id AS practice_id,
+            p.name,
+            p.description,
+            p.is_common,
+            p.notes,
+            p.literature_summary,
+            p.created_at,
+            p.updated_at,
+            pc.name AS practice_category,
+            ir.impact_rating_description,
+            dl.difficulty_label AS practice_difficulty
+          FROM
+            practices p
+          LEFT JOIN
+            practice_categories pc ON pc.id = p.practice_category_id
+          LEFT JOIN
+            impact_ratings ir ON ir.id = p.impact_rating_id
+          LEFT JOIN
+            difficulty_levels dl ON dl.id = p.difficulty_level_id
+          ORDER BY
+            p.id;
+        """
+
+        try:
+            results = Practice.db.query_db(query)
+
+            if not results:
+                return []
+            
+            practices = []
+            seen_ids = set()
+
+            for result in results:
+              practice_id = result["practice_id"]
+              if practice_id not in seen_ids:
+                  seen_ids.add(practice_id)
+                  practices.append(Practice(result))
+            return practices
+        except Exception as e:
+            raise RuntimeError(f"Error retrieving all practices: {e}")
