@@ -140,15 +140,6 @@ def new_user():
     return render_template("dashboard/new_user.html")
 
 
-@app.get("/getting-started")
-def new_user_onboarding():
-    user = User.get_logged_in_user()
-    if not user:
-        return redirect("/")
-
-    return render_template("/home/onboarding.html")
-
-
 @app.post("/users/logout")
 def logout():
     session.clear()
