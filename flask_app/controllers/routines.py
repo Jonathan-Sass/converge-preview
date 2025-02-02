@@ -36,7 +36,7 @@ def set_initial_am_routines():
     if not user:
         return redirect("/")
 
-    recommended_routine = Routine.select_and_fetch_routine(
+    recommended_routine = Routine.select_and_fetch_routine_template(
         user, "getting-to-know-you"
     )
     # durations = Duration.fetch_all_durations()
@@ -53,10 +53,10 @@ def build_your_own_am_routine():
     if not user:
         return redirect("/")
     
-    routine = Routine.select_and_fetch_routine(user, None)
-    practices = Practice.find_all_practices()
+    routine = Routine.select_and_fetch_routine_template(user, None)
+    practices, practice_categories = Practice.find_all_practices_with_practice_categories()
 
-    return render_template("routines/am_routine_build_your_own.html", routine = routine, practices = practices)
+    return render_template("routines/am_routine_build_your_own.html", routine = routine, practices = practices, practice_categories = practice_categories)
 
 
 @app.post("/routines/am/builder/initial/save")

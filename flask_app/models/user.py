@@ -71,7 +71,6 @@ class User:
         user = User(result[0])
         return user
 
-    # WILL LIKELY NEED TWEAKING DEPENDING ON USER ATTRIBUTES
     @classmethod
     def save(cls, data):
         query = """
@@ -81,54 +80,9 @@ class User:
                 (%(first_name)s, %(last_name)s, %(email)s, %(password)s, NOW(), NOW());
                 """
         return User.db.query_db(query, data)
+   
 
-    # METHODS FOR USER RESPONSES
-    # TODO: Refactor to split query into user_responses
-    def fetch_user_responses_by_survey_topic_slug(self, survey_topic_slug_string):
-        query = """
-            SELECT 
-                user_responses.user_id,
-                survey_topics.topic_slug,
-                user_responses.survey_question_id,
-                survey_questions.question_slug,
-                survey_questions.question_text AS survey_question_text,
-                user_responses.survey_answer_id,
-                survey_answers.answer_text AS survey_answer_text,
-                survey_answers.answer_value AS survey_answer_value
-            FROM
-                user_responses
-            JOIN
-                survey_questions ON user_responses.survey_question_id = survey_questions.id
-            JOIN
-                survey_answers ON user_responses.survey_answer_id = survey_answers.id
-            JOIN
-                survey_topics ON survey_questions.survey_topic_id = survey_topics.id
-            WHERE
-                user_responses.user_id = %(user_id)s
-            AND
-                survey_topics.topic_slug = %(survey_topic_slug)s
-            ORDER BY
-                user_responses.survey_question_id;
-        """
-
-        data = {"user_id": self.id, "survey_topic_slug": survey_topic_slug_string}
-
-        results = User.db.query_db(query, data)
-
-        # user_responses = []
-        if results:
-            for result in results:
-                self.responses.append(models.user_response.UserResponse(result))
-        else:
-            print(
-                f"No responses found for user: {self.id} and survey_topic: {survey_topic_slug_string}"
-            )
-
-        # print("*****user.responses result*****")
-        # pprint(self.responses)
-
-        return self
-
+# LOGIN/REG METHODS
     @staticmethod
     def validate_registration(user):
         is_valid = True
@@ -192,98 +146,100 @@ class User:
 
         return is_valid
 
-    @classmethod
-    def find_by_id_with_health_goals(cls, user_id):
-        query = """
-                SELECT * FROM health_goals
-                JOIN  users_health_goals_has_time_domains ON users_health_goals_has_time_domains.health_goal_id = health_goals.id
-                JOIN users ON users_health_goals_has_time_domains.user_id = users.id
-                WHERE users.id = %(id)s;
-                """
 
-        data = {"id": user_id}
-        results = User.db.query_db(query, data)
-        if len(results) == 0:
-            return None
-        user = User(User.find_by_id(session["user_id"]))
+# ALL HEALTH GOAL AND HEALTH QUIZ METHODS ARE DEPRECATED, VERIFYING STABILITY BEFORE REMOVAL
+    # @classmethod
+    # def find_by_id_with_health_goals(cls, user_id):
+    #     query = """
+    #             SELECT * FROM health_goals
+    #             JOIN  users_health_goals_has_time_domains ON users_health_goals_has_time_domains.health_goal_id = health_goals.id
+    #             JOIN users ON users_health_goals_has_time_domains.user_id = users.id
+    #             WHERE users.id = %(id)s;
+    #             """
 
-        for result in results:
-            health_goal_data = {
-                "id": result["id"],
-                "category": result["category"],
-                "name": result["name"],
-                "details": result["details"],
-                "created_at": result["users_health_goals_has_time_domains.created_at"],
-                "updated_at": result["users_health_goals_has_time_domains.updated_at"],
-            }
-            user.health_goals.append(health_goal_data)
+    #     data = {"id": user_id}
+    #     results = User.db.query_db(query, data)
+    #     if len(results) == 0:
+    #         return None
+    #     user = User(User.find_by_id(session["user_id"]))
 
-        print("**********************")
-        print(user.health_goals)
-        print("**********************")
-        # print(user.health_goals[name])
+    #     for result in results:
+    #         health_goal_data = {
+    #             "id": result["id"],
+    #             "category": result["category"],
+    #             "name": result["name"],
+    #             "details": result["details"],
+    #             "created_at": result["users_health_goals_has_time_domains.created_at"],
+    #             "updated_at": result["users_health_goals_has_time_domains.updated_at"],
+    #         }
+    #         user.health_goals.append(health_goal_data)
 
-        return user
+    #     print("**********************")
+    #     print(user.health_goals)
+    #     print("**********************")
+    #     # print(user.health_goals[name])
 
-    @classmethod
-    def find_all_user_health_goals_with_time_domains(cls, user_id):
-        query = """
-                SELECT * 
-                FROM users
-                JOIN users_health_goals_has_time_domains 
-                ON users_health_goals_has_time_domains.user_id = users.id
-                JOIN time_domains 
-                ON users_health_goals_has_time_domains.time_domain_id = time_domains.id
-                JOIN health_goals
-                ON users_health_goals_has_time_domains.health_goal_id = health_goals.id
-                WHERE users.id = %(user_id)s;
-                """
-        data = {"user_id": user_id}
-        results = User.db.query_db(query, data)
-        print("*****users health goals with time domains results*****")
-        for result in results:
-            pprint(result)
-            print("")
-        print("**************************")
+    #     return user
 
-        user = User.find_by_id(user_id)
-        for result in results:
-            health_goal_data = {
-                "id": result["health_goals.id"],
-                "category": result["category"],
-                "name": result["name"],
-                "created_at": result["health_goals.created_at"],
-                "updated_at": result["health_goals.updated_at"],
-            }
-            health_goal = HealthGoal(health_goal_data)
-            time_domain_data = {
-                "id": result["time_domains.id"],
-                "action_item": result["action_item"],
-                "time_domain_10_year": result["time_domain_10_year"],
-                "time_domain_5_year": result["time_domain_5_year"],
-                "time_domain_3_year": result["time_domain_3_year"],
-                "time_domain_2_year": result["time_domain_2_year"],
-                "time_domain_1_year": result["time_domain_1_year"],
-                "time_domain_6_month": result["time_domain_6_month"],
-                "time_domain_3_month": result["time_domain_3_month"],
-                "time_domain_1_month": result["time_domain_1_month"],
-                "created_at": result["time_domains.created_at"],
-                "updated_at": result["time_domains.updated_at"],
-            }
-            health_goal.time_domains = time_domain_data
-            user.health_goals.append(health_goal)
-            print("*********USER HEALTH GOALS*******")
-            pprint(user.health_goals)
-            print("**************")
-        return user
+    # @classmethod
+    # def find_all_user_health_goals_with_time_domains(cls, user_id):
+    #     query = """
+    #             SELECT * 
+    #             FROM users
+    #             JOIN users_health_goals_has_time_domains 
+    #             ON users_health_goals_has_time_domains.user_id = users.id
+    #             JOIN time_domains 
+    #             ON users_health_goals_has_time_domains.time_domain_id = time_domains.id
+    #             JOIN health_goals
+    #             ON users_health_goals_has_time_domains.health_goal_id = health_goals.id
+    #             WHERE users.id = %(user_id)s;
+    #             """
+    #     data = {"user_id": user_id}
+    #     results = User.db.query_db(query, data)
+    #     print("*****users health goals with time domains results*****")
+    #     for result in results:
+    #         pprint(result)
+    #         print("")
+    #     print("**************************")
 
-    @classmethod
-    def save_health_quiz_id(cls):
-        data = {
-            "user_id": session["user_id"],
-            "health_quiz_id": session["health_quiz_id"],
-        }
+    #     user = User.find_by_id(user_id)
+    #     for result in results:
+    #         health_goal_data = {
+    #             "id": result["health_goals.id"],
+    #             "category": result["category"],
+    #             "name": result["name"],
+    #             "created_at": result["health_goals.created_at"],
+    #             "updated_at": result["health_goals.updated_at"],
+    #         }
+    #         health_goal = HealthGoal(health_goal_data)
+    #         time_domain_data = {
+    #             "id": result["time_domains.id"],
+    #             "action_item": result["action_item"],
+    #             "time_domain_10_year": result["time_domain_10_year"],
+    #             "time_domain_5_year": result["time_domain_5_year"],
+    #             "time_domain_3_year": result["time_domain_3_year"],
+    #             "time_domain_2_year": result["time_domain_2_year"],
+    #             "time_domain_1_year": result["time_domain_1_year"],
+    #             "time_domain_6_month": result["time_domain_6_month"],
+    #             "time_domain_3_month": result["time_domain_3_month"],
+    #             "time_domain_1_month": result["time_domain_1_month"],
+    #             "created_at": result["time_domains.created_at"],
+    #             "updated_at": result["time_domains.updated_at"],
+    #         }
+    #         health_goal.time_domains = time_domain_data
+    #         user.health_goals.append(health_goal)
+    #         print("*********USER HEALTH GOALS*******")
+    #         pprint(user.health_goals)
+    #         print("**************")
+    #     return user
 
-        query = "UPDATE users SET health_quiz_id = %(health_quiz_id)s WHERE id = %(user_id)s"
-        print("******HEALTH QUIZ ID SAVING...*****")
-        return User.db.query_db(query, data)
+    # @classmethod
+    # def save_health_quiz_id(cls):
+    #     data = {
+    #         "user_id": session["user_id"],
+    #         "health_quiz_id": session["health_quiz_id"],
+    #     }
+
+    #     query = "UPDATE users SET health_quiz_id = %(health_quiz_id)s WHERE id = %(user_id)s"
+    #     print("******HEALTH QUIZ ID SAVING...*****")
+    #     return User.db.query_db(query, data)

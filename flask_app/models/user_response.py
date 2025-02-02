@@ -17,8 +17,8 @@ class UserResponse:
         self.answer_text = data["answer_text"]
         self.answer_value = data["answer_value"]
 
-    @classmethod
-    def find_user_responses_by_user_id_and_survey_topic_slug(self, user, survey_topic_slug):
+
+    def find_user_responses_by_user_id_and_survey_topic_slug(user, survey_topic_slug):
         query = """
           SELECT
             ur.user_id,
@@ -90,7 +90,7 @@ class UserResponse:
 
         # TODO: Change to match-case syntax.
         if response_values.get("adhd-self-assessment") >= 2:
-            if response_values.get("current-fitness-level") == 4:
+            if response_values.get("current-activity-level") == 4:
                 recommended_routine_template = "Momentum Builder"
                 return recommended_routine_template
             elif response_values.get("satisfaction-relationships") < 2:
@@ -100,7 +100,7 @@ class UserResponse:
                 recommended_routine_template = "Energized Focus"
                 return recommended_routine_template
 
-        if response_values.get("current-fitness-level"):
+        if response_values.get("current-activity-level") == 4:
             recommended_routine_template = "Peak Performance Start"
             return recommended_routine_template
 
