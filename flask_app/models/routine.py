@@ -140,30 +140,48 @@ class Routine:
         return routines
 
     @staticmethod
-    def select_and_fetch_routine(user, survey_topic_slug_string):
+    def select_and_fetch_routine_template(user, survey_topic_slug_string):
+        """
+        Selects and retrieves a recommended routine template for a given user based on their survey responses.
+
+        This method determines an appropriate routine template for the user by analyzing their responses 
+        to survey questions within a specific topic (identified by `survey_topic_slug_string`). If the user 
+        has provided responses, the function processes those responses to select the best-matching routine template.
+        If no responses are available, it defaults to a "Balanced Start" routine template.
+
+        Args:
+            user (User): The user object whose responses are being analyzed.
+            survey_topic_slug_string (str): The slug representing the survey topic used to filter user responses.
+
+        Returns:
+            RoutineTemplate: The selected routine template, including associated practices.
+
+        Raises:
+            AttributeError: If `UserResponse.find_user_responses_by_user_id_and_survey_topic_slug` 
+                            or `UserResponse.process_responses_for_routine_template_selection` is not defined.
+            ValueError: If no matching routine template is found.
+
+        Example Usage:
+            user = User.get_by_id(1)
+            routine_template = Routine.select_and_fetch_routine(user, "morning-routine")
+            print(routine_template.name)  # Outputs the name of the recommended routine template
+        """
+
         if survey_topic_slug_string:
-          user.fetch_user_responses_by_survey_topic_slug(survey_topic_slug_string)
+            # Find the user's responses for the given topic slug
+            user_responses = UserResponse.find_user_responses_by_user_id_and_survey_topic_slug(user, survey_topic_slug_string)
 
-          recommended_routine_template_name = UserResponse.process_responsees_for_routine_selection(user.responses)
+            # Process responses to select routine template for the user
+            recommended_routine_template_name = UserResponse.process_responses_for_routine_template_selection(user_responses)
         else:
+            # Default routine template if no responses determine one
             recommended_routine_template_name = "Balanced Start"
-        # template_name = Routine.am_routine_template_selector(user.responses)
-        recommended_routine_template = (
-            RoutineTemplate.fetch_routine_template_with_practices(
-                recommended_routine_template_name
-            )
-        )
 
-        # print("****RECOMMENDED ROUTINE TEMPLATE!!!!...?****")
-        # print(vars(recommended_routine_template))
+        # Fetch the routine template with associated practices
+        recommended_routine_template = RoutineTemplate.fetch_routine_template_with_practices(recommended_routine_template_name)
 
         return recommended_routine_template
 
-    # @classmethod
-    # def select_am_routine_template(self, user_responses):
-    #     if user_responses.survey_topic_slug == "getting-to-know-you":
-
-    #     return
 
     def create_routine(routine_data):
         print("***routine_data in create_routine***")
