@@ -100,6 +100,24 @@
               </div>
             </div>
           </div>
+          <div class="card shadow p-2 text-center opacity-75 mb-3">
+            <div class="row">
+              <!-- Search Bar -->
+              <div class="col-md-6">
+                <input type="text" id="search-practices" class="form-control" placeholder="Search for a practice...">
+              </div>
+              
+              <!-- Category Filter -->
+              <div class="col-md-4">
+                <select id="category-filter" class="form-select">
+                  <option value="">All Categories</option>
+                  {% for category in practice_categories %}
+                  <option value="{{ category }}">{{ category }}</option>
+                  {% endfor %}
+                </select>
+              </div>
+            </div>
+          </div>
           <!-- Drag and Drop Containers for practices -->
           <div class="scroll-wrapper position-relative">
             <!-- Scroll Left Button -->
@@ -183,6 +201,7 @@
   <script type="module" src="{{ url_for('static', filename='js/sortable-containers.js') }}" defer></script>
   <script type="module" src="{{ url_for('static', filename='js/horizontal-scroll.js') }}" defer></script>
   <script type="module" src="{{ url_for('static', filename='js/save-routine.js') }}" defer></script>
+  <script type="module" src="{{ url_for('static', filename='js/search-filter.js') }}" defer></script>
 
 
 </body>

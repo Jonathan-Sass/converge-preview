@@ -26,6 +26,46 @@ class Practice:
         self.durations = []
         # DO WE NEED A self.frequency?
 
+    def to_dict(self):
+        """Converts a Practice object to a dictionary"""
+        return {
+        "id": self.id,
+        "routine_id": self.routine_id,
+        "name": self.name,
+        "description": self.description,
+        "practice_category": self.practice_category,
+        "impact_rating_description": self.impact_rating_description,
+        "difficulty": self.difficulty,
+        "is_common": self.is_common,
+        "literature_summary": self.literature_summary,
+        "selected_duration": self.selected_duration,
+        "created_at": self.created_at.isoformat() if self.created_at else None,
+        "updated_at": self.updated_at.isoformat() if self.updated_at else None,
+        "durations": self.durations,
+        }
+
+    @staticmethod
+    def dict_from_query_result(result):
+        """Converts raw query result to a dictionary with instantiating an object"""
+        return {
+            "id": result["practice_id"],
+            "routine_id": result.get("routine_id", None),
+            "name": result["practice_name"],
+            "description": result["practice_description"],
+            "practice_category": result["practice_category"],
+            "impact_rating_description": result["impact_rating_description"],
+            # TODO: Condense difficulties and impact_ratings column names for consistency
+            "difficulty": result["practice_difficulty"],
+            "is_common": result["practice_is_common"],
+            "notes": result["practice_notes"],
+            "literature_summary": result["literature_summary"],
+            "selected_duration": result.get("selected_duration", None),
+            "created_at": result["created_at"].isoformat() if result["created_at"] else None,
+            "updated_at": result["updated_at"].isoformat() if result["updated_at"] else None,
+            "durations": []
+        }
+
+
     def create_practice_with_durations(routine_template_and_practice_data):
         practice = Practice(routine_template_and_practice_data)
 
@@ -68,7 +108,7 @@ class Practice:
                 return []
             
             practices = []
-            practice_categories = []
+            practice_categories = set()
             seen_ids = set()
 
             for result in results:
@@ -76,9 +116,9 @@ class Practice:
               practice_category = result["practice_category"]
               if practice_id not in seen_ids:
                   seen_ids.add(practice_id)
-                  practices.append(Practice(result))
-              if practice_category not in practice_categories:
-                  practice_categories.append(practice_category)
-            return practices, practice_categories
+                  practices.append(Practice.dict_from_query_result(result))
+              if practice_category:
+                  practice_categories.add(practice_category)
+            return practices, sorted(practice_categories)
         except Exception as e:
             raise RuntimeError(f"Error retrieving all practices: {e}")
