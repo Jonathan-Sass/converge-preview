@@ -1,5 +1,7 @@
 from flask_app.config.mysqlconnection import connectToMySQL
 from flask import flash, session, redirect
+from pprint import pprint
+
 from flask_app.models.user import User
 from flask_app.models.duration import Duration
 
@@ -75,7 +77,7 @@ class Practice:
 
         return practice
 
-    def find_all_practices_with_practice_categories():
+    def find_all_practices():
         query = """
           SELECT
             p.id AS practice_id,
@@ -108,17 +110,33 @@ class Practice:
                 return []
             
             practices = []
-            practice_categories = set()
             seen_ids = set()
 
             for result in results:
               practice_id = result["practice_id"]
-              practice_category = result["practice_category"]
               if practice_id not in seen_ids:
                   seen_ids.add(practice_id)
                   practices.append(Practice.dict_from_query_result(result))
-              if practice_category:
-                  practice_categories.add(practice_category)
-            return practices, sorted(practice_categories)
+            return practices
         except Exception as e:
             raise RuntimeError(f"Error retrieving all practices: {e}")
+        
+  
+    def find_all_practices_grouped_by_category():
+        all_practices = Practice.find_all_practices()
+
+        grouped_practices = {}
+
+        for practice in all_practices:
+            practice_category = practice["practice_category"]
+
+            if practice_category not in grouped_practices:
+                grouped_practices[practice_category] = []
+            
+            practice.pop("practice_category")
+            grouped_practices[practice_category].append(practice)
+        
+        print("grouped_practices in FAPGBC")
+        pprint(grouped_practices)
+
+        return grouped_practices
