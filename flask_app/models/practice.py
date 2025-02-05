@@ -48,7 +48,7 @@ class Practice:
 
     @staticmethod
     def dict_from_query_result(result):
-        """Converts raw query result to a dictionary with instantiating an object"""
+        """Converts raw query result to a dictionary without instantiating an object"""
         return {
             "id": result["practice_id"],
             "routine_id": result.get("routine_id", None),
@@ -67,16 +67,7 @@ class Practice:
             "durations": []
         }
 
-
-    def create_practice_with_durations(routine_template_and_practice_data):
-        practice = Practice(routine_template_and_practice_data)
-
-        durations = Duration.find_durations_by_practice_id(practice)
-        for duration in durations:
-            practice.durations.append(duration)
-
-        return practice
-
+# CRUD METHODS
     def get_all_practices():
         query = """
           SELECT
@@ -90,7 +81,11 @@ class Practice:
             p.updated_at,
             pc.name AS practice_category,
             ir.impact_rating_description,
-            dl.difficulty_label AS practice_difficulty
+            dl.difficulty_label AS practice_difficulty,
+            d.id AS duration_id,
+            d.duration_label,
+            d.duration_seconds,
+            el.level AS engagement_level
           FROM
             practices p
           LEFT JOIN
@@ -99,6 +94,12 @@ class Practice:
             impact_ratings ir ON ir.id = p.impact_rating_id
           LEFT JOIN
             difficulty_levels dl ON dl.id = p.difficulty_level_id
+          LEFT JOIN
+            recommended_durations rd ON p.id = rd.practice_id
+          LEFT JOIN
+            durations d ON rd.duration_id = d.id
+          LEFT JOIN
+            engagement_levels el ON rd.engagement_level_id = el.id
           ORDER BY
             p.id;
         """
@@ -107,17 +108,20 @@ class Practice:
             results = Practice.db.query_db(query)
 
             if not results:
-                return []
+                return {}
             
-            practices = []
-            seen_ids = set()
+            practice_map = {}
 
             for result in results:
               practice_id = result["practice_id"]
-              if practice_id not in seen_ids:
-                  seen_ids.add(practice_id)
-                  practices.append(Practice.dict_from_query_result(result))
-            return practices
+              
+              if practice_id not in practice_map:
+                  practice_map[practice_id] = Practice.dict_from_query_result(result)
+
+              if result["duration_id"]:
+                  duration = Duration.dict_from_query_result(result)
+                  practice_map[practice_id]["durations"].append(duration)
+            return practice_map
         except Exception as e:
             raise RuntimeError(f"Error retrieving all practices: {e}")
         
@@ -127,7 +131,7 @@ class Practice:
 
         grouped_practices = {}
 
-        for practice in all_practices:
+        for practice in all_practices.values():
             practice_category = practice["practice_category"]
 
             if practice_category not in grouped_practices:
