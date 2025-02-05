@@ -5,7 +5,7 @@ class Duration:
     db = connectToMySQL("converge_schema")
 
     def __init__(self, data):
-        self.id = data["id"]
+        self.id = data["duration_id"]
         self.duration_label = data["duration_label"]
         self.duration_seconds = data["duration_seconds"]
         self.engagement_level = data["engagement_level"] or None
@@ -15,7 +15,7 @@ class Duration:
         # (TODO:add to name: with_engagement_levels)
         query = """
             SELECT
-                durations.id,
+                durations.id AS duration_id,
                 durations.duration_label,
                 durations.duration_seconds,
                 engagement_levels.level AS engagement_level
@@ -28,7 +28,6 @@ class Duration:
             WHERE
                 recommended_durations.practice_id = %(practice_id)s;
         """
-
         data = {"practice_id": practice_id}
 
         results = Duration.db.query_db(query, data)
@@ -39,6 +38,16 @@ class Duration:
             practice_durations.append(Duration(result))
 
         return practice_durations
+
+    def dict_from_query_result(result):
+        """Converts raw query result to dictionary without first intantiating an object."""
+        return {
+            "id": result["duration_id"],
+            "duration_label": result["duration_label"],
+            "duration_seconds": result["duration_seconds"],
+            "engagement_level": result["engagement_level"]
+        }
+
 
     def fetch_all_durations():
         query = """
