@@ -80,7 +80,7 @@ document.addEventListener("DOMContentLoaded", async function () {
                 </div>
             `;
 
-            card.querySelector(".add-to-routine").addEventListener("click", () => addToRoutine(practice.id));
+            card.querySelector(".add-to-routine").addEventListener("click", () => addToRoutine(practice, index));
 
             cardContainer.appendChild(card);
         });
@@ -100,35 +100,50 @@ document.addEventListener("DOMContentLoaded", async function () {
   }
 
   // Function to add a practice to the routine
-  function addToRoutine(practiceId) {
-      // Find the practice in the stored data
-      let selectedPractice = null;
-      Object.values(practicesByCategory).forEach(practiceList => {
-          const found = practiceList.find(p => p.id == practiceId);
-          if (found) selectedPractice = found;
-      });
+  function addToRoutine(practice, index) {
+    const practiceContainer = document.getElementById("practice-container");
 
-      if (!selectedPractice) return;
+    const existingPracticeCard = practiceContainer.querySelector(`[data-practice-id=${practice.id}]`);
 
-      const practiceContainer = document.getElementById("practice-container");
-      const practiceCard = document.createElement("div");
-      practiceCard.classList.add("practice-card", "card", "shadow", "p-2", "text-center", "mb-3", "col-3");
-      practiceCard.dataset.practiceId = selectedPractice.id;
-      practiceCard.innerHTML = `
-          <div class="card-body">
-              <h5 class="practice-name text-primary">${selectedPractice.name}</h5>
-              <button class="btn btn-sm btn-outline-danger remove-practice">Remove</button>
-          </div>
-      `;
-      practiceContainer.appendChild(practiceCard);
+    if (existingPracticeCard) {
+      console.warn(`practiceId ${practice.id} already exists. Skipping duplicate.`)
+      return;
+    }
+    // Create the practice card
+    const practiceCard = document.createElement("div");
+    practiceCard.classList.add("practice-card", "card", "shadow", "p-2", "text-center", "opacity-75", "mb-3", "col-3", "sortable-card");
+    practiceCard.dataset.practiceId = practice.id;
+    practiceCard.dataset.order = index;
+    practiceCard.id = `practice-${index}`;
 
-      // Attach remove event listener
-      practiceCard.querySelector(".remove-practice").addEventListener("click", function () {
-          practiceCard.remove();
-      });
+    // Build the inner HTML structure
+    practiceCard.innerHTML = `
+        <div class="h5 practice-category">${practice.practice_category || "Uncategorized"}</div>
+        <div class="card-body compact-card d-flex flex-column">
+            <div class="card-header">
+                <h5 class="card-order text-primary">${index}. </h5>
+                <h5 class="practice-name text-primary">${practice.name}</h5>
+                <span class="badge difficulty-badge d-block">Difficulty: ${practice.difficulty || "N/A"}</span>
+                <span class="badge impact-badge">${truncateText(practice.impact_rating_description, 30)}</span>
+            </div>
+            <p class="short-description">${truncateText(practice.description, 100)}</p>
+            <select class="form-select duration" aria-label="Default select example" id="${practice.name}-duration">
+                ${practice.durations.map(duration => `
+                    <option value="${duration.id}">
+                        ${duration.duration_label} ${duration.engagement_level ? `(${duration.engagement_level})` : ""}
+                    </option>
+                `).join("")}
+            </select>
+            <div class="card-footer mt-auto">
+                <button class="btn btn-link details-button" data-bs-toggle="modal"
+                    data-bs-target="#practiceDetails${index}">
+                    Learn More
+                </button>
+            </div>
+        </div>
+    `;
 
-      // Close modal after adding practice
-      const categoryModal = bootstrap.Modal.getInstance(document.getElementById("categoryModal"));
-      categoryModal.hide();
-  }
+    // Append to the container
+    practiceContainer.appendChild(practiceCard);
+}
 });
