@@ -1,3 +1,5 @@
+import { updateCardOrder } from "./sortable-containers.js";
+
 document.addEventListener("DOMContentLoaded", async function () {
   let practicesByCategory = {}; // Store practices grouped by category
 
@@ -26,6 +28,12 @@ document.addEventListener("DOMContentLoaded", async function () {
       const categoryModal = new bootstrap.Modal(document.getElementById("categoryModal"));
       categoryModal.show();
   });
+
+  // Clear modal backdrops when opening a new modal
+  document.addEventListener("show.bs.modal", function () {
+    document.querySelectorAll(".modal-backdrop").forEach(backdrop => backdrop.remove());
+});
+
 
   // Function to populate the modal with categories and practices
   function populateCategoryModal() {
@@ -103,7 +111,7 @@ document.addEventListener("DOMContentLoaded", async function () {
   function addToRoutine(practice, index) {
     const practiceContainer = document.getElementById("practice-container");
 
-    const existingPracticeCard = practiceContainer.querySelector(`[data-practice-id=${practice.id}]`);
+    const existingPracticeCard = practiceContainer.querySelector(`[data-practice-id="${practice.id}"]`);
 
     if (existingPracticeCard) {
       console.warn(`practiceId ${practice.id} already exists. Skipping duplicate.`)
@@ -144,6 +152,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     `;
 
     // Append to the container
-    practiceContainer.appendChild(practiceCard);
+    practiceContainer.prepend(practiceCard);
+    updateCardOrder(practiceContainer)
 }
 });
