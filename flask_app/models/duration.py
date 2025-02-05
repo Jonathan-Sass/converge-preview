@@ -11,7 +11,7 @@ class Duration:
         self.engagement_level = data["engagement_level"] or None
 
     # TODO: REFACTOR TO A SINGLE QUERY IN ROUTINE TEMPLATES
-    def fetch_durations_by_practice_id(practice):
+    def find_durations_by_practice_id(practice_id):
         # (TODO:add to name: with_engagement_levels)
         query = """
             SELECT
@@ -29,7 +29,7 @@ class Duration:
                 recommended_durations.practice_id = %(practice_id)s;
         """
 
-        data = {"practice_id": practice.id}
+        data = {"practice_id": practice_id}
 
         results = Duration.db.query_db(query, data)
 

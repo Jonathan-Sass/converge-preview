@@ -1,6 +1,7 @@
 from flask_app.config.mysqlconnection import connectToMySQL
 from flask import flash, session, jsonify, redirect
 from flask_app.models.practice import Practice
+from flask_app.models.duration import Duration
 from flask_app.models.user_response import UserResponse
 from flask_app.models.user import User
 
@@ -25,7 +26,7 @@ class RoutineTemplate:
         UserResponse.process_user_responses(user_with_responses)
         return
 
-    def fetch_routine_template_with_practices(routine_template_name):
+    def find_routine_template_by_name_with_practices(routine_template_name):
 
         query = """
             SELECT
@@ -76,8 +77,12 @@ class RoutineTemplate:
 
             for result in results:
                 # Add associated practices to routine_template
-                routine_template.practices.append(
-                    Practice.create_practice_with_durations(result)
-                )
+                practice = Practice(result)
+                durations = Duration.find_durations_by_practice_id(practice.id)
+                
+                for duration in durations:
+                    practice.durations.append(duration)
+                
+                routine_template.practices.append(practice)
 
         return routine_template

@@ -178,7 +178,7 @@ class Routine:
             recommended_routine_template_name = "Balanced Start"
 
         # Fetch the routine template with associated practices
-        recommended_routine_template = RoutineTemplate.fetch_routine_template_with_practices(recommended_routine_template_name)
+        recommended_routine_template = RoutineTemplate.find_routine_template_by_name_with_practices(recommended_routine_template_name)
 
         return recommended_routine_template
 

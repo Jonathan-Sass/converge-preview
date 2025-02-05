@@ -71,13 +71,13 @@ class Practice:
     def create_practice_with_durations(routine_template_and_practice_data):
         practice = Practice(routine_template_and_practice_data)
 
-        durations = Duration.fetch_durations_by_practice_id(practice)
+        durations = Duration.find_durations_by_practice_id(practice)
         for duration in durations:
             practice.durations.append(duration)
 
         return practice
 
-    def find_all_practices():
+    def get_all_practices():
         query = """
           SELECT
             p.id AS practice_id,
@@ -122,8 +122,8 @@ class Practice:
             raise RuntimeError(f"Error retrieving all practices: {e}")
         
   
-    def find_all_practices_grouped_by_category():
-        all_practices = Practice.find_all_practices()
+    def get_all_practices_grouped_by_category():
+        all_practices = Practice.get_all_practices()
 
         grouped_practices = {}
 
@@ -135,8 +135,5 @@ class Practice:
             
             practice.pop("practice_category")
             grouped_practices[practice_category].append(practice)
-        
-        print("grouped_practices in FAPGBC")
-        pprint(grouped_practices)
 
         return grouped_practices
