@@ -27,7 +27,6 @@ class RoutineTemplate:
         return
 
     def find_routine_template_by_name_with_practices(routine_template_name):
-
         query = """
             SELECT
                 routine_templates.id AS routine_template_id,
@@ -47,7 +46,11 @@ class RoutineTemplate:
                 practices.updated_at,
                 practice_categories.name AS practice_category,
                 impact_ratings.impact_rating_description,
-                difficulty_levels.difficulty_label AS practice_difficulty
+                difficulty_levels.difficulty_label AS practice_difficulty,
+                durations.id AS duration_id,
+                durations.duration_label,
+                durations.duration_seconds,
+                engagement_levels.level AS engagement_level
             FROM
                 routine_templates
             JOIN
@@ -62,6 +65,12 @@ class RoutineTemplate:
                 impact_ratings ON practices.impact_rating_id = impact_ratings.id
             JOIN
                 difficulty_levels ON practices.difficulty_level_id = difficulty_levels.id
+            LEFT JOIN
+              recommended_durations ON practices.id = recommended_durations.practice_id
+            LEFT JOIN
+              durations ON recommended_durations.duration_id = durations.id
+            LEFT JOIN
+              engagement_levels ON recommended_durations.engagement_level_id = engagement_levels.id
             WHERE
                 routine_templates.name = %(routine_template_name)s
             ORDER BY
@@ -70,19 +79,29 @@ class RoutineTemplate:
 
         data = {"routine_template_name": routine_template_name}
 
-        results = RoutineTemplate.db.query_db(query, data)
+        try:
+            results = RoutineTemplate.db.query_db(query, data)
 
-        if results:
+            if not results:
+                return None
+
             routine_template = RoutineTemplate(results[0])
+            
+            practice_map = {}
 
             for result in results:
-                # Add associated practices to routine_template
-                practice = Practice(result)
-                durations = Duration.find_durations_by_practice_id(practice.id)
-                
-                for duration in durations:
-                    practice.durations.append(duration)
-                
-                routine_template.practices.append(practice)
+                practice_id = result["practice_id"]
 
-        return routine_template
+                if practice_id not in practice_map:
+                    practice = Practice(result)
+                    practice_map[practice_id] = practice
+                    routine_template.practices.append(practice)
+                
+                if result["duration_id"]:
+                    duration = Duration(result)
+                    practice_map[practice_id].durations.append(duration)
+
+            return routine_template
+        
+        except Exception as e:
+            raise RuntimeError(f"Error retrieving routine template: {e}")
