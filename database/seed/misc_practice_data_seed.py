@@ -24,11 +24,11 @@ def seed_impact_value_data():
         INSERT IGNORE INTO impact_ratings
             (impact_rating_description, impact_rating_value)
         VALUES 
-            ('Introductory impact: A gentle start with foundational benefits', 1),
-            ('Moderate impact: A meaningful contribution to progress', 2),
-            ('Notable impact: Has a clear and noticeable benefit', 3),
-            ('High impact: Significant contribution to wellness and/or goals', 4),
-            ('Very high impact: Transformative or critical benefits', 5);
+            ('Modest impact', 1),
+            ('Moderate impact', 2),
+            ('Notable impact', 3),
+            ('High impact', 4),
+            ('Very high impact', 5);
     """
     execute_seed_query(query, table_name)
 
