@@ -11,7 +11,8 @@ practice_data = {
         "difficulty_level_id": 1,
         "frequency": "Every morning",
         "is_common": True,
-        "notes": "Hydration improves digestion, energy levels, and cognitive function.",
+        "notes": "Drinking water upon waking replenishes fluids lost during sleep, enhancing energy levels, cognitive function, and overall health. - Medicalnewstoday.com",
+        "literature_summary": "Starting your day with a glass of water replenishes fluids lost during sleep, aiding with numerous physiological functions. Water is essential for transporting nutrients to cells, regulating body temperature, and lubricating joints. Rehydration can also improve cognitive performance and mood, as even mild dehydration can impair short-term memory and increase feelings of anxiety and fatigue. - Healthline.com, Medicalnewstoday.com",
         "objectives": ["hydrate", "boost_energy_levels", "promote_healthy_digestion"]
     },
     {
@@ -22,8 +23,8 @@ practice_data = {
         "difficulty_level_id": 2,
         "frequency": "Every morning",
         "is_common": False,
-        "notes": "Cold exposure supports resilience, boosts energy, and may improve mood.",
-        "literature summary": "Research on cold immersion demonstrates its profound physiological impact, including a significant and sustained increase in dopamine levels—greater than that observed from most other natural stimuli—while also enhancing mood, focus, and resilience",
+        "notes": "Regular cold exposure, such as cold showers or ice baths, can improve mood, increase alertness, and support metabolic health. - UCLAhealth.org",
+        "literature summary": "Engaging in deliberate cold exposure, such as cold showers or ice baths, can significantly enhance mental well-being by stimulating the release of key neurotransmitters. Notably, cold exposure can increase dopamine levels by up to 250%, leading to improved mood, heightened focus, and increased motivation. This dopamine surge is both substantial and sustained, lasting for hours after the exposure. Additionally, cold exposure elevates norepinephrine levels, which further contributes to enhanced alertness and attention. Also additionally, it activates brown adipose tissue, which increases metabolism and improves insulin sensitivity, supporting overall metabolic health. However, consult your doctor or a medical professional before attempting cold plunges to make sure they are safe for you. - NIH.gov, Hubermanlab.com",
         "objectives": ["boost_energy_levels", "build_resilience", "improve_circulation"]
     },
     {
