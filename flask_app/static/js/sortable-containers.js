@@ -19,6 +19,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
 // Update order dynamically
 export function updateCardOrder(container) {
+  if (!container) {
+    console.error("updateCardOrder was called with an undefined container.")
+    return;
+  }
+  
   console.log("Selecting sortable-cards:")
   const cards = container.querySelectorAll('.sortable-card');
   console.log("Updating card order text...")
