@@ -80,131 +80,135 @@
         </div>
       </div>
     </nav>
-    <!-- Content and Sidebar Div-->
-    <div class="container-fluid m-auto my-3 d-flex align-items-start gap-3">
-
       <!-- Main Content -->
-      <div class="container col-12">
-        <!-- <div class="container-fluid d-flex gap-2 justify-content-between"> -->
-        <div class="container-fluid">
-          
-          <div class="card shadow p-2 text-center opacity-75 mb-3">
-            <div class="card-body">
-              <div class="card-title">
-                <h2 class="text-primary" id="routine-name">Build-Your-Own Morning Routine</h2>
-                <hr class="border border-1 border-light">
-                <p class="lead">Welcome to the build-your-own routine page!</p>
-                <p class="lead">We have added a generic routine as a template for you to customize to your liking.</p>
-                <p class="lead align-self-start d-inline"><strong>What time do you start your morning? </strong></p>
-                <input type="time" class="d-inline" id="routine-start-time">
-              </div>
+      <div class="container-fluid">
+        
+        <div class="card shadow p-2 text-center opacity-75 mb-3">
+          <div class="card-body">
+            <div class="card-title">
+              <h2 class="text-primary" id="routine-name">Build-Your-Own Morning Routine</h2>
+              <hr class="border border-light">
+              <p class="lead">Welcome to the build-your-own routine page!</p>
+              <p class="lead">We have added a generic routine as a template for you to customize to your liking.</p>
+              <p class="lead align-self-start d-inline"><strong>What time do you start your morning? </strong></p>
+              <input type="time" class="d-inline" id="routine-start-time">
+              <hr class="w-50 border border-light m-auto my-3">
+            </div>
+            <div class="card-text">
+              <button id="add-practice-btn" class="btn btn-primary w-auto-p-2">Add a Practice</button>
             </div>
           </div>
-          <div class="card shadow p-2 text-center opacity-75 mb-3">
-            <div class="card-body">
-              <div class="card-title">
-                <h2 class="text-primary">Add A Practice To Your Routine</h2>
-                <hr class="w-50 m-auto mb-3">
-              </div>
-              <div class="d-flex justify-content-evenly gap-4 align-items-center">
-                <!-- Search Bar -->
-                  <div class="form-floating d-flex gap-3 align-items-center">
-                    <input type="text" id="search-practices" class="form-control" placeholder="Search for a practice...">
-                    <label class="form-label" for="search-practices">Search for a practice ...</label>
-                    <button class="btn btn-primary p-2">Search</button>
-                  </div>
-                  <!-- Category Filter -->
-                  <button id="category-filter-btn" class="btn btn-primary w-auto p-2">Browse Categories</button>
-              </div>
+        </div>
+        <div class="card shadow p-2 text-center opacity-75 mb-3">
+          <div class="card-body">
+            <div class="card-title">
+              <h2 class="text-primary">Add A Practice To Your Routine</h2>
+              <hr class="border border-light w-50 m-auto mb-3">
             </div>
-          </div>
-          <!-- Drag and Drop Containers for practices -->
-          <div class="scroll-wrapper position-relative">
-            <!-- Scroll Left Button -->
-            <button id="scroll-left"
-              class="scroll-btn position-absolute top-50 start-0 translate-middle-y btn btn-secondary rounded-circle">
-              <i class="bi bi-chevron-left"></i> <!-- Bootstrap Icon -->
-            </button>
-            <div class="container d-flex gap-3 mask-container sortable-container" id="practice-container"
-              data-routine-type="AM">
-              {% for practice in routine.practices %}
-              <!-- Practice Cards -->
-              <div class="practice-card card shadow p-2 text-center opacity-75 mb-3 col-3 sortable-card"
-                data-practice-id="{{ practice.id }}" data-order="{{ loop.index }}" id="practice-{{ loop.index }}">
-                <div class="h5 practice-category">{{practice.practice_category }}</div>
-                <div class="card-body compact-card d-flex flex-column">
-                  <div class="card-header">
-                    <h5 class="card-order text-primary">{{ loop.index }}. </h5>
-                    <h5 class="practice-name text-primary">{{ practice.name }}</h5>
-                    <span class="badge difficulty-badge d-block">Difficulty: {{ practice.difficulty }}</span>
-                    <span class="badge impact-badge">{{ practice.impact_rating_description | truncate(30) }}</span>
-                  </div>
-                  <p class="short-description">{{ practice.description | truncate(100) }}</p>
-                  <select class="form-select duration" aria-label="Default select example"
-                    id="{{ practice.name }}-duration">
-                    {% for duration in practice.durations %}
-                    <option value="{{ duration.id }}">{{ duration.duration_label }}
-                      {% if duration.engagement_level %} ({{ duration.engagement_level }}) {% endif %}
-                    </option>
-                    {% endfor %}
-                  </select>
-                  <div class="card-footer mt-auto">
-                    <button class="btn btn-link details-button" data-bs-toggle="modal"
-                      data-bs-target="#practiceDetails{{ loop.index }}">
-                      Learn More
-                    </button>
-                  </div>
+            <div class="d-flex justify-content-evenly gap-4 align-items-center">
+              <!-- Search Bar -->
+                <div class="form-floating d-flex gap-3 align-items-center">
+                  <input type="text" id="search-practices" class="form-control" placeholder="Search for a practice...">
+                  <label class="form-label" for="search-practices">Search for a practice ...</label>
+                  <button class="btn btn-primary p-2">Search</button>
                 </div>
+                <!-- Category Filter -->
+                <button id="category-filter-btn" class="btn btn-primary w-auto p-2">Browse Categories</button>
+            </div>
+          </div>
+        </div>
+        <!-- Drag and Drop Containers for practices -->
+        <div class="scroll-wrapper position-relative w-100">
+          <!-- Scroll Left Button -->
+          <button id="scroll-left"
+            class="scroll-btn position-absolute top-50 start-0 translate-middle-y btn btn-secondary rounded-circle">
+            <i class="bi bi-chevron-left"></i> <!-- Bootstrap Icon -->
+          </button>
+          <div class="container d-flex gap-3 mask-container sortable-container" id="practice-container"
+            data-routine-type="AM">
+            {% for practice in routine.practices %}
+            <!-- Practice Cards -->
+            <div class="practice-card card shadow p-2 text-center opacity-75 mb-3 col-3 sortable-card"
+              data-practice-id="{{ practice.id }}" data-order="{{ loop.index }}" id="practice-{{ loop.index }}">
+              <div class="h5 practice-category">{{practice.practice_category }}</div>
+              <div class="card-body compact-card d-flex flex-column">
+                <div class="card-header">
+                  <h5 class="card-order text-primary">{{ loop.index }}. </h5>
+                  <h5 class="practice-name text-primary">{{ practice.name }}</h5>
+                  <span class="badge difficulty-badge d-block">Difficulty: {{ practice.difficulty }}</span>
+                  <span class="badge impact-badge">{{ practice.impact_rating_description | truncate(30) }}</span>
+                </div>
+                <p class="short-description">{{ practice.description | truncate(100) }}</p>
+                <select class="form-select duration" aria-label="Default select example"
+                  id="{{ practice.name }}-duration">
+                  {% for duration in practice.durations %}
+                  <option value="{{ duration.id }}">{{ duration.duration_label }}
+                    {% if duration.engagement_level %} ({{ duration.engagement_level }}) {% endif %}
+                  </option>
+                  {% endfor %}
+                </select>
+                <div class="card-footer mt-auto">
+                  <button class="btn btn-link details-button" data-bs-toggle="modal"
+                    data-bs-target="#practiceDetails{{ loop.index }}">
+                    Learn More
+                  </button>
+                </div>
+              </div>
 
-                <!-- Modal for detailed view -->
-                <div class="modal fade" id="practiceDetails{{ loop.index }}" tabindex="-1"
-                  aria-labelledby="practiceDetailsLabel" aria-hidden="true" data-bs-backdrop="true"
-                  data-bs-keyboard="true">
-                  <div class="modal-dialog">
-                    <div class="modal-content">
-                      <div class="modal-header">
-                        <h5 class="modal-title" id="practiceDetailsLabel">{{ practice.name }}</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                      </div>
-                      <div class="modal-body">
-                        <p><strong>Description:</strong> {{ practice.description }}</p>
-                        {% if practice.literature_summary %}
-                        <p><strong>Why would I do this?</strong> {{ practice.literature_summary }}</p>
-                        {% endif %}
-                        <p><strong>Additional Notes:</strong> {{ practice.notes }}</p>
-                      </div>
-                      <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                      </div>
+              <!-- Modal for detailed view -->
+              <div class="modal fade" id="practiceDetails{{ loop.index }}" tabindex="-1"
+                aria-labelledby="practiceDetailsLabel" aria-hidden="true" data-bs-backdrop="true"
+                data-bs-keyboard="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="practiceDetailsLabel">{{ practice.name }}</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      <p><strong>Description:</strong> {{ practice.description }}</p>
+                      {% if practice.literature_summary %}
+                      <p><strong>Why would I do this?</strong> {{ practice.literature_summary }}</p>
+                      {% endif %}
+                      <p><strong>Additional Notes:</strong> {{ practice.notes }}</p>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                     </div>
                   </div>
                 </div>
               </div>
-              {% endfor %}
             </div>
-            <button id="scroll-right"
-              class="scroll-btn position-absolute top-50 end-0 translate-middle-y btn btn-secondary rounded-circle">
-              <i class="bi bi-chevron-right"></i> <!-- Bootstrap Icon -->
-            </button>
+            {% endfor %}
           </div>
-          <div class="card shadow p-3 w-50 opacity-75 m-auto text-center">
-            <button class="btn btn-primary w-25 m-auto my-2" id="save-button">Save</button>
-          </div>
+          <button id="scroll-right"
+            class="scroll-btn position-absolute top-50 end-0 translate-middle-y btn btn-secondary rounded-circle">
+            <i class="bi bi-chevron-right"></i> <!-- Bootstrap Icon -->
+          </button>
+        </div>
+        <div class="card shadow p-3 w-50 opacity-75 m-auto text-center">
+          <button class="btn btn-primary w-25 m-auto my-2" id="save-button">Save</button>
         </div>
       </div>
-    </div>
   </div>
   <!-- Category Selection Modal -->
-<div class="modal fade" id="categoryModal" tabindex="-1" aria-labelledby="categoryModalLabel" aria-hidden="true">
+<div class="modal fade" id="add-practice-modal" tabindex="-1" aria-labelledby="add-practice-label" aria-hidden="inert">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title text-primary" id="categoryModalLabel">Select a Practice Category</h5>
+        <div class="form-floating d-flex gap-3 align-items-center">
+          <input type="text" id="search-practices" class="form-control" placeholder="Search for a practice..."/>
+          <label class="form-label" for="search-practices">Search for a practice ...</label>
+          <button class="btn btn-primary p-2">Search</button>
+        </div>
+        <hr class="border border-light w-100">
+
+        <h5 class="modal-title text-primary" id="add-practice-label">Select a Practice Category</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
         <div id="category-list" class="list-group accordion">
-          <!-- Categories and practices will be loaded here from search-filter.js-->
+          <!-- Categories and practices will be loaded here from search-filter-practices.js-->
         </div>
       </div>
       <div class="modal-footer">

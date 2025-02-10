@@ -19,11 +19,11 @@ document.addEventListener("DOMContentLoaded", async function () {
   practicesByCategory = await fetchPractices();
 
   // Elements
-  const categoryFilterBtn = document.getElementById("category-filter-btn");
+  const addPracticeBtn = document.getElementById("add-practice-btn");
   const categoryListContainer = document.getElementById("category-list");
 
   // Open modal when filter button is clicked
-  categoryFilterBtn.addEventListener("click", function () {
+  addPracticeBtn.addEventListener("click", function () {
       populateCategoryModal();
       const categoryModal = new bootstrap.Modal(document.getElementById("categoryModal"));
       categoryModal.show();
@@ -153,6 +153,15 @@ document.addEventListener("DOMContentLoaded", async function () {
 
     // Append to the container
     practiceContainer.prepend(practiceCard);
-    updateCardOrder(practiceContainer)
+    updateCardOrder(practiceContainer);
+    hidePracticeModal();
+}
+
+function hidePracticeModal() {
+  let modalElement = document.getElementById('categoryModal');
+  let modalInstance = bootstrap.Modal.getInstance(modalElement);
+  if (modalInstance) {
+    modalInstance.hide();
+  }
 }
 });
