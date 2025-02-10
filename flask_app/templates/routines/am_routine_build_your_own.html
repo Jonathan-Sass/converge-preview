@@ -16,67 +16,72 @@
   <div class="border-box">
     <!-- Top Navbar -->
     <nav
-      class="navbar navbar-expand-lg navbar-dark bg-dark w-100 m-auto d-flex justify-content-between position-sticky top-0 z-3 p-3">
-      <div class="container-fluid">
-        <a class="navbar-brand d-inline-flex align-items-center gap-4" href="/home">
-          <img src="/static/img/Enso_Blue_and_Black.jpg" alt="Logo" width="60" height="60" class="rounded-circle">
-          <h1 class="display-5 text-primary">Converge</h1>
-        </a>
-      </div>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDarkDropdown"
-        aria-controls="navbarNavDarkDropdown" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
-        <div class="navbar-nav">
-          <a class="nav-link active btn btn-light opacity-75 mx-1 text-dark" aria-current="page" href="/home">Home</a>
-          <a class="nav-link active btn btn-light opacity-75 mx-1 text-dark" href="/calendar">Calendar</a>
-          <div class="collapse navbar-collapse " id="navbarNavDarkDropdown">
-            <ul class="navbar-nav">
-              <li class="nav-item dropdown">
-                <button class="btn btn-light opacity-75 mx-1 dropdown-toggle" data-bs-toggle="dropdown"
-                  aria-expanded="false">
-                  Goals
-                </button>
-                <ul class="dropdown-menu dropdown-menu-dark">
-                  <li><a class="dropdown-item" href="/goals/your-why">Understanding Your WHY</a></li>
-                  <li><a class="dropdown-item" href="/goals/recreation-travel">Recreation and Travel</a></li>
-                  <li><a class="dropdown-item" href="/goals/health-wellness">Health and Wellness</a></li>
-                  <li><a class="dropdown-item" href="/goals/social-community">Social and Community Engagement</a></li>
-                  <li><a class="dropdown-item" href="/goals/spirituality">Spirituality and Life Purpose</a></li>
-                  <li><a class="dropdown-item" href="/goals/career-professional-development">Career and Professional
-                      Development</a></li>
-                  <li><a class="dropdown-item" href="/goals/wealth-finance">Wealth Building and Financial Health</a>
-                  </li>
-                  <li><a class="dropdown-item" href="/goals/creative-expression-hobbies">Creative Expression and
-                      Hobbies</a></li>
-                  <li><a class="dropdown-item" href="/goals/environment-success">Environment and Success</a></li>
-                  <li><a class="dropdown-item" href="/goals">Something else here</a></li>
-                </ul>
-              </li>
-            </ul>
-          </div>
+      class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top p-3">
+      <div class="container-fluid d-flex align-items-center">
+        <div class="d-flex gap-1 align-items-end">
+          <a class="navbar-brand d-inline-flex gap-3" href="/home">
+            <img src="/static/img/Enso_Blue_and_Black.jpg" alt="Logo" width="60" height="60" class="rounded-circle">
+            <h1 class="display-5 text-primary">Converge</h1>
+          </a>
+          <p class="text-light">The architecture of sustainable habits.</p>
+        </div>
+        <div class="d-flex gap-1">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDarkDropdown"
+            aria-controls="navbarNavDarkDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
           <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
-            <ul class="navbar-nav">
-              <li class="nav-item dropdown">
-                <button class="btn dropdown-toggle btn-light opacity-75 mx-1" data-bs-toggle="dropdown"
-                  aria-expanded="false">
-                  Practices
-                </button>
-                <ul class="dropdown-menu dropdown-menu-dark">
-                  <li><a class="dropdown-item" href="/practices/AM">AM Practices</a></li>
-                  <li><a class="dropdown-item" href="/practices/PM">PM Practices</a></li>
-                  <li><a class="dropdown-item" href="/practices/daily">Daily Practices</a></li>
-                  <li><a class="dropdown-item" href="/practices/discipline">Discipline</a></li>
-                  <li><a class="dropdown-item" href="/practices">Something else?</a></li>
+            <div class="navbar-nav">
+              <a class="nav-link active btn btn-sm btn-light opacity-75" aria-current="page" href="/home">Home</a>
+              <a class="nav-link opacity-75" href="/calendar"><button class="btn btn-outline-light">Calendar</button></a>
+              <div class="collapse navbar-collapse " id="navbarNavDarkDropdown">
+                <ul class="navbar-nav">
+                  <li class="nav-item dropdown">
+                    <button class="btn btn-outline-light opacity-75 mx-1 dropdown-toggle" data-bs-toggle="dropdown"
+                      aria-expanded="false">
+                      Goals
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-dark">
+                      <li><a class="dropdown-item" href="/goals/your-why">Understanding Your WHY</a></li>
+                      <li><a class="dropdown-item" href="/goals/recreation-travel">Recreation and Travel</a></li>
+                      <li><a class="dropdown-item" href="/goals/health-wellness">Health and Wellness</a></li>
+                      <li><a class="dropdown-item" href="/goals/social-community">Social and Community Engagement</a></li>
+                      <li><a class="dropdown-item" href="/goals/spirituality">Spirituality and Life Purpose</a></li>
+                      <li><a class="dropdown-item" href="/goals/career-professional-development">Career and Professional
+                          Development</a></li>
+                      <li><a class="dropdown-item" href="/goals/wealth-finance">Wealth Building and Financial Health</a>
+                      </li>
+                      <li><a class="dropdown-item" href="/goals/creative-expression-hobbies">Creative Expression and
+                          Hobbies</a></li>
+                      <li><a class="dropdown-item" href="/goals/environment-success">Environment and Success</a></li>
+                      <li><a class="dropdown-item" href="/goals">Something else here</a></li>
+                    </ul>
+                  </li>
                 </ul>
-              </li>
-            </ul>
+              </div>
+              <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
+                <ul class="navbar-nav">
+                  <li class="nav-item dropdown">
+                    <button class="btn dropdown-toggle btn-outline-light opacity-75 mx-1" data-bs-toggle="dropdown"
+                      aria-expanded="false">
+                      Practices
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-dark">
+                      <li><a class="dropdown-item" href="/practices/AM">AM Practices</a></li>
+                      <li><a class="dropdown-item" href="/practices/PM">PM Practices</a></li>
+                      <li><a class="dropdown-item" href="/practices/daily">Daily Practices</a></li>
+                      <li><a class="dropdown-item" href="/practices/discipline">Discipline</a></li>
+                      <li><a class="dropdown-item" href="/practices">Something else?</a></li>
+                    </ul>
+                  </li>
+                </ul>
+              </div>
+              <!-- <a class="nav-link disabled" aria-disabled="true">Disabled</a> -->
+              <form action="/users/logout" method="post">
+                <button class="btn btn-link" type="submit" name="logout">logout</button>
+              </form>
+            </div>
           </div>
-          <a class="nav-link disabled" aria-disabled="true">Disabled</a>
-          <form action="/users/logout" method="post">
-            <button class="btn btn-link" type="submit" name="logout">logout</button>
-          </form>
         </div>
       </div>
     </nav>
@@ -89,32 +94,28 @@
               <h2 class="text-primary" id="routine-name">Build-Your-Own Morning Routine</h2>
               <hr class="border border-light">
               <p class="lead">Welcome to the build-your-own routine page!</p>
-              <p class="lead">We have added a generic routine as a template for you to customize to your liking.</p>
-              <p class="lead align-self-start d-inline"><strong>What time do you start your morning? </strong></p>
-              <input type="time" class="d-inline" id="routine-start-time">
+              <h6 class="text-muted mb-3">
+                <em>This generic routine is being displayed as a starting point:</em>
+              </h6>
+              <h2 class="text-primary display-4 mb-3" id="routine-name">
+                {{ routine.name }}
+              </h2>
+              <p class="text-secondary lead mb-4" id="routine-description">
+                {{ routine.description }}
+              </p>
               <hr class="w-50 border border-light m-auto my-3">
             </div>
             <div class="card-text">
-              <button id="add-practice-btn" class="btn btn-primary w-auto-p-2">Add a Practice</button>
+              <button id="add-practice-btn" class="btn btn-primary">Add a Practice</button>
             </div>
           </div>
         </div>
-        <div class="card shadow p-2 text-center opacity-75 mb-3">
+        <div class="card shadow p-2 text-center opacity-75 mb-3 w-50 m-auto">
           <div class="card-body">
             <div class="card-title">
-              <h2 class="text-primary">Add A Practice To Your Routine</h2>
-              <hr class="border border-light w-50 m-auto mb-3">
+              <p class="lead align-self-start d-inline"><strong>When do you start your morning? </strong></p>
             </div>
-            <div class="d-flex justify-content-evenly gap-4 align-items-center">
-              <!-- Search Bar -->
-                <div class="form-floating d-flex gap-3 align-items-center">
-                  <input type="text" id="search-practices" class="form-control" placeholder="Search for a practice...">
-                  <label class="form-label" for="search-practices">Search for a practice ...</label>
-                  <button class="btn btn-primary p-2">Search</button>
-                </div>
-                <!-- Category Filter -->
-                <button id="category-filter-btn" class="btn btn-primary w-auto p-2">Browse Categories</button>
-            </div>
+            <input type="time" class="d-inline" id="routine-start-time">
           </div>
         </div>
         <!-- Drag and Drop Containers for practices -->
@@ -139,7 +140,7 @@
                   <span class="badge impact-badge">{{ practice.impact_rating_description | truncate(30) }}</span>
                 </div>
                 <p class="short-description">{{ practice.description | truncate(100) }}</p>
-                <select class="form-select duration" aria-label="Default select example"
+                <select class="form-select duration mb-2" aria-label="Default select example"
                   id="{{ practice.name }}-duration">
                   {% for duration in practice.durations %}
                   <option value="{{ duration.id }}">{{ duration.duration_label }}
@@ -147,12 +148,13 @@
                   </option>
                   {% endfor %}
                 </select>
-                <div class="card-footer mt-auto">
+                <div class="card-footer d-flex flex-column mb-2">
                   <button class="btn btn-link details-button" data-bs-toggle="modal"
-                    data-bs-target="#practiceDetails{{ loop.index }}">
-                    Learn More
-                  </button>
-                </div>
+                  data-bs-target="#practiceDetails{{ loop.index }}">
+                  Learn More
+                </button>
+              </div>
+              <button class="btn btn-outline-danger mb-2">Delete</button>
               </div>
 
               <!-- Modal for detailed view -->
@@ -186,8 +188,8 @@
             <i class="bi bi-chevron-right"></i> <!-- Bootstrap Icon -->
           </button>
         </div>
-        <div class="card shadow p-3 w-50 opacity-75 m-auto text-center">
-          <button class="btn btn-primary w-25 m-auto my-2" id="save-button">Save</button>
+        <div class="card shadow p-3 w-25 opacity-75 m-auto mb-3 text-center">
+          <button class="btn btn-primary p-2 w-50 m-auto my-2" id="save-button">Save</button>
         </div>
       </div>
   </div>
@@ -195,14 +197,20 @@
 <div class="modal fade" id="add-practice-modal" tabindex="-1" aria-labelledby="add-practice-label" aria-hidden="inert">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
-      <div class="modal-header">
-        <div class="form-floating d-flex gap-3 align-items-center">
-          <input type="text" id="search-practices" class="form-control" placeholder="Search for a practice..."/>
-          <label class="form-label" for="search-practices">Search for a practice ...</label>
-          <button class="btn btn-primary p-2">Search</button>
+      <div class="modal-header flex-column align-items-start">
+        <h5 class="modal-title text-primary" id="add-practice-label">Search for a Practice</h5>
+        <div class="w-100 mb-2">
+          <div class="form-floating d-flex gap-3 align-items-center">
+            <input type="text" id="search-practices" class="form-control" placeholder="Search for a practice..."/>
+            <label class="form-label" for="search-practices">Search here</label>
+            <button class="btn btn-primary p-2">Search</button>
+          </div>
         </div>
-        <hr class="border border-light w-100">
 
+        <!-- Search Results Container (Initially Empty) -->
+        <div id="search-results" class="list-group w-100"></div>
+
+        <hr class="border border-light w-100">
         <h5 class="modal-title text-primary" id="add-practice-label">Select a Practice Category</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
