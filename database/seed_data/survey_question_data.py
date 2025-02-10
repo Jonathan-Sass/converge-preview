@@ -46,7 +46,7 @@ survey_question_data = [
         "questions": [
             {
                 "question_slug": "big-picture-goals",
-                "question_text": "Why are your big picture goals with Converge? Select any that apply.",
+                "question_text": "What are your big picture goals with Converge? Select any that apply.",
                 "type": "select-any",
                 "answers": [
                     {"answer_text": "Increase longevity", "answer_value": 0},
