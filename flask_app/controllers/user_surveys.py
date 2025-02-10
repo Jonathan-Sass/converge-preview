@@ -74,7 +74,7 @@ def new_user_getting_started():
     if not user:
         return redirect("/")
 
-    return render_template("/home/getting-started.html")
+    return render_template("/surveys/survey_getting_started.html")
 
 @app.get("/process-getting-started")
 def process_getting_started_answers():
