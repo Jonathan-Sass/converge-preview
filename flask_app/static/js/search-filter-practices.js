@@ -20,13 +20,13 @@ document.addEventListener("DOMContentLoaded", async function () {
 
   // Elements
   const addPracticeBtn = document.getElementById("add-practice-btn");
-  const categoryListContainer = document.getElementById("category-list");
+  const addPracticeContainer = document.getElementById("category-list");
 
   // Open modal when filter button is clicked
   addPracticeBtn.addEventListener("click", function () {
-      populateCategoryModal();
-      const categoryModal = new bootstrap.Modal(document.getElementById("categoryModal"));
-      categoryModal.show();
+      populateAddPracticeModal();
+      const addPracticeModal = new bootstrap.Modal(document.getElementById("add-practice-modal"));
+      addPracticeModal.show();
   });
 
   // Clear modal backdrops when opening a new modal
@@ -36,8 +36,8 @@ document.addEventListener("DOMContentLoaded", async function () {
 
 
   // Function to populate the modal with categories and practices
-  function populateCategoryModal() {
-    categoryListContainer.innerHTML = ""; // Clear previous content
+  function populateAddPracticeModal() {
+    addPracticeContainer.innerHTML = ""; // Clear previous content
 
     Object.entries(practicesByCategory).forEach(([category, practices], index) => {
         // Create the main accordion item
@@ -97,7 +97,7 @@ document.addEventListener("DOMContentLoaded", async function () {
         accordionCollapse.appendChild(cardContainer);
         accordionItem.appendChild(categoryTitle);
         accordionItem.appendChild(accordionCollapse);
-        categoryListContainer.appendChild(accordionItem);
+        addPracticeContainer.appendChild(accordionItem);
     });
 }
 
@@ -158,7 +158,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 }
 
 function hidePracticeModal() {
-  let modalElement = document.getElementById('categoryModal');
+  let modalElement = document.getElementById('add-practice-modal');
   let modalInstance = bootstrap.Modal.getInstance(modalElement);
   if (modalInstance) {
     modalInstance.hide();
