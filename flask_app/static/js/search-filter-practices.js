@@ -1,6 +1,9 @@
 import { updateCardOrder } from "./sortable-containers.js";
 
 document.addEventListener("DOMContentLoaded", async function () {
+  const addPracticeBtn = document.getElementById("add-practice-btn");
+  const addPracticeContainer = document.getElementById("category-list");
+ 
   let practicesByCategory = {}; // Store practices grouped by category
 
   // Fetch all practices from the backend
@@ -19,8 +22,6 @@ document.addEventListener("DOMContentLoaded", async function () {
   practicesByCategory = await fetchPractices();
 
   // Elements
-  const addPracticeBtn = document.getElementById("add-practice-btn");
-  const addPracticeContainer = document.getElementById("category-list");
 
   // Open modal when filter button is clicked
   addPracticeBtn.addEventListener("click", function () {
@@ -164,4 +165,46 @@ function hidePracticeModal() {
     modalInstance.hide();
   }
 }
+
+
+const searchInput = document.getElementById("search-practices");
+const searchResults = document.getElementById("search-results");
+
+// Function to filter results
+function filterResults(query) {
+  searchResults.innerHTML = ""; // Clear previous results
+  
+  if (query.length === 0) {
+    return; // Exit if input is empty
+  }
+  // practicesByCategory is the result of our all practices by category API fetch
+  const filteredPractices = practicesByCategory.filter(practice =>
+    practice.name.toLowerCase().includes(query.toLowerCase())
+  );
+  
+  if (filteredPractices.length === 0) {
+    searchResults.innerHTML = `<div class="list-group-item text-muted">No results found</div>`;
+    return;
+  }
+  
+  filteredPractices.forEach(practice => {
+    const item = document.createElement("button");
+    item.className = "list-group-item list-group-item-action";
+    item.textContent = practice.name;
+    item.setAttribute("data-id", practice.id);
+    
+    item.addEventListener("click", () => {
+      alert(`Selected: ${practice.name}`);
+      searchResults.innerHTML = ""; // Clear results after selection
+      searchInput.value = practice.name; // Optionally fill input with selection
+    });
+    
+    searchResults.appendChild(item);
+  });
+}
+
+// Event listener for search input
+searchInput.addEventListener("input", (e) => {
+  filterResults(e.target.value);
+});
 });
