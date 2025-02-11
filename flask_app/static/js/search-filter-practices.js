@@ -72,7 +72,7 @@ document.addEventListener("DOMContentLoaded", async function () {
         // Create practice cards
         practices.forEach((practice, practiceIndex) => {
             const card = document.createElement("div");
-            card.classList.add("practice-card", "card", "shadow", "p-2", "text-center", "opacity-75", "mb-3", "col-3", "sortable-card");
+            card.classList.add("practice-card", "card", "shadow", "p-2", "text-center", "opacity-75", "mb-3", "col-3", "min-width-200");
             card.dataset.practiceId = practice.id;
             card.dataset.order = practiceIndex + 1; // Simulating loop.index
             card.id = `practice-${index}-${practiceIndex + 1}`; // Ensure unique ID
