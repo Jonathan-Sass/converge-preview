@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='img/Enso_Blue_and_Black.jpg') }}">
+  <title>Home</title>
+</head>
+
+<body>
+  <div class="border-box">
+    <nav
+      class="navbar navbar-expand-lg navbar-dark bg-dark w-100 m-auto d-flex justify-content-between position-sticky top-0 z-3 p-3">
+      <div class="container-fluid">
+        <a class="navbar-brand d-inline-flex align-items-center gap-4" href="/dashboard">
+          <img src="/static/img/Enso_Blue_and_Black.jpg" class="rounded-circle" width="60" height="60"
+            alt="Converge Logo">
+          <h1 class="display-5 text-primary">Converge</h1>
+        </a>
+      </div>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDarkDropdown"
+        aria-controls="navbarNavDarkDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
+        <div class="navbar-nav">
+          <a class="nav-link active" aria-current="page" href="/home">Home</a>
+          <a class="nav-link" href="/calendar">Calendar</a>
+          <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
+            <ul class="navbar-nav">
+              <li class="nav-item dropdown">
+                <button class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                  Goals
+                </button>
+                <ul class="dropdown-menu dropdown-menu-dark">
+                  <li><a class="dropdown-item" href="/goals/recreation-travel">Recreation and Travel</a></li>
+                  <li><a class="dropdown-item" href="/goals/health-wellness">Health and Wellness</a></li>
+                  <li><a class="dropdown-item" href="/goals/social-community">Social and Community Engagement</a></li>
+                  <li><a class="dropdown-item" href="/goals/spirituality">Spirituality and Life Purpose</a></li>
+                  <li><a class="dropdown-item" href="/goals/career-professional-development">Career and Professional
+                      Development</a></li>
+                  <li><a class="dropdown-item" href="/goals/wealth-finance">Wealth Building and Financial Health</a>
+                  </li>
+                  <li><a class="dropdown-item" href="/goals/creative-expression-hobbies">Creative Expression and
+                      Hobbies</a></li>
+                  <li><a class="dropdown-item" href="/goals/environment-success">Environment and Success</a></li>
+                  <li><a class="dropdown-item" href="/goals">Something else here</a></li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+          <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
+            <ul class="navbar-nav">
+              <li class="nav-item dropdown">
+                <button class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                  Practices
+                </button>
+                <ul class="dropdown-menu dropdown-menu-dark">
+                  <li><a class="dropdown-item" href="/practices/AM">AM Practices</a></li>
+                  <li><a class="dropdown-item" href="/practices/PM">PM Practices</a></li>
+                  <li><a class="dropdown-item" href="/practices/daily">Daily Practices</a></li>
+                  <li><a class="dropdown-item" href="/practices/discipline">Discipline</a></li>
+                  <li><a class="dropdown-item" href="/practices">Something else?</a></li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+          <a class="nav-link disabled" aria-disabled="true">Disabled</a>
+          <form action="/users/logout" method="post">
+            <button class="btn btn-link" type="submit" name="logout">logout</button>
+          </form>
+        </div>
+      </div>
+    </nav>
+    <header class="bg-dark opacity-75 w-100 p-3 mt-0 text-center">
+      <h1 class="display-2 mb-3 text-primary">Converge</h1>
+      <h4 class="display-6 mx-5">Converge with your potential. Converge with your dreams.</h4>
+    </header>
+    <!-- Content and Sidebar Div-->
+    <div class="container my-4">
+        <!-- Dashboard Header -->
+        <div class="card shadow text-center opacity-75 p-4 mb-4 m-auto w-75">
+          <div class="card-body">
+            <h1 class="display-5 text-primary">Your Daily Dashboard</h1>
+            <p class="lead text-secondary">Stay on track with your routines, flex items, and action items.</p>
+          </div>
+        </div>
+
+        <!-- Tabs for Goals and Routines -->
+        <ul class="nav nav-tabs mb-4" id="dashboard-tabs" role="tablist">
+          <li class="nav-item">
+            <button class="nav-link active" id="your-day-tab" data-bs-toggle="tab" data-bs-target="#your-day"
+              type="button" role="tab">
+              Your Day
+            </button>
+          </li>
+          <li class="nav-item">
+            <button class="nav-link" id="goals-tab" data-bs-toggle="tab" data-bs-target="#goals" type="button"
+              role="tab">
+              Goals
+            </button>
+          </li>
+          <li class="nav-item">
+            <button class="nav-link" id="trends-tab" data-bs-toggle="tab" data-bs-target="#trends" type="button"
+              role="tab">
+              Trends
+            </button>
+          </li>
+        </ul>
+        <div class="tab-content">
+
+          <!-- YOUR DAY TAB -->
+          <div class="tab-pane d-flex gap-2 fade show active" id="your-day" role="tabpanel">
+            <!-- Left column -->
+            <div class="card shadow opacity-75 col-lg-6 p-2">
+              <div class="card-body">
+                <div class="card-title">
+                  <h4 class="display-6 mb-2 text-center text-primary">Your Day at a Glance</h4>
+                  <hr class="border border-light mb-3 m-auto w-100">
+                </div>
+                <!-- AM Routine -->
+                <div class="card shadow border border-warning mb-1">
+                  <div class="card-body">
+                    <div class="card-title d-flex justify-content-between">
+                      <h5 class="card-title text-primary">Morning Routine</h5>
+                      <button class="btn btn-sm btn-outline-primary">Edit Routine</button>
+                    </div>
+
+                    <hr class="border border-light mb-3 m-auto w-100">
+
+                    <ul class="list-group">
+                      {% for routine in routines %}
+                      {% if routine.routine_type == "AM" %}
+                      {% for practice in routine.practices %}
+                      <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <span>{{ practice.name }}</span>
+                        <button class="btn btn-sm btn-outline-success"
+                          onclick="markAccomplished('{{ practice.id }}')">Mark
+                          Done</button>
+                        <button class="btn btn-sm btn-warning">Edit Practice</button>
+                      </li>
+                      {% endfor %}
+                      {% endif %}
+                      {% endfor %}
+                    </ul>
+                  </div>
+                </div>
+
+                <!-- Daily Intentions -->
+                <div class="card shadow mb-1">
+                  <div class="card-body">
+
+                    <div class="card-title d-flex justify-content-between">
+                      <h5 class="text-success">Daily Intentions</h5>
+                      <button class="btn btn-sm btn-outline-success">Edit Intentions</button>
+                    </div>
+
+                    <hr class="border border-light mb-3 m-auto w-100">
+
+                    <ul class="list-group">
+                      <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <span>Intention example</span>
+                        <!-- A button to "Ping" the intention could allow the user to signify moments they feel they are adhering to said intention -->
+                         <!-- However, might this present more a downside in the added attention toward the phone and possible emphasis on comparison? -->
+                        <!-- <button class="btn btn-sm btn-outline-success">Ping?</button> -->
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+
+                <!-- Daily Flex Items -->
+                <!-- <div class="card shadow mb-1">
+                    <div class="card-body">
+                        <h5 class="card-title text-primary">Daily Flex Items</h5>
+                        <hr class="border border-light mb-3 m-auto w-100">
+
+                        <ul class="list-group">
+                            {% for item in daily_flex_items %}
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <span>{{ item.name }}</span>
+                                <button class="btn btn-sm btn-outline-success" onclick="markAccomplished('{{ item.id }}')">Mark Done</button>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div> -->
+                <div class="card shadow mb-1">
+                  <div class="card-body">
+                    <h5 class="card-title text-success">Daily Flex Items</h5>
+                    <hr class="border border-light mb-3 m-auto w-100">
+
+                    <ul class="list-group">
+                      <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <span>Flex Item Sample</span>
+                        <div class="d-flex gap-2">
+                          <button class="btn btn-sm btn-outline-success">Mark Done</button>
+                          <button class="btn btn-sm btn-outline-danger">Remove</button>
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+                <!-- PM Routine -->
+                <div class="card shadow mb-1">
+                  <div class="card-body">
+                    <div class="card-title d-flex justify-content-between">
+                      <h5 class="text-primary">Evening Routine</h5>
+                      <button class="btn btn-sm btn-outline-primary">Edit Routine</button>
+                    </div>
+
+                    <hr class="border border-light mb-3 m-auto w-100">
+
+                    <ul class="list-group">
+                      {% for routine in routines %}
+                      {% if routine.routine_type == "PM" %}
+                      {% for practice in routine.practices %}
+                      <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <span>{{ practice.name }}</span>
+                        <button class="btn btn-sm btn-outline-success"
+                          onclick="markAccomplished('{{ practice.id }}')">Mark
+                          Done</button>
+                      </li>
+                      {% endfor %}
+                      {% endif %}
+                      {% endfor %}
+                    </ul>
+                  </div>
+                </div>
+                
+                <!-- Render Test -->
+                <!-- <div class="col-lg-6 mb-1">
+                  <div class="card shadow">
+                    <div class="card-body">
+                      <h5 class="card-title text-primary">Action Items</h5>
+                      <hr class="border border-light mb-3 m-auto w-100">
+
+                      <hr class="border border-light mb-3 m-auto w-100">
+
+                      <ul class="list-group">
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                          <span>Action Item Sample</span>
+                          <button class="btn btn-sm btn-outline-success">Mark Done</button>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                          <span>Action Item Sample</span>
+                          <button class="btn btn-sm btn-outline-success">Mark Done</button>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                          <span>Action Item Sample</span>
+                          <button class="btn btn-sm btn-outline-success">Mark Done</button>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                          <span>Action Item Sample</span>
+                          <button class="btn btn-sm btn-outline-success">Mark Done</button>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div> -->
+              </div>
+            </div>
+
+            <!-- Right Column -->
+            <div class="card shadow opacity-75 col-lg-6 p-2">
+              <div class="card-body">
+                <div class="card-title">
+                  <h4 class="display-6 mb-2 text-center text-primary">Actionable Items</h4>
+                  <hr class="border border-light mb-3 m-auto w-100">
+                </div>
+                <!-- Action Items -->
+                <div class="card shadow mb-1">
+                  <div class="card-body">
+                    <h5 class="card-title text-warning">Action Items</h5>
+                    <hr class="border border-light mb-3 m-auto w-100">
+
+                    <ul class="list-group">
+                      {% for goal in goals %}
+                      {% if goal.is_active %}
+                      <!-- Goal Title -->
+                      <li class="list-group-item active" aria-current="true">
+                        <strong>{{ goal.name }}</strong>
+                      </li>
+                      <!-- TODO: MILESTONE FILTER NEEDED ... for goal.milestones, if milestone.is_completed == false -->
+                      {% for milestone in goal.milestones %}
+                      {% if milestone.is_completed == false %}
+                      <!-- Display Milestones/Action Items -->
+                      {% if goal.milestone.action_items %}
+                      {% for action_item in goal.milestone.action_items %}
+                      <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <span>
+                          {{ action_item.name }}
+                          <small class="text-muted">({{ action_item.milestone_name }})</small>
+                        </span>
+                        <!-- TODO: EDIT ACTION ITEM BUTTON -->
+                        <div class="d-flex gap-2">
+                          <button class="btn btn-sm btn-outline-success"
+                            onclick="markAccomplished('{{ action_item.id }}')">
+                            Mark Done
+                          </button>
+                          <button class="btn btn-sm btn-outline-warning">Edit Milestone</button>
+                        </div>
+                      </li>
+                      {% endfor %}
+                      {% else %}
+                      <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <span>
+                          {{ milestone.name }}
+                        </span>
+                        <div class="d-flex gap-2">
+                          <button class="btn btn-sm btn-outline-success" onclick="markAccomplished('{{ milestone.id }}')">
+                            Mark Done
+                          </button>
+                          <button class="btn btn-sm btn-outline-warning">Edit</button>
+                        </div>
+                      </li>
+                      {% endif %}
+                      {% endif %}
+                      {% endfor %}
+                      {% endif %}
+                      {% endfor %}
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <!-- <div class="card shadow mb-1">
+                <div class="card-body">
+                  <h5 class="card-title text-primary">Action Items</h5>
+                  <ul class="list-group">
+
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                      <span>Action Item Sample</span>
+                      <button class="btn btn-sm btn-outline-success">Mark Done</button>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                      <span>Action Item Sample</span>
+                      <button class="btn btn-sm btn-outline-success">Mark Done</button>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                      <span>Action Item Sample</span>
+                      <button class="btn btn-sm btn-outline-success">Mark Done</button>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                      <span>Action Item Sample</span>
+                      <button class="btn btn-sm btn-outline-success">Mark Done</button>
+                    </li>
+                  </ul>
+                </div>
+              </div> -->
+            </div>
+          </div>
+
+          <!-- GOALS TAB -->
+          <div class="tab-pane fade" id="goals" role="tabpanel">
+            <div class="card shadow">
+              <div class="card-body">
+                <h5 class="card-title text-success">Goals Overview</h5>
+                <div class="tree-container">
+                  <ul class="tree-list">
+                    {% for goal in goals %}
+                    <li class="tree-item">
+                      <div class="goal-box">
+                        <strong>{{ goal.name }}</strong>
+                        <p>{{ goal.description }}</p>
+                        <small class="text-muted">Target: {{ goal.target_date }}</small>
+                      </div>
+                      <!-- Milestones for the goal -->
+                      {% if goal.milestones %}
+                      <ul class="tree-list">
+                        {% for milestone in goal.milestones %}
+                        <li class="tree-item">
+                          <div class="milestone-box">
+                            <strong>{{ milestone.name }}</strong>
+                            <p>{{ milestone.description }}</p>
+                            <small class="text-muted">Target: {{ milestone.target_date }}</small>
+                          </div>
+                          <!-- Action Items for the milestone -->
+                          {% if milestone.action_items %}
+                          <ul class="tree-list">
+                            {% for action_item in milestone.action_items %}
+                            <li class="tree-item">
+                              <div class="action-item-box">
+                                <strong>{{ action_item.name }}</strong>
+                                <p>{{ action_item.description }}</p>
+                                <small class="text-muted">Duration: {{ action_item.estimated_time }}</small>
+                              </div>
+                            </li>
+                            {% endfor %}
+                          </ul>
+                          {% endif %}
+                        </li>
+                        {% endfor %}
+                      </ul>
+                      {% endif %}
+                    </li>
+                    {% endfor %}
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- TRENDS TAB -->
+          <div class="tab-pane fade" id="trends" role="tabpanel">
+            <div class="card shadow">
+              <div class="card-body">
+                <h5 class="card-title text-success">Your Trends</h5>
+
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"></script>
+</body>
+
+</html>

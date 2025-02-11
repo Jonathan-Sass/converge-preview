@@ -8,6 +8,13 @@ h1, h2, h3, h4, h5, h6, p {
     font-weight: 400;
 }
 
+.min-width-200 {
+  min-width: 200px;
+}
+.min-width-300 {
+  min-width: 300px;
+}
+
 /* Main container */
 .mask-container {
     position: relative;
