@@ -124,24 +124,16 @@
                   <hr class="border border-light mb-3 m-auto w-100">
                 </div>
                 <!-- AM Routine -->
-                <div id="morning-routine" class="card shadow border mb-1">
+                <div id="morning-routine" class="card shadow border border-warning mb-1" data-bs-toggle="popover">
                   <div class="card-body">
                     <div class="card-title d-flex justify-content-between">
                       <h5 class="card-title text-primary">Morning Routine</h5>
-                      <button id="edit-am-routine" class="btn btn-sm btn-outline-primary">Edit Routine</button>
+                      <button class="btn btn-sm btn-outline-primary">Edit Routine</button>
                     </div>
 
                     <hr class="border border-light mb-3 m-auto w-100">
 
                     <ul class="list-group">
-                      <!-- EXAMPLE PRACTICE FOR INTRO.JS -->
-                      <li class="list-group-item d-flex justify-content-between align-items-center">
-                        <span>Sample Practice</span>
-                        <div class="d-flex gap-2">
-                          <button id="complete-example" class="btn btn-sm btn-outline-success">Complete</button>
-                          <button id="edit-practice-example" class="btn btn-sm btn-outline-warning">Edit Practice</button>
-                        </div>
-                      </li>
                       {% for routine in routines %}
                       {% if routine.routine_type == "AM" %}
                       {% for practice in routine.practices %}
@@ -149,7 +141,8 @@
                         <span>{{ practice.name }}</span>
                         <div class="d-flex gap-2">
                           <button class="btn btn-sm btn-outline-success"
-                            onclick="markAccomplished('{{ practice.id }}')">Complete</button>
+                            onclick="markAccomplished('{{ practice.id }}')">Mark
+                            Done</button>
                           <button class="btn btn-sm btn-outline-warning">Edit Practice</button>
                         </div>
                       </li>
@@ -432,8 +425,6 @@
           </div>
         </div>
     </div>
-  </div>
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
       crossorigin="anonymous"></script>
@@ -442,36 +433,16 @@
     <script src="{{ url_for('static', filename='js/intro.js') }}" defer></script>
 
     <script>
-        introJs().setOptions({
-          steps: [
-            {
-              element: document.querySelector('#morning-routine'),
-              title: 'Morning Routine',
-              intro: 'Here you will see your practices from your morning routine listed. You should already see the practices you added in the last step.'
-            },
-            {
-              element: document.querySelector('#complete-example'),
-              title: 'Complete Button',
-              intro: 'When you complete a practice or action item.  Click "Complete" to track your progress and see what is next!'
-            },
-            {
-              element: document.querySelector('#edit-am-routine'),
-              title: 'Edit a Routine',
-              intro: 'The "Edit Routine" button allows you to see and edit an entire routine.'
-            },
-            {
-              element: document.querySelector('#edit-practice-example'),
-              title: 'Edit a Practice',
-              intro: 'Similarly, "Edit Practice" will allow you to view and tweak a specific practice as well as view more like it!'
-            }
-          ],
-          tooltipClass: 'introCustomTooltip'
-        })
-        .oncomplete(function() {
-          window.location.href = '/getting-started?multipage=true';
-        })
-        .start()
-      </script>
+      introJs().setOptions({
+        steps: [{
+          title: 'Welcome to your dashboard!',
+          intro:'Your dashboard allows you to track daily practices and action items for your goals.  You can also view metrics for progress in the "trends" tab, but more on those later.'
+        },
+        {element: document.querySelector('')}
+        ]
+      })
+    </script>
+  </div>
 </body>
 
 </html>

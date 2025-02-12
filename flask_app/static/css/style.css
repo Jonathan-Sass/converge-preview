@@ -15,6 +15,12 @@ h1, h2, h3, h4, h5, h6, p {
   min-width: 300px;
 }
 
+.introCustomTooltip {
+    color: #333333; /* Sets text color to white */
+    background-color: #ffffff; /* Sets background color to dark grey */
+    font-size: 16px; /* Adjusts font size */
+}
+
 /* Main container */
 .mask-container {
     position: relative;

@@ -133,6 +133,7 @@
                     <hr class="border border-light mb-3 m-auto w-100">
 
                     <ul class="list-group">
+                      {% if routines %}
                       {% for routine in routines %}
                       {% if routine.routine_type == "AM" %}
                       {% for practice in routine.practices %}
@@ -146,6 +147,7 @@
                       {% endfor %}
                       {% endif %}
                       {% endfor %}
+                      {% endif %}
                     </ul>
                   </div>
                 </div>
