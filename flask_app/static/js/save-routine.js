@@ -46,7 +46,19 @@ const collectRoutineData = () => {
 const saveRoutine = () => {
   const routineData = collectRoutineData();
 
-  fetch('/routines/am/builder/initial/save', {
+  // Determine the current path
+  const currentPath = window.location.pathname;
+  const pathSegments = currentPath.split('/');
+
+  // Extract relevant segments
+  const routineType = pathSegments[2]; // e.g., 'am'
+  const pageType = pathSegments[3]; // e.g., 'builder' or 'intro-build-your-own'
+
+  // Construct the dynamic URL
+  const saveUrl = `/routines/${routineType}/${pageType}/save`;
+
+  // Perform the fetch request
+  fetch(saveUrl, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -74,4 +86,4 @@ const saveRoutine = () => {
 };
 
 // Event listener for saving the routine
-document.getElementById('save-button').addEventListener('click', saveRoutine);
+document.getElementById('save-btn').addEventListener('click', saveRoutine);
