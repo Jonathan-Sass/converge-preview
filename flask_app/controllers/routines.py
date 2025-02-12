@@ -29,7 +29,7 @@ def building_practices_intro():
     return render_template("routines/building_routines_intro.html")
 
 
-@app.get("/routines/am/builder/initial")
+@app.get("/routines/am/intro-builder")
 def set_initial_am_routines():
     user = User.get_logged_in_user()
     print(user)
@@ -46,7 +46,22 @@ def set_initial_am_routines():
         "routines/am_routine_builder.html", recommended_routine=recommended_routine
     )
 
-@app.get("/routines/am/build-your-own")
+
+
+@app.post("/routines/am/intro-builder/save")
+def save_am_routine():
+    user = User.get_logged_in_user()
+    print(user)
+    if not user:
+        return redirect("/")
+
+    am_routine_data = request.json
+
+    Routine.create_routine(am_routine_data)
+
+    return jsonify({"success": True, "redirect": "/dashboard/intro-am-practices"})
+
+@app.get("/routines/am/intro-build-your-own")
 def build_your_own_am_routine():
     user = User.get_logged_in_user()
     print(user)
@@ -58,9 +73,8 @@ def build_your_own_am_routine():
 
     return render_template("routines/am_routine_build_your_own.html", routine = routine)
 
-
-@app.post("/routines/am/builder/initial/save")
-def save_am_routine():
+@app.post("/routines/am/intro-build-your-own/save")
+def save_build_your_own_routine():
     user = User.get_logged_in_user()
     print(user)
     if not user:
@@ -70,5 +84,4 @@ def save_am_routine():
 
     Routine.create_routine(am_routine_data)
 
-    return jsonify({"success": True, "redirect": "/goals/intro"})
-
+    return jsonify({"success": True, "redirect": "/dashboard/intro-am-practices"})

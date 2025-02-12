@@ -7,6 +7,7 @@ from flask_app.models.routine import Routine
 from flask_app.models.goal import Goal
 
 
+# Dashboard and home page with personal metrics for an existing user
 @app.get("/home")
 def dashboard():
     user = User.get_logged_in_user()
@@ -24,7 +25,16 @@ def dashboard():
 
         return render_template("/dashboard/dashboard.html", **dashboard_data)
 
-@app.get("/dashboard/intro/am-practices")
+@app.get("/dashboard/intro")
+def dashboard_intro():
+    user = User.get_logged_in_user()
+    if not user:
+        return redirect("/")
+    
+    return render_template("/dashboard/dashboard_intro.html")
+
+# Introduction page for introducing new users to the morning practices section of their dashboard
+@app.get("/dashboard/intro-am-practices")
 def dashboard_intro_am_practices():
     user = User.get_logged_in_user()
     if not user:
@@ -34,9 +44,6 @@ def dashboard_intro_am_practices():
     routine_data = Routine.find_routines_by_user_id(user_id)
     goal_data = Goal.find_goals_with_milestones_and_action_items_by_user_id(user_id)
 
-    if not routine_data:
-        return render_template("/home/intro.html", user=user)
-    else:
-        dashboard_data = {"user": user, "routines": routine_data, "goals": goal_data}
+    dashboard_data = {"user": user, "routines": routine_data, "goals": goal_data}
 
-        return render_template("/dashboard/dashboard_intro_am_practices.html", **dashboard_data)
+    return render_template("/dashboard/dashboard_intro_am_practices.html", **dashboard_data)

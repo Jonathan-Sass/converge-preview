@@ -100,7 +100,7 @@ def process_getting_started_answers():
     print(wellness_survey_check)
 
     if existing_routines_check == "Yes" and wellness_survey_check == "No":
-        return redirect ("/routines/am/build-your-own")
+        return redirect ("/routines/am/intro-build-your-own")
     
     return redirect("surveys/foundations/getting-to-know-you")
 
