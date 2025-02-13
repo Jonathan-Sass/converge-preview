@@ -6,7 +6,7 @@ from flask_app.controllers import routine_templates
 from flask_app.controllers import practices
 from flask_app.controllers import goals
 from flask_app.controllers import dashboards
-from flask_app.controllers import practices
+from flask_app.controllers import categories
 
 if __name__ == "__main__":
     app.run(debug=True)

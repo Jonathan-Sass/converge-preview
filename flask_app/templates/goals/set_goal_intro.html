@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='img/Enso_Blue_and_Black.jpg') }}">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <script defer src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+    crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+  <script defer src="/static/js/swiper.js"></script>
+  <script defer type="module" src="/static/js/goal-manager.js"></script>
+  <script defer type="module" src="/static/js/milestone-manager.js"></script>
+  <script defer type="module" src="/static/js/action-item-manager.js"></script>
+  <script defer type="module" src="/static/js/save-goal.js"></script>
+  <script defer type="module" src="/static/js/timeframe-to-date.js"></script>
+  <script defer type="module" src="/static/js/sortable-containers.js"></script>
+
+  <title>Set Recreation and Travel Goals</title>
+</head>
+
+<body>
+  <div class="border-box">
+    <nav
+      class="navbar navbar-expand-lg navbar-dark bg-dark w-100 m-auto d-flex justify-content-between position-sticky top-0 z-3 p-3">
+      <div class="container-fluid">
+        <a class="navbar-brand d-inline-flex align-items-center gap-4" href="/home">
+          <img src="/static/img/Enso_Blue_and_Black.jpg" alt="Logo" width="60" height="60" class="rounded-circle">
+          <h1 class="display-5 text-primary">Converge</h1>
+        </a>
+      </div>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDarkDropdown1"
+        aria-controls="navbarNavDarkDropdown1" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavDarkDropdown1">
+        <div class="navbar-nav">
+          <a class="nav-link active" aria-current="page" href="/home">Home</a>
+          <a class="nav-link" href="/calendar">Calendar</a>
+          <div class="collapse navbar-collapse">
+            <ul class="navbar-nav">
+              <li class="nav-item dropdown">
+                <button class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                  Goals
+                </button>
+                <ul class="dropdown-menu dropdown-menu-dark">
+                  <li><a class="dropdown-item" href="/goals/your-why">Understanding Your WHY</a></li>
+                  <li><a class="dropdown-item" href="/goals/recreation-travel">Recreation and
+                      Travel</a></li>
+                  <li><a class="dropdown-item" href="/goals/health-wellness">Health and Wellness</a>
+                  </li>
+                  <li><a class="dropdown-item" href="/goals/social-community">Social and Community
+                      Engagement</a></li>
+                  <li><a class="dropdown-item" href="/goals/spirituality">Spirituality and Life
+                      Purpose</a></li>
+                  <li><a class="dropdown-item" href="/goals/career-professional-development">Career
+                      and Professional Development</a></li>
+                  <li><a class="dropdown-item" href="/goals/wealth-finance">Wealth Building and
+                      Financial Health</a></li>
+                  <li><a class="dropdown-item" href="/goals/creative-expression-hobbies">Creative
+                      Expression and Hobbies</a></li>
+                  <li><a class="dropdown-item" href="/goals/environment-success">Environment and
+                      Success</a></li>
+                  <li><a class="dropdown-item" href="/goals">Something else here</a></li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+          <div class="collapse navbar-collapse">
+            <ul class="navbar-nav">
+              <li class="nav-item dropdown">
+                <button class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                  Practices
+                </button>
+                <ul class="dropdown-menu dropdown-menu-dark">
+                  <li><a class="dropdown-item" href="/practices/AM">AM Practices</a></li>
+                  <li><a class="dropdown-item" href="/practices/PM">PM Practices</a></li>
+                  <li><a class="dropdown-item" href="/practices/daily">Daily Practices</a></li>
+                  <li><a class="dropdown-item" href="/practices/discipline">Discipline</a></li>
+                  <li><a class="dropdown-item" href="/practices">Something else?</a></li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+          <a class="nav-link disabled" aria-disabled="true">Disabled</a>
+          <form action="/users/logout" method="post">
+            <button class="btn btn-link" type="submit" name="logout">logout</button>
+          </form>
+        </div>
+      </div>
+    </nav>
+    <header class="bg-dark opacity-75 w-100 p-2 pb-3 text-center">
+      <h1 class="display-2 mb-3 text-primary">Recreation and Travel Goals</h1>
+      <h4 class="display-6 mx-5">What do you enjoy now? What would you like to enjoy in the future?</h4>
+    </header>
+    <!-- Content and Sidebar Div-->
+    <div class="container-fluid m-auto my-3 d-flex align-items-start gap-3">
+      <!-- Progress Nav Sidebar -->
+      <!-- <div class="card shadow p-2 opacity-75 col-3">
+        <nav id="progress-navbar" class="h-100 flex-column align-items-stretch p-3">
+          <h4 class="display-6 text-primary text-center">You are here.</h4>
+          <hr class="border border-1 border-light">
+          <nav class="nav nav-pills flex-column">
+            <a class="nav-link text-light" href="/surveys/your-why/intro">Define Your WHY</a>
+            <hr class="border border-primary">
+            <a class="nav-link text-light" href="#recreation-travel">Recreation and Travel</a>
+            <nav class="nav nav-pills flex-column">
+              <a class="nav-link ms-3 my-1 text-light" href="/surveys/recreation-travel/frequent-hobbies-activities">-
+                Frequent Hobbies and
+                Activities</a>
+              <a class="nav-link ms-3 my-1 text-light" href="/surveys/recreation-travel/adventure-travel">- Adventure
+                and Travel</a>
+              <a class="nav-link ms-3 my-1 text-light" href="/surveys/recreation-travel/family-group-events">- Family
+                and Group Events</a>
+              <a class="nav-link ms-3 my-1 text-light" href="/surveys/recreation-travel/cultural-exploration">- Cultural
+                Exploration</a>
+              <a class="nav-link ms-3 my-1 text-light" href="/surveys/recreation-travel/special-events">-
+                Special Events</a>
+              <a class="nav-link ms-3 my-1 text-light" href="/surveys/recreation-travel/competitive-events">-
+                Competitive Events</a>
+              <a class="nav-link ms-3 my-1 text-light" href="/surveys/recreation-travel/bucket-list">- The
+                Bucket List</a>
+              <a class="nav-link ms-3 my-1 text-light" href="#item-1-2">- Item 1-2</a>
+            </nav>
+            <hr class="border border-light">
+            <a class="nav-link text-light" href="#health-wellness">Health and Wellness</a>
+            <hr class="border border-light">
+            <a class="nav-link text-light" href="#social-community">Social and Community Engagement</a>
+            <hr class="border border-light">
+            <a class="nav-link text-light" href="#spirituality-life-purpose">Spirituality and Life
+              Purpose</a>
+            <hr class="border border-light">
+            <a class="nav-link text-light" href="#career-professional-development">Career and Professional
+              Development</a>
+            <hr class="border border-light">
+            <a class="nav-link text-light" href="#wealth-finance">Wealth Building and Financial Health</a>
+            <hr class="border border-light">
+            <a class="nav-link text-light" href="#creative-expression-hobbies">Creative Expression and
+              Hobbies</a>
+            <hr class="border border-light">
+            <a class="nav-link text-light" href="#environment-success">Environment and Success</a>
+            <hr class="border border-light">
+            <a class="nav-link text-light" href="#item-3">Item 3</a>
+            <nav class="nav nav-pills flex-column">
+              <a class="nav-link ms-3 my-1 text-light" href="#item-3-1">Item 3-1</a>
+              <a class="nav-link ms-3 my-1 text-light" href="#item-3-2">Item 3-2</a>
+            </nav>
+          </nav>
+        </nav>
+      </div> -->
+      <!-- Main Content -->
+      <!-- <div class="container col-9"> --> <!--div replaced by div below, if reintroducing sidebar, use this div-->
+      <div class="container-fluid opacity-75 m-auto w-75">
+        <!-- Data-category and id need to be the survey_category.slug for DB selection and sidebar selector -->
+        <div class="card shadow mb-2" id="recreation-travel-container" data-category-slug="recreation-travel">
+          <div class="card-title">
+            <!-- <h2 class="display-6 text-primary">Let's start with something fun.</h2> -->
+          </div>
+          <div data-bs-spy="scroll" data-bs-target="#progress-navbar" data-bs-smooth-scroll="true"
+            class="scrollspy-example-2" tabindex="0">
+            <div class="text-primary container-fluid p-2 mb-3">
+              <ol class="display-6 m-3">
+                <li>Name your goal</li>
+                <li>Estimate a completion date</li>
+                <li>Add milestones to track</li>
+                <li>If needed, separate additionally into action items</li>
+              </ol>
+
+                <!-- Container for all goals in a subcategory -->
+                <div class="accordion-body goal-section p-3" id="{{ subcategory_slug }}-goals-container"
+                  data-subcategory-slug="{{ subcategory_slug }}">
+
+                  <!-- Container for an initial example goal per subcategory -->
+                  <div class="card shadow p-3 mb-3 goal-card" id="{{ subcategory_slug }}-goal-1-card"
+                    data-goal-id="1">
+
+                    <!-- Goal Name Input -->
+                    <div class="mb-3 form-floating">
+                      <input type="text" class="form-control" id="{{ subcategory_slug }}-goal-1-name"
+                        placeholder=" " name="name" autocomplete="on" required>
+                      <label for="{{ subcategory_slug }}-goal-1-name" class="form-label">Goal
+                        Name</label>
+                      <div class="invalid-feedback">Name is required.</div>
+                    </div>
+
+                    <!-- Goal Description Input -->
+                    <div class="mb-3 form-floating">
+                      <textarea class="form-control" id="{{ subcategory_slug }}-goal-1-description"
+                        rows="3" placeholder=" "></textarea>
+                      <label for="{{ subcategory_slug }}-goal-1-description"
+                        class="form-label">Description (optional)</label>
+                    </div>
+
+                    <!-- Goal Type Input -->
+                    <div class="mb-3">
+                      <label for="{{ subcategory_slug }}-goal-1-type" class="form-label">Goal
+                        Type</label>
+                      <select class="form-select" id="{{ subcategory_slug }}-goal-1-type" required>
+                        <option value="" disabled selected>Select a Type of Goal</option>
+                        <option value="active">
+                          Active (goals you intend to pursue currently)
+                        </option>
+                        <option value="supportive">
+                          Supportive (goals that directly support or enable other goals)
+                        </option>
+                        <option value="collaborative">
+                          Collaborative (goals requiring contributions or coordination with others)
+                        </option>
+                        <option value="habitual">
+                          Habitual (goals that involve building or maintaining habits or routine practices)
+                        </option>
+                        <option value="experimental">
+                          Experimental (goals being explored without full commitment, to gauge interest or
+                          feasability)
+                        </option>
+                        <option value="self-care">
+                          Self-Care (goals focusing on personal well-being, mental health, or stress management)
+                        </option>
+                        <option value="archived">
+                          Archived (goals to be pursued later, possibly those that follow other goals or steps in
+                          life)
+                        </option>
+                      </select>
+                      <div class="invalid-feedback">Please select a goal type.</div>
+                    </div>
+
+                    <!-- Priority Selector -->
+                    <div class="mb-3">
+                      <label for="{{ subcategory_slug }}-goal-1-priority"
+                        class="form-label">Priority</label>
+                      <select class="form-select" id="{{ subcategory_slug }}-goal-1-priority" required>
+                        <option value="" disabled selected>Select priority</option>
+                        <option value="4">Low</option>
+                        <option value="3">Medium</option>
+                        <option value="2">High</option>
+                        <option value="1">Urgent</option>
+                      </select>
+                      <div class="invalid-feedback">Please assign a priority.</div>
+                    </div>
+
+                    <!-- Display as an active goal -->
+                    <div class="form-check form-switch mb-3">
+                      <input class="form-check-input toggle-panels goal-is-active-checkbox" type="checkbox"
+                        id="{{ subcategory_slug }}-goal-1-is-active">
+                      <label class="form-check-label" for="{{ subcategory_slug }}-goal-1-is-active">
+                        Display goal and associated milestones/action items on dashboard?
+                      </label>
+                    </div>
+
+                    <!-- Estimated Goal Completion Input -->
+                    <div class="mb-3 text-center">
+                      <p>Projected Completion</p>
+                      <div
+                        class="d-flex justify-content-around gap-3 align-items-center m-auto projected-completion-card">
+                        <!-- Input for Time Value -->
+                        <div class="col-4">
+                          <label for="{{ subcategory_slug }}-goal-1-time-value" class="form-label">
+                            Select a time from now
+                          </label>
+                          <div class="d-flex gap-2 align-items-center">
+                            <input type="number" class="form-control w-auto"
+                              id="{{ subcategory_slug }}-goal-1-time-value" placeholder="Enter number"
+                              min="1" data-type="projected-completion-value">
+                            <select class="form-select w-auto"
+                              id="{{ subcategory_slug }}-goal-1-time-unit"
+                              data-type="projected-completion-unit">
+                              <option value="" disabled selected>Time unit</option>
+                              <option value="day">Day(s)</option>
+                              <option value="week">Week(s)</option>
+                              <option value="month">Month(s)</option>
+                              <option value="year">Year(s)</option>
+                            </select>
+                          </div>
+                        </div>
+                        <div class="col-1">
+                          <p>OR</p>
+                        </div>
+                        <div class="col-4">
+                          <label for="{{ subcategory_slug }}-goal-1-date" class="form-label">
+                            Select a date
+                          </label>
+                          <input type="date" class="form-control"
+                            id="{{ subcategory_slug }}-goal-1-date"
+                            data-type="projected-completion-date" required>
+                          <div class="invalid-feedback">Please enter a projected completion date.</div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <h4 class="text-center text-primary">Let's break it down!</h4>
+                    <hr class="mb-3">
+
+                    <!-- Goal Milestones -->
+                    <h3 class="display-6">Major Milestones</h3>
+                    <p class="lead">Hint: Start with the longest time interval to work your way backwards.</p>
+                    <div class="container-fluid mb-3">
+                      <!-- Add Milestone Button -->
+                      <div class="mb-3">
+                        <button type="button" id="add-milestone" class="btn btn-primary add-milestone-btn"
+                          data-subcategory-slug="{{ subcategory_slug }}" data-goal-id="1">
+                          Add Milestone
+                        </button>
+                      </div>
+
+                      <!-- Swiper Container for Milestones, (Swiper functionality in question, may opt for sortable horizonal-scroll) -->
+                      <div class="swiper-container scroll-wrapper position-relative">
+                        <div class="card shadow swiper-wrapper m-auto">
+                          <div class="swiper-slide">
+                            <!-- Dynamically Added Milestones go here -->
+                            <div
+                              class="d-flex justify-content-around gap-2 p-3 milestone-section sortable-container m-auto"
+                              id="{{ subcategory_slug }}-goal-1-milestones">
+                              <!-- Example Milestone Slide -->
+                              <div class="card shadow p-2 milestone-card position-relative sortable-card"
+                                id="{{ subcategory_slug }}-goal-1-milestone-1"
+                                data-subcategory-slug="{{ subcategory_slug }}" data-milestone-id="1"
+                                data-order="1" data-goal-id="1">
+                                <!-- Milestone order number -->
+                                <div class="card-title">
+                                  <h5 class="card-order">1.</h5>
+                                </div>
+                                <!-- Milestone name input -->
+                                <div class="mb-3 form-floating">
+                                  <input type="text" class="form-control"
+                                    id="{{ subcategory_slug }}-goal-1-milestone-1-name" placeholder=" "
+                                    required>
+                                  <label for="{{ subcategory_slug }}-goal-1-milestone-1-name"
+                                    class="form-label">
+                                    Milestone Name
+                                  </label>
+                                  <div class="invalid-feedback">Milestone name is required.</div>
+                                </div>
+                                <h5 class="card-title mb-2">Target completion:</h5>
+                                <div class="d-flex gap-2 mb-3 projected-completion-card">
+                                  <div class="mb-3 w-50">
+                                    <input type="number" class="form-control" name="time_value"
+                                      id="{{ subcategory_slug }}-goal-1-milestone-1-completion-value"
+                                      placeholder="0" min="1" required>
+                                    <div class="invalid-feedback">Value required</div>
+                                  </div>
+                                  <div class="mb-3 w-50">
+                                    <select class="form-select" name="time_unit"
+                                      id="{{ subcategory_slug }}-goal-1-milestone-1-completion-unit"
+                                      required>
+                                      <option value=" " selected disabled hidden>Time Unit</option>
+                                      <option value="day">Day(s)</option>
+                                      <option value="week">Week(s)</option>
+                                      <option value="month">Month(s)</option>
+                                      <option value="year">Year(s)</option>
+                                    </select>
+                                    <div class="invalid-feedback">Unit required</div>
+                                  </div>
+                                </div>
+                                <div class="form-floating mb-3">
+                                  <textarea class="form-control mb-2"
+                                    name="{{ subcategory_slug }}-milestone[1]_description"
+                                    id="{{ subcategory_slug }}-goal-1-milestone-1-description" rows="3"
+                                    placeholder=" ">
+                                    </textarea>
+                                  <label for="{{ subcategory_slug }}-goal-1-milestone-1-description"
+                                    class="form-label">Description (optional)</label>
+                                </div>
+                                <!-- Separate Into Action Items Checkbox -->
+                                <div class="form-check form-switch mb-3">
+                                  <input class="form-check-input toggle-panels separate-action-items-checkbox"
+                                    type="checkbox"
+                                    id="separate-action-items-{{ subcategory_slug }}-goal-1-milestone-1">
+                                  <label class="form-check-label"
+                                    for="separate-action-items-{{ subcategory_slug }}-goal-1-milestone-1">
+                                    Separate into action items
+                                  </label>
+                                </div>
+                                <!-- Action Items Section for Milestone -->
+                                <div
+                                  class=" card shadow p-1 d-none action-item-section position-absolute text-bg-light">
+                                  <h5 class="text-primary fs-4">Action Items</h5>
+                                  <hr class="w-25 m-auto mb-3">
+                                  <button class="btn btn-primary btn-sm add-action-item-btn w-75 m-auto mb-3">Add
+                                    Action Item
+                                  </button>
+                                </div>
+                                <button class="btn btn-danger btn-sm w-50 m-auto remove-milestone-btn">
+                                  Remove milestone
+                                </button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <button class="btn btn-danger btn-sm w-50 m-auto mb-3 remove-goal-btn">Remove
+                      Goal</button>
+                  </div>
+
+                  <button type="button" class="btn btn-primary btn-sm mb-3 add-goal-btn"
+                    id="{{ subcategory_slug }}-add-goal-btn"
+                    data-subcategory-slug="{{ subcategory_slug }}">
+                    + Add Another Goal
+                  </button>
+                  <hr>
+                  <div class="text-end mb-3">
+                    <button type="submit" class="btn btn-primary"
+                      id="{{ subcategory_slug }}-goals-save">Save</button>
+                  </div>
+                </div>
+              <a href="/goals/recreation-travel/frequent-hobbies-activities"
+                class="btn btn-lg w-25 btn-primary mb-3 d-none" id="next-section-btn">Next Section</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</body>
+
+</html>

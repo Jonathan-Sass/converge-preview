@@ -7,13 +7,6 @@ from flask_app.models.goal import Goal
 from flask_app.models.category import Category
 
 
-@app.get("/goals/intro")
-def goals_intro():
-    user = User.get_logged_in_user()
-    if not user:
-        return redirect("/")
-
-    return render_template("/goals/goals_intro.html")
 
 
 @app.get("/goals/<string:category_slug>")
@@ -65,3 +58,25 @@ def save_goals_by_subcategory(subcategory_slug=None):
 #     subcategory = Subcategory.find_subcategory_by_name(subcategory_slug)
 
 #     return render_template("/goals/set_goals_for_subcategory.html", user = user, subcategory = subcategory)
+
+@app.get("/goals/intro/select-subcategory")
+def goals_intro_select_subcategory():
+    user = User.get_logged_in_user()
+    if not user:
+        return redirect("/")
+    
+    categories_with_subcats = Category.get_all_categories_with_subcategories()
+
+    return render_template("/goals/set_goal_intro_select_subcat.html", categories_with_subcats = categories_with_subcats)
+
+
+@app.get("/goals/intro/<string:subcategory_slug>")
+def goals_intro(subcategory_slug):
+    user = User.get_logged_in_user()
+    if not user:
+        return redirect("/")
+
+    # categories_with_subcats = Category.get_all_categories_with_subcategories()
+
+
+    return render_template("/goals/set_goal_intro.html", subcategory_slug = subcategory_slug)

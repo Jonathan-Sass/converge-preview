@@ -28,6 +28,7 @@ class Goal:
         self.milestones: List[Milestone] = []
 
     # CRUD methods
+
     def find_goals_with_milestones_and_action_items_by_user_id(user_id):
         query = """
           SELECT
