@@ -1,6 +1,8 @@
 practice_data = {
 # Health & Wellness Practices
 
+# TODO: ADD Column for 'environmental queue', allowing users to select or create queues or prompts to remind them of practices.
+
 # These will shift toward "categorical recommendations", from which users will select 
 "AM Routine Recommendations": [
     {
