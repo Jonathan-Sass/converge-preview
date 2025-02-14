@@ -131,8 +131,8 @@ function processGoalData(subcategoryCard) {
       subcategoryGoalsData.goals.push(goalData);
       console.log(subcategoryGoalsData.goals)
     });
+    submitGoalData(subcategoryGoalsData);
   });
-  submitGoalData(subcategoryGoalsData);
   return
 };
 
@@ -163,30 +163,30 @@ function validateAllRequiredFields(subcategoryCard) {
 
 }
 
-function sendToBackend(payload) {
-  fetch("/api/save-goals", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(payload),
-  })
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error("Failed to save goals");
-      }
-      return response.json();
-    })
-    .then((data) => {
-      if(data.success) {
-        alert("Goals saved successfully!");
-        // window.location.href = data.redirect;
-        } else {
-          console.error("Save failed.  Try again.")
-        }
-    })
-    .catch(error => {
-      console.error("Error saving goals:", error);
-      alert("There was an error saving your goals. Please try again.");
-    });
-}
+// function sendToBackend(payload) {
+//   fetch("/api/save-goals", {
+//     method: "POST",
+//     headers: {
+//       "Content-Type": "application/json",
+//     },
+//     body: JSON.stringify(payload),
+//   })
+//     .then((response) => {
+//       if (!response.ok) {
+//         throw new Error("Failed to save goals");
+//       }
+//       return response.json();
+//     })
+//     .then((data) => {
+//       if(data.success) {
+//         alert("Goals saved successfully!");
+//         // window.location.href = data.redirect;
+//         } else {
+//           console.error("Save failed.  Try again.")
+//         }
+//     })
+//     .catch(error => {
+//       console.error("Error saving goals:", error);
+//       alert("There was an error saving your goals. Please try again.");
+//     });
+// }
