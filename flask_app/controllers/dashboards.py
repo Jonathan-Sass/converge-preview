@@ -23,6 +23,23 @@ def dashboard():
     else:
         dashboard_data = {"user": user, "routines": routine_data, "goals": goal_data}
 
+        # print("goals in /home route")
+        # for goal in goal_data:
+        #   print("***************************************************************************")
+        #   pprint(vars(goal))
+        #   if goal.milestones:
+        #       print(" ")
+        #       print(f"Milestones for: {goal.name}")
+        #       for milestone in goal.milestones:
+        #           pprint(vars(milestone))
+        #           if milestone.action_items:
+        #               print("")
+        #               print("Action items")
+        #               for action_item in milestone.action_items:
+        #                   pprint(vars(action_item))
+                      
+              
+
         return render_template("/dashboard/dashboard.html", **dashboard_data)
 
 @app.get("/dashboard/intro")

@@ -5,6 +5,7 @@ from pprint import pprint
 from flask_app.models.user import User
 from flask_app.models.goal import Goal
 from flask_app.models.category import Category
+from flask_app.models.subcategory import Subcategory
 
 
 
@@ -76,7 +77,6 @@ def goals_intro(subcategory_slug):
     if not user:
         return redirect("/")
 
-    # categories_with_subcats = Category.get_all_categories_with_subcategories()
+    subcategory = Subcategory.find_subcategory_by_slug(subcategory_slug)
 
-
-    return render_template("/goals/set_goal_intro.html", subcategory_slug = subcategory_slug)
+    return render_template("/goals/set_goal_intro.html", subcategory = subcategory)
