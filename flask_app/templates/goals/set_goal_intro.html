@@ -158,262 +158,279 @@
       <!-- <div class="container col-9"> --> <!--div replaced by div below, if reintroducing sidebar, use this div-->
       <div class="container-fluid opacity-75 m-auto w-75">
         <!-- Data-category and id need to be the survey_category.slug for DB selection and sidebar selector -->
-        <div class="card shadow mb-2" id="recreation-travel-container" data-category-slug="recreation-travel">
+        <!-- <div class="card shadow mb-2" id="recreation-travel-container" data-category-slug="recreation-travel">
           <div class="card-title">
-            <!-- <h2 class="display-6 text-primary">Let's start with something fun.</h2> -->
-          </div>
+            <h2 class="display-6 text-primary">Let's start with something fun.</h2>
+          </div> -->
           <div data-bs-spy="scroll" data-bs-target="#progress-navbar" data-bs-smooth-scroll="true"
             class="scrollspy-example-2" tabindex="0">
             <div class="text-primary container-fluid p-2 mb-3">
-              <ol class="display-6 m-3">
+              <!-- <ol class="display-6 m-3">
                 <li>Name your goal</li>
                 <li>Estimate a completion date</li>
                 <li>Add milestones to track</li>
                 <li>If needed, separate additionally into action items</li>
-              </ol>
+              </ol> -->
 
-                <!-- Container for all goals in a subcategory -->
-                <div class="accordion-body goal-section p-3" id="{{ subcategory_slug }}-goals-container"
-                  data-subcategory-slug="{{ subcategory_slug }}">
+                <!-- Subcategory Container -->
+                <div class="card shadow text-center subcategory-card"
+                  data-subcategory-slug="{{ subcategory.subcategory_slug }}">
+                  <!-- <h2 class="accordion-header" id="subcategory-{{ subcategory.id }}">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                      data-bs-target="#collapse-{{ subcategory.id }}" aria-expanded="true"
+                      aria-controls="collapse-{{ subcategory.id }}">
+                      {{ subcategory.name }}
+                    </button>
+                  </h2> -->
 
-                  <!-- Container for an initial example goal per subcategory -->
-                  <div class="card shadow p-3 mb-3 goal-card" id="{{ subcategory_slug }}-goal-1-card"
-                    data-goal-id="1">
+                  <!-- <div id="collapse-{{ subcategory.id }}" class="accordion-collapse collapse show"
+                    aria-labelledby="subcategory-{{ subcategory.id }}" data-bs-parent="#goalSettingAccordion"> -->
 
-                    <!-- Goal Name Input -->
-                    <div class="mb-3 form-floating">
-                      <input type="text" class="form-control" id="{{ subcategory_slug }}-goal-1-name"
-                        placeholder=" " name="name" autocomplete="on" required>
-                      <label for="{{ subcategory_slug }}-goal-1-name" class="form-label">Goal
-                        Name</label>
-                      <div class="invalid-feedback">Name is required.</div>
-                    </div>
+                    <!-- Container for all goals in a subcategory -->
+                    <div class="accordion-body goal-section p-3" id="{{ subcategory.subcategory_slug }}-goals-container"
+                      data-subcategory-slug="{{ subcategory.subcategory_slug }}">
+                      <!-- <h4 class="text-primary">Create goals for the {{ subcategory.name }} category</h4> -->
 
-                    <!-- Goal Description Input -->
-                    <div class="mb-3 form-floating">
-                      <textarea class="form-control" id="{{ subcategory_slug }}-goal-1-description"
-                        rows="3" placeholder=" "></textarea>
-                      <label for="{{ subcategory_slug }}-goal-1-description"
-                        class="form-label">Description (optional)</label>
-                    </div>
+                      <!-- Container for an initial example goal per subcategory -->
+                      <div class="card shadow p-3 mb-3 goal-card" id="{{ subcategory.subcategory_slug }}-goal-1-card"
+                        data-goal-id="1">
 
-                    <!-- Goal Type Input -->
-                    <div class="mb-3">
-                      <label for="{{ subcategory_slug }}-goal-1-type" class="form-label">Goal
-                        Type</label>
-                      <select class="form-select" id="{{ subcategory_slug }}-goal-1-type" required>
-                        <option value="" disabled selected>Select a Type of Goal</option>
-                        <option value="active">
-                          Active (goals you intend to pursue currently)
-                        </option>
-                        <option value="supportive">
-                          Supportive (goals that directly support or enable other goals)
-                        </option>
-                        <option value="collaborative">
-                          Collaborative (goals requiring contributions or coordination with others)
-                        </option>
-                        <option value="habitual">
-                          Habitual (goals that involve building or maintaining habits or routine practices)
-                        </option>
-                        <option value="experimental">
-                          Experimental (goals being explored without full commitment, to gauge interest or
-                          feasability)
-                        </option>
-                        <option value="self-care">
-                          Self-Care (goals focusing on personal well-being, mental health, or stress management)
-                        </option>
-                        <option value="archived">
-                          Archived (goals to be pursued later, possibly those that follow other goals or steps in
-                          life)
-                        </option>
-                      </select>
-                      <div class="invalid-feedback">Please select a goal type.</div>
-                    </div>
+                        <!-- Goal Name Input -->
+                        <div class="mb-3 form-floating">
+                          <input type="text" class="form-control" id="{{ subcategory.subcategory_slug }}-goal-1-name"
+                            placeholder=" " name="name" autocomplete="on" required>
+                          <label for="{{ subcategory.subcategory_slug }}-goal-1-name" class="form-label">Goal
+                            Name</label>
+                          <div class="invalid-feedback">Name is required.</div>
+                        </div>
 
-                    <!-- Priority Selector -->
-                    <div class="mb-3">
-                      <label for="{{ subcategory_slug }}-goal-1-priority"
-                        class="form-label">Priority</label>
-                      <select class="form-select" id="{{ subcategory_slug }}-goal-1-priority" required>
-                        <option value="" disabled selected>Select priority</option>
-                        <option value="4">Low</option>
-                        <option value="3">Medium</option>
-                        <option value="2">High</option>
-                        <option value="1">Urgent</option>
-                      </select>
-                      <div class="invalid-feedback">Please assign a priority.</div>
-                    </div>
+                        <!-- Goal Description Input -->
+                        <div class="mb-3 form-floating">
+                          <textarea class="form-control" id="{{ subcategory.subcategory_slug }}-goal-1-description"
+                            rows="3" placeholder=" "></textarea>
+                          <label for="{{ subcategory.subcategory_slug }}-goal-1-description"
+                            class="form-label">Description (optional)</label>
+                        </div>
 
-                    <!-- Display as an active goal -->
-                    <div class="form-check form-switch mb-3">
-                      <input class="form-check-input toggle-panels goal-is-active-checkbox" type="checkbox"
-                        id="{{ subcategory_slug }}-goal-1-is-active">
-                      <label class="form-check-label" for="{{ subcategory_slug }}-goal-1-is-active">
-                        Display goal and associated milestones/action items on dashboard?
-                      </label>
-                    </div>
+                        <!-- Goal Type Input -->
+                        <div class="mb-3">
+                          <label for="{{ subcategory.subcategory_slug }}-goal-1-type" class="form-label">Goal
+                            Type</label>
+                          <select class="form-select" id="{{ subcategory.subcategory_slug }}-goal-1-type" required>
+                            <option value="" disabled selected>Select a Type of Goal</option>
+                            <option value="active">
+                              Active (goals you intend to pursue currently)
+                            </option>
+                            <option value="supportive">
+                              Supportive (goals that directly support or enable other goals)
+                            </option>
+                            <option value="collaborative">
+                              Collaborative (goals requiring contributions or coordination with others)
+                            </option>
+                            <option value="habitual">
+                              Habitual (goals that involve building or maintaining habits or routine practices)
+                            </option>
+                            <option value="experimental">
+                              Experimental (goals being explored without full commitment, to gauge interest or
+                              feasability)
+                            </option>
+                            <option value="self-care">
+                              Self-Care (goals focusing on personal well-being, mental health, or stress management)
+                            </option>
+                            <option value="archived">
+                              Archived (goals to be pursued later, possibly those that follow other goals or steps in
+                              life)
+                            </option>
+                          </select>
+                          <div class="invalid-feedback">Please select a goal type.</div>
+                        </div>
 
-                    <!-- Estimated Goal Completion Input -->
-                    <div class="mb-3 text-center">
-                      <p>Projected Completion</p>
-                      <div
-                        class="d-flex justify-content-around gap-3 align-items-center m-auto projected-completion-card">
-                        <!-- Input for Time Value -->
-                        <div class="col-4">
-                          <label for="{{ subcategory_slug }}-goal-1-time-value" class="form-label">
-                            Select a time from now
+                        <!-- Priority Selector -->
+                        <div class="mb-3">
+                          <label for="{{ subcategory.subcategory_slug }}-goal-1-priority"
+                            class="form-label">Priority</label>
+                          <select class="form-select" id="{{ subcategory.subcategory_slug }}-goal-1-priority" required>
+                            <option value="" disabled selected>Select priority</option>
+                            <option value="4">Low</option>
+                            <option value="3">Medium</option>
+                            <option value="2">High</option>
+                            <option value="1">Urgent</option>
+                          </select>
+                          <div class="invalid-feedback">Please assign a priority.</div>
+                        </div>
+
+                        <!-- Display as an active goal -->
+                        <div class="form-check form-switch mb-3">
+                          <input class="form-check-input toggle-panels goal-is-active-checkbox" type="checkbox"
+                            id="{{ subcategory.subcategory_slug }}-goal-1-is-active">
+                          <label class="form-check-label" for="{{ subcategory.subcategory_slug }}-goal-1-is-active">
+                            Display goal and associated milestones/action items on dashboard?
                           </label>
-                          <div class="d-flex gap-2 align-items-center">
-                            <input type="number" class="form-control w-auto"
-                              id="{{ subcategory_slug }}-goal-1-time-value" placeholder="Enter number"
-                              min="1" data-type="projected-completion-value">
-                            <select class="form-select w-auto"
-                              id="{{ subcategory_slug }}-goal-1-time-unit"
-                              data-type="projected-completion-unit">
-                              <option value="" disabled selected>Time unit</option>
-                              <option value="day">Day(s)</option>
-                              <option value="week">Week(s)</option>
-                              <option value="month">Month(s)</option>
-                              <option value="year">Year(s)</option>
-                            </select>
+                        </div>
+
+                        <!-- Estimated Goal Completion Input -->
+                        <div class="mb-3 text-center">
+                          <p>Projected Completion</p>
+                          <div
+                            class="d-flex justify-content-around gap-3 align-items-center m-auto projected-completion-card">
+                            <!-- Input for Time Value -->
+                            <div class="col-4">
+                              <label for="{{ subcategory.subcategory_slug }}-goal-1-time-value" class="form-label">
+                                Select a time from now
+                              </label>
+                              <div class="d-flex gap-2 align-items-center">
+                                <input type="number" class="form-control w-auto"
+                                  id="{{ subcategory.subcategory_slug }}-goal-1-time-value" placeholder="Enter number"
+                                  min="1" data-type="projected-completion-value">
+                                <select class="form-select w-auto"
+                                  id="{{ subcategory.subcategory_slug }}-goal-1-time-unit"
+                                  data-type="projected-completion-unit">
+                                  <option value="" disabled selected>Time unit</option>
+                                  <option value="day">Day(s)</option>
+                                  <option value="week">Week(s)</option>
+                                  <option value="month">Month(s)</option>
+                                  <option value="year">Year(s)</option>
+                                </select>
+                              </div>
+                            </div>
+                            <div class="col-1">
+                              <p>OR</p>
+                            </div>
+                            <div class="col-4">
+                              <label for="{{ subcategory.subcategory_slug }}-goal-1-date" class="form-label">
+                                Select a date
+                              </label>
+                              <input type="date" class="form-control"
+                                id="{{ subcategory.subcategory_slug }}-goal-1-date"
+                                data-type="projected-completion-date" required>
+                              <div class="invalid-feedback">Please enter a projected completion date.</div>
+                            </div>
                           </div>
                         </div>
-                        <div class="col-1">
-                          <p>OR</p>
-                        </div>
-                        <div class="col-4">
-                          <label for="{{ subcategory_slug }}-goal-1-date" class="form-label">
-                            Select a date
-                          </label>
-                          <input type="date" class="form-control"
-                            id="{{ subcategory_slug }}-goal-1-date"
-                            data-type="projected-completion-date" required>
-                          <div class="invalid-feedback">Please enter a projected completion date.</div>
-                        </div>
-                      </div>
-                    </div>
 
-                    <h4 class="text-center text-primary">Let's break it down!</h4>
-                    <hr class="mb-3">
+                        <h4 class="text-center text-primary">Let's break it down!</h4>
+                        <hr class="mb-3">
 
-                    <!-- Goal Milestones -->
-                    <h3 class="display-6">Major Milestones</h3>
-                    <p class="lead">Hint: Start with the longest time interval to work your way backwards.</p>
-                    <div class="container-fluid mb-3">
-                      <!-- Add Milestone Button -->
-                      <div class="mb-3">
-                        <button type="button" id="add-milestone" class="btn btn-primary add-milestone-btn"
-                          data-subcategory-slug="{{ subcategory_slug }}" data-goal-id="1">
-                          Add Milestone
-                        </button>
-                      </div>
+                        <!-- Goal Milestones -->
+                        <h3 class="display-6">Major Milestones</h3>
+                        <p class="lead">Hint: Start with the longest time interval to work your way backwards.</p>
+                        <div class="container-fluid mb-3">
+                          <!-- Add Milestone Button -->
+                          <div class="mb-3">
+                            <button type="button" id="add-milestone" class="btn btn-primary add-milestone-btn"
+                              data-subcategory-slug="{{ subcategory.subcategory_slug }}" data-goal-id="1">
+                              Add Milestone
+                            </button>
+                          </div>
 
-                      <!-- Swiper Container for Milestones, (Swiper functionality in question, may opt for sortable horizonal-scroll) -->
-                      <div class="swiper-container scroll-wrapper position-relative">
-                        <div class="card shadow swiper-wrapper m-auto">
-                          <div class="swiper-slide">
-                            <!-- Dynamically Added Milestones go here -->
-                            <div
-                              class="d-flex justify-content-around gap-2 p-3 milestone-section sortable-container m-auto"
-                              id="{{ subcategory_slug }}-goal-1-milestones">
-                              <!-- Example Milestone Slide -->
-                              <div class="card shadow p-2 milestone-card position-relative sortable-card"
-                                id="{{ subcategory_slug }}-goal-1-milestone-1"
-                                data-subcategory-slug="{{ subcategory_slug }}" data-milestone-id="1"
-                                data-order="1" data-goal-id="1">
-                                <!-- Milestone order number -->
-                                <div class="card-title">
-                                  <h5 class="card-order">1.</h5>
-                                </div>
-                                <!-- Milestone name input -->
-                                <div class="mb-3 form-floating">
-                                  <input type="text" class="form-control"
-                                    id="{{ subcategory_slug }}-goal-1-milestone-1-name" placeholder=" "
-                                    required>
-                                  <label for="{{ subcategory_slug }}-goal-1-milestone-1-name"
-                                    class="form-label">
-                                    Milestone Name
-                                  </label>
-                                  <div class="invalid-feedback">Milestone name is required.</div>
-                                </div>
-                                <h5 class="card-title mb-2">Target completion:</h5>
-                                <div class="d-flex gap-2 mb-3 projected-completion-card">
-                                  <div class="mb-3 w-50">
-                                    <input type="number" class="form-control" name="time_value"
-                                      id="{{ subcategory_slug }}-goal-1-milestone-1-completion-value"
-                                      placeholder="0" min="1" required>
-                                    <div class="invalid-feedback">Value required</div>
-                                  </div>
-                                  <div class="mb-3 w-50">
-                                    <select class="form-select" name="time_unit"
-                                      id="{{ subcategory_slug }}-goal-1-milestone-1-completion-unit"
-                                      required>
-                                      <option value=" " selected disabled hidden>Time Unit</option>
-                                      <option value="day">Day(s)</option>
-                                      <option value="week">Week(s)</option>
-                                      <option value="month">Month(s)</option>
-                                      <option value="year">Year(s)</option>
-                                    </select>
-                                    <div class="invalid-feedback">Unit required</div>
-                                  </div>
-                                </div>
-                                <div class="form-floating mb-3">
-                                  <textarea class="form-control mb-2"
-                                    name="{{ subcategory_slug }}-milestone[1]_description"
-                                    id="{{ subcategory_slug }}-goal-1-milestone-1-description" rows="3"
-                                    placeholder=" ">
-                                    </textarea>
-                                  <label for="{{ subcategory_slug }}-goal-1-milestone-1-description"
-                                    class="form-label">Description (optional)</label>
-                                </div>
-                                <!-- Separate Into Action Items Checkbox -->
-                                <div class="form-check form-switch mb-3">
-                                  <input class="form-check-input toggle-panels separate-action-items-checkbox"
-                                    type="checkbox"
-                                    id="separate-action-items-{{ subcategory_slug }}-goal-1-milestone-1">
-                                  <label class="form-check-label"
-                                    for="separate-action-items-{{ subcategory_slug }}-goal-1-milestone-1">
-                                    Separate into action items
-                                  </label>
-                                </div>
-                                <!-- Action Items Section for Milestone -->
+                          <!-- Swiper Container for Milestones, (Swiper functionality in question, may opt for sortable horizonal-scroll) -->
+                          <div class="swiper-container scroll-wrapper position-relative">
+                            <div class="card shadow swiper-wrapper m-auto">
+                              <div class="swiper-slide">
+                                <!-- Dynamically Added Milestones go here -->
                                 <div
-                                  class=" card shadow p-1 d-none action-item-section position-absolute text-bg-light">
-                                  <h5 class="text-primary fs-4">Action Items</h5>
-                                  <hr class="w-25 m-auto mb-3">
-                                  <button class="btn btn-primary btn-sm add-action-item-btn w-75 m-auto mb-3">Add
-                                    Action Item
-                                  </button>
+                                  class="d-flex justify-content-around gap-2 p-3 milestone-section sortable-container m-auto"
+                                  id="{{ subcategory.subcategory_slug }}-goal-1-milestones">
+                                  <!-- Example Milestone Slide -->
+                                  <div class="card shadow p-2 milestone-card position-relative sortable-card"
+                                    id="{{ subcategory.subcategory_slug }}-goal-1-milestone-1"
+                                    data-subcategory-slug="{{ subcategory.subcategory_slug }}" data-milestone-id="1"
+                                    data-order="1" data-goal-id="1">
+                                    <!-- Milestone order number -->
+                                    <div class="card-title">
+                                      <h5 class="card-order">1.</h5>
+                                    </div>
+                                    <!-- Milestone name input -->
+                                    <div class="mb-3 form-floating">
+                                      <input type="text" class="form-control"
+                                        id="{{ subcategory.subcategory_slug }}-goal-1-milestone-1-name" placeholder=" "
+                                        required>
+                                      <label for="{{ subcategory.subcategory_slug }}-goal-1-milestone-1-name"
+                                        class="form-label">
+                                        Milestone Name
+                                      </label>
+                                      <div class="invalid-feedback">Milestone name is required.</div>
+                                    </div>
+                                    <h5 class="card-title mb-2">Target completion:</h5>
+                                    <div class="d-flex gap-2 mb-3 projected-completion-card">
+                                      <div class="mb-3 w-50">
+                                        <input type="number" class="form-control" name="time_value"
+                                          id="{{ subcategory.subcategory_slug }}-goal-1-milestone-1-completion-value"
+                                          placeholder="0" min="1" required>
+                                        <div class="invalid-feedback">Value required</div>
+                                      </div>
+                                      <div class="mb-3 w-50">
+                                        <select class="form-select" name="time_unit"
+                                          id="{{ subcategory.subcategory_slug }}-goal-1-milestone-1-completion-unit"
+                                          required>
+                                          <option value=" " selected disabled hidden>Time Unit</option>
+                                          <option value="day">Day(s)</option>
+                                          <option value="week">Week(s)</option>
+                                          <option value="month">Month(s)</option>
+                                          <option value="year">Year(s)</option>
+                                        </select>
+                                        <div class="invalid-feedback">Unit required</div>
+                                      </div>
+                                    </div>
+                                    <div class="form-floating mb-3">
+                                      <textarea class="form-control mb-2"
+                                        name="{{ subcategory.subcategory_slug }}-milestone[1]_description"
+                                        id="{{ subcategory.subcategory_slug }}-goal-1-milestone-1-description" rows="3"
+                                        placeholder=" ">
+                                        </textarea>
+                                      <label for="{{ subcategory.subcategory_slug }}-goal-1-milestone-1-description"
+                                        class="form-label">Description (optional)</label>
+                                    </div>
+                                    <!-- Separate Into Action Items Checkbox -->
+                                    <div class="form-check form-switch mb-3">
+                                      <input class="form-check-input toggle-panels separate-action-items-checkbox"
+                                        type="checkbox"
+                                        id="separate-action-items-{{ subcategory.subcategory_slug }}-goal-1-milestone-1">
+                                      <label class="form-check-label"
+                                        for="separate-action-items-{{ subcategory.subcategory_slug }}-goal-1-milestone-1">
+                                        Separate into action items
+                                      </label>
+                                    </div>
+                                    <!-- Action Items Section for Milestone -->
+                                    <div
+                                      class=" card shadow p-1 d-none action-item-section position-absolute text-bg-light">
+                                      <h5 class="text-primary fs-4">Action Items</h5>
+                                      <hr class="w-25 m-auto mb-3">
+                                      <button class="btn btn-primary btn-sm add-action-item-btn w-75 m-auto mb-3">Add
+                                        Action Item
+                                      </button>
+                                    </div>
+                                    <button class="btn btn-danger btn-sm w-50 m-auto remove-milestone-btn">
+                                      Remove milestone
+                                    </button>
+                                  </div>
                                 </div>
-                                <button class="btn btn-danger btn-sm w-50 m-auto remove-milestone-btn">
-                                  Remove milestone
-                                </button>
                               </div>
                             </div>
                           </div>
                         </div>
+                        <button class="btn btn-danger btn-sm w-50 m-auto mb-3 remove-goal-btn">Remove
+                          Goal</button>
+                      </div>
+
+                      <button type="button" class="btn btn-primary btn-sm mb-3 add-goal-btn"
+                        id="{{ subcategory.subcategory_slug }}-add-goal-btn"
+                        data-subcategory-slug="{{ subcategory.subcategory_slug }}">
+                        + Add Another Goal
+                      </button>
+                      <hr>
+                      <div class="text-end mb-3">
+                        <button type="submit" class="btn btn-primary"
+                          id="{{ subcategory.subcategory_slug }}-goals-save">Save</button>
                       </div>
                     </div>
-                    <button class="btn btn-danger btn-sm w-50 m-auto mb-3 remove-goal-btn">Remove
-                      Goal</button>
-                  </div>
-
-                  <button type="button" class="btn btn-primary btn-sm mb-3 add-goal-btn"
-                    id="{{ subcategory_slug }}-add-goal-btn"
-                    data-subcategory-slug="{{ subcategory_slug }}">
-                    + Add Another Goal
-                  </button>
-                  <hr>
-                  <div class="text-end mb-3">
-                    <button type="submit" class="btn btn-primary"
-                      id="{{ subcategory_slug }}-goals-save">Save</button>
-                  </div>
+                  <!-- </div> -->
                 </div>
               <a href="/goals/recreation-travel/frequent-hobbies-activities"
                 class="btn btn-lg w-25 btn-primary mb-3 d-none" id="next-section-btn">Next Section</a>
             </div>
           </div>
-        </div>
+        <!-- </div> -->
       </div>
     </div>
 </body>
