@@ -122,6 +122,7 @@
                   <h4 class="display-6 mb-2 text-center text-primary">Your Day at a Glance</h4>
                   <hr class="border border-light mb-3 m-auto w-100">
                 </div>
+
                 <!-- AM Routine -->
                 <div class="card shadow mb-1">
                   <div class="card-body">
@@ -134,20 +135,20 @@
 
                     <ul class="list-group">
                       {% if routines %}
-                      {% for routine in routines %}
-                      {% if routine.routine_type == "AM" %}
-                      {% for practice in routine.practices %}
-                      <li class="list-group-item d-flex justify-content-between align-items-center">
-                        <span>{{ practice.name }}</span>
-                        <div class="d-flex gap-2">
-                          <button class="btn btn-sm btn-outline-success"
-                            onclick="markAccomplished('{{ practice.id }}')">Complete</button>
-                          <button class="btn btn-sm btn-outline-warning">Edit Practice</button>
-                        </div>
-                      </li>
-                      {% endfor %}
-                      {% endif %}
-                      {% endfor %}
+                        {% for routine in routines %}
+                          {% if routine.routine_type == "AM" %}
+                            {% for practice in routine.practices %}
+                              <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <span>{{ practice.name }}</span>
+                                <div class="d-flex gap-2">
+                                  <button class="btn btn-sm btn-outline-success"
+                                    onclick="markAccomplished('{{ practice.id }}')">Complete</button>
+                                  <button class="btn btn-sm btn-outline-warning">Edit Practice</button>
+                                </div>
+                              </li>
+                            {% endfor %}
+                          {% endif %}
+                        {% endfor %}
                       {% endif %}
                     </ul>
                   </div>
@@ -207,6 +208,7 @@
                     </ul>
                   </div>
                 </div>
+
                 <!-- PM Routine -->
                 <div class="card shadow mb-1">
                   <div class="card-body">
@@ -219,51 +221,20 @@
 
                     <ul class="list-group">
                       {% for routine in routines %}
-                      {% if routine.routine_type == "PM" %}
-                      {% for practice in routine.practices %}
-                      <li class="list-group-item d-flex justify-content-between align-items-center">
-                        <span>{{ practice.name }}</span>
-                        <button class="btn btn-sm btn-outline-success"
-                          onclick="markAccomplished('{{ practice.id }}')">Mark
-                          Done</button>
-                      </li>
-                      {% endfor %}
-                      {% endif %}
+                        {% if routine.routine_type == "PM" %}
+                          {% for practice in routine.practices %}
+                          <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <span>{{ practice.name }}</span>
+                            <button class="btn btn-sm btn-outline-success"
+                              onclick="markAccomplished('{{ practice.id }}')">Mark
+                              Done</button>
+                          </li>
+                          {% endfor %}
+                        {% endif %}
                       {% endfor %}
                     </ul>
                   </div>
                 </div>
-                
-                <!-- Render Test -->
-                <!-- <div class="col-lg-6 mb-1">
-                  <div class="card shadow">
-                    <div class="card-body">
-                      <h5 class="card-title text-primary">Action Items</h5>
-                      <hr class="border border-light mb-3 m-auto w-100">
-
-                      <hr class="border border-light mb-3 m-auto w-100">
-
-                      <ul class="list-group">
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                          <span>Action Item Sample</span>
-                          <button class="btn btn-sm btn-outline-success">Complete</button>
-                        </li>
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                          <span>Action Item Sample</span>
-                          <button class="btn btn-sm btn-outline-success">Complete</button>
-                        </li>
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                          <span>Action Item Sample</span>
-                          <button class="btn btn-sm btn-outline-success">Complete</button>
-                        </li>
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                          <span>Action Item Sample</span>
-                          <button class="btn btn-sm btn-outline-success">Complete</button>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div> -->
               </div>
             </div>
 
@@ -281,72 +252,89 @@
                     <hr class="border border-light mb-3 m-auto w-100">
 
                     <ul class="list-group">
-                      <!--  -->
-                      {% set priority_labels = {1: 'Urgent', 2: 'High', 2: 'Medium', 4: 'Low'} %}
+                      {% set priority_labels = {1: 'Urgent', 2: 'High', 3: 'Medium', 4: 'Low'} %}
                       {% set priority_sorted_goals = goals | sort(attribute='priority') %}
                       
                       {% for priority, label in priority_labels.items() %}
-                        {% set has_items = {'value': false} %}
-
+                        {% set has_items = {'value': false} %}  
+                    
                         {% for goal in priority_sorted_goals if goal.is_active and goal.priority == priority %}
+                          {% set first_action_item = {'value': None} %}
+                          {% set first_milestone = {'value': None} %}
+                    
                           {% for milestone in goal.milestones | sort(attribute='projected_completion') %}
                             {% if not milestone.is_complete %}
+                              {% if first_milestone['value'] is none %}
+                                {% set _ = first_milestone.update({'value': milestone}) %}
+                              {% endif %}
+                    
                               {% for action_item in milestone.action_items | sort(attribute='action_item_order') %}
                                 {% if not action_item.is_complete %}
-                                  {% set _ = has_items.update({'value': true}) %}
+                                  {% if first_action_item['value'] is none %}
+                                    {% set _ = first_action_item.update({'value': action_item}) %}
+                                    {% set _ = has_items.update({'value': true}) %}
+                                  {% endif %}
                                 {% endif %}
                               {% endfor %}
                             {% endif %}
                           {% endfor %}
+                    
+                          {% if first_action_item['value'] or first_milestone['value'] %}
+                            {% set _ = has_items.update({'value': true}) %}
+                          {% endif %}
                         {% endfor %}
-
-                        <!-- Debugging: Check if this section runs -->
-                        <!-- <p>We are here. Priority: {{ priority }}, Has Items: {{ has_items.value }}</p> -->
-
+                    
                         {% if has_items.value %}
-
-                          <li class="list-group-item bg-dark text-primary"><strong>{{ label }}</strong></li>
-
-
+                          <li class="list-group-item text-primary lead" style="border-bottom-width: 3px;"><strong>{{ label }}</strong></li>
+                    
                           {% for goal in priority_sorted_goals if goal.is_active and goal.priority == priority %}
-                            <li class="list-group-item" aria-current="true">
-                              <strong>{{ goal.name }}</strong>
-                            </li>
-
+                    
+                            {% set first_action_item = {'value': None} %}
+                            {% set first_milestone = {'value': None} %}
+                    
                             {% for milestone in goal.milestones | sort(attribute='projected_completion') %}
                               {% if not milestone.is_complete %}
+                                {% if first_milestone['value'] is none %}
+                                  {% set _ = first_milestone.update({'value': milestone}) %}
+                                {% endif %}
+                    
                                 {% for action_item in milestone.action_items | sort(attribute='action_item_order') %}
                                   {% if not action_item.is_complete %}
-                                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                                      <span>
-                                        {{ action_item.name }}
-                                        <small class="text-muted">({{ milestone.name }})</small>
-                                      </span>
-                                      <div class="d-flex gap-2">
-                                        <button class="btn btn-sm btn-outline-primary"
-                                          onclick="markAccomplished('{{ action_item.id }}')">
-                                          Add to Flex Tasks
-                                        </button>
-                                        <button class="btn btn-sm btn-outline-warning">Edit Goal</button>
-                                      </div>
-                                    </li>
+                                    {% if first_action_item['value'] is none %}
+                                      {% set _ = first_action_item.update({'value': action_item}) %}
+                                    {% endif %}
                                   {% endif %}
                                 {% endfor %}
-
-                                {% if milestone.action_items | length == 0 %}
-                                  <li class="list-group-item d-flex justify-content-between align-items-center">
-                                    <span>{{ milestone.name }}</span>
-                                    <div class="d-flex gap-2">
-                                      <button class="btn btn-sm btn-outline-primary"
-                                        onclick="markAccomplished('{{ milestone.id }}')">
-                                        Add to Flex Tasks
-                                      </button>
-                                      <button class="btn btn-sm btn-outline-warning">Edit Goal</button>
-                                    </div>
-                                  </li>
-                                {% endif %}
                               {% endif %}
                             {% endfor %}
+                    
+                            {% if first_action_item['value'] %}
+                              <li class="list-group-item d-flex flex-column">
+                                <div class="d-flex justify-content-between align-items-center">
+                                  <span><strong>{{ first_action_item['value'].name }}</strong></span>
+                                  <div class="d-flex gap-2">
+                                    <button class="btn btn-sm btn-outline-success">
+                                      Add to Flex Tasks
+                                    </button>
+                                    <button class="btn btn-sm btn-outline-warning">Edit</button>
+                                  </div>
+                                </div>
+                                <small>Goal: {{ goal.name }} → <span class="text-muted">Milestone: {{ first_milestone['value'].name }}</span></small>
+                              </li>
+                            {% elif first_milestone['value'] %}
+                              <li class="list-group-item d-flex flex-column">
+                                <div class="d-flex justify-content-between align-items-center">
+                                  <span><strong>{{ first_milestone['value'].name }}</strong></span>
+                                  <div class="d-flex gap-2">
+                                    <button class="btn btn-sm btn-outline-success">
+                                      Add to Flex Tasks
+                                    </button>
+                                    <button class="btn btn-sm btn-outline-warning">Edit</button>
+                                  </div>
+                                </div>
+                                <small>Goal: {{ goal.name }}</small>
+                              </li>
+                            {% endif %}
                           {% endfor %}
                         {% endif %}
                       {% endfor %}
@@ -354,31 +342,6 @@
                   </div>
                 </div>
               </div>
-
-              <!-- <div class="card shadow mb-1">
-                <div class="card-body">
-                  <h5 class="card-title text-primary">Action Items</h5>
-                  <ul class="list-group">
-
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                      <span>Action Item Sample</span>
-                      <button class="btn btn-sm btn-outline-success">Complete</button>
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                      <span>Action Item Sample</span>
-                      <button class="btn btn-sm btn-outline-success">Complete</button>
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                      <span>Action Item Sample</span>
-                      <button class="btn btn-sm btn-outline-success">Complete</button>
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                      <span>Action Item Sample</span>
-                      <button class="btn btn-sm btn-outline-success">Complete</button>
-                    </li>
-                  </ul>
-                </div>
-              </div> -->
             </div>
           </div>
 
