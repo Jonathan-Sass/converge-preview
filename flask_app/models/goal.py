@@ -18,8 +18,9 @@ class Goal:
         self.category_id = data["category_id"]
         self.subcategory_id = data["subcategory_id"]
         self.name = data["name"]
-        self.description = data["description"]
+        self.description = data["goal_description"]
         self.goal_type = data["goal_type"]
+        self.is_active = data["goal_is_active"]
         self.projected_completion = data["projected_completion"]
         self.is_complete = data["is_complete"]
         self.priority = data["priority"]
@@ -41,7 +42,7 @@ class Goal:
               g.projected_completion AS goal_projected_completion,
               g.is_complete AS goal_is_complete,
               g.priority AS goal_priority,
-              g.is_active,
+              g.is_active AS goal_is_active,
               g.created_at AS goal_created_at,
               g.updated_at AS goal_updated_at,
               m.id AS milestone_id,
@@ -93,12 +94,13 @@ class Goal:
                         "category_id": row["category_id"],
                         "subcategory_id": row["subcategory_id"],
                         "name": row["goal_name"],
-                        "description": row["goal_description"],
+                        "goal_description": row["goal_description"],
                         "goal_type": row["goal_type"],
+                        "goal_is_active": row["goal_is_active"],
                         "projected_completion": row["goal_projected_completion"],
                         "is_complete": row["goal_is_complete"],
                         "priority": row["goal_priority"],
-                        "is_active": row["is_active"],
+                        "goal_is_active": row["goal_is_active"],
                         "milestones": [],
                         "created_at": row["goal_created_at"],
                         "updated_at": row["goal_updated_at"],
@@ -207,7 +209,7 @@ class Goal:
                         "projected_completion": goal.get("projectedCompletion"),
                         "is_complete": goal.get("isComplete", False),
                         "priority": goal.get("priority"),
-                        "is_active": goal.get("is_active"),
+                        "is_active": goal.get("isActive"),
                     }
                     goal_id = Goal.save_subcategory_goals(goal_data)
 
