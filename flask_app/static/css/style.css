@@ -16,9 +16,11 @@ h1, h2, h3, h4, h5, h6, p {
 }
 
 .introCustomTooltip {
-    color: #333333; /* Sets text color to white */
-    background-color: #ffffff; /* Sets background color to dark grey */
+    color: #333333 !important; /* Sets text color to white */
+    background-color: #ffffff !important; /* Sets background color to dark grey */
     font-size: 16px; /* Adjusts font size */
+    border: 2px solid #007bff;
+    border-radius: 0.5rem;
 }
 
 /* Main container */
