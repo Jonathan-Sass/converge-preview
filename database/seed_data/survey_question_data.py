@@ -58,10 +58,7 @@ survey_question_data = [
                     {"answer_text": "Improve social connections", "answer_value": 5},
                     {"answer_text": "Increase life balance", "answer_value": 6},
                     {"answer_text": "Improve time management", "answer_value": 7},
-                    {
-                        "answer_text": "Reduce screentime/doom scrolling",
-                        "answer_value": 8,
-                    },
+                    {"answer_text": "Reduce screentime/doom scrolling", "answer_value": 8,},
                 ],
             },
             {
@@ -100,7 +97,7 @@ survey_question_data = [
             },
             {
                 "question_slug": "existing-routines-check",
-                "question_text": "Do you currently have established morning routines/practices?",
+                "question_text": "Do you currently have an established morning routine or habits?",
                 "type": "yes-no",
             },
             {

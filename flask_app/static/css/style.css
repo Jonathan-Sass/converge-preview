@@ -23,6 +23,23 @@ h1, h2, h3, h4, h5, h6, p {
     border-radius: 0.5rem;
 }
 
+/* Allow clicking inside inputs during Intro.js steps */
+/*.introjs-tooltipReferenceLayers input {
+  pointer-events: none !important;
+  background: none !important;
+  z-index: 9999 !important; 
+}*/
+
+.introjs-tooltipReferenceLayer, 
+.introjs-helperLayer {
+    pointer-events: none !important; /* ✅ Allows clicking through overlays */
+}
+
+.introjs-tooltipReferenceLayer input, 
+.introjs-helperLayer input {
+    pointer-events: auto !important; /* ✅ Enables typing in input fields */
+}
+
 /* Main container */
 .mask-container {
     position: relative;
