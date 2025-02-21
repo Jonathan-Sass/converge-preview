@@ -421,6 +421,22 @@
   <script defer type="module" src="/static/js/sortable-containers.js"></script>
 
   <script>
+    function requireInput(fieldId) {
+    let inputField = document.getElementById(fieldId);
+    let nextButton = document.querySelector(".introjs-nextbutton");
+
+    if (inputField.value.trim() === "") {
+        nextButton.classList.add("introjs-disabled");
+
+        // Enable button when user types
+        inputField.addEventListener("input", function () {
+            if (inputField.value.trim() !== "") {
+                nextButton.classList.remove("introjs-disabled");
+            }
+        });
+      }
+    }
+    
     function startIntro() {
       let intro = introJs();
       intro.setOptions({
@@ -433,19 +449,10 @@
             element: "#{{ subcategory.subcategory_slug }}-goal-1-name",
             title: "Enter a Goal Name",
             intro: "Give your goal a meaningful name or choose from our list of popular goals.",
+            position: "top",
             disableInteraction: false,
             onbeforechange: function () {
-              let goalNameInput = document.getElementById("{{ subcategory.subcategory_slug }}-goal-1-name");
-              let nextButton = document.querySelector(".introjs-nextbutton");
-              
-              if (goalNameInput.value.trim() === "") {
-                nextButton.classList.add("introjs-disabled");
-                goalNameInput.addEventListener("input", function () {
-                  if (goalNameInput.value.trim() !== "") {
-                    nextButton.classList.remove("introjs-disabled");
-                  }
-                });
-              }
+                requireInput("{{ subcategory.subcategory_slug }}-goal-1-name");
             }
           },
           {
@@ -504,7 +511,7 @@
           }
         ],
         tooltipClass: 'introCustomTooltip',
-        disableInteraction: true,
+        disableInteraction: false,
         showButtons: true,
         showBullets: false,
         nextLabel: "Next →",
@@ -519,6 +526,8 @@
     document.addEventListener("DOMContentLoaded", () => {
       startIntro();
     });
+
+    
   </script>
   
 </html>
