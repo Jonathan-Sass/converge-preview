@@ -6,7 +6,7 @@ used in the database seeding process. Below is an overview of the structure, sup
 question types, and guidelines for reusable answer sets.
 
 ### Structure Overview:
-- **topic_slug**: Must match a corresponding `topic_slug` in the `survey_topics` table.
+- **subcategory_slug**: Must match a corresponding `subcategory_slug` in the `subcategories` table.
 - **questions**: A list of dictionaries, each representing a single survey question.
 
 ### Question Fields:
@@ -28,7 +28,7 @@ question types, and guidelines for reusable answer sets.
   - Set the `type` field in your question to match the `answer_type` in the reusable set.
 - Custom answer sets:
   - Provide an `answers` key with a list of dictionaries for `guided-choice`, `select-any`, or `select-any-add`.
-- Ensure proper alignment of `topic_slug`, `question_slug`, and `type` to maintain data integrity.
+- Ensure proper alignment of `subcategory_slug`, `question_slug`, and `type` to maintain data integrity.
 
 ### TODOs:
 - Implement open-answer functionality for `select-any-add` questions.
@@ -42,7 +42,7 @@ survey_question_data = [
       # TODO: Contemplation on the getting-started question set: This may provide too much flexibility for the user
       # effectively allowing them to opt out of much of the functionality of the app.  Refine to allow personalization
       # without negating too many of the app functions for tracking and forward movement.
-        "topic_slug": "getting-started",
+        "subcategory_slug": "getting-started",
         "questions": [
             {
                 "question_slug": "big-picture-goals",
@@ -133,7 +133,7 @@ survey_question_data = [
         ],
     },
     {
-        "topic_slug": "getting-to-know-you",
+        "subcategory_slug": "getting-to-know-you",
         "questions": [
             {
                 "question_slug": "overall-well-being-self-assessment",
@@ -367,7 +367,7 @@ survey_question_data = [
         ],
     },
     {
-        "topic_slug": "current-habits-patterns",
+        "subcategory_slug": "current-habits-patterns",
         "questions": [
             {
                 "question_slug": "am-self-care-time-current",
@@ -635,7 +635,7 @@ survey_question_data = [
         ],
     },
     {
-        "topic_slug": "social-support-accountability",
+        "subcategory_slug": "social-support-accountability",
         "questions": [
             # Do you have a friend or friends who have might have similar goals or be similarly interested in personal growth based daily practices who could help you form an accountability team?
             {
@@ -826,7 +826,7 @@ survey_question_data = [
         ],
     },
     {
-        "topic_slug": "reflecting-purpose-motivation",
+        "subcategory_slug": "reflecting-purpose-motivation",
         "questions": [
             {
                 "question_slug": "personal-landscape-purpose",
@@ -1033,7 +1033,7 @@ survey_question_data = [
     # DEFINING YOUR WHY
     {
         # TODO: CHANGE QUESTION TYPES TO MATCH NEW TYPES
-        "topic_slug": "define-your-purpose",
+        "subcategory_slug": "define-your-purpose",
         "questions": [
             {
                 "question_text": "What gets you up in the morning? What keeps you motivated?",
@@ -1292,7 +1292,7 @@ survey_question_data = [
         ],
     },
     {
-        "topic_slug": "define-your-values",
+        "subcategory_slug": "define-your-values",
         "questions": [
             {
                 "question_text": "What values do you hold most dear in life?",
@@ -1359,7 +1359,7 @@ survey_question_data = [
     # TODO: POSSIBLE DATA STRUCTURE UPDATE TO UTILIZE MANY-TO-MANY TABLE, POSSIBLY ATTAINABLE WITH ONLY CHANGES TO survey_custom_answer_seed()
     # RECREATION AND TRAVEL
     {
-        "topic_slug": "frequent-hobbies-activities",
+        "subcategory_slug": "frequent-hobbies-activities",
         "questions": [
             {
                 "question_text": "How often do you currently engage in hobbies or activities that bring you joy?",
@@ -1426,7 +1426,7 @@ survey_question_data = [
         ],
     },
     {
-        "topic_slug": "adventure-travel",
+        "subcategory_slug": "adventure-travel",
         "questions": [
             {
                 "question_text": "How interested are you in traveling to remote or adventurous locations?",
@@ -1446,7 +1446,7 @@ survey_question_data = [
         ],
     },
     {
-        "topic_slug": "family-group-events",
+        "subcategory_slug": "family-group-events",
         "questions": [
             {
                 "question_text": "How often do you plan events or activities with family or friends?",
@@ -1466,7 +1466,7 @@ survey_question_data = [
         ],
     },
     {
-        "topic_slug": "cultural-exploration",
+        "subcategory_slug": "cultural-exploration",
         "questions": [
             {
                 "question_text": "How often do you seek out new cultural experiences (e.g., art exhibits, music, cuisine)?",
@@ -1486,7 +1486,7 @@ survey_question_data = [
         ],
     },
     {
-        "topic_slug": "special-events",
+        "subcategory_slug": "special-events",
         "questions": [
             {
                 "question_text": "How often do you plan or attend special events (e.g., weddings, concerts, parties)?",
@@ -1501,7 +1501,7 @@ survey_question_data = [
         ],
     },
     {
-        "topic_slug": "competitive-events",
+        "subcategory_slug": "competitive-events",
         "questions": [
             {
                 "question_text": "How often do you participate in competitive events such as races or tournaments?",
@@ -1521,7 +1521,7 @@ survey_question_data = [
         ],
     },
     {
-        "topic_slug": "bucket-list",
+        "subcategory_slug": "bucket-list",
         "questions": [
             {
                 "question_text": "How often do you think about your bucket list goals or dreams?",

@@ -8,7 +8,7 @@ from flask_app.models.user import User
 from flask_app.models.user_survey import UserSurvey
 
 # import pymysql
-from database.seed_data.survey_topic_data import survey_topic_data
+from database.seed_data.subcategory_data import subcategory_data
 from database.seed_data.survey_question_data import survey_question_data
 from database.seed_data.generic_survey_answer_data import generic_survey_answer_data
 from database.seed_data.survey_branching_data import survey_branching_data
@@ -21,26 +21,44 @@ def user_survey_seed():
 
     # REVISIT VALIDATION FOR ENTIRETY OF SEEDING FUNCTIONS
     goal_category_seed()
-    survey_category_seed()
+    category_seed()
     goal_subcategory_seed()
-    survey_topic_seed()
+    subcategory_seed()
     prepared_question_data = prepare_survey_question_data()
     survey_question_seed(prepared_question_data)
     # Seed generic answers first, custom answers second
     generic_survey_answer_seed()
-    process_survey_question_and_map_data(prepared_question_data)
+    custom_survey_question_answer_map_data, generic_survey_question_answer_map_data =  process_survey_question_and_map_data(prepared_question_data)
+
+    # Seed generic answers
+    seed_generic_question_answer_map(generic_survey_question_answer_map_data)
+    # Seed custom answers
+    seed_custom_question_answer_map(custom_survey_question_answer_map_data)
     # survey_answer_seed and survey_example_seed in prepare_survey_question_data
     survey_branching_seed(survey_branching_data)
 
     return
 
 def test_seed():
+    category_seed()
+    subcategory_seed()
+
+    prepared_question_data = prepare_survey_question_data()
+    survey_question_seed(prepared_question_data)
+    generic_survey_answer_seed()
+    
+    custom_survey_question_answer_map_data, generic_survey_question_answer_map_data = process_survey_question_and_map_data(prepared_question_data)
+    # Seed generic answers
+    seed_generic_question_answer_map(generic_survey_question_answer_map_data)
+    # Seed custom answers
+    seed_custom_question_answer_map(custom_survey_question_answer_map_data)
+
     survey_branching_seed(survey_branching_data)
 
     return
 
 
-# TODO: survey and goal categories, subcategories and topics will be merged.  Temporary independent seed functions until then...
+# TODO: survey and goal categories, subcategories and subcategories will be merged.  Temporary independent seed functions until then...
 def goal_category_seed():
     query = """
     INSERT INTO categories (category_slug, name, created_at, updated_at)
@@ -66,25 +84,25 @@ def goal_category_seed():
 def goal_subcategory_seed():
     batch_data = {}
 
-    # Organize topics into batches by category (key)
-    for category_slug, topics in survey_topic_data.items():
-        for topic in topics:
+    # Organize subcategories into batches by category (key)
+    for category_slug, subcategories in subcategory_data.items():
+        for subcategory in subcategories:
             if category_slug not in batch_data:
                 batch_data[category_slug] = []
             batch_data[category_slug].append(
-                {"topic_slug": topic["topic_slug"], "topic_name": topic["name"]}
+                {"subcategory_slug": subcategory["subcategory_slug"], "subcategory_name": subcategory["name"]}
             )
 
     # Retrieve the mapping of category slugs to category IDs
-    survey_category_ids = (
-        get_all_survey_category_ids()
+    category_ids = (
+        get_all_category_ids()
     )  # Should return a dictionary like {'health-wellness': 1, 'social-community': 2, ...}
 
     # Prepare and execute batch insert queries for each category
-    for category_slug, topic_batch in batch_data.items():
+    for category_slug, subcategory_batch in batch_data.items():
         # Check if the category slug exists in the retrieved category IDs
-        if category_slug in survey_category_ids:
-            survey_category_id = survey_category_ids[category_slug]
+        if category_slug in category_ids:
+            category_id = category_ids[category_slug]
         else:
             print(f"Category slug '{category_slug}' not found in the database.")
             continue  # Skip this category if the ID is not found
@@ -95,9 +113,9 @@ def goal_subcategory_seed():
 
         # Temporary secondary seed to subcategories, merge pending
 
-        # Add the topic values to the query
-        for topic in topic_batch:
-            values = f"({survey_category_id}, '{topic['topic_slug']}', '{topic['topic_name']}', NOW(), NOW())"
+        # Add the subcategory values to the query
+        for subcategory in subcategory_batch:
+            values = f"({category_id}, '{subcategory['subcategory_slug']}', '{subcategory['subcategory_name']}', NOW(), NOW())"
             query_values.append(values)
 
         # Combine the query and execute it
@@ -110,9 +128,9 @@ def goal_subcategory_seed():
     return
 
 
-def survey_category_seed():
+def category_seed():
     query = """
-        INSERT INTO survey_categories (category_slug, name, created_at, updated_at)
+        INSERT INTO categories (category_slug, name, created_at, updated_at)
         VALUES
             ('onboarding', 'Onboarding', NOW(), NOW()),
             ('foundations', 'Foundations', NOW(), NOW()),
@@ -132,41 +150,41 @@ def survey_category_seed():
     return
 
 
-def survey_topic_seed():
-    # Fetch all survey_topic_id and topic_name pairs once
+def subcategory_seed():
+    # Fetch all subcategory_id and subcategory_name pairs once
 
     batch_data = {}
 
-    # Organize topics into batches by category (key)
-    for category_slug, topics in survey_topic_data.items():
-        for topic in topics:
+    # Organize subcategories into batches by category (key)
+    for category_slug, subcategories in subcategory_data.items():
+        for subcategory in subcategories:
             if category_slug not in batch_data:
                 batch_data[category_slug] = []
             batch_data[category_slug].append(
-                {"topic_slug": topic["topic_slug"], "topic_name": topic["name"]}
+                {"subcategory_slug": subcategory["subcategory_slug"], "subcategory_name": subcategory["name"]}
             )
 
     # Retrieve the mapping of category slugs to category IDs
-    survey_category_ids = (
-        get_all_survey_category_ids()
+    category_ids = (
+        get_all_category_ids()
     )  # Should return a dictionary like {'health-wellness': 1, 'social-community': 2, ...}
 
     # Prepare and execute batch insert queries for each category
-    for category_slug, topic_batch in batch_data.items():
+    for category_slug, subcategory_batch in batch_data.items():
         # Check if the category slug exists in the retrieved category IDs
-        if category_slug in survey_category_ids:
-            survey_category_id = survey_category_ids[category_slug]
+        if category_slug in category_ids:
+            category_id = category_ids[category_slug]
         else:
             print(f"Category slug '{category_slug}' not found in the database.")
             continue  # Skip this category if the ID is not found
 
         # Create the base query
-        query = "INSERT INTO survey_topics (survey_category_id, topic_slug, name, created_at, updated_at) VALUES "
+        query = "INSERT INTO subcategories (category_id, subcategory_slug, name, created_at, updated_at) VALUES "
         query_values = []
 
-        # Add the topic values to the query
-        for topic in topic_batch:
-            values = f"({survey_category_id}, '{topic['topic_slug']}', '{topic['topic_name']}', NOW(), NOW())"
+        # Add the subcategory values to the query
+        for subcategory in subcategory_batch:
+            values = f"({category_id}, '{subcategory['subcategory_slug']}', '{subcategory['subcategory_name']}', NOW(), NOW())"
             query_values.append(values)
 
         # Combine the query and execute it
@@ -177,29 +195,29 @@ def survey_topic_seed():
         UserSurvey.db.query_db(query)
 
     print(
-        f"{sum(len(v) for v in survey_topic_data.values())} survey topics have been seeded."
+        f"{sum(len(v) for v in subcategory_data.values())} survey subcategories have been seeded."
     )
 
 
 def prepare_survey_question_data():
     # ADD QUESTIONS ABOUT SCREEN TIME AND DOPAMINE RELATED DESIRES/DRIVERS/RESPONSES
 
-    # Prepare the batched queries for each survey_topic_id
+    # Prepare the batched queries for each subcategory_id
     batched_data = {}
 
-    # Iterate over each topic and its questions
-    for topic in survey_question_data:
-        survey_topic_data = {"topic_slug": topic["topic_slug"]}
-        query = "SELECT id FROM survey_topics WHERE topic_slug = %(topic_slug)s"
+    # Iterate over each subcategory and its questions
+    for subcategory in survey_question_data:
+        subcategory_data = {"subcategory_slug": subcategory["subcategory_slug"]}
+        query = "SELECT id FROM subcategories WHERE subcategory_slug = %(subcategory_slug)s"
 
-        result = UserSurvey.db.query_db(query, survey_topic_data)
+        result = UserSurvey.db.query_db(query, subcategory_data)
 
         if result:
-            survey_topic_id = result[0]["id"]
+            subcategory_id = result[0]["id"]
         else:
-            print(f"No survey_topic found for slug: {survey_topic_data['topic_slug']}")
+            print(f"No subcategory found for slug: {subcategory_data['subcategory_slug']}")
 
-        for question in topic["questions"]:
+        for question in subcategory["questions"]:
             answer_data = []
             answer_type = question["type"]
 
@@ -214,18 +232,18 @@ def prepare_survey_question_data():
                     )
 
             question_data = {
-                "survey_topic_id": survey_topic_id,
+                "subcategory_id": subcategory_id,
                 "question_slug": question["question_slug"],
                 "question_text": question["question_text"],
                 "type": question["type"],
                 "answers": answer_data,
             }
 
-            # Batch questions by topic_id
-            if survey_topic_id not in batched_data:
-                batched_data[survey_topic_id] = []
+            # Batch questions by subcategory_id
+            if subcategory_id not in batched_data:
+                batched_data[subcategory_id] = []
 
-            batched_data[survey_topic_id].append(question_data)
+            batched_data[subcategory_id].append(question_data)
     # print("*****BATCHED DATA*****")
     # pprint(batched_data)
     return batched_data
@@ -233,12 +251,12 @@ def prepare_survey_question_data():
 
 def survey_question_seed(batched_data):
 
-    for survey_topic_id, questions in batched_data.items():
+    for subcategory_id, questions in batched_data.items():
         query = """
-            INSERT INTO survey_questions (survey_topic_id, question_slug, question_text, type, created_at, updated_at)
+            INSERT INTO survey_questions (subcategory_id, question_slug, question_text, type, created_at, updated_at)
             VALUES %s
             ON DUPLICATE KEY UPDATE 
-                survey_topic_id = VALUES(survey_topic_id),
+                subcategory_id = VALUES(subcategory_id),
                 question_slug = question_slug,
                 question_text = question_text,
                 type = VALUES(type),
@@ -247,7 +265,7 @@ def survey_question_seed(batched_data):
         # Prepare values for each question
         query_values = [
             (
-                question["survey_topic_id"],
+                question["subcategory_id"],
                 question["question_slug"],
                 question["question_text"],
                 question["type"],
@@ -271,7 +289,7 @@ def survey_question_seed(batched_data):
             UserSurvey.db.query_db(final_query, parameters)
             print("Survey questions seeded successfully!")
         except Exception as e:
-            print(f"Error while inserting questions for topic {survey_topic_id}: {e}")
+            print(f"Error while inserting questions for subcategory {subcategory_id}: {e}")
 
 
 # TODO: ADDRESS GENERIC ANSWER FORMATS, NEW FUNCTION FOR THESE QUESTION TYPES?
@@ -286,14 +304,14 @@ def process_survey_question_and_map_data(batched_data):
     generic_survey_question_answer_map_data = []
 
     # Process each question and separate them based on answer type
-    for survey_topic_id, questions in batched_data.items():
+    for subcategory_id, questions in batched_data.items():
         for question in questions:
             survey_question_id = _get_survey_question_id(
-                survey_topic_id, question["question_slug"]
+                subcategory_id, question["question_slug"]
             )
             if not survey_question_id:
                 print(
-                    f"Could not retrieve survey question ID for topic {survey_topic_id}, question {question['question_slug']}"
+                    f"Could not retrieve survey question ID for subcategory {subcategory_id}, question {question['question_slug']}"
                 )
                 continue
 
@@ -308,26 +326,21 @@ def process_survey_question_and_map_data(batched_data):
                     survey_question_id,
                     generic_survey_question_answer_map_data,
                 )
-
-    # Seed custom answers
-    seed_custom_question_answer_map(custom_survey_question_answer_map_data)
-    # Seed generic answers
-    seed_generic_question_answer_map(generic_survey_question_answer_map_data)
     
-    return
+    return custom_survey_question_answer_map_data, generic_survey_question_answer_map_data
 
-def _get_survey_question_id(survey_topic_id, question_slug):
+def _get_survey_question_id(subcategory_id, question_slug):
     query = """
         SELECT id FROM survey_questions
-        WHERE survey_topic_id = %(survey_topic_id)s AND question_slug = %(question_slug)s;
+        WHERE subcategory_id = %(subcategory_id)s AND question_slug = %(question_slug)s;
     """
     try:
         result = UserSurvey.db.query_db(
-            query, {"survey_topic_id": survey_topic_id, "question_slug": question_slug}
+            query, {"subcategory_id": subcategory_id, "question_slug": question_slug}
         )
         return result[0]["id"] if result else None
     except Exception as e:
-        print(f"Error retrieving survey question ID for topic {survey_topic_id}: {e}")
+        print(f"Error retrieving survey question ID for subcategory {subcategory_id}: {e}")
         return None
     
 def _get_survey_question_id_by_question_slug(question_slug):
@@ -596,8 +609,8 @@ def _get_answer_value_by_question_id_and_answer_text(survey_question_id, answer_
         print(f"Warning: No answer_value found for question_id {survey_question_id} and answer_text '{answer_text}'.")
         return None
 
-def get_all_survey_category_ids():
-    query = "SELECT id, category_slug FROM survey_categories"
+def get_all_category_ids():
+    query = "SELECT id, category_slug FROM categories"
 
     # Fetch all category ids and names
     results = UserSurvey.db.query_db(query)
@@ -610,24 +623,24 @@ def get_all_survey_category_ids():
     return category_ids
 
 
-def get_all_survey_topic_ids():
+def get_all_subcategory_ids():
     """
-    Fetch all survey_topic_id and topic_name pairs.
-    Returns a dictionary mapping topic names to topic IDs.
+    Fetch all subcategory_id and subcategory_name pairs.
+    Returns a dictionary mapping subcategory names to subcategory IDs.
     """
-    query = "SELECT id, topic_slug FROM survey_topics"
+    query = "SELECT id, subcategory_slug FROM subcategories"
     results = UserSurvey.db.query_db(query)
 
     if not results:  # Handle case where no results are found
         return {}
 
-    return {row["topic_slug"]: row["id"] for row in results}
+    return {row["subcategory_slug"]: row["id"] for row in results}
 
 
 def get_all_survey_question_ids():
     """
     Fetch all survey_question_id and survey_answer pairs.
-    Returns a dictionary mapping topic names to topic IDs.
+    Returns a dictionary mapping subcategory names to subcategory IDs.
     """
     query = "SELECT id, question_text FROM survey_questions"
     results = UserSurvey.db.query_db(query)
@@ -643,17 +656,17 @@ def get_all_survey_question_ids():
 # def survey_custom_answer_seed(batched_data):
 #     custom_answer_types = ['open-answer', 'guided-choice', 'select-any', 'select-any-add']
 
-#     for survey_topic_id, questions in batched_data.items():
+#     for subcategory_id, questions in batched_data.items():
 #         for question in questions:
 #             # print("*****Question in survey_custom_answer_seed****")
 #             # pprint(question)
 
 #             query = """
 #                 SELECT id FROM survey_questions
-#                 WHERE survey_topic_id = %(survey_topic_id)s AND question_slug = %(question_slug)s;
+#                 WHERE subcategory_id = %(subcategory_id)s AND question_slug = %(question_slug)s;
 #             """
 #             survey_question_data = {
-#                 'survey_topic_id': survey_topic_id,
+#                 'subcategory_id': subcategory_id,
 #                 'question_slug': question['question_slug']
 #             }
 #             try:

@@ -2,7 +2,7 @@
 
 survey_branching_data = [
   
-  # Survey_topic: Getting started
+  # Subcategory: Getting started
   {
     "survey_question_slug": "existing-routines-check",
     "answer_text": "No",
