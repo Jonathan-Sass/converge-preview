@@ -18,11 +18,11 @@ class UserResponse:
         self.answer_value = data["answer_value"]
 
 
-    def find_user_responses_by_user_id_and_subcategory_slug(user, survey_topic_slug):
+    def find_user_responses_by_user_id_and_subcategory_slug(user, subcategory_slug):
         query = """
           SELECT
             ur.user_id,
-            st.topic_slug,
+            sc.subcategory_slug,
             ur.survey_question_id,
             sq.question_slug,
             sq.question_text,
@@ -30,9 +30,9 @@ class UserResponse:
             sa.answer_text,
             sa.answer_value
           FROM
-            survey_topics st
+            subcategories sc
           JOIN
-            survey_questions sq ON st.id = sq.survey_topic_id
+            survey_questions sq ON sc.id = sq.subcategory_id
           JOIN
             user_responses ur on sq.id = ur.survey_question_id
           JOIN
@@ -40,14 +40,14 @@ class UserResponse:
           WHERE
             ur.user_id = %(user_id)s
           AND
-            st.topic_slug = %(survey_topic_slug)s
+            sc.subcategory_slug = %(subcategory_slug)s
           ORDER BY
             ur.survey_question_id;
         """
 
         data = {
             "user_id": user.id,
-            "survey_topic_slug": survey_topic_slug
+            "subcategory_slug": subcategory_slug
         }
 
         results = UserResponse.db.query_db(query, data)
@@ -71,9 +71,9 @@ class UserResponse:
         for response in responses:
             pprint(response)
 
-        topic_slug = responses[0].topic_slug
+        subcategory_slug = responses[0].subcategory_slug
 
-        if topic_slug == "getting-to-know-you":
+        if subcategory_slug == "getting-to-know-you":
             routine_template_name = UserResponse.select_routine_template_from_getting_to_know_you_responses(responses)
             return routine_template_name
 
@@ -162,11 +162,11 @@ class UserResponse:
 
 
 
-    # def fetch_user_and_responses_by_survey_topic_slug(user, survey_topic_slug_string):
+    # def fetch_user_and_responses_by_subcategory_slug(user, subcategory_slug_string):
     #     query = """
     #         SELECT
     #             user_responses.user_id,
-    #             survey_topics.topic_slug AS survey_topic_slug,
+    #             subcategorys.subcategory_slug AS subcategory_slug,
     #             user_responses.survey_question_id,
     #             survey_questions.question_text AS survey_question_text,
     #             user_responses.survey_answer_id,
@@ -179,18 +179,18 @@ class UserResponse:
     #         JOIN
     #             survey_answers ON user_responses.survey_answer_id = survey_answers.id
     #         JOIN
-    #             survey_topics ON survey_questions.survey_topic_id = survey_topics.id
+    #             subcategorys ON survey_questions.subcategory_id = subcategorys.id
     #         WHERE
     #             user_responses.user_id = %(user_id)s
     #         AND
-    #             survey_topics.topic_slug = %(survey_topic_slug)s
+    #             subcategories.subcategory_slug = %(subcategory_slug)s
     #         ORDER BY
     #             user_responses.survey_question_id;
     #     """
 
     #     data = {
     #         "user_id": user["id"],
-    #         "survey_topic_slug": survey_topic_slug_string
+    #         "subcategory_slug": subcategory_slug_string
     #     }
 
     #     results = UserResponse.db.query_db(query, data)
@@ -200,6 +200,6 @@ class UserResponse:
     #         for result in results:
     #             user["responses"].append(UserResponse(result))
     #     else:
-    #         print("No responses found for user or survey_topic_id")
+    #         print("No responses found for user or subcategory_id")
 
     #     return user
