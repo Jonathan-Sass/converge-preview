@@ -124,12 +124,12 @@ function updateCurrentQuestionIndex() {
 }
 
 finishButton.addEventListener('click', async (event) => {
-    const surveyCategory = getSurveyCategory();
+    const category = getCategory();
 
     try {
         // Send the collected answers to the backend as a single request
-        console.log('Posting to: /surveys/' + surveyCategory + '/answers')
-        const response = await fetch(`/surveys/${surveyCategory}/answers`, {
+        console.log('Posting to: /surveys/' + category + '/answers')
+        const response = await fetch(`/surveys/${category}/answers`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -170,8 +170,8 @@ async function startSurvey() {
 
 // This function queries the DB to fetch survey questions
 async function fetchSurveyQuestions() {
-    const surveyCategory = getSurveyCategory()
-    const surveyTopic = getSurveyTopic()
+    const category = getCategory()
+    const subcategory = getSubcategory()
     
     try {
         // Sending a POST request to retrieve survey questions
@@ -181,8 +181,8 @@ async function fetchSurveyQuestions() {
                 'Content-Type': 'application/json'  // Specifying the content type
             },
             body: JSON.stringify({
-                'survey_category': surveyCategory, 
-                'survey_topic': surveyTopic
+                'category': category, 
+                'subcategory': subcategory
             })
         });
         
@@ -509,25 +509,25 @@ function scrollToElement(element, offset = 250) {
     }
 }
 
-function getSurveyCategory() {
-  let surveyCategoryElement = startButton.closest('[data-category]');
+function getCategory() {
+  let categoryElement = startButton.closest('[data-category]');
   
-  if (surveyCategoryElement) {
-    let surveyCategory = surveyCategoryElement.dataset.category;
-    return surveyCategory;
+  if (categoryElement) {
+    let category = categoryElement.dataset.category;
+    return category;
   } else {
     return null;
   }
 }
 
-function getSurveyTopic() {
+function getSubcategory() {
   // Get the parent element of the button
-  let surveyTopic = startButton.getAttribute('data-topic-id');
+  let subcategory = startButton.getAttribute('data-topic-id');
   
-  if (surveyTopic) {
-    return surveyTopic;
+  if (subcategory) {
+    return subcategory;
   } else {
-    console.log('No survey_topic found in HTML');
+    console.log('No subcategory found in HTML');
     return null;
   }
 }

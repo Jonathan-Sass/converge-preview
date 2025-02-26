@@ -16,16 +16,16 @@ def retrieve_survey_questions():
         # jsonify({"error": "Please log in"}), 401
         return redirect("/")
 
-    category = request.json.get("survey_category")
-    subcategory = request.json.get("survey_topic")
+    category = request.json.get("category")
+    subcategory = request.json.get("subcategory")
 
     if not category or not subcategory:
         return jsonify({"error": "Invalid or missing JSON data"}), 400
 
-    user_category_topic_data = {
+    user_category_subcategory_data = {
         # TODO: update request.json variables to "category" and "subcategory" pending update to user-surveys.js
-        "category": request.json.get("survey_category"),
-        "subcategory": request.json.get("survey_topic"),
+        "category": request.json.get("category"),
+        "subcategory": request.json.get("subcategory"),
     }
 
     # print("*****Category Topic Data******")
@@ -33,7 +33,7 @@ def retrieve_survey_questions():
     # print(user_category_topic_data['subcategory'])
 
     question_set, survey_branches = UserSurvey.find_questions_by_category_and_subcategory(
-        user_category_topic_data
+        user_category_subcategory_data
     )
 
     # branches = UserSurvey.process_survey_branch_data(questions)
