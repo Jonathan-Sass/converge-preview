@@ -19,7 +19,7 @@ def dashboard():
     goal_data = Goal.find_goals_with_milestones_and_action_items_by_user_id(user_id)
 
     if not routine_data:
-        return render_template("/home/intro.html", user=user)
+        return redirect ("/dashboard/intro")
     else:
         dashboard_data = {"user": user, "routines": routine_data, "goals": goal_data}
 
