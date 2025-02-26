@@ -16,22 +16,23 @@ def retrieve_survey_questions():
         # jsonify({"error": "Please log in"}), 401
         return redirect("/")
 
-    survey_category = request.json.get("survey_category")
-    survey_topic = request.json.get("survey_topic")
+    category = request.json.get("survey_category")
+    subcategory = request.json.get("survey_topic")
 
-    if not survey_category or not survey_topic:
+    if not category or not subcategory:
         return jsonify({"error": "Invalid or missing JSON data"}), 400
 
     user_category_topic_data = {
-        "survey_category": request.json.get("survey_category"),
-        "survey_topic": request.json.get("survey_topic"),
+        # TODO: update request.json variables to "category" and "subcategory" pending update to user-surveys.js
+        "category": request.json.get("survey_category"),
+        "subcategory": request.json.get("survey_topic"),
     }
 
     # print("*****Category Topic Data******")
-    # print(user_category_topic_data['survey_category'])
-    # print(user_category_topic_data['survey_topic'])
+    # print(user_category_topic_data['category'])
+    # print(user_category_topic_data['subcategory'])
 
-    question_set, survey_branches = UserSurvey.find_questions_by_survey_category_and_topic(
+    question_set, survey_branches = UserSurvey.find_questions_by_category_and_subcategory(
         user_category_topic_data
     )
 
@@ -48,14 +49,14 @@ def retrieve_survey_questions():
 
 
 # DYNAMIC ROUTE TO SAVE ANSWERS IN USER RESPONSES
-@app.post("/surveys/<string:survey_category>/answers")
-def save_survey_answers(survey_category):
+@app.post("/surveys/<string:category>/answers")
+def save_survey_answers(category):
     user = User.get_logged_in_user()
     if not user:
         # jsonify({"error": "Please log in"}), 401
         return redirect("/")
 
-    print("Post received from: /surveys/" + survey_category + "/answers")
+    print("Post received from: /surveys/" + category + "/answers")
 
     collected_answers = request.json
 
@@ -82,7 +83,7 @@ def process_getting_started_answers():
     if not user:
         return redirect("/")
     
-    responses = UserResponse.find_user_responses_by_user_id_and_survey_topic_slug(user, "getting-started")
+    responses = UserResponse.find_user_responses_by_user_id_and_subcategory_slug(user, "getting-started")
 
     response_dict = {
         res.question_slug: res.answer_text

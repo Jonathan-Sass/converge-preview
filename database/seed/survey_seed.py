@@ -20,10 +20,11 @@ def user_survey_seed():
         return redirect("/")
 
     # REVISIT VALIDATION FOR ENTIRETY OF SEEDING FUNCTIONS
-    goal_category_seed()
+    # goal_category_seed()
     category_seed()
-    goal_subcategory_seed()
+    # goal_subcategory_seed()
     subcategory_seed()
+    
     prepared_question_data = prepare_survey_question_data()
     survey_question_seed(prepared_question_data)
     # Seed generic answers first, custom answers second

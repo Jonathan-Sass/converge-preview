@@ -13,8 +13,8 @@ class UserSurvey:
 
     def __init__ (self, data):
         self.id = data["id"]
-        self.survey_category = data["survey_category"]
-        self.survey_topic = data["survey_topic"]
+        self.category = data["category"]
+        self.subcategory = data["subcategory"]
         self.questions = []
         self.created_at = data["created_at"]
         self.updated_at = data["updated_at"]
@@ -22,11 +22,11 @@ class UserSurvey:
 
     # Find a User Survey Category and User ID
     @classmethod
-    def find_questions_by_survey_category_and_topic(cls, user_category_topic_data):
+    def find_questions_by_category_and_subcategory(cls, user_category_subcategory_data):
         query = """
             SELECT 
-                survey_categories.name AS survey_category,
-                survey_topics.name AS survey_topic,
+                survey_categories.name AS category,
+                subcategories.name AS subcategory,
                 survey_questions.id AS question_id,
                 survey_questions.question_slug,
                 survey_questions.question_text,
@@ -39,9 +39,9 @@ class UserSurvey:
             FROM 
                 survey_questions
             JOIN
-              survey_topics ON survey_questions.survey_topic_id  = survey_topics.id
+              subcategories ON survey_questions.subcategory_id  = subcategories.id
             JOIN
-              survey_categories ON survey_topics.survey_category_id = survey_categories.id
+              survey_categories ON subcategories.category_id = survey_categories.id
             LEFT JOIN
                 survey_question_answer_map ON survey_question_answer_map.survey_question_id = survey_questions.id
             LEFT JOIN
@@ -51,16 +51,16 @@ class UserSurvey:
             LEFT JOIN
                 survey_questions sq_next ON survey_branching.next_question_id = sq_next.id
             WHERE 
-                survey_categories.category_slug = %(survey_category)s
+                survey_categories.category_slug = %(category)s
             AND
-                survey_topics.topic_slug = %(survey_topic)s
+                subcategories.subcategory_slug = %(subcategory)s
             ORDER BY
                 survey_questions.id, survey_answers.id;
           """
         
         data = {
-            'survey_category': user_category_topic_data['survey_category'], 
-            'survey_topic': user_category_topic_data['survey_topic']
+            'category': user_category_subcategory_data['category'], 
+            'subcategory': user_category_subcategory_data['subcategory']
         }
 
 
@@ -69,7 +69,7 @@ class UserSurvey:
         question_set = UserSurvey.process_question_data_for_frontend(result)
         survey_branches = UserSurvey.process_survey_branch_data(result)
 
-        # print("*****question_set in find questions by survey category and topic*****")
+        # print("*****question_set in find questions by survey category and subcategory*****")
         # pprint(question_set)
 
         return question_set, survey_branches

@@ -9,7 +9,7 @@ class UserResponse:
 
     def __init__(self, data):
         self.user_id = data["user_id"]
-        self.topic_slug = data["topic_slug"]
+        self.subcategory_slug = data["subcategory_slug"]
         self.question_slug = data["question_slug"]
         self.question_id = data["survey_question_id"]
         self.question_text = data["question_text"]
@@ -18,7 +18,7 @@ class UserResponse:
         self.answer_value = data["answer_value"]
 
 
-    def find_user_responses_by_user_id_and_survey_topic_slug(user, survey_topic_slug):
+    def find_user_responses_by_user_id_and_subcategory_slug(user, survey_topic_slug):
         query = """
           SELECT
             ur.user_id,
