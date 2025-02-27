@@ -18,10 +18,10 @@ class RoutineTemplate:
         self.notes = data.get("routine_template_notes", None)
         self.practices = []
 
-    def am_routine_template_selector(user, survey_topic_slug_string):
+    def am_routine_template_selector(user, subcategory_slug_string):
 
-        user_with_responses = User.fetch_user_responses_by_survey_topic_slug(
-            user, survey_topic_slug_string
+        user_with_responses = UserResponse.fetch_user_responses_by_user_id_and_subcategory_slug(
+            user, subcategory_slug_string
         )
         UserResponse.process_user_responses(user_with_responses)
         return

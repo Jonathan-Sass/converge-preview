@@ -169,7 +169,7 @@ class Routine:
 
         if survey_topic_slug_string:
             # Find the user's responses for the given topic slug
-            user_responses = UserResponse.find_user_responses_by_user_id_and_survey_topic_slug(user, survey_topic_slug_string)
+            user_responses = UserResponse.find_user_responses_by_user_id_and_subcategory_slug(user, survey_topic_slug_string)
 
             # Process responses to select routine template for the user
             recommended_routine_template_name = UserResponse.process_responses_for_routine_template_selection(user_responses)
