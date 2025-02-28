@@ -8,31 +8,32 @@ practice_data = {
     {
         "name": "Morning Hydration",
         "description": "Drink a glass of water to start your day hydrated and support your body's metabolism.",
+        "benefit_synopsis": "Boosts metabolism, cognitive function, and energy.",
         "recommended_durations": [{"duration_label": "5 minutes"}],
         "impact_rating_id": 3,
         "difficulty_level_id": 1,
         "frequency": "Every morning",
         "is_common": True,
-        "notes": "Drinking water upon waking replenishes fluids lost during sleep, enhancing energy levels, cognitive function, and overall health. - Medicalnewstoday.com",
-        "literature_summary": "Starting your day with a glass of water replenishes fluids lost during sleep, aiding with numerous physiological functions. Water is essential for transporting nutrients to cells, regulating body temperature, and lubricating joints. Rehydration can also improve cognitive performance and mood, as even mild dehydration can impair short-term memory and increase feelings of anxiety and fatigue. - Healthline.com, Medicalnewstoday.com",
+        "notes": "Drinking water upon waking replenishes fluids lost during sleep, enhancing energy levels, cognitive function, and overall health.",
         "objectives": ["hydrate", "boost_energy_levels", "promote_healthy_digestion"]
     },
     {
         "name": "Cold Exposure",
         "description": "Incorporate cold exposure through a cold face rinse, cold shower or cold plunge to invigorate the body.",
+        "benefit_synopsis": "Increases dopamine, alertness, and metabolism.",
         "recommended_durations": [{"duration_label": "1 minute"}, {"duration_label": "2 minutes"}, {"duration_label": "5 minutes"}],
         "impact_rating_id": 4,
         "difficulty_level_id": 2,
         "frequency": "Every morning",
         "is_common": False,
-        "notes": "Regular cold exposure, such as cold showers or ice baths, can improve mood, increase alertness, and support metabolic health. - UCLAhealth.org",
-        "literature summary": "Engaging in deliberate cold exposure, such as cold showers or ice baths, can significantly enhance mental well-being by stimulating the release of key neurotransmitters. Notably, cold exposure can increase dopamine levels by up to 250%, leading to improved mood, heightened focus, and increased motivation. This dopamine surge is both substantial and sustained, lasting for hours after the exposure. Additionally, cold exposure elevates norepinephrine levels, which further contributes to enhanced alertness and attention. Also additionally, it activates brown adipose tissue, which increases metabolism and improves insulin sensitivity, supporting overall metabolic health. However, consult your doctor or a medical professional before attempting cold plunges to make sure they are safe for you. - NIH.gov, Hubermanlab.com",
+        "notes": "Regular cold exposure improves mood, alertness, and metabolic health.",
         "objectives": ["boost_energy_levels", "build_resilience", "improve_circulation"]
     },
     {
         "name": "Morning Mindfulness",
         "description": "Begin your day with mindfulness practices such as meditation, gratitude journaling, or breathing exercises.",
-        "recommended_durations": [{"duration_label": "2 minutes", "engagement_level": "Introductory"}, {"duration_label": "5 minutes", "engagement_level": "Introductory"}, {"duration_label": "10 minutes", "engagement_level": "Beginner"}, {"duration_label": "20 minutes", "engagement_level": "Intermediate"}, {"duration_label": "30 minutes", "engagement_level": "Advanced"}, {"duration_label": "1 hour", "engagement_level": "Expert"}, {"duration_label": "2 hours", "engagement_level": "Master"}],
+        "benefit_synopsis": "Reduces stress, enhances focus, and emotional balance.",
+        "recommended_durations": [{"duration_label": "2 minutes"}, {"duration_label": "5 minutes"}, {"duration_label": "10 minutes"}, {"duration_label": "20 minutes"}, {"duration_label": "30 minutes"}, {"duration_label": "1 hour"}, {"duration_label": "2 hours"}],
         "impact_rating_id": 5,
         "difficulty_level_id": 1,
         "frequency": "Every morning",
@@ -43,6 +44,7 @@ practice_data = {
     {
         "name": "Morning Movement",
         "description": "Engage in light stretching, yoga, or other gentle movement to wake up the body.",
+        "benefit_synopsis": "Improves circulation, mobility, and flexibility.",
         "recommended_durations": [{"duration_label": "10 minutes"}, {"duration_label": "15 minutes"}, {"duration_label": "20 minutes"}, {"duration_label": "30 minutes"}],
         "impact_rating_id": 4,
         "difficulty_level_id": 1,
@@ -54,6 +56,7 @@ practice_data = {
     {
         "name": "Morning Sun/Walk",
         "description": "Start your day with exposure to natural sunlight and light physical activity to boost mood and regulate your circadian rhythm.",
+        "benefit_synopsis": "Regulates sleep, boosts mood, and energy.",
         "recommended_durations": [{"duration_label": "10 minutes"}, {"duration_label": "30 minutes"}],
         "impact_rating_id": 5,
         "difficulty_level_id": 2,
@@ -65,6 +68,7 @@ practice_data = {
     {
         "name": "Morning Sunlight",
         "description": "Spend a few minutes outside or near a window to get natural sunlight exposure.",
+        "benefit_synopsis": "Boosts vitamin D, mood, and circadian rhythm.",
         "recommended_durations": [{"duration_label": "5 minutes"}, {"duration_label": "10 minutes"}, {"duration_label": "20 minutes"}, {"duration_label": "30 minutes"}],
         "impact_rating_id": 5,
         "difficulty_level_id": 1,
@@ -76,6 +80,7 @@ practice_data = {
     {
         "name": "Set Daily Intentions",
         "description": "Take time to reflect and set intentions for the day, focusing on your goals and priorities.",
+        "benefit_synopsis": "Enhances motivation, clarity, and focus.",
         "recommended_durations": [{"duration_label": "5 minutes"}, {"duration_label": "10 minutes"}],
         "impact_rating_id": 4,
         "difficulty_level_id": 1,
@@ -86,10 +91,11 @@ practice_data = {
     }
 ],
 
-'General Health': [
+"General Health": [
     {
         "name": "Morning Hydration",
         "description": "Drink a glass of water to kickstart your metabolism and hydration.",
+        "benefit_synopsis": "Supports digestion, metabolism, and hydration.",
         "recommended_durations": [{"duration_label": "5 minutes"}],
         "impact_rating_id": 3,
         "difficulty_level_id": 1,
@@ -101,6 +107,7 @@ practice_data = {
     {
         "name": "Morning Sun Exposure",
         "description": "Spend time in sunlight to boost mood and regulate circadian rhythm.",
+        "benefit_synopsis": "Regulates circadian rhythm and enhances mood.",
         "recommended_durations": [{"duration_label": "10 minutes"}],
         "impact_rating_id": 4,
         "difficulty_level_id": 1,
@@ -112,6 +119,7 @@ practice_data = {
     {
         "name": "Walk in Morning Sun",
         "description": "Take a walk in the sunlight to combine movement and sunlight exposure.",
+        "benefit_synopsis": "Boosts immune function and mood stability.",
         "recommended_durations": [{"duration_label": "15 minutes"}],
         "impact_rating_id": 5,
         "difficulty_level_id": 2,
@@ -123,6 +131,7 @@ practice_data = {
     {
         "name": "Evening Hydration",
         "description": "Drink a glass of water before bed to maintain hydration overnight.",
+        "benefit_synopsis": "Aids digestion and prevents dehydration overnight.",
         "recommended_durations": [{"duration_label": "5 minutes"}],
         "impact_rating_id": 3,
         "difficulty_level_id": 1,
@@ -134,6 +143,7 @@ practice_data = {
     {
         "name": "Midday Stretch Break",
         "description": "Take a break during the day to stretch and re-energize.",
+        "benefit_synopsis": "Reduces tension, improves circulation, and mobility.",
         "recommended_durations": [{"duration_label": "10 minutes"}],
         "impact_rating_id": 4,
         "difficulty_level_id": 1,
@@ -145,6 +155,7 @@ practice_data = {
     {
         "name": "Weekly Health Check-In",
         "description": "Take time to assess your physical and mental health for the week.",
+        "benefit_synopsis": "Improves self-awareness and health monitoring.",
         "recommended_durations": [{"duration_label": "15 minutes"}],
         "impact_rating_id": 5,
         "difficulty_level_id": 1,
@@ -156,6 +167,7 @@ practice_data = {
     {
         "name": "Meal Preparation Planning",
         "description": "Plan your meals for the week to support healthy eating habits.",
+        "benefit_synopsis": "Enhances nutrition, reduces stress, saves time.",
         "recommended_durations": [{"duration_label": "30 minutes"}],
         "impact_rating_id": 5,
         "difficulty_level_id": 2,
@@ -167,6 +179,7 @@ practice_data = {
     {
         "name": "Posture Check-In",
         "description": "Take a moment to assess and correct your posture during the day.",
+        "benefit_synopsis": "Prevents strain, improves energy, reduces pain.",
         "recommended_durations": [{"duration_label": "1 minute"}],
         "impact_rating_id": 3,
         "difficulty_level_id": 1,
@@ -178,18 +191,18 @@ practice_data = {
     {
         "name": "AM Digital Wellness",
         "description": "Begin your day with intentional screen-free time to foster mental clarity and set a focused tone for the day.",
+        "benefit_synopsis": "Reduces overstimulation, enhances focus, and calm.",
         "recommended_durations": [{"duration_label": "30 minutes"}, {"duration_label": "1 hour"}],
         "impact_rating_id": 5,
         "difficulty_level_id": 3,
         "frequency": "Daily",
-        "is_common": True,
-        "literature_summary": "Neuroscience literature shows that early exposure to screens can overstimulate the brain, impairing focus and increasing stress. Screen-free time fosters dopamine balance, aiding in sustained attention and reducing anxiety.",
         "notes": "This time can be used for mindfulness practices, light exercise, or preparing for the day without digital distractions.",
         "objectives": ["reduce_digital_dependency", "enhance_focus", "improve_overall_wellness"]
     },
     {
         "name": "Digital Detox Period",
         "description": "Spend time away from screens to reset your mind and reduce strain.",
+        "benefit_synopsis": "Improves focus, reduces stress, and eye strain.",
         "recommended_durations": [{"duration_label": "1 hour"}],
         "impact_rating_id": 4,
         "difficulty_level_id": 2,
@@ -201,6 +214,7 @@ practice_data = {
     {
         "name": "Health Progress Journaling",
         "description": "Document your health goals and track your progress weekly.",
+        "benefit_synopsis": "Enhances self-awareness and accountability.",
         "recommended_durations": [{"duration_label": "15 minutes"}],
         "impact_rating_id": 5,
         "difficulty_level_id": 2,
@@ -212,6 +226,7 @@ practice_data = {
     {
         "name": "Alcohol Abstinence",
         "description": "Commit to abstaining from alcohol to improve physical and mental health.",
+        "benefit_synopsis": "Enhances sleep, mood, and overall health.",
         "recommended_durations": [{"duration_label": "Ongoing"}],
         "impact_rating_id": 5,
         "difficulty_level_id": 3,
@@ -223,6 +238,7 @@ practice_data = {
     {
         "name": "Substance Abstinence",
         "description": "Commit to abstaining from non-prescription substances to support long-term health and well-being.",
+        "benefit_synopsis": "Promotes clarity, stability, and longevity.",
         "recommended_durations": [{"duration_label": "Ongoing"}],
         "impact_rating_id": 5,
         "difficulty_level_id": 5,
@@ -231,13 +247,13 @@ practice_data = {
         "notes": "Abstaining from substances promotes better mental clarity, physical health, and emotional stability. Seek professional help or join support groups if needed.",
         "objectives": ["reduce_health_risks", "enhance_emotional_resilience", "promote_mental_clarity"]
     }
-
-    
 ],
+
 "Nutrition": [
     {
         "name": "Morning Hydration",
         "description": "Drink a glass of water to rehydrate after waking up and periodically throughout the day.",
+        "benefit_synopsis": "Boosts hydration, digestion, and brain function.",
         "recommended_durations": [{"duration_label": "5 minutes"}],
         "impact_rating_id": 3,
         "difficulty_level_id": 1,
@@ -249,9 +265,10 @@ practice_data = {
     {
         "name": "Balanced Breakfast",
         "description": "Eat a nutrient-dense breakfast balanced between protein, carbohydrates, healthy fats, and ideally some veggies.",
+        "benefit_synopsis": "Regulates blood sugar, boosts energy, focus.",
         "impact_rating_id": 4,
         "difficulty_level_id": 1,
-        "frequency": "Twice daily",
+        "frequency": "Daily",
         "is_common": True,
         "notes": "Consider preparing your breakfast the night before if mornings are rushed. Avoid high-sugar options like pastries or sugary cereals.",
         "objectives": ["promote_healthy_aging", "enhance_mood_stability", "increase_energy_levels"]
@@ -259,17 +276,19 @@ practice_data = {
     {
         "name": "Take Supplements",
         "description": "Take any necessary morning supplements (e.g., vitamins, minerals).",
+        "benefit_synopsis": "Supports immune function and nutrient balance.",
         "recommended_durations": [{"duration_label": "2 minutes"}],
         "impact_rating_id": 3,
         "difficulty_level_id": 1,
         "frequency": "Daily",
         "is_common": True,
-        "notes": "Please ensure supplements are checked by a healthcare professional. Oversupplementation can be more harmful than good and supplements should complement, not replace, a healthy diet.",
+        "notes": "Ensure supplements are checked by a healthcare professional. Oversupplementation can be harmful and should not replace a healthy diet.",
         "objectives": ["boost_immune_system", "promote_healthy_aging", "improve_mental_clarity"]
     },
     {
         "name": "Balanced Macronutrient Choices",
         "description": "Aim to balance macronutrients in each meal, including a source of protein, complex carbohydrates, and healthy fats.",
+        "benefit_synopsis": "Stabilizes energy, enhances metabolism, focus.",
         "impact_rating_id": 3,
         "difficulty_level_id": 2,
         "frequency": "Each meal",
@@ -280,6 +299,7 @@ practice_data = {
     {
         "name": "Focus on Whole Foods",
         "description": "Incorporate more whole, minimally processed foods into your meals, such as fresh vegetables, fruits, whole grains, and lean proteins.",
+        "benefit_synopsis": "Reduces inflammation, supports gut and brain.",
         "impact_rating_id": 4,
         "difficulty_level_id": 2,
         "frequency": "Daily",
@@ -290,6 +310,7 @@ practice_data = {
     {
         "name": "Drink Water",
         "description": "Consume water equal to half your body weight in ounces daily to stay hydrated.",
+        "benefit_synopsis": "Aids digestion, circulation, and mental clarity.",
         "impact_rating_id": 4,
         "difficulty_level_id": 2,
         "frequency": "Throughout the day",
@@ -300,6 +321,7 @@ practice_data = {
     {
         "name": "Minimize Added Sugars",
         "description": "Reduce your intake of added sugars by opting for natural sweeteners or unsweetened options.",
+        "benefit_synopsis": "Balances blood sugar, reduces inflammation.",
         "impact_rating_id": 3,
         "difficulty_level_id": 1,
         "frequency": "Daily",
@@ -310,6 +332,7 @@ practice_data = {
     {
         "name": "Home-Cooked Meals",
         "description": "Prioritize home-cooked meals to gain control over ingredients and promote healthier eating habits.",
+        "benefit_synopsis": "Reduces processed food intake, enhances nutrition.",
         "impact_rating_id": 3,
         "difficulty_level_id": 2,
         "frequency": "Daily",
@@ -320,6 +343,7 @@ practice_data = {
     {
         "name": "Eat More Vegetables",
         "description": "Add a variety of colorful vegetables to your meals to boost fiber and nutrient intake.",
+        "benefit_synopsis": "Boosts gut health, fiber, and immune function.",
         "impact_rating_id": 3,
         "difficulty_level_id": 2,
         "frequency": "At least 5 servings daily",
@@ -330,6 +354,7 @@ practice_data = {
     {
         "name": "Mindful Eating Pause",
         "description": "Take a moment before meals to appreciate your food and eat mindfully, focusing on each bite.",
+        "benefit_synopsis": "Improves digestion, portion control, and awareness.",
         "recommended_durations": [{"duration_label": "2 minutes"}],
         "impact_rating_id": 2,
         "difficulty_level_id": 1,
@@ -344,6 +369,7 @@ practice_data = {
     {
         "name": "Bedtime Routine Planning",
         "description": "Plan a consistent bedtime routine to wind down effectively.",
+        "benefit_synopsis": "Signals body to relax, improves sleep.",
         "recommended_durations": [{"duration_label": "10 minutes"}],
         "impact_rating_id": 5,
         "difficulty_level_id": 2,
@@ -355,6 +381,7 @@ practice_data = {
     {
         "name": "Device Shut-Off",
         "description": "Turn off all electronic devices before bedtime to reduce blue light exposure and promote relaxation.",
+        "benefit_synopsis": "Reduces blue light, improves melatonin release.",
         "recommended_durations": [
             {"duration_label": "30 minutes", "engagement_level": "Beginner"},
             {"duration_label": "1 hour", "engagement_level": "Intermediate"},
@@ -370,6 +397,7 @@ practice_data = {
     {
         "name": "Bedroom Optimization",
         "description": "Prepare your bedroom environment to encourage restful sleep by reducing light, noise, and maintaining a comfortable temperature.",
+        "benefit_synopsis": "Enhances sleep depth and relaxation.",
         "recommended_durations": [{"duration_label": "5 minutes"}],
         "impact_rating_id": 3,
         "difficulty_level_id": 1,
@@ -381,6 +409,7 @@ practice_data = {
     {
         "name": "Pre-Sleep Relaxation",
         "description": "Engage in relaxing activities like reading, light yoga, or meditation before bedtime.",
+        "benefit_synopsis": "Calms nervous system, reduces stress.",
         "recommended_durations": [{"duration_label": "5 minutes"}, {"duration_label": "10 minutes"}],
         "impact_rating_id": 4,
         "difficulty_level_id": 1,
@@ -392,6 +421,7 @@ practice_data = {
     {
         "name": "Consistent Sleep Schedule",
         "description": "Aim for a consistent sleep and wake time, even on weekends.",
+        "benefit_synopsis": "Regulates circadian rhythm, stabilizes energy.",
         "recommended_durations": [{"duration_label": "7 hours"}, {"duration_label": "8 hours"}, {"duration_label": "9 hours"}],
         "impact_rating_id": 5,
         "difficulty_level_id": 2,
@@ -403,6 +433,7 @@ practice_data = {
     {
         "name": "Caffeine Curfew",
         "description": "Avoid caffeine intake in the afternoon and evening to prevent sleep disturbances.",
+        "benefit_synopsis": "Prevents sleep disruption, lowers anxiety.",
         "impact_rating_id": 3,
         "difficulty_level_id": 1,
         "frequency": "As needed",
@@ -413,6 +444,7 @@ practice_data = {
     {
         "name": "Evening Reflection or Gratitude Journal",
         "description": "Take time before bed to reflect on the day or write down things you are grateful for.",
+        "benefit_synopsis": "Reduces stress, enhances positive emotions.",
         "recommended_durations": [{"duration_label": "15 minutes"}],
         "impact_rating_id": 4,
         "difficulty_level_id": 2,
@@ -427,6 +459,7 @@ practice_data = {
     {
         "name": "Movement/Stretch",
         "description": "Incorporate gentle movements and stretches to wake up your body and improve flexibility.",
+        "benefit_synopsis": "Boosts circulation, flexibility, and mobility.",
         "recommended_durations": [{"duration_label": "5 minutes"}, {"duration_label": "15 minutes"}],
         "impact_rating_id": 4,
         "difficulty_level_id": 1,
@@ -438,6 +471,7 @@ practice_data = {
     {
         "name": "General Workout",
         "description": "Engage in a workout of your choice, including strength training, cardio, or a mix of both.",
+        "benefit_synopsis": "Enhances fitness, strength, and endurance.",
         "recommended_durations": [
             {"duration_label": "15 minutes", "engagement_level": "Beginner"},
             {"duration_label": "30 minutes", "engagement_level": "Intermediate"},
@@ -453,6 +487,7 @@ practice_data = {
     {
         "name": "Running",
         "description": "Go for a run to improve cardiovascular health, build endurance, and clear your mind.",
+        "benefit_synopsis": "Boosts heart health, endurance, and mood.",
         "recommended_durations": [
             {"duration_label": "15 minutes", "engagement_level": "Beginner"},
             {"duration_label": "30 minutes", "engagement_level": "Intermediate"},
@@ -468,6 +503,7 @@ practice_data = {
     {
         "name": "Cycling",
         "description": "Ride a bike outdoors or use a stationary bike to build endurance and strengthen lower body muscles.",
+        "benefit_synopsis": "Strengthens legs, boosts endurance, heart health.",
         "recommended_durations": [
             {"duration_label": "20 minutes", "engagement_level": "Beginner"},
             {"duration_label": "45 minutes", "engagement_level": "Intermediate"},
@@ -483,6 +519,7 @@ practice_data = {
     {
         "name": "Strength Training",
         "description": "Engage in weightlifting or resistance exercises to build muscle, boost metabolism, and improve bone density.",
+        "benefit_synopsis": "Builds strength, metabolism, and bone health.",
         "recommended_durations": [
             {"duration_label": "20 minutes", "engagement_level": "Beginner"},
             {"duration_label": "30 minutes", "engagement_level": "Intermediate"},
@@ -498,6 +535,7 @@ practice_data = {
     {
         "name": "CrossFit",
         "description": "Participate in high-intensity functional fitness workouts to improve overall strength, stamina, and endurance.",
+        "benefit_synopsis": "Increases power, endurance, metabolic function.",
         "recommended_durations": [
             {"duration_label": "20 minutes", "engagement_level": "Beginner"},
             {"duration_label": "45 minutes", "engagement_level": "Intermediate"},
@@ -513,6 +551,7 @@ practice_data = {
     {
         "name": "Pilates",
         "description": "Engage in Pilates to strengthen your core, improve posture, and enhance flexibility.",
+        "benefit_synopsis": "Strengthens core, improves posture, flexibility.",
         "recommended_durations": [
             {"duration_label": "30 minutes", "engagement_level": "Beginner"},
             {"duration_label": "1 hour", "engagement_level": "Intermediate"}
@@ -527,6 +566,7 @@ practice_data = {
     {
         "name": "Yoga",
         "description": "Engage in a yoga session to enhance flexibility, balance, and mindfulness.",
+        "benefit_synopsis": "Improves flexibility, balance, and relaxation.",
         "recommended_durations": [
             {"duration_label": "30 minutes", "engagement_level": "Beginner"},
             {"duration_label": "1 hour", "engagement_level": "Intermediate"},
@@ -542,6 +582,7 @@ practice_data = {
     {
         "name": "Orange Theory",
         "description": "Participate in guided group workouts that combine cardio and strength training for an all-around fitness boost.",
+        "benefit_synopsis": "Enhances endurance, strength, and heart health.",
         "recommended_durations": [{"duration_label": "1 hour"}],
         "impact_rating_id": 4,
         "difficulty_level_id": 3,
@@ -553,6 +594,7 @@ practice_data = {
     {
         "name": "Hiking",
         "description": "Explore trails and hike outdoors to improve endurance and connect with nature.",
+        "benefit_synopsis": "Boosts endurance, heart health, mental well-being.",
         "recommended_durations": [
             {"duration_label": "30 minutes", "engagement_level": "Beginner"},
             {"duration_label": "1 hour", "engagement_level": "Intermediate"},
@@ -568,6 +610,7 @@ practice_data = {
     {
         "name": "Rowing",
         "description": "Use a rowing machine or row on water to engage the entire body and improve cardiovascular health.",
+        "benefit_synopsis": "Full-body workout with strength and cardio benefits.",
         "recommended_durations": [
             {"duration_label": "20 minutes", "engagement_level": "Beginner"},
             {"duration_label": "45 minutes", "engagement_level": "Intermediate"},
@@ -583,6 +626,7 @@ practice_data = {
     {
         "name": "Dance",
         "description": "Dance to your favorite music or participate in dance fitness classes to boost cardio and mood.",
+        "benefit_synopsis": "Boosts heart health and coordination in a fun way.",
         "recommended_durations": [
             {"duration_label": "15 minutes", "engagement_level": "Beginner"},
             {"duration_label": "30 minutes", "engagement_level": "Intermediate"}
@@ -597,6 +641,7 @@ practice_data = {
     {
         "name": "Martial Arts",
         "description": "Martial arts class to develop your technique, improve strength, and build self-discipline.",
+        "benefit_synopsis": "Enhances coordination, confidence, and physical resilience.",
         "recommended_durations": [
             {"duration_label": "1 hour"},
             {"duration_label": "90 minutes"},
@@ -612,7 +657,14 @@ practice_data = {
     {
         "name": "Recreational Sports",
         "description": "Play sports like basketball, tennis, soccer, or volleyball for exercise and fun.",
-        "recommended_durations": [{"duration_label": "30 minutes"}, {"duration_label": "45 minutes"}, {"duration_label": "60 minutes"}, {"duration_label": "90 minutes"}, {"duration_label": "2 hours"}],
+        "benefit_synopsis": "Combines exercise with social engagement and competition.",
+        "recommended_durations": [
+            {"duration_label": "30 minutes"},
+            {"duration_label": "45 minutes"},
+            {"duration_label": "60 minutes"},
+            {"duration_label": "90 minutes"},
+            {"duration_label": "2 hours"}
+        ],
         "impact_rating_id": 4,
         "difficulty_level_id": 2,
         "frequency": "Weekly",
@@ -623,6 +675,7 @@ practice_data = {
     {
         "name": "Swimming",
         "description": "Swim laps or engage in water aerobics to improve strength and cardiovascular health with low joint impact.",
+        "benefit_synopsis": "Low-impact full-body workout for strength and endurance.",
         "recommended_durations": [
             {"duration_label": "20 minutes", "engagement_level": "Beginner"},
             {"duration_label": "45 minutes", "engagement_level": "Intermediate"}
@@ -637,6 +690,7 @@ practice_data = {
     {
         "name": "Tai Chi",
         "description": "Practice Tai Chi to improve balance, flexibility, and mental focus.",
+        "benefit_synopsis": "Promotes relaxation, balance, and joint health.",
         "recommended_durations": [
             {"duration_label": "10 minutes", "engagement_level": "Beginner"},
             {"duration_label": "30 minutes", "engagement_level": "Intermediate"}
@@ -651,6 +705,7 @@ practice_data = {
     {
         "name": "Climbing",
         "description": "Engage in indoor or outdoor climbing to build strength, coordination, and focus.",
+        "benefit_synopsis": "Builds upper-body strength and problem-solving skills.",
         "recommended_durations": [
             {"duration_label": "20 minutes", "engagement_level": "Beginner"},
             {"duration_label": "1 hour", "engagement_level": "Intermediate"}
@@ -665,6 +720,7 @@ practice_data = {
     {
         "name": "Barre",
         "description": "Engage in Barre workouts to improve strength, posture, and flexibility with low impact.",
+        "benefit_synopsis": "Enhances core strength and posture with low impact.",
         "recommended_durations": [
             {"duration_label": "15 minutes", "engagement_level": "Beginner"},
             {"duration_label": "45 minutes", "engagement_level": "Intermediate"}
@@ -679,6 +735,7 @@ practice_data = {
     {
         "name": "High-Intensity Interval Training (HIIT)",
         "description": "Perform short bursts of intense exercise alternated with recovery periods to maximize efficiency.",
+        "benefit_synopsis": "Burns fat efficiently and improves cardiovascular health.",
         "recommended_durations": [
             {"duration_label": "1 hour", "engagement_level": "Beginner"},
             {"duration_label": "90 minutes", "engagement_level": "Intermediate"}
@@ -693,6 +750,7 @@ practice_data = {
     {
         "name": "Trail Running",
         "description": "Run on natural trails to build endurance, strengthen lower body muscles, and enjoy nature.",
+        "benefit_synopsis": "Strengthens endurance, reduces stress, and engages stabilizing muscles.",
         "recommended_durations": [
             {"duration_label": "45 minutes", "engagement_level": "Beginner"},
             {"duration_label": "1 hour", "engagement_level": "Intermediate"},
@@ -708,6 +766,7 @@ practice_data = {
     {
         "name": "Paddleboarding or Kayaking",
         "description": "Engage in water-based activities to improve balance, core strength, and enjoy the outdoors.",
+        "benefit_synopsis": "Builds core strength, balance, and provides a meditative experience.",
         "recommended_durations": [
             {"duration_label": "1 hour", "engagement_level": "Beginner"},
             {"duration_label": "2 hours", "engagement_level": "Intermediate"},
@@ -723,6 +782,7 @@ practice_data = {
     {
         "name": "Group Fitness Classes",
         "description": "Participate in group classes like spin, aerobics, or bootcamp for a guided, social workout.",
+        "benefit_synopsis": "Enhances motivation and accountability through structured workouts.",
         "recommended_durations": [
             {"duration_label": "30 minutes", "engagement_level": "Beginner"},
             {"duration_label": "1 hour", "engagement_level": "Intermediate"},
@@ -738,6 +798,7 @@ practice_data = {
     {
         "name": "Parkour",
         "description": "Practice parkour to improve agility, coordination, and confidence in navigating obstacles.",
+        "benefit_synopsis": "Improves reaction time, body control, and mental agility.",
         "recommended_durations": [
             {"duration_label": "20 minutes", "engagement_level": "Beginner"},
             {"duration_label": "45 minutes", "engagement_level": "Intermediate"}
@@ -752,6 +813,7 @@ practice_data = {
     {
         "name": "Jumping Rope",
         "description": "Jump rope for a high-intensity cardio workout that improves coordination and endurance.",
+        "benefit_synopsis": "Boosts cardiovascular fitness and improves coordination.",
         "recommended_durations": [
             {"duration_label": "10 minutes", "engagement_level": "Beginner"},
             {"duration_label": "20 minutes", "engagement_level": "Intermediate"}
@@ -766,6 +828,7 @@ practice_data = {
     {
         "name": "Aerial Silks",
         "description": "Aerial silks class to build strength, flexibility, and confidence through acrobatic movements.",
+        "benefit_synopsis": "Develops upper-body strength, balance, and body awareness.",
         "recommended_durations": [
             {"duration_label": "1 hour"},
             {"duration_label": "90 minutes"}
@@ -780,6 +843,7 @@ practice_data = {
     {
         "name": "Pole Fitness",
         "description": "Pole fitness class focusing on strength, coordination, and body control.",
+        "benefit_synopsis": "Enhances core strength and coordination through dynamic movement.",
         "recommended_durations": [
             {"duration_label": "1 hour"},
             {"duration_label": "90 minutes"}
@@ -794,6 +858,7 @@ practice_data = {
     {
         "name": "Calisthenics",
         "description": "Perform bodyweight exercises to improve strength, flexibility, and endurance.",
+        "benefit_synopsis": "Strengthens functional movement using only body weight.",
         "recommended_durations": [
             {"duration_label": "20 minutes"},
             {"duration_label": "30 minutes"},
@@ -812,6 +877,7 @@ practice_data = {
     {
         "name": "Joint Circles",
         "description": "Perform joint circles to enhance range of motion and reduce stiffness.",
+        "benefit_synopsis": "Improves joint lubrication and range of motion, reducing stiffness.",
         "recommended_durations": [{"duration_label": "10 minutes"}],
         "impact_rating_id": 5,
         "difficulty_level_id": 2,
@@ -823,6 +889,7 @@ practice_data = {
     {
         "name": "Dynamic Stretching",
         "description": "Engage in dynamic stretches to prepare your body for movement.",
+        "benefit_synopsis": "Increases flexibility, circulation, and prepares muscles for activity.",
         "recommended_durations": [{"duration_label": "15 minutes"}],
         "impact_rating_id": 5,
         "difficulty_level_id": 3,
@@ -834,6 +901,7 @@ practice_data = {
     {
         "name": "Foam Rolling",
         "description": "Use a foam roller to release tension and improve muscle recovery.",
+        "benefit_synopsis": "Relieves muscle tightness and enhances post-workout recovery.",
         "recommended_durations": [{"duration_label": "10 minutes"}],
         "impact_rating_id": 4,
         "difficulty_level_id": 2,
@@ -845,6 +913,7 @@ practice_data = {
     {
         "name": "Mobility Ball Release",
         "description": "Target specific muscle knots and tension points with a mobility ball.",
+        "benefit_synopsis": "Pinpoints and releases tension in deep muscle areas.",
         "recommended_durations": [{"duration_label": "5 minutes"}, {"duration_label": "10 minutes"}],
         "impact_rating_id": 4,
         "difficulty_level_id": 2,
@@ -856,6 +925,7 @@ practice_data = {
     {
         "name": "Animal Flow",
         "description": "Perform fluid, ground-based movements to improve mobility, strength, and coordination.",
+        "benefit_synopsis": "Improves movement efficiency, mobility, and core control.",
         "recommended_durations": [{"duration_label": "20 minutes"}],
         "impact_rating_id": 5,
         "difficulty_level_id": 3,
@@ -867,6 +937,7 @@ practice_data = {
     {
         "name": "Foundation Training",
         "description": "Practice foundational movements to build core strength, improve posture, and enhance mobility.",
+        "benefit_synopsis": "Develops postural strength and mobility for pain-free movement.",
         "recommended_durations": [{"duration_label": "20 minutes"}],
         "impact_rating_id": 5,
         "difficulty_level_id": 3,
@@ -878,6 +949,7 @@ practice_data = {
     {
         "name": "Core Balance Training",
         "description": "Engage in core balance movements to improve stability, alignment, and body awareness.",
+        "benefit_synopsis": "Strengthens deep core muscles for better stability and control.",
         "recommended_durations": [{"duration_label": "15 minutes"}],
         "impact_rating_id": 4,
         "difficulty_level_id": 2,
@@ -889,6 +961,7 @@ practice_data = {
     {
         "name": "Mobility Flow Systems",
         "description": "Practice mobility flow systems designed to enhance flexibility, joint health, and fluid movement.",
+        "benefit_synopsis": "Encourages smooth, controlled movement transitions to improve flexibility.",
         "recommended_durations": [{"duration_label": "15 minutes"}, {"duration_label": "30 minutes"}],
         "impact_rating_id": 5,
         "difficulty_level_id": 3,
@@ -900,6 +973,7 @@ practice_data = {
     {
         "name": "Bodyweight Mobility Circuits",
         "description": "Perform bodyweight circuits designed to enhance mobility and dynamic strength.",
+        "benefit_synopsis": "Combines mobility with strength for fluid and functional movement.",
         "recommended_durations": [{"duration_label": "10 minutes"}, {"duration_label": "20 minutes"}, {"duration_label": "30 minutes"}],
         "impact_rating_id": 4,
         "difficulty_level_id": 2,
@@ -911,6 +985,7 @@ practice_data = {
     {
         "name": "Movement Restoration Programs",
         "description": "Follow guided restoration programs focused on rebuilding movement patterns and reducing pain.",
+        "benefit_synopsis": "Targets dysfunctional movement patterns to restore pain-free mobility.",
         "recommended_durations": [{"duration_label": "30 minutes"}],
         "impact_rating_id": 5,
         "difficulty_level_id": 4,
@@ -925,6 +1000,7 @@ practice_data = {
     {
         "name": "Meditation",
         "description": "Practice mindfulness meditation to center yourself and start the day calmly.",
+        "benefit_synopsis": "Enhances mental clarity, reduces stress, and promotes emotional balance.",
         "recommended_durations": [
             {"duration_label": "5 minutes"},
             {"duration_label": "10 minutes"},
@@ -942,6 +1018,7 @@ practice_data = {
     {
         "name": "Body Scan",
         "description": "Perform a body scan meditation to connect with and relax your body.",
+        "benefit_synopsis": "Promotes deep relaxation and mindfulness by heightening body awareness.",
         "recommended_durations": [
             {"duration_label": "5 minutes"},
             {"duration_label": "10 minutes"}
@@ -956,6 +1033,7 @@ practice_data = {
     {
         "name": "Guided Visualization",
         "description": "Use a guided visualization to focus on positive outcomes and goals.",
+        "benefit_synopsis": "Enhances motivation and optimism by mentally rehearsing success.",
         "recommended_durations": [
             {"duration_label": "10 minutes"},
             {"duration_label": "20 minutes"}
@@ -970,6 +1048,7 @@ practice_data = {
     {
         "name": "Mantra Meditation",
         "description": "Focus on repeating a calming word, phrase, or sound to settle the mind.",
+        "benefit_synopsis": "Improves focus and emotional regulation through rhythmic repetition.",
         "recommended_durations": [
             {"duration_label": "10 minutes"},
             {"duration_label": "15 minutes"}
@@ -984,6 +1063,7 @@ practice_data = {
     {
         "name": "Transcendental Meditation (TM)",
         "description": "Practice TM by repeating a personal mantra in a structured meditation.",
+        "benefit_synopsis": "Promotes deep relaxation and heightened self-awareness.",
         "recommended_durations": [
             {"duration_label": "10 minutes"},
             {"duration_label": "20 minutes"}
@@ -998,6 +1078,7 @@ practice_data = {
     {
         "name": "Zen Meditation (Zazen)",
         "description": "Sit in quiet reflection, focusing on the breath and observing thoughts without judgment.",
+        "benefit_synopsis": "Enhances emotional resilience and inner peace through non-attachment.",
         "recommended_durations": [
             {"duration_label": "15 minutes"}
         ],
@@ -1009,8 +1090,59 @@ practice_data = {
         "objectives": ["increase_self-awareness", "reduce_stress", "enhance_emotional_resilience"]
     },
     {
+        "name": "Gratitude Journaling",
+        "description": "Write down 3-5 things you’re grateful for each day to foster positivity.",
+        "benefit_synopsis": "Strengthens positive thinking and emotional stability.",
+        "recommended_durations": [
+            {"duration_label": "5 minutes"},
+            {"duration_label": "10 minutes"}
+        ],
+        "impact_rating_id": 5,
+        "difficulty_level_id": 1,
+        "frequency": "Daily",
+        "is_common": True,
+        "notes": "Focus on specific moments or people that made an impact to cultivate appreciation over time.",
+        "objectives": ["increase_optimism", "enhance_mood_stability", "reduce_stress"]
+    },
+    {
+        "name": "Sensory Grounding (5-4-3-2-1 Technique)",
+        "description": "Engage the five senses to bring yourself to the present moment.",
+        "benefit_synopsis": "Helps reduce anxiety by anchoring awareness to the present.",
+        "recommended_durations": [
+            {"duration_label": "5 minutes"}
+        ],
+        "impact_rating_id": 4,
+        "difficulty_level_id": 1,
+        "frequency": "As needed",
+        "is_common": True,
+        "notes": "Use techniques like naming five things you can see, four things you can feel, three things you can hear, two you can smell, and one you can taste.",
+        "objectives": ["reduce_anxiety", "promote_mind-body_connection", "enhance_focus"]
+    },
+    {
+        "name": "Aromatherapy",
+        "description": "Use essential oils to activate your sense of smell and promote calm.",
+        "benefit_synopsis": "Enhances mood stability and focus through scent-based relaxation.",
+        "recommended_durations": [{"duration_label": "5 minutes"}],
+        "impact_rating_id": 4,
+        "difficulty_level_id": 1,
+        "frequency": "Twice daily",
+        "is_common": True,
+        "objectives": ["reduce_stress", "enhance_mood_stability", "improve_focus"]
+    },
+    {
+        "name": "Nature Walk",
+        "description": "Take a walk in a park or forest to connect with nature.",
+        "benefit_synopsis": "Boosts mental clarity, reduces stress, and enhances mood.",
+        "recommended_durations": [{"duration_label": "30 minutes"}],
+        "impact_rating_id": 5,
+        "difficulty_level_id": 2,
+        "frequency": "Daily",
+        "is_common": True,
+        "objectives": ["reduce_stress", "enhance_mood_stability", "increase_optimism"]
+    },
+    {
         "name": "Vipassana Meditation",
-        "description": "Engage in a focused meditation practice aimed at gaining insight into the nature of reality.",
+        "description": "Engage in focused meditation aimed at gaining insight into the nature of reality.",
         "recommended_durations": [
             {"duration_label": "15 minutes"},
             {"duration_label": "30 minutes"}
@@ -1025,9 +1157,7 @@ practice_data = {
     {
         "name": "Self-Inquiry",
         "description": "Ask reflective questions to deepen your understanding of yourself and your actions.",
-        "recommended_durations": [
-            {"duration_label": "15 minutes"}
-        ],
+        "recommended_durations": [{"duration_label": "15 minutes"}],
         "impact_rating_id": 5,
         "difficulty_level_id": 2,
         "frequency": "Weekly",
@@ -1066,9 +1196,7 @@ practice_data = {
     {
         "name": "Future Vision Journaling",
         "description": "Visualize your ideal future and write about the goals and experiences you hope to achieve.",
-        "recommended_durations": [
-            {"duration_label": "15 minutes"}
-        ],
+        "recommended_durations": [{"duration_label": "15 minutes"}],
         "impact_rating_id": 4,
         "difficulty_level_id": 2,
         "frequency": "Monthly",
@@ -1077,135 +1205,138 @@ practice_data = {
         "objectives": ["enhance_focus", "increase_optimism", "promote_goal_alignment"]
     },
     {
-        "name": "Sensory Grounding (5-4-3-2-1 Technique)",
-        "description": "Engage the five senses to bring yourself to the present moment.",
-        "recommended_durations": [
-            {"duration_label": "5 minutes"}
-        ],
+        "name": "Grounding Exercise",
+        "description": "Walk barefoot on grass or sand to reconnect with the earth.",
+        "benefit_synopsis": "Stabilizes emotions and enhances physical grounding.",
+        "recommended_durations": [{"duration_label": "15 minutes"}],
         "impact_rating_id": 4,
-        "difficulty_level_id": 1,
-        "frequency": "As needed",
+        "difficulty_level_id": 2,
+        "frequency": "Twice daily",
         "is_common": True,
-        "notes": "Use techniques like naming five things you can see, four things you can feel, three things you can hear, two you can smell, and one you can taste.",
-        "objectives": ["reduce_anxiety", "promote_mind-body_connection", "enhance_focus"]
-    },
-    {
-        'name': 'Aromatherapy', 
-        'description': 'Use essential oils to activate your sense of smell and promote calm.', 
-        'recommended_durations': [{'duration_label': '5 minutes'}], 
-        'impact_rating_id': 4, 
-        'difficulty_level_id': 1,
-        'frequency': 'Twice daily',  
-        'is_common': True,
-        'objectives': ['reduce_stress', 'enhance_mood_stability', 'improve_focus']
-    },
-    {
-        'name': 'Nature Walk', 
-        'description': 'Take a walk in a park or forest to connect with nature.', 
-        'recommended_durations': [{'duration_label': '30 minutes'}], 
-        'impact_rating_id': 5, 
-        'difficulty_level_id': 2,
-        'frequency': 'Daily',  
-        'is_common': True,
-        'objectives': ['reduce_stress', 'enhance_mood_stability', 'increase_optimism']
-    },
-    {
-        'name': 'Grounding Exercise', 
-        'description': 'Walk barefoot on grass or sand to reconnect with the earth.', 
-        'recommended_durations': [{'duration_label': '15 minutes'}], 
-        'impact_rating_id': 4, 
-        'difficulty_level_id': 2,
-        'frequency': 'Twice daily',  
-        'is_common': True,
-        'objectives': ['reduce_stress', 'enhance_emotional_regulation', 'improve_balance']
-    },
+        "objectives": ["reduce_stress", "enhance_emotional_regulation", "improve_balance"]
+    }
 ],
 
 "Spiritual Connection & Gratitude": [
     {
-        'name': 'Gratitude Practice', 
-        'description': 'List three things you are grateful for to foster a positive mindset.', 
-        'recommended_durations': [{'duration_label': '5 minutes'}], 
-        'impact_rating_id': 4, 
-        'difficulty_level_id': 1,
-        'frequency': 'Twice daily',  
-        'is_common': True,
-        'objectives': ['cultivate_gratitude', 'increase_optimism', 'reduce_stress']
+        "name": "Gratitude Practice",
+        "description": "List three things you are grateful for to foster a positive mindset.",
+        "recommended_durations": [{"duration_label": "5 minutes"}],
+        "impact_rating_id": 4,
+        "difficulty_level_id": 1,
+        "frequency": "Twice daily",
+        "is_common": True,
+        "notes": "Focusing on gratitude can reframe negative thoughts and increase life satisfaction.",
+        "benefit_synopsis": "Cultivates appreciation, boosts emotional well-being, and reduces stress.",
+        "objectives": ["cultivate_gratitude", "increase_optimism", "reduce_stress"]
     },
     {
         "name": "Gratitude Journaling",
         "description": "Write down 3-5 things you’re grateful for each day to foster positivity.",
-        "recommended_durations": [
-            {"duration_label": "5 minutes"},
-            {"duration_label": "10 minutes"}
-        ],
+        "recommended_durations": [{"duration_label": "5 minutes"}, {"duration_label": "10 minutes"}],
         "impact_rating_id": 5,
         "difficulty_level_id": 1,
         "frequency": "Daily",
         "is_common": True,
         "notes": "Focus on specific moments or people that made an impact to cultivate appreciation over time.",
+        "benefit_synopsis": "Enhances emotional resilience, strengthens perspective, and reduces stress.",
         "objectives": ["increase_optimism", "enhance_mood_stability", "reduce_stress"]
     },
     {
         "name": "Gratitude Letters",
         "description": "Write a letter to someone you’re grateful for, expressing your appreciation.",
-        "recommended_durations": [
-            {"duration_label": "10 minutes"}
-        ],
+        "recommended_durations": [{"duration_label": "10 minutes"}],
         "impact_rating_id": 4,
         "difficulty_level_id": 2,
         "frequency": "Monthly",
         "is_common": False,
         "notes": "Consider delivering the letter in person or reading it aloud to deepen the connection.",
+        "benefit_synopsis": "Deepens relationships, fosters emotional expression, and enhances empathy.",
         "objectives": ["strengthen_relationships", "increase_empathy", "enhance_mood_stability"]
     },
     {
-        'name': 'Prayer',
-        'description': 'Engage in personal or traditional prayer to connect spiritually.',
-        'recommended_durations': [{'duration_label': '10 minutes'}],
-        'impact_rating_id': 5,
-        'difficulty_level_id': 2,
-        'frequency': 'Twice daily',
-        'is_common': True,
-        'objectives': ['develop_spiritual_resilience', 'enhance_self-awareness', 'reduce_stress']
+        "name": "Prayer",
+        "description": "Engage in personal or traditional prayer to connect spiritually.",
+        "recommended_durations": [{"duration_label": "10 minutes"}],
+        "impact_rating_id": 5,
+        "difficulty_level_id": 2,
+        "frequency": "Twice daily",
+        "is_common": True,
+        "notes": "Prayer can provide comfort, clarity, and a sense of connectedness to a higher power.",
+        "benefit_synopsis": "Strengthens spiritual resilience, encourages reflection, and provides inner peace.",
+        "objectives": ["develop_spiritual_resilience", "enhance_self-awareness", "reduce_stress"]
     },
     {
-        'name': 'Devotional reading',
-        'description': 'Read passages from sacred texts to gain insight and reflect on purpose.',
-        'recommended_durations': [{'duration_label': '15 minutes'}],
-        'impact_rating_id': 5,
-        'difficulty_level_id': 3,
-        'frequency': 'Twice daily',
-        'is_common': True,
-        'objectives': ['increase_clarity', 'cultivate_a_sense_of_wonder', 'develop_patience']
+        "name": "Devotional Reading",
+        "description": "Read passages from sacred texts to gain insight and reflect on purpose.",
+        "recommended_durations": [{"duration_label": "15 minutes"}],
+        "impact_rating_id": 5,
+        "difficulty_level_id": 3,
+        "frequency": "Twice daily",
+        "is_common": True,
+        "notes": "Devotional reading can inspire a sense of purpose and provide wisdom for daily life.",
+        "benefit_synopsis": "Increases clarity, cultivates patience, and encourages spiritual growth.",
+        "objectives": ["increase_clarity", "cultivate_a_sense_of_wonder", "develop_patience"]
     },
     {
         "name": "Loving-Kindness Meditation",
         "description": "Send kindness and compassion to yourself and others.",
-        "recommended_durations": [
-            {"duration_label": "10 minutes"},
-            {"duration_label": "15 minutes"}
-        ],
+        "recommended_durations": [{"duration_label": "10 minutes"}, {"duration_label": "15 minutes"}],
         "impact_rating_id": 4,
         "difficulty_level_id": 2,
         "frequency": "Weekly",
         "is_common": False,
         "notes": "Repeat phrases like 'May I be happy, may I be healthy' for yourself and extend them to others.",
+        "benefit_synopsis": "Enhances empathy, reduces stress, and promotes emotional well-being.",
         "objectives": ["increase_empathy", "enhance_mood_stability", "reduce_stress"]
     },
     {
         "name": "Nature Immersion",
         "description": "Spend time in nature to recharge and reduce stress.",
-        "recommended_durations": [
-            {"duration_label": "15 minutes"},
-            {"duration_label": "30 minutes"}
-        ],
+        "recommended_durations": [{"duration_label": "15 minutes"}, {"duration_label": "30 minutes"}],
         "impact_rating_id": 5,
         "difficulty_level_id": 1,
         "frequency": "Weekly",
         "is_common": True,
-        "notes": "Take a walk in the park, hike in the woods, or simply sit outdoors and appreciate your surroundings.",
+        "notes": "Taking time in natural settings can reduce anxiety and improve overall mood.",
+        "benefit_synopsis": "Lowers stress, boosts mental clarity, and enhances mood stability.",
         "objectives": ["enhance_mood_stability", "reduce_stress", "promote_mind-body_connection"]
+    },
+    {
+        "name": "Daily Intention",
+        "description": "Set a daily intention or affirmation to align your actions with your values and goals.",
+        "recommended_durations": [{"duration_label": "5 minutes"}],
+        "impact_rating_id": 5,
+        "difficulty_level_id": 1,
+        "frequency": "Daily",
+        "is_common": True,
+        "notes": "Pair this ritual with prayer, journaling, or quiet reflection for added meaning.",
+        "benefit_synopsis": "Improves focus, enhances self-discipline, and promotes goal alignment.",
+        "objectives": ["improve_focus", "enhance_spiritual_connection", "promote_goal_alignment"]
+    },
+    {
+        "name": "Mantra Meditation",
+        "description": "Focus on repeating a calming word, phrase, or sound to settle the mind.",
+        "recommended_durations": [{"duration_label": "10 minutes"}, {"duration_label": "15 minutes"}],
+        "impact_rating_id": 5,
+        "difficulty_level_id": 2,
+        "frequency": "Daily",
+        "is_common": True,
+        "notes": "Mantras like 'Om' or personal phrases can promote clarity and a sense of peace.",
+        "benefit_synopsis": "Encourages mindfulness, enhances focus, and reduces mental distractions.",
+        "objectives": ["enhance_spiritual_connection", "reduce_stress", "improve_focus"]
+    },
+    {
+        "name": "Call to Purpose Affirmation",
+        "description": "Recite affirmations that align with your higher purpose or core values.",
+        "recommended_durations": [{"duration_label": "5 minutes"}],
+        "impact_rating_id": 5,
+        "difficulty_level_id": 1,
+        "frequency": "Daily",
+        "is_common": True,
+        "notes": "Use affirmations like 'I am here to contribute to the well-being of others' or 'I act in alignment with my values.'",
+        "benefit_synopsis": "Boosts self-confidence, aligns actions with values, and increases motivation.",
+        "objectives": ["enhance_spiritual_connection", "improve_goal_alignment", "increase_focus"]
     },
     {
         "name": "Reflective Gratitude Walk",
@@ -1219,6 +1350,7 @@ practice_data = {
         "frequency": "Weekly",
         "is_common": True,
         "notes": "This combines light physical activity with gratitude, ideal for starting or ending your day on a positive note.",
+        "benefit_synopsis": "Combines movement with mindfulness to enhance gratitude and reduce stress.",
         "objectives": ["enhance_mood_stability", "reduce_stress", "promote_mind-body_connection"]
     },
     {
@@ -1232,20 +1364,8 @@ practice_data = {
         "frequency": "Weekly",
         "is_common": False,
         "notes": "Choose texts that resonate with your values, such as religious scripture, philosophy, or motivational writings.",
+        "benefit_synopsis": "Encourages introspection, strengthens spiritual connection, and increases clarity.",
         "objectives": ["enhance_spiritual_connection", "increase_optimism", "promote_emotional_resilience"]
-    },
-    {
-        "name": "Daily Intention",
-        "description": "Set a daily intention or affirmation to align your actions with your values and goals.",
-        "recommended_durations": [
-            {"duration_label": "5 minutes"}
-        ],
-        "impact_rating_id": 5,
-        "difficulty_level_id": 1,
-        "frequency": "Daily",
-        "is_common": True,
-        "notes": "Pair this ritual with prayer, journaling, or quiet reflection for added meaning.",
-        "objectives": ["improve_focus", "enhance_spiritual_connection", "promote_goal_alignment"]
     },
     {
         "name": "Affirmation Repetition",
@@ -1259,34 +1379,8 @@ practice_data = {
         "frequency": "Daily",
         "is_common": True,
         "notes": "Choose affirmations that align with your goals, such as 'I am enough' or 'I am capable of achieving my dreams.'",
+        "benefit_synopsis": "Reinforces self-confidence, reduces self-doubt, and improves focus.",
         "objectives": ["increase_self-confidence", "enhance_focus", "reduce_negative_self-talk"]
-    },
-    {
-        "name": "Mantra Meditation",
-        "description": "Focus on repeating a calming word, phrase, or sound to settle the mind.",
-        "recommended_durations": [
-            {"duration_label": "10 minutes"},
-            {"duration_label": "15 minutes"}
-        ],
-        "impact_rating_id": 5,
-        "difficulty_level_id": 2,
-        "frequency": "Daily",
-        "is_common": True,
-        "notes": "Mantras like 'Om' or personal phrases can promote clarity and a sense of peace.",
-        "objectives": ["enhance_spiritual_connection", "reduce_stress", "improve_focus"]
-    },
-    {
-        "name": "Call to Purpose Affirmation",
-        "description": "Recite affirmations that align with your higher purpose or core values.",
-        "recommended_durations": [
-            {"duration_label": "5 minutes"}
-        ],
-        "impact_rating_id": 5,
-        "difficulty_level_id": 1,
-        "frequency": "Daily",
-        "is_common": True,
-        "notes": "Use affirmations like 'I am here to contribute to the well-being of others' or 'I act in alignment with my values.'",
-        "objectives": ["enhance_spiritual_connection", "improve_goal_alignment", "increase_focus"]
     },
     {
         "name": "Mantra Practice",
@@ -1300,6 +1394,7 @@ practice_data = {
         "frequency": "Daily",
         "is_common": True,
         "notes": "Suggested mantras include: \n- 'Om' for grounding and spiritual alignment. \n- 'So Hum' (I am that) to connect with universal presence. \n- 'May I be peaceful, may I be safe, may I be free from suffering' for cultivating compassion. \n- Modern options like 'I am present' or 'I release what no longer serves me' also work well. Choose a mantra that resonates with your spiritual or meditative goals.",
+        "benefit_synopsis": "Supports mindfulness, strengthens spiritual alignment, and calms the mind.",
         "objectives": ["enhance_spiritual_connection", "reduce_stress", "improve_focus"]
     },
     {
@@ -1310,112 +1405,136 @@ practice_data = {
             {"duration_label": "10 minutes"}
         ],
         "impact_rating_id": 5,
-            "difficulty_level_id": 1,
+        "difficulty_level_id": 1,
         "frequency": "Daily",
         "is_common": True,
         "notes": "Suggested affirmations include: \n- 'I am enough.' \n- 'I am strong, resilient, and capable.' \n- 'I choose progress over perfection.' \n- 'I am safe and grounded in this moment.' \n- 'I release the need to control what I cannot change.' \n- 'I deserve rest and balance in my life.' Research shows affirmations work best when they align with personal values and goals, so adapt these as needed.",
+        "benefit_synopsis": "Boosts self-worth, strengthens resilience, and promotes goal alignment.",
         "objectives": ["increase_self-confidence", "reduce_negative_self-talk", "promote_goal_alignment"]
     }
 ],
 
 'Cold Exposure': [
     {
-        'name': 'Cold Shower', 
-        'description': 'Take a cold shower to invigorate the body and improve circulation.', 
-        'recommended_durations': [{'duration_label': '5 minutes'}], 
-        'impact_rating_id': 4, 
-        'difficulty_level_id': 3,
-        'frequency': 'Twice daily',  
-        'is_common': True,
-        'objectives': ['increase_stress_resilience', 'improve_emotional_regulation', 'enhance_mood_stability']
+        "name": "Cold Shower",
+        "description": "Take a cold shower to invigorate the body and improve circulation.",
+        "recommended_durations": [{"duration_label": "5 minutes"}],
+        "impact_rating_id": 4,
+        "difficulty_level_id": 3,
+        "frequency": "Twice daily",
+        "is_common": True,
+        "notes": "Gradually lower the temperature over time to build cold tolerance. Focus on deep breathing to manage discomfort.",
+        "benefit_synopsis": "Boosts circulation, improves stress resilience, and enhances emotional regulation.",
+        "objectives": ["increase_stress_resilience", "improve_emotional_regulation", "enhance_mood_stability"]
     },
     {
-        'name': 'Cold Face Rinse', 
-        'description': 'Splash cold water on your face to awaken your senses and reduce puffiness.', 
-        'recommended_durations': [{'duration_label': '1 minute'}], 
-        'impact_rating_id': 4, 
-        'difficulty_level_id': 4,
-        'frequency': 'Twice daily',  
-        'is_common': True,
-        'objectives': ['increase_alertness', 'improve_emotional_regulation', 'reduce_inflammation']
+        "name": "Cold Face Rinse",
+        "description": "Splash cold water on your face to awaken your senses and reduce puffiness.",
+        "recommended_durations": [{"duration_label": "1 minute"}],
+        "impact_rating_id": 4,
+        "difficulty_level_id": 4,
+        "frequency": "Twice daily",
+        "is_common": True,
+        "notes": "Ideal as a morning refresher or a quick midday reset. Helps reduce facial puffiness and stimulate circulation.",
+        "benefit_synopsis": "Enhances alertness, soothes inflammation, and supports emotional regulation.",
+        "objectives": ["increase_alertness", "improve_emotional_regulation", "reduce_inflammation"]
     },
     {
-        'name': 'Cold Plunge', 
-        'description': 'Immerse yourself in cold water to boost circulation and mental toughness.', 
-        'recommended_durations': [{'duration_label': '10 minutes'}], 
-        'impact_rating_id': 5, 
-        'difficulty_level_id': 5,
-        'frequency': 'Daily',  
-        'is_common': True,
-        'objectives': ['increase_stress_resilience', 'reduce_inflammation', 'enhance_mood_stability']
-    },
+        "name": "Cold Plunge",
+        "description": "Immerse yourself in cold water to boost circulation and mental toughness.",
+        "recommended_durations": [{"duration_label": "10 minutes"}],
+        "impact_rating_id": 5,
+        "difficulty_level_id": 5,
+        "frequency": "Daily",
+        "is_common": True,
+        "notes": "Cold plunges require gradual adaptation. Begin with short immersions and focus on steady breathing to maximize benefits.",
+        "benefit_synopsis": "Strengthens stress resilience, reduces inflammation, and enhances mood stability.",
+        "objectives": ["increase_stress_resilience", "reduce_inflammation", "enhance_mood_stability"]
+    }
 ],
 
 'Focused Value Time': [
     {
-        'name': 'Deep Work Session',
-        'description': 'Dedicate time to focused, undistracted work on a high-value task.',
-        'recommended_durations': [{'duration_label': '20 minutes'}, {'duration_label': '30 minutes'}, {'duration_label': '45 minutes'}, {'duration_label': '1 hour'}],
-        'impact_rating_id': 5,
-        'difficulty_level_id': 2,
-        'frequency': 'Twice daily',
-        'is_common': True,
-        'objectives': ['increase_productivity', 'enhance_focus', 'reduce_stress']
+        "name": "Deep Work Session",
+        "description": "Dedicate time to focused, undistracted work on a high-value task.",
+        "recommended_durations": [
+            {"duration_label": "20 minutes"},
+            {"duration_label": "30 minutes"},
+            {"duration_label": "45 minutes"},
+            {"duration_label": "1 hour"}
+        ],
+        "impact_rating_id": 5,
+        "difficulty_level_id": 2,
+        "frequency": "Twice daily",
+        "is_common": True,
+        "notes": "Eliminate distractions by using techniques like the Pomodoro method or setting clear work intervals.",
+        "benefit_synopsis": "Maximizes productivity, improves concentration, and reduces cognitive overload.",
+        "objectives": ["increase_productivity", "enhance_focus", "reduce_stress"]
     },
     {
-        'name': 'Value Alignment Journaling',
-        'description': 'Reflect on your goals and values to ensure alignment with your actions.',
-        'recommended_durations': [{'duration_label': '30 minutes'}],
-        'impact_rating_id': 5,
-        'difficulty_level_id': 3,
-        'frequency': 'Three times daily',
-        'is_common': True,
-        'objectives': ['clarity', 'increase_self-awareness', 'enhance_motivation']
-    },
+        "name": "Value Alignment Journaling",
+        "description": "Reflect on your goals and values to ensure alignment with your actions.",
+        "recommended_durations": [{"duration_label": "30 minutes"}],
+        "impact_rating_id": 5,
+        "difficulty_level_id": 3,
+        "frequency": "Three times daily",
+        "is_common": True,
+        "notes": "Use prompts like 'What actions today align with my values?' or 'What small steps move me toward my larger goals?'",
+        "benefit_synopsis": "Enhances clarity, strengthens motivation, and deepens self-awareness.",
+        "objectives": ["clarity", "increase_self-awareness", "enhance_motivation"]
+    }
 ],
+
 'Skill Learning': [
     {
-        'name': 'Language Practice',
-        'description': 'Practice a new language using an app or flashcards.',
-        'recommended_durations': [{'duration_label': '20 minutes'}],
-        'impact_rating_id': 5,
-        'difficulty_level_id': 3,
-        'frequency': 'Twice daily',
-        'is_common': True,
-        'objectives': ['improve_language_skills', 'enhance_memory', 'develop_cognitive_resilience']
+        "name": "Language Practice",
+        "description": "Practice a new language using an app or flashcards.",
+        "recommended_durations": [{"duration_label": "20 minutes"}],
+        "impact_rating_id": 5,
+        "difficulty_level_id": 3,
+        "frequency": "Twice daily",
+        "is_common": True,
+        "notes": "Use spaced repetition and active recall methods to improve retention.",
+        "benefit_synopsis": "Improves cognitive resilience, boosts memory, and enhances problem-solving skills.",
+        "objectives": ["improve_language_skills", "enhance_memory", "develop_cognitive_resilience"]
     },
     {
-        'name': 'Instrument Practice',
-        'description': 'Learn or practice a musical instrument to enhance coordination and memory.',
-        'recommended_durations': [{'duration_label': '30 minutes'}],
-        'impact_rating_id': 5,
-        'difficulty_level_id': 3,
-        'frequency': 'Three times daily',
-        'is_common': True,
-        'objectives': ['improve_coordination', 'enhance_creative_thinking', 'reduce_stress']
-    },
+        "name": "Instrument Practice",
+        "description": "Learn or practice a musical instrument to enhance coordination and memory.",
+        "recommended_durations": [{"duration_label": "30 minutes"}],
+        "impact_rating_id": 5,
+        "difficulty_level_id": 3,
+        "frequency": "Three times daily",
+        "is_common": True,
+        "notes": "Structured practice with scales, chord progressions, and songs will accelerate skill development.",
+        "benefit_synopsis": "Enhances coordination, strengthens memory, and fosters creative thinking.",
+        "objectives": ["improve_coordination", "enhance_creative_thinking", "reduce_stress"]
+    }
 ],
+
 'Creative Flow Time': [
     {
-        'name': 'Free Writing', 
-        'description': 'Spend time writing whatever comes to mind to unleash creativity.', 
-        'recommended_durations': [{'duration_label': '30 minutes'}], 
-        'impact_rating_id': 5, 
-        'difficulty_level_id': 3,
-        'frequency': 'Daily',  
-        'is_common': True,
-        'objectives': ['enhance_creative_thinking', 'improve_language_skills', 'reduce_stress']
+        "name": "Free Writing", 
+        "description": "Spend time writing whatever comes to mind to unleash creativity.", 
+        "recommended_durations": [{"duration_label": "30 minutes"}], 
+        "impact_rating_id": 5, 
+        "difficulty_level_id": 3,
+        "frequency": "Daily",  
+        "is_common": True,
+        "benefit_synopsis": "Free writing helps overcome creative blocks, improve language skills, and reduce stress by encouraging uninhibited self-expression.",
+        "objectives": ["enhance_creative_thinking", "improve_language_skills", "reduce_stress"]
     },
     {
-        'name': 'Sketching', 
-        'description': 'Draw or doodle to foster creative expression and mindfulness.', 
-        'recommended_durations': [{'duration_label': '20 minutes'}], 
-        'impact_rating_id': 4, 
-        'difficulty_level_id': 3,
-        'frequency': 'Twice daily',  
-        'is_common': True,
-        'objectives': ['develop_artistic_skills', 'enhance_pattern_recognition', 'reduce_stress']
-    },
+        "name": "Sketching", 
+        "description": "Draw or doodle to foster creative expression and mindfulness.", 
+        "recommended_durations": [{"duration_label": "20 minutes"}], 
+        "impact_rating_id": 4, 
+        "difficulty_level_id": 3,
+        "frequency": "Twice daily",  
+        "is_common": True,
+        "benefit_synopsis": "Sketching strengthens visual thinking, improves focus, and promotes relaxation by engaging the mind in a non-verbal creative process.",
+        "objectives": ["develop_artistic_skills", "enhance_pattern_recognition", "reduce_stress"]
+    }
 ],
 
 "Self Development & Skills": [
@@ -1430,7 +1549,7 @@ practice_data = {
         "difficulty_level_id": 3,
         "frequency": "Daily",
         "is_common": True,
-        "notes": "Apps like Duolingo or flashcard systems like Anki can help. Practicing with a language partner is highly effective.",
+        "benefit_synopsis": "Learning a new language enhances cognitive flexibility, improves memory retention, and strengthens cultural awareness.",
         "objectives": ["improve_language_skills", "enhance_memory", "develop_cognitive_resilience"]
     },
     {
@@ -1444,7 +1563,7 @@ practice_data = {
         "difficulty_level_id": 3,
         "frequency": "Daily",
         "is_common": True,
-        "notes": "Focus on consistent, deliberate practice. Consider online tutorials or lessons for guidance.",
+        "benefit_synopsis": "Playing an instrument strengthens neural connections, enhances creativity, and improves fine motor coordination.",
         "objectives": ["improve_coordination", "enhance_creative_thinking", "reduce_stress"]
     },
     {
@@ -1458,7 +1577,7 @@ practice_data = {
         "difficulty_level_id": 1,
         "frequency": "Daily",
         "is_common": True,
-        "notes": "Choose topics that interest you or align with your goals, such as self-help, fiction, or technical books.",
+        "benefit_synopsis": "Reading enhances knowledge retention, sharpens focus, and promotes relaxation by immersing the mind in structured thought.",
         "objectives": ["improve_knowledge", "enhance_focus", "promote_relaxation"]
     },
     {
@@ -1471,7 +1590,7 @@ practice_data = {
         "difficulty_level_id": 2,
         "frequency": "Weekly",
         "is_common": False,
-        "notes": "Consider using prompts to get started, such as 'Write about a memorable day' or 'Create a fictional character.'",
+        "benefit_synopsis": "Creative writing strengthens imaginative thinking, aids emotional processing, and enhances storytelling abilities.",
         "objectives": ["enhance_creative_thinking", "reduce_stress", "improve_emotional_resilience"]
     },
     {
@@ -1485,7 +1604,7 @@ practice_data = {
         "difficulty_level_id": 4,
         "frequency": "Daily",
         "is_common": True,
-        "notes": "Use platforms like Codecademy, freeCodeCamp, or LeetCode for structured learning.",
+        "benefit_synopsis": "Coding enhances logical thinking, problem-solving skills, and computational creativity, providing a valuable technical skill set.",
         "objectives": ["develop_problem_solving", "enhance_focus", "improve_technical_skills"]
     },
     {
@@ -1499,22 +1618,8 @@ practice_data = {
         "difficulty_level_id": 3,
         "frequency": "Weekly",
         "is_common": False,
-        "notes": "Try Toastmasters, recording yourself, or practicing speeches in front of friends for feedback.",
+        "benefit_synopsis": "Public speaking practice improves articulation, boosts confidence, and enhances persuasion and leadership skills.",
         "objectives": ["improve_communication", "increase_self-confidence", "reduce_speaking_anxiety"]
-    },
-    {
-        "name": "Art Practice",
-        "description": "Engage in drawing, painting, or other artistic practices to enhance creativity and mindfulness.",
-        "recommended_durations": [
-            {"duration_label": "20 minutes"},
-            {"duration_label": "1 hour"}
-        ],
-        "impact_rating_id": 4,
-        "difficulty_level_id": 2,
-        "frequency": "Weekly",
-        "is_common": True,
-        "notes": "Experiment with different mediums such as watercolor, acrylics, or digital art tools.",
-        "objectives": ["enhance_creative_thinking", "reduce_stress", "promote_mindfulness"]
     },
     {
         "name": "Problem-Solving Puzzles",
@@ -1526,21 +1631,8 @@ practice_data = {
         "difficulty_level_id": 2,
         "frequency": "Daily",
         "is_common": True,
-        "notes": "Apps like Lumosity or traditional puzzles are great tools. Focus on challenging but enjoyable puzzles.",
+        "benefit_synopsis": "Engaging in puzzles strengthens problem-solving abilities, enhances pattern recognition, and keeps the mind sharp.",
         "objectives": ["enhance_memory", "develop_cognitive_resilience", "improve_problem_solving"]
-    },
-    {
-        "name": "Debate Practice",
-        "description": "Engage in friendly debates to improve critical thinking and communication skills.",
-        "recommended_durations": [
-            {"duration_label": "30 minutes"}
-        ],
-        "impact_rating_id": 4,
-        "difficulty_level_id": 3,
-        "frequency": "Weekly",
-        "is_common": False,
-        "notes": "Choose topics you're passionate about and practice articulating arguments clearly and calmly.",
-        "objectives": ["improve_communication", "enhance_critical_thinking", "increase_self-confidence"]
     },
     {
         "name": "DIY Projects",
@@ -1552,21 +1644,73 @@ practice_data = {
         "difficulty_level_id": 3,
         "frequency": "Monthly",
         "is_common": True,
-        "notes": "Projects like building furniture, crafting, or home repairs can be both rewarding and practical.",
+        "benefit_synopsis": "DIY projects foster self-reliance, problem-solving skills, and hands-on creativity through practical engagement.",
         "objectives": ["enhance_creative_thinking", "improve_problem_solving", "increase_self-confidence"]
     },
     {
-        "name": "Gardening",
-        "description": "Spend time gardening to connect with nature and build patience and responsibility.",
-        "recommended_durations": [
-            {"duration_label": "30 minutes"},
-            {"duration_label": "1 hour"}
-        ],
+        "name": "Networking",
+        "description": "Engage with industry professionals to exchange ideas and opportunities.",
+        "recommended_durations": [{"duration_label": "15 minutes"}, {"duration_label": "1 hour"}],
+        "impact_rating_id": 5,
+        "difficulty_level_id": 2,
+        "frequency": "Weekly",
+        "is_common": True,
+        "benefit_synopsis": "Networking broadens career opportunities, enhances communication skills, and builds professional relationships for future growth.",
+        "objectives": ["build_professional_network", "gain_new_opportunities", "enhance_communication_skills"]
+    },
+    {
+        "name": "Time Management Practice",
+        "description": "Develop better time management habits using tools like planners or time-blocking techniques.",
+        "recommended_durations": [{"duration_label": "15 minutes"}],
+        "impact_rating_id": 5,
+        "difficulty_level_id": 1,
+        "frequency": "Daily",
+        "is_common": True,
+        "benefit_synopsis": "Practicing time management increases productivity, reduces stress, and creates a balanced, structured daily routine.",
+        "objectives": ["increase_productivity", "reduce_stress", "enhance_focus"]
+    },
+    {
+        "name": "Cooking or Baking",
+        "description": "Experiment with new recipes or techniques to improve culinary skills.",
+        "recommended_durations": [{"duration_label": "1 hour"}],
         "impact_rating_id": 4,
         "difficulty_level_id": 2,
         "frequency": "Weekly",
         "is_common": True,
-        "notes": "Start with herbs, flowers, or vegetables. Gardening can also improve mood and physical health.",
+        "benefit_synopsis": "Cooking promotes creativity, mindfulness, and practical self-sufficiency, making it a rewarding and stress-reducing activity.",
+        "objectives": ["enhance_creative_thinking", "develop_practical_skills", "reduce_stress"]
+    },
+    {
+        "name": "Art Practice",
+        "description": "Engage in drawing, painting, or other artistic practices to enhance creativity and mindfulness.",
+        "recommended_durations": [{"duration_label": "20 minutes"}, {"duration_label": "1 hour"}],
+        "impact_rating_id": 4,
+        "difficulty_level_id": 2,
+        "frequency": "Weekly",
+        "is_common": True,
+        "benefit_synopsis": "Art practice encourages self-expression, improves focus, and reduces stress through creative engagement.",
+        "objectives": ["enhance_creative_thinking", "reduce_stress", "promote_mindfulness"]
+    },
+    {
+        "name": "Debate Practice",
+        "description": "Engage in friendly debates to improve critical thinking and communication skills.",
+        "recommended_durations": [{"duration_label": "30 minutes"}],
+        "impact_rating_id": 4,
+        "difficulty_level_id": 3,
+        "frequency": "Weekly",
+        "is_common": False,
+        "benefit_synopsis": "Debate practice strengthens logical reasoning, improves articulation, and boosts confidence in public speaking.",
+        "objectives": ["improve_communication", "enhance_critical_thinking", "increase_self-confidence"]
+    },
+    {
+        "name": "Gardening",
+        "description": "Spend time gardening to connect with nature and build patience and responsibility.",
+        "recommended_durations": [{"duration_label": "30 minutes"}, {"duration_label": "1 hour"}],
+        "impact_rating_id": 4,
+        "difficulty_level_id": 2,
+        "frequency": "Weekly",
+        "is_common": True,
+        "benefit_synopsis": "Gardening promotes relaxation, enhances mindfulness, and provides physical activity through nature engagement.",
         "objectives": ["enhance_mood_stability", "promote_mindfulness", "increase_self-confidence"]
     },
     {
@@ -1577,19 +1721,8 @@ practice_data = {
         "difficulty_level_id": 3,
         "frequency": "Daily",
         "is_common": True,
-        "notes": "Use platforms like LinkedIn Learning, Coursera, or Skillshare for structured lessons tailored to your field. Focus on skills that directly contribute to your career growth.",
+        "benefit_synopsis": "Practicing career skills increases job competency, enhances confidence, and opens opportunities for growth.",
         "objectives": ["improve_professional_skills", "increase_confidence", "enhance_career_progression"]
-    },
-    {
-        "name": "Networking",
-        "description": "Engage with industry professionals to exchange ideas and opportunities.",
-        "recommended_durations": [{"duration_label": "15 minutes"}, {"duration_label": "1 hour"}],
-        "impact_rating_id": 5,
-        "difficulty_level_id": 2,
-        "frequency": "Weekly",
-        "is_common": True,
-        "notes": "Attend virtual or in-person events, join LinkedIn groups, or connect with colleagues. Networking is a long-term investment in professional relationships.",
-        "objectives": ["build_professional_network", "gain_new_opportunities", "enhance_communication_skills"]
     },
     {
         "name": "Certification Preparation",
@@ -1599,7 +1732,7 @@ practice_data = {
         "difficulty_level_id": 4,
         "frequency": "Daily",
         "is_common": True,
-        "notes": "Follow official prep courses or community resources. Break learning into manageable sessions and set deadlines to stay on track.",
+        "benefit_synopsis": "Preparing for certifications enhances professional credibility, increases knowledge, and boosts career advancement.",
         "objectives": ["gain_certification", "enhance_professional_skills", "increase_career_opportunities"]
     },
     {
@@ -1610,7 +1743,7 @@ practice_data = {
         "difficulty_level_id": 1,
         "frequency": "Monthly",
         "is_common": True,
-        "notes": "Tailor resumes to specific roles. Include measurable achievements for greater impact.",
+        "benefit_synopsis": "Keeping a resume updated ensures readiness for career opportunities and highlights professional growth.",
         "objectives": ["increase_hiring_chances", "enhance_career_progression", "develop_self-confidence"]
     },
     {
@@ -1621,7 +1754,7 @@ practice_data = {
         "difficulty_level_id": 2,
         "frequency": "Weekly",
         "is_common": True,
-        "notes": "Experiment with different settings, compositions, and lighting. Explore editing tools like Lightroom or Photoshop to enhance your photos.",
+        "benefit_synopsis": "Photography enhances creativity, sharpens attention to detail, and provides a mindful artistic outlet.",
         "objectives": ["enhance_creative_skills", "develop_attention_to_detail", "reduce_stress"]
     },
     {
@@ -1632,7 +1765,7 @@ practice_data = {
         "difficulty_level_id": 3,
         "frequency": "Weekly",
         "is_common": False,
-        "notes": "Look for local theater groups or online classes for beginners. Improv exercises are particularly effective for thinking on your feet and improving public speaking skills.",
+        "benefit_synopsis": "Acting and improv improve emotional expression, adaptability, and confidence in social interactions.",
         "objectives": ["increase_self-confidence", "enhance_creative_expression", "develop_public_speaking_skills"]
     },
     {
@@ -1643,7 +1776,7 @@ practice_data = {
         "difficulty_level_id": 2,
         "frequency": "Monthly",
         "is_common": False,
-        "notes": "Read resources on communication strategies and active listening. Role-playing scenarios can help apply new skills effectively.",
+        "benefit_synopsis": "Conflict resolution training enhances communication skills, emotional resilience, and relationship management.",
         "objectives": ["enhance_emotional_resilience", "improve_communication_skills", "reduce_interpersonal_tension"]
     },
     {
@@ -1654,7 +1787,7 @@ practice_data = {
         "difficulty_level_id": 1,
         "frequency": "Daily",
         "is_common": True,
-        "notes": "Reflect weekly on what worked and adjust your approach for better results. Tools like Trello or Notion can be helpful.",
+        "benefit_synopsis": "Effective time management reduces stress, increases productivity, and creates structured daily routines.",
         "objectives": ["increase_productivity", "reduce_stress", "enhance_focus"]
     },
     {
@@ -1665,7 +1798,7 @@ practice_data = {
         "difficulty_level_id": 4,
         "frequency": "Weekly",
         "is_common": False,
-        "notes": "Use kits like Arduino or Raspberry Pi to get started with programming and electronics.",
+        "benefit_synopsis": "Engineering projects develop problem-solving skills, enhance creativity, and improve technical knowledge.",
         "objectives": ["develop_problem_solving", "enhance_creative_thinking", "improve_technical_skills"]
     },
     {
@@ -1676,19 +1809,8 @@ practice_data = {
         "difficulty_level_id": 4,
         "frequency": "Weekly",
         "is_common": False,
-        "notes": "Platforms like Kaggle or TensorFlow tutorials provide hands-on learning opportunities.",
+        "benefit_synopsis": "AI/ML training enhances problem-solving abilities, career growth, and technical expertise in an evolving field.",
         "objectives": ["enhance_career_skills", "develop_problem_solving", "increase_knowledge"]
-    },
-    {
-        "name": "Cooking or Baking",
-        "description": "Experiment with new recipes or techniques to improve culinary skills.",
-        "recommended_durations": [{"duration_label": "1 hour"}],
-        "impact_rating_id": 4,
-        "difficulty_level_id": 2,
-        "frequency": "Weekly",
-        "is_common": True,
-        "notes": "Consider themed challenges (e.g., vegan cooking) or specialty baking like sourdough bread.",
-        "objectives": ["enhance_creative_thinking", "develop_practical_skills", "reduce_stress"]
     },
     {
         "name": "First Aid Training",
@@ -1698,369 +1820,336 @@ practice_data = {
         "difficulty_level_id": 3,
         "frequency": "Annually",
         "is_common": False,
-        "notes": "Look for Red Cross or local community workshops. Skills include wound care and emergency response.",
+        "benefit_synopsis": "First aid training prepares individuals to respond effectively in emergencies, potentially saving lives.",
         "objectives": ["enhance_safety_awareness", "increase_confidence", "reduce_emergency_risk"]
     },
     {
         "name": "Esports Practice",
         "description": "Dedicate time to improving competitive gaming skills for esports or tournaments.",
-        "recommended_durations": [
-            {"duration_label": "1 hour"},
-            {"duration_label": "2 hours"}
-        ],
+        "recommended_durations": [{"duration_label": "1 hour"}, {"duration_label": "2 hours"}],
         "impact_rating_id": 5,
         "difficulty_level_id": 3,
         "frequency": "Daily",
         "is_common": True,
-        "notes": "Focus on practicing mechanics, game strategies, and teamwork for specific games. Join online communities or scrims to enhance skills.",
+        "benefit_synopsis": "Esports practice enhances strategic thinking, reaction time, and teamwork in a competitive setting.",
         "objectives": ["develop_strategic_thinking", "improve_reaction_time", "enhance_teamwork"]
-    },
-    {
-        "name": "Game Design Practice",
-        "description": "Learn or practice game design concepts, including level creation, mechanics, and storytelling.",
-        "recommended_durations": [
-            {"duration_label": "1 hour"},
-            {"duration_label": "2 hours"}
-        ],
-        "impact_rating_id": 5,
-        "difficulty_level_id": 4,
-        "frequency": "Weekly",
-        "is_common": False,
-        "notes": "Tools like Unity, Unreal Engine, or RPG Maker are great for developing games. Focus on creativity and usability in design.",
-        "objectives": ["enhance_creative_thinking", "develop_technical_skills", "improve_problem_solving"]
-    },
-    {
-        "name": "Streaming Content Creation",
-        "description": "Stream gameplay and create gaming content for platforms like Twitch or YouTube.",
-        "recommended_durations": [
-            {"duration_label": "2 hours"},
-            {"duration_label": "4 hours"}
-        ],
-        "impact_rating_id": 5,
-        "difficulty_level_id": 3,
-        "frequency": "Weekly",
-        "is_common": True,
-        "notes": "Focus on engaging with your audience and improving video/audio quality. Explore editing software for highlight videos.",
-        "objectives": ["develop_communication_skills", "build_online_presence", "enhance_creative_expression"]
-    },
-    {
-        "name": "Speedrunning Practice",
-        "description": "Refine skills for completing games as quickly as possible, optimizing routes and techniques.",
-        "recommended_durations": [
-            {"duration_label": "1 hour"},
-            {"duration_label": "3 hours"}
-        ],
-        "impact_rating_id": 4,
-        "difficulty_level_id": 3,
-        "frequency": "Daily",
-        "is_common": False,
-        "notes": "Join speedrunning communities to learn advanced techniques and share strategies for specific games.",
-        "objectives": ["enhance_focus", "improve_reaction_time", "develop_problem_solving"]
-    },
-    {
-        "name": "Game Strategy Research",
-        "description": "Study strategies, meta-analysis, or guides to improve your understanding of specific games.",
-        "recommended_durations": [
-            {"duration_label": "30 minutes"},
-            {"duration_label": "1 hour"}
-        ],
-        "impact_rating_id": 4,
-        "difficulty_level_id": 2,
-        "frequency": "Weekly",
-        "is_common": True,
-        "notes": "Browse forums, watch professional players, or read strategy guides to improve your gameplay knowledge.",
-        "objectives": ["develop_strategic_thinking", "improve_knowledge", "enhance_focus"]
     }
 ],
 
 'Social Connection': [
     {
-        "name": "Morning Check-In",
-        "description": "Call or message a loved one to connect and start the day positively.",
-        "recommended_durations": [{"duration_label": "10 minutes"}],
-        "impact_rating_id": 4,
-        "difficulty_level_id": 2,
-        "frequency": "Daily",
-        "is_common": True,
-        "notes": "Consider asking open-ended questions like 'How are you really feeling today?' to deepen your connection.",
-        "objectives": ["enhance_relationships", "develop_empathy", "boost_optimism"]
-    },
-    {
-        "name": "Check-In Message or Call",
-        "description": "Reach out to a friend, family member, or colleague to strengthen connections and build supportive relationships.",
-        "recommended_durations": [{"duration_label": "5 minutes"}, {"duration_label": "10 minutes"}],
-        "impact_rating_id": 3,
-        "difficulty_level_id": 1,
-        "frequency": "Daily",
-        "is_common": True,
-        "notes": "A quick message or call can brighten someone’s day and nurture your social network.",
-        "objectives": ["strengthen_relationships", "reduce_feelings_of_isolation", "enhance_social_support"]
-    },
-    {
-        "name": "Coffee Chat",
-        "description": "Meet a friend or colleague for coffee to foster meaningful interaction.",
-        "recommended_durations": [{"duration_label": "1 hour"}],
-        "impact_rating_id": 5,
-        "difficulty_level_id": 2,
-        "frequency": "Weekly",
-        "is_common": True,
-        "notes": "Use this time to share updates, offer support, or brainstorm ideas. Avoid distractions like checking your phone.",
-        "objectives": ["enhance_relationships", "improve_communication_skills", "develop_empathy"]
-    },
-    {
-        "name": "Book Club",
-        "description": "Join or start a book club to discuss literature and connect with others.",
+        "name": "Networking Events",
+        "description": "Attend professional or casual networking events to build connections and expand opportunities.",
         "recommended_durations": [{"duration_label": "1 hour"}, {"duration_label": "2 hours"}],
         "impact_rating_id": 5,
         "difficulty_level_id": 3,
         "frequency": "Monthly",
         "is_common": True,
-        "notes": "Select books that challenge or inspire, and focus on creating an inclusive, welcoming environment.",
-        "objectives": ["develop_critical_thinking", "enhance_relationships", "promote_emotional_resilience"]
+        "benefit_synopsis": "Networking enhances career opportunities, builds confidence, and strengthens professional relationships.",
+        "objectives": ["expand_professional_network", "improve_communication_skills", "increase_opportunities"]
     },
     {
-        "name": "Men’s/Women’s Group",
-        "description": "Participate in a supportive group tailored to shared life experiences or goals.",
-        "recommended_durations": [{"duration_label": "1 hour"}, {"duration_label": "90 minutes"}],
+        "name": "Random Acts of Kindness",
+        "description": "Perform small acts of kindness, such as paying for a stranger’s coffee or leaving a positive note.",
+        "recommended_durations": [{"duration_label": "5 minutes"}, {"duration_label": "10 minutes"}],
         "impact_rating_id": 5,
-        "difficulty_level_id": 2,
-        "frequency": "Weekly",
+        "difficulty_level_id": 1,
+        "frequency": "Daily",
         "is_common": True,
-        "notes": "These groups can provide a safe space to discuss challenges, celebrate wins, and share resources.",
-        "objectives": ["build_emotional_resilience", "enhance_support_systems", "develop_empathy"]
+        "benefit_synopsis": "Acts of kindness foster social connection, improve mood, and create a ripple effect of positivity.",
+        "objectives": ["enhance_emotional_resilience", "promote_community_engagement", "increase_happiness"]
     },
     {
-        "name": "Community Service",
-        "description": "Volunteer in your community to connect with others while contributing to a cause.",
-        "recommended_durations": [{"duration_label": "2 hours"}, {"duration_label": "4 hours"}],
+        "name": "Pen Pal or Letter Writing",
+        "description": "Write a letter or email to a friend, family member, or pen pal to deepen connections.",
+        "recommended_durations": [{"duration_label": "15 minutes"}, {"duration_label": "30 minutes"}],
+        "impact_rating_id": 4,
+        "difficulty_level_id": 2,
+        "frequency": "Monthly",
+        "is_common": True,
+        "benefit_synopsis": "Letter writing enhances emotional expression, strengthens relationships, and fosters mindfulness.",
+        "objectives": ["improve_relationships", "develop_patience", "enhance_written_communication"]
+    },
+    {
+        "name": "Community Meetups",
+        "description": "Attend local meetups or events centered around shared interests or causes.",
+        "recommended_durations": [{"duration_label": "1 hour"}, {"duration_label": "2 hours"}],
         "impact_rating_id": 5,
         "difficulty_level_id": 2,
         "frequency": "Monthly",
         "is_common": True,
-        "notes": "Options include food banks, animal shelters, or local clean-up events. Choose causes aligned with your values.",
-        "objectives": ["enhance_relationships", "boost_community_engagement", "increase_self-worth"]
+        "benefit_synopsis": "Community meetups provide social engagement, networking, and opportunities for shared learning.",
+        "objectives": ["develop_common_interests", "enhance_social_skills", "increase_community_involvement"]
     },
     {
-        "name": "Interest-Specific Groups",
-        "description": "Join a group that aligns with your hobbies or interests, such as hiking, gaming, or knitting.",
+        "name": "Mentorship",
+        "description": "Offer or seek mentorship in personal or professional growth areas.",
+        "recommended_durations": [{"duration_label": "1 hour"}],
+        "impact_rating_id": 5,
+        "difficulty_level_id": 3,
+        "frequency": "Monthly",
+        "is_common": True,
+        "benefit_synopsis": "Mentorship strengthens leadership skills, provides guidance, and fosters career and personal growth.",
+        "objectives": ["develop_leadership", "enhance_professional_growth", "build_support_networks"]
+    },
+    {
+        "name": "Cultural Exchange",
+        "description": "Engage in cultural activities, such as learning a new language with a partner or attending cultural events.",
         "recommended_durations": [{"duration_label": "1 hour"}, {"duration_label": "2 hours"}],
+        "impact_rating_id": 5,
+        "difficulty_level_id": 3,
+        "frequency": "Monthly",
+        "is_common": True,
+        "benefit_synopsis": "Cultural exchanges foster global awareness, strengthen empathy, and broaden perspectives.",
+        "objectives": ["increase_cultural_awareness", "develop_empathy", "enhance_social_connection"]
+    },
+    {
+        "name": "Team Sports",
+        "description": "Join a recreational sports team to build camaraderie and stay active.",
+        "recommended_durations": [{"duration_label": "1 hour"}, {"duration_label": "90 minutes"}],
+        "impact_rating_id": 5,
+        "difficulty_level_id": 3,
+        "frequency": "Weekly",
+        "is_common": True,
+        "benefit_synopsis": "Team sports enhance teamwork, boost physical fitness, and create lasting friendships.",
+        "objectives": ["develop_teamwork", "increase_fitness", "enhance_relationships"]
+    },
+    {
+        "name": "Friendship Maintenance Day",
+        "description": "Dedicate a day each month to checking in with friends and nurturing relationships.",
+        "recommended_durations": [{"duration_label": "2 hours"}],
+        "impact_rating_id": 4,
+        "difficulty_level_id": 2,
+        "frequency": "Monthly",
+        "is_common": True,
+        "benefit_synopsis": "Regularly maintaining friendships strengthens connections, provides emotional support, and enhances well-being.",
+        "objectives": ["enhance_relationships", "reduce_social_isolation", "promote_emotional_resilience"]
+    },
+    {
+        "name": "Social Media Detox & In-Person Socializing",
+        "description": "Reduce screen time and focus on face-to-face interactions with friends and family.",
+        "recommended_durations": [{"duration_label": "1 hour"}, {"duration_label": "Half day"}],
         "impact_rating_id": 5,
         "difficulty_level_id": 2,
         "frequency": "Weekly",
         "is_common": True,
-        "notes": "Search for local meetups or online communities. Activities like D&D groups or running clubs foster both fun and connection.",
-        "objectives": ["enhance_social_skills", "develop_common_interests", "reduce_social_isolation"]
+        "benefit_synopsis": "Reducing digital distractions fosters meaningful in-person connections and improves mental clarity.",
+        "objectives": ["enhance_social_connection", "reduce_screen_time", "improve_relationships"]
     },
     {
-        "name": "Game Night with Friends",
-        "description": "Host or join a game night to enjoy time with friends and strengthen connections.",
+        "name": "Hosting Gatherings",
+        "description": "Host a casual gathering, such as a potluck or themed night, to bring people together.",
         "recommended_durations": [{"duration_label": "2 hours"}, {"duration_label": "3 hours"}],
+        "impact_rating_id": 5,
+        "difficulty_level_id": 2,
+        "frequency": "Monthly",
+        "is_common": True,
+        "benefit_synopsis": "Hosting gatherings strengthens social bonds, fosters community, and promotes inclusivity.",
+        "objectives": ["enhance_relationships", "develop_social_skills", "increase_community_engagement"]
+    },
+    {
+        "name": "Walk and Talk",
+        "description": "Go for a walk with a friend, partner, or colleague to connect while staying active.",
+        "recommended_durations": [{"duration_label": "30 minutes"}, {"duration_label": "1 hour"}],
+        "impact_rating_id": 5,
+        "difficulty_level_id": 1,
+        "frequency": "Weekly",
+        "is_common": True,
+        "benefit_synopsis": "Walking and talking encourage open communication, reduce stress, and support healthy relationships.",
+        "objectives": ["enhance_relationships", "reduce_stress", "promote_healthy_lifestyles"]
+    },
+    {
+        "name": "Board Game Café Outing",
+        "description": "Visit a board game café or host a similar social activity to enjoy strategic and cooperative play.",
+        "recommended_durations": [{"duration_label": "2 hours"}],
         "impact_rating_id": 4,
         "difficulty_level_id": 1,
         "frequency": "Monthly",
         "is_common": True,
-        "notes": "Board games, card games, or even video games work well. Focus on creating a light-hearted, inclusive atmosphere.",
-        "objectives": ["enhance_relationships", "develop_teamwork", "reduce_stress"]
+        "benefit_synopsis": "Playing board games together enhances critical thinking, teamwork, and social bonding.",
+        "objectives": ["develop_teamwork", "enhance_problem_solving", "strengthen_social_bonds"]
     },
     {
-        "name": "Outdoor Activities with Friends",
-        "description": "Plan activities like hiking, kayaking, or picnics to enjoy nature and bond with friends.",
-        "recommended_durations": [{"duration_label": "2 hours"}, {"duration_label": "Half day"}],
-        "impact_rating_id": 5,
-        "difficulty_level_id": 2,
+        "name": "Virtual Game Night",
+        "description": "Host or participate in an online game night to maintain social bonds despite distance.",
+        "recommended_durations": [{"duration_label": "1 hour"}, {"duration_label": "2 hours"}],
+        "impact_rating_id": 4,
+        "difficulty_level_id": 1,
         "frequency": "Monthly",
         "is_common": True,
-        "notes": "Choose activities that match everyone’s fitness level and preferences for maximum enjoyment.",
-        "objectives": ["reduce_stress", "enhance_relationships", "promote_healthy_lifestyles"]
+        "benefit_synopsis": "Virtual game nights allow remote social engagement, fostering connection and fun across distances.",
+        "objectives": ["enhance_relationships", "reduce_feelings_of_isolation", "improve_social_interaction"]
     },
     {
-        "name": "Weekly Dinner with Friends or Family",
-        "description": "Schedule a regular meal to connect with loved ones and share your week.",
-        "recommended_durations": [{"duration_label": "2 hours"}],
+        "name": "Family Game Night",
+        "description": "Spend quality time playing games with family members to bond and create shared experiences.",
+        "recommended_durations": [{"duration_label": "1 hour"}, {"duration_label": "2 hours"}],
         "impact_rating_id": 5,
         "difficulty_level_id": 1,
         "frequency": "Weekly",
         "is_common": True,
-        "notes": "Make it a potluck or rotate hosts to keep things fun and stress-free.",
-        "objectives": ["enhance_relationships", "reduce_stress", "build_emotional_resilience"]
-    },
-    {
-        "name": "Support Group Participation",
-        "description": "Join a support group for shared experiences, such as parenting, recovery, or grief support.",
-        "recommended_durations": [{"duration_label": "1 hour"}],
-        "impact_rating_id": 5,
-        "difficulty_level_id": 2,
-        "frequency": "Weekly",
-        "is_common": True,
-        "notes": "Support groups can provide emotional connection and practical advice for navigating challenges.",
-        "objectives": ["develop_empathy", "enhance_emotional_resilience", "build_support_networks"]
-    },
-    {
-        "name": "Lunch Break Socializing",
-        "description": "Use your lunch break to catch up with a coworker or friend.",
-        "recommended_durations": [{"duration_label": "30 minutes"}, {"duration_label": "1 hour"}],
-        "impact_rating_id": 3,
-        "difficulty_level_id": 1,
-        "frequency": "Daily",
-        "is_common": True,
-        "notes": "Keep the conversation light and enjoyable. This can strengthen workplace relationships or friendships.",
-        "objectives": ["enhance_relationships", "reduce_stress", "boost_optimism"]
+        "benefit_synopsis": "Engaging in playful activities strengthens family relationships, reduces stress, and fosters teamwork.",
+        "objectives": ["strengthen_family_bonds", "develop_teamwork", "enhance_social_connection"]
     }
 ],
 
 'Productivity Anchors': [
     {
-        "name": "Daily Prioritization",
-        "description": "Write down the top 3 tasks to accomplish today.",
-        "recommended_durations": [{"duration_label": "10 minutes"}],
-        "impact_rating_id": 4,
-        "difficulty_level_id": 2,
-        "frequency": "Daily",
-        "is_common": True,
-        "notes": "Focus on tasks that align with your larger goals and tackle them in order of priority.",
-        "objectives": ["improve_focus", "increase_productivity", "reduce_stress"]
-    },
-    {
-        "name": "Goal Visualization",
-        "description": "Visualize achieving your long-term goals to stay motivated.",
-        "recommended_durations": [{"duration_label": "15 minutes"}],
-        "impact_rating_id": 5,
-        "difficulty_level_id": 3,
-        "frequency": "Daily",
-        "is_common": True,
-        "notes": "Use visualization techniques like imagining the steps to achieve your goals and the emotions tied to success.",
-        "objectives": ["clarity", "increase_motivation", "reduce_stress"]
-    },
-    {
-        "name": "Pomodoro Technique",
-        "description": "Work in focused intervals with short breaks in between to maintain energy and focus.",
-        "recommended_durations": [{"duration_label": "25 minutes work, 5 minutes break"}, {"duration_label": "4 cycles of 25/5 minutes with a 15-minute break"}],
-        "impact_rating_id": 5,
-        "difficulty_level_id": 2,
-        "frequency": "Daily",
-        "is_common": True,
-        "notes": "This technique helps break tasks into manageable chunks and prevents burnout. Use a timer for accuracy.",
-        "objectives": ["enhance_focus", "increase_productivity", "reduce_stress"]
-    },
-    {
-        "name": "Deep Work Blocks",
-        "description": "Dedicate uninterrupted time to work on cognitively demanding tasks.",
-        "recommended_durations": [{"duration_label": "1 hour"}, {"duration_label": "2 hours"}],
-        "impact_rating_id": 5,
-        "difficulty_level_id": 4,
-        "frequency": "Daily",
-        "is_common": True,
-        "notes": "Eliminate distractions such as phone notifications and emails. Use this time for critical, high-value work.",
-        "objectives": ["improve_focus", "enhance_problem_solving", "increase_productivity"]
-    },
-    {
-        "name": "Time Blocking",
-        "description": "Schedule your day into specific blocks of time for focused work, breaks, and relaxation.",
-        "recommended_durations": [
-            {"duration_label": "10 minutes (planning)"},
-            {"duration_label": "1-2 hours (morning routine block)"},
-            {"duration_label": "1-3 hours (deep work block)"},
-            {"duration_label": "30 minutes (break/transition block)"},
-            {"duration_label": "1-2 hours (administrative block)"},
-            {"duration_label": "8 hours (daily schedule)"},
-            {"duration_label": "1-2 hours (evening routine block)"}
-        ],
-        "impact_rating_id": 5,
-        "difficulty_level_id": 3,
-        "frequency": "Daily",
-        "is_common": True,
-        "notes": "Include buffer time between tasks to avoid feeling rushed. Review your time blocks at the end of the day.",
-        "objectives": ["enhance_time_management", "increase_productivity", "reduce_decision_fatigue"]
-    },
-    {
-        "name": "Batch Tasking",
-        "description": "Group similar tasks together to maximize efficiency and minimize context switching.",
-        "recommended_durations": [{"duration_label": "30 minutes"}, {"duration_label": "1 hour"}],
-        "impact_rating_id": 4,
-        "difficulty_level_id": 2,
-        "frequency": "Daily",
-        "is_common": True,
-        "notes": "Examples include responding to emails at a set time or doing all errands in one trip.",
-        "objectives": ["increase_efficiency", "reduce_context_switching", "enhance_focus"]
-    },
-    {
-        "name": "Morning Review",
-        "description": "Spend time reviewing your goals and priorities for the day before starting work.",
-        "recommended_durations": [{"duration_label": "10 minutes"}],
+        "name": "Midday Reset",
+        "description": "Take a short break in the middle of the day to recharge and refocus.",
+        "recommended_durations": [{"duration_label": "10 minutes"}, {"duration_label": "15 minutes"}],
         "impact_rating_id": 4,
         "difficulty_level_id": 1,
         "frequency": "Daily",
         "is_common": True,
-        "notes": "This practice helps align your actions with your overall objectives and ensures clarity.",
-        "objectives": ["clarity", "improve_focus", "reduce_stress"]
+        "benefit_synopsis": "A midday reset prevents mental fatigue, boosts energy, and enhances focus for the remainder of the day.",
+        "objectives": ["reduce_mental_fatigue", "enhance_focus", "increase_productivity"]
     },
     {
-        "name": "Evening Reflection",
-        "description": "Reflect on the day's accomplishments and plan for tomorrow.",
-        "recommended_durations": [{"duration_label": "10 minutes"}],
-        "impact_rating_id": 4,
-        "difficulty_level_id": 1,
-        "frequency": "Daily",
-        "is_common": True,
-        "notes": "Use a journal or app to track progress and identify areas for improvement.",
-        "objectives": ["enhance_self-awareness", "reduce_stress", "increase_motivation"]
-    },
-    {
-        "name": "Two-Minute Rule",
-        "description": "Complete tasks immediately if they take two minutes or less.",
-        "recommended_durations": [{"duration_label": "Throughout the day"}],
-        "impact_rating_id": 4,
-        "difficulty_level_id": 1,
-        "frequency": "Daily",
-        "is_common": True,
-        "notes": "This helps prevent small tasks from piling up. Use this rule for quick emails, tidying, or simple errands.",
-        "objectives": ["increase_efficiency", "reduce_procrastination", "enhance_focus"]
-    },
-    {
-        "name": "Eisenhower Matrix",
-        "description": "Organize tasks into categories based on urgency and importance to prioritize effectively.",
-        "recommended_durations": [{"duration_label": "10 minutes"}],
+        "name": "Accountability Partner Check-In",
+        "description": "Regularly check in with an accountability partner to review progress and stay on track.",
+        "recommended_durations": [{"duration_label": "15 minutes"}, {"duration_label": "30 minutes"}],
         "impact_rating_id": 5,
-        "difficulty_level_id": 3,
+        "difficulty_level_id": 2,
         "frequency": "Weekly",
         "is_common": True,
-        "notes": "Quadrants include: Urgent & Important, Not Urgent & Important, Urgent & Not Important, and Not Urgent & Not Important.",
-        "objectives": ["enhance_decision_making", "improve_time_management", "reduce_overwhelm"]
+        "benefit_synopsis": "Regular check-ins provide motivation, reinforce commitment, and create external accountability for goals.",
+        "objectives": ["increase_motivation", "enhance_goal_tracking", "reduce_procrastination"]
     },
     {
-        "name": "Weekly Goal Review",
-        "description": "Evaluate progress on weekly goals and set priorities for the next week.",
+        "name": "Single-Tasking",
+        "description": "Focus on one task at a time to improve efficiency and reduce mental overload.",
         "recommended_durations": [{"duration_label": "30 minutes"}, {"duration_label": "1 hour"}],
         "impact_rating_id": 5,
-        "difficulty_level_id": 3,
-        "frequency": "Weekly",
+        "difficulty_level_id": 2,
+        "frequency": "Daily",
         "is_common": True,
-        "notes": "Use a journal or goal-tracking app to monitor progress and adjust strategies as needed.",
-        "objectives": ["increase_productivity", "enhance_motivation", "clarity"]
+        "benefit_synopsis": "Single-tasking improves concentration, reduces cognitive fatigue, and increases overall efficiency.",
+        "objectives": ["enhance_focus", "increase_efficiency", "reduce_cognitive_overload"]
     },
     {
-        "name": "Focus Sprints",
-        "description": "Work in short, high-intensity bursts on specific tasks to maximize productivity.",
+        "name": "Distraction-Free Work Zone",
+        "description": "Set up a dedicated workspace free from interruptions to enhance focus.",
+        "recommended_durations": [{"duration_label": "Throughout work sessions"}],
+        "impact_rating_id": 5,
+        "difficulty_level_id": 2,
+        "frequency": "Daily",
+        "is_common": True,
+        "benefit_synopsis": "A distraction-free workspace minimizes interruptions, allowing for deeper concentration and increased productivity.",
+        "objectives": ["enhance_focus", "increase_efficiency", "reduce_context_switching"]
+    },
+    {
+        "name": "Pre-Work Ritual",
+        "description": "Establish a consistent routine before starting work to set the tone for productivity.",
+        "recommended_durations": [{"duration_label": "5 minutes"}, {"duration_label": "10 minutes"}],
+        "impact_rating_id": 4,
+        "difficulty_level_id": 1,
+        "frequency": "Daily",
+        "is_common": True,
+        "benefit_synopsis": "A structured pre-work ritual helps transition into focused work mode and builds consistency.",
+        "objectives": ["enhance_focus", "increase_productivity", "reduce_procrastination"]
+    },
+    {
+        "name": "Inbox Zero",
+        "description": "Process emails efficiently and clear your inbox regularly to maintain organization.",
         "recommended_durations": [{"duration_label": "15 minutes"}, {"duration_label": "30 minutes"}],
         "impact_rating_id": 4,
         "difficulty_level_id": 2,
         "frequency": "Daily",
         "is_common": True,
-        "notes": "Use a timer to keep yourself accountable. Adjust sprint length based on task complexity and your energy levels.",
-        "objectives": ["enhance_focus", "increase_efficiency", "reduce_procrastination"]
+        "benefit_synopsis": "A decluttered inbox reduces cognitive load, improves responsiveness, and prevents email overload.",
+        "objectives": ["enhance_organization", "reduce_information_overload", "increase_efficiency"]
     },
     {
-        "name": "Energy Mapping",
-        "description": "Align tasks with your natural energy levels throughout the day.",
-        "recommended_durations": [{"duration_label": "15 minutes (planning)"}, {"duration_label": "Throughout the day"}, {"duration_label": "4-6 cycles of 90 minutes (ultradian rhythm blocks)"}],
+        "name": "Decision Fatigue Reduction",
+        "description": "Limit daily decisions by planning ahead and creating routines.",
+        "recommended_durations": [{"duration_label": "10 minutes (planning)"}, {"duration_label": "Throughout the day"}],
         "impact_rating_id": 5,
-        "difficulty_level_id": 3,
+        "difficulty_level_id": 2,
         "frequency": "Daily",
         "is_common": True,
-        "notes": "Schedule demanding tasks during peak energy times and less-intensive tasks during low-energy periods.",
-        "objectives": ["enhance_time_management", "increase_efficiency", "reduce_burnout"]
+        "benefit_synopsis": "Reducing decision fatigue preserves mental energy for high-priority tasks and prevents burnout.",
+        "objectives": ["enhance_decision_making", "increase_efficiency", "reduce_cognitive_overload"]
+    },
+    {
+        "name": "Sunday Reset",
+        "description": "Dedicate time on Sundays to organize, plan, and prepare for the week ahead.",
+        "recommended_durations": [{"duration_label": "30 minutes"}, {"duration_label": "1 hour"}],
+        "impact_rating_id": 5,
+        "difficulty_level_id": 2,
+        "frequency": "Weekly",
+        "is_common": True,
+        "benefit_synopsis": "A weekly reset improves time management, reduces stress, and ensures a productive start to the week.",
+        "objectives": ["enhance_time_management", "reduce_overwhelm", "increase_productivity"]
+    },
+    {
+        "name": "No Meeting Days",
+        "description": "Set aside certain days with no scheduled meetings to focus on deep work.",
+        "recommended_durations": [{"duration_label": "Full workday"}],
+        "impact_rating_id": 5,
+        "difficulty_level_id": 2,
+        "frequency": "Weekly",
+        "is_common": False,
+        "benefit_synopsis": "No-meeting days protect deep work time, reduce distractions, and enhance task completion rates.",
+        "objectives": ["increase_productivity", "enhance_focus", "reduce_meeting_overload"]
+    },
+    {
+        "name": "Work Sprint Challenge",
+        "description": "Use time-bound challenges to push through work quickly and efficiently.",
+        "recommended_durations": [{"duration_label": "15 minutes"}, {"duration_label": "30 minutes"}],
+        "impact_rating_id": 4,
+        "difficulty_level_id": 2,
+        "frequency": "Daily",
+        "is_common": False,
+        "benefit_synopsis": "Timed sprints build momentum, improve efficiency, and create a sense of urgency to complete tasks.",
+        "objectives": ["increase_efficiency", "enhance_focus", "reduce_procrastination"]
+    },
+    {
+        "name": "Mindful Task Transitions",
+        "description": "Use a brief pause between tasks to reset and refocus.",
+        "recommended_durations": [{"duration_label": "1-2 minutes"}],
+        "impact_rating_id": 4,
+        "difficulty_level_id": 1,
+        "frequency": "Daily",
+        "is_common": True,
+        "benefit_synopsis": "Transitioning mindfully between tasks prevents burnout and improves task-switching efficiency.",
+        "objectives": ["reduce_mental_fatigue", "enhance_focus", "increase_productivity"]
+    },
+    {
+        "name": "Automating Repetitive Tasks",
+        "description": "Use tools and software to automate recurring or manual tasks.",
+        "recommended_durations": [{"duration_label": "Ongoing"}],
+        "impact_rating_id": 5,
+        "difficulty_level_id": 3,
+        "frequency": "Weekly",
+        "is_common": True,
+        "benefit_synopsis": "Automation reduces time spent on repetitive work, freeing up energy for higher-priority tasks.",
+        "objectives": ["increase_efficiency", "reduce_manual_workload", "enhance_time_management"]
+    },
+    {
+        "name": "End-of-Week Reflection",
+        "description": "Review the past week's successes, challenges, and areas for improvement.",
+        "recommended_durations": [{"duration_label": "15 minutes"}, {"duration_label": "30 minutes"}],
+        "impact_rating_id": 5,
+        "difficulty_level_id": 2,
+        "frequency": "Weekly",
+        "is_common": True,
+        "benefit_synopsis": "Reflecting on the past week enhances learning, improves planning, and increases self-awareness.",
+        "objectives": ["enhance_self-awareness", "improve_time_management", "increase_motivation"]
+    },
+    {
+        "name": "Morning Mind Dump",
+        "description": "Write down all thoughts, ideas, and tasks to clear your mind before starting work.",
+        "recommended_durations": [{"duration_label": "10 minutes"}],
+        "impact_rating_id": 4,
+        "difficulty_level_id": 1,
+        "frequency": "Daily",
+        "is_common": True,
+        "benefit_synopsis": "A mind dump reduces mental clutter, increases focus, and helps organize priorities for the day.",
+        "objectives": ["reduce_mental_clutter", "enhance_focus", "increase_productivity"]
     }
 ],
+
 'Downtime/Relaxation': [
     {
         "name": "Reading for Pleasure",
@@ -2071,6 +2160,7 @@ practice_data = {
         "frequency": "Twice daily",
         "is_common": True,
         "notes": "Choose genres or topics you enjoy, such as fiction, fantasy, or self-help.",
+        "benefit_synopsis": "Reading for pleasure enhances relaxation, reduces stress, and improves cognitive function.",
         "objectives": ["reduce_stress", "enhance_focus", "improve_sleep_quality"]
     },
     {
@@ -2082,6 +2172,7 @@ practice_data = {
         "frequency": "Daily",
         "is_common": True,
         "notes": "Use techniques like box breathing or 4-7-8 breathing to enhance relaxation.",
+        "benefit_synopsis": "Mindful breathing reduces anxiety, improves emotional regulation, and enhances overall well-being.",
         "objectives": ["reduce_anxiety", "enhance_self_awareness", "improve_emotional_regulation"]
     },
     {
@@ -2093,6 +2184,7 @@ practice_data = {
         "frequency": "Daily",
         "is_common": True,
         "notes": "Focus on areas that feel tight, such as the neck, shoulders, and lower back.",
+        "benefit_synopsis": "Gentle stretching improves flexibility, reduces muscle tension, and enhances relaxation.",
         "objectives": ["reduce_muscle_tension", "enhance_flexibility", "promote_relaxation"]
     },
     {
@@ -2104,6 +2196,7 @@ practice_data = {
         "frequency": "Daily",
         "is_common": True,
         "notes": "Consider creating a playlist of calming songs or music that brings joy.",
+        "benefit_synopsis": "Listening to music relieves stress, boosts mood, and promotes emotional well-being.",
         "objectives": ["reduce_stress", "enhance_mood_stability", "promote_relaxation"]
     },
     {
@@ -2115,6 +2208,7 @@ practice_data = {
         "frequency": "Daily",
         "is_common": True,
         "notes": "Visit a park, sit under a tree, or take a leisurely walk outdoors.",
+        "benefit_synopsis": "Spending time in nature reduces stress, enhances mood, and strengthens mind-body connection.",
         "objectives": ["reduce_stress", "enhance_mood_stability", "promote_mind-body_connection"]
     },
     {
@@ -2126,6 +2220,7 @@ practice_data = {
         "frequency": "Weekly",
         "is_common": True,
         "notes": "Focus on patterns that you find enjoyable. This activity is particularly effective for reducing stress.",
+        "benefit_synopsis": "Meditative coloring improves focus, relieves stress, and fosters creative expression.",
         "objectives": ["enhance_creative_expression", "reduce_stress", "promote_mindfulness"]
     },
     {
@@ -2137,6 +2232,7 @@ practice_data = {
         "frequency": "Daily",
         "is_common": True,
         "notes": "Use apps or videos to guide the session. Focus on areas where you hold tension.",
+        "benefit_synopsis": "Guided relaxation helps reduce stress, improve sleep quality, and restore mental balance.",
         "objectives": ["reduce_stress", "enhance_mood_stability", "improve_sleep_quality"]
     },
     {
@@ -2148,6 +2244,7 @@ practice_data = {
         "frequency": "Daily",
         "is_common": True,
         "notes": "Opt for decaffeinated options in the evening to avoid disrupting sleep.",
+        "benefit_synopsis": "A mindful tea or coffee ritual enhances relaxation and promotes a sense of calm.",
         "objectives": ["promote_relaxation", "enhance_mindfulness", "reduce_stress"]
     },
     {
@@ -2159,6 +2256,7 @@ practice_data = {
         "frequency": "Weekly",
         "is_common": True,
         "notes": "Add Epsom salts or essential oils like lavender to enhance relaxation.",
+        "benefit_synopsis": "A warm bath soothes sore muscles, reduces tension, and improves sleep quality.",
         "objectives": ["reduce_muscle_tension", "promote_relaxation", "enhance_mood_stability"]
     },
     {
@@ -2170,40 +2268,8 @@ practice_data = {
         "frequency": "Weekly",
         "is_common": True,
         "notes": "Choose content that makes you feel happy or relaxed. Avoid heavy or stressful shows before bed.",
+        "benefit_synopsis": "Watching a comfort show provides emotional relief, reduces stress, and promotes relaxation.",
         "objectives": ["reduce_stress", "enhance_mood_stability", "promote_relaxation"]
-    },
-    {
-        "name": "Gentle Crafting",
-        "description": "Engage in crafting activities like knitting, crocheting, or scrapbooking to relax and unwind.",
-        "recommended_durations": [{"duration_label": "30 minutes"}],
-        "impact_rating_id": 4,
-        "difficulty_level_id": 2,
-        "frequency": "Weekly",
-        "is_common": True,
-        "notes": "Focus on crafts that you enjoy and that don’t require high stress or precision.",
-        "objectives": ["enhance_creativity", "reduce_stress", "promote_mindfulness"]
-    },
-    {
-        "name": "Pet Time",
-        "description": "Spend time bonding with a pet to relax and enhance mood.",
-        "recommended_durations": [{"duration_label": "15 minutes"}],
-        "impact_rating_id": 5,
-        "difficulty_level_id": 1,
-        "frequency": "Daily",
-        "is_common": True,
-        "notes": "Activities like walking a dog, playing, or simply cuddling can reduce stress and increase joy.",
-        "objectives": ["reduce_stress", "enhance_mood_stability", "promote_connection"]
-    },
-    {
-        "name": "Visualization for Relaxation",
-        "description": "Close your eyes and visualize a peaceful scene or memory to calm your mind.",
-        "recommended_durations": [{"duration_label": "10 minutes"}],
-        "impact_rating_id": 4,
-        "difficulty_level_id": 1,
-        "frequency": "Daily",
-        "is_common": True,
-        "notes": "Focus on details such as colors, sounds, and sensations to make the visualization vivid.",
-        "objectives": ["reduce_stress", "enhance_focus", "improve_mood_stability"]
     },
     {
         "name": "Gratitude Practice",
@@ -2214,6 +2280,7 @@ practice_data = {
         "frequency": "Daily",
         "is_common": True,
         "notes": "Think of specific moments or things that brought joy or comfort to your day.",
+        "benefit_synopsis": "Practicing gratitude enhances mood stability, fosters positivity, and reduces stress.",
         "objectives": ["enhance_mood_stability", "reduce_stress", "promote_positivity"]
     },
     {
@@ -2225,6 +2292,7 @@ practice_data = {
         "frequency": "Daily",
         "is_common": True,
         "notes": "Consider noting three things you're grateful for or journaling about your experiences and feelings.",
+        "benefit_synopsis": "Journaling encourages self-awareness, emotional regulation, and long-term mindset shifts.",
         "objectives": ["enhance_mood_stability", "increase_self_awareness", "reduce_stress"]
     }
 ],
@@ -2240,6 +2308,7 @@ practice_data = {
         "frequency": "Daily",
         "is_common": True,
         "notes": "Use this time to focus on sport-specific drills, conditioning, or skill refinement, tailored to your training objectives.",
+        "benefit_synopsis": "Enhances athletic performance, builds endurance, and improves sport-specific skills.",
         "objectives": ["enhance_performance", "build_strength_and_endurance", "improve_technical_skills"]
     },
     {
@@ -2251,6 +2320,7 @@ practice_data = {
         "frequency": "Daily",
         "is_common": True,
         "notes": "Focus on refining technical skills or performing mobility exercises to enhance flexibility, prevent injury, and optimize readiness for training or competition.",
+        "benefit_synopsis": "Improves flexibility, reduces injury risk, and enhances readiness for training.",
         "objectives": ["improve_flexibility", "refine_technical_skills", "enhance_performance"]
     },
     {
@@ -2262,6 +2332,7 @@ practice_data = {
         "frequency": "Daily",
         "is_common": True,
         "notes": "Visualize yourself performing at your best, overcoming challenges, and achieving your goals to build confidence and sharpen focus.",
+        "benefit_synopsis": "Boosts confidence, sharpens focus, and enhances mental resilience.",
         "objectives": ["boost_confidence", "enhance_focus", "improve_performance"]
     },
     {
@@ -2272,6 +2343,7 @@ practice_data = {
         "frequency": "Weekly",
         "is_common": True,
         "notes": "Ensure you wear protective eyewear and warm up properly before playing.",
+        "benefit_synopsis": "Improves agility, cardiovascular endurance, and hand-eye coordination.",
         "objectives": ["improve_fitness", "enhance_agility", "increase_endurance"]
     },
     {
@@ -2282,6 +2354,7 @@ practice_data = {
         "frequency": "Twice weekly",
         "is_common": True,
         "notes": "Great for all skill levels and a fun way to stay active.",
+        "benefit_synopsis": "Encourages social interaction, enhances coordination, and improves cardio health.",
         "objectives": ["improve_cardio_health", "social_interaction", "boost_coordination"]
     },
     {
@@ -2292,6 +2365,7 @@ practice_data = {
         "frequency": "Weekly",
         "is_common": True,
         "notes": "Play on a court with proper footwear to avoid injuries.",
+        "benefit_synopsis": "Boosts endurance, strengthens teamwork, and develops quick decision-making skills.",
         "objectives": ["build_strength", "promote_teamwork", "enhance_endurance"]
     },
     {
@@ -2302,6 +2376,7 @@ practice_data = {
         "frequency": "Weekly",
         "is_common": True,
         "notes": "Ideal for improving stamina and teamwork skills.",
+        "benefit_synopsis": "Enhances endurance, improves coordination, and builds team strategy skills.",
         "objectives": ["increase_stamina", "improve_coordination", "build_team_skills"]
     },
     {
@@ -2312,98 +2387,8 @@ practice_data = {
         "frequency": "Weekly",
         "is_common": True,
         "notes": "Consider joining a local tennis club for regular practice.",
+        "benefit_synopsis": "Enhances agility, cardiovascular fitness, and strategic planning.",
         "objectives": ["improve_fitness", "develop_strategy", "enhance_agility"]
-    },
-    {
-        "name": "Volleyball",
-        "description": "A popular team sport that strengthens coordination and upper body muscles.",
-        "impact_rating_id": 4,
-        "difficulty_level_id": 3,
-        "frequency": "Twice monthly",
-        "is_common": True,
-        "notes": "Beach volleyball is a great outdoor variation.",
-        "objectives": ["build_strength", "enhance_coordination", "promote_teamwork"]
-    },
-    {
-        "name": "Baseball",
-        "description": "A classic team sport that hones hand-eye coordination and teamwork.",
-        "impact_rating_id": 4,
-        "difficulty_level_id": 3,
-        "frequency": "Monthly",
-        "is_common": True,
-        "notes": "Join a local league for competitive or recreational play.",
-        "objectives": ["improve_coordination", "build_team_skills", "enhance_strategy"]
-    },
-    {
-        "name": "Softball",
-        "description": "A recreational variation of baseball, suitable for all ages and skill levels.",
-        "impact_rating_id": 3,
-        "difficulty_level_id": 2,
-        "frequency": "Monthly",
-        "is_common": True,
-        "notes": "Great for casual, friendly games with friends or family.",
-        "objectives": ["promote_social_bonding", "build_coordination", "enhance_teamwork"]
-    },
-    {
-        "name": "Golf",
-        "description": "A relaxing sport that combines precision, focus, and moderate physical activity.",
-        "impact_rating_id": 3,
-        "difficulty_level_id": 2,
-        "frequency": "Monthly",
-        "is_common": True,
-        "notes": "A good walk on a course can also improve mental clarity.",
-        "objectives": ["improve_focus", "enhance_precision", "promote_relaxation"]
-    },
-    {
-        "name": "Bowling",
-        "description": "An enjoyable indoor activity that develops hand-eye coordination and social connections.",
-        "recommended_durations": [{"duration_label": "90 minutes"}],
-        "impact_rating_id": 3,
-        "difficulty_level_id": 1,
-        "frequency": "Occasional",
-        "is_common": True,
-        "notes": "Great for all skill levels and ages, often paired with social outings.",
-        "objectives": ["promote_social_interaction", "improve_hand_eye_coordination", "provide_recreational_fun"]
-    },
-    {
-        "name": "Badminton",
-        "description": "A fast-paced racquet sport that improves agility and coordination.",
-        "impact_rating_id": 4,
-        "difficulty_level_id": 2,
-        "frequency": "Twice monthly",
-        "is_common": True,
-        "notes": "Indoor courts are ideal for maintaining consistent play conditions.",
-        "objectives": ["boost_coordination", "improve_fitness", "enhance_agility"]
-    },
-    {
-        "name": "Hockey",
-        "description": "A high-intensity team sport played on ice or field, requiring speed and strategy.",
-        "impact_rating_id": 5,
-        "difficulty_level_id": 4,
-        "frequency": "Weekly",
-        "is_common": True,
-        "notes": "Proper protective gear is essential for safety during play.",
-        "objectives": ["enhance_teamwork", "improve_fitness", "build_resilience"]
-    },
-    {
-        "name": "Lacrosse",
-        "description": "A fast-paced team sport combining elements of basketball, soccer, and hockey.",
-        "impact_rating_id": 5,
-        "difficulty_level_id": 4,
-        "frequency": "Weekly",
-        "is_common": True,
-        "notes": "Requires good hand-eye coordination and stamina.",
-        "objectives": ["enhance_coordination", "promote_teamwork", "increase_endurance"]
-    },
-    {
-        "name": "Table Tennis",
-        "description": "A quick-paced indoor game that enhances reflexes and precision.",
-        "impact_rating_id": 3,
-        "difficulty_level_id": 2,
-        "frequency": "Weekly",
-        "is_common": True,
-        "notes": "A great way to enjoy light exercise and improve focus.",
-        "objectives": ["improve_reflexes", "enhance_precision", "boost_focus"]
     },
     {
         "name": "Surfing",
@@ -2414,10 +2399,53 @@ practice_data = {
         "frequency": "Monthly",
         "is_common": True,
         "notes": "Excellent for building core strength and balance.",
+        "benefit_synopsis": "Improves balance, strengthens the core, and enhances focus.",
         "objectives": ["improve_balance", "build_core_strength", "enhance_focus"]
     },
-]
-
-# Addiction and substance related abstinence
+    {
+        "name": "Bowling",
+        "description": "An enjoyable indoor activity that develops hand-eye coordination and social connections.",
+        "recommended_durations": [{"duration_label": "90 minutes"}],
+        "impact_rating_id": 3,
+        "difficulty_level_id": 1,
+        "frequency": "Occasional",
+        "is_common": True,
+        "notes": "Great for all skill levels and ages, often paired with social outings.",
+        "benefit_synopsis": "Enhances coordination, fosters social bonding, and provides recreational enjoyment.",
+        "objectives": ["promote_social_interaction", "improve_hand_eye_coordination", "provide_recreational_fun"]
+    },
+    {
+        "name": "Lacrosse",
+        "description": "A fast-paced team sport combining elements of basketball, soccer, and hockey.",
+        "impact_rating_id": 5,
+        "difficulty_level_id": 4,
+        "frequency": "Weekly",
+        "is_common": True,
+        "notes": "Requires good hand-eye coordination and stamina.",
+        "benefit_synopsis": "Improves coordination, builds endurance, and enhances teamwork.",
+        "objectives": ["enhance_coordination", "promote_teamwork", "increase_endurance"]
+    },
+    {
+        "name": "Table Tennis",
+        "description": "A quick-paced indoor game that enhances reflexes and precision.",
+        "impact_rating_id": 3,
+        "difficulty_level_id": 2,
+        "frequency": "Weekly",
+        "is_common": True,
+        "notes": "A great way to enjoy light exercise and improve focus.",
+        "benefit_synopsis": "Boosts reflexes, enhances hand-eye coordination, and sharpens focus.",
+        "objectives": ["improve_reflexes", "enhance_precision", "boost_focus"]
+    },
+    {
+        "name": "Golf",
+        "description": "A relaxing sport that combines precision, focus, and moderate physical activity.",
+        "impact_rating_id": 3,
+        "difficulty_level_id": 2,
+        "frequency": "Monthly",
+        "is_common": True,
+        "notes": "A good walk on a course can also improve mental clarity.",
+        "benefit_synopsis": "Improves focus, enhances precision, and promotes relaxation.",
+        "objectives": ["improve_focus", "enhance_precision", "promote_relaxation"]
+    }
+  ]
 }
-

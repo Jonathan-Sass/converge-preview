@@ -99,6 +99,7 @@ def seed_duration_data():
         VALUES
             ('Ongoing', 0),
             ('1 minute', 60),
+            ('1-2 minutes', NULL),
             ('2 minutes', 120),
             ('3 minutes', 180),
             ('4 minutes', 240),
@@ -132,8 +133,10 @@ def seed_duration_data():
             ('9 hours', 32400),
             ('Half day', 43200),
             ('Full day', 86400),
+            ('Full workday', NULL),
             ('Ongoing', NULL),
             ('Throughout the day', NULL),
+            ('Throughout work sessions', NULL),
             ('25 minutes work, 5 minutes break', NULL),
             ('4 cycles of 25/5 minutes with a 15-minute break', NULL), 
             ('4-6 cycles of 90 minutes (ultradian rhythm blocks)', NULL),

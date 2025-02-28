@@ -151,6 +151,8 @@ def prepare_practice_data(db_categories, frequencies):
                 # Assign practice name, description, is_common and literature_summary
                 prepared_practice_data['name'] = pymysql.converters.escape_string(practice.get('name', ''))
                 prepared_practice_data['description'] = pymysql.converters.escape_string(practice.get('description', ''))
+                prepared_practice_data['benefit_synopsis'] = pymysql.converters.escape_string(practice.get('benefit_synopsis', ''))
+
                 prepared_practice_data['notes'] = pymysql.converters.escape_string(practice.get('notes', ''))
 
                 prepared_practice_data['is_common'] = practice.get('is_common', 0)
@@ -167,6 +169,7 @@ def prepare_practice_data(db_categories, frequencies):
             data["frequency_id"], 
             data["name"], 
             data["description"], 
+            data["benefit_synopsis"],
             data["is_common"], 
             data["notes"], 
             data["literature_summary"]
@@ -181,9 +184,9 @@ def execute_practice_data_seed(values):
     
     query = """
         INSERT INTO practices
-            (practice_category_id, impact_rating_id, difficulty_level_id, frequency_id, name, description, is_common, notes, literature_summary, created_at, updated_at)
+            (practice_category_id, impact_rating_id, difficulty_level_id, frequency_id, name, description, benefit_synopsis, is_common, notes, literature_summary, created_at, updated_at)
         VALUES
-            (%s, %s, %s, %s, %s, %s, %s, %s, %s, NOW(), NOW())
+            (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, NOW(), NOW())
         ON DUPLICATE KEY UPDATE
             practice_category_id = VALUES(practice_category_id),
             impact_rating_id = VALUES(impact_rating_id),
@@ -191,6 +194,7 @@ def execute_practice_data_seed(values):
             frequency_id = VALUES(frequency_id),
             name = name,
             description = VALUES(description),
+            benefit_synopsis = VALUES(benefit_synopsis),
             is_common = VALUES(is_common),
             notes = VALUES(notes),
             literature_summary = VALUES(literature_summary),

@@ -36,7 +36,8 @@ def seed_route():
 
 @app.get("/testseed")
 def test_seed_route():
-    survey_seed.test_seed()
+    misc_practice_data_seed.seed_misc_practice_data()
+    practice_seed.seed_practice_data()
 
     return render_template("/dashboard/new_user.html")
 
