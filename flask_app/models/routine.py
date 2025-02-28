@@ -44,6 +44,7 @@ class Routine:
               p.id AS practice_id,
               p.name AS practice_name,
               p.description AS practice_description,
+              p.benefit_synopsis,
               p.is_common AS practice_is_common,
               p.notes AS practice_notes,
               p.literature_summary,
@@ -114,6 +115,7 @@ class Routine:
                             "routine_id": row["practice_routine_id"],
                             "practice_name": row["practice_name"],
                             "practice_description": row["practice_description"],
+                            "benefit_synopsis": row["benefit_synopsis"],
                             "practice_category": row["practice_category"],
                             "impact_rating_description": row[
                                 "impact_rating_description"
@@ -255,7 +257,7 @@ class Routine:
                 success_count += 1
             else:
                 raise RuntimeError(
-                    f"Error inserting data for routine: {routine_data["name"]}, practice id: {practice["practice_id"]}"
+                    f"Error inserting data for routine: {routine_data["name"]}, practice id: {practice["practiceId"]}"
                 )
 
         print(

@@ -2,7 +2,6 @@ from flask_app.config.mysqlconnection import connectToMySQL
 from flask import flash, session, redirect
 from pprint import pprint
 
-from flask_app.models.user import User
 from flask_app.models.duration import Duration
 
 
@@ -15,6 +14,7 @@ class Practice:
         self.routine_id = data.get("routine_id", None)
         self.name = data["practice_name"]
         self.description = data["practice_description"]
+        self.benefit_synopsis = data["benefit_synopsis"]
         self.practice_category = data["practice_category"]
         self.impact_rating_description = data["impact_rating_description"]
         # TODO: Condense difficulties and impact_ratings column names for consistency
@@ -35,6 +35,7 @@ class Practice:
         "routine_id": self.routine_id,
         "name": self.name,
         "description": self.description,
+        "benefit_synopsis": self.benefit_synopsis,
         "practice_category": self.practice_category,
         "impact_rating_description": self.impact_rating_description,
         "difficulty": self.difficulty,
@@ -54,6 +55,7 @@ class Practice:
             "routine_id": result.get("routine_id", None),
             "name": result["practice_name"],
             "description": result["practice_description"],
+            "benefit_synopsis": result["benefit_synopsis"],
             "practice_category": result["practice_category"],
             "impact_rating_description": result["impact_rating_description"],
             # TODO: Condense difficulties and impact_ratings column names for consistency
@@ -74,6 +76,7 @@ class Practice:
             p.id AS practice_id,
             p.name AS practice_name,
             p.description AS practice_description,
+            p.benefit_synopsis,
             p.is_common AS practice_is_common,
             p.notes AS practice_notes,
             p.literature_summary,

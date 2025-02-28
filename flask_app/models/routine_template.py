@@ -39,6 +39,7 @@ class RoutineTemplate:
                 practices.id AS practice_id,
                 practices.name AS practice_name,
                 practices.description AS practice_description,
+                practices.benefit_synopsis,
                 practices.is_common AS practice_is_common,
                 practices.notes AS practice_notes,
                 practices.literature_summary,
