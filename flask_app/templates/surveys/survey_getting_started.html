@@ -18,8 +18,9 @@
     <nav
       class="navbar navbar-expand-lg navbar-dark bg-dark w-100 m-auto d-flex justify-content-between position-sticky top-0 z-3 p-3">
       <div class="container-fluid">
-        <a class="navbar-brand d-inline-flex align-items-center gap-4" href="/home">
-          <img src="/static/img/Enso_Blue_and_Black.jpg" alt="Logo" width="60" height="60" class="rounded-circle">
+        <a class="navbar-brand d-inline-flex align-items-center gap-4" href="/dashboard">
+          <img src="/static/img/Enso_Blue_and_Black.jpg" class="rounded-circle" width="60" height="60"
+            alt="Converge Logo">
           <h1 class="display-5 text-primary">Converge</h1>
         </a>
       </div>
@@ -38,7 +39,8 @@
                   Goals
                 </button>
                 <ul class="dropdown-menu dropdown-menu-dark">
-                  <li><a class="dropdown-item" href="/surveys/introduction">Introduction</a></li>
+                  <li><a class="dropdown-item" href="/goals/manager">Goal Manager</a></li>
+
                   <li><a class="dropdown-item" href="/goals/recreation-travel">Recreation and Travel</a></li>
                   <li><a class="dropdown-item" href="/goals/health-wellness">Health and Wellness</a></li>
                   <li><a class="dropdown-item" href="/goals/social-community">Social and Community Engagement</a></li>
@@ -59,19 +61,19 @@
             <ul class="navbar-nav">
               <li class="nav-item dropdown">
                 <button class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                  Practices
+                  Routines
                 </button>
                 <ul class="dropdown-menu dropdown-menu-dark">
-                  <li><a class="dropdown-item" href="/practices/AM">AM Practices</a></li>
-                  <li><a class="dropdown-item" href="/practices/PM">PM Practices</a></li>
-                  <li><a class="dropdown-item" href="/practices/daily">Daily Practices</a></li>
-                  <li><a class="dropdown-item" href="/practices/discipline">Discipline</a></li>
+                  <li><a class="dropdown-item" href="/routines/am/manage">AM Routine Manager</a></li>
+                  <li><a class="dropdown-item" href="/routines/pm/manage">PM Routine Manager</a></li>
+                  <li><a class="dropdown-item" href="/intentions/edit">Daily Intention Manager</a></li>
+                  <li><a class="dropdown-item" href="/practices/flex-items/manage">Flex Item</a></li>
                   <li><a class="dropdown-item" href="/practices">Something else?</a></li>
                 </ul>
               </li>
             </ul>
           </div>
-          <a class="nav-link disabled" aria-disabled="true">Disabled</a>
+          <a class="nav-link" href="/social">Social</a>
           <form action="/users/logout" method="post">
             <button class="btn btn-link" type="submit" name="logout">logout</button>
           </form>
@@ -83,6 +85,7 @@
       <h4 class="display-6 mx-5">Let's take a look at how you'd like Converge to work for you.</h4>
     </header>
     <!-- Content and Sidebar Div-->
+     <div class="parallax-bg"></div>
     <div class="container-fluid m-auto my-3 d-flex align-items-start gap-3">
       <!-- Progress Nav Sidebar -->
       <div class="card shadow p-2 opacity-75 col-3">
@@ -164,36 +167,38 @@
       </div>
     </div>
   </div>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-    crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/intro.js/7.2.0/intro.js" integrity="sha512-f26fxKZJiF0AjutUaQHNJ5KnXSisqyUQ3oyfaoen2apB1wLa5ccW3lmtaRe2jdP5kh4LF2gAHP9xQbx7wYhU5w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </body>
-  <script>
-      introJs().setOptions({
-        steps: [
-          {
-            element: document.querySelector('.question-container'),
-            title: 'Surveys',
-            intro: 'You will encounter surveys like this one throughout Converge. We will be using these surveys to get to know you and provide a personalized experience.  That being said, we will never share your personal information with anyone outside Converge.'
-          },
-          {
-            element: document.querySelector('#start-btn'),
-            title: 'Click start to begin!'
-          },
-          // {
-          //   element: document.querySelector('#edit-am-routine'),
-          //   title: 'Edit a Routine',
-          //   intro: 'The "Edit Routine" button allows you to see and edit an entire routine.'
-          // },
-          // {
-          //   element: document.querySelector('#edit-practice-example'),
-          //   title: 'Edit a Practice',
-          //   intro: 'Similarly, "Edit Practice" will allow you to view and tweak a specific practice as well as view more like it!'
-          // }
-        ],
-        tooltipClass: 'introCustomTooltip'
-      })
-      .start()
-  </script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+  crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/intro.js/7.2.0/intro.js" integrity="sha512-f26fxKZJiF0AjutUaQHNJ5KnXSisqyUQ3oyfaoen2apB1wLa5ccW3lmtaRe2jdP5kh4LF2gAHP9xQbx7wYhU5w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="{{ url_for('static', filename='/js/ui-effects.js') }}"></script>
+</script>
+<script>
+    introJs().setOptions({
+      steps: [
+        {
+          element: document.querySelector('.question-container'),
+          title: 'Surveys',
+          intro: 'You will encounter surveys like this one throughout Converge. We will be using these surveys to get to know you and provide a personalized experience.  That being said, we will never share your personal information with anyone outside Converge.'
+        },
+        {
+          element: document.querySelector('#start-btn'),
+          title: 'Click start to begin!'
+        },
+        // {
+        //   element: document.querySelector('#edit-am-routine'),
+        //   title: 'Edit a Routine',
+        //   intro: 'The "Edit Routine" button allows you to see and edit an entire routine.'
+        // },
+        // {
+        //   element: document.querySelector('#edit-practice-example'),
+        //   title: 'Edit a Practice',
+        //   intro: 'Similarly, "Edit Practice" will allow you to view and tweak a specific practice as well as view more like it!'
+        // }
+      ],
+      tooltipClass: 'introCustomTooltip'
+    })
+    .start()
+</script>
 </html>
