@@ -25,7 +25,7 @@ class UserSurvey:
     def find_questions_by_category_and_subcategory(cls, user_category_subcategory_data):
         query = """
             SELECT 
-                survey_categories.name AS category,
+                categories.name AS category,
                 subcategories.name AS subcategory,
                 survey_questions.id AS question_id,
                 survey_questions.question_slug,
@@ -41,7 +41,7 @@ class UserSurvey:
             JOIN
               subcategories ON survey_questions.subcategory_id  = subcategories.id
             JOIN
-              survey_categories ON subcategories.category_id = survey_categories.id
+              categories ON subcategories.category_id = categories.id
             LEFT JOIN
                 survey_question_answer_map ON survey_question_answer_map.survey_question_id = survey_questions.id
             LEFT JOIN
@@ -51,7 +51,7 @@ class UserSurvey:
             LEFT JOIN
                 survey_questions sq_next ON survey_branching.next_question_id = sq_next.id
             WHERE 
-                survey_categories.category_slug = %(category)s
+                categories.category_slug = %(category)s
             AND
                 subcategories.subcategory_slug = %(subcategory)s
             ORDER BY
@@ -90,8 +90,8 @@ class UserSurvey:
 
                 survey_branches.append(branch_data)
 
-        print("survey_branches in process_survey_branch_data")
-        pprint(survey_branches)
+        # print("survey_branches in process_survey_branch_data")
+        # pprint(survey_branches)
 
         return survey_branches
     
