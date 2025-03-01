@@ -142,24 +142,24 @@ class Routine:
         return routines
 
     @staticmethod
-    def select_and_fetch_routine_template(user, survey_topic_slug_string):
+    def select_and_fetch_routine_template(user, subcategory_slug_string):
         """
         Selects and retrieves a recommended routine template for a given user based on their survey responses.
 
         This method determines an appropriate routine template for the user by analyzing their responses 
-        to survey questions within a specific topic (identified by `survey_topic_slug_string`). If the user 
+        to survey questions within a specific topic (identified by `subcategory_slug_string`). If the user 
         has provided responses, the function processes those responses to select the best-matching routine template.
         If no responses are available, it defaults to a "Balanced Start" routine template.
 
         Args:
             user (User): The user object whose responses are being analyzed.
-            survey_topic_slug_string (str): The slug representing the survey topic used to filter user responses.
+            subcategory_slug_string (str): The slug representing the survey topic used to filter user responses.
 
         Returns:
             RoutineTemplate: The selected routine template, including associated practices.
 
         Raises:
-            AttributeError: If `UserResponse.find_user_responses_by_user_id_and_survey_topic_slug` 
+            AttributeError: If `UserResponse.find_user_responses_by_user_id_and_subcategory_slug` 
                             or `UserResponse.process_responses_for_routine_template_selection` is not defined.
             ValueError: If no matching routine template is found.
 
@@ -169,9 +169,9 @@ class Routine:
             print(routine_template.name)  # Outputs the name of the recommended routine template
         """
 
-        if survey_topic_slug_string:
+        if subcategory_slug_string:
             # Find the user's responses for the given topic slug
-            user_responses = UserResponse.find_user_responses_by_user_id_and_subcategory_slug(user, survey_topic_slug_string)
+            user_responses = UserResponse.find_user_responses_by_user_id_and_subcategory_slug(user, subcategory_slug_string)
 
             # Process responses to select routine template for the user
             recommended_routine_template_name = UserResponse.process_responses_for_routine_template_selection(user_responses)
