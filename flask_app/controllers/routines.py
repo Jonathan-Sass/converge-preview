@@ -20,6 +20,18 @@ def test_route():
     return render_template("routines/routines_template.html")
 
 
+@app.get("/routines/am/manage")
+def manage_am_routines():
+    user = User.get_logged_in_user()
+    print(user)
+    if not user:
+        return redirect("/")
+    
+    routines = Routine.find_routines_by_user_id(user.id)
+
+    return render_template("/routines/am_routine_build_your_own.html", routines = routines)
+
+
 @app.get("/routines/intro")
 def building_practices_intro():
     user = User.get_logged_in_user()
@@ -71,7 +83,7 @@ def build_your_own_am_routine():
     routine = Routine.select_and_fetch_routine_template(user, None)
     # practices, practice_categories = Practice.find_all_practices_with_practice_categories()
 
-    return render_template("routines/am_routine_build_your_own.html", routine = routine)
+    return render_template("routines/am_routine_intro_build_your_own.html", routine = routine)
 
 @app.post("/routines/am/intro-build-your-own/save")
 def save_build_your_own_routine():

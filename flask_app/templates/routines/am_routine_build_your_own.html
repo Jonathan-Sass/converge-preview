@@ -14,75 +14,71 @@
 </head>
 
 <body>
+  <div class="parallax-bg"></div>
   <div class="border-box">
     <!-- Top Navbar -->
     <nav
-      class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top p-3">
-      <div class="container-fluid d-flex align-items-center">
-        <div class="d-flex gap-1 align-items-end">
-          <a class="navbar-brand d-inline-flex gap-3" href="/home">
-            <img src="/static/img/Enso_Blue_and_Black.jpg" alt="Logo" width="60" height="60" class="rounded-circle">
-            <h1 class="display-5 text-primary">Converge</h1>
-          </a>
-          <p class="text-light">The architecture of sustainable habits.</p>
-        </div>
-        <div class="d-flex gap-1">
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDarkDropdown"
-            aria-controls="navbarNavDarkDropdown" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
+      class="navbar navbar-expand-lg navbar-dark bg-dark w-100 m-auto d-flex justify-content-between position-sticky top-0 z-3 p-3">
+      <div class="container-fluid">
+        <a class="navbar-brand d-inline-flex align-items-center gap-4" href="/dashboard">
+          <img src="/static/img/Enso_Blue_and_Black.jpg" class="rounded-circle" width="60" height="60"
+            alt="Converge Logo">
+          <h1 class="display-5 text-primary">Converge</h1>
+        </a>
+      </div>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDarkDropdown"
+        aria-controls="navbarNavDarkDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
+        <div class="navbar-nav">
+          <a class="nav-link active" aria-current="page" href="/home">Home</a>
+          <a class="nav-link" href="/calendar">Calendar</a>
           <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
-            <div class="navbar-nav">
-              <a class="nav-link active btn btn-sm btn-light opacity-75" aria-current="page" href="/home">Home</a>
-              <a class="nav-link opacity-75" href="/calendar"><button class="btn btn-outline-light">Calendar</button></a>
-              <div class="collapse navbar-collapse " id="navbarNavDarkDropdown">
-                <ul class="navbar-nav">
-                  <li class="nav-item dropdown">
-                    <button class="btn btn-outline-light opacity-75 mx-1 dropdown-toggle" data-bs-toggle="dropdown"
-                      aria-expanded="false">
-                      Goals
-                    </button>
-                    <ul class="dropdown-menu dropdown-menu-dark">
-                      <li><a class="dropdown-item" href="/goals/your-why">Understanding Your WHY</a></li>
-                      <li><a class="dropdown-item" href="/goals/recreation-travel">Recreation and Travel</a></li>
-                      <li><a class="dropdown-item" href="/goals/health-wellness">Health and Wellness</a></li>
-                      <li><a class="dropdown-item" href="/goals/social-community">Social and Community Engagement</a></li>
-                      <li><a class="dropdown-item" href="/goals/spirituality">Spirituality and Life Purpose</a></li>
-                      <li><a class="dropdown-item" href="/goals/career-professional-development">Career and Professional
-                          Development</a></li>
-                      <li><a class="dropdown-item" href="/goals/wealth-finance">Wealth Building and Financial Health</a>
-                      </li>
-                      <li><a class="dropdown-item" href="/goals/creative-expression-hobbies">Creative Expression and
-                          Hobbies</a></li>
-                      <li><a class="dropdown-item" href="/goals/environment-success">Environment and Success</a></li>
-                      <li><a class="dropdown-item" href="/goals">Something else here</a></li>
-                    </ul>
+            <ul class="navbar-nav">
+              <li class="nav-item dropdown">
+                <button class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                  Goals
+                </button>
+                <ul class="dropdown-menu dropdown-menu-dark">
+                  <li><a class="dropdown-item" href="/goals/manager">Goal Manager</a></li>
+
+                  <li><a class="dropdown-item" href="/goals/recreation-travel">Recreation and Travel</a></li>
+                  <li><a class="dropdown-item" href="/goals/health-wellness">Health and Wellness</a></li>
+                  <li><a class="dropdown-item" href="/goals/social-community">Social and Community Engagement</a></li>
+                  <li><a class="dropdown-item" href="/goals/spirituality">Spirituality and Life Purpose</a></li>
+                  <li><a class="dropdown-item" href="/goals/career-professional-development">Career and Professional
+                      Development</a></li>
+                  <li><a class="dropdown-item" href="/goals/wealth-finance">Wealth Building and Financial Health</a>
                   </li>
+                  <li><a class="dropdown-item" href="/goals/creative-expression-hobbies">Creative Expression and
+                      Hobbies</a></li>
+                  <li><a class="dropdown-item" href="/goals/environment-success">Environment and Success</a></li>
+                  <li><a class="dropdown-item" href="/goals">Something else here</a></li>
                 </ul>
-              </div>
-              <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
-                <ul class="navbar-nav">
-                  <li class="nav-item dropdown">
-                    <button class="btn dropdown-toggle btn-outline-light opacity-75 mx-1" data-bs-toggle="dropdown"
-                      aria-expanded="false">
-                      Practices
-                    </button>
-                    <ul class="dropdown-menu dropdown-menu-dark">
-                      <li><a class="dropdown-item" href="/practices/AM">AM Practices</a></li>
-                      <li><a class="dropdown-item" href="/practices/PM">PM Practices</a></li>
-                      <li><a class="dropdown-item" href="/practices/daily">Daily Practices</a></li>
-                      <li><a class="dropdown-item" href="/practices/discipline">Discipline</a></li>
-                      <li><a class="dropdown-item" href="/practices">Something else?</a></li>
-                    </ul>
-                  </li>
-                </ul>
-              </div>
-              <!-- <a class="nav-link disabled" aria-disabled="true">Disabled</a> -->
-              <form action="/users/logout" method="post">
-                <button class="btn btn-link" type="submit" name="logout">logout</button>
-              </form>
-            </div>
+              </li>
+            </ul>
           </div>
+          <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
+            <ul class="navbar-nav">
+              <li class="nav-item dropdown">
+                <button class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                  Routines
+                </button>
+                <ul class="dropdown-menu dropdown-menu-dark">
+                  <li><a class="dropdown-item" href="/routines/am/manage">AM Routine Manager</a></li>
+                  <li><a class="dropdown-item" href="/routines/pm/manage">PM Routine Manager</a></li>
+                  <li><a class="dropdown-item" href="/intentions/edit">Daily Intention Manager</a></li>
+                  <li><a class="dropdown-item" href="/practices/flex-items/manage">Flex Item</a></li>
+                  <li><a class="dropdown-item" href="/practices">Something else?</a></li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+          <a class="nav-link" href="/social">Social</a>
+          <form action="/users/logout" method="post">
+            <button class="btn btn-link" type="submit" name="logout">logout</button>
+          </form>
         </div>
       </div>
     </nav>
@@ -98,12 +94,16 @@
               <h6 class="text-muted mb-3">
                 <em>This generic routine is being displayed as a starting point:</em>
               </h6>
-              <h2 class="text-primary display-4 mb-3" id="routine-name">
-                {{ routine.name }}
-              </h2>
-              <p class="text-secondary lead mb-4" id="routine-description">
-                {{ routine.description }}
-              </p>
+              {% for routine in routines %}
+                {% if routine.routine_type == "AM" %}
+                  <h2 class="text-primary display-4 mb-3" id="routine-name">
+                    {{ routine.name }}
+                  </h2>
+                  <p class="text-secondary lead mb-4" id="routine-description">
+                    {{ routine.description }}
+                  </p>
+                {% endif %}
+              {% endfor %}
               <hr class="w-50 border border-light m-auto my-3">
             </div>
             <div class="card-text">
@@ -128,52 +128,56 @@
           </button>
           <div class="container d-flex gap-3 mask-container sortable-container" id="practice-container"
             data-routine-type="AM">
-            {% for practice in routine.practices %}
-            <!-- Practice Cards -->
-            <div class="practice-card card shadow p-2 text-center opacity-75 mb-3 col-3 sortable-card min-width-300"
-              data-practice-id="{{ practice.id }}" data-order="{{ loop.index }}" id="practice-{{ loop.index }}">
-              <div class="h5 practice-category">{{practice.practice_category }}</div>
-              <div class="card-body compact-card d-flex flex-column gap-2">
-                <div class="card-header">
-                  <h5 class="card-order text-primary">{{ loop.index }}. </h5>
-                  <h5 class="practice-name text-primary">{{ practice.name }}</h5>
-                  <span class="badge difficulty-badge d-block">Difficulty: {{ practice.difficulty }}</span>
-                  <span class="badge impact-badge">{{ practice.impact_rating_description | truncate(30) }}</span>
-                </div>
-                <p class="short-description">{{ practice.description | truncate(100) }}</p>
-                <select class="form-select duration mb-2" aria-label="Default select example"
-                  id="{{ practice.name }}-duration">
-                  {% for duration in practice.durations %}
-                  <option value="{{ duration.id }}">{{ duration.duration_label }}
-                    {% if duration.engagement_level %} ({{ duration.engagement_level }}) {% endif %}
-                  </option>
-                  {% endfor %}
-                </select>
-                <div class="accordion accordion-flush" id="practice{{practice.id}}InfoAccordion">
-                  <div class="accordion-item">
-                    <h2 class="accordion-header" id="heading{{practice.id}}">
-                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{practice.id}}" aria-expanded="false" aria-controls="collapse{{practice.id}}">
-                        More Information
-                      </button>
-                    </h2>
-                    <div id="collapse{{practice.id}}" class="accordion-collapse collapse" aria-labelledby="heading{{practice.id}}" data-bs-parent="#practice{{ practice.id }}InfoAccordion">
-                      <div class="accordion-body">
-                        <!-- Additional practice details go here -->
-                        {% if practice.literature_summary %}
-                        <p><strong>What does literature say?</strong> {{ practice.literature_summary }}</p>
-                        {% endif %}
-                        {% if practice.notes %}
-                        <p><strong>Additional Notes:</strong> {{ practice.notes }}</p>
-                        {% endif %}
+            {% for routine in routines %}
+              {% if routine.routine_type == "AM" %}
+                {% for practice in routine.practices %}
+                  <!-- Practice Cards -->
+                  <div class="practice-card card shadow p-2 text-center opacity-75 mb-3 col-3 sortable-card min-width-300"
+                    data-practice-id="{{ practice.id }}" data-order="{{ loop.index }}" id="practice-{{ loop.index }}">
+                    <!-- <div class="h5 practice-category">{{practice.practice_category }}</div> -->
+                    <div class="card-body compact-card d-flex flex-column gap-2">
+                      <div class="card-header">
+                        <h5 class="card-order text-primary">{{ loop.index }}. </h5>
+                        <h5 class="practice-name text-primary">{{ practice.name }}</h5>
+                        <span class="badge difficulty-badge d-block">Difficulty: {{ practice.difficulty }}</span>
+                        <span class="badge impact-badge">{{ practice.impact_rating_description | truncate(30) }}</span>
+                      </div>
+                      <p class="short-description">{{ practice.description | truncate(100) }}</p>
+                      <select class="form-select duration mb-2" aria-label="Default select example"
+                        id="{{ practice.name }}-duration">
+                        {% for duration in practice.durations %}
+                        <option value="{{ duration.id }}">{{ duration.duration_label }}
+                          {% if duration.engagement_level %} ({{ duration.engagement_level }}) {% endif %}
+                        </option>
+                        {% endfor %}
+                      </select>
+                      <div class="accordion accordion-flush" id="practice{{practice.id}}InfoAccordion">
+                        <div class="accordion-item">
+                          <h2 class="accordion-header" id="heading{{practice.id}}">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{practice.id}}" aria-expanded="false" aria-controls="collapse{{practice.id}}">
+                              More Information
+                            </button>
+                          </h2>
+                          <div id="collapse{{practice.id}}" class="accordion-collapse collapse" aria-labelledby="heading{{practice.id}}" data-bs-parent="#practice{{ practice.id }}InfoAccordion">
+                            <div class="accordion-body">
+                              <!-- Additional practice details go here -->
+                              {% if practice.literature_summary %}
+                              <p><strong>What does literature say?</strong> {{ practice.literature_summary }}</p>
+                              {% endif %}
+                              {% if practice.notes %}
+                              <p><strong>Additional Notes:</strong> {{ practice.notes }}</p>
+                              {% endif %}
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="card-footer d-flex flex-column mb-2 p-3">
+                        <button class="btn btn-outline-danger mb-2 remove-practice-btn">Remove</button>
                       </div>
                     </div>
                   </div>
-                </div>
-                <div class="card-footer d-flex flex-column mb-2 p-3">
-                  <button class="btn btn-outline-danger mb-2 remove-practice-btn">Remove</button>
-                </div>
-              </div>
-            </div>
+                {% endfor %}
+              {% endif %}
             {% endfor %}
           </div>
           <button id="scroll-right"
@@ -223,50 +227,10 @@
   <script type="module" src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
     crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/intro.js/7.2.0/intro.js" integrity="sha512-f26fxKZJiF0AjutUaQHNJ5KnXSisqyUQ3oyfaoen2apB1wLa5ccW3lmtaRe2jdP5kh4LF2gAHP9xQbx7wYhU5w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script type="module" src="{{ url_for('static', filename='js/sortable-containers.js') }}" defer></script>
   <script type="module" src="{{ url_for('static', filename='js/horizontal-scroll.js') }}" defer></script>
-  <script type="module" src="{{ url_for('static', filename='js/save-routine.js') }}" defer></script>
+  <script type="module" src="{{ url_for('static', filename='js/routine-manager.js') }}" defer></script>
   <script type="module" src="{{ url_for('static', filename='js/search-filter-practices.js') }}" defer></script>
-
-  <script>
-      introJs().setOptions({
-        steps: [
-          {
-            title: 'Welcome to the morning routine builder',
-            intro: 'Based on your previous answers, it sounds like you already have some structure in your mornings. You can fill in details about your morning routine here.'
-          },
-          {
-            element: document.querySelector('#practice-container'),
-            title: 'Morning Routine First Glimpse',
-            intro: 'Your morning routine consists of practices.  You can drag-and-drop a practice in the list to reorder them.    '
-          },
-          {
-            element: document.querySelector('#add-practice-btn'),
-            title: 'Find More Here!',
-            intro: 'The Add Practices button will allow you to search for a practice by name, or sort by category.'
-          },
-          {
-            element: document.querySelector('.remove-practice-btn'),
-            title: 'Remove Button',
-            intro: 'You may remove a practice from the morning routine with the Remove button.'
-          },
-          {
-            element: document.querySelector('#save-btn'),
-            title: 'Save Button',
-            intro: 'Click here to save your morning routine when finished.'
-          },
-          {
-            element: document.querySelector('#scroll-right'),
-            title: 'But wait, there is more!',
-            intro: 'Click here to see more practices.  You can add as many practices as you want to a routine.  We will check in at later points to see if your routine is achievable.'
-          }
-        ],
-        tooltipClass: 'introCustomTooltip'
-      })
-      
-      .start()
-    </script>
 </body>
 
 </html>
