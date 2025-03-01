@@ -40,6 +40,15 @@ def building_practices_intro():
 
     return render_template("routines/building_routines_intro.html")
 
+@app.get("/routines/am/intro-basic")
+def view_basic_intro_routine():
+    user = User.get_logged_in_user()
+    if not user:
+        return redirect("/")
+    
+    routine = Practice.select_intro_practices()
+    
+    return render_template("/routines/am_routine_intro_practices.html", routine = routine)
 
 @app.get("/routines/am/intro-builder")
 def set_initial_am_routines():
