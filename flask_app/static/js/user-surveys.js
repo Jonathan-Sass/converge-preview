@@ -522,7 +522,7 @@ function getCategory() {
 
 function getSubcategory() {
   // Get the parent element of the button
-  let subcategory = startButton.getAttribute('data-topic-id');
+  let subcategory = startButton.getAttribute('data-subcategory');
   
   if (subcategory) {
     return subcategory;
