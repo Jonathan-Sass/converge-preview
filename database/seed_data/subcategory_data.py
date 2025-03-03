@@ -1,6 +1,9 @@
 subcategory_data = {
     # Key is survey_category.slug
-    "onboarding": [{"subcategory_slug": "getting-started", "name": "Getting Started"}],
+    "onboarding": [
+        {"subcategory_slug": "getting-started", "name": "Getting Started"},
+        {"subcategory_slug": "user-orientation", "name": "User Orientation"}
+    ],
     "foundations": [
         {"subcategory_slug": "getting-to-know-you", "name": "Getting to Know You"},
         {
