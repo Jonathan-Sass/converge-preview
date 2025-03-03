@@ -259,7 +259,7 @@ def survey_question_seed(batched_data):
             ON DUPLICATE KEY UPDATE 
                 subcategory_id = VALUES(subcategory_id),
                 question_slug = question_slug,
-                question_text = question_text,
+                question_text = VALUES(question_text),
                 type = VALUES(type),
                 updated_at = NOW();
         """
