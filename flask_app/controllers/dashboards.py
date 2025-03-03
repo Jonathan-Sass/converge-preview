@@ -5,6 +5,7 @@ from pprint import pprint
 from flask_app.models.user import User
 from flask_app.models.routine import Routine
 from flask_app.models.goal import Goal
+from flask_app.models.user_response import UserResponse
 
 
 # Dashboard and home page with personal metrics for an existing user
@@ -47,6 +48,13 @@ def dashboard_intro():
     user = User.get_logged_in_user()
     if not user:
         return redirect("/")
+    
+    # IF NOT orientation-data, redirect /surveys/new-user-orientation
+    subcategory_slug = "user-orientation"
+    user_responses = UserResponse.find_user_responses_by_user_id_and_subcategory_slug(user, subcategory_slug)
+    
+    if not user_responses:
+        return redirect ("/surveys/user-orientation.html")
     
     return render_template("/dashboard/dashboard_intro.html")
 
