@@ -94,9 +94,7 @@ survey_question_data = [
             {
                 "question_slug": "motivation-level-check",
                 "question_text": "How motivated do you feel to improve your routines and habits right now?",
-                "type": "scale",
-                "scale_min": 1,
-                "scale_max": 5
+                "type": "scale-1-5"
             },
             {
                 "question_slug": "barriers-to-change-check",
@@ -145,57 +143,6 @@ survey_question_data = [
     {
         "subcategory_slug": "getting-started",
         "questions": [
-            {
-                "question_slug": "big-picture-goals",
-                "question_text": "What are your big picture goals with Converge? Select any that apply.",
-                "type": "select-any",
-                "answers": [
-                    {"answer_text": "Increase longevity", "answer_value": 0},
-                    {"answer_text": "Increase quality of life", "answer_value": 1},
-                    {"answer_text": "Improve mental health", "answer_value": 2},
-                    {"answer_text": "Improve cognitive health/longevity", "answer_value": 3},
-
-                    {"answer_text": "Improve physical health", "answer_value": 4},
-                    {"answer_text": "Improve social connections", "answer_value": 5},
-                    {"answer_text": "Increase life balance", "answer_value": 6},
-                    {"answer_text": "Improve time management", "answer_value": 7},
-                    {"answer_text": "Reduce screentime/doom scrolling", "answer_value": 8,},
-                ],
-            },
-            {
-                "question_slug": "user-desired-features",
-                "question_text": "Which features of Converge would be most helpful to you?",
-                "type": "select-any",
-                "answers": [
-                    {"answer_text": "Goal tracking", "answer_value": 0},
-                    {"answer_text": "Daily reminders", "answer_value": 1},
-                    {"answer_text": "Progress visualization", "answer_value": 2},
-                    {"answer_text": "Guided practices", "answer_value": 3},
-                    {"answer_text": "Social connection tools", "answer_value": 4},
-                    {"answer_text": "Pairing with accountability partner(s)", "answer_value": 4},
-                    {"answer_text": "Personalized insights", "answer_value": 5},
-                    {"answer_text": "Habit streak tracking", "answer_value": 6},
-                    {"answer_text": "Integrated scheduling", "answer_value": 7},
-                    {"answer_text": "Gamification elements", "answer_value": 8},
-                    {"answer_text": "Flexible routine templates", "answer_value": 9},
-                ],
-            },
-            {
-                "question_slug": "user-feedback-preference",
-                "question_text": "How would you like Converge to provide support or encouragement?",
-                "type": "select-any",
-                "answers": [
-                    {"answer_text": "Daily notifications", "answer_value": 0},
-                    {"answer_text": "Weekly summaries", "answer_value": 1},
-                    {"answer_text": "Encouraging messages", "answer_value": 2},
-                    {"answer_text": "Badges/achievements", "answer_value": 3},
-                    {"answer_text": "Milestone celebrations", "answer_value": 4},
-                    {"answer_text": "Peer feedback", "answer_value": 5},
-                    {"answer_text": "Visual progress charts", "answer_value": 6},
-                    {"answer_text": "Check-in prompts", "answer_value": 7},
-                    {"answer_text": "Self-assessment tools", "answer_value": 8},
-                ],
-            },
             {
                 "question_slug": "existing-routines-check",
                 "question_text": "Do you currently have an established morning routine or habits?",

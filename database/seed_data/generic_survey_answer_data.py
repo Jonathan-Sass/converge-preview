@@ -73,6 +73,15 @@ generic_survey_answer_data = [
         },
         #  SCALE ANSWER SETS
         # Scale 1-5 Answers
+        {"answer_type": "scale-1-5",
+            "answers": [
+                {"answer_text": "1", "answer_value": 1},
+                {"answer_text": "2", "answer_value": 2},
+                {"answer_text": "3", "answer_value": 3},
+                {"answer_text": "4", "answer_value": 4},
+                {"answer_text": "5", "answer_value": 5}
+            ],
+        },
         {
             "answer_type": "scale-agree-disagree",
             "answers": [
