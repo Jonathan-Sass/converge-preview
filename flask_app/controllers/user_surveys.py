@@ -25,7 +25,7 @@ def retrieve_survey_questions():
     user_category_subcategory_data = {
         # TODO: update request.json variables to "category" and "subcategory" pending update to user-surveys.js
         "category": request.json.get("category"),
-        "subcategory": request.json.get("subcategory"),
+        "subcategory": request.json.get("subcategory")
     }
 
     # print("*****Category Topic Data******")
@@ -283,28 +283,13 @@ def survey_bucket_list():
         # jsonify({"error": "Please log in"}), 401
         return redirect("/")
 
-    return render_template("surveys/survey_rec_travel_bucket_list.html")
+    return render_template("/surveys/survey_rec_travel_bucket_list.html")
 
-
-# Health Quiz Routes
-# @app.get("/goals/health/survey")
-# def health_survey():
-#     if "user_id" not in session:
-#         flash("Please log in.", "login")
-#         return redirect("/")
-
-#     HealthQuiz.create_health_survey()
-#     return render_template("surveys/survey_health_goals.html")
-
-# @app.post('/goals/health/survey/create')
-# def create_health_survey():
-#     return HealthQuiz.create_health_survey()
-
-# @app.post('/goals/health/survey/submit/column')
-# def submit_survey_column():
-#     if "user_id" not in session:
-#         flash("Please log in.", "login")
-#         return redirect("/")
-
-#     data = request.json
-#     return HealthQuiz.update_health_survey_single_column(data)
+@app.get("/surveys/user-orientation")
+def survey_new_user_orientation():
+    user = User.get_logged_in_user()
+    if not user:
+        # jsonify({"error": "Please log in"}), 401
+        return redirect("/")
+    
+    return render_template("/surveys/user_orientation.html")
