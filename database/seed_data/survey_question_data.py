@@ -141,171 +141,6 @@ survey_question_data = [
         ]
     },
     {
-        "subcategory_slug": "discipline-motivation-focus-map",
-        "questions": [
-            {
-                "question_slug": "motivation-type-check",
-                "question_text": "What motivates you most to take action?",
-                "type": "guided-choice",
-                "answers": [
-                    {"answer_text": "Internal motivation (personal growth, self-improvement)", "answer_value": 0},
-                    {"answer_text": "External rewards (recognition, success, material benefits)", "answer_value": 1},
-                    {"answer_text": "Social accountability (teamwork, peer expectations)", "answer_value": 2},
-                    {"answer_text": "Urgency or deadlines (pressure fuels productivity)", "answer_value": 3}
-                ]
-            },
-            {
-                "question_slug": "discipline-struggle-check",
-                "question_text": "Do you struggle with maintaining discipline and consistency over time?",
-                "type": "yes-no"
-            },
-            {
-                "question_slug": "biggest-discipline-challenge",
-                "question_text": "What is your biggest challenge when it comes to discipline?",
-                "type": "select-any",
-                "answers": [
-                    {"answer_text": "Getting started on tasks", "answer_value": 0},
-                    {"answer_text": "Following through consistently", "answer_value": 1},
-                    {"answer_text": "Balancing discipline with flexibility", "answer_value": 2},
-                    {"answer_text": "Not feeling motivated to stay consistent", "answer_value": 3}
-                ]
-            },
-            {
-                "question_slug": "willpower-fluctuation-check",
-                "question_text": "How does your willpower change throughout the day?",
-                "type": "guided-choice",
-                "answers": [
-                    {"answer_text": "Strongest in the morning", "answer_value": 0},
-                    {"answer_text": "Stronger in the afternoon", "answer_value": 1},
-                    {"answer_text": "Strongest at night", "answer_value": 2},
-                    {"answer_text": "Fluctuates unpredictably", "answer_value": 3}
-                ]
-            },
-            {
-                "question_slug": "mental-resilience-check",
-                "question_text": "How do you usually handle setbacks or failures?",
-                "type": "guided-choice",
-                "answers": [
-                    {"answer_text": "I bounce back quickly and stay focused", "answer_value": 0},
-                    {"answer_text": "I struggle initially but get back on track", "answer_value": 1},
-                    {"answer_text": "I feel discouraged and lose momentum", "answer_value": 2},
-                    {"answer_text": "I avoid thinking about failures and move on", "answer_value": 3}
-                ]
-            },
-            {
-                "question_slug": "focus-optimization-strategies",
-                "question_text": "What focus strategies work best for you?",
-                "type": "select-any",
-                "answers": [
-                    {"answer_text": "Deep work sessions with no distractions", "answer_value": 0},
-                    {"answer_text": "Using a reward system to stay motivated", "answer_value": 1},
-                    {"answer_text": "Time-blocking or scheduling focus sessions", "answer_value": 2},
-                    {"answer_text": "Having a clear purpose before starting", "answer_value": 3}
-                ]
-            }
-        ]
-
-        # How much do you feel your relationship with your phone drives your behavior on a daily basis?
-    },
-    
-    {
-        "subcategory_slug": "adhd-map",
-        "questions": [
-            {
-                "question_slug": "focus-difficulty-check",
-                "question_text": "Do you struggle with maintaining focus on tasks for extended periods?",
-                "type": "yes-no"
-            },
-            {
-                "question_slug": "hyperfocus-check",
-                "question_text": "Do you experience periods of intense focus where you lose track of time?",
-                "type": "yes-no"
-            },
-            {
-                "question_slug": "task-initiation-difficulty",
-                "question_text": "How often do you struggle to start tasks, even if they are important?",
-                "type": "guided-choice",
-                "answers": [
-                    {"answer_text": "Rarely or never", "answer_value": 0},
-                    {"answer_text": "Occasionally", "answer_value": 1},
-                    {"answer_text": "Frequently", "answer_value": 2},
-                    {"answer_text": "Almost always", "answer_value": 3}
-                ]
-            },
-            {
-                "question_slug": "time-management-challenge",
-                "question_text": "Which time management challenges do you experience?",
-                "type": "select-any",
-                "answers": [
-                    {"answer_text": "Difficulty estimating how long tasks will take", "answer_value": 0},
-                    {"answer_text": "Underestimating or overestimating available time", "answer_value": 1},
-                    {"answer_text": "Procrastination", "answer_value": 2},
-                    {"answer_text": "Forgetting deadlines or appointments", "answer_value": 3},
-                    {"answer_text": "Needing last-minute urgency to get things done", "answer_value": 4}
-                ]
-            },
-            {
-                "question_slug": "external-accountability-check",
-                "question_text": "Do you find it easier to complete tasks when someone else is holding you accountable?",
-                "type": "yes-no"
-            },
-            {
-                "question_slug": "preferred-focus-strategies",
-                "question_text": "What strategies help you focus best?",
-                "type": "select-any",
-                "answers": [
-                    {"answer_text": "Timers or Pomodoro technique", "answer_value": 0},
-                    {"answer_text": "Body doubling (working alongside someone)", "answer_value": 1},
-                    {"answer_text": "Background music or white noise", "answer_value": 2},
-                    {"answer_text": "Physical movement breaks", "answer_value": 3},
-                    {"answer_text": "Visual to-do lists", "answer_value": 4},
-                    {"answer_text": "Clear external deadlines", "answer_value": 5}
-                ]
-            }
-        ]
-    },
-
-    {
-        "subcategory_slug": "getting-started",
-        "questions": [
-            {
-                "question_slug": "existing-routines-check",
-                "question_text": "Do you currently have an established morning routine or habits?",
-                "type": "yes-no",
-            },
-            {
-                "question_slug": "existing-routines-satisfaction",
-                "question_text": "How satisfied are you with your current morning routine?",
-                "type": "satisfaction",
-            },
-            {
-                "question_slug": "wellness-survey-check",
-                "question_text": "Would you like to complete our wellness survey to see a list of suggested practices that aligns with your current wellness needs/goals?",
-                "type": "yes-no",
-            },
-            {
-                "question_slug": "assistance-building-routines-check",
-                "question_text": "Would you like assistance building productive routines/practices in your day? These can be as simple as a few 1 minute morning tasks to help you wake up and feel better in your day.",
-                "type": "yes-no",
-            },
-            {
-                "question_slug": "build-your-own-routine-check",
-                "question_text": "Would you like to enter a routine in our build-your-own routine page? This will allow you to track your progress and us to provide encouragement for your successes!",
-                "type": "yes-no",
-            },
-            {
-                "question_slug": "routine-types-interest-check",
-                "question_text": "What types of routines/practices would you like to build and track?",
-                "type": "select-any",
-                "answers": [
-                    {"answer_text": "Morning routines", "answer_value": 0},
-                    {"answer_text": "Daily intentions/foci", "answer_value": 1},
-                    {"answer_text": "Evenings routines", "answer_value": 2},
-                ],
-            },
-        ],
-    },
-    {
         "subcategory_slug": "day-map",
         "questions": [
             {
@@ -314,12 +149,12 @@ survey_question_data = [
                 "type": "yes-no"
             },
             {
-                "question_slug": "existing-routines-satisfaction",
+                "question_slug": "existing-am-routines-satisfaction",
                 "question_text": "How satisfied are you with your current morning routine?",
                 "type": "satisfaction"
             },
             {
-                "question_slug": "morning-time-availability",
+                "question_slug": "am-routine-time-availability",
                 "question_text": "How much time do you typically have in the morning for yourself before starting your day?",
                 "type": "guided-choice",
                 "answers": [
@@ -389,10 +224,392 @@ survey_question_data = [
                 "question_slug": "evening-routine-check",
                 "question_text": "Do you have a structured evening or wind-down routine?",
                 "type": "yes-no"
+            },
+            # TODO: Branching questions? Specifically, asking user if they want an evening routine? Do we even give them the option? Can skip
+            {
+                "question_slug": "existing-pm-routines-satisfaction",
+                "question_text": "How satisfied are you with your current evening routine?",
+                "type": "satisfaction"
+            },
+            {
+                "question_slug": "pm-routine-time-availability",
+                "question_text": "How much time do you typically have/make in the evening to wind down before bed?",
+                "type": "guided-choice",
+                "answers": [
+                    {"answer_text": "Less than 5 minutes", "answer_value": 0},
+                    {"answer_text": "5-15 minutes", "answer_value": 1},
+                    {"answer_text": "15-30 minutes", "answer_value": 2},
+                    {"answer_text": "30+ minutes", "answer_value": 3}
+                ]
+            },
+        ]
+    },
+    {
+        "subcategory_slug": "discipline-motivation-focus-map",
+        "questions": [
+            {
+                "question_slug": "motivation-type-check",
+                "question_text": "What motivates you most to take action?",
+                "type": "guided-choice",
+                "answers": [
+                    {"answer_text": "Internal motivation (personal growth, self-improvement)", "answer_value": 0},
+                    {"answer_text": "External rewards (recognition, success, material benefits)", "answer_value": 1},
+                    {"answer_text": "Social accountability (teamwork, peer expectations)", "answer_value": 2},
+                    {"answer_text": "Urgency or deadlines (pressure fuels productivity)", "answer_value": 3}
+                ]
+            },
+            {
+                "question_slug": "focus-difficulty-check",
+                "question_text": "How often do you struggle to maintain focus on tasks that do not immediately interest you?",
+                "type": "guided-choice",
+                "answers": [
+                    {"answer_text": "Rarely or never", "answer_value": 0},
+                    {"answer_text": "Sometimes", "answer_value": 1},
+                    {"answer_text": "Often", "answer_value": 2},
+                    {"answer_text": "Almost always", "answer_value": 3}
+                ]
+            },
+            {
+                "question_slug": "task-initiation-check",
+                "question_text": "How often do you find it difficult to start important tasks, even if you know they need to be done?",
+                "type": "guided-choice",
+                "answers": [
+                    {"answer_text": "Rarely or never", "answer_value": 0},
+                    {"answer_text": "Sometimes", "answer_value": 1},
+                    {"answer_text": "Often", "answer_value": 2},
+                    {"answer_text": "Almost always", "answer_value": 3}
+                ]
+            },
+            {
+                "question_slug": "time-management-check",
+                "question_text": "Which of the following time-related challenges do you frequently experience?",
+                "type": "select-any",
+                "answers": [
+                    {"answer_text": "Difficulty estimating how long tasks will take", "answer_value": 0},
+                    {"answer_text": "Frequently running late or missing deadlines", "answer_value": 1},
+                    {"answer_text": "Getting 'stuck' on a task for much longer than expected", "answer_value": 2},
+                    {"answer_text": "Underestimating or overestimating available time", "answer_value": 3}
+                ]
+            },
+            {
+                "question_slug": "discipline-struggle-check",
+                "question_text": "Do you struggle with maintaining discipline and consistency over time?",
+                "type": "yes-no"
+            },
+            {
+                "question_slug": "biggest-discipline-challenge",
+                "question_text": "What is your biggest challenge when it comes to discipline?",
+                "type": "select-any",
+                "answers": [
+                    {"answer_text": "Getting started on tasks", "answer_value": 0},
+                    {"answer_text": "Following through consistently", "answer_value": 1},
+                    {"answer_text": "Balancing discipline with flexibility", "answer_value": 2},
+                    {"answer_text": "Not feeling motivated to stay consistent", "answer_value": 3}
+                ]
+            },
+            {
+                "question_slug": "willpower-fluctuation-check",
+                "question_text": "How does your willpower change throughout the day?",
+                "type": "guided-choice",
+                "answers": [
+                    {"answer_text": "Strongest in the morning", "answer_value": 0},
+                    {"answer_text": "Stronger in the afternoon", "answer_value": 1},
+                    {"answer_text": "Strongest at night", "answer_value": 2},
+                    {"answer_text": "Fluctuates unpredictably", "answer_value": 3}
+                ]
+            },
+            {
+                "question_slug": "resilience-check",
+                "question_text": "How do you usually handle setbacks or failures?",
+                "type": "guided-choice",
+                "answers": [
+                    {"answer_text": "I bounce back quickly and stay focused", "answer_value": 0},
+                    {"answer_text": "I struggle initially but get back on track", "answer_value": 1},
+                    {"answer_text": "I feel discouraged and lose momentum", "answer_value": 2},
+                    {"answer_text": "I avoid thinking about failures and move on", "answer_value": 3}
+                ]
+            },
+            {
+                "question_slug": "focus-support-strategies",
+                "question_text": "What strategies help you focus best?",
+                "type": "select-any",
+                "answers": [
+                    {"answer_text": "Timers or Pomodoro technique", "answer_value": 0},
+                    {"answer_text": "Body doubling (working alongside someone)", "answer_value": 1},
+                    {"answer_text": "Background music or white noise", "answer_value": 2},
+                    {"answer_text": "Physical movement breaks", "answer_value": 3},
+                    {"answer_text": "Visual to-do lists", "answer_value": 4},
+                    {"answer_text": "Clear external deadlines", "answer_value": 5}
+                ]
+            }
+        ]
+    },
+    {
+        "subcategory_slug": "value-map",
+        "questions": [
+            {
+                "question_slug": "core-values-selection",
+                "question_text": "Which of these values resonate most with you? (Select 7-10)",
+                "type": "select-any",
+                "answers": [
+                    {"answer_text": "Authenticity – Being true to yourself and your beliefs", "answer_value": 0},
+                    {"answer_text": "Achievement – Striving for excellence and reaching goals", "answer_value": 1},
+                    {"answer_text": "Adventure – Seeking new experiences and excitement", "answer_value": 2},
+                    {"answer_text": "Altruism – Helping others without expecting anything in return", "answer_value": 3},
+                    {"answer_text": "Balance – Maintaining harmony between different aspects of life", "answer_value": 4},
+                    {"answer_text": "Compassion – Showing kindness and empathy to others", "answer_value": 5},
+                    {"answer_text": "Community – Valuing social connections and collective well-being", "answer_value": 6},
+                    {"answer_text": "Creativity – Expressing originality and new ideas", "answer_value": 7},
+                    {"answer_text": "Curiosity – Seeking knowledge and exploring new ideas", "answer_value": 8},
+                    {"answer_text": "Discipline – Staying focused and committed to your goals", "answer_value": 9},
+                    {"answer_text": "Fairness – Treating everyone with justice and equality", "answer_value": 10},
+                    {"answer_text": "Family – Prioritizing close relationships with loved ones", "answer_value": 11},
+                    {"answer_text": "Freedom – Having the ability to make choices independently", "answer_value": 12},
+                    {"answer_text": "Friendship – Valuing meaningful and supportive relationships", "answer_value": 13},
+                    {"answer_text": "Growth – Constantly improving and developing yourself", "answer_value": 14},
+                    {"answer_text": "Health & Well-being – Taking care of your physical and mental health", "answer_value": 15},
+                    {"answer_text": "Honesty – Being truthful and transparent in all situations", "answer_value": 16},
+                    {"answer_text": "Humility – Staying modest and open to learning", "answer_value": 17},
+                    {"answer_text": "Independence – Valuing self-reliance and autonomy", "answer_value": 18},
+                    {"answer_text": "Integrity – Acting according to strong moral and ethical principles", "answer_value": 19},
+                    {"answer_text": "Justice – Standing up for fairness and equal treatment", "answer_value": 20},
+                    {"answer_text": "Kindness – Treating others with warmth and generosity", "answer_value": 21},
+                    {"answer_text": "Knowledge – Pursuing education and understanding", "answer_value": 22},
+                    {"answer_text": "Leadership – Inspiring and guiding others toward success", "answer_value": 23},
+                    {"answer_text": "Learning – Gaining new skills and knowledge throughout life", "answer_value": 24},
+                    {"answer_text": "Love – Fostering deep affection and care for others", "answer_value": 25},
+                    {"answer_text": "Loyalty – Staying faithful and committed to people and values", "answer_value": 26},
+                    {"answer_text": "Mindfulness – Being present and aware in the moment", "answer_value": 27},
+                    {"answer_text": "Openness – Being receptive to different perspectives and ideas", "answer_value": 28},
+                    {"answer_text": "Optimism – Maintaining a hopeful and positive outlook", "answer_value": 29},
+                    {"answer_text": "Passion – Bringing energy and enthusiasm to what you do", "answer_value": 30},
+                    {"answer_text": "Peace – Seeking inner calm and harmony", "answer_value": 31},
+                    {"answer_text": "Perseverance – Pushing through challenges without giving up", "answer_value": 32},
+                    {"answer_text": "Personal Development – Focusing on self-improvement", "answer_value": 33},
+                    {"answer_text": "Respect – Treating others with dignity and consideration", "answer_value": 34},
+                    {"answer_text": "Responsibility – Being accountable for your actions", "answer_value": 35},
+                    {"answer_text": "Security – Ensuring stability and safety in life", "answer_value": 36},
+                    {"answer_text": "Self-Discipline – Practicing control and consistency", "answer_value": 37},
+                    {"answer_text": "Spirituality – Connecting with something greater than yourself", "answer_value": 38},
+                    {"answer_text": "Success – Achieving meaningful goals and accomplishments", "answer_value": 39}
+                ]
+            },
+            {
+                "question_slug": "select-4-values",
+                "question_text": "From your previous list, select up to 4 that you feel are most important to you.",
+                "type": "select-4"
+            },
+            {
+                "question_slug": "select-2-values",
+                "question_text": "From your previous list, select the 2 that you feel are most important to you.",
+                "type": "select-2"
+            },
+            {
+                "question_slug": "select-top-value",
+                "question_text": "From your previous list, select up to 4 that you feel are most important to you.",
+                "type": "select-1"
+            },
+            
+        ]
+    },
+    {
+        "subcategory_slug": "interest-map",
+        "questions": [
+            {
+                "question_slug": "personal-interests",
+                "question_text": "Which topics or activities interest you the most? (Select any that apply)",
+                "type": "select-any",
+                "answers": [
+                    {"answer_text": "Physical Fitness & Exercise", "answer_value": 0},
+                    {"answer_text": "Mental Wellness & Self-Care", "answer_value": 1},
+                    {"answer_text": "Nutrition & Healthy Eating", "answer_value": 2},
+                    {"answer_text": "Creative Arts & Expression", "answer_value": 3},
+                    {"answer_text": "Reading & Learning", "answer_value": 4},
+                    {"answer_text": "Outdoor Activities & Adventure", "answer_value": 5},
+                    {"answer_text": "Spirituality & Mindfulness", "answer_value": 6},
+                    {"answer_text": "Skill Building & Personal Development", "answer_value": 7},
+                    {"answer_text": "Career Advancement & Productivity", "answer_value": 8},
+                    {"answer_text": "Music & Performing Arts", "answer_value": 9},
+                    {"answer_text": "Technology & Innovation", "answer_value": 10},
+                    {"answer_text": "Gaming & Digital Entertainment", "answer_value": 11},
+                    {"answer_text": "Social & Community Engagement", "answer_value": 12},
+                    {"answer_text": "Travel & Cultural Exploration", "answer_value": 13},
+                    {"answer_text": "Home & Interior Design", "answer_value": 14},
+                    {"answer_text": "Sustainability & Environmentalism", "answer_value": 15},
+                    {"answer_text": "DIY & Crafting", "answer_value": 16},
+                    {"answer_text": "Entrepreneurship & Business", "answer_value": 17},
+                    {"answer_text": "Finance & Investing", "answer_value": 18},
+                    {"answer_text": "Parenting & Family Dynamics", "answer_value": 19},
+                    {"answer_text": "Science & Discovery", "answer_value": 20},
+                    {"answer_text": "Public Speaking & Communication", "answer_value": 21},
+                    {"answer_text": "Fashion & Personal Style", "answer_value": 22},
+                    {"answer_text": "Cooking & Culinary Arts", "answer_value": 23},
+                    {"answer_text": "Martial Arts & Self-Defense", "answer_value": 24}
+                ]
+            },
+            {
+                "question_slug": "new-skills-interest",
+                "question_text": "Are there any new skills or habits you’d like to learn? (Select any that apply)",
+                "type": "select-any",
+                "answers": [
+                    {"answer_text": "Learning a new language", "answer_value": 0},
+                    {"answer_text": "Developing better time management", "answer_value": 1},
+                    {"answer_text": "Practicing meditation or mindfulness", "answer_value": 2},
+                    {"answer_text": "Improving public speaking skills", "answer_value": 3},
+                    {"answer_text": "Mastering a musical instrument", "answer_value": 4},
+                    {"answer_text": "Building coding & programming skills", "answer_value": 5},
+                    {"answer_text": "Enhancing leadership & management abilities", "answer_value": 6},
+                    {"answer_text": "Developing financial literacy & investing habits", "answer_value": 7},
+                    {"answer_text": "Strengthening writing & storytelling skills", "answer_value": 8},
+                    {"answer_text": "Learning photography or videography", "answer_value": 9},
+                    {"answer_text": "Cooking more diverse & nutritious meals", "answer_value": 10},
+                    {"answer_text": "Starting a fitness or workout routine", "answer_value": 11},
+                    {"answer_text": "Engaging in regular journaling or self-reflection", "answer_value": 12},
+                    {"answer_text": "Exploring creative arts & painting", "answer_value": 13},
+                    {"answer_text": "Practicing social skills & networking", "answer_value": 14},
+                    {"answer_text": "Improving focus & productivity habits", "answer_value": 15},
+                    {"answer_text": "Adopting better sleep habits", "answer_value": 16},
+                    {"answer_text": "Becoming more sustainable & eco-conscious", "answer_value": 17},
+                    {"answer_text": "Training for endurance sports (e.g., running, cycling)", "answer_value": 18},
+                    {"answer_text": "Becoming skilled in negotiation & persuasion", "answer_value": 19},
+                    {"answer_text": "Developing DIY home improvement skills", "answer_value": 20},
+                    {"answer_text": "Learning self-defense & martial arts", "answer_value": 21},
+                    {"answer_text": "Starting a side business or freelance career", "answer_value": 22},
+                    {"answer_text": "Enhancing critical thinking & problem-solving", "answer_value": 23},
+                    {"answer_text": "Learning effective stress management techniques", "answer_value": 24}
+                ]
+            }
+        ]
+    },
+    {
+        "subcategory_slug": "current-priority-map",
+        "questions": [
+            {
+                "question_slug": "current-life-priorities",
+                "question_text": "Which of these areas are your biggest priorities right now? (Select up to 3)",
+                "type": "select-any",
+                "answers": [
+                    {"answer_text": "Career & Professional Growth", "answer_value": 0},
+                    {"answer_text": "Personal Growth & Education", "answer_value": 1},
+                    {"answer_text": "Health & Fitness", "answer_value": 2},
+                    {"answer_text": "Financial Stability & Wealth Building", "answer_value": 3},
+                    {"answer_text": "Family & Relationships", "answer_value": 4},
+                    {"answer_text": "Mental & Emotional Well-being", "answer_value": 5},
+                    {"answer_text": "Spiritual Growth & Inner Peace", "answer_value": 6},
+                    {"answer_text": "Leisure & Hobbies", "answer_value": 7},
+                    {"answer_text": "Community & Social Impact", "answer_value": 8},
+                    {"answer_text": "Travel & Exploration", "answer_value": 9},
+                    {"answer_text": "Creativity & Artistic Expression", "answer_value": 10},
+                    {"answer_text": "Reducing Stress & Simplifying Life", "answer_value": 11},
+                    {"answer_text": "Time Management & Productivity", "answer_value": 12},
+                    {"answer_text": "Work-Life Balance", "answer_value": 13},
+                    {"answer_text": "Building Stronger Friendships & Social Networks", "answer_value": 14},
+                    {"answer_text": "Developing Leadership & Influence", "answer_value": 15},
+                    {"answer_text": "Mindfulness & Presence", "answer_value": 16},
+                    {"answer_text": "Parenting & Family Development", "answer_value": 17},
+                    {"answer_text": "Volunteering & Philanthropy", "answer_value": 18},
+                    {"answer_text": "Self-Discipline & Habit Building", "answer_value": 19},
+                    {"answer_text": "Personal Freedom & Independence", "answer_value": 20},
+                    {"answer_text": "Environmental Consciousness & Sustainability", "answer_value": 21},
+                    {"answer_text": "Skill Building & Lifelong Learning", "answer_value": 22},
+                    {"answer_text": "Confidence & Self-Esteem", "answer_value": 23},
+                    {"answer_text": "Adventure & New Experiences", "answer_value": 24}
+                ]
+            },
+            {
+                "question_slug": "current-priority-alignment",
+                "question_text": "Do you feel like your time and energy currently reflect these priorities?",
+                "type": "yes-no"
+            }
+        ]
+    },
+    {
+        "subcategory_slug": "envisioned-priority-map",
+        "questions": [
+            {
+                "question_slug": "ideal-life-priorities",
+                "question_text": "Which areas would you like to prioritize more in your life? (Select up to 3)",
+                "type": "select-any",
+                "answers": [
+                    {"answer_text": "Career & Professional Growth", "answer_value": 0},
+                    {"answer_text": "Personal Growth & Education", "answer_value": 1},
+                    {"answer_text": "Health & Fitness", "answer_value": 2},
+                    {"answer_text": "Financial Stability & Wealth Building", "answer_value": 3},
+                    {"answer_text": "Family & Relationships", "answer_value": 4},
+                    {"answer_text": "Mental & Emotional Well-being", "answer_value": 5},
+                    {"answer_text": "Spiritual Growth & Inner Peace", "answer_value": 6},
+                    {"answer_text": "Leisure & Hobbies", "answer_value": 7},
+                    {"answer_text": "Community & Social Impact", "answer_value": 8},
+                    {"answer_text": "Travel & Exploration", "answer_value": 9},
+                    {"answer_text": "Creativity & Artistic Expression", "answer_value": 10},
+                    {"answer_text": "Reducing Stress & Simplifying Life", "answer_value": 11},
+                    {"answer_text": "Time Management & Productivity", "answer_value": 12},
+                    {"answer_text": "Work-Life Balance", "answer_value": 13},
+                    {"answer_text": "Building Stronger Friendships & Social Networks", "answer_value": 14},
+                    {"answer_text": "Developing Leadership & Influence", "answer_value": 15},
+                    {"answer_text": "Mindfulness & Presence", "answer_value": 16},
+                    {"answer_text": "Parenting & Family Development", "answer_value": 17},
+                    {"answer_text": "Volunteering & Philanthropy", "answer_value": 18},
+                    {"answer_text": "Self-Discipline & Habit Building", "answer_value": 19},
+                    {"answer_text": "Personal Freedom & Independence", "answer_value": 20},
+                    {"answer_text": "Environmental Consciousness & Sustainability", "answer_value": 21},
+                    {"answer_text": "Skill Building & Lifelong Learning", "answer_value": 22},
+                    {"answer_text": "Confidence & Self-Esteem", "answer_value": 23},
+                    {"answer_text": "Adventure & New Experiences", "answer_value": 24}
+                ]
+
+            },
+            {
+                "question_slug": "priority-shift-interest",
+                "question_text": "Are you ready to take steps to shift towards these priorities?",
+                "type": "yes-no"
             }
         ]
     },
 
+
+
+    
+    {
+        "subcategory_slug": "getting-started",
+        "questions": [
+            {
+                "question_slug": "existing-routines-check",
+                "question_text": "Do you currently have an established morning routine or habits?",
+                "type": "yes-no",
+            },
+            {
+                "question_slug": "existing-routines-satisfaction",
+                "question_text": "How satisfied are you with your current morning routine?",
+                "type": "satisfaction",
+            },
+            {
+                "question_slug": "wellness-survey-check",
+                "question_text": "Would you like to complete our wellness survey to see a list of suggested practices that aligns with your current wellness needs/goals?",
+                "type": "yes-no",
+            },
+            {
+                "question_slug": "assistance-building-routines-check",
+                "question_text": "Would you like assistance building productive routines/practices in your day? These can be as simple as a few 1 minute morning tasks to help you wake up and feel better in your day.",
+                "type": "yes-no",
+            },
+            {
+                "question_slug": "build-your-own-routine-check",
+                "question_text": "Would you like to enter a routine in our build-your-own routine page? This will allow you to track your progress and us to provide encouragement for your successes!",
+                "type": "yes-no",
+            },
+            {
+                "question_slug": "routine-types-interest-check",
+                "question_text": "What types of routines/practices would you like to build and track?",
+                "type": "select-any",
+                "answers": [
+                    {"answer_text": "Morning routines", "answer_value": 0},
+                    {"answer_text": "Daily intentions/foci", "answer_value": 1},
+                    {"answer_text": "Evenings routines", "answer_value": 2},
+                ],
+            },
+        ],
+    },
     {
         "subcategory_slug": "getting-to-know-you",
         "questions": [
