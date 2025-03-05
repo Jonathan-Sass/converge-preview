@@ -32,7 +32,7 @@ question types, and guidelines for reusable answer sets.
 
 ### TODOs:
 - Implement open-answer functionality for `select-any-add` questions.
-- Consider adding a `guided-choice-add` type for single-choice questions with optional open-text input.
+- Consider adding a `guided-choice-add` type for guided-choice questions with optional open-text input.
 - Refactor `survey_generic_answer_seed()` into its own file for modularity.
 """
 
@@ -49,7 +49,7 @@ survey_question_data = [
                     {"answer_text": "Increase longevity", "answer_value": 0},
                     {"answer_text": "Increase quality of life", "answer_value": 1},
                     {"answer_text": "Improve mental health", "answer_value": 2},
-                    {"answer_text": "Improve cognitive health/longevity", "answer_value": 3},
+                    {"answer_text": "Improve cognitive health", "answer_value": 3},
                     {"answer_text": "Improve physical health", "answer_value": 4},
                     {"answer_text": "Improve social connections", "answer_value": 5},
                     {"answer_text": "Increase life balance", "answer_value": 6},
@@ -99,7 +99,7 @@ survey_question_data = [
             {
                 "question_slug": "barriers-to-change-check",
                 "question_text": "What challenges have prevented you from building or maintaining habits in the past?",
-                "type": "select-any",
+                "type": "select-any-add",
                 "answers": [
                     {"answer_text": "Lack of time", "answer_value": 0},
                     {"answer_text": "Lack of motivation", "answer_value": 1},
@@ -113,7 +113,7 @@ survey_question_data = [
             {
                 "question_slug": "self-identification-style",
                 "question_text": "Which statement best describes you?",
-                "type": "single-choice",
+                "type": "guided-choice",
                 "answers": [
                     {"answer_text": "I thrive with structured routines and schedules.", "answer_value": 0},
                     {"answer_text": "I prefer flexibility but like to have a framework.", "answer_value": 1},
@@ -140,6 +140,131 @@ survey_question_data = [
             }
         ]
     },
+    {
+        "subcategory_slug": "discipline-motivation-focus-map",
+        "questions": [
+            {
+                "question_slug": "motivation-type-check",
+                "question_text": "What motivates you most to take action?",
+                "type": "guided-choice",
+                "answers": [
+                    {"answer_text": "Internal motivation (personal growth, self-improvement)", "answer_value": 0},
+                    {"answer_text": "External rewards (recognition, success, material benefits)", "answer_value": 1},
+                    {"answer_text": "Social accountability (teamwork, peer expectations)", "answer_value": 2},
+                    {"answer_text": "Urgency or deadlines (pressure fuels productivity)", "answer_value": 3}
+                ]
+            },
+            {
+                "question_slug": "discipline-struggle-check",
+                "question_text": "Do you struggle with maintaining discipline and consistency over time?",
+                "type": "yes-no"
+            },
+            {
+                "question_slug": "biggest-discipline-challenge",
+                "question_text": "What is your biggest challenge when it comes to discipline?",
+                "type": "select-any",
+                "answers": [
+                    {"answer_text": "Getting started on tasks", "answer_value": 0},
+                    {"answer_text": "Following through consistently", "answer_value": 1},
+                    {"answer_text": "Balancing discipline with flexibility", "answer_value": 2},
+                    {"answer_text": "Not feeling motivated to stay consistent", "answer_value": 3}
+                ]
+            },
+            {
+                "question_slug": "willpower-fluctuation-check",
+                "question_text": "How does your willpower change throughout the day?",
+                "type": "guided-choice",
+                "answers": [
+                    {"answer_text": "Strongest in the morning", "answer_value": 0},
+                    {"answer_text": "Stronger in the afternoon", "answer_value": 1},
+                    {"answer_text": "Strongest at night", "answer_value": 2},
+                    {"answer_text": "Fluctuates unpredictably", "answer_value": 3}
+                ]
+            },
+            {
+                "question_slug": "mental-resilience-check",
+                "question_text": "How do you usually handle setbacks or failures?",
+                "type": "guided-choice",
+                "answers": [
+                    {"answer_text": "I bounce back quickly and stay focused", "answer_value": 0},
+                    {"answer_text": "I struggle initially but get back on track", "answer_value": 1},
+                    {"answer_text": "I feel discouraged and lose momentum", "answer_value": 2},
+                    {"answer_text": "I avoid thinking about failures and move on", "answer_value": 3}
+                ]
+            },
+            {
+                "question_slug": "focus-optimization-strategies",
+                "question_text": "What focus strategies work best for you?",
+                "type": "select-any",
+                "answers": [
+                    {"answer_text": "Deep work sessions with no distractions", "answer_value": 0},
+                    {"answer_text": "Using a reward system to stay motivated", "answer_value": 1},
+                    {"answer_text": "Time-blocking or scheduling focus sessions", "answer_value": 2},
+                    {"answer_text": "Having a clear purpose before starting", "answer_value": 3}
+                ]
+            }
+        ]
+
+        # How much do you feel your relationship with your phone drives your behavior on a daily basis?
+    },
+    
+    {
+        "subcategory_slug": "adhd-map",
+        "questions": [
+            {
+                "question_slug": "focus-difficulty-check",
+                "question_text": "Do you struggle with maintaining focus on tasks for extended periods?",
+                "type": "yes-no"
+            },
+            {
+                "question_slug": "hyperfocus-check",
+                "question_text": "Do you experience periods of intense focus where you lose track of time?",
+                "type": "yes-no"
+            },
+            {
+                "question_slug": "task-initiation-difficulty",
+                "question_text": "How often do you struggle to start tasks, even if they are important?",
+                "type": "guided-choice",
+                "answers": [
+                    {"answer_text": "Rarely or never", "answer_value": 0},
+                    {"answer_text": "Occasionally", "answer_value": 1},
+                    {"answer_text": "Frequently", "answer_value": 2},
+                    {"answer_text": "Almost always", "answer_value": 3}
+                ]
+            },
+            {
+                "question_slug": "time-management-challenge",
+                "question_text": "Which time management challenges do you experience?",
+                "type": "select-any",
+                "answers": [
+                    {"answer_text": "Difficulty estimating how long tasks will take", "answer_value": 0},
+                    {"answer_text": "Underestimating or overestimating available time", "answer_value": 1},
+                    {"answer_text": "Procrastination", "answer_value": 2},
+                    {"answer_text": "Forgetting deadlines or appointments", "answer_value": 3},
+                    {"answer_text": "Needing last-minute urgency to get things done", "answer_value": 4}
+                ]
+            },
+            {
+                "question_slug": "external-accountability-check",
+                "question_text": "Do you find it easier to complete tasks when someone else is holding you accountable?",
+                "type": "yes-no"
+            },
+            {
+                "question_slug": "preferred-focus-strategies",
+                "question_text": "What strategies help you focus best?",
+                "type": "select-any",
+                "answers": [
+                    {"answer_text": "Timers or Pomodoro technique", "answer_value": 0},
+                    {"answer_text": "Body doubling (working alongside someone)", "answer_value": 1},
+                    {"answer_text": "Background music or white noise", "answer_value": 2},
+                    {"answer_text": "Physical movement breaks", "answer_value": 3},
+                    {"answer_text": "Visual to-do lists", "answer_value": 4},
+                    {"answer_text": "Clear external deadlines", "answer_value": 5}
+                ]
+            }
+        ]
+    },
+
     {
         "subcategory_slug": "getting-started",
         "questions": [
