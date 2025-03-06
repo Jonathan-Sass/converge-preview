@@ -522,10 +522,11 @@ function getCategory() {
 
 function getSubcategory() {
   // Get the parent element of the button
-  let subcategory = startButton.getAttribute('data-subcategory');
+  let subcategoryElement = startButton.closest('[data-subcategory]');
   
-  if (subcategory) {
-    return subcategory;
+  if (subcategoryElement) {
+    let subcategory = subcategoryElement.dataset.subcategory;
+    return subcategory
   } else {
     console.log('No subcategory found in HTML');
     return null;
