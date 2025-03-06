@@ -67,8 +67,29 @@ def save_survey_answers(category):
     except Exception as e:
         return jsonify({"success": False, "message": str(e)}), 500
 
+# ROUTES FOR 'map' SURVEYS
+@app.get("/surveys/user-orientation")
+def survey_new_user_orientation():
+    user = User.get_logged_in_user()
+    if not user:
+        # jsonify({"error": "Please log in"}), 401
+        return redirect("/")
+    
+    return render_template("/surveys/user_orientation.html")
 
-# ROUTES FOR INDIVIDUAL SURVEYS
+@app.get("/surveys/day-map")
+def survey_day_map():
+    user = User.get_logged_in_user()
+    if not user:
+        # jsonify({"error": "Please log in"}), 401
+        return redirect("/")
+    
+    return render_template("/surveys/day_map.html")
+
+
+
+
+
 @app.get("/getting-started")
 def new_user_getting_started():
     user = User.get_logged_in_user()
@@ -284,12 +305,3 @@ def survey_bucket_list():
         return redirect("/")
 
     return render_template("/surveys/survey_rec_travel_bucket_list.html")
-
-@app.get("/surveys/user-orientation")
-def survey_new_user_orientation():
-    user = User.get_logged_in_user()
-    if not user:
-        # jsonify({"error": "Please log in"}), 401
-        return redirect("/")
-    
-    return render_template("/surveys/user_orientation.html")

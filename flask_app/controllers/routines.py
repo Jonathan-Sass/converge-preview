@@ -32,13 +32,17 @@ def manage_am_routines():
     return render_template("/routines/am_routine_build_your_own.html", routines = routines)
 
 
-@app.get("/routines/intro")
+@app.get("/routines/am/intro")
 def building_practices_intro():
     user = User.get_logged_in_user()
     if not user:
         return redirect("/")
 
-    return render_template("routines/building_routines_intro.html")
+    # TODO: If pre-existing routines --> routine_builder or wellness survey?, else template below
+
+    routine = Routine.get_intro_am_routine()
+    
+    return render_template("routines/am_routine_intro_carousel.html")
 
 @app.get("/routines/am/intro-basic")
 def view_basic_intro_routine():
