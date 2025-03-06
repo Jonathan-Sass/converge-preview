@@ -26,7 +26,9 @@ class UserSurvey:
         query = """
             SELECT 
                 categories.name AS category,
+                subcategories.id AS subcategory_id,
                 subcategories.name AS subcategory,
+                subcategories.subcategory_slug,
                 survey_questions.id AS question_id,
                 survey_questions.question_slug,
                 survey_questions.question_text,
@@ -51,11 +53,9 @@ class UserSurvey:
             LEFT JOIN
                 survey_questions sq_next ON survey_branching.next_question_id = sq_next.id
             WHERE 
-                categories.category_slug = %(category)s
-            AND
                 subcategories.subcategory_slug = %(subcategory)s
             ORDER BY
-                survey_questions.id, survey_answers.id;
+                subcategory_id, survey_questions.id, survey_answers.id;
           """
         
         data = {
@@ -66,11 +66,11 @@ class UserSurvey:
 
         result = UserSurvey.db.query_db(query, data)
 
-        question_set = UserSurvey.process_question_data_for_frontend(result)
+        question_set = UserSurvey.process_subcategory_question_data_for_frontend(result, user_category_subcategory_data)
         survey_branches = UserSurvey.process_survey_branch_data(result)
 
-        # print("*****question_set in find questions by survey category and subcategory*****")
-        # pprint(question_set)
+        print("*****question_set in find questions by survey category and subcategory*****")
+        pprint(question_set)
 
         return question_set, survey_branches
 
@@ -97,9 +97,15 @@ class UserSurvey:
     
 
     @staticmethod
-    def process_question_data_for_frontend(question_data):
+    def process_subcategory_question_data_for_frontend(question_data, user_category_subcategory_data):
+        subcategory_slug = user_category_subcategory_data['subcategory']
+
         question_set = {}
+
         for question in question_data:
+            if question.get('subcategory_slug') != subcategory_slug:
+                continue  # Skip questions that do not match the subcategory
+
             question_id = question['question_id']
 
             if question_id not in question_set:
@@ -111,16 +117,18 @@ class UserSurvey:
                     'answers': []
                 }
             
-            # .get?
-            if question['answer_text']:
-                if not any (answer['answerText'] == question['answer_text'] for answer in question_set[question_id]['answers']):
-                  question_set[question_id]['answers'].append({
-                      'answerId': question['answer_id'],
-                      'answerText': question['answer_text'], 
-                      'answerValue': question.get('answer_value', None)
-                  })
+            if question.get('answer_text'):  # Use .get() to prevent KeyError
+                if not any(answer['answerText'] == question['answer_text'] for answer in question_set[question_id]['answers']):
+                    question_set[question_id]['answers'].append({
+                        'answerId': question['answer_id'],
+                        'answerText': question['answer_text'], 
+                        'answerValue': question.get('answer_value', None)
+                    })
+
+        print(question_set)
 
         return list(question_set.values())
+
 
     @classmethod
     def find_user_response_by_user_id_and_question_id(cls, survey_question_id):
