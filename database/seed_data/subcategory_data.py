@@ -2,8 +2,20 @@ subcategory_data = {
     # Key is survey_category.slug
     "onboarding": [
         {"subcategory_slug": "getting-started", "name": "Getting Started"},
-        {"subcategory_slug": "user-orientation", "name": "User Orientation"}
+        {"subcategory_slug": "user-orientation", "name": "User Orientation"},
+        {"subcategory_slug": "day-map", "name": "Day Map"},
+        {"subcategory_slug": "discipline-motivation-focus-map", "name": "Discipline, Motivation, and Focus Map"},
+        {"subcategory_slug": "value-map", "name": "Value Map"},
+        {"subcategory_slug": "interest-map", "name": "Interest Map"},
+        {"subcategory_slug": "current-priority-map", "name": "Current Priority Map"},
+        {"subcategory_slug": "envisioned-priority-map", "name": "Envisioned Priority Map"}
     ],
+
+
+
+
+
+    
     "foundations": [
         {"subcategory_slug": "getting-to-know-you", "name": "Getting to Know You"},
         {

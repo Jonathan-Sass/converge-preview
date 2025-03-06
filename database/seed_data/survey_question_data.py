@@ -206,18 +206,14 @@ survey_question_data = [
                 ]
             },
             {
-                "question_slug": "work-schedule-check",
-                "question_text": "Do you have a consistent daily work or school schedule?",
-                "type": "yes-no"
-            },
-            {
                 "question_slug": "work-schedule-flexibility",
                 "question_text": "How flexible is your work or school schedule?",
                 "type": "guided-choice",
                 "answers": [
-                    {"answer_text": "Very rigid—same hours every day", "answer_value": 0},
-                    {"answer_text": "Somewhat flexible—some variation", "answer_value": 1},
-                    {"answer_text": "Completely flexible—I control my schedule", "answer_value": 2}
+                    {"answer_text": "Very rigid — same hours every day", "answer_value": 0},
+                    {"answer_text": "Somewhat flexible — some variation", "answer_value": 1},
+                    {"answer_text": "Mostly flexible — I pretty much control my schedule", "answer_value": 2},
+                    {"answer_text": "I might be independently wealthy.", "answer_value": 3}
                 ]
             },
             {
@@ -261,24 +257,12 @@ survey_question_data = [
             {
                 "question_slug": "focus-difficulty-check",
                 "question_text": "How often do you struggle to maintain focus on tasks that do not immediately interest you?",
-                "type": "guided-choice",
-                "answers": [
-                    {"answer_text": "Rarely or never", "answer_value": 0},
-                    {"answer_text": "Sometimes", "answer_value": 1},
-                    {"answer_text": "Often", "answer_value": 2},
-                    {"answer_text": "Almost always", "answer_value": 3}
-                ]
+                "type": "frequency-often"
             },
             {
                 "question_slug": "task-initiation-check",
                 "question_text": "How often do you find it difficult to start important tasks, even if you know they need to be done?",
-                "type": "guided-choice",
-                "answers": [
-                    {"answer_text": "Rarely or never", "answer_value": 0},
-                    {"answer_text": "Sometimes", "answer_value": 1},
-                    {"answer_text": "Often", "answer_value": 2},
-                    {"answer_text": "Almost always", "answer_value": 3}
-                ]
+                "type": "frequency"
             },
             {
                 "question_slug": "time-management-check",
@@ -568,8 +552,8 @@ survey_question_data = [
     },
 
 
+# ALL QUESTION SETS BELOW DEPRECATED?!?
 
-    
     {
         "subcategory_slug": "getting-started",
         "questions": [

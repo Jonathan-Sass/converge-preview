@@ -140,7 +140,7 @@ generic_survey_answer_data = [
             "answers": [
                 {"answer_text": "Very Often", "answer_value": 4},
                 {"answer_text": "Often", "answer_value": 3},
-                {"answer_text": "Sometimes", "answer_value": 2},
+                {"answer_text": "Occasionally", "answer_value": 2},
                 {"answer_text": "Rarely", "answer_value": 1},
                 {"answer_text": "Never", "answer_value": 0},
             ],

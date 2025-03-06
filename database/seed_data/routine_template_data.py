@@ -1,6 +1,73 @@
 
 # These will shift to "categorical recommendations"
 routine_template_data = [
+    # AM Starter Routines for early users getting their first routines
+    {
+        "name": "The Grounded Start",
+        "description": "A simple morning routine designed to cultivate inner peace, clarity, and a strong start to the day.",
+        "frequency": "Daily",
+        "routine_type": "AM Starter",
+        "category": "Mindfulness & Presence",
+        "notes": "Best for users who want to feel centered before engaging with the day.",
+        "practices": [
+            {"practice_name": "Morning Hydration", "position": 1},
+            {"practice_name": "Morning Mindfulness", "position": 2},
+            {"practice_name": "Digital-Free Start", "position": 3}
+        ]
+    },
+    {
+        "name": "The Energized Start",
+        "description": "A quick and effective routine to activate the body and mind.",
+        "frequency": "Daily",
+        "routine_type": "AM Starter",
+        "category": "Energy & Activation",
+        "notes": "Great for those who want to shake off grogginess and start the day feeling strong.",
+        "practices": [
+            {"practice_name": "Cold Exposure", "position": 1},
+            {"practice_name": "Movement/Stretch", "position": 2},
+            {"practice_name": "Morning Sun/Walk", "position": 3}
+        ]
+    },
+    {
+        "name": "The Focused Start",
+        "description": "A structured start for a distraction-free and productive day.",
+        "frequency": "Daily",
+        "routine_type": "AM Starter",
+        "category": "Focus & Discipline",
+        "notes": "Best for those who need mental clarity and structured focus time.",
+        "practices": [
+            {"practice_name": "AM Digital Wellness", "position": 1},
+            {"practice_name": "Mirror Mantra", "position": 2},
+            {"practice_name": "Deep Work Session", "position": 3}
+        ]
+    },
+    {
+        "name": "The Restorative Start",
+        "description": "A slow and nourishing start that emphasizes self-care and stress resilience.",
+        "frequency": "Daily",
+        "routine_type": "AM Starter",
+        "category": "Restoration & Self-Care",
+        "notes": "Ideal for those who need a calm and soothing start without pressure.",
+        "practices": [
+            {"practice_name": "Morning Hydration", "position": 1},
+            {"practice_name": "Morning Mindfulness", "position": 2},
+            {"practice_name": "Digital-Free Start", "position": 3}
+        ]
+    },
+    {
+        "name": "The Productive Start",
+        "description": "A disciplined approach to morning routines, focusing on resilience and structure.",
+        "frequency": "Daily",
+        "routine_type": "AM Starter",
+        "category": "Self-Discipline & Mental Strength",
+        "notes": "Designed for those who want to cultivate consistency and fortitude.",
+        "practices": [
+            {"practice_name": "Cold Exposure", "position": 1},
+            {"practice_name": "Mirror Mantra", "position": 2},
+            {"practice_name": "Deep Work Session", "position": 3}
+        ]
+    },
+
     {
         "name": "Balanced Start",
         "description": "A simple and effective routine to kickstart the day with focus and energy.",
