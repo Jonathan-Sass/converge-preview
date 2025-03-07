@@ -34,7 +34,12 @@ h1, h2, h3, h4, h5, h6, p {
     font-size: 16px; /* Adjusts font size */
     border: 2px solid #007bff;
     border-radius: 0.5rem;
+    max-width: 450px !important; /* Adjust width as needed */
+    width: 450px !important;
 }
+
+/* .introjs-tooltip {
+} */
 
 /* Allow clicking inside inputs during Intro.js steps */
 /*.introjs-tooltipReferenceLayers input {
