@@ -177,25 +177,27 @@
       steps: [
         {
           element: document.querySelector('.question-container'),
-          title: 'Surveys',
-          intro: 'You will encounter surveys like this one throughout Converge. We will be using these surveys to get to know you and provide a personalized experience.  That being said, we will never share your personal information with anyone outside Converge.'
+          title: 'The Maps',
+          intro: "Throughout Converge, we will be leaning heavily on our mapping system.  With the mapping system, we are capturing a snapshot your vision, interests, patterns, and overall wellness."
+        },
+        {
+          element: document.querySelector('.question-container'),
+          title: 'What do they do?',
+          intro: "Our goal with Converge is to use these maps as opportunities to learn a bit about a piece of the human system and how it pertains to you."
+        },
+        {
+          element: document.querySelector('.question-container'),
+          title: 'Welcome to the Day Map',
+          intro: 'Hang tight for a few questions where we see how you spend your time.'
         },
         {
           element: document.querySelector('#start-btn'),
           title: 'Click start to begin!'
         },
-        // {
-        //   element: document.querySelector('#edit-am-routine'),
-        //   title: 'Edit a Routine',
-        //   intro: 'The "Edit Routine" button allows you to see and edit an entire routine.'
-        // },
-        // {
-        //   element: document.querySelector('#edit-practice-example'),
-        //   title: 'Edit a Practice',
-        //   intro: 'Similarly, "Edit Practice" will allow you to view and tweak a specific practice as well as view more like it!'
-        // }
       ],
-      tooltipClass: 'introCustomTooltip'
+      tooltipClass: 'introCustomTooltip',
+      showProgress: true,
+      disableInteraction: true
     })
     .start()
 </script>

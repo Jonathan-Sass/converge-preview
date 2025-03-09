@@ -173,30 +173,58 @@
 <script src="{{ url_for('static', filename='/js/ui-effects.js') }}"></script>
 </script>
 <script>
+  document.addEventListener('DOMContentLoaded', function() {
+
     introJs().setOptions({
-      steps: [
-        {
-          element: document.querySelector('.question-container'),
-          title: 'Surveys',
-          intro: 'You will encounter surveys like this one throughout Converge. We will be using these surveys to get to know you and provide a personalized experience.  That being said, we will never share your personal information with anyone outside Converge.'
-        },
-        {
-          element: document.querySelector('#start-btn'),
-          title: 'Click start to begin!'
-        },
-        // {
-        //   element: document.querySelector('#edit-am-routine'),
-        //   title: 'Edit a Routine',
-        //   intro: 'The "Edit Routine" button allows you to see and edit an entire routine.'
-        // },
-        // {
-        //   element: document.querySelector('#edit-practice-example'),
-        //   title: 'Edit a Practice',
-        //   intro: 'Similarly, "Edit Practice" will allow you to view and tweak a specific practice as well as view more like it!'
-        // }
-      ],
-      tooltipClass: 'introCustomTooltip'
-    })
-    .start()
+        steps: [
+            {
+                element: '.question-container',
+                title: 'Welcome to Converge!',
+                intro: 'We use surveys like this to understand your goals and provide a personalized experience. Your answers help tailor your experience to your needs, but we will never share your personal information outside Converge.',
+                position: 'top' 
+            },
+            {
+                element: '.question-container',
+                title: 'Structure',
+                intro: "Our goal with Converge is to provide a structure for you to get really clear on your identity, your value systems, motivators and patterns in life, your vision of your future and what kind of 'legacy' you would like to leave behind.",
+                position: 'top'
+            },
+            {
+            element: '.question-container',
+                title: 'System, uhhh... Hacks',
+                intro: "During this process, you will have opportunities to learn about your own body and system and how to help you carve into your days with ease and ",
+                position: 'top'
+            },
+            {
+            element: '.question-container',
+                title: 'System, uhhh... Hacks',
+                intro: "One of the primary motivators behind Converge was/is to create a personalized self-education tool",
+                position: 'bottom'
+            },
+            {
+            element: '.question-container',
+                title: 'Welcome to Converge!',
+                intro: "And for those of us for whom focus, will power, motivation, etc. can be a challenge, we will learn with microtasking and habit stacking, a process of setting 1 - 2 goals that require zero effort and are easily queued",
+                position: 'bottom'
+            },
+            {
+                element: '.question-container',
+                title: 'Getting Started',
+                intro: "Let's begin by understanding your baseline goals and needs. This helps us customize recommendations for you.",
+                position: 'top'
+            },
+            {
+                element: '#start-btn',
+                title: 'Start Your Journey',
+                intro: 'Click the **Start** button to begin your first survey!',
+                position: 'right' 
+            }
+        ],
+        tooltipClass: 'introCustomTooltip',
+        // showProgress: true, // Adds progress dots to indicate step sequence
+        disableInteraction: true // Prevents accidental clicks while onboarding
+    }).start();
+  })
 </script>
+
 </html>
