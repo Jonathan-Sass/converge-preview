@@ -66,11 +66,11 @@ class UserSurvey:
 
         result = UserSurvey.db.query_db(query, data)
 
-        question_set = UserSurvey.process_subcategory_question_data_for_frontend(result, user_category_subcategory_data)
+        question_set = UserSurvey.process_question_data_for_frontend(result)
         survey_branches = UserSurvey.process_survey_branch_data(result)
 
-        print("*****question_set in find questions by survey category and subcategory*****")
-        pprint(question_set)
+        # print("*****question_set in find questions by survey category and subcategory*****")
+        # pprint(question_set)
 
         return question_set, survey_branches
 
@@ -97,15 +97,10 @@ class UserSurvey:
     
 
     @staticmethod
-    def process_subcategory_question_data_for_frontend(question_data, user_category_subcategory_data):
-        subcategory_slug = user_category_subcategory_data['subcategory']
-
+    def process_question_data_for_frontend(question_data):
         question_set = {}
 
         for question in question_data:
-            if question.get('subcategory_slug') != subcategory_slug:
-                continue  # Skip questions that do not match the subcategory
-
             question_id = question['question_id']
 
             if question_id not in question_set:
@@ -124,8 +119,6 @@ class UserSurvey:
                         'answerText': question['answer_text'], 
                         'answerValue': question.get('answer_value', None)
                     })
-
-        print(question_set)
 
         return list(question_set.values())
 

@@ -60,6 +60,54 @@ class UserResponse:
 
         return responses
 
+
+    def map_user_response_to_routine_template(user_responses, subcategory_slug):
+      subcategory_processors = {
+        "user-orientation": UserResponse.process_user_orientation,
+        "day-map": UserResponse.process_day_map,
+        "discipline-motivation-focus map": UserResponse.process_discipline_motivation_focus,
+        "value-map": UserResponse.process_value_map,
+      }
+
+      processor_function = subcategory_processors.get(subcategory_slug)
+
+      if processor_function:
+        return processor_function(user_responses)
+      else:
+        raise ValueError(f"Unkown subcategory: {subcategory_slug}")
+      
+    def process_day_map(user_responses):
+      recommended_routine_template_name = "The Grounded Start"
+      
+      response_values = {
+            response.question_slug: response.answer_value for response in user_responses
+        }
+      
+      existing_routines_check = response_values.get("existing_routines_check")
+      existing_am_routines_satisfaction = response_values.get("existing_am_routines_satisfaction")
+      am_routine_time_availability = response_values.get("am_routine_availability")
+      daily_movement_check = response_values.get("daily_movement_check")
+      exercise_frequency = response_values.get("exercise_frequency")
+      hobbies_check = response_values.get("hobbies_check")
+      hobbies_types = response_values.get("hobbies_types")
+      work_schedule_flexibility = response_values.get("work_schedule_flexibility")
+
+      # TODO: Ready for business logic to filter based on responses.
+
+      return recommended_routine_template_name
+
+    def process_discipline_motivation_focus(user_response):
+          
+      return
+
+    def process_value_map(user_response):
+          
+      return
+
+    def process_user_orientation(user_response):
+          
+      return
+
     @staticmethod
     def process_responses_for_routine_template_selection(responses):
         # CURRENT LOGIC FOR TESTING ONLY - ALL SUBSEQUENT FUNCTIONS WILL UNDERGO SIGNIFICANT REWORK FOR A MORE MEANINGFUL FILTERING PROCESS

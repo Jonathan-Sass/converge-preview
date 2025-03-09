@@ -142,7 +142,7 @@ class Routine:
         return routines
 
     @staticmethod
-    def select_and_fetch_routine_template(user, subcategory_slug_string):
+    def select_and_fetch_routine_template(user, subcategory_slug):
         """
         Selects and retrieves a recommended routine template for a given user based on their survey responses.
 
@@ -169,10 +169,13 @@ class Routine:
             print(routine_template.name)  # Outputs the name of the recommended routine template
         """
 
-        if subcategory_slug_string:
+        if subcategory_slug:
             # Find the user's responses for the given topic slug
-            user_responses = UserResponse.find_user_responses_by_user_id_and_subcategory_slug(user, subcategory_slug_string)
+            user_responses = UserResponse.find_user_responses_by_user_id_and_subcategory_slug(user, subcategory_slug)
 
+            if user_responses:
+                
+              recommended_routine_template_name = UserResponse.map_user_response_to_routine_template(user_responses, subcategory_slug)
             # Process responses to select routine template for the user
             recommended_routine_template_name = UserResponse.process_responses_for_routine_template_selection(user_responses)
         else:
@@ -184,6 +187,7 @@ class Routine:
 
         return recommended_routine_template
 
+    
 
     def create_routine(routine_data):
         print("***routine_data in create_routine***")
@@ -267,3 +271,9 @@ class Routine:
     # def update_routine():
 
     # def delete_routine():
+
+    def get_intro_am_routine():
+        
+        recommended_routine_template_name = None
+
+        RoutineTemplate.find_routine_template_by_name_with_practices(recommended_routine_template_name)

@@ -39,10 +39,11 @@ def building_practices_intro():
         return redirect("/")
 
     # TODO: If pre-existing routines --> routine_builder or wellness survey?, else template below
+    subcategory_slug = "day-map"
 
-    routine = Routine.get_intro_am_routine()
+    routine = Routine.select_and_fetch_routine_template(user, subcategory_slug)
     
-    return render_template("routines/am_routine_intro_carousel.html")
+    return render_template("routines/am_routine_intro_carousel.html", routine = routine)
 
 @app.get("/routines/am/intro-basic")
 def view_basic_intro_routine():
