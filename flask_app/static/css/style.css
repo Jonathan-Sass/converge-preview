@@ -36,22 +36,28 @@ h1, h2, h3, h4, h5, h6, p {
     border-radius: 0.5rem;
     max-width: 450px !important; /* Adjust width as needed */
     width: 450px !important;
+    z-index: 9999 !important; 
 }
 
-/* .introjs-tooltip {
-} */
+.introjs-overlay {
+  z-index: 99998 !important; /* Ensure it sits below the tooltip */
+}
+
+.introjs-helperLayer {
+  z-index: 99997 !important; /* Make sure the highlighted element stays visible */
+}
 
 /* Allow clicking inside inputs during Intro.js steps */
 /*.introjs-tooltipReferenceLayers input {
   pointer-events: none !important;
   background: none !important;
-  z-index: 9999 !important; 
 }*/
 
-.introjs-tooltipReferenceLayer, 
-.introjs-helperLayer {
-    pointer-events: none !important; /* ✅ Allows clicking through overlays */
-}
+/* .introjs-tooltipReferenceLayer,  */
+/* .introjs-helperLayer { */
+    /* pointer-events: none !important;  */
+    /* ✅ Allows clicking through overlays */
+/* } */
 
 .introjs-tooltipReferenceLayer input, 
 .introjs-helperLayer input {
