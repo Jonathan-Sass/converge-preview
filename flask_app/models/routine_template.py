@@ -1,5 +1,7 @@
 from flask_app.config.mysqlconnection import connectToMySQL
 from flask import flash, session, jsonify, redirect
+from pprint import pprint
+
 from flask_app.models.practice import Practice
 from flask_app.models.duration import Duration
 from flask_app.models.user_response import UserResponse
@@ -79,6 +81,8 @@ class RoutineTemplate:
                 routine_template_practices.position;
         """
 
+        print(f"****Searching for: {routine_template_name}")
+
         data = {"routine_template_name": routine_template_name}
 
         try:
@@ -103,6 +107,8 @@ class RoutineTemplate:
                     duration = Duration(result)
                     practice_map[practice_id].durations.append(duration)
 
+            print("*****routine_template in find_by_name_with_practices")
+            pprint(vars(routine_template))
             return routine_template
         
         except Exception as e:

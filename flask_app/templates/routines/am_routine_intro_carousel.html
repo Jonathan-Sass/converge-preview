@@ -2,18 +2,32 @@
 <html lang="en" data-bs-theme="dark">
 
 <head>
+  <!-- Meta Information -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+
+  <!-- Bootstrap CSS (for responsive design and styling) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
     integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-  <link rel="stylesheet" href="../static/css/style.css">
-  <title>New Morning Practices</title>
-  <link rel="icon" type="image/x-icon" href="../static/img/Enso_Blue_and_Black.jpg">
-</head>
+
+  <!-- Intro.js (for guided tours/tutorials) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intro.js/7.2.0/introjs.css"
+    integrity="sha512-4OzqLjfh1aJa7M33b5+h0CSx0Q3i9Qaxlrr1T/Z+Vz+9zs5A7GM3T3MFKXoreghi3iDOSbkPMXiMBhFO7UBW/g==" crossorigin="anonymous"
+    referrerpolicy="no-referrer" />
+
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+  <!-- Favicon (small logo for the browser tab) -->
+  <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='img/Enso_Lt_Blue.jpg') }}">
+
+  <!-- Page Title -->
+  <title>Intro - Initial Practices</title>
 
 <body>
+  <div class="parallax-bg"></div>
   <header class="card shadow w-100 p-3 text-center position-sticky top-0 z-3">
-    <img src="../static/img/Enso_Blue_and_Black.jpg" class="m-auto rounded-circle" width="75" height="75"
+    <img src="/static/img/Enso_Blue_and_Black.jpg" class="m-auto rounded-circle" width="75" height="75"
       alt="Converge Logo">
     <h1 class="display-5 mb-3 text-primary">Converge</h1>
     <h4 class="lead mx-5">Converge with your potential. Converge with your dreams.</h4>
@@ -38,30 +52,35 @@
             <button class="btn btn-primary w-25" data-bs-target="#infoCarousel" data-bs-slide="next">OK</button>
           </div>
         </div>
-        <div class="carousel-item text-center" data-bs-interval="0">
-          <div class="card p-4 text-center align-items-center">
-            <div class="card-body">
-              <h2 class="card-title text-primary mb-3">A note from our developers...</h2>
-              <div class="card-text">
-                <p>Converge is in its infancy.</p>
-                <hr class="border border-light border-1 w-75 m-auto mb-3">
-                <p>We are working toward providing a feature-rich, engaging experience. Please be
-                  patient
-                  as we are developing our vision.</p>
-                <p>We welcome any feedback, whether it be a desired functionality, or unexpected
-                  behavior
-                  and bugs.</p>
-                <hr class="border border-light border-1 w-75 m-auto mb-3">
-                <p>If you are reporting a bug, please share a screenshot of the error, and if possible,
-                  a
-                  description of what you were doing when the error occured.</p>
-                <p>Please send feedback to: <a href="mailto:info@convergeapp.com">info@convergeapp.com</a>
-                </p>
+        {% if routine %}
+          {% if routine.practices %}
+            {% for practice in routine.practices %}
+              <div class="carousel-item text-center" data-bs-interval="0">
+                <div class="card p-4 text-center align-items-center">
+                  <div class="card-body">
+                    <h2 class="card-title text-primary mb-3">{{ practice.name }}</h2>
+                    <div class="card-text">
+                      {% if practice.description %}
+                        <p class="lead">Description: {{ practice.description }}</p>
+                      {% endif %}
+                      {% if practice.benefit_synopsis %}
+                        <p class="lead">{{ practice.benefit_synopsis }}</p>
+                      {% endif %}
+                      <hr class="border border-light border-1 w-75 m-auto mb-3">
+                      {% if practice.literature_summary %}
+                        <p class="text-muted small">Research-backed insight:</p>
+                      {% endif %}
+                      <hr class="border border-light border-1 w-75 m-auto mb-3">
+                      
+                    </div>
+                  </div>
+                  <button class="btn btn-primary w-25" data-bs-target="#infoCarousel" data-bs-slide="next">Next</button>
+                </div>
               </div>
-            </div>
-            <button class="btn btn-primary w-25" data-bs-target="#infoCarousel" data-bs-slide="next">OK</button>
-          </div>
-        </div>
+
+            {% endfor %}
+          {% endif %}
+        {% endif %}
         <div class="carousel-item" data-bs-interval="0">
           <div class="card p-4 text-center align-items-center">
             <h2 class="card-title text-primary">Get Started</h2>

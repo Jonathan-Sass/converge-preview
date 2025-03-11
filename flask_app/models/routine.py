@@ -177,16 +177,16 @@ class Routine:
                 
               recommended_routine_template_name = UserResponse.map_user_response_to_routine_template(user_responses, subcategory_slug)
             # Process responses to select routine template for the user
-            recommended_routine_template_name = UserResponse.process_responses_for_routine_template_selection(user_responses)
+            # recommended_routine_template_name = UserResponse.process_responses_for_routine_template_selection(user_responses)
         else:
             # Default routine template if no responses determine one
             recommended_routine_template_name = "Balanced Start"
 
         # Fetch the routine template with associated practices
         recommended_routine_template = RoutineTemplate.find_routine_template_by_name_with_practices(recommended_routine_template_name)
-
+        print("*****recommended_routine_template in select_and_fetch_routine_template******")
+        pprint(recommended_routine_template)
         return recommended_routine_template
-
     
 
     def create_routine(routine_data):
@@ -274,6 +274,6 @@ class Routine:
 
     def get_intro_am_routine():
         
-        recommended_routine_template_name = None
+        recommended_routine_template_name = "The Grounded Start"
 
         RoutineTemplate.find_routine_template_by_name_with_practices(recommended_routine_template_name)

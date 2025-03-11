@@ -62,6 +62,8 @@ class UserResponse:
 
 
     def map_user_response_to_routine_template(user_responses, subcategory_slug):
+      print("***map_user_response_to_routine_template***")
+      
       subcategory_processors = {
         "user-orientation": UserResponse.process_user_orientation,
         "day-map": UserResponse.process_day_map,
@@ -77,6 +79,8 @@ class UserResponse:
         raise ValueError(f"Unkown subcategory: {subcategory_slug}")
       
     def process_day_map(user_responses):
+      print("***process_day_map***")
+      
       recommended_routine_template_name = "The Grounded Start"
       
       response_values = {
