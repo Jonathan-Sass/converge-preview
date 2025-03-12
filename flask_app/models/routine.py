@@ -174,10 +174,9 @@ class Routine:
             user_responses = UserResponse.find_user_responses_by_user_id_and_subcategory_slug(user, subcategory_slug)
 
             if user_responses:
-                
-              recommended_routine_template_name = UserResponse.map_user_response_to_routine_template(user_responses, subcategory_slug)
             # Process responses to select routine template for the user
-            # recommended_routine_template_name = UserResponse.process_responses_for_routine_template_selection(user_responses)
+              recommended_routine_template_name = UserResponse.map_user_response_to_routine_template(user_responses, subcategory_slug)
+
         else:
             # Default routine template if no responses determine one
             recommended_routine_template_name = "Balanced Start"
