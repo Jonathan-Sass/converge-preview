@@ -94,7 +94,7 @@
           <hr class="border border-1 border-light">
           
           <nav class="nav nav-pills flex-column">
-            <a class="nav-link text-light active" href="#onboarding">New Adventure Onboarding</a>
+            <a class="nav-link text-light active" href="#onboarding">New User Onboarding</a>
             <div class="progress mb-3 mt-1" style="height: 1rem;">
               <div id="progress-bar" class="progress-bar bg-primary" role="progressbar" style="width: 10%;"
                 aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
@@ -178,45 +178,20 @@
     introJs().setOptions({
         steps: [
             {
-                element: '.question-container',
-                title: 'Welcome to Converge!',
-                intro: 'We use surveys like this to understand your goals and provide a personalized experience. Your answers help tailor your experience to your needs, but we will never share your personal information outside Converge.',
+                element: '#survey_category',
+                title: 'Surveys and Maps',
+                intro: 'This is the first of many surveys you will encounter in Converge. They are the foundation for curating a personalized experience, and we do our best to keep them very brief. You can revisit them at any time to tweak your answers/experience. We will never share your personal information with any entity outside Converge.',
                 position: 'top' 
             },
             {
-                element: '.question-container',
-                title: 'Structure',
-                intro: "Our goal with Converge is to provide a structure for you to get really clear on your identity, your value systems, motivators and patterns in life, your vision of your future and what kind of 'legacy' you would like to leave behind.",
-                position: 'top'
-            },
-            {
-            element: '.question-container',
-                title: 'System, uhhh... Hacks',
-                intro: "During this process, you will have opportunities to learn about your own body and system and how to help you carve into your days with ease and ",
-                position: 'top'
-            },
-            {
-            element: '.question-container',
-                title: 'System, uhhh... Hacks',
-                intro: "One of the primary motivators behind Converge was/is to create a personalized self-education tool",
-                position: 'bottom'
-            },
-            {
-            element: '.question-container',
-                title: 'Welcome to Converge!',
-                intro: "And for those of us for whom focus, will power, motivation, etc. can be a challenge, we will learn with microtasking and habit stacking, a process of setting 1 - 2 goals that require zero effort and are easily queued",
-                position: 'bottom'
-            },
-            {
-                element: '.question-container',
-                title: 'Getting Started',
-                intro: "Let's begin by understanding your baseline goals and needs. This helps us customize recommendations for you.",
+                element: '#survey_category',
+                title: 'User Orientation Survey',
+                intro: "This orientation survey will establish a baseline of how Converge can best work for you.",
                 position: 'top'
             },
             {
                 element: '#start-btn',
-                title: 'Start Your Journey',
-                intro: 'Click the **Start** button to begin your first survey!',
+                intro: 'Click start to begin!',
                 position: 'right' 
             }
         ],
