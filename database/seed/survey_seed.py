@@ -13,6 +13,10 @@ from database.seed_data.survey_question_data import survey_question_data
 from database.seed_data.generic_survey_answer_data import generic_survey_answer_data
 from database.seed_data.survey_branching_data import survey_branching_data
 
+
+# TODO: REFACTOR survey_answer_seed and survey_question_answer_map FOR BATCHING
+
+
 # LOOKS FOR AND SEEDS SURVEY DATA IN DB
 def user_survey_seed():
     user = User.get_logged_in_user()

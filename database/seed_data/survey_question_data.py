@@ -166,12 +166,14 @@ survey_question_data = [
             },
             {
                 "question_slug": "daily-movement-check",
-                "question_text": "Do you currently engage in any daily movement or exercise?",
+                "question_text": "Do you currently engage in daily movement or exercise?",
                 "type": "guided-choice",
                 "answers": [
                     {"answer_text": "No", "answer_value": 0},
-                    {"answer_text": "Yes", "answer_value": 1},
-                    {"answer_text": "I work a physically demanding job.", "answer_value": 2}
+                    {"answer_text": "I work a physically demanding job.", "answer_value": 1},
+                    {"answer_text": "Yes, mostly walking or gentle movement.", "answer_value": 2},
+                    {"answer_text": "Yes, I am active in a variety of ways.", "answer_value": 3},
+                    {"answer_text": "Yes, I am an athlete with a structured/consistent regimen.", "answer_value": 4}
                 ]
             },
             {
@@ -186,9 +188,31 @@ survey_question_data = [
                 ]
             },
             {
+                "question_slug": "exercise-timing",
+                "question_text": "When in the day do you typically exercise?",
+                "type": "guided-choice",
+                "answers": [
+                    {"answer_text": "Rarely or never", "answer_value": 0},
+                    {"answer_text": "In the morning", "answer_value": 1},
+                    {"answer_text": "Midday", "answer_value": 2},
+                    {"answer_text": "In the afternoon/evening", "answer_value": 3}
+                ]
+            },
+            {
                 "question_slug": "hobbies-check",
                 "question_text": "Do you have any hobbies or creative outlets that you engage in regularly?",
                 "type": "yes-no"
+            },
+            {
+                "question_slug": "am-focus-block-check",
+                "question_text": "Do you or would you like to set aside time in your morning for productivity, hobbies, or similar activities?",
+                "type": "guided-choice",
+                "answers": [
+                    {"answer_text": "No", "answer_value": 0},
+                    {"answer_text": "Yes, less than 10 minutes", "answer_value": 1},
+                    {"answer_text": "Yes, 10 - 30 minutes", "answer_value": 2},
+                    {"answer_text": "Yes, 30+ minutes", "answer_value": 3}
+                ]
             },
             {
                 "question_slug": "hobbies-types",
@@ -229,14 +253,20 @@ survey_question_data = [
             },
             {
                 "question_slug": "pm-routine-time-availability",
-                "question_text": "How much time do you typically have/make in the evening to wind down before bed?",
+                "question_text": "How much time do you typically set aside in the evening to wind down before bed?",
                 "type": "guided-choice",
                 "answers": [
-                    {"answer_text": "Less than 5 minutes", "answer_value": 0},
-                    {"answer_text": "5-15 minutes", "answer_value": 1},
-                    {"answer_text": "15-30 minutes", "answer_value": 2},
-                    {"answer_text": "30+ minutes", "answer_value": 3}
+                    {"answer_text": "None", "answer_value": 0},
+                    {"answer_text": "Less than 5 minutes", "answer_value": 1},
+                    {"answer_text": "5-15 minutes", "answer_value": 2},
+                    {"answer_text": "15-30 minutes", "answer_value": 3},
+                    {"answer_text": "30+ minutes", "answer_value": 4}
                 ]
+            },
+            {
+                "question_slug": "social-wellness-check",
+                "question_text": "Rate your satisfaction with your current social activity and connections",
+                "type": "satisfaction",
             },
         ]
     },
@@ -557,11 +587,11 @@ survey_question_data = [
     {
         "subcategory_slug": "getting-started",
         "questions": [
-            {
-                "question_slug": "existing-routines-check",
-                "question_text": "Do you currently have an established morning routine or habits?",
-                "type": "yes-no",
-            },
+            # {
+            #     "question_slug": "existing-routines-check",
+            #     "question_text": "Do you currently have an established morning routine or habits?",
+            #     "type": "yes-no",
+            # },
             {
                 "question_slug": "existing-routines-satisfaction",
                 "question_text": "How satisfied are you with your current morning routine?",

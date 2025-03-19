@@ -4,15 +4,15 @@ routine_template_data = [
     # AM Starter Routines for early users getting their first routines
     {
         "name": "The Grounded Start",
-        "description": "A simple morning routine designed to cultivate inner peace, clarity, and a strong start to the day.",
+        "description": "A simple morning routine designed to cultivate calm, clarity, and a strong start to the day.",
         "frequency": "Daily",
         "routine_type": "AM Starter",
         "category": "Mindfulness & Presence",
         "notes": "Best for users who want to feel centered before engaging with the day.",
         "practices": [
-            {"practice_name": "Morning Hydration", "position": 1},
-            {"practice_name": "Morning Mindfulness", "position": 2},
-            {"practice_name": "Digital-Free Start", "position": 3}
+            {"practice_name": "AM Digital Wellness", "position": 1},
+            {"practice_name": "Morning Hydration", "position": 2},
+            {"practice_name": "Morning Mindfulness", "position": 3}
         ]
     },
     {
@@ -24,12 +24,12 @@ routine_template_data = [
         "notes": "Great for those who want to shake off grogginess and start the day feeling strong.",
         "practices": [
             {"practice_name": "Cold Exposure", "position": 1},
-            {"practice_name": "Movement/Stretch", "position": 2},
+            {"practice_name": "Morning Hydration", "position": 2},
             {"practice_name": "Morning Sun/Walk", "position": 3}
         ]
     },
     {
-        "name": "The Focused Start",
+        "name": "Mindful Focus Start",
         "description": "A structured start for a distraction-free and productive day.",
         "frequency": "Daily",
         "routine_type": "AM Starter",
@@ -37,7 +37,7 @@ routine_template_data = [
         "notes": "Best for those who need mental clarity and structured focus time.",
         "practices": [
             {"practice_name": "AM Digital Wellness", "position": 1},
-            {"practice_name": "Mirror Mantra", "position": 2},
+            {"practice_name": "Morning Mindfulness", "position": 2},
             {"practice_name": "Deep Work Session", "position": 3}
         ]
     },
@@ -55,7 +55,7 @@ routine_template_data = [
         ]
     },
     {
-        "name": "The Productive Start",
+        "name": "Active Focus Start",
         "description": "A disciplined approach to morning routines, focusing on resilience and structure.",
         "frequency": "Daily",
         "routine_type": "AM Starter",
@@ -63,7 +63,7 @@ routine_template_data = [
         "notes": "Designed for those who want to cultivate consistency and fortitude.",
         "practices": [
             {"practice_name": "Cold Exposure", "position": 1},
-            {"practice_name": "Mirror Mantra", "position": 2},
+            {"practice_name": "Morning Sun/Walk", "position": 2},
             {"practice_name": "Deep Work Session", "position": 3}
         ]
     },
