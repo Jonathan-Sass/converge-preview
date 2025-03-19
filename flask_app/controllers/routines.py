@@ -40,10 +40,15 @@ def building_practices_intro():
 
     # TODO: If pre-existing routines --> routine_builder or wellness survey?, else template below
     subcategory_slug = "day-map"
-
-    routine = Routine.select_and_fetch_routine_template(user, subcategory_slug)
     
-    return render_template("routines/am_routine_intro_carousel.html", routine = routine)
+    responses = UserResponse.find_user_responses_by_user_id_and_subcategory_slug(user, subcategory_slug)
+    routine_template_name, existing_routine_status = UserResponse.process_day_map(responses)
+    routine = RoutineTemplate.find_routine_template_by_name_with_practices(routine_template_name)
+
+    if existing_routine_status == False:
+        return render_template("/routines/am_routine_intro_carousel.html", routine = routine)
+    elif existing_routine_status == True:
+        return render_template("/routines/am_routine_intro_build_your_own.html", routine = routine)
 
 @app.get("/routines/am/intro-basic")
 def view_basic_intro_routine():
@@ -69,7 +74,7 @@ def set_initial_am_routines():
     # TODO: Implement Personal Routine Progress - allows user to slowly build habits without being overwhelming/defeating
 
     return render_template(
-        "routines/am_routine_builder.html", recommended_routine=recommended_routine
+        "routines/am_routine_builder.html", recommended_routine = recommended_routine
     )
 
 
@@ -99,6 +104,7 @@ def build_your_own_am_routine():
 
     return render_template("routines/am_routine_intro_build_your_own.html", routine = routine)
 
+# TODO: DELETE? LIKELY REDUNDANT WITH /intro-builder/save
 @app.post("/routines/am/intro-build-your-own/save")
 def save_build_your_own_routine():
     user = User.get_logged_in_user()

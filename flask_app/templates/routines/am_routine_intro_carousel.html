@@ -37,18 +37,9 @@
       <div class="carousel-inner">
         <div class="carousel-item active" data-bs-interval="0">
           <div class="card p-4 text-center align-items-center">
-            <h2 class="card-title text-primary">Welcome to Converge!</h2>
-            <p class="card-text">Our mission is to provide structure and motivation to help you achieve your goals.</p>
-            <div class="text-start">
-              <ol class="list-group list-group-numbered mb-3">
-                <li class="lead list-group-item">Personalized Routines: We'll suggest science-backed routines and
-                  practices to help you feel and function your best.</li>
-                <li class="lead list-group-item">Achievable Steps: Break down your goals into manageable pieces and
-                  visualize your progress.</li>
-                <li class="lead list-group-item">Motivation & Progress: Track your journey, stay inspired, and turn your
-                  dreams into reality.</li>
-              </ol>
-            </div>
+            <h2 class="card-title text-primary">Initial morning practices</h2>
+            <p class="card-text">The following practices are intended to be very basic, with very little barrier to entry.</p>
+            
             <button class="btn btn-primary w-25" data-bs-target="#infoCarousel" data-bs-slide="next">OK</button>
           </div>
         </div>
@@ -69,8 +60,9 @@
                       <hr class="border border-light border-1 w-75 m-auto mb-3">
                       {% if practice.literature_summary %}
                         <p class="text-muted small">Research-backed insight:</p>
+                        <p>{{ practice.literature_summary }}</p>
+                        <hr class="border border-light border-1 w-75 m-auto mb-3">
                       {% endif %}
-                      <hr class="border border-light border-1 w-75 m-auto mb-3">
                       
                     </div>
                   </div>

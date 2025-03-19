@@ -66,7 +66,8 @@ class UserResponse:
       
       subcategory_processors = {
         "user-orientation": UserResponse.process_user_orientation,
-        "day-map": UserResponse.process_day_map,
+        # Note: Day map also returns a variable for route selection and thus is called separately/omitted from this list.
+        # "day-map": UserResponse.process_day_map,
         "discipline-motivation-focus map": UserResponse.process_discipline_motivation_focus,
         "value-map": UserResponse.process_value_map,
       }
@@ -82,23 +83,70 @@ class UserResponse:
       print("***process_day_map***")
       
       recommended_routine_template_name = "The Grounded Start"
+      existing_routine_status = False
       
       response_values = {
             response.question_slug: response.answer_value for response in user_responses
         }
       
-      existing_routines_check = response_values.get("existing_routines_check")
-      existing_am_routines_satisfaction = response_values.get("existing_am_routines_satisfaction")
-      am_routine_time_availability = response_values.get("am_routine_availability")
-      daily_movement_check = response_values.get("daily_movement_check")
-      exercise_frequency = response_values.get("exercise_frequency")
-      hobbies_check = response_values.get("hobbies_check")
-      hobbies_types = response_values.get("hobbies_types")
-      work_schedule_flexibility = response_values.get("work_schedule_flexibility")
+      existing_routines_check = response_values.get("existing-routines-check")
+      existing_am_routines_satisfaction = response_values.get("existing-am-routines-satisfaction")
+      am_routine_time_availability = response_values.get("am-routine-availability")
+      daily_movement_check = response_values.get("daily-movement-check")
+      exercise_frequency = response_values.get("exercise-frequency")
+      exercise_timing = response_values.get("exercise-timing")
+      am_focus_block_check = response_values.get("am-focus-block-check")
+      hobbies_check = response_values.get("hobbies-check")
+      hobbies_types = response_values.get("hobbies-types")
+      work_schedule_flexibility = response_values.get("work-schedule-flexibility")
+      evening_routine_check = response_values.get("evening-routine-check")
+      existing_pm_routines_satisfaction = response_values.get("existing-pm-routines-satisfaction")
+      pm_routine_time_availability = response_values.get("pm-routine-time-availability")
+      social_wellness_check = response_values.get("social-wellness-check")
+
+
+          # TODO: Outsource routine Template selection to another function?
+
+      # ADD TIME CONSTRAINT TO AUTO SELECT STARTER ROUTINES FOR USERS WITH LESS THAN 10 MINUTES FOR AM HABITS
+
+      if existing_routines_check is not None and existing_am_routines_satisfaction is not None:
+        
+        #  User has a morning routine but is not satisfied with it
+        if existing_routines_check != 0 and existing_am_routines_satisfaction < 2:
+          
+          if daily_movement_check is not None and exercise_timing is not None and am_focus_block_check is not None:
+            
+            # User exercises in the morning, and has a morning focus block
+            if exercise_timing == 1 and am_focus_block_check > 0:
+              #  User is at least moderately active
+              if daily_movement_check >=3:
+                recommended_routine_template_name = "Peak Performance Start"
+            
+              # User is lightly active
+              if daily_movement_check < 3:
+                recommended_routine_template_name = "Energized Focus"
+
+        existing_routine_status = True
+         
+
+      if existing_routines_check:
+        
+        # User does not have an existing morning routine
+        if existing_routines_check == 0:
+
+          if daily_movement_check is not None and am_focus_block_check is not None:
+          
+            # User moves daily and has a morning focus block
+            if daily_movement_check == 1 and am_focus_block_check >= 1:
+              recommended_routine_template_name = "Active Focus Start"
+           
+          existing_routine_status = False
 
       # TODO: Ready for business logic to filter based on responses.
 
-      return recommended_routine_template_name
+      return recommended_routine_template_name, existing_routine_status
+
+
 
     def process_discipline_motivation_focus(user_response):
           
@@ -112,6 +160,7 @@ class UserResponse:
           
       return
 
+    #TODO: REMOVE - DEPRECATED FOR SCALABLE/FLEXIBLE map_user_responses_to_routine_template and process_map methods
     @staticmethod
     def process_responses_for_routine_template_selection(responses):
         # CURRENT LOGIC FOR TESTING ONLY - ALL SUBSEQUENT FUNCTIONS WILL UNDERGO SIGNIFICANT REWORK FOR A MORE MEANINGFUL FILTERING PROCESS
