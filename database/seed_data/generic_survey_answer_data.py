@@ -124,6 +124,19 @@ generic_survey_answer_data = [
                 },
             ],
         },
+
+        # RATING EASE VS. DIFFICULTY
+        {
+            "answer_type": "ease-rating",
+            "answers": [
+                {"answer_text": "Very easy", "answer_value": 4},
+                {"answer_text": "Easy", "answer_value": 3},
+                {"answer_text": "Neutral", "answer_value": 2},
+                {"answer_text": "Difficult", "answer_value": 1},
+                {"answer_text": "Very Challenging", "answer_value": 0},
+            ],
+        },
+
         # FREQUENCY ANSWER SETS
         {
             "answer_type": "frequency",
@@ -166,7 +179,7 @@ generic_survey_answer_data = [
                 {"answer_text": "Not at all important", "answer_value": 0},
             ],
         },
-        # RANGE ANSWER SETS
+        # TIME RANGE ANSWER SETS
         {
             "answer_type": "range-mins-hours-10-2",
             "answers": [

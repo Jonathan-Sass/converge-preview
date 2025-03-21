@@ -154,6 +154,19 @@ survey_question_data = [
                 "type": "satisfaction"
             },
             {
+                "question_slug": "new-habit-adoption-pattern-check",
+                "question_text": "How would you describe your experience with adopting new routines or habits?",
+                "type": "guided-choice",
+                "answers": [
+                    {"answer_text": "Very easy, I can pick up new habits and be consistent with minimal effort.", "answer_value": 0},
+                    {"answer_text": "Easy, new habits come easily, but sometimes take a bit of effort to maintain consistency", "answer_value": 1},
+                    {"answer_text": "Neutral, with some effort I can generally stick to new habits.", "answer_value": 2},
+                    {"answer_text": "Difficult, it takes preparation and effort to adopt new habits, consistency is challenging.", "answer_value": 3},
+                    {"answer_text": "Very difficult, even with significant effort and planning, adopting a new habit feels like a long shot.", "answer_value": 4}
+
+                ]
+            },
+            {
                 "question_slug": "am-routine-time-availability",
                 "question_text": "How much time do you typically have in the morning for yourself before starting your day?",
                 "type": "guided-choice",
