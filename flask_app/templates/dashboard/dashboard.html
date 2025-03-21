@@ -151,18 +151,18 @@
                 <div class="card-body">
                   <div class="card-title d-flex justify-content-between">
                     <h5 class="card-title text-primary">Morning Routine</h5>
-                    <button id="edit-am-routine" class="btn btn-sm btn-outline-primary">Edit Routine</button>
+                    <a id="edit-am-routine" class="btn btn-sm btn-outline-primary" href="/routines/am/manage">Edit Routine</a>
                   </div>
                   <hr class="border border-light mb-3 m-auto w-100">
                   <ul class="list-group">
                     <!-- EXAMPLE PRACTICE FOR INTRO.JS -->
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <!-- <li class="list-group-item d-flex justify-content-between align-items-center">
                       <span>Sample Practice</span>
                       <div class="d-flex gap-2">
                         <button id="complete-example" class="btn btn-sm btn-outline-success">Complete</button>
                         <button id="edit-practice-example" class="btn btn-sm btn-outline-warning">Edit Practice</button>
                       </div>
-                    </li>
+                    </li> -->
                     {% for routine in routines %}
                     {% if routine.routine_type == "AM" %}
                     {% for practice in routine.practices %}
