@@ -107,7 +107,7 @@ class UserResponse:
 
           # TODO: Outsource routine Template selection to another function?
 
-      # ADD TIME CONSTRAINT TO AUTO SELECT STARTER ROUTINES FOR USERS WITH LESS THAN 10 MINUTES FOR AM HABITS
+      # ADD TIME CONSTRAINT TO AUTO SELECT STARTER ROUTINES FOR USERS WITH LESS THAN 10 MINUTES FOR AM HABITS?
 
       if existing_routines_check is not None and existing_am_routines_satisfaction is not None:
         
@@ -126,7 +126,7 @@ class UserResponse:
               if daily_movement_check < 3:
                 recommended_routine_template_name = "Energized Focus"
 
-        existing_routine_status = True
+          existing_routine_status = True
          
 
       if existing_routines_check:
