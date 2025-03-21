@@ -20,16 +20,16 @@ def test_route():
     return render_template("routines/routines_template.html")
 
 
-@app.get("/routines/am/manage")
-def manage_am_routines():
+@app.get("/routines/<string:routine_type>/manage")
+def manage_am_routines(routine_type):
     user = User.get_logged_in_user()
     print(user)
     if not user:
         return redirect("/")
     
-    routines = Routine.find_routines_by_user_id(user.id)
+    routine = Routine.find_routine_by_user_id_and_routine_type(user.id, routine_type)
 
-    return render_template("/routines/am_routine_build_your_own.html", routines = routines)
+    return render_template("/routines/am_routine_build_your_own.html", routine = routine)
 
 
 @app.get("/routines/am/intro")
@@ -68,7 +68,7 @@ def set_initial_am_routines():
         return redirect("/")
 
     recommended_routine = Routine.select_and_fetch_routine_template(
-        user, "getting-to-know-you"
+        user, "day-map"
     )
     # durations = Duration.fetch_all_durations()
     # TODO: Implement Personal Routine Progress - allows user to slowly build habits without being overwhelming/defeating
@@ -117,3 +117,16 @@ def save_build_your_own_routine():
     Routine.create_routine(am_routine_data)
 
     return jsonify({"success": True, "redirect": "/dashboard/intro-am-practices"})
+
+
+# CRUD ROUTES
+@app.get("/routines/am/edit")
+def edit_user_routine():
+    user = User.get_logged_in_user()
+    print(user)
+    if not user:
+        return redirect("/")
+    
+    routine = Routine.find_routines_by_user_id(user.id)
+
+    return render_template("/routines/edit_user_routine.html", routine = routine)
