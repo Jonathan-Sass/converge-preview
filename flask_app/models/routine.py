@@ -29,18 +29,18 @@ class Routine:
     def find_routines_by_user_id(user_id):
         query = """
             SELECT 
-              r.id AS routine_id,
-              r.name AS routine_name,
-              r.description AS routine_description,
-              r.routine_type,
-              r.start_time,
-              r.end_time,
-              r.is_active,
-              r.notes AS routine_notes,
-              r.created_at AS routine_created_at,
-              r.updated_at AS routine_updated_at,
-              rp.routine_id AS practice_routine_id,
-              rp.position,
+              ur.id AS routine_id,
+              ur.name AS routine_name,
+              ur.description AS routine_description,
+              ur.routine_type,
+              ur.start_time,
+              ur.end_time,
+              ur.is_active,
+              ur.notes AS routine_notes,
+              ur.created_at AS routine_created_at,
+              ur.updated_at AS routine_updated_at,
+              urp.routine_id AS practice_routine_id,
+              urp.position,
               p.id AS practice_id,
               p.name AS practice_name,
               p.description AS practice_description,
@@ -55,21 +55,21 @@ class Routine:
               ir.impact_rating_description,
               dl.difficulty_label AS practice_difficulty
             FROM
-              routines r
+              user_routines ur
             LEFT JOIN 
-              routine_practices rp ON r.id = rp.routine_id
+              user_routine_practices urp ON ur.id = urp.routine_id
             LEFT JOIN 
-              practices p ON rp.practice_id = p.id
+              practices p ON urp.practice_id = p.id
             LEFT JOIN
               practice_categories pc ON p.practice_category_id = pc.id
             LEFT JOIN
-              durations d ON rp.duration_id = d.id
+              durations d ON urp.duration_id = d.id
             LEFT JOIN
               impact_ratings ir ON p.impact_rating_id = ir.id
             LEFT JOIN
               difficulty_levels dl ON p.difficulty_level_id = dl.id
             WHERE
-              r.user_id = %(user_id)s;
+              ur.user_id = %(user_id)s;
         """
 
         data = {"user_id": user_id}
@@ -144,18 +144,18 @@ class Routine:
     def find_routine_by_user_id_and_routine_type(user_id, routine_type):
         query = """
             SELECT 
-              r.id AS routine_id,
-              r.name AS routine_name,
-              r.description AS routine_description,
-              r.routine_type,
-              r.start_time,
-              r.end_time,
-              r.is_active,
-              r.notes AS routine_notes,
-              r.created_at AS routine_created_at,
-              r.updated_at AS routine_updated_at,
-              rp.routine_id AS practice_routine_id,
-              rp.position,
+              ur.id AS routine_id,
+              ur.name AS routine_name,
+              ur.description AS routine_description,
+              ur.routine_type,
+              ur.start_time,
+              ur.end_time,
+              ur.is_active,
+              ur.notes AS routine_notes,
+              ur.created_at AS routine_created_at,
+              ur.updated_at AS routine_updated_at,
+              urp.routine_id AS practice_routine_id,
+              urp.position,
               p.id AS practice_id,
               p.name AS practice_name,
               p.description AS practice_description,
@@ -170,23 +170,23 @@ class Routine:
               ir.impact_rating_description,
               dl.difficulty_label AS practice_difficulty
             FROM
-              routines r
+              user_routines ur
             LEFT JOIN 
-              routine_practices rp ON r.id = rp.routine_id
+              user_routine_practices urp ON ur.id = urp.routine_id
             LEFT JOIN 
-              practices p ON rp.practice_id = p.id
+              practices p ON urp.practice_id = p.id
             LEFT JOIN
               practice_categories pc ON p.practice_category_id = pc.id
             LEFT JOIN
-              durations d ON rp.duration_id = d.id
+              durations d ON urp.duration_id = d.id
             LEFT JOIN
               impact_ratings ir ON p.impact_rating_id = ir.id
             LEFT JOIN
               difficulty_levels dl ON p.difficulty_level_id = dl.id
             WHERE
-              r.user_id = %(user_id)s
+              ur.user_id = %(user_id)s
             AND
-              r.routine_type = %(routine_type)s;
+              ur.routine_type = %(routine_type)s;
         """
 
         data = {
@@ -196,13 +196,10 @@ class Routine:
 
         results = Routine.db.query_db(query, data)
 
-        # routines = []
 
         if results:
 
             for row in results:
-                # routine = next((r for r in routines if r.id == row["routine_id"]), None)
-                # if not routine:
                 routine_data = {
                     "id": row["routine_id"],
                     "user_id": user_id,
@@ -218,7 +215,6 @@ class Routine:
                     "practices": [],
                 }
                 routine = Routine(routine_data)
-                    # routines.append(routine)
 
                 practice = None
 
@@ -252,14 +248,13 @@ class Routine:
                         practice = Practice(practice_data)
                         routine.practices.append(practice)
 
-        print("Routines in find_routines:")
-        for routine in routines:
-            pprint(vars(routine))
-            print("Routine's practices:")
-            for practice in routine.practices:
-                pprint(vars(practice))
+        # print("Routine in find_routines:")
+        # pprint(vars(routine))
+        # print("Routine's practices:")
+        # for practice in routine.practices:
+        #     pprint(vars(practice))
 
-        return routines
+        return routine
 
     @staticmethod
     def select_and_fetch_routine_template(user, subcategory_slug):
@@ -314,7 +309,7 @@ class Routine:
 
         query = """
             INSERT INTO
-                routines (user_id, name, description, routine_type, start_time, end_time, is_active, notes, created_at, updated_at)
+                user_routines (user_id, name, description, routine_type, start_time, end_time, is_active, notes, created_at, updated_at)
             VALUES
                 (%(user_id)s, %(name)s, %(description)s, %(routine_type)s, %(start_time)s, %(end_time)s, %(is_active)s, %(notes)s, NOW(), NOW())
             ON DUPLICATE KEY UPDATE
@@ -353,7 +348,7 @@ class Routine:
     def create_routine_practices(routine_data, routine_id):
         query = """
             INSERT INTO
-                routine_practices (routine_id, practice_id, duration_id, position, created_at, updated_at)
+                user_routine_practices (routine_id, practice_id, duration_id, position, created_at, updated_at)
             VALUES
                 (%(routine_id)s, %(practice_id)s, %(duration_id)s, %(position)s, NOW(), NOW())
             ON DUPLICATE KEY UPDATE
@@ -396,3 +391,20 @@ class Routine:
         recommended_routine_template_name = "The Grounded Start"
 
         RoutineTemplate.find_routine_template_by_name_with_practices(recommended_routine_template_name)
+
+
+    def update_routine_practices():
+        # Retrieve routine_practices for user
+
+        # for routine_practice in routine_practices
+            # if new routine_practice not in new practices
+              # delete routine_practice
+        
+        # for practice in new_practices
+          # if practice not in routine_practices
+              #   insert into routine_practices
+          # if practice in routine_practices
+            # update practice
+
+
+        return
