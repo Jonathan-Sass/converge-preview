@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-bs-theme="dark">
+<html lang="en">
 
 <head>
   <!-- Meta Information -->
@@ -26,21 +26,21 @@
 
 <body>
   <div class="parallax-bg"></div>
-  <header class="card shadow w-100 p-3 text-center position-sticky top-0 z-3">
+  <header class="bg-light shadow w-100 p-3 text-center position-sticky top-0 z-3">
     <img src="/static/img/Enso_Blue_and_Black.jpg" class="m-auto rounded-circle" width="75" height="75"
       alt="Converge Logo">
     <h1 class="display-5 mb-3 text-primary">Converge</h1>
     <h4 class="lead mx-5">Converge with your potential. Converge with your dreams.</h4>
   </header>
   <div class="container my-3 w-75">
-    <div id="infoCarousel" class="carousel slide opacity-75" data-bs-ride="false">
+    <div id="infoCarousel" class="carousel slide" data-bs-ride="false">
       <div class="carousel-inner">
         <div class="carousel-item active" data-bs-interval="0">
           <div class="card p-4 text-center align-items-center">
             <h2 class="card-title text-primary">Initial morning practices</h2>
-            <p class="card-text">The following practices are the beginning of a morning routine. </p>
-            <p class="card-text">Although they may seem inconsequential, they have benefits, and their simplicity is by design.</p>
-            <p class="card-text">We begin with low barrier to entry practices that will help you build your own confidence in your ability to be disciplined and adopt new patterns.</p>
+            <p class="card-text lead">The following practices are the beginning of a morning routine. </p>
+            <p class="card-text lead">Although they may seem inconsequential, they have benefits, and their simplicity is by design.</p>
+            <p class="card-text lead">We begin with low barrier to entry practices that will help you build your own confidence in your ability to be disciplined and adopt new patterns.</p>
             
             <button class="btn btn-primary w-25" data-bs-target="#infoCarousel" data-bs-slide="next">OK</button>
           </div>
@@ -48,10 +48,10 @@
         <div class="carousel-item" data-bs-interval="0">
           <div class="card p-4 text-center align-items-center">
             <h2 class="card-title text-primary">Barriers and Strategies</h2>
-            <p class="card-text">At the core of Converge is beginning to understand your personal barriers, and addressing those head-on with strategies and 'habit anchors' to keep you moving forward.  </p>
-            <p class="card-text">We start everyone off with drinking a glass of water in the morning.  This is because this is a universal need for humans, and for those of us who sometimes struggle to implement new patterns, it is a great place to start.</p>
-            <p class="card-text">The key to success here is giving yourself an environmental cue that you can't miss.  You can do this by placing a glass of water on your bedside table, or somewhere else you won't be able to miss it in the morning.  </p>
-            <p class="card-text">We are also going to use a technique called habit stacking, where we couple new habits with existing ones, or in this case with one that is exceedingly simple to serve as the cue for the next.</p>
+            <p class="card-text lead">At the core of Converge is beginning to understand your personal barriers, and addressing those head-on with strategies and 'habit anchors' to keep you moving forward.  </p>
+            <p class="card-text lead">We start everyone off with drinking a glass of water in the morning.  This is because this is a universal need for humans, and for those of us who sometimes struggle to implement new patterns, it is a great place to start.</p>
+            <p class="card-text lead">The key to success here is giving yourself an environmental cue that you can't miss.  You can do this by placing a glass of water on your bedside table, or somewhere else you won't be able to miss it in the morning.  </p>
+            <p class="card-text lead">We are also going to use a technique called habit stacking, where we couple new habits with existing ones, or in this case with one that is exceedingly simple to serve as the cue for the next.</p>
             <button class="btn btn-primary w-25" data-bs-target="#infoCarousel" data-bs-slide="next">OK</button>
           </div>
         </div>
@@ -72,7 +72,7 @@
                       <hr class="border border-light border-1 w-75 m-auto mb-3">
                       {% if practice.literature_summary %}
                         <p class="text-muted small">Research-backed insight:</p>
-                        <p>{{ practice.literature_summary }}</p>
+                        <p class="lead">{{ practice.literature_summary }}</p>
                         <hr class="border border-light border-1 w-75 m-auto mb-3">
                       {% endif %}
                       
@@ -88,7 +88,7 @@
         <div class="carousel-item" data-bs-interval="0">
           <div class="card p-4 text-center align-items-center">
             <h2 class="card-title text-primary">Need to make changes?</h2>
-            <p class="card-text">If this initial routine seems like too much or too little, you will have an opportunity on the next page to tweak it as you see fit.</p>
+            <p class="card-text lead">If this initial routine seems like too much or too little, you will have an opportunity on the next page to tweak it as you see fit.</p>
             <a href="/routines/am/intro-build-your-own" class="btn btn-success w-25">Continue</a>
           </div>
         </div>

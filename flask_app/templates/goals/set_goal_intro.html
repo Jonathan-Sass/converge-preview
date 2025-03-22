@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-bs-theme="dark">
+<html lang="en">
 
 <head>
   <meta charset="UTF-8">
@@ -16,134 +16,80 @@
 </head>
 
 <body>
+  <div class="parallax-bg"></div>
   <div class="border-box">
     <nav
-      class="navbar navbar-expand-lg navbar-dark bg-dark w-100 m-auto d-flex justify-content-between position-sticky top-0 z-3 p-3">
+      class="navbar shadow navbar-expand-lg bg-light w-100 m-auto d-flex justify-content-between position-sticky top-0 z-3 p-3">
       <div class="container-fluid">
-        <a class="navbar-brand d-inline-flex align-items-center gap-4" href="/home">
-          <img src="/static/img/Enso_Blue_and_Black.jpg" alt="Logo" width="60" height="60" class="rounded-circle">
+        <a class="navbar-brand d-inline-flex align-items-center gap-4" href="/dashboard">
+          <img src="/static/img/Enso_Blue_and_Black.jpg" class="rounded-circle" width="60" height="60"
+            alt="Converge Logo">
           <h1 class="display-5 text-primary">Converge</h1>
         </a>
       </div>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDarkDropdown1"
-        aria-controls="navbarNavDarkDropdown1" aria-expanded="false" aria-label="Toggle navigation">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDarkDropdown"
+        aria-controls="navbarNavDarkDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse" id="navbarNavDarkDropdown1">
+      <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
         <div class="navbar-nav">
           <a class="nav-link active" aria-current="page" href="/home">Home</a>
           <a class="nav-link" href="/calendar">Calendar</a>
-          <div class="collapse navbar-collapse">
+          <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
             <ul class="navbar-nav">
               <li class="nav-item dropdown">
-                <button class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                <button class="btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                   Goals
                 </button>
-                <ul class="dropdown-menu dropdown-menu-dark">
-                  <li><a class="dropdown-item" href="/goals/your-why">Understanding Your WHY</a></li>
-                  <li><a class="dropdown-item" href="/goals/recreation-travel">Recreation and
-                      Travel</a></li>
-                  <li><a class="dropdown-item" href="/goals/health-wellness">Health and Wellness</a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="/goals/manager">Goal Manager</a></li>
+
+                  <li><a class="dropdown-item" href="/goals/recreation-travel">Recreation and Travel</a></li>
+                  <li><a class="dropdown-item" href="/goals/health-wellness">Health and Wellness</a></li>
+                  <li><a class="dropdown-item" href="/goals/social-community">Social and Community Engagement</a></li>
+                  <li><a class="dropdown-item" href="/goals/spirituality">Spirituality and Life Purpose</a></li>
+                  <li><a class="dropdown-item" href="/goals/career-professional-development">Career and Professional
+                      Development</a></li>
+                  <li><a class="dropdown-item" href="/goals/wealth-finance">Wealth Building and Financial Health</a>
                   </li>
-                  <li><a class="dropdown-item" href="/goals/social-community">Social and Community
-                      Engagement</a></li>
-                  <li><a class="dropdown-item" href="/goals/spirituality">Spirituality and Life
-                      Purpose</a></li>
-                  <li><a class="dropdown-item" href="/goals/career-professional-development">Career
-                      and Professional Development</a></li>
-                  <li><a class="dropdown-item" href="/goals/wealth-finance">Wealth Building and
-                      Financial Health</a></li>
-                  <li><a class="dropdown-item" href="/goals/creative-expression-hobbies">Creative
-                      Expression and Hobbies</a></li>
-                  <li><a class="dropdown-item" href="/goals/environment-success">Environment and
-                      Success</a></li>
+                  <li><a class="dropdown-item" href="/goals/creative-expression-hobbies">Creative Expression and
+                      Hobbies</a></li>
+                  <li><a class="dropdown-item" href="/goals/environment-success">Environment and Success</a></li>
                   <li><a class="dropdown-item" href="/goals">Something else here</a></li>
                 </ul>
               </li>
             </ul>
           </div>
-          <div class="collapse navbar-collapse">
+          <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
             <ul class="navbar-nav">
               <li class="nav-item dropdown">
-                <button class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                  Practices
+                <button class="btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                  Routines
                 </button>
-                <ul class="dropdown-menu dropdown-menu-dark">
-                  <li><a class="dropdown-item" href="/practices/AM">AM Practices</a></li>
-                  <li><a class="dropdown-item" href="/practices/PM">PM Practices</a></li>
-                  <li><a class="dropdown-item" href="/practices/daily">Daily Practices</a></li>
-                  <li><a class="dropdown-item" href="/practices/discipline">Discipline</a></li>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="/routines/am/manage">AM Routine Manager</a></li>
+                  <li><a class="dropdown-item" href="/routines/pm/manage">PM Routine Manager</a></li>
+                  <li><a class="dropdown-item" href="/intentions/edit">Daily Intention Manager</a></li>
+                  <li><a class="dropdown-item" href="/practices/flex-items/manage">Flex Item</a></li>
                   <li><a class="dropdown-item" href="/practices">Something else?</a></li>
                 </ul>
               </li>
             </ul>
           </div>
-          <a class="nav-link disabled" aria-disabled="true">Disabled</a>
+          <a class="nav-link" href="/social">Social</a>
           <form action="/users/logout" method="post">
             <button class="btn btn-link" type="submit" name="logout">logout</button>
           </form>
         </div>
       </div>
     </nav>
-    <header class="bg-dark opacity-75 w-100 p-2 pb-3 text-center">
+    <header class="bg-light shadow opacity-75 w-100 p-2 pb-3 text-center">
       <h1 class="display-2 mb-3 text-primary">Set a Goal</h1>
       <h4 class="display-6 mx-5">Set it and you won't forget it</h4>
     </header>
     <!-- Content and Sidebar Div-->
     <div class="container-fluid m-auto my-3 d-flex align-items-start gap-3">
-      <!-- Progress Nav Sidebar -->
-      <!-- <div class="card shadow p-2 opacity-75 col-3">
-        <nav id="progress-navbar" class="h-100 flex-column align-items-stretch p-3">
-          <h4 class="display-6 text-primary text-center">You are here.</h4>
-          <hr class="border border-1 border-light">
-          <nav class="nav nav-pills flex-column">
-            <a class="nav-link text-light" href="/surveys/your-why/intro">Define Your WHY</a>
-            <hr class="border border-primary">
-            <a class="nav-link text-light" href="#recreation-travel">Recreation and Travel</a>
-            <nav class="nav nav-pills flex-column">
-              <a class="nav-link ms-3 my-1 text-light" href="/surveys/recreation-travel/frequent-hobbies-activities">-
-                Frequent Hobbies and
-                Activities</a>
-              <a class="nav-link ms-3 my-1 text-light" href="/surveys/recreation-travel/adventure-travel">- Adventure
-                and Travel</a>
-              <a class="nav-link ms-3 my-1 text-light" href="/surveys/recreation-travel/family-group-events">- Family
-                and Group Events</a>
-              <a class="nav-link ms-3 my-1 text-light" href="/surveys/recreation-travel/cultural-exploration">- Cultural
-                Exploration</a>
-              <a class="nav-link ms-3 my-1 text-light" href="/surveys/recreation-travel/special-events">-
-                Special Events</a>
-              <a class="nav-link ms-3 my-1 text-light" href="/surveys/recreation-travel/competitive-events">-
-                Competitive Events</a>
-              <a class="nav-link ms-3 my-1 text-light" href="/surveys/recreation-travel/bucket-list">- The
-                Bucket List</a>
-              <a class="nav-link ms-3 my-1 text-light" href="#item-1-2">- Item 1-2</a>
-            </nav>
-            <hr class="border border-light">
-            <a class="nav-link text-light" href="#health-wellness">Health and Wellness</a>
-            <hr class="border border-light">
-            <a class="nav-link text-light" href="#social-community">Social and Community Engagement</a>
-            <hr class="border border-light">
-            <a class="nav-link text-light" href="#spirituality-life-purpose">Spirituality and Life
-              Purpose</a>
-            <hr class="border border-light">
-            <a class="nav-link text-light" href="#career-professional-development">Career and Professional
-              Development</a>
-            <hr class="border border-light">
-            <a class="nav-link text-light" href="#wealth-finance">Wealth Building and Financial Health</a>
-            <hr class="border border-light">
-            <a class="nav-link text-light" href="#creative-expression-hobbies">Creative Expression and
-              Hobbies</a>
-            <hr class="border border-light">
-            <a class="nav-link text-light" href="#environment-success">Environment and Success</a>
-            <hr class="border border-light">
-            <a class="nav-link text-light" href="#item-3">Item 3</a>
-            <nav class="nav nav-pills flex-column">
-              <a class="nav-link ms-3 my-1 text-light" href="#item-3-1">Item 3-1</a>
-              <a class="nav-link ms-3 my-1 text-light" href="#item-3-2">Item 3-2</a>
-            </nav>
-          </nav>
-        </nav>
-      </div> -->
+      
       <!-- Main Content -->
       <!-- <div class="container col-9"> --> <!--div replaced by div below, if reintroducing sidebar, use this div-->
       <div class="container-fluid opacity-75 m-auto w-75">

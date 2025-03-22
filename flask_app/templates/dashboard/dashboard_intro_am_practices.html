@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-bs-theme="dark">
+<html lang="en">
 <!-- <html lang="en"> -->
 
 <head>
@@ -34,73 +34,67 @@
   <div class="border-box">
     
     <!-- Navigation Bar -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark w-100 m-auto d-flex justify-content-between position-sticky top-0 z-3 p-3">
+    <nav
+      class="navbar shadow navbar-expand-lg bg-light w-100 m-auto d-flex justify-content-between position-sticky top-0 z-3 p-3">
       <div class="container-fluid">
-        <!-- Branding (Logo + Title) -->
         <a class="navbar-brand d-inline-flex align-items-center gap-4" href="/dashboard">
-          <img src="/static/img/Enso_Blue_and_Black.jpg" class="rounded-circle" width="60" height="60" alt="Converge Logo">
+          <img src="/static/img/Enso_Blue_and_Black.jpg" class="rounded-circle" width="60" height="60"
+            alt="Converge Logo">
           <h1 class="display-5 text-primary">Converge</h1>
         </a>
       </div>
-
-      <!-- Mobile Navbar Toggle Button -->
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDarkDropdown"
         aria-controls="navbarNavDarkDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-
-      <!-- Navbar Links (Collapsible) -->
       <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
         <div class="navbar-nav">
           <a class="nav-link active" aria-current="page" href="/home">Home</a>
           <a class="nav-link" href="/calendar">Calendar</a>
-
-          <!-- Goals Dropdown Menu -->
           <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
             <ul class="navbar-nav">
               <li class="nav-item dropdown">
-                <button class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                <button class="btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                   Goals
                 </button>
-                <ul class="dropdown-menu dropdown-menu-dark">
+                <ul class="dropdown-menu">
                   <li><a class="dropdown-item" href="/goals/manager">Goal Manager</a></li>
+
                   <li><a class="dropdown-item" href="/goals/recreation-travel">Recreation and Travel</a></li>
                   <li><a class="dropdown-item" href="/goals/health-wellness">Health and Wellness</a></li>
                   <li><a class="dropdown-item" href="/goals/social-community">Social and Community Engagement</a></li>
                   <li><a class="dropdown-item" href="/goals/spirituality">Spirituality and Life Purpose</a></li>
                   <li><a class="dropdown-item" href="/goals/career-professional-development">Career and Professional
                       Development</a></li>
-                  <li><a class="dropdown-item" href="/goals/wealth-finance">Wealth Building and Financial Health</a></li>
+                  <li><a class="dropdown-item" href="/goals/wealth-finance">Wealth Building and Financial Health</a>
+                  </li>
                   <li><a class="dropdown-item" href="/goals/creative-expression-hobbies">Creative Expression and
                       Hobbies</a></li>
                   <li><a class="dropdown-item" href="/goals/environment-success">Environment and Success</a></li>
+                  <li><a class="dropdown-item" href="/goals">Something else here</a></li>
                 </ul>
               </li>
             </ul>
           </div>
-
-          <!-- Routines Dropdown Menu -->
           <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
             <ul class="navbar-nav">
               <li class="nav-item dropdown">
-                <button class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                <button class="btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                   Routines
                 </button>
-                <ul class="dropdown-menu dropdown-menu-dark">
+                <ul class="dropdown-menu">
                   <li><a class="dropdown-item" href="/routines/am/manage">AM Routine Manager</a></li>
                   <li><a class="dropdown-item" href="/routines/pm/manage">PM Routine Manager</a></li>
                   <li><a class="dropdown-item" href="/intentions/edit">Daily Intention Manager</a></li>
                   <li><a class="dropdown-item" href="/practices/flex-items/manage">Flex Item</a></li>
+                  <li><a class="dropdown-item" href="/practices">Something else?</a></li>
                 </ul>
               </li>
             </ul>
           </div>
-
           <a class="nav-link" href="/social">Social</a>
-
-          <!-- Logout Button -->
           <form action="/users/logout" method="post">
-            <button class="btn btn-link" type="submit" name="logout">Logout</button>
+            <button class="btn btn-link" type="submit" name="logout">logout</button>
           </form>
         </div>
       </div>
@@ -116,7 +110,7 @@
       </div>
 
       <!-- Dashboard Tabs -->
-      <ul class="nav navbar-dark nav-tabs mb-4 opacity-75" id="dashboard-tabs" role="tablist">
+      <ul class="nav nav-tabs mb-4" id="dashboard-tabs" role="tablist">
         <li class="nav-item">
           <button class="nav-link active" id="your-day-tab" data-bs-toggle="tab" data-bs-target="#your-day"
             type="button" role="tab">Your Day</button>
@@ -155,14 +149,7 @@
                   </div>
                   <hr class="border border-light mb-3 m-auto w-100">
                   <ul class="list-group">
-                    <!-- EXAMPLE PRACTICE FOR INTRO.JS -->
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                      <span>Sample Practice</span>
-                      <div class="d-flex gap-2">
-                        <button id="complete-example" class="btn btn-sm btn-outline-success">Complete</button>
-                        <button id="edit-practice-example" class="btn btn-sm btn-outline-warning">Edit Practice</button>
-                      </div>
-                    </li>
+                    
                     {% for routine in routines %}
                     {% if routine.routine_type == "AM" %}
                     {% for practice in routine.practices %}
@@ -174,9 +161,9 @@
                         </small>
                       </div>
                       <div class="d-flex gap-2">
-                        <button class="btn btn-sm btn-outline-success"
+                        <button class="btn btn-sm btn-outline-success" id="complete-am-practice-{{ loop.index }}"
                           onclick="markAccomplished('{{ practice.id }}')">Complete</button>
-                        <button class="btn btn-sm btn-outline-warning">Edit Practice</button>
+                        <!-- <button class="btn btn-sm btn-outline-warning">Edit Practice</button> -->
                       </div>
                     </li>
                     {% endfor %}
@@ -296,6 +283,10 @@
                       </span>
                       <!-- TODO: EDIT ACTION ITEM BUTTON -->
                       <div class="d-flex gap-2">
+                        <button class="btn btn-sm btn-outline-primary"
+                          id="add-goal-{{ goal.id }}-milestone-{{ milestone.id }}-action-item-{{ action_item.id }}">
+                          Add to Flex Items
+                        </button>
                         <button class="btn btn-sm btn-outline-success"
                           onclick="markAccomplished('{{ action_item.id }}')">
                           Mark Done
@@ -310,6 +301,10 @@
                         {{ milestone.name }}
                       </span>
                       <div class="d-flex gap-2">
+                        <button class="btn btn-sm btn-outline-primary"
+                          id="add-goal-{{ goal.id }}-milestone-{{ milestone.id }}">
+                          Add to Flex Items
+                        </button>
                         <button class="btn btn-sm btn-outline-success" onclick="markAccomplished('{{ milestone.id }}')">
                           Mark Done
                         </button>
@@ -413,118 +408,73 @@
           {
             element: '#morning-routine',
             title: 'Morning Routine',
-            intro: 'You will find practices from your morning routine here',
+            intro: 'Practices from your morning routine are displayed here.',
+            position: 'top'
+          },
+          {
+            element: '#edit-am-routine',
+            title: 'Manage Morning Routine',
+            intro: 'You can access the morning routine manager at any time here.',
+            position: 'top'
+          },
+          {
+            element: '#complete-am-practice-1',
+            title: 'Complete a Practice',
+            intro: 'Click here to mark a practice complete and track progress.',
             position: 'top'
           },
           {
             element: '#flex-tasks',
-            title: 'title-text',
-            intro: 'intro-text',
+            title: 'Flex Tasks',
+            intro: "In Converge, we use 'Flex Tasks' to bring action items from goals and other tasks to a top-of-mind space to help maintain your forward momentum.",
             position: 'top'
           },
+          // {
+          //   element: '#intentions',
+          //   title: 'title-text',
+          //   intro: 'intro-text',
+          //   position: 'top'
+          // },
           {
             element: '#action-items',
-            title: 'title-text',
-            intro: 'intro-text',
+            title: 'Milestones and Action Items',
+            intro: 'Depending on the complexity of your goals, either milestones or action items from your goals will appear here.  More on that later.',
             position: 'top'
           },
           {
-            element: '#intentions',
-            title: 'title-text',
-            intro: 'intro-text',
+            title: 'Down the Rabbit Hole We Go',
+            intro: 'Ok, next we will ask you a few more questions so that we can introduce goal setting in areas of your interest.',
             position: 'top'
-          },
-
-          
-          {
-            element: document.querySelector('#morning-routine'),
-            title: 'Morning Routine',
-            intro: 'Here you will see your practices from your morning routine listed. You should already see the practices you added in the last step.'
-          },
-          {
-            element: document.querySelector('#complete-example'),
-            title: 'Complete Button',
-            intro: 'When you complete a practice or action item.  Click "Complete" to track your progress and see what is next!'
-          },
-          {
-            element: document.querySelector('#edit-am-routine'),
-            title: 'Edit a Routine',
-            intro: 'The "Edit Routine" button allows you to see and edit an entire routine.'
-          },
-          {
-            element: document.querySelector('#edit-practice-example'),
-            title: 'Edit a Practice',
-            intro: 'Similarly, "Edit Practice" will allow you to view and tweak a specific practice as well as view more like it!'
           }
+          
+          // {
+          //   element: document.querySelector('#morning-routine'),
+          //   title: 'Morning Routine',
+          //   intro: 'Here you will see your practices from your morning routine listed. You should already see the practices you added in the last step.'
+          // },
+          // {
+          //   element: document.querySelector('#complete-example'),
+          //   title: 'Complete Button',
+          //   intro: 'When you complete a practice or action item.  Click "Complete" to track your progress and see what is next!'
+          // },
+          // {
+          //   element: document.querySelector('#edit-am-routine'),
+          //   title: 'Edit a Routine',
+          //   intro: 'The "Edit Routine" button allows you to see and edit an entire routine.'
+          // },
+          // {
+          //   element: document.querySelector('#edit-practice-example'),
+          //   title: 'Edit a Practice',
+          //   intro: 'Similarly, "Edit Practice" will allow you to view and tweak a specific practice as well as view more like it!'
+          // }
         ],
         tooltipClass: 'introCustomTooltip',
         disableInteraction: true
       }).oncomplete(function () {
-        window.location.href = '/surveys/day-map';
+        window.location.href = '/surveys/interest-map';
       }).start();
     });
   </script>
 
 </body>
-
-</html>
-
-    <script>
-        introJs().setOptions({
-          steps: [
-            {
-              element: '#morning-routine',
-              title: 'Morning Routine',
-              intro: 'You will find practices from your morning routine here',
-              position: 'top'
-            },
-            {
-              element: '#flex-tasks',
-              title: 'title-text',
-              intro: 'intro-text',
-              position: 'top'
-            },
-            {
-              element: '#action-items',
-              title: 'title-text',
-              intro: 'intro-text',
-              position: 'top'
-            },
-            {
-              element: '#intentions',
-              title: 'title-text',
-              intro: 'intro-text',
-              position: 'top'
-            },
-
-            
-            {
-              element: document.querySelector('#morning-routine'),
-              title: 'Morning Routine',
-              intro: 'Here you will see your practices from your morning routine listed. You should already see the practices you added in the last step.'
-            },
-            {
-              element: document.querySelector('#complete-example'),
-              title: 'Complete Button',
-              intro: 'When you complete a practice or action item.  Click "Complete" to track your progress and see what is next!'
-            },
-            {
-              element: document.querySelector('#edit-am-routine'),
-              title: 'Edit a Routine',
-              intro: 'The "Edit Routine" button allows you to see and edit an entire routine.'
-            },
-            {
-              element: document.querySelector('#edit-practice-example'),
-              title: 'Edit a Practice',
-              intro: 'Similarly, "Edit Practice" will allow you to view and tweak a specific practice as well as view more like it!'
-            }
-          ],
-          tooltipClass: 'introCustomTooltip'
-        })
-        .oncomplete(function() {
-          window.location.href = '/goals/intro/select-subcategory?multipage=true';
-        })
-        .start()
-      </script>
-
 </html>
