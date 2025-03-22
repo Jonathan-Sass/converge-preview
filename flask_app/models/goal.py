@@ -69,13 +69,13 @@ class Goal:
           FROM
               goals g
           JOIN
-            users_goals ug ON ug.goal_id = g.id
+            users_has_goals ug ON uhg.goal_id = g.id
           LEFT JOIN
               milestones m ON g.id = m.goal_id
           LEFT JOIN
               action_items a ON m.id = a.milestone_id
           WHERE 
-              ug.user_id = %(user_id)s;
+              uhg.user_id = %(user_id)s;
       """
 
         data = {"user_id": user_id}
