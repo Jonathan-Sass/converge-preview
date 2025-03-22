@@ -68,12 +68,14 @@ class Goal:
               a.updated_at AS action_item_updated_at
           FROM
               goals g
+          JOIN
+            users_goals ug ON ug.goal_id = g.id
           LEFT JOIN
               milestones m ON g.id = m.goal_id
           LEFT JOIN
               action_items a ON m.id = a.milestone_id
           WHERE 
-              g.user_id = %(user_id)s;
+              ug.user_id = %(user_id)s;
       """
 
         data = {"user_id": user_id}
