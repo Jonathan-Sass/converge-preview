@@ -18,19 +18,20 @@ class Category:
     def get_all_categories_with_subcategories():
         query = """
           SELECT 
-            sc.id AS category_id,
-            sc.name AS category_name,
-            sc.category_slug,
-            st.id AS topic_id,
-            st.name AS topic_name,
-            st.topic_slug
+            c.id AS category_id,
+            c.name AS category_name,
+            c.category_slug,
+            sc.id AS subcategory_id,
+            sc.name AS subcategory_name,
+            sc.subcategory_slug
           FROM
-            survey_categories sc
+            categories c
           JOIN
-            survey_topics st ON sc.id = st.survey_category_id
+            subcategories sc ON c.id = sc.category_id
           ORDER BY
             category_id;
         """
+
         try:
             results = Category.db.query_db(query)
 
@@ -39,7 +40,7 @@ class Category:
 
                 for result in results:
                     category_id = result["category_id"]
-                    subcategory_id = result["topic_id"]
+                    subcategory_id = result["subcategory_id"]
                     if category_id not in categories_with_subcats:
                         categories_with_subcats[category_id] = {
                             "category_slug": result["category_slug"],
@@ -50,50 +51,52 @@ class Category:
 
                         if subcategory_id not in categories_with_subcats[category_id]["subcategory_ids"]:
                             categories_with_subcats[category_id]["subcategories"].append({
-                                "subcategory_id": result["topic_id"],
-                                "subcategory_slug": result["topic_slug"],
-                                "subcategory_name": result["topic_name"]
+                                "subcategory_id": result["subcategory_id"],
+                                "subcategory_slug": result["subcategory_slug"],
+                                "subcategory_name": result["subcategory_name"]
                             })
                             categories_with_subcats[category_id]["subcategory_ids"].add(subcategory_id)
                           
-                    cleaned_categories = {
-                      key: {
-                          "category_slug": value["category_slug"],
-                          "category_name": value["category_name"],
-                          "subcategories": value["subcategories"]
-                      }
-                      for key, value in categories_with_subcats.items()
-                    }
+                cleaned_categories = {
+                  key: {
+                      "category_slug": value["category_slug"],
+                      "category_name": value["category_name"],
+                      "subcategories": value["subcategories"]
+                  }
+                  for key, value in categories_with_subcats.items()
+                }
                     
-            return cleaned_categories
+                return cleaned_categories
         
+            return {}
+
         except Exception as e:
             raise RuntimeError (f"Error retrieving categories with subcategories: {e}")
 
 # DEPRECATED .... TWO QUERIES?!?!?!?! AMATEUR HOUR!
-    def get_category_with_subcategories(category_slug):
-        query = "SELECT * FROM categories WHERE category_slug = %(category_slug)s;"
+    # def get_category_with_subcategories(category_slug):
+    #     query = "SELECT * FROM categories WHERE category_slug = %(category_slug)s;"
 
-        category_slug_data = {"category_slug": category_slug}
+    #     category_slug_data = {"category_slug": category_slug}
 
-        result = Category.db.query_db(query, category_slug_data)
+    #     result = Category.db.query_db(query, category_slug_data)
 
-        print("*****Result in get_category_with_subcategories*****")
-        pprint(result)
+    #     print("*****Result in get_category_with_subcategories*****")
+    #     pprint(result)
 
-        if result:
-            current_category = Category(result[0])
-            category_id = current_category.id
-            subcategories = Subcategory.find_subcategories_by_category_id(category_id)
+    #     if result:
+    #         current_category = Category(result[0])
+    #         category_id = current_category.id
+    #         subcategories = Subcategory.find_subcategories_by_category_id(category_id)
 
-            for subcategory in subcategories:
-                current_category.subcategories.append(subcategory)
-            return current_category
-        else:
-            raise RuntimeError(
-                "Error retrieving category and associated subcategories for: "
-                + category_slug
-            )
+    #         for subcategory in subcategories:
+    #             current_category.subcategories.append(subcategory)
+    #         return current_category
+    #     else:
+    #         raise RuntimeError(
+    #             "Error retrieving category and associated subcategories for: "
+    #             + category_slug
+    #         )
 
     def find_category_by_id(category_id):
         query = "SELECT * FROM categories WHERE id = %(id)s;"
