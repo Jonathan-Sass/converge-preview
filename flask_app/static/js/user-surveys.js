@@ -238,7 +238,7 @@ function renderGenericAnswers(currentQuestion) {
         button.setAttribute('data-question-id', currentQuestion.questionId);
         button.setAttribute('data-answer-id', answer.answerId);
         button.value = answer.answerValue;
-        button.classList.add('btn', 'btn-outline-light', 'col', 'm-3');
+        button.classList.add('btn', 'btn-outline-dark', 'col', 'm-3');
         button.addEventListener('click', selectAnswer);  // Attach event listener
         answerButtons.appendChild(button);
     });
@@ -257,7 +257,7 @@ function renderGuidedChoice(currentQuestion) {
         button.setAttribute('data-question-id', currentQuestion.questionId);
         button.setAttribute('data-answer-id', answer.answerId);
         button.value = answer.answerValue;
-        button.classList.add('btn', 'btn-outline-light', 'd-block', 'm-auto', 'my-3', 'guided-choice-answer');
+        button.classList.add('btn', 'btn-outline-dark', 'd-block', 'm-auto', 'my-3', 'guided-choice-answer');
         button.addEventListener('click', selectAnswer);
         answerButtons.appendChild(button);
     });
@@ -277,7 +277,7 @@ function renderGuidedChoice(currentQuestion) {
 //             button.setAttribute('data-question-id', currentQuestion.questionId);
 //             button.setAttribute('data-answer-id', answer.answerId);
 //             button.value = answerValue;
-//             button.classList.add('btn', 'btn-outline-light', 'd-block', 'my-3', 'w-100', 'example-answer');
+//             button.classList.add('btn', 'btn-outline-dark', 'd-block', 'my-3', 'w-100', 'example-answer');
 //             button.addEventListener('click', selectAnswer);
 //             answerButtons.appendChild(button);
 //             // answerButtons.classList.remove('d-flex')
@@ -293,13 +293,13 @@ function renderCheckboxSelectAny(currentQuestion) {
     // const answerContainer = document.getElementById('answer-buttons');
     // answerContainer.innerHTML = ''; // Clear previous answers
 
-    // console.log('*****currentQuestion in renderCheckboxSelectAny()*****')
-    // console.log(currentQuestion)
+    console.log('*****currentQuestion in renderCheckboxSelectAny()*****')
+    console.log(currentQuestion)
 
     currentQuestion.answers.forEach((answer, index) => {
         const label = document.createElement('label');
         
-        label.classList.add('btn', 'btn-outline-light', 'mb-1','form-check-label');
+        label.classList.add('btn', 'btn-outline-dark', 'mb-1','form-check-label');
         
         const checkbox = document.createElement('input');
         checkbox.type = 'checkbox';
@@ -333,7 +333,7 @@ function renderCheckboxSelectAnyAddOpenAnswer(currentQuestion) {
 
     currentQuestion.answers.forEach((answer, index) => {
         const label = document.createElement('label');
-        label.classList.add('btn', 'btn-outline-light', 'mb-1','form-check-label');
+        label.classList.add('btn', 'btn-outline-dark', 'mb-1','form-check-label');
         
         const checkbox = document.createElement('input');
         checkbox.type = 'checkbox';
@@ -413,8 +413,8 @@ function selectAnswer(e) {
                 answer => answer.checkbox_id !== checkboxId
             );
 
-            selectedButton.classList.remove('btn-light');
-            selectedButton.classList.add('btn-outline-light');
+            selectedButton.classList.remove('btn-dark');
+            selectedButton.classList.add('btn-outline-dark');
             // selectedAnswers.splice(answerIndex, 1);
 
             // console.log('*****selectedAnswers in selectAnswer()*****')
@@ -424,8 +424,8 @@ function selectAnswer(e) {
             // console.log('   ')
         } else {
             selectedAnswers = [...selectedAnswers, answerData]
-            selectedButton.classList.add('btn-light');
-            selectedButton.classList.remove('btn-outline-light');
+            selectedButton.classList.add('btn-dark');
+            selectedButton.classList.remove('btn-outline-dark');
             // selectedAnswers.push(answerData)
 
             // console.log('*****selectedAnswers in selectAnswer()*****')
@@ -453,14 +453,14 @@ function selectAnswer(e) {
         // For single choice, deselect all other buttons first
         const allButtons = document.querySelectorAll('#answer-buttons > *');
         allButtons.forEach(button => {
-            button.classList.remove('btn-light');
-            button.classList.add('btn-outline-light');
+            button.classList.remove('btn-dark');
+            button.classList.add('btn-outline-dark');
         });
 
         // Select the clicked button
         selectedAnswers = [answerData]
-        selectedButton.classList.add('btn-light');
-        selectedButton.classList.remove('btn-outline-light');
+        selectedButton.classList.add('btn-dark');
+        selectedButton.classList.remove('btn-outline-dark');
      
         // console.log('*****selectedAnswers in selectAnswer()*****')
         // console.log('selectedAnswers reset to: ');
@@ -470,7 +470,7 @@ function selectAnswer(e) {
     }
 
     // Show or hide the Next button based on selection
-    const anySelected = document.querySelector('.btn-light');
+    const anySelected = document.querySelector('.btn-dark');
     if (anySelected) {
         nextButton.classList.remove('d-none');
     } else {
@@ -540,14 +540,14 @@ function getSubcategory() {
 // DECPRECATED FOR MORE DYNAMIC LOGIC IN selectAnswer()
 // function highlightSelectedButton(selectedButton) {
 //     if (lastSelectedButton == null) {
-//         selectedButton.classList.remove('btn-outline-light');
-//         selectedButton.classList.add('btn-light');
+//         selectedButton.classList.remove('btn-outline-dark');
+//         selectedButton.classList.add('btn-dark');
 //     } else {
 //         if (lastSelectedButton != selectedButton) {
-//             lastSelectedButton.classList.add('btn-outline-light');
-//             lastSelectedButton.classList.remove('btn-light');
-//             selectedButton.classList.remove('btn-outline-light');
-//             selectedButton.classList.add('btn-light');
+//             lastSelectedButton.classList.add('btn-outline-dark');
+//             lastSelectedButton.classList.remove('btn-dark');
+//             selectedButton.classList.remove('btn-outline-dark');
+//             selectedButton.classList.add('btn-dark');
 //         }
 //     }
 //     lastSelectedButton = selectedButton;

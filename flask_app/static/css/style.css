@@ -64,41 +64,40 @@ h1, h2, h3, h4, h5, h6, p {
     pointer-events: auto !important; /* ✅ Enables typing in input fields */
 }
 
-/* Main container */
-.mask-container {
-    position: relative;
-    overflow-x: scroll;            /* Allow horizontal scrolling */
-    padding: 1rem;
-    scroll-behavior: smooth;
-}
 
 /* .swiper-wrapper {
   display: flex; /* Ensure flexbox alignment */
   /* gap: 16px; /* Set gap between slides (16px is like Bootstrap's gap-2) */
-/* } */ 
-
-.swiper-slide {
-  flex-shrink: 0; /* Prevent slides from shrinking */
-  max-width: 100%; /* Adjust width to fit content or define a specific width */
-  overflow-x: auto;
-}
-
-.milestone-card { 
-  width: calc(100% / 3);
-  max-width: 300px; 
-  min-width: 250px;
-} 
-
-.action-item-section {
-  top: 100%; /* Position the panel below the card */
-  left: 0;
-  width: 100%; /* Ensure the panel matches the width of the card */
-  z-index: 10; /* Ensure it appears above neighboring elements */
-}
-
-
-/* .mask-container::before,
-.mask-container::after {
+  /* } */ 
+  
+  .swiper-slide {
+    flex-shrink: 0; /* Prevent slides from shrinking */
+    max-width: 100%; /* Adjust width to fit content or define a specific width */
+  }
+  
+  .milestone-card { 
+    width: calc(100% / 3);
+    max-width: 300px; 
+    min-width: 250px;
+  } 
+  
+  .action-item-section {
+    top: 100%; /* Position the panel below the card */
+    left: 0;
+    width: 100%; /* Ensure the panel matches the width of the card */
+    z-index: 10; /* Ensure it appears above neighboring elements */
+  }
+  
+  /* Main container */
+  .mask-container {
+      position: relative;
+      overflow-x: scroll;            /* Allow horizontal scrolling */
+      padding: 1rem;
+      scroll-behavior: smooth;
+  }
+  
+  /* .mask-container::before,
+  .mask-container::after {
     content: '';
     position: absolute;
     top: 0;
@@ -122,6 +121,7 @@ h1, h2, h3, h4, h5, h6, p {
 .mask-container .practice-card {
     opacity: 0.5;                  /* Default opacity for all cards */
     transition: opacity 0.3s ease;
+
 }
 
 /* Fully visible cards */
@@ -132,14 +132,16 @@ h1, h2, h3, h4, h5, h6, p {
 .practice-card {
     transition: transform 0.2s;
   }
-  .practice-card.sortable-ghost {
-    opacity: 0.5;
-  }
-  .practice-card.sortable-chosen {
-    /* opacity: 0.25; */
-    background: #818181;
-    border: 1px dashed #007bff;
-  }
+
+.practice-card.sortable-ghost {
+  opacity: 0.5;
+}
+
+.practice-card.sortable-chosen {
+  /* opacity: 0.25; */
+  background: #818181;
+  border: 1px dashed #007bff;
+}
 /* 
 /* Cards inside the container */
 /* For drag-and-drop items */
@@ -166,6 +168,7 @@ h1, h2, h3, h4, h5, h6, p {
 
 #practice-container {
     scrollbar-width: none;         /* For Firefox */
+    overflow: visible;
     -ms-overflow-style: none;      /* For Internet Explorer and Edge */
 }
 
