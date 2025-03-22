@@ -72,7 +72,7 @@ def save_survey_answers(category):
 def survey_new_user_orientation():
     user = User.get_logged_in_user()
     if not user:
-        # jsonify({"error": "Please log in"}), 401
+        jsonify({"error": "Please log in"}), 401
         return redirect("/")
     
     return render_template("/surveys/user_orientation.html")
@@ -81,227 +81,244 @@ def survey_new_user_orientation():
 def survey_day_map():
     user = User.get_logged_in_user()
     if not user:
-        # jsonify({"error": "Please log in"}), 401
+        jsonify({"error": "Please log in"}), 401
         return redirect("/")
     
     return render_template("/surveys/day_map.html")
 
-
-
-
-
-@app.get("/getting-started")
-def new_user_getting_started():
+@app.get("/surveys/interest-map")
+def survey_interest_map():
     user = User.get_logged_in_user()
     if not user:
+        jsonify({"error": "Please log in"}), 401
         return redirect("/")
 
-    return render_template("/surveys/survey_getting_started.html")
+    return render_template("/surveys/interest-map.html")
 
-@app.get("/process-getting-started")
-def process_getting_started_answers():
+@app.get("/surveys/discipline-motivation-focus-map")
+def survey_discipline_motivation_focus_map():
     user = User.get_logged_in_user()
     if not user:
+        jsonify({"error": "Please log in"}), 401
         return redirect("/")
     
-    responses = UserResponse.find_user_responses_by_user_id_and_subcategory_slug(user, "getting-started")
+    return render_template("/surveys/discipline_motivation_focus_map.html")
 
-    response_dict = {
-        res.question_slug: res.answer_text
-        for res in responses
-        if res.question_slug in {"existing-routines-check", "wellness-survey-check", "assistance-building-routines-check", "build-your-own-routine-check"}
-    }
+# ALL DEPRECATED IN FAVOR OF NEW MAP SURVEYS
 
-    existing_routines_check = response_dict.get("existing-routines-check")
-    wellness_survey_check = response_dict.get("wellness-survey-check")
-    assistance_building_routines_check = response_dict.get("assistance-building-routines-check")
-    build_your_own_routine_check = response_dict.get("build-your-own-routine-check")
+# @app.get("/getting-started")
+# def new_user_getting_started():
+#     user = User.get_logged_in_user()
+#     if not user:
+#         return redirect("/")
 
-    print("*****responses in process_getting_started_answers*****")
-    print(existing_routines_check)
-    print(wellness_survey_check)
+#     return render_template("/surveys/survey_getting_started.html")
 
-    if existing_routines_check == "Yes" and wellness_survey_check == "No":
-        return redirect ("/routines/am/intro-build-your-own")
+# @app.get("/process-getting-started")
+# def process_getting_started_answers():
+#     user = User.get_logged_in_user()
+#     if not user:
+#         return redirect("/")
     
-    return redirect("surveys/foundations/getting-to-know-you")
+#     responses = UserResponse.find_user_responses_by_user_id_and_subcategory_slug(user, "getting-started")
+
+#     response_dict = {
+#         res.question_slug: res.answer_text
+#         for res in responses
+#         if res.question_slug in {"existing-routines-check", "wellness-survey-check", "assistance-building-routines-check", "build-your-own-routine-check"}
+#     }
+
+#     existing_routines_check = response_dict.get("existing-routines-check")
+#     wellness_survey_check = response_dict.get("wellness-survey-check")
+#     assistance_building_routines_check = response_dict.get("assistance-building-routines-check")
+#     build_your_own_routine_check = response_dict.get("build-your-own-routine-check")
+
+#     print("*****responses in process_getting_started_answers*****")
+#     print(existing_routines_check)
+#     print(wellness_survey_check)
+
+#     if existing_routines_check == "Yes" and wellness_survey_check == "No":
+#         return redirect ("/routines/am/intro-build-your-own")
+    
+#     return redirect("surveys/foundations/getting-to-know-you")
 
 
-@app.get("/surveys/foundations/getting-to-know-you")
-def survey_introduction_getting_to_know_you():
-    user = User.get_logged_in_user()
-    if not user:
-        # jsonify({"error": "Please log in"}), 401
-        return redirect("/")
+# @app.get("/surveys/foundations/getting-to-know-you")
+# def survey_introduction_getting_to_know_you():
+#     user = User.get_logged_in_user()
+#     if not user:
+#         # jsonify({"error": "Please log in"}), 401
+#         return redirect("/")
 
-    return render_template("surveys/survey_foundations_getting_to_know_you.html")
-
-
-@app.get("/surveys/foundations/current-habits-patterns")
-def survey_foundations_current_habits_patterns():
-    user = User.get_logged_in_user()
-    if not user:
-        # jsonify({"error": "Please log in"}), 401
-        return redirect("/")
-
-    return render_template("surveys/survey_foundations_current_habits_patterns.html")
+#     return render_template("surveys/survey_foundations_getting_to_know_you.html")
 
 
-@app.get("/surveys/foundations/social-support-accountability")
-def survey_foundations_social_support_accountability():
-    user = User.get_logged_in_user()
-    if not user:
-        # jsonify({"error": "Please log in"}), 401
-        return redirect("/")
+# @app.get("/surveys/foundations/current-habits-patterns")
+# def survey_foundations_current_habits_patterns():
+#     user = User.get_logged_in_user()
+#     if not user:
+#         # jsonify({"error": "Please log in"}), 401
+#         return redirect("/")
 
-    return render_template(
-        "surveys/survey_foundations_social_support_accountability.html"
-    )
+#     return render_template("surveys/survey_foundations_current_habits_patterns.html")
 
 
-@app.get("/surveys/foundations/reflecting-purpose-motivation")
-def survey_foundations_reflecting_purpose_motivation():
-    user = User.get_logged_in_user()
-    if not user:
-        # jsonify({"error": "Please log in"}), 401
-        return redirect("/")
+# @app.get("/surveys/foundations/social-support-accountability")
+# def survey_foundations_social_support_accountability():
+#     user = User.get_logged_in_user()
+#     if not user:
+#         # jsonify({"error": "Please log in"}), 401
+#         return redirect("/")
 
-    return render_template(
-        "surveys/survey_foundations_reflecting_purpose_motivation.html"
-    )
+#     return render_template(
+#         "surveys/survey_foundations_social_support_accountability.html"
+#     )
+
+
+# @app.get("/surveys/foundations/reflecting-purpose-motivation")
+# def survey_foundations_reflecting_purpose_motivation():
+#     user = User.get_logged_in_user()
+#     if not user:
+#         # jsonify({"error": "Please log in"}), 401
+#         return redirect("/")
+
+#     return render_template(
+#         "surveys/survey_foundations_reflecting_purpose_motivation.html"
+#     )
 
 
 # YOUR WHY SURVEY ROUTES
+# ALL DEPRECATED
+
+# @app.get("/surveys/your-why/intro")
+# def survey_why_intro():
+#     user = User.get_logged_in_user()
+#     if not user:
+#         # jsonify({"error": "Please log in"}), 401
+#         return redirect("/")
+
+#     return render_template("surveys/survey_why_intro.html")
 
 
-@app.get("/surveys/your-why/intro")
-def survey_why_intro():
-    user = User.get_logged_in_user()
-    if not user:
-        # jsonify({"error": "Please log in"}), 401
-        return redirect("/")
+# @app.get("/surveys/your-why/define-your-purpose")
+# def survey_define_your_purpose():
+#     user = User.get_logged_in_user()
+#     if not user:
+#         # jsonify({"error": "Please log in"}), 401
+#         return redirect("/")
 
-    return render_template("surveys/survey_why_intro.html")
-
-
-@app.get("/surveys/your-why/define-your-purpose")
-def survey_define_your_purpose():
-    user = User.get_logged_in_user()
-    if not user:
-        # jsonify({"error": "Please log in"}), 401
-        return redirect("/")
-
-    return render_template("surveys/survey_why_define_your_purpose.html")
+#     return render_template("surveys/survey_why_define_your_purpose.html")
 
 
-@app.get("/surveys/your-why/define-your-values")
-def survey_define_your_values():
-    user = User.get_logged_in_user()
-    if not user:
-        # jsonify({"error": "Please log in"}), 401
-        return redirect("/")
+# @app.get("/surveys/your-why/define-your-values")
+# def survey_define_your_values():
+#     user = User.get_logged_in_user()
+#     if not user:
+#         # jsonify({"error": "Please log in"}), 401
+#         return redirect("/")
 
-    return render_template("surveys/survey_why_define_your_values.html")
-
-
-@app.get("/surveys/your-why/growth-drivers")
-def survey_growth_drivers():
-    user = User.get_logged_in_user()
-    if not user:
-        # jsonify({"error": "Please log in"}), 401
-        return redirect("/")
-
-    return render_template("surveys/survey_why_growth_drivers.html")
+#     return render_template("surveys/survey_why_define_your_values.html")
 
 
-@app.get("/surveys/your-why/long-term-vision")
-def survey_long_term_vision():
-    user = User.get_logged_in_user()
-    if not user:
-        # jsonify({"error": "Please log in"}), 401
-        return redirect("/")
+# @app.get("/surveys/your-why/growth-drivers")
+# def survey_growth_drivers():
+#     user = User.get_logged_in_user()
+#     if not user:
+#         # jsonify({"error": "Please log in"}), 401
+#         return redirect("/")
 
-    return render_template("surveys/survey_why_long_term_vision.html")
+#     return render_template("surveys/survey_why_growth_drivers.html")
+
+
+# @app.get("/surveys/your-why/long-term-vision")
+# def survey_long_term_vision():
+#     user = User.get_logged_in_user()
+#     if not user:
+#         # jsonify({"error": "Please log in"}), 401
+#         return redirect("/")
+
+#     return render_template("surveys/survey_why_long_term_vision.html")
 
 
 # RECREATION AND TRAVEL SURVEY ROUTES
+# ALL DEPRECATED
 
 
-@app.get("/surveys/recreation-travel/intro")
-def survey_recreation_travel_intro():
-    user = User.get_logged_in_user()
-    if not user:
-        # jsonify({"error": "Please log in"}), 401
-        return redirect("/")
+# @app.get("/surveys/recreation-travel/intro")
+# def survey_recreation_travel_intro():
+#     user = User.get_logged_in_user()
+#     if not user:
+#         # jsonify({"error": "Please log in"}), 401
+#         return redirect("/")
 
-    return render_template("surveys/survey_rec_travel_intro.html")
-
-
-@app.get("/surveys/recreation-travel/frequent-hobbies-activities")
-def survey_frequent_hobbies_activities():
-    user = User.get_logged_in_user()
-    if not user:
-        # jsonify({"error": "Please log in"}), 401
-        return redirect("/")
-
-    return render_template("surveys/survey_rec_travel_frequent_hobbies_activities.html")
+#     return render_template("surveys/survey_rec_travel_intro.html")
 
 
-@app.get("/surveys/recreation-travel/adventure-travel")
-def survey_adventure_travel():
-    user = User.get_logged_in_user()
-    if not user:
-        # jsonify({"error": "Please log in"}), 401
-        return redirect("/")
+# @app.get("/surveys/recreation-travel/frequent-hobbies-activities")
+# def survey_frequent_hobbies_activities():
+#     user = User.get_logged_in_user()
+#     if not user:
+#         # jsonify({"error": "Please log in"}), 401
+#         return redirect("/")
 
-    return render_template("surveys/survey_rec_travel_adventure_travel.html")
-
-
-@app.get("/surveys/recreation-travel/family-group-events")
-def survey_family_group_events():
-    user = User.get_logged_in_user()
-    if not user:
-        # jsonify({"error": "Please log in"}), 401
-        return redirect("/")
-
-    return render_template("surveys/survey_rec_travel_family_group_events.html")
+#     return render_template("surveys/survey_rec_travel_frequent_hobbies_activities.html")
 
 
-@app.get("/surveys/recreation-travel/cultural-exploration")
-def survey_cultural_exploration():
-    user = User.get_logged_in_user()
-    if not user:
-        # jsonify({"error": "Please log in"}), 401
-        return redirect("/")
+# @app.get("/surveys/recreation-travel/adventure-travel")
+# def survey_adventure_travel():
+#     user = User.get_logged_in_user()
+#     if not user:
+#         # jsonify({"error": "Please log in"}), 401
+#         return redirect("/")
 
-    return render_template("surveys/survey_rec_travel_cultural_exploration.html")
-
-
-@app.get("/surveys/recreation-travel/special-events")
-def survey_special_events():
-    user = User.get_logged_in_user()
-    if not user:
-        # jsonify({"error": "Please log in"}), 401
-        return redirect("/")
-
-    return render_template("surveys/survey_rec_travel_special_events.html")
+#     return render_template("surveys/survey_rec_travel_adventure_travel.html")
 
 
-@app.get("/surveys/recreation-travel/competitive-events")
-def survey_competitive_events():
-    user = User.get_logged_in_user()
-    if not user:
-        # jsonify({"error": "Please log in"}), 401
-        return redirect("/")
+# @app.get("/surveys/recreation-travel/family-group-events")
+# def survey_family_group_events():
+#     user = User.get_logged_in_user()
+#     if not user:
+#         # jsonify({"error": "Please log in"}), 401
+#         return redirect("/")
 
-    return render_template("surveys/survey_rec_travel_competitive_events.html")
+#     return render_template("surveys/survey_rec_travel_family_group_events.html")
 
 
-@app.get("/surveys/recreation-travel/bucket-list")
-def survey_bucket_list():
-    user = User.get_logged_in_user()
-    if not user:
-        # jsonify({"error": "Please log in"}), 401
-        return redirect("/")
+# @app.get("/surveys/recreation-travel/cultural-exploration")
+# def survey_cultural_exploration():
+#     user = User.get_logged_in_user()
+#     if not user:
+#         # jsonify({"error": "Please log in"}), 401
+#         return redirect("/")
 
-    return render_template("/surveys/survey_rec_travel_bucket_list.html")
+#     return render_template("surveys/survey_rec_travel_cultural_exploration.html")
+
+
+# @app.get("/surveys/recreation-travel/special-events")
+# def survey_special_events():
+#     user = User.get_logged_in_user()
+#     if not user:
+#         # jsonify({"error": "Please log in"}), 401
+#         return redirect("/")
+
+#     return render_template("surveys/survey_rec_travel_special_events.html")
+
+
+# @app.get("/surveys/recreation-travel/competitive-events")
+# def survey_competitive_events():
+#     user = User.get_logged_in_user()
+#     if not user:
+#         # jsonify({"error": "Please log in"}), 401
+#         return redirect("/")
+
+#     return render_template("surveys/survey_rec_travel_competitive_events.html")
+
+
+# @app.get("/surveys/recreation-travel/bucket-list")
+# def survey_bucket_list():
+#     user = User.get_logged_in_user()
+#     if not user:
+#         # jsonify({"error": "Please log in"}), 401
+#         return redirect("/")
+
+#     return render_template("/surveys/survey_rec_travel_bucket_list.html")
