@@ -309,13 +309,14 @@ survey_question_data = [
             },
             {
                 "question_slug": "time-management-check",
-                "question_text": "Which of the following time-related challenges do you frequently experience?",
+                "question_text": "Which of the following time-related challenges do you frequently experience? Select all that apply",
                 "type": "select-any",
                 "answers": [
-                    {"answer_text": "Difficulty estimating how long tasks will take", "answer_value": 0},
-                    {"answer_text": "Frequently running late or missing deadlines", "answer_value": 1},
+                    {"answer_text": "Difficulty estimating how long tasks will take", "answer_value": 4},
+                    {"answer_text": "Frequently running late or missing deadlines", "answer_value": 3},
                     {"answer_text": "Getting 'stuck' on a task for much longer than expected", "answer_value": 2},
-                    {"answer_text": "Underestimating or overestimating available time", "answer_value": 3}
+                    {"answer_text": "Underestimating or overestimating available time", "answer_value": 1},
+                    {"answer_text": "None of the above", "answer_value": 0}
                 ]
             },
             {
@@ -353,7 +354,8 @@ survey_question_data = [
                     {"answer_text": "I bounce back quickly and stay focused", "answer_value": 0},
                     {"answer_text": "I struggle initially but get back on track", "answer_value": 1},
                     {"answer_text": "I feel discouraged and lose momentum", "answer_value": 2},
-                    {"answer_text": "I avoid thinking about failures and move on", "answer_value": 3}
+                    {"answer_text": "I avoid thinking about failures and move on", "answer_value": 3},
+                    {"answer_text": "I learn from my failures and move on", "answer_value": 4}
                 ]
             },
             {
