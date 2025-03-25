@@ -68,14 +68,12 @@ class Goal:
               a.updated_at AS action_item_updated_at
           FROM
               goals g
-          JOIN
-            users_has_goals ug ON uhg.goal_id = g.id
           LEFT JOIN
               milestones m ON g.id = m.goal_id
           LEFT JOIN
               action_items a ON m.id = a.milestone_id
           WHERE 
-              uhg.user_id = %(user_id)s;
+              g.user_id = %(user_id)s;
       """
 
         data = {"user_id": user_id}
@@ -211,7 +209,7 @@ class Goal:
                         "projected_completion": goal.get("projectedCompletion"),
                         "is_complete": goal.get("isComplete", False),
                         "priority": goal.get("priority"),
-                        "is_active": goal.get("isActive"),
+                        "is_active": goal.get("isActive") if goal.get("isActive") is not None else True,
                     }
                     goal_id = Goal.save_subcategory_goals(goal_data)
 

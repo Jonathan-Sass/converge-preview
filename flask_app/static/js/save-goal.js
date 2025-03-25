@@ -62,7 +62,7 @@ function processGoalData(subcategoryCard) {
         description: "", 
         goalType: "",
         priority: null,
-        isActive: false,
+        isActive: true,
         projectedCompletion: null,
         isComplete: false,
         milestones: []
