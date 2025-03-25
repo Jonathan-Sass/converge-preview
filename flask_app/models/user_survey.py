@@ -36,6 +36,7 @@ class UserSurvey:
                 survey_answers.id AS answer_id,
                 survey_answers.answer_text, 
                 survey_answers.answer_value,
+                survey_branching.answer_value AS branch_answer_value,
                 survey_branching.next_question_id,
                 sq_next.question_slug AS next_question_slug
             FROM 
@@ -80,7 +81,7 @@ class UserSurvey:
         survey_branches = []
 
         for question in questions:
-            if question["next_question_id"]:
+            if question["branch_answer_value"] is not None and question["answer_value"] == question["branch_answer_value"]:
                 branch_data = {
                     "questionId": question["question_id"],
                     "surveyQuestionSlug": question["question_slug"],
@@ -104,6 +105,14 @@ class UserSurvey:
             question_id = question['question_id']
 
             if question_id not in question_set:
+                if question['type'] == 'prompt':
+                    question_set[question_id] = {
+                        'question': question['question_text'],
+                        'questionId': question_id,
+                        'questionSlug': question['question_slug'],
+                        'type': question['type']
+                    }
+                
                 question_set[question_id] = {
                     'question': question['question_text'], 
                     'questionId': question_id, 
