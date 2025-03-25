@@ -57,70 +57,74 @@ survey_question_data = [
                     {"answer_text": "Reduce screentime/doom scrolling", "answer_value": 8}
                 ]
             },
-            {
-                "question_slug": "user-desired-features",
-                "question_text": "Which features of Converge would be most helpful to you?",
-                "type": "select-any",
-                "answers": [
-                    {"answer_text": "Goal tracking", "answer_value": 0},
-                    {"answer_text": "Daily reminders", "answer_value": 1},
-                    {"answer_text": "Progress visualization", "answer_value": 2},
-                    {"answer_text": "Guided practices", "answer_value": 3},
-                    {"answer_text": "Social connection tools", "answer_value": 4},
-                    {"answer_text": "Pairing with accountability partner(s)", "answer_value": 5},
-                    {"answer_text": "Personalized insights", "answer_value": 6},
-                    {"answer_text": "Habit streak tracking", "answer_value": 7},
-                    {"answer_text": "Integrated scheduling", "answer_value": 8},
-                    {"answer_text": "Gamification elements", "answer_value": 9},
-                    {"answer_text": "Flexible routine templates", "answer_value": 10}
-                ]
-            },
-            {
-                "question_slug": "user-feedback-preference",
-                "question_text": "How would you like Converge to provide support or encouragement?",
-                "type": "select-any",
-                "answers": [
-                    {"answer_text": "Daily notifications", "answer_value": 0},
-                    {"answer_text": "Weekly summaries", "answer_value": 1},
-                    {"answer_text": "Encouraging messages", "answer_value": 2},
-                    {"answer_text": "Badges/achievements", "answer_value": 3},
-                    {"answer_text": "Milestone celebrations", "answer_value": 4},
-                    {"answer_text": "Peer feedback", "answer_value": 5},
-                    {"answer_text": "Visual progress charts", "answer_value": 6},
-                    {"answer_text": "Check-in prompts", "answer_value": 7},
-                    {"answer_text": "Self-assessment tools", "answer_value": 8}
-                ]
-            },
-            {
-                "question_slug": "motivation-level-check",
-                "question_text": "How motivated do you feel to improve your routines and habits right now?",
-                "type": "scale-1-5"
-            },
+            # {
+            #     "question_slug": "user-desired-features",
+            #     "question_text": "Which features of Converge would be most helpful to you?",
+            #     "type": "select-any",
+            #     "answers": [
+            #         {"answer_text": "Goal tracking", "answer_value": 0},
+            #         {"answer_text": "Daily reminders", "answer_value": 1},
+            #         {"answer_text": "Progress visualization", "answer_value": 2},
+            #         {"answer_text": "Guided practices", "answer_value": 3},
+            #         {"answer_text": "Social connection tools", "answer_value": 4},
+            #         {"answer_text": "Pairing with accountability partner(s)", "answer_value": 5},
+            #         {"answer_text": "Personalized insights", "answer_value": 6},
+            #         {"answer_text": "Habit streak tracking", "answer_value": 7},
+            #         {"answer_text": "Integrated scheduling", "answer_value": 8},
+            #         {"answer_text": "Gamification elements", "answer_value": 9},
+            #         {"answer_text": "Flexible routine templates", "answer_value": 10}
+            #     ]
+            # },
+            # {
+            #     "question_slug": "user-feedback-preference",
+            #     "question_text": "How would you like Converge to provide support or encouragement?",
+            #     "type": "select-any",
+            #     "answers": [
+            #         {"answer_text": "Daily notifications", "answer_value": 0},
+            #         {"answer_text": "Weekly summaries", "answer_value": 1},
+            #         {"answer_text": "Encouraging messages", "answer_value": 2},
+            #         {"answer_text": "Badges/achievements", "answer_value": 3},
+            #         {"answer_text": "Milestone celebrations", "answer_value": 4},
+            #         {"answer_text": "Peer feedback", "answer_value": 5},
+            #         {"answer_text": "Visual progress charts", "answer_value": 6},
+            #         {"answer_text": "Check-in prompts", "answer_value": 7},
+            #         {"answer_text": "Self-assessment tools", "answer_value": 8}
+            #     ]
+            # },
+            # {
+            #     "question_slug": "motivation-level-check",
+            #     "question_text": "How motivated do you feel to improve your routines and habits right now?",
+            #     "type": "scale-1-5"
+            # },
             {
                 "question_slug": "barriers-to-change-check",
                 "question_text": "What challenges have prevented you from building or maintaining habits in the past?",
-                "type": "select-any-add",
+                "type": "select-any",
                 "answers": [
-                    {"answer_text": "Lack of time", "answer_value": 0},
-                    {"answer_text": "Lack of motivation", "answer_value": 1},
+                    {"answer_text": "Lack of time or a busy schedule", "answer_value": 0},
+                    {"answer_text": "Lack of motivation or drive", "answer_value": 1},
                     {"answer_text": "Not knowing where to start", "answer_value": 2},
                     {"answer_text": "Difficulty sticking to routines", "answer_value": 3},
-                    {"answer_text": "No clear tracking or accountability", "answer_value": 4},
-                    {"answer_text": "I tend to lose interest", "answer_value": 5},
-                    {"answer_text": "Other (open text input)", "answer_value": 6}
+                    {"answer_text": "No system for tracking or staying accountable", "answer_value": 4},
+                    {"answer_text": "I tend to lose interest over time", "answer_value": 5},
+                    {"answer_text": "Low energy or burnout", "answer_value": 6},
+                    {"answer_text": "Distractions or poor focus", "answer_value": 7},
+                    {"answer_text": "Negative self-talk or doubt", "answer_value": 8},
+                    {"answer_text": "Inconsistent environment or lack of support", "answer_value": 9},
+                    {"answer_text": "Other (open text input)", "answer_value": 10}
                 ]
             },
-            {
-                "question_slug": "self-identification-style",
-                "question_text": "Which statement best describes you?",
-                "type": "guided-choice",
-                "answers": [
-                    {"answer_text": "I thrive with structured routines and schedules.", "answer_value": 0},
-                    {"answer_text": "I prefer flexibility but like to have a framework.", "answer_value": 1},
-                    {"answer_text": "I tend to go with the flow and dislike rigid routines.", "answer_value": 2},
-                    {"answer_text": "I’m not sure—I’m still figuring out what works for me.", "answer_value": 3}
-                ]
-            },
+            # {
+            #     "question_slug": "self-identification-style",
+            #     "question_text": "Which statement best describes you?",
+            #     "type": "guided-choice",
+            #     "answers": [
+            #         {"answer_text": "I thrive with structured routines and schedules.", "answer_value": 0},
+            #         {"answer_text": "I prefer flexibility but like to have a framework.", "answer_value": 1},
+            #         {"answer_text": "I tend to go with the flow and dislike rigid routines.", "answer_value": 2},
+            #         {"answer_text": "I’m not sure—I’m still figuring out what works for me.", "answer_value": 3}
+            #     ]
+            # },
             {
                 "question_slug": "accountability-preference",
                 "question_text": "Would you like an accountability feature to help you stay on track?",
@@ -144,17 +148,17 @@ survey_question_data = [
         "subcategory_slug": "day-map",
         "questions": [
             {
-                "question_slug": "existing-routines-check",
+                "question_slug": "morning-routine-check",
                 "question_text": "Do you currently have an established morning routine or habits?",
                 "type": "yes-no"
             },
             {
-                "question_slug": "existing-am-routines-satisfaction",
+                "question_slug": "existing-am-routine-satisfaction",
                 "question_text": "How satisfied are you with your current morning routine?",
                 "type": "satisfaction"
             },
             {
-                "question_slug": "new-habit-adoption-pattern-check",
+                "question_slug": "habit-adoption-pattern",
                 "question_text": "How would you describe your experience with adopting new routines or habits?",
                 "type": "guided-choice",
                 "answers": [
@@ -168,7 +172,7 @@ survey_question_data = [
             },
             {
                 "question_slug": "am-routine-time-availability",
-                "question_text": "How much time do you typically have in the morning for yourself before starting your day?",
+                "question_text": "How much time do you typically for a morning routine before starting your day?",
                 "type": "guided-choice",
                 "answers": [
                     {"answer_text": "Less than 5 minutes", "answer_value": 0},
@@ -179,27 +183,27 @@ survey_question_data = [
             },
             {
                 "question_slug": "daily-movement-check",
-                "question_text": "Do you currently engage in daily movement or exercise?",
+                "question_text": "How would you describe your exercise regimen?",
                 "type": "guided-choice",
                 "answers": [
-                    {"answer_text": "No", "answer_value": 0},
+                    {"answer_text": "Exercise is not a priority for me.", "answer_value": 0},
                     {"answer_text": "I work a physically demanding job.", "answer_value": 1},
-                    {"answer_text": "Yes, mostly walking or gentle movement.", "answer_value": 2},
-                    {"answer_text": "Yes, I am active in a variety of ways.", "answer_value": 3},
-                    {"answer_text": "Yes, I am an athlete with a structured/consistent regimen.", "answer_value": 4}
+                    {"answer_text": "I mostly walk or engage in low intensity movement.", "answer_value": 2},
+                    {"answer_text": "I am active in a variety of ways.", "answer_value": 3},
+                    {"answer_text": "I am an athlete with a structured/consistent regimen.", "answer_value": 4}
                 ]
             },
-            {
-                "question_slug": "exercise-frequency",
-                "question_text": "How often do you engage in intentional movement or exercise?",
-                "type": "guided-choice",
-                "answers": [
-                    {"answer_text": "Rarely or never", "answer_value": 0},
-                    {"answer_text": "1-2 times per week", "answer_value": 1},
-                    {"answer_text": "3-4 times per week", "answer_value": 2},
-                    {"answer_text": "5+ times per week", "answer_value": 3}
-                ]
-            },
+            # {
+            #     "question_slug": "exercise-frequency",
+            #     "question_text": "How often do you engage in intentional movement or exercise?",
+            #     "type": "guided-choice",
+            #     "answers": [
+            #         {"answer_text": "Rarely or never", "answer_value": 0},
+            #         {"answer_text": "1-2 times per week", "answer_value": 1},
+            #         {"answer_text": "3-4 times per week", "answer_value": 2},
+            #         {"answer_text": "5+ times per week", "answer_value": 3}
+            #     ]
+            # },
             {
                 "question_slug": "exercise-timing",
                 "question_text": "When in the day do you typically exercise?",
@@ -208,49 +212,55 @@ survey_question_data = [
                     {"answer_text": "Rarely or never", "answer_value": 0},
                     {"answer_text": "In the morning", "answer_value": 1},
                     {"answer_text": "Midday", "answer_value": 2},
-                    {"answer_text": "In the afternoon/evening", "answer_value": 3}
+                    {"answer_text": "In the afternoon/evening", "answer_value": 3},
+                    {"answer_text": "I am flexible", "answer_value": 4}
+
                 ]
             },
-            {
-                "question_slug": "hobbies-check",
-                "question_text": "Do you have any hobbies or creative outlets that you engage in regularly?",
-                "type": "yes-no"
-            },
+            # {
+            #     "question_slug": "hobbies-check",
+            #     "question_text": "Do you have any hobbies or creative outlets that you engage in regularly?",
+            #     "type": "yes-no"
+            # },
             {
                 "question_slug": "am-focus-block-check",
-                "question_text": "Do you or would you like to set aside time in your morning for productivity, hobbies, or similar activities?",
+                "question_text": "Do you make time in your morning for hobbies, side projects, etc.?",
                 "type": "guided-choice",
                 "answers": [
                     {"answer_text": "No", "answer_value": 0},
                     {"answer_text": "Yes, less than 10 minutes", "answer_value": 1},
                     {"answer_text": "Yes, 10 - 30 minutes", "answer_value": 2},
-                    {"answer_text": "Yes, 30+ minutes", "answer_value": 3}
+                    {"answer_text": "Yes, 30 - 60 minutes", "answer_value": 3},
+                    {"answer_text": "Yes, 60+ minutes", "answer_value": 4}
+
                 ]
             },
-            {
-                "question_slug": "hobbies-types",
-                "question_text": "Which of these hobbies or personal interests do you engage in regularly?",
-                "type": "select-any",
-                "answers": [
-                    {"answer_text": "Reading", "answer_value": 0},
-                    {"answer_text": "Writing or journaling", "answer_value": 1},
-                    {"answer_text": "Art, music, or creative work", "answer_value": 2},
-                    {"answer_text": "Sports or physical activities", "answer_value": 3},
-                    {"answer_text": "Meditation or mindfulness", "answer_value": 4},
-                    {"answer_text": "Outdoor activities", "answer_value": 5},
-                    {"answer_text": "Gaming or digital hobbies", "answer_value": 6},
-                    {"answer_text": "Social/community activities", "answer_value": 7}
-                ]
-            },
+
+            # MOVE TO INTEREST MAP IF NOT REDUNDANT?
+            # {
+            #     "question_slug": "hobbies-types",
+            #     "question_text": "Which of these hobbies or personal interests do you engage in regularly?",
+            #     "type": "select-any",
+            #     "answers": [
+            #         {"answer_text": "Reading", "answer_value": 0},
+            #         {"answer_text": "Writing or journaling", "answer_value": 1},
+            #         {"answer_text": "Art, music, or creative work", "answer_value": 2},
+            #         {"answer_text": "Sports or physical activities", "answer_value": 3},
+            #         {"answer_text": "Meditation or mindfulness", "answer_value": 4},
+            #         {"answer_text": "Outdoor activities", "answer_value": 5},
+            #         {"answer_text": "Gaming or digital hobbies", "answer_value": 6},
+            #         {"answer_text": "Social/community activities", "answer_value": 7}
+            #     ]
+            # },
             {
                 "question_slug": "work-schedule-flexibility",
-                "question_text": "How flexible is your work or school schedule?",
+                "question_text": "How flexible is your schedule?",
                 "type": "guided-choice",
                 "answers": [
-                    {"answer_text": "Very rigid — same hours every day", "answer_value": 0},
-                    {"answer_text": "Somewhat flexible — some variation", "answer_value": 1},
-                    {"answer_text": "Mostly flexible — I pretty much control my schedule", "answer_value": 2},
-                    {"answer_text": "I might be independently wealthy.", "answer_value": 3}
+                    {"answer_text": "Rigid — same hours every day", "answer_value": 0},
+                    {"answer_text": "Somewhat flexible", "answer_value": 1},
+                    {"answer_text": "Mostly flexible — I have a lot of say in my schedule", "answer_value": 2},
+                    {"answer_text": "I do what I want when I want.", "answer_value": 3}
                 ]
             },
             {
@@ -265,8 +275,13 @@ survey_question_data = [
                 "type": "satisfaction"
             },
             {
+                "question_slug": "pm-routine-time-availability-prompt",
+                "question_text": "Evenings before bed can be one of the most potent times for reflection and gratitude about our day, and for many people are an essential wind-down time they need to get quality sleep.",
+                "type": "prompt"
+            },
+            {
                 "question_slug": "pm-routine-time-availability",
-                "question_text": "How much time do you typically set aside in the evening to wind down before bed?",
+                "question_text": "How much time do you or would you like to set aside for an evening routine?",
                 "type": "guided-choice",
                 "answers": [
                     {"answer_text": "None", "answer_value": 0},
