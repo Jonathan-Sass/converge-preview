@@ -1995,6 +1995,20 @@ practice_data = {
 
 'Productivity Anchors': [
     {
+      "name": "Daily Prioritization",
+      "description": "Begin the day by identifying the three most important tasks to focus on.",
+      "recommended_durations": [
+        { "duration_label": "5 minutes" },
+        { "duration_label": "10 minutes" }
+      ],
+      "impact_rating_id": 5,
+      "difficulty_level_id": 1,
+      "frequency": "Daily",
+      "is_common": True,
+      "benefit_synopsis": "Setting daily priorities provides clarity, reduces overwhelm, and boosts productivity by focusing on what truly matters.",
+      "objectives": ["enhance_focus", "reduce_cognitive_load", "increase_productivity"]
+    },
+    {
         "name": "Midday Reset",
         "description": "Take a short break in the middle of the day to recharge and refocus.",
         "recommended_durations": [{"duration_label": "10 minutes"}, {"duration_label": "15 minutes"}],

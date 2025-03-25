@@ -51,7 +51,7 @@ routine_template_data = [
         "practices": [
             {"practice_name": "Morning Hydration", "position": 1},
             {"practice_name": "Morning Mindfulness", "position": 2},
-            {"practice_name": "Digital-Free Start", "position": 3}
+            {"practice_name": "AM Digital Wellness", "position": 3}
         ]
     },
     {
