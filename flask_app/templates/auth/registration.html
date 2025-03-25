@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-bs-theme="dark">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,13 +10,14 @@
 
 </head>
 <body>
-    <div class="card shadow m-auto text-center w-75 opacity-75 p-2">
+    <header class="shadow w-100 p-3 text-center position-sticky top-0 z-3 bg-light">
         <img class="m-auto rounded-circle" src="{{ url_for('static', filename='img/Enso_Blue_and_Black.jpg') }}" width="75" height="75" alt="Kaizen - Continuous Improvement">
         <h1 class="text-primary display-3">Converge</h1> 
         <h2>Converge with your potential. Converge with your dreams.</h2>
-    </div>
-    <div class="container m-auto w-75 d-flex justify-content-around my-3">
-        <div class="card shadow p-3 opacity-75 m-auto col-4">
+    </header>
+    <div class="parallax-bg"></div>
+    <div class="container m-auto w-75 my-3">
+        <div class="card shadow p-3 opacity-75 m-auto w-50 my-3">
             <h2 class="display-5 mb-3 text-center">Register</h2>
             <div class="card-body forms">
                 {% with messages = get_flashed_messages(category_filter = ["registration"]) %}
@@ -54,7 +55,7 @@
                         <label class="mb-2" for="confirm_password" placeholder="Confirm Password:">Confirm Password:</label>
                     </div>
                     
-                    <div class="container text-end">
+                    <div class="container text-center">
                         <button class="btn btn-primary" type="submit">Register</button>
                     </div>
                 </form>
