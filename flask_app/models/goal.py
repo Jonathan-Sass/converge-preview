@@ -173,13 +173,13 @@ class Goal:
                         action_item = ActionItem.build_action_item_from_row(row, action_item_id)
                         milestone.action_items.append(action_item)
 
-        print("goals in find_goals_with_m_a_i:")
-        for goal in goals:
-            pprint(vars(goal))
-            if goal.milestones:
-                for milestone in goal.milestones:
-                    print("Milestone in goal")
-                    pprint(vars(milestone))
+        # print("goals in find_goals_with_m_a_i:")
+        # for goal in goals:
+        #     pprint(vars(goal))
+        #     if goal.milestones:
+        #         for milestone in goal.milestones:
+        #             print("Milestone in goal")
+        #             pprint(vars(milestone))
         return goals
 
     def build_goal_from_row(row, user_id):

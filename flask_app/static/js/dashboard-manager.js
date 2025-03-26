@@ -2,44 +2,43 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const flexButtons = document.querySelectorAll('[data-action="add-to-flex"]')
 
-  console.log("Found flex buttons:", flexButtons.length);
-
   flexButtons.forEach(button => {
     button.addEventListener('click', (e) => {
       const goalId = button.getAttribute('data-goal-id');
-      const parentElement = `goal-${goalId}`
+      const parentElementId = `goal-${goalId}`
 
-      addToFlexTasks({goalId, parentElement});
+      addToFlexTasks({goalId, parentElementId});
     })
   })
 
-  function addToFlexTasks({goalId, parentElement}) {
-    removeRenderedGoal(parentElement)
-
+  function addToFlexTasks({goalId, parentElementId}) {
     if (goalId) {
-      saveGoalToFlexTasks(goalId)
+      saveGoalToFlexTasks(goalId, parentElementId)
     } else {
       console.warn(`There was a problem adding the goal: ${goalId}`)
     }
 
   };
+  
+  function moveGoalToFlexTasks(parentElementId) {
+    const parentElement = document.getElementById(parentElementId)
+    const flexTaskElement = document.getElementById('flex-task-list')
 
-  function removeRenderedGoal(parentElement) {
-    const element = document.getElementById(parentElement)
-
-    if (element) {
-      element.classList.add('fade-out');
-      setTimeout(() => element.remove(), 300);
+    if (parentElement && flexTaskElement) {
+      parentElement.classList.add('fade-out');
+      setTimeout(() => flexTaskElement.appendChild(parentElement), 300);
+      
     };
   };
 
-  async function saveGoalToFlexTasks(goalId) {
+  async function saveGoalToFlexTasks(goalId, parentElementId) {
     try {
       const response = await fetch(`/flex-tasks/add-goal/${goalId}`, {
         method: 'POST', 
       });
 
       if (response.ok) {
+        moveGoalToFlexTasks(parentElementId)
         alert(`Goal: ${goalId} added to Flex Tasks`)
       } else {
         alert (`Failed to add Goal: ${goalId}`)

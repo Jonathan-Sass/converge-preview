@@ -5,6 +5,7 @@ from pprint import pprint
 from flask_app.models.user import User
 from flask_app.models.routine import Routine
 from flask_app.models.goal import Goal
+from flask_app.models.flex_task import FlexTask
 from flask_app.models.user_response import UserResponse
 
 
@@ -18,6 +19,9 @@ def dashboard():
     user_id = user.id
     routine_data = Routine.find_routines_by_user_id(user_id)
     goal_data = Goal.find_goals_with_milestones_and_action_items_by_user_id(user_id)
+    flex_task_goal_ids = FlexTask.find_flex_tasks_goal_ids_by_user_id(user_id)
+    flex_task_data = FlexTask.assemble_flex_task_data_by_goal_id(flex_task_goal_ids, goal_data)
+
     priority_order = {
         1: "Urgent", 
         2: "High", 
@@ -28,7 +32,7 @@ def dashboard():
     if not routine_data:
         return redirect ("/dashboard/intro")
     else:
-        dashboard_data = {"user": user, "routines": routine_data, "goals": goal_data, "priority_order": priority_order}
+        dashboard_data = {"user": user, "routines": routine_data, "goals": goal_data, "flex_tasks": flex_task_data, "priority_order": priority_order}
 
         # print("goals in /home route")
         # for goal in goal_data:
@@ -44,10 +48,8 @@ def dashboard():
         #               print("Action items")
         #               for action_item in milestone.action_items:
         #                   pprint(vars(action_item))
-                      
-              
 
-        return render_template("/dashboard/dashboard.html", **dashboard_data)
+    return render_template("/dashboard/dashboard.html", **dashboard_data)
 
 @app.get("/dashboard/intro")
 def dashboard_intro():

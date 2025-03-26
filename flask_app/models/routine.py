@@ -96,12 +96,12 @@ class Routine:
                         practice = Practice.build_practice_from_row(row)
                         routine.practices.append(practice)
 
-        print("Routines in find_routines:")
-        for routine in routines:
-            pprint(vars(routine))
-            print("Routine's practices:")
-            for practice in routine.practices:
-                pprint(vars(practice))
+        # print("Routines in find_routines:")
+        # for routine in routines:
+        #     pprint(vars(routine))
+        #     print("Routine's practices:")
+        #     for practice in routine.practices:
+        #         pprint(vars(practice))
 
         return routines
     
