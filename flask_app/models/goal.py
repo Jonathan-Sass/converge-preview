@@ -29,7 +29,7 @@ class Goal:
         self.milestones: List[Milestone] = []
 
     # CRUD methods
-    @classmethod
+    
     def find_goals_with_milestones_and_action_items_by_user_id(user_id):
         query = """
           SELECT
@@ -84,7 +84,7 @@ class Goal:
 
         return Goal.build_goals_with_milestones_and_action_items(results, user_id)
     
-    @classmethod
+
     def find_goals_with_milestones_and_action_items_by_goal_ids(goal_ids, user_id):
         query = """
           SELECT
@@ -183,7 +183,7 @@ class Goal:
         return goals
 
     def build_goal_from_row(row, user_id):
-        return Goal(goal_data = {
+        return Goal({
             "id": row["goal_id"],
             "user_id": user_id,
             "category_id": row["category_id"],

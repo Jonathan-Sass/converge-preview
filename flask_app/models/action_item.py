@@ -20,7 +20,7 @@ class ActionItem:
 
 
     def build_action_item_from_row(row, action_item_id):
-        return ActionItem(action_item_data = {
+        return ActionItem({
             "id": action_item_id,
             "goal_id": row["action_item_goal_id"],
             "milestone_id": row["action_item_milestone_id"],

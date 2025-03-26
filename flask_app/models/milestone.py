@@ -26,7 +26,7 @@ class Milestone:
 
     def build_milestone_from_row(row, milestone_id):
         return Milestone(
-            milestone_data = {
+            {
                 "id": milestone_id,
                 "goal_id": row["milestone_goal_id"],
                 "name": row["milestone_name"],
