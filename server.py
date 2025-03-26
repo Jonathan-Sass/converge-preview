@@ -7,6 +7,7 @@ from flask_app.controllers import practices
 from flask_app.controllers import goals
 from flask_app.controllers import dashboards
 from flask_app.controllers import categories
+from flask_app.controllers import flex_tasks
 
 if __name__ == "__main__":
     app.run(debug=True)
