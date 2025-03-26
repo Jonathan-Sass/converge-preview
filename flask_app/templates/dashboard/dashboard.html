@@ -295,7 +295,7 @@
                           <div class="accordion-body">
                             
                             {% for goal in goals_for_priority %}
-                            <ul class="list-group mb-3">
+                            <ul class="list-group mb-3" id="goal-{{ goal.id }}">
                               <li class="list-group-item list-group-item-primary">
                                 <strong>{{ goal.name }}</strong>
                               </li>
@@ -312,7 +312,7 @@
                                       {% for action_item in milestone.action_items %}
                                         <li
                                           class="list-group-item ps-4 d-flex justify-content-between align-items-center"
-                                          id="goal-{{ goal.id }}-milestone-{{ milestone.id }}-action-item-{{ action_item.id }}"
+                                          
                                         >
                                           <span>
                                             {{ action_item.name }}
@@ -334,11 +334,7 @@
                                       {% endfor %}
                                   
                                     {% else %}
-                                      <li
-                                        class="list-group-item d-flex justify-content-between align-items-center"
-                                        id="goal-{{ goal.id }}-milestone-{{ milestone.id }}"
-
-                                      >
+                                      <li class="list-group-item d-flex justify-content-between align-items-center">
                                         <span>Milestone: {{ milestone.name }}</span>
                                         <div class="d-flex gap-2">
                                           <button class="btn btn-sm btn-outline-success" onclick="markAccomplished('{{ milestone.id }}')">

@@ -4,23 +4,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
   console.log("Found flex buttons:", flexButtons.length);
 
-
   flexButtons.forEach(button => {
     button.addEventListener('click', (e) => {
-      const type = button.getAttribute('data-target-type');
-      const id = button.getAttribute('data-target-id');
       const goalId = button.getAttribute('data-goal-id');
-
-      let parentElement;
-
-      if (type === 'action-item') {
-        const milestoneId = button.getAttribute('data-milestone-id')
-        parentElement = `goal-${goalId}-milestone-${milestoneId}-${type}-${id}`
-      } else if (type === 'milestone') {
-        parentElement = `goal-${goalId}-${type}-${id}`
-      } else {
-        console.log(`Unsupported Type: ${type}`)
-      }
+      const parentElement = `goal-${goalId}`
 
       addToFlexTasks({goalId, parentElement});
     })
@@ -50,7 +37,6 @@ document.addEventListener('DOMContentLoaded', () => {
     try {
       const response = await fetch(`/flex-tasks/add-goal/${goalId}`, {
         method: 'POST', 
-        
       });
 
       if (response.ok) {
