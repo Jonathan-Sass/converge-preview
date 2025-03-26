@@ -212,21 +212,70 @@
                 <div class="card-body">
                   <h5 class="card-title text-success">Flex Tasks</h5>
                   <hr class="border border-light mb-3 m-auto w-100">
-                  <ul class="list-group">
-                    <li class="list-group-item align-items-center text-center">
-                      <p class="lead text-success"><strong>Flex Task Sample</strong></p class="lead text-bold">
+                  <ul class="list-group" id="flex-task-list">
+                    {% if flex_tasks %}
+                      {% for task in flex_tasks %}
+                        <ul class="list-group mb-3" id="goal-{{ task.id }}">
+                          <li class="list-group-item list-group-item-primary">
+                            <div class="d-flex justify-content-between align-items-center">
+                              <strong>{{ task.name }}</strong>
+                              <button class="btn btn-sm btn-outline-primary"
+                                data-action="remove-flex"
+                                data-goal-id="{{ task.id }}">
+                                  Remove
+                              </button>
+                            </div>
+                          </li>
+
+                          {% if task.milestones %}
+                            {% for milestone in task.milestones %}
+                              {% if milestone.completed_at == None and loop.index < 2 %}
+                                {% if milestone.action_items %}
+                                    <!-- Milestone heading -->
+                                    <li class="list-group-item bg-light">
+                                      <strong>Milestone: {{ milestone.name }}</strong>
+                                    </li>
+                                    <!-- ADD VIEW MORE DROPDOWN? -->
+                                    {% for action_item in milestone.action_items %}
+                                      {% if loop.index < 2 %}
+                                        <li class="list-group-item ps-4 d-flex justify-content-between align-items-center">
+                                          <span>{{ action_item.name }}</span>
+                                          <button class="btn btn-sm btn-outline-success" onclick="markAccomplished('{{ action_item.id }}')">
+                                            Mark Done
+                                          </button>
+                                        </li>
+                                        <!-- ADD VIEW MORE DROPDOWN? -->
+                                      {% endif %}
+                                    {% endfor %}
+                                {% else %}
+                                  <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <span>Milestone: {{ milestone.name }}</span>
+                                    <button class="btn btn-sm btn-outline-success" onclick="markAccomplished('{{ milestone.id }}')">
+                                      Mark Done
+                                    </button>
+                                  </li>
+                                {% endif %}
+                              {% endif %}
+                            {% endfor %}
+                          {% endif %}
+                        </ul>
+                      {% endfor %}
+                    {% else %}
+                      <li class="list-group-item align-items-center text-center">
+                        <p class="lead text-success"><strong>Flex Task Sample</strong></p>
                         <hr class="border border-light w-75 mx-auto mt-0">
-                      <div class="d-flex justify-content-between">
-                        <div class="d-flex gap-5">
-                          <p class="lead text-light">Category</button>
+                        <div class="d-flex justify-content-between">
+                          <div class="d-flex gap-5">
+                            <p class="lead text-light">Category</p>
                             <p class="lead text-light">Est. Time Req.</p>
+                          </div>
+                          <div>
+                            <button class="btn btn-sm btn-outline-success">Mark Done</button>
+                            <button class="btn btn-sm btn-outline-danger">Remove</button>
+                          </div>
                         </div>
-                        <div class="">
-                          <button class="btn btn-sm btn-outline-success">Mark Done</button>
-                          <button class="btn btn-sm btn-outline-danger">Remove</button>
-                        </div>
-                      </div>
-                    </li>
+                      </li>
+                    {% endif %}
                   </ul>
                 </div>
               </div>
@@ -297,7 +346,14 @@
                             {% for goal in goals_for_priority %}
                             <ul class="list-group mb-3" id="goal-{{ goal.id }}">
                               <li class="list-group-item list-group-item-primary">
-                                <strong>{{ goal.name }}</strong>
+                                <div class="d-flex justify-content-between align-items-center">
+                                  <strong>{{ goal.name }}</strong>
+                                  <button class="btn btn-sm btn-outline-primary"
+                                    data-action="add-to-flex"
+                                    data-goal-id="{{ goal.id }}">
+                                      Add to Flex Tasks
+                                    </button>
+                                </div>
                               </li>
                   
                               {% if goal.milestones %}
@@ -310,44 +366,20 @@
                                     </li>
                                   
                                       {% for action_item in milestone.action_items %}
-                                        <li
-                                          class="list-group-item ps-4 d-flex justify-content-between align-items-center"
-                                          
-                                        >
-                                          <span>
-                                            {{ action_item.name }}
-                                          </span>
-                                          <div class="d-flex gap-2">
-                                            <button class="btn btn-sm btn-outline-success" onclick="markAccomplished('{{ action_item.id }}')">
-                                              Mark Done
-                                            </button>
-                                            <button class="btn btn-sm btn-outline-primary"
-                                            data-action="add-to-flex"
-                                            data-target-type="action-item"
-                                            data-target-id="{{ action_item.id }}"
-                                            data-milestone-id="{{ milestone.id }}"
-                                            data-goal-id="{{ goal.id }}">
-                                              Add to Flex Tasks
-                                            </button>
-                                          </div>
+                                        <li class="list-group-item ps-4 d-flex justify-content-between align-items-center">
+                                          <span>{{ action_item.name }}</span>
+                                          <button class="btn btn-sm btn-outline-success" onclick="markAccomplished('{{ action_item.id }}')">
+                                            Mark Done
+                                          </button>
                                         </li>
                                       {% endfor %}
                                   
                                     {% else %}
                                       <li class="list-group-item d-flex justify-content-between align-items-center">
                                         <span>Milestone: {{ milestone.name }}</span>
-                                        <div class="d-flex gap-2">
-                                          <button class="btn btn-sm btn-outline-success" onclick="markAccomplished('{{ milestone.id }}')">
-                                            Mark Done
-                                          </button>
-                                          <button class="btn btn-sm btn-outline-primary"
-                                            data-action="add-to-flex"
-                                            data-target-type="milestone"
-                                            data-target-id="{{ milestone.id }}"
-                                            data-goal-id="{{ goal.id }}">
-                                            Add to Flex Tasks
-                                          </button>
-                                        </div>
+                                        <button class="btn btn-sm btn-outline-success" onclick="markAccomplished('{{ milestone.id }}')">
+                                          Mark Done
+                                        </button>
                                       </li>
                                     {% endif %}
                                   {% endif %}
