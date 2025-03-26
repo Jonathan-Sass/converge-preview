@@ -144,3 +144,24 @@ class Practice:
             grouped_practices[practice_category].append(practice)
 
         return grouped_practices
+    
+
+    def build_practice_from_row(row):
+        return Practice(
+            {
+                "practice_id": row["practice_id"],
+                "routine_id": row["practice_routine_id"],
+                "practice_name": row["practice_name"],
+                "practice_description": row["practice_description"],
+                "benefit_synopsis": row["benefit_synopsis"],
+                "practice_category": row["practice_category"],
+                "impact_rating_description": row["impact_rating_description"],
+                "practice_difficulty": row["practice_difficulty"],
+                "practice_is_common": row["practice_is_common"],
+                "practice_notes": row["practice_notes"],
+                "literature_summary": row["literature_summary"],
+                "selected_duration": row["selected_duration"],
+                "created_at": row["practice_created_at"],
+                "updated_at": row["practice_updated_at"],
+            }
+        )

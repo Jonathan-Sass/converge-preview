@@ -83,53 +83,17 @@ class Routine:
             for row in results:
                 routine = next((r for r in routines if r.id == row["routine_id"]), None)
                 if not routine:
-                    routine_data = {
-                        "id": row["routine_id"],
-                        "user_id": user_id,
-                        "name": row["routine_name"],
-                        "description": row["routine_description"],
-                        "routine_type": row["routine_type"],
-                        "start_time": row["start_time"],
-                        "end_time": row["end_time"],
-                        "is_active": row["is_active"],
-                        "notes": row["routine_notes"],
-                        "created_at": row["routine_created_at"],
-                        "updated_at": row["routine_updated_at"],
-                        "practices": [],
-                    }
-                    routine = Routine(routine_data)
+                    routine = Routine.build_routine_from_row(row, user_id)
                     routines.append(routine)
 
                 practice = None
 
                 practice_id = row["practice_id"]
                 if practice_id and row["practice_routine_id"] == routine.id:
-                    practice = next(
-                        (p for p in routine.practices if p.id == practice_id), None
-                    )
+                    practice = next((p for p in routine.practices if p.id == practice_id), None)
 
                     if not practice:
-                        # TODO: Create helper function? map_practice_data(row)
-                        practice_data = {
-                            "practice_id": row["practice_id"],
-                            "routine_id": row["practice_routine_id"],
-                            "practice_name": row["practice_name"],
-                            "practice_description": row["practice_description"],
-                            "benefit_synopsis": row["benefit_synopsis"],
-                            "practice_category": row["practice_category"],
-                            "impact_rating_description": row[
-                                "impact_rating_description"
-                            ],
-                            "practice_difficulty": row["practice_difficulty"],
-                            "practice_is_common": row["practice_is_common"],
-                            "practice_notes": row["practice_notes"],
-                            "literature_summary": row["literature_summary"],
-                            "selected_duration": row["selected_duration"],
-                            "created_at": row["practice_created_at"],
-                            "updated_at": row["practice_updated_at"],
-                        }
-
-                        practice = Practice(practice_data)
+                        practice = Practice.build_practice_from_row(row)
                         routine.practices.append(practice)
 
         print("Routines in find_routines:")
@@ -200,52 +164,16 @@ class Routine:
         if results:
 
             for row in results:
-                routine_data = {
-                    "id": row["routine_id"],
-                    "user_id": user_id,
-                    "name": row["routine_name"],
-                    "description": row["routine_description"],
-                    "routine_type": row["routine_type"],
-                    "start_time": row["start_time"],
-                    "end_time": row["end_time"],
-                    "is_active": row["is_active"],
-                    "notes": row["routine_notes"],
-                    "created_at": row["routine_created_at"],
-                    "updated_at": row["routine_updated_at"],
-                    "practices": [],
-                }
-                routine = Routine(routine_data)
+                routine = Routine.build_routine_from_row(row, user_id)
 
                 practice = None
 
                 practice_id = row["practice_id"]
                 if practice_id and row["practice_routine_id"] == routine.id:
-                    practice = next(
-                        (p for p in routine.practices if p.id == practice_id), None
-                    )
+                    practice = next((p for p in routine.practices if p.id == practice_id), None)
 
                     if not practice:
-                        # TODO: Create helper function? map_practice_data(row)
-                        practice_data = {
-                            "practice_id": row["practice_id"],
-                            "routine_id": row["practice_routine_id"],
-                            "practice_name": row["practice_name"],
-                            "practice_description": row["practice_description"],
-                            "benefit_synopsis": row["benefit_synopsis"],
-                            "practice_category": row["practice_category"],
-                            "impact_rating_description": row[
-                                "impact_rating_description"
-                            ],
-                            "practice_difficulty": row["practice_difficulty"],
-                            "practice_is_common": row["practice_is_common"],
-                            "practice_notes": row["practice_notes"],
-                            "literature_summary": row["literature_summary"],
-                            "selected_duration": row["selected_duration"],
-                            "created_at": row["practice_created_at"],
-                            "updated_at": row["practice_updated_at"],
-                        }
-
-                        practice = Practice(practice_data)
+                        practice = Practice.build_practice_from_row(row)
                         routine.practices.append(practice)
 
         # print("Routine in find_routines:")
@@ -255,6 +183,25 @@ class Routine:
         #     pprint(vars(practice))
 
         return routine
+
+    @staticmethod
+    def build_routine_from_row(row, user_id):
+        return Routine(
+            {
+                "id": row["routine_id"],
+                "user_id": user_id,
+                "name": row["routine_name"],
+                "description": row["routine_description"],
+                "routine_type": row["routine_type"],
+                "start_time": row["start_time"],
+                "end_time": row["end_time"],
+                "is_active": row["is_active"],
+                "notes": row["routine_notes"],
+                "created_at": row["routine_created_at"],
+                "updated_at": row["routine_updated_at"],
+                "practices": [],
+            }
+        )
 
     @staticmethod
     def select_and_fetch_routine_template(user, subcategory_slug):
