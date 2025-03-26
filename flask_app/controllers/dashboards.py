@@ -18,11 +18,17 @@ def dashboard():
     user_id = user.id
     routine_data = Routine.find_routines_by_user_id(user_id)
     goal_data = Goal.find_goals_with_milestones_and_action_items_by_user_id(user_id)
+    priority_order = {
+        1: "Urgent", 
+        2: "High", 
+        3: "Medium", 
+        4: "Low"
+    }
 
     if not routine_data:
         return redirect ("/dashboard/intro")
     else:
-        dashboard_data = {"user": user, "routines": routine_data, "goals": goal_data}
+        dashboard_data = {"user": user, "routines": routine_data, "goals": goal_data, "priority_order": priority_order}
 
         # print("goals in /home route")
         # for goal in goal_data:
@@ -68,7 +74,13 @@ def dashboard_intro_am_practices():
     user_id = user.id
     routine_data = Routine.find_routines_by_user_id(user_id)
     goal_data = Goal.find_goals_with_milestones_and_action_items_by_user_id(user_id)
+    priority_order = {
+        1: "Urgent", 
+        2: "High", 
+        3: "Medium", 
+        4: "Low"
+    }
 
-    dashboard_data = {"user": user, "routines": routine_data, "goals": goal_data}
+    dashboard_data = {"user": user, "routines": routine_data, "goals": goal_data, "priority_order": priority_order}
 
     return render_template("/dashboard/dashboard_intro_am_practices.html", **dashboard_data)

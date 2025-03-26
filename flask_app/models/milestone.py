@@ -24,6 +24,22 @@ class Milestone:
 
     # return goal_milestones
 
+    def build_milestone_from_row(row, milestone_id):
+        return Milestone(
+            milestone_data = {
+                "id": milestone_id,
+                "goal_id": row["milestone_goal_id"],
+                "name": row["milestone_name"],
+                "description": row["milestone_description"],
+                "projected_completion": row["milestone_projected_completion"],
+                "is_complete": row["milestone_is_complete"],
+                "completed_at": row["milestone_completed_at"],
+                "action_items": [],
+                "created_at": row["milestone_created_at"],
+                "updated_at": row["milestone_updated_at"],
+            }
+        )
+
     def save_milestone(data):
         query = """
           INSERT INTO
