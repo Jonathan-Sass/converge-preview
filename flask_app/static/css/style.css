@@ -4,6 +4,10 @@ body {
   overflow-x: hidden;
 }
 
+.fade-out {
+  opacity: 0;
+  transition: opacity 0.3s ease-in;
+}
 .parallax-bg {
   position: absolute;
   top: 0;

@@ -18,6 +18,23 @@ class ActionItem:
         self.created_at = data["created_at"]
         self.updated_at = data["updated_at"]
 
+
+    def build_action_item_from_row(row, action_item_id):
+        return ActionItem(action_item_data = {
+            "id": action_item_id,
+            "goal_id": row["action_item_goal_id"],
+            "milestone_id": row["action_item_milestone_id"],
+            "name": row["action_item_name"],
+            "description": row["action_item_description"],
+            "action_item_order": row["action_item_order"],
+            "estimated_time_value": row["estimated_time_value"],
+            "estimated_time_unit": row["estimated_time_unit"],
+            "is_complete": row["action_item_is_complete"],
+            "completed_at": row["action_item_completed_at"],
+            "created_at": row["action_item_created_at"],
+            "updated_at": row["action_item_updated_at"],
+        })
+
     def save_action_item(data):
         query = """
           INSERT INTO

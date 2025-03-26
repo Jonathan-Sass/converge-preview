@@ -116,7 +116,7 @@
       </div>
 
       <!-- Dashboard Tabs -->
-      <ul class="nav navbar-dark nav-tabs mb-4 opacity-75" id="dashboard-tabs" role="tablist">
+      <ul class="nav navbar-dark nav-tabs mb-4" id="dashboard-tabs" role="tablist">
         <li class="nav-item">
           <button class="nav-link active" id="your-day-tab" data-bs-toggle="tab" data-bs-target="#your-day"
             type="button" role="tab">Your Day</button>
@@ -140,7 +140,7 @@
         <!-- YOUR DAY TAB -->
         <div class="tab-pane d-flex gap-2 fade show active" id="your-day" role="tabpanel">
           <!-- Left column -->
-          <div class="card shadow opacity-75 col-lg-6 p-2">
+          <div class="card shadow col-lg-6 p-2">
             <div class="card-body">
               <div class="card-title">
                 <h4 class="display-6 mb-2 text-center text-primary">Your Day at a Glance</h4>
@@ -264,7 +264,7 @@
 
 
           <!-- RIGHT COLUMN -->
-          <div id="actionable-items" class="card shadow opacity-75 col-lg-6 p-2">
+          <div id="actionable-items" class="card shadow col-lg-6 p-2">
             <div class="card-body">
               <div class="card-title">
                 <h4 class="display-6 mb-2 text-center text-primary">Actionable Items</h4>
@@ -273,56 +273,100 @@
               <!-- Action Items -->
               <div id="action-items" class="card shadow mb-1">
                 <div class="card-body">
-                  <h5 class="card-title text-warning">Goal Action Items</h5>
-                  <hr class="border border-light mb-3 m-auto w-100">
-                  <ul class="list-group">
-                    {% for goal in goals %}
-                    {% if goal.is_active %}
-                    <!-- Goal Title -->
-                    <li class="list-group-item active" aria-current="true">
-                      <strong>{{ goal.name }}</strong>
-                    </li>
-                    <!-- TODO: MILESTONE TESSSSTING NEEDED ... for goal.milestones, if milestone.is_completed == false -->
-                    {% if goal.milestone %}
-                    {% for milestone in goal.milestones %}
-                    {% if milestone.is_completed == false %}
-                    <!-- Display Milestones/Action Items -->
-                    {% if goal.milestone.action_items %}
-                    {% for action_item in goal.milestone.action_items %}
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                      <span>
-                        {{ action_item.name }}
-                        <small class="text-muted">({{ action_item.milestone_name }})</small>
-                      </span>
-                      <!-- TODO: EDIT ACTION ITEM BUTTON -->
-                      <div class="d-flex gap-2">
-                        <button class="btn btn-sm btn-outline-success"
-                          onclick="markAccomplished('{{ action_item.id }}')">
-                          Mark Done
-                        </button>
-                        <button class="btn btn-sm btn-outline-warning">Edit Milestone</button>
+                  <h5 class="card-title text-primary text-center">Goal Action Items</h5>
+                  <hr class="border border-dark mb-3 m-auto w-100">
+                  
+                  <div class="accordion" id="priorityAccordion">
+                    {% for priority, label in priority_order.items() %}
+                      {% set section_id = 'priority-' ~ priority %}
+                      {% set goals_for_priority = goals | selectattr("priority", "equalto", priority) | selectattr("is_active") | list %}
+                      
+                      {% if goals_for_priority %}
+                      <div class="accordion-item mb-2">
+                        <h2 class="accordion-header" id="heading-{{ section_id }}">
+                          <button class="accordion-button collapsed fw-bold text-uppercase" type="button"
+                            data-bs-toggle="collapse" data-bs-target="#collapse-{{ section_id }}"
+                            aria-expanded="false" aria-controls="collapse-{{ section_id }}">
+                            Goal Priority: {{ label }}
+                          </button>
+                        </h2>
+                        <div id="collapse-{{ section_id }}" class="accordion-collapse collapse"
+                          aria-labelledby="heading-{{ section_id }}" data-bs-parent="#priorityAccordion">
+                          <div class="accordion-body">
+                            
+                            {% for goal in goals_for_priority %}
+                            <ul class="list-group mb-3">
+                              <li class="list-group-item list-group-item-primary">
+                                <strong>{{ goal.name }}</strong>
+                              </li>
+                  
+                              {% if goal.milestones %}
+                                {% for milestone in goal.milestones %}
+                                  {% if milestone.completed_at == None %}
+                                    {% if milestone.action_items %}
+                                    <!-- Milestone heading -->
+                                    <li class="list-group-item bg-light">
+                                      <strong>Milestone: {{ milestone.name }}</strong>
+                                    </li>
+                                  
+                                      {% for action_item in milestone.action_items %}
+                                        <li
+                                          class="list-group-item ps-4 d-flex justify-content-between align-items-center"
+                                          id="goal-{{ goal.id }}-milestone-{{ milestone.id }}-action-item-{{ action_item.id }}"
+                                        >
+                                          <span>
+                                            {{ action_item.name }}
+                                          </span>
+                                          <div class="d-flex gap-2">
+                                            <button class="btn btn-sm btn-outline-success" onclick="markAccomplished('{{ action_item.id }}')">
+                                              Mark Done
+                                            </button>
+                                            <button class="btn btn-sm btn-outline-primary"
+                                            data-action="add-to-flex"
+                                            data-target-type="action-item"
+                                            data-target-id="{{ action_item.id }}"
+                                            data-milestone-id="{{ milestone.id }}"
+                                            data-goal-id="{{ goal.id }}">
+                                              Add to Flex Tasks
+                                            </button>
+                                          </div>
+                                        </li>
+                                      {% endfor %}
+                                  
+                                    {% else %}
+                                      <li
+                                        class="list-group-item d-flex justify-content-between align-items-center"
+                                        id="goal-{{ goal.id }}-milestone-{{ milestone.id }}"
+
+                                      >
+                                        <span>Milestone: {{ milestone.name }}</span>
+                                        <div class="d-flex gap-2">
+                                          <button class="btn btn-sm btn-outline-success" onclick="markAccomplished('{{ milestone.id }}')">
+                                            Mark Done
+                                          </button>
+                                          <button class="btn btn-sm btn-outline-primary"
+                                            data-action="add-to-flex"
+                                            data-target-type="milestone"
+                                            data-target-id="{{ milestone.id }}"
+                                            data-goal-id="{{ goal.id }}">
+                                            Add to Flex Tasks
+                                          </button>
+                                        </div>
+                                      </li>
+                                    {% endif %}
+                                  {% endif %}
+                                {% endfor %}
+                              {% endif %}
+                            </ul>
+                            {% endfor %}
+                  
+                          </div>
+                        </div>
                       </div>
-                    </li>
+                      {% endif %}
                     {% endfor %}
-                    {% else %}
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                      <span>
-                        {{ milestone.name }}
-                      </span>
-                      <div class="d-flex gap-2">
-                        <button class="btn btn-sm btn-outline-success" onclick="markAccomplished('{{ milestone.id }}')">
-                          Mark Done
-                        </button>
-                        <button class="btn btn-sm btn-outline-warning">Edit</button>
-                      </div>
-                    </li>
-                    {% endif %}
-                    {% endif %}
-                    {% endfor %}
-                    {% endif %}
-                    {% endif %}
-                    {% endfor %}
-                  </ul>
+                  </div>
+                  
                 </div>
               </div>
             </div>
@@ -403,6 +447,8 @@
   <!-- JavaScript Files -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
   <script src="{{ url_for('static', filename='js/ui-effects.js') }}" defer></script>
+  <script src="{{ url_for('static', filename='js/dashboard-manager.js') }}" defer></script>
+
 
 </body>
 
