@@ -34,67 +34,73 @@
   <div class="border-box">
     
     <!-- Navigation Bar -->
-    <nav
-      class="navbar shadow navbar-expand-lg bg-light w-100 m-auto d-flex justify-content-between position-sticky top-0 z-3 p-3">
+    <nav class="navbar navbar-expand-lg bg-light w-100 m-auto d-flex justify-content-between position-sticky top-0 z-3 p-3">
       <div class="container-fluid">
+        <!-- Branding (Logo + Title) -->
         <a class="navbar-brand d-inline-flex align-items-center gap-4" href="/dashboard">
-          <img src="/static/img/Enso_Blue_and_Black.jpg" class="rounded-circle" width="60" height="60"
-            alt="Converge Logo">
+          <img src="/static/img/Enso_Blue_and_Black.jpg" class="rounded-circle" width="60" height="60" alt="Converge Logo">
           <h1 class="display-5 text-primary">Converge</h1>
         </a>
       </div>
+
+      <!-- Mobile Navbar Toggle Button -->
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDarkDropdown"
         aria-controls="navbarNavDarkDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
+
+      <!-- Navbar Links (Collapsible) -->
       <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
         <div class="navbar-nav">
           <a class="nav-link active" aria-current="page" href="/home">Home</a>
           <a class="nav-link" href="/calendar">Calendar</a>
+
+          <!-- Goals Dropdown Menu -->
           <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
             <ul class="navbar-nav">
               <li class="nav-item dropdown">
                 <button class="btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                   Goals
                 </button>
-                <ul class="dropdown-menu">
+                <ul class="dropdown-menu dropdown-menu-dark">
                   <li><a class="dropdown-item" href="/goals/manager">Goal Manager</a></li>
-
                   <li><a class="dropdown-item" href="/goals/recreation-travel">Recreation and Travel</a></li>
                   <li><a class="dropdown-item" href="/goals/health-wellness">Health and Wellness</a></li>
                   <li><a class="dropdown-item" href="/goals/social-community">Social and Community Engagement</a></li>
                   <li><a class="dropdown-item" href="/goals/spirituality">Spirituality and Life Purpose</a></li>
                   <li><a class="dropdown-item" href="/goals/career-professional-development">Career and Professional
                       Development</a></li>
-                  <li><a class="dropdown-item" href="/goals/wealth-finance">Wealth Building and Financial Health</a>
-                  </li>
+                  <li><a class="dropdown-item" href="/goals/wealth-finance">Wealth Building and Financial Health</a></li>
                   <li><a class="dropdown-item" href="/goals/creative-expression-hobbies">Creative Expression and
                       Hobbies</a></li>
                   <li><a class="dropdown-item" href="/goals/environment-success">Environment and Success</a></li>
-                  <li><a class="dropdown-item" href="/goals">Something else here</a></li>
                 </ul>
               </li>
             </ul>
           </div>
+
+          <!-- Routines Dropdown Menu -->
           <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
             <ul class="navbar-nav">
               <li class="nav-item dropdown">
                 <button class="btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                   Routines
                 </button>
-                <ul class="dropdown-menu">
+                <ul class="dropdown-menu dropdown-menu-dark">
                   <li><a class="dropdown-item" href="/routines/am/manage">AM Routine Manager</a></li>
                   <li><a class="dropdown-item" href="/routines/pm/manage">PM Routine Manager</a></li>
                   <li><a class="dropdown-item" href="/intentions/edit">Daily Intention Manager</a></li>
                   <li><a class="dropdown-item" href="/practices/flex-items/manage">Flex Item</a></li>
-                  <li><a class="dropdown-item" href="/practices">Something else?</a></li>
                 </ul>
               </li>
             </ul>
           </div>
+
           <a class="nav-link" href="/social">Social</a>
+
+          <!-- Logout Button -->
           <form action="/users/logout" method="post">
-            <button class="btn btn-link" type="submit" name="logout">logout</button>
+            <button class="btn btn-link" type="submit" name="logout">Logout</button>
           </form>
         </div>
       </div>
@@ -110,7 +116,7 @@
       </div>
 
       <!-- Dashboard Tabs -->
-      <ul class="nav nav-tabs mb-4" id="dashboard-tabs" role="tablist">
+      <ul class="nav navbar-dark nav-tabs mb-4" id="dashboard-tabs" role="tablist">
         <li class="nav-item">
           <button class="nav-link active" id="your-day-tab" data-bs-toggle="tab" data-bs-target="#your-day"
             type="button" role="tab">Your Day</button>
@@ -134,7 +140,7 @@
         <!-- YOUR DAY TAB -->
         <div class="tab-pane d-flex gap-2 fade show active" id="your-day" role="tabpanel">
           <!-- Left column -->
-          <div class="card shadow opacity-75 col-lg-6 p-2">
+          <div class="card shadow col-lg-6 p-2 opaque-bg">
             <div class="card-body">
               <div class="card-title">
                 <h4 class="display-6 mb-2 text-center text-primary">Your Day at a Glance</h4>
@@ -145,11 +151,18 @@
                 <div class="card-body">
                   <div class="card-title d-flex justify-content-between">
                     <h5 class="card-title text-primary">Morning Routine</h5>
-                    <button id="edit-am-routine" class="btn btn-sm btn-outline-primary">Edit Routine</button>
+                    <a id="edit-am-routine" class="btn btn-sm btn-outline-primary" href="/routines/am/manage">Edit Routine</a>
                   </div>
                   <hr class="border border-light mb-3 m-auto w-100">
                   <ul class="list-group">
-                    
+                    <!-- EXAMPLE PRACTICE FOR INTRO.JS -->
+                    <!-- <li class="list-group-item d-flex justify-content-between align-items-center">
+                      <span>Sample Practice</span>
+                      <div class="d-flex gap-2">
+                        <button id="complete-example" class="btn btn-sm btn-outline-success">Complete</button>
+                        <button id="edit-practice-example" class="btn btn-sm btn-outline-warning">Edit Practice</button>
+                      </div>
+                    </li> -->
                     {% for routine in routines %}
                     {% if routine.routine_type == "AM" %}
                     {% for practice in routine.practices %}
@@ -161,9 +174,9 @@
                         </small>
                       </div>
                       <div class="d-flex gap-2">
-                        <button class="btn btn-sm btn-outline-success" id="complete-am-practice-{{ loop.index }}"
+                        <button class="btn btn-sm btn-outline-success"
                           onclick="markAccomplished('{{ practice.id }}')">Complete</button>
-                        <!-- <button class="btn btn-sm btn-outline-warning">Edit Practice</button> -->
+                        <button class="btn btn-sm btn-outline-warning">Edit Practice</button>
                       </div>
                     </li>
                     {% endfor %}
@@ -199,21 +212,70 @@
                 <div class="card-body">
                   <h5 class="card-title text-success">Flex Tasks</h5>
                   <hr class="border border-light mb-3 m-auto w-100">
-                  <ul class="list-group">
-                    <li class="list-group-item align-items-center text-center">
-                      <p class="lead text-success"><strong>Flex Task Sample</strong></p class="lead text-bold">
+                  <ul class="list-group" id="flex-task-list">
+                    {% if flex_tasks %}
+                      {% for task in flex_tasks %}
+                        <ul class="list-group mb-3" id="goal-{{ task.id }}">
+                          <li class="list-group-item list-group-item-primary">
+                            <div class="d-flex justify-content-between align-items-center">
+                              <strong>{{ task.name }}</strong>
+                              <button class="btn btn-sm btn-outline-primary"
+                                data-action="remove-flex"
+                                data-goal-id="{{ task.id }}">
+                                  Remove
+                              </button>
+                            </div>
+                          </li>
+
+                          {% if task.milestones %}
+                            {% for milestone in task.milestones %}
+                              {% if milestone.completed_at == None and loop.index < 2 %}
+                                {% if milestone.action_items %}
+                                    <!-- Milestone heading -->
+                                    <li class="list-group-item bg-light">
+                                      <strong>Milestone: {{ milestone.name }}</strong>
+                                    </li>
+                                    <!-- ADD VIEW MORE DROPDOWN? -->
+                                    {% for action_item in milestone.action_items %}
+                                      {% if loop.index < 2 %}
+                                        <li class="list-group-item ps-4 d-flex justify-content-between align-items-center">
+                                          <span>{{ action_item.name }}</span>
+                                          <button class="btn btn-sm btn-outline-success" onclick="markAccomplished('{{ action_item.id }}')">
+                                            Mark Done
+                                          </button>
+                                        </li>
+                                        <!-- ADD VIEW MORE DROPDOWN? -->
+                                      {% endif %}
+                                    {% endfor %}
+                                {% else %}
+                                  <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <span>Milestone: {{ milestone.name }}</span>
+                                    <button class="btn btn-sm btn-outline-success" onclick="markAccomplished('{{ milestone.id }}')">
+                                      Mark Done
+                                    </button>
+                                  </li>
+                                {% endif %}
+                              {% endif %}
+                            {% endfor %}
+                          {% endif %}
+                        </ul>
+                      {% endfor %}
+                    {% else %}
+                      <li class="list-group-item align-items-center text-center">
+                        <p class="lead text-success"><strong>Flex Task Sample</strong></p>
                         <hr class="border border-light w-75 mx-auto mt-0">
-                      <div class="d-flex justify-content-between">
-                        <div class="d-flex gap-5">
-                          <p class="lead text-light">Category</button>
+                        <div class="d-flex justify-content-between">
+                          <div class="d-flex gap-5">
+                            <p class="lead text-light">Category</p>
                             <p class="lead text-light">Est. Time Req.</p>
+                          </div>
+                          <div>
+                            <button class="btn btn-sm btn-outline-success">Mark Done</button>
+                            <button class="btn btn-sm btn-outline-danger">Remove</button>
+                          </div>
                         </div>
-                        <div class="">
-                          <button class="btn btn-sm btn-outline-success">Mark Done</button>
-                          <button class="btn btn-sm btn-outline-danger">Remove</button>
-                        </div>
-                      </div>
-                    </li>
+                      </li>
+                    {% endif %}
                   </ul>
                 </div>
               </div>
@@ -251,7 +313,7 @@
 
 
           <!-- RIGHT COLUMN -->
-          <div id="actionable-items" class="card shadow opacity-75 col-lg-6 p-2">
+          <div id="actionable-items" class="card shadow col-lg-6 p-2 opaque-bg">
             <div class="card-body">
               <div class="card-title">
                 <h4 class="display-6 mb-2 text-center text-primary">Actionable Items</h4>
@@ -260,64 +322,79 @@
               <!-- Action Items -->
               <div id="action-items" class="card shadow mb-1">
                 <div class="card-body">
-                  <h5 class="card-title text-warning">Goal Action Items</h5>
-                  <hr class="border border-light mb-3 m-auto w-100">
-                  <ul class="list-group">
-                    {% for goal in goals %}
-                    {% if goal.is_active %}
-                    <!-- Goal Title -->
-                    <li class="list-group-item active" aria-current="true">
-                      <strong>{{ goal.name }}</strong>
-                    </li>
-                    <!-- TODO: MILESTONE TESSSSTING NEEDED ... for goal.milestones, if milestone.is_completed == false -->
-                    {% if goal.milestone %}
-                    {% for milestone in goal.milestones %}
-                    {% if milestone.is_completed == false %}
-                    <!-- Display Milestones/Action Items -->
-                    {% if goal.milestone.action_items %}
-                    {% for action_item in goal.milestone.action_items %}
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                      <span>
-                        {{ action_item.name }}
-                        <small class="text-muted">({{ action_item.milestone_name }})</small>
-                      </span>
-                      <!-- TODO: EDIT ACTION ITEM BUTTON -->
-                      <div class="d-flex gap-2">
-                        <button class="btn btn-sm btn-outline-primary"
-                          id="add-goal-{{ goal.id }}-milestone-{{ milestone.id }}-action-item-{{ action_item.id }}">
-                          Add to Flex Items
-                        </button>
-                        <button class="btn btn-sm btn-outline-success"
-                          onclick="markAccomplished('{{ action_item.id }}')">
-                          Mark Done
-                        </button>
-                        <button class="btn btn-sm btn-outline-warning">Edit Milestone</button>
+                  <h5 class="card-title text-primary text-center">Goal Action Items</h5>
+                  <hr class="border border-dark mb-3 m-auto w-100">
+                  
+                  <div class="accordion" id="priorityAccordion">
+                    {% for priority, label in priority_order.items() %}
+                      {% set section_id = 'priority-' ~ priority %}
+                      {% set goals_for_priority = goals | selectattr("priority", "equalto", priority) | selectattr("is_active") | list %}
+                      
+                      {% if goals_for_priority %}
+                      <div class="accordion-item mb-2">
+                        <h2 class="accordion-header" id="heading-{{ section_id }}">
+                          <button class="accordion-button collapsed fw-bold text-uppercase" type="button"
+                            data-bs-toggle="collapse" data-bs-target="#collapse-{{ section_id }}"
+                            aria-expanded="false" aria-controls="collapse-{{ section_id }}">
+                            Goal Priority: {{ label }}
+                          </button>
+                        </h2>
+                        <div id="collapse-{{ section_id }}" class="accordion-collapse collapse"
+                          aria-labelledby="heading-{{ section_id }}" data-bs-parent="#priorityAccordion">
+                          <div class="accordion-body">
+                            
+                            {% for goal in goals_for_priority %}
+                            <ul class="list-group mb-3" id="goal-{{ goal.id }}">
+                              <li class="list-group-item list-group-item-primary">
+                                <div class="d-flex justify-content-between align-items-center">
+                                  <strong>{{ goal.name }}</strong>
+                                  <button class="btn btn-sm btn-outline-primary"
+                                    data-action="add-to-flex"
+                                    data-goal-id="{{ goal.id }}">
+                                      Add to Flex Tasks
+                                    </button>
+                                </div>
+                              </li>
+                  
+                              {% if goal.milestones %}
+                                {% for milestone in goal.milestones %}
+                                  {% if milestone.completed_at == None %}
+                                    {% if milestone.action_items %}
+                                    <!-- Milestone heading -->
+                                    <li class="list-group-item bg-light">
+                                      <strong>Milestone: {{ milestone.name }}</strong>
+                                    </li>
+                                  
+                                      {% for action_item in milestone.action_items %}
+                                        <li class="list-group-item ps-4 d-flex justify-content-between align-items-center">
+                                          <span>{{ action_item.name }}</span>
+                                          <button class="btn btn-sm btn-outline-success" onclick="markAccomplished('{{ action_item.id }}')">
+                                            Mark Done
+                                          </button>
+                                        </li>
+                                      {% endfor %}
+                                  
+                                    {% else %}
+                                      <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        <span>Milestone: {{ milestone.name }}</span>
+                                        <button class="btn btn-sm btn-outline-success" onclick="markAccomplished('{{ milestone.id }}')">
+                                          Mark Done
+                                        </button>
+                                      </li>
+                                    {% endif %}
+                                  {% endif %}
+                                {% endfor %}
+                              {% endif %}
+                            </ul>
+                            {% endfor %}
+                  
+                          </div>
+                        </div>
                       </div>
-                    </li>
+                      {% endif %}
                     {% endfor %}
-                    {% else %}
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                      <span>
-                        {{ milestone.name }}
-                      </span>
-                      <div class="d-flex gap-2">
-                        <button class="btn btn-sm btn-outline-primary"
-                          id="add-goal-{{ goal.id }}-milestone-{{ milestone.id }}">
-                          Add to Flex Items
-                        </button>
-                        <button class="btn btn-sm btn-outline-success" onclick="markAccomplished('{{ milestone.id }}')">
-                          Mark Done
-                        </button>
-                        <button class="btn btn-sm btn-outline-warning">Edit</button>
-                      </div>
-                    </li>
-                    {% endif %}
-                    {% endif %}
-                    {% endfor %}
-                    {% endif %}
-                    {% endif %}
-                    {% endfor %}
-                  </ul>
+                  </div>
+                  
                 </div>
               </div>
             </div>
@@ -399,6 +476,7 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/intro.js/7.2.0/intro.js" crossorigin="anonymous"></script>
   <script src="{{ url_for('static', filename='js/ui-effects.js') }}" defer></script>
+  <script src="{{ url_for('static', filename='js/dashboard-manager.js') }}" defer></script>
 
   <!-- Intro.js Guided Tour Script -->
   <script>
