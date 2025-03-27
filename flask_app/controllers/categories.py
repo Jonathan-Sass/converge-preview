@@ -5,14 +5,19 @@ from flask_app.models.category import Category
 from flask_app.models.user import User
 
 
-
 @app.get("/api/categories-with-practices/all")
 def fetch_all_categories_with_practices():
-  user = User.get_logged_in_user()
-  if not user:
-    return redirect("/")
-  
-  categories_with_subcats = Category.get_all_categories_with_subcategories()
+    """Fetch all categories with subcategories and associated practices.
 
-  return jsonify(categories_with_subcats)
+    Requires the user to be logged in. If the user is not authenticated,
+    the user will be redirected to the homepage.
 
+    Returns:
+        A JSON response containing the list of categories with nested subcategories and practices.
+    """
+    user = User.get_logged_in_user()
+    if not user:
+        return redirect("/")
+
+    categories_with_subcats = Category.get_all_categories_with_subcategories()
+    return jsonify(categories_with_subcats)

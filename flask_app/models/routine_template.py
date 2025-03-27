@@ -9,9 +9,17 @@ from flask_app.models.user import User
 
 
 class RoutineTemplate:
+    """Model representing a reusable routine template with a collection of practices."""
+
     db = connectToMySQL("converge_schema")
 
     def __init__(self, data):
+        """
+        Initialize a RoutineTemplate object.
+
+        Args:
+            data (dict): Dictionary containing routine template fields.
+        """
         self.id = data["routine_template_id"]
         self.frequency = data["routine_template_frequency"]
         self.name = data["routine_template_name"]
@@ -20,16 +28,32 @@ class RoutineTemplate:
         self.notes = data.get("routine_template_notes", None)
         self.practices = []
 
-
+    @staticmethod
     def am_routine_template_selector(user, subcategory_slug_string):
+        """
+        Retrieves user responses for a given subcategory and processes them.
 
+        Args:
+            user (User): The current logged-in user.
+            subcategory_slug_string (str): Slug for the subcategory related to the routine.
+        """
         user_with_responses = UserResponse.fetch_user_responses_by_user_id_and_subcategory_slug(
             user, subcategory_slug_string
         )
         UserResponse.process_user_responses(user_with_responses)
         return
 
+    @staticmethod
     def find_routine_template_by_name_with_practices(routine_template_name):
+        """
+        Fetches a routine template by name along with its associated practices and durations.
+
+        Args:
+            routine_template_name (str): The name of the routine template to fetch.
+
+        Returns:
+            RoutineTemplate: A populated RoutineTemplate object or None if not found.
+        """
         query = """
             SELECT
                 routine_templates.id AS routine_template_id,
@@ -70,11 +94,11 @@ class RoutineTemplate:
             JOIN
                 difficulty_levels ON practices.difficulty_level_id = difficulty_levels.id
             LEFT JOIN
-              recommended_durations ON practices.id = recommended_durations.practice_id
+                recommended_durations ON practices.id = recommended_durations.practice_id
             LEFT JOIN
-              durations ON recommended_durations.duration_id = durations.id
+                durations ON recommended_durations.duration_id = durations.id
             LEFT JOIN
-              engagement_levels ON recommended_durations.engagement_level_id = engagement_levels.id
+                engagement_levels ON recommended_durations.engagement_level_id = engagement_levels.id
             WHERE
                 routine_templates.name = %(routine_template_name)s
             ORDER BY
@@ -92,7 +116,6 @@ class RoutineTemplate:
                 return None
 
             routine_template = RoutineTemplate(results[0])
-            
             practice_map = {}
 
             for result in results:
@@ -102,7 +125,7 @@ class RoutineTemplate:
                     practice = Practice(result)
                     practice_map[practice_id] = practice
                     routine_template.practices.append(practice)
-                
+
                 if result["duration_id"]:
                     duration = Duration(result)
                     practice_map[practice_id].durations.append(duration)
@@ -110,6 +133,6 @@ class RoutineTemplate:
             print("*****routine_template in find_by_name_with_practices")
             pprint(vars(routine_template))
             return routine_template
-        
+
         except Exception as e:
             raise RuntimeError(f"Error retrieving routine template: {e}")

@@ -2,17 +2,35 @@ from flask_app.config.mysqlconnection import connectToMySQL
 
 
 class Duration:
+    """
+    Model representing a time duration for practice engagement.
+    Includes associated methods for fetching durations and engagement levels.
+    """
     db = connectToMySQL("converge_schema")
 
     def __init__(self, data):
+        """
+        Initialize a Duration object.
+
+        Args:
+            data (dict): Dictionary containing duration data.
+        """
         self.id = data["duration_id"]
         self.duration_label = data["duration_label"]
         self.duration_seconds = data["duration_seconds"]
         self.engagement_level = data["engagement_level"] or None
 
-    # TODO: REFACTOR TO A SINGLE QUERY IN ROUTINE TEMPLATES
+    @staticmethod
     def find_durations_by_practice_id(practice_id):
-        # (TODO:add to name: with_engagement_levels)
+        """
+        Retrieve recommended durations for a given practice, including engagement levels.
+
+        Args:
+            practice_id (int): ID of the practice.
+
+        Returns:
+            list[Duration]: A list of Duration objects for the specified practice.
+        """
         query = """
             SELECT
                 durations.id AS duration_id,
@@ -29,18 +47,21 @@ class Duration:
                 recommended_durations.practice_id = %(practice_id)s;
         """
         data = {"practice_id": practice_id}
-
         results = Duration.db.query_db(query, data)
 
-        practice_durations = []
+        return [Duration(result) for result in results]
 
-        for result in results:
-            practice_durations.append(Duration(result))
-
-        return practice_durations
-
+    @staticmethod
     def dict_from_query_result(result):
-        """Converts raw query result to dictionary without first intantiating an object."""
+        """
+        Converts a raw query result into a dictionary.
+
+        Args:
+            result (dict): A single row from a database query.
+
+        Returns:
+            dict: Dictionary with keys: id, duration_label, duration_seconds, engagement_level.
+        """
         return {
             "id": result["duration_id"],
             "duration_label": result["duration_label"],
@@ -48,16 +69,21 @@ class Duration:
             "engagement_level": result["engagement_level"]
         }
 
-
+    @staticmethod
     def fetch_all_durations():
-        query = """
-            SELECT * FROM durations;
         """
+        Retrieve all durations from the database.
 
+        Returns:
+            list[dict]: List of duration records.
+
+        Raises:
+            RuntimeError: If no durations are found.
+        """
+        query = "SELECT * FROM durations;"
         results = Duration.db.query_db(query)
 
         if results:
-            durations = results
-            return durations
+            return results
         else:
             raise RuntimeError("No durations found in database.")

@@ -1,15 +1,22 @@
 from flask_app.config.mysqlconnection import connectToMySQL
 from pprint import pprint
-from flask import flash, session, jsonify, redirect
-import asyncio, aiomysql, logging
+from flask import flash, session, jsonify
+# import asyncio, aiomysql, logging
 import pymysql
 
 from flask_app.models.user import User
 from flask_app.models.user_response import UserResponse
 
 class UserSurvey: 
+    """
+    A class to manage survey logic for users within the Converge app.
+
+    Responsibilities include:
+    - Fetching and processing questions and answers based on category/subcategory
+    - Handling branching logic for survey flows
+    - Saving and updating user-specific responses and survey metadata
+    """
     db = connectToMySQL("converge_schema")
-    _db = "converge_schema"
 
     def __init__ (self, data):
         self.id = data["id"]
@@ -23,6 +30,17 @@ class UserSurvey:
     # Find a User Survey Category and User ID
     @classmethod
     def find_questions_by_category_and_subcategory(cls, user_category_subcategory_data):
+        """
+        Retrieves all questions and potential answers for a given category/subcategory pair.
+        
+        Also includes survey branching logic when applicable.
+
+        Args:
+            user_category_subcategory_data (dict): Dictionary with 'category' and 'subcategory' keys.
+
+        Returns:
+            tuple: A list of structured question data for the frontend, and a list of branching rules.
+        """
         query = """
             SELECT 
                 categories.name AS category,
@@ -77,7 +95,15 @@ class UserSurvey:
 
     
     def process_survey_branch_data(questions):
+        """
+        Extracts and structures survey branching logic from a raw result set.
 
+        Args:
+            questions (list[dict]): Raw joined query results including branching info.
+
+        Returns:
+            list[dict]: A list of branch mappings used by the frontend to control flow.
+        """
         survey_branches = []
 
         for question in questions:
@@ -99,6 +125,15 @@ class UserSurvey:
 
     @staticmethod
     def process_question_data_for_frontend(question_data):
+        """
+        Groups and organizes question and answer data for clean frontend rendering.
+
+        Args:
+            question_data (list[dict]): Raw joined query results for questions and answers.
+
+        Returns:
+            list[dict]: Structured list of questions with associated answers.
+        """
         question_set = {}
 
         for question in question_data:
@@ -132,30 +167,19 @@ class UserSurvey:
         return list(question_set.values())
 
 
-    @classmethod
-    def find_user_response_by_user_id_and_question_id(cls, survey_question_id):
-        query = """
-                SELECT 
-                    user_id, 
-                    survey_question_id
-                FROM
-                    user_responses
-                WHERE 
-                    user_id= %(user_id)s
-                AND
-                    survey_question_id = %(survey_question_id)s;
-                """
-        user_response_data = {
-            'user_id': session['user_id'], 
-            'survey_question_id': survey_question_id
-        }
-        
-        return UserSurvey.db(query, user_response_data)
-
-
+# LIKELY DEPRECATED, NEED TO COMMENT AND TEST AFTER SUFFICIENT TESTING OF RECENT PERVASIVE DOCSTRING ADDITIONS
 #   Update a user_survey entry
     @classmethod
     def update_user_survey_single_column(cls, form_data):
+        """
+        Updates one column in a user's survey metadata (e.g. ratings or interest flags).
+
+        Args:
+            form_data (dict): Key-value pairs representing fields to update.
+
+        Returns:
+            Response: Flask `jsonify` response indicating success or failure.
+        """
         # Ensure that user_id is in the session and user is valid
         user_id = session.get("user_id")
         if not user_id:
@@ -206,12 +230,21 @@ class UserSurvey:
             return jsonify({'message': 'No valid columns found in form data'}), 400
 
     @classmethod
-    def find_by_id(cls, user_survey_id):
+    def find_user_survey_by_id(cls, user_survey_id):
+        """
+        Retrieves a user_survey entry by its ID.
+
+        Args:
+            user_survey_id (int): ID of the user_survey entry.
+
+        Returns:
+            UserSurvey: A populated UserSurvey object.
+        """
         query = "SELECT * FROM user_surveys WHERE user_id = %(id)s;"
 
         data = {"id": user_survey_id}
 
-        results = connectToMySQL(UserSurvey._db).query_db(query, data)
+        results = UserSurvey.db.query_db(query, data)
 
         user_survey = UserSurvey(results[0])
 

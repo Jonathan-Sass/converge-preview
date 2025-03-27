@@ -3,21 +3,20 @@ from pprint import pprint
 from flask import flash, session
 import re
 
-from flask_app import models
-from flask_app.models.health_goal import HealthGoal
-
-
+# Regular expressions for validating email and password formats
 EMAIL_REGEX = re.compile(r"^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$")
-# PASSWORD_REGEX = re.compile(r"^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$")
 PASSWORD_REGEX = re.compile(
     r"^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$"
 )
 
 
 class User:
+    """Represents a user in the Converge application."""
+
     db = connectToMySQL("converge_schema")
 
     def __init__(self, data):
+        """Initialize a User instance from a dictionary of user data."""
         self.id = data["id"]
         self.first_name = data["first_name"]
         self.last_name = data["last_name"]
@@ -25,30 +24,19 @@ class User:
         self.password = data["password"]
         self.created_at = data["created_at"]
         self.updated_at = data["updated_at"]
-        # self.health_quiz_id = data["health_quiz_id"]
         self.responses = []
         self.goals = []
         self.personal_routines = []
         self.day_flex_items = []
 
     @classmethod
-    def find_all(cls):
-        query = "SELECT * FROM users"
-        users = User.db.query_db(query)
-        return users
-
-    @classmethod
-    def find_by_email(cls, form_data):
-        query = "SELECT * FROM users WHERE email = %(email)s;"
-        data = {"email": form_data["email"]}
-        result = User.db.query_db(query, data)
-
-        if len(result) == 0:
-            return None
-        return User(result[0])
-
-    @classmethod
     def get_logged_in_user(cls):
+        """
+        Retrieve the logged-in user from the session.
+
+        Returns:
+            User or None: The logged-in User object, or None if not found.
+        """
         user_id = session.get("user_id")
         if not user_id:
             flash("Please log in.", "login")
@@ -63,64 +51,114 @@ class User:
 
     @classmethod
     def find_by_id(cls, user_id):
+        """
+        Find a user by their ID.
+
+        Args:
+            user_id (int): The user's ID.
+
+        Returns:
+            User or None: User instance if found, else None.
+        """
         query = "SELECT * FROM users WHERE id = %(id)s;"
         data = {"id": user_id}
         result = User.db.query_db(query, data)
         if len(result) == 0:
             return None
-        user = User(result[0])
-        return user
+        return User(result[0])
+
+    @classmethod
+    def find_all(cls):
+        """
+        Retrieve all users from the database.
+
+        Returns:
+            list[dict]: List of user records.
+        """
+        query = "SELECT * FROM users"
+        return User.db.query_db(query)
+
+    @classmethod
+    def find_by_email(cls, form_data):
+        """
+        Find a user by their email address.
+
+        Args:
+            form_data (dict): Form data containing 'email'.
+
+        Returns:
+            User or None: User instance if found, else None.
+        """
+        query = "SELECT * FROM users WHERE email = %(email)s;"
+        data = {"email": form_data["email"]}
+        result = User.db.query_db(query, data)
+
+        if len(result) == 0:
+            return None
+        return User(result[0])
 
     @classmethod
     def save(cls, data):
-        query = """
-                INSERT INTO users
-                (first_name, last_name, email, password, created_at, updated_at)
-                VALUES
-                (%(first_name)s, %(last_name)s, %(email)s, %(password)s, NOW(), NOW());
-                """
-        return User.db.query_db(query, data)
-   
+        """
+        Save a new user to the database.
 
-# LOGIN/REG METHODS
+        Args:
+            data (dict): User data to insert.
+
+        Returns:
+            int: The ID of the inserted user.
+        """
+        query = """
+            INSERT INTO users
+            (first_name, last_name, email, password, created_at, updated_at)
+            VALUES
+            (%(first_name)s, %(last_name)s, %(email)s, %(password)s, NOW(), NOW());
+        """
+        return User.db.query_db(query, data)
+
+    # ---------------- LOGIN/REGISTRATION METHODS ---------------- #
+
     @staticmethod
     def validate_registration(user):
+        """
+        Validate user registration input.
+
+        Args:
+            user (dict): Form input data.
+
+        Returns:
+            bool: True if input is valid, False otherwise.
+        """
         is_valid = True
-        if len(user["first_name"].strip()) == 0 or len(user["first_name"].strip()) < 2:
+
+        if len(user["first_name"].strip()) < 2:
             flash("Please enter your first name.", "registration")
             is_valid = False
         elif not str.isalpha(user["first_name"]):
-            flash("Your first name may only contain alphanumeric characters.")
+            flash("Your first name may only contain letters.", "registration")
             is_valid = False
 
-        if len(user["last_name"].strip()) == 0 or len(user["last_name"].strip()) < 2:
+        if len(user["last_name"].strip()) < 2:
             flash("Please enter your last name.", "registration")
             is_valid = False
         elif not str.isalpha(user["last_name"]):
-            flash(
-                "Your last name may only contain alphanumeric characters.",
-                "registration",
-            )
+            flash("Your last name may only contain letters.", "registration")
             is_valid = False
 
         if not EMAIL_REGEX.match(user["email"]):
             flash("Invalid email address!", "registration")
             is_valid = False
 
-        if "password" not in user:
-            flash("Please enter a password", "registration")
-            is_valid = False
-        elif len(user["password"].strip()) < 8:
+        if "password" not in user or len(user["password"].strip()) < 8:
             flash("Your password must contain at least 8 characters.", "registration")
             is_valid = False
-
-        if not PASSWORD_REGEX.match(user["password"].strip()):
+        elif not PASSWORD_REGEX.match(user["password"].strip()):
             flash(
                 "Your password must contain at least 1 capital letter, 1 number and 1 special character.",
                 "registration",
             )
             is_valid = False
-        elif not user["password"] == user["confirm_password"]:
+        elif user["password"] != user["confirm_password"]:
             flash("Your passwords must match.", "registration")
             is_valid = False
 
@@ -128,6 +166,15 @@ class User:
 
     @staticmethod
     def login_is_valid(form_data):
+        """
+        Validate login form input.
+
+        Args:
+            form_data (dict): Contains 'email' and 'password'.
+
+        Returns:
+            bool: True if input is valid, False otherwise.
+        """
         is_valid = True
 
         if len(form_data["email"].strip()) == 0:
@@ -138,13 +185,20 @@ class User:
             is_valid = False
 
         if len(form_data["password"].strip()) == 0:
-            flash("Please enter a password.")
+            flash("Please enter a password.", "login")
             is_valid = False
         elif len(form_data["password"].strip()) < 8:
-            flash("Your password must contain at least 8 characters.")
+            flash("Your password must contain at least 8 characters.", "login")
             is_valid = False
 
         return is_valid
+
+
+
+    # ---------------- DEPRECATED METHODS ---------------- #
+    # Health goal and quiz methods were used in early prototypes and may be removed.
+    # They are retained here for review/stability verification before permanent deletion.
+
 
 
 # ALL HEALTH GOAL AND HEALTH QUIZ METHODS ARE DEPRECATED, VERIFYING STABILITY BEFORE REMOVAL

@@ -8,6 +8,8 @@ class UserResponse:
     db = connectToMySQL("converge_schema")
 
     def __init__(self, data):
+        """Initialize a UserResponse object from database row data."""
+
         self.user_id = data["user_id"]
         self.subcategory_slug = data["subcategory_slug"]
         self.question_slug = data["question_slug"]
@@ -19,6 +21,16 @@ class UserResponse:
 
 
     def find_user_responses_by_user_id_and_subcategory_slug(user, subcategory_slug):
+        """
+        Retrieve all responses for a given user and subcategory.
+
+        Args:
+            user (User): The current logged-in user.
+            subcategory_slug (str): The slug representing the subcategory of the survey.
+
+        Returns:
+            List[UserResponse]: A list of UserResponse objects with survey question and answer data.
+        """
         query = """
           SELECT
             ur.user_id,
@@ -62,6 +74,17 @@ class UserResponse:
 
 
     def map_user_response_to_routine_template(user_responses, subcategory_slug):
+      """
+        Determine which routine template to recommend based on user responses.
+
+        Args:
+            user_responses (List[UserResponse]): User responses for a specific subcategory.
+            subcategory_slug (str): Slug identifying which mapping logic to apply.
+
+        Returns:
+            str or Tuple[str, bool]: Name of the recommended routine template or a tuple including the name and a flag (e.g., for day-map).
+        """
+      
       print("***map_user_response_to_routine_template***")
       
       subcategory_processors = {
@@ -80,6 +103,16 @@ class UserResponse:
         raise ValueError(f"Unkown subcategory: {subcategory_slug}")
       
     def process_day_map(user_responses):
+      """
+        Analyze responses from the Day Map to recommend a morning routine.
+
+        Args:
+            user_responses (List[UserResponse]): The responses collected from the day map.
+
+        Returns:
+            Tuple[str, bool]: Recommended routine template name and a flag indicating whether
+                              the user already has a morning routine.
+      """ 
       print("***process_day_map***")
       
       recommended_routine_template_name = "The Grounded Start"
@@ -147,23 +180,76 @@ class UserResponse:
       return recommended_routine_template_name, existing_routine_status
 
 
-
     def process_discipline_motivation_focus(user_response):
-          
+      """
+      Placeholder: Future logic for processing Discipline/Motivation/Focus map.
+
+      Args:
+          user_response (List[UserResponse]): User responses to this map.
+      """
       return
 
     def process_value_map(user_response):
-          
+      """
+      Placeholder: Future logic for processing Value Map.
+
+      Args:
+          user_response (List[UserResponse]): User responses to this map.
+      """
       return
 
     def process_user_orientation(user_response):
-          
+      """
+      Placeholder: Future logic for processing User Orientation Map.
+
+      Args:
+          user_response (List[UserResponse]): User responses to this map.
+      """
       return
+
+
+    # ALSO DEPRECATED? CAN'T FIND REFERENCE TO IT ELSEWHERE IN CODE BASE, WAS LOCATED IN user_survey.py
+    @classmethod
+    def find_user_response_by_user_id_and_question_id(cls, survey_question_id):
+        """
+        Checks if the current user has already submitted a response to a specific question.
+
+        Args:
+            survey_question_id (int): ID of the survey question to check.
+
+        Returns:
+            list[dict] | None: The user response if found, otherwise None.
+        """
+        query = """
+                SELECT 
+                    user_id, 
+                    survey_question_id
+                FROM
+                    user_responses
+                WHERE 
+                    user_id= %(user_id)s
+                AND
+                    survey_question_id = %(survey_question_id)s;
+                """
+        user_response_data = {
+            'user_id': session['user_id'], 
+            'survey_question_id': survey_question_id
+        }
+        
+        return UserResponse.db(query, user_response_data)
 
     #TODO: REMOVE - DEPRECATED FOR SCALABLE/FLEXIBLE map_user_responses_to_routine_template and process_map methods
     @staticmethod
     def process_responses_for_routine_template_selection(responses):
-        # CURRENT LOGIC FOR TESTING ONLY - ALL SUBSEQUENT FUNCTIONS WILL UNDERGO SIGNIFICANT REWORK FOR A MORE MEANINGFUL FILTERING PROCESS
+        """
+        Legacy logic to determine a routine template from early survey structure.
+
+        Args:
+            responses (List[UserResponse]): A list of user responses.
+
+        Returns:
+            str or None: Name of selected routine template or None.
+        """
 
         if not responses:
             print("No responses to process")
@@ -182,6 +268,15 @@ class UserResponse:
 
     @staticmethod
     def select_routine_template_from_getting_to_know_you_responses(responses):
+        """
+        Legacy routine selector based on getting-to-know-you responses.
+
+        Args:
+            responses (List[UserResponse]): A list of user responses.
+
+        Returns:
+            str: Name of the recommended routine template.
+        """
         # Set default template
         recommended_routine_template = "Balanced Start"
 
@@ -209,7 +304,15 @@ class UserResponse:
 
     @classmethod
     def process_user_responses_to_save(cls, collected_answers):
-        
+        """
+        Parse JSON-formatted answers from frontend and prepare for batch insert.
+
+        Args:
+            collected_answers (List[Dict]): Dictionary entries containing question_id and answer_id.
+
+        Returns:
+            bool: Success status of the batch save operation.
+        """
         batched_responses = []
 
         print("*****collected_answers in process_user_responses()*****")
@@ -234,6 +337,15 @@ class UserResponse:
 
     @classmethod
     def save_user_responses(cls, batched_responses):
+        """
+        Insert or update user responses in the database.
+
+        Args:
+            batched_responses (List[Dict]): Cleaned data entries for insert.
+
+        Returns:
+            bool: True if successful, False if there was an error.
+        """
         # The following question types may contain 
         # flagged_question_types
         

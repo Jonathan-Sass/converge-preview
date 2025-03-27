@@ -10,6 +10,11 @@ from flask_app.models.subcategory import Subcategory
 
 
 class Goal:
+    """
+    Represents a user-defined goal within the Converge application.
+    A goal can have milestones and action items nested within it.
+    """
+
     db = connectToMySQL("converge_schema")
 
     def __init__(self, data):
@@ -31,6 +36,7 @@ class Goal:
     # CRUD methods
     
     def find_goals_with_milestones_and_action_items_by_user_id(user_id):
+        """Retrieve all goals for a user along with their milestones and action items."""
         query = """
           SELECT
               g.id AS goal_id,
@@ -86,6 +92,7 @@ class Goal:
     
 
     def find_goals_with_milestones_and_action_items_by_goal_ids(goal_ids, user_id):
+        """Retrieve selected goals (by IDs) with their milestones and action items."""
         query = """
           SELECT
               g.id AS goal_id,
@@ -141,6 +148,8 @@ class Goal:
 
 
     def build_goals_with_milestones_and_action_items(results, user_id):
+        """Builds a list of Goal objects from raw SQL results, nesting milestones and action items."""
+
         goals = []
 
         if results:
@@ -183,6 +192,7 @@ class Goal:
         return goals
 
     def build_goal_from_row(row, user_id):
+        """Converts a single SQL row into a Goal object."""
         return Goal({
             "id": row["goal_id"],
             "user_id": user_id,
@@ -204,6 +214,7 @@ class Goal:
 
     @staticmethod
     def process_and_save_subcategory_goals_data(subcategory_goal_data):
+        """Processes and saves a set of user-submitted goals, milestones, and action items."""
         try:
             # Get user information
             user = User.get_logged_in_user()
@@ -286,31 +297,27 @@ class Goal:
                                     }
                                     ActionItem.save_action_item(action_item_data)
                                 except Exception as e:
-                                    logging.error(
-                                        f"Error saving action item: {action_item}, Error: {e}"
-                                    )
+                                    logging.error(f"Error saving action item: {action_item}, Error: {e}")
                         except Exception as e:
-                            logging.error(
-                                f"Error processing milestone: {milestone}, Error: {e}"
-                            )
+                            logging.error(f"Error processing milestone: {milestone}, Error: {e}")
                 except Exception as e:
                     logging.error(f"Error processing goal: {goal}, Error: {e}")
 
         except Exception as e:
-            logging.critical(
-                f"Critical error in process_and_save_subcategory_goals_data: {e}"
-            )
+            logging.critical(f"Critical error in process_and_save_subcategory_goals_data: {e}")
             raise  # Optionally re-raise the exception for higher-level handling
 
     def save_subcategory_goals(data):
+        """Saves a goal to the database."""
+
         query = """
-      INSERT INTO
-        goals (user_id, category_id, subcategory_id, name, description, goal_type, projected_completion, is_complete, priority, is_active, created_at, updated_at)
-      VALUES 
-        (%(user_id)s, %(category_id)s, %(subcategory_id)s, %(name)s, %(description)s, %(goal_type)s, %(projected_completion)s, %(is_complete)s, %(priority)s, %(is_active)s, NOW(), NOW())
-      ON DUPLICATE KEY UPDATE
-        updated_at = NOW();
-    """
+          INSERT INTO
+            goals (user_id, category_id, subcategory_id, name, description, goal_type, projected_completion, is_complete, priority, is_active, created_at, updated_at)
+          VALUES 
+            (%(user_id)s, %(category_id)s, %(subcategory_id)s, %(name)s, %(description)s, %(goal_type)s, %(projected_completion)s, %(is_complete)s, %(priority)s, %(is_active)s, NOW(), NOW())
+          ON DUPLICATE KEY UPDATE
+            updated_at = NOW();
+        """
 
         result = Goal.db.query_db(query, data)
         if result:

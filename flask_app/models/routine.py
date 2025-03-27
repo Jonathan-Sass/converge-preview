@@ -27,6 +27,15 @@ class Routine:
         self.practices: List[Practice] = []
 
     def find_routines_by_user_id(user_id):
+        """
+        Retrieve all routines for a given user and their associated practices.
+
+        Args:
+            user_id (int): The user's ID.
+
+        Returns:
+            list: List of Routine instances.
+        """
         query = """
             SELECT 
               ur.id AS routine_id,
@@ -106,6 +115,16 @@ class Routine:
         return routines
     
     def find_routine_by_user_id_and_routine_type(user_id, routine_type):
+        """
+        Retrieve a single routine by user ID and routine type, including its practices.
+
+        Args:
+            user_id (int): The user's ID.
+            routine_type (str): The type of the routine (e.g., 'am', 'pm').
+
+        Returns:
+            Routine: The matched Routine instance with populated practices.
+        """
         query = """
             SELECT 
               ur.id AS routine_id,
@@ -186,6 +205,16 @@ class Routine:
 
     @staticmethod
     def build_routine_from_row(row, user_id):
+        """
+        Construct a Routine object from a database row.
+
+        Args:
+            row (dict): The database row.
+            user_id (int): The user ID to associate.
+
+        Returns:
+            Routine: The Routine instance.
+        """
         return Routine(
             {
                 "id": row["routine_id"],
@@ -206,29 +235,14 @@ class Routine:
     @staticmethod
     def select_and_fetch_routine_template(user, subcategory_slug):
         """
-        Selects and retrieves a recommended routine template for a given user based on their survey responses.
-
-        This method determines an appropriate routine template for the user by analyzing their responses 
-        to survey questions within a specific topic (identified by `subcategory_slug_string`). If the user 
-        has provided responses, the function processes those responses to select the best-matching routine template.
-        If no responses are available, it defaults to a "Balanced Start" routine template.
+        Selects and retrieves a recommended routine template based on user survey responses.
 
         Args:
-            user (User): The user object whose responses are being analyzed.
-            subcategory_slug_string (str): The slug representing the survey topic used to filter user responses.
+            user (User): The current user instance.
+            subcategory_slug (str): Subcategory slug from the survey.
 
         Returns:
-            RoutineTemplate: The selected routine template, including associated practices.
-
-        Raises:
-            AttributeError: If `UserResponse.find_user_responses_by_user_id_and_subcategory_slug` 
-                            or `UserResponse.process_responses_for_routine_template_selection` is not defined.
-            ValueError: If no matching routine template is found.
-
-        Example Usage:
-            user = User.get_by_id(1)
-            routine_template = Routine.select_and_fetch_routine(user, "morning-routine")
-            print(routine_template.name)  # Outputs the name of the recommended routine template
+            RoutineTemplate: Recommended routine template with practices.
         """
 
         if subcategory_slug:
@@ -251,6 +265,15 @@ class Routine:
     
 
     def create_routine(routine_data):
+        """
+        Inserts a new routine and its practices into the database.
+
+        Args:
+            routine_data (dict): The data structure containing routine and practice information.
+
+        Raises:
+            RuntimeError: If the routine insertion fails.
+        """
         print("***routine_data in create_routine***")
         pprint(routine_data)
 
@@ -293,6 +316,16 @@ class Routine:
         return
 
     def create_routine_practices(routine_data, routine_id):
+        """
+        Inserts practices into the `user_routine_practices` table for a specific routine.
+
+        Args:
+            routine_data (dict): Routine info with practices.
+            routine_id (int): ID of the routine to attach practices to.
+
+        Raises:
+            RuntimeError: If a practice insert fails.
+        """
         query = """
             INSERT INTO
                 user_routine_practices (routine_id, practice_id, duration_id, position, created_at, updated_at)
@@ -334,13 +367,23 @@ class Routine:
     # def delete_routine():
 
     def get_intro_am_routine():
-        
+        """
+        Retrieves a predefined introductory AM routine template.
+        """
         recommended_routine_template_name = "The Grounded Start"
 
         RoutineTemplate.find_routine_template_by_name_with_practices(recommended_routine_template_name)
 
 
     def update_routine_practices():
+        """
+        Placeholder method to update user routine practices intelligently.
+
+        Intended logic:
+        - Remove old practices not in new set
+        - Insert new practices not previously present
+        - Update duration/position of existing ones
+        """
         # Retrieve routine_practices for user
 
         # for routine_practice in routine_practices

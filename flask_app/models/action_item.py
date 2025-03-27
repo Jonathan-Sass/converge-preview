@@ -2,9 +2,15 @@ from flask_app.config.mysqlconnection import connectToMySQL
 
 
 class ActionItem:
+    """
+    Represents an action item within a milestone and goal.
+    Provides methods to build and persist action item instances.
+    """
+
     db = connectToMySQL("converge_schema")
 
     def __init__(self, data):
+        """Initializes an ActionItem instance with data from the database."""
         self.id = data["id"]
         self.goal_id = data["goal_id"]
         self.milestone_id = data["milestone_id"]
@@ -18,8 +24,18 @@ class ActionItem:
         self.created_at = data["created_at"]
         self.updated_at = data["updated_at"]
 
-
+    @staticmethod
     def build_action_item_from_row(row, action_item_id):
+        """
+        Builds an ActionItem object from a row of joined SQL data.
+
+        Args:
+            row (dict): Row data from a SQL JOIN query.
+            action_item_id (int): The ID of the action item.
+
+        Returns:
+            ActionItem: An instance of ActionItem.
+        """
         return ActionItem({
             "id": action_item_id,
             "goal_id": row["action_item_goal_id"],
@@ -35,7 +51,20 @@ class ActionItem:
             "updated_at": row["action_item_updated_at"],
         })
 
+    @staticmethod
     def save_action_item(data):
+        """
+        Saves or updates an action item in the database.
+
+        Args:
+            data (dict): Action item data to be inserted or updated.
+
+        Returns:
+            int: The ID of the inserted or updated action item.
+
+        Raises:
+            RuntimeError: If the action item could not be saved.
+        """
         query = """
           INSERT INTO
             action_items (goal_id, milestone_id, name, description, action_item_order, estimated_time_value, estimated_time_unit, is_complete, created_at, updated_at)

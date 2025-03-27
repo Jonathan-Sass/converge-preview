@@ -8,12 +8,17 @@ from pprint import pprint
 from datetime import datetime
 
 
-# THIS ROUTE RETRIEVES SURVEY QUESTIONS FOR SURVEYS IN JS
 @app.post("/surveys/questions/retrieve")
 def retrieve_survey_questions():
+    """
+    Retrieves survey questions and survey branches based on category and subcategory
+    passed in the request JSON body.
+
+    Returns:
+        JSON containing the question set and associated branch logic.
+    """
     user = User.get_logged_in_user()
     if not user:
-        # jsonify({"error": "Please log in"}), 401
         return redirect("/")
 
     category = request.json.get("category")
@@ -23,86 +28,94 @@ def retrieve_survey_questions():
         return jsonify({"error": "Invalid or missing JSON data"}), 400
 
     user_category_subcategory_data = {
-        # TODO: update request.json variables to "category" and "subcategory" pending update to user-surveys.js
-        "category": request.json.get("category"),
-        "subcategory": request.json.get("subcategory")
+        "category": category,
+        "subcategory": subcategory
     }
-
-    # print("*****Category Topic Data******")
-    # print(user_category_topic_data['category'])
-    # print(user_category_topic_data['subcategory'])
 
     question_set, survey_branches = UserSurvey.find_questions_by_category_and_subcategory(
         user_category_subcategory_data
     )
 
-    # branches = UserSurvey.process_survey_branch_data(questions)
-
-    # print("*****questions from DB (controller)*****")
-    # pprint(questions)
-
-    # Return the questions as JSON
     return jsonify({
-        "currentQuestionSet": question_set, 
+        "currentQuestionSet": question_set,
         "surveyBranches": survey_branches
-        })
+    })
 
 
-# DYNAMIC ROUTE TO SAVE ANSWERS IN USER RESPONSES
 @app.post("/surveys/<string:category>/answers")
 def save_survey_answers(category):
+    """
+    Saves user responses to survey questions for a given category.
+
+    Args:
+        category (str): The survey category, used to track route source.
+
+    Returns:
+        JSON indicating success or failure of saving answers.
+    """
     user = User.get_logged_in_user()
     if not user:
-        # jsonify({"error": "Please log in"}), 401
         return redirect("/")
 
-    print("Post received from: /surveys/" + category + "/answers")
-
+    print(f"Post received from: /surveys/{category}/answers")
     collected_answers = request.json
 
     try:
-        # TODO:update survay answers to user responses from here forward ?
         result = UserResponse.process_user_responses_to_save(collected_answers)
         return jsonify({"success": True, "result": result}), 200
     except Exception as e:
         return jsonify({"success": False, "message": str(e)}), 500
 
-# ROUTES FOR 'map' SURVEYS
+
+# ----------- MAP SURVEY ROUTES ----------- #
+
 @app.get("/surveys/user-orientation")
 def survey_new_user_orientation():
+    """
+    Displays the User Orientation survey for onboarding.
+    """
     user = User.get_logged_in_user()
     if not user:
-        jsonify({"error": "Please log in"}), 401
         return redirect("/")
-    
+
     return render_template("/surveys/user_orientation.html")
+
 
 @app.get("/surveys/day-map")
 def survey_day_map():
+    """
+    Displays the Day Map survey to assess the user's daily patterns and routines.
+    """
     user = User.get_logged_in_user()
     if not user:
-        jsonify({"error": "Please log in"}), 401
         return redirect("/")
-    
+
     return render_template("/surveys/day_map.html")
+
 
 @app.get("/surveys/interest-map")
 def survey_interest_map():
+    """
+    Displays the Interest Map survey to gather user preferences and passions.
+    """
     user = User.get_logged_in_user()
     if not user:
-        jsonify({"error": "Please log in"}), 401
         return redirect("/")
 
     return render_template("/surveys/interest-map.html")
 
+
 @app.get("/surveys/discipline-motivation-focus-map")
 def survey_discipline_motivation_focus_map():
+    """
+    Displays the Discipline, Motivation & Focus Map survey to assess user self-regulation strengths and challenges.
+    """
     user = User.get_logged_in_user()
     if not user:
-        jsonify({"error": "Please log in"}), 401
         return redirect("/")
-    
+
     return render_template("/surveys/discipline_motivation_focus_map.html")
+
 
 # ALL DEPRECATED IN FAVOR OF NEW MAP SURVEYS
 

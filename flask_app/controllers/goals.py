@@ -8,10 +8,17 @@ from flask_app.models.category import Category
 from flask_app.models.subcategory import Subcategory
 
 
-
-
 @app.get("/goals/<string:category_slug>")
 def set_recreation_travel_goals(category_slug):
+    """
+    Display the goal-setting page for a specific category.
+
+    Args:
+        category_slug (str): Slug used to retrieve the category and its subcategories.
+
+    Returns:
+        Rendered HTML template for setting goals in the category.
+    """
     if "user_id" not in session:
         flash("Please log in.", "login")
         return redirect("/")
@@ -29,13 +36,19 @@ def set_recreation_travel_goals(category_slug):
     )
 
 
-# Save goals by subcategory
 @app.post("/goals/<string:subcategory_slug>/save")
-# Dynamic route may be overkill, may change to simply /goals/save - subcategory_slug=None remains until then
 def save_goals_by_subcategory(subcategory_slug=None):
+    """
+    Save user-submitted goal data for a specific subcategory.
+
+    Args:
+        subcategory_slug (str, optional): Slug of the subcategory. May be used in future refinements.
+
+    Returns:
+        JSON response indicating success or failure.
+    """
     user = User.get_logged_in_user()
     if not user:
-        # jsonify({"error": "Please log in"}), 401
         return redirect("/")
 
     subcategory_goal_data = request.json
@@ -47,36 +60,38 @@ def save_goals_by_subcategory(subcategory_slug=None):
         return jsonify({"success": False, "message": str(e)}), 500
 
 
-# TODO: DETERMINE GOAL SETTING BREAKDOWN, CATEGORES OR SUBCATEGORIES
-# @app.get("/goals/recreation-travel/<string:subcategory_slug>")
-# def set_recreation_travel_goals(subcategory_slug):
-#     if "user_id" not in session:
-#         flash("Please log in.", "login")
-#         return redirect("/")
-
-#     user = User.get_logged_in_user()
-
-#     subcategory = Subcategory.find_subcategory_by_name(subcategory_slug)
-
-#     return render_template("/goals/set_goals_for_subcategory.html", user = user, subcategory = subcategory)
-
 @app.get("/goals/intro/select-subcategory")
 def goals_intro_select_subcategory():
+    """
+    Display the goal introduction page with a list of categories and subcategories.
+
+    Returns:
+        Rendered HTML template allowing the user to select a subcategory to begin setting goals.
+    """
     user = User.get_logged_in_user()
     if not user:
         return redirect("/")
-    
+
     categories_with_subcats = Category.get_all_categories_with_subcategories()
 
-    return render_template("/goals/set_goal_intro_select_subcat.html", categories_with_subcats = categories_with_subcats)
+    return render_template("/goals/set_goal_intro_select_subcat.html", categories_with_subcats=categories_with_subcats)
 
 
 @app.get("/goals/intro/<string:subcategory_slug>")
 def goals_intro(subcategory_slug):
+    """
+    Display the introductory goal-setting page for a specific subcategory.
+
+    Args:
+        subcategory_slug (str): The slug used to identify and retrieve the subcategory.
+
+    Returns:
+        Rendered HTML template for the subcategory goal introduction.
+    """
     user = User.get_logged_in_user()
     if not user:
         return redirect("/")
 
     subcategory = Subcategory.find_subcategory_by_slug(subcategory_slug)
 
-    return render_template("/goals/set_goal_intro.html", subcategory = subcategory)
+    return render_template("/goals/set_goal_intro.html", subcategory=subcategory)

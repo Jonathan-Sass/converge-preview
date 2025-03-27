@@ -1,13 +1,17 @@
 from flask_app.config.mysqlconnection import connectToMySQL
 from flask_app.models.subcategory import Subcategory
-
 from pprint import pprint
 
 
 class Category:
+    """
+    Model representing a top-level category (e.g., Health, Recreation, etc.).
+    Includes methods to fetch category data and related subcategories.
+    """
     db = connectToMySQL("converge_schema")
 
     def __init__(self, data):
+        """Initialize a Category object with basic fields and an empty subcategories list."""
         self.id = data["id"]
         self.name = data["name"]
         self.category_slug = data["category_slug"]
@@ -15,7 +19,13 @@ class Category:
         self.updated_at = data["updated_at"]
         self.subcategories = []
 
+    @staticmethod
     def get_all_categories_with_subcategories():
+        """
+        Retrieve all categories and their related subcategories in a single query.
+        Returns:
+            dict: Dictionary of categories with subcategory lists grouped under each.
+        """
         query = """
           SELECT 
             c.id AS category_id,
@@ -41,6 +51,7 @@ class Category:
                 for result in results:
                     category_id = result["category_id"]
                     subcategory_id = result["subcategory_id"]
+
                     if category_id not in categories_with_subcats:
                         categories_with_subcats[category_id] = {
                             "category_slug": result["category_slug"],
@@ -49,58 +60,43 @@ class Category:
                             "subcategory_ids": set()
                         }
 
-                        if subcategory_id not in categories_with_subcats[category_id]["subcategory_ids"]:
-                            categories_with_subcats[category_id]["subcategories"].append({
-                                "subcategory_id": result["subcategory_id"],
-                                "subcategory_slug": result["subcategory_slug"],
-                                "subcategory_name": result["subcategory_name"]
-                            })
-                            categories_with_subcats[category_id]["subcategory_ids"].add(subcategory_id)
-                          
+                    if subcategory_id not in categories_with_subcats[category_id]["subcategory_ids"]:
+                        categories_with_subcats[category_id]["subcategories"].append({
+                            "subcategory_id": result["subcategory_id"],
+                            "subcategory_slug": result["subcategory_slug"],
+                            "subcategory_name": result["subcategory_name"]
+                        })
+                        categories_with_subcats[category_id]["subcategory_ids"].add(subcategory_id)
+
+                # Clean up structure for output
                 cleaned_categories = {
-                  key: {
-                      "category_slug": value["category_slug"],
-                      "category_name": value["category_name"],
-                      "subcategories": value["subcategories"]
-                  }
-                  for key, value in categories_with_subcats.items()
+                    key: {
+                        "category_slug": value["category_slug"],
+                        "category_name": value["category_name"],
+                        "subcategories": value["subcategories"]
+                    }
+                    for key, value in categories_with_subcats.items()
                 }
-                    
+
                 return cleaned_categories
-        
+
             return {}
 
         except Exception as e:
-            raise RuntimeError (f"Error retrieving categories with subcategories: {e}")
+            raise RuntimeError(f"Error retrieving categories with subcategories: {e}")
 
-# DEPRECATED .... TWO QUERIES?!?!?!?! AMATEUR HOUR!
-    # def get_category_with_subcategories(category_slug):
-    #     query = "SELECT * FROM categories WHERE category_slug = %(category_slug)s;"
-
-    #     category_slug_data = {"category_slug": category_slug}
-
-    #     result = Category.db.query_db(query, category_slug_data)
-
-    #     print("*****Result in get_category_with_subcategories*****")
-    #     pprint(result)
-
-    #     if result:
-    #         current_category = Category(result[0])
-    #         category_id = current_category.id
-    #         subcategories = Subcategory.find_subcategories_by_category_id(category_id)
-
-    #         for subcategory in subcategories:
-    #             current_category.subcategories.append(subcategory)
-    #         return current_category
-    #     else:
-    #         raise RuntimeError(
-    #             "Error retrieving category and associated subcategories for: "
-    #             + category_slug
-    #         )
-
+    @staticmethod
     def find_category_by_id(category_id):
+        """
+        Retrieve a single category by its ID.
+        
+        Args:
+            category_id (int): The ID of the category.
+        
+        Returns:
+            list[dict]: Resulting row(s) from the query.
+        """
         query = "SELECT * FROM categories WHERE id = %(id)s;"
-
         data = {"id": category_id}
 
-        result = Category.db.query_db(query, data)
+        return Category.db.query_db(query, data)
