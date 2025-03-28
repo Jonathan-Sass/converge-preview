@@ -36,9 +36,6 @@ def dashboard():
         4: "Low"
     }
 
-    if not routine_data:
-        return redirect("/dashboard/intro")
-
     dashboard_data = {
         "user": user,
         "routines": routine_data,
@@ -46,6 +43,9 @@ def dashboard():
         "flex_tasks": flex_task_data,
         "priority_order": priority_order
     }
+
+    if not routine_data:
+        return redirect("/dashboard/intro")
 
     return render_template("/dashboard/dashboard.html", **dashboard_data)
 
@@ -67,10 +67,17 @@ def dashboard_intro():
     subcategory_slug = "user-orientation"
     user_responses = UserResponse.find_user_responses_by_user_id_and_subcategory_slug(user, subcategory_slug)
 
+    priority_order = {
+        1: "Urgent", 
+        2: "High", 
+        3: "Medium", 
+        4: "Low"
+    }
+
     if not user_responses:
         return redirect("/surveys/user-orientation.html")
 
-    return render_template("/dashboard/dashboard_intro.html")
+    return render_template("/dashboard/dashboard_intro.html", priority_order = priority_order)
 
 
 @app.get("/dashboard/intro-am-practices")
