@@ -22,8 +22,16 @@ body {
   transition: transform 0.1s ease-out;
 }
 
-.opaque-bg {
+.opaque-white-bg {
   background-color: rgba(255, 255, 255, 0.75);
+}
+
+.solid-white-bg {
+  background-color: rgba(255, 255, 255, 1);
+}
+
+.nav-link-wrapper .progress {
+  margin-top: -4px !important;
 }
 
 h1, h2, h3, h4, h5, h6, p {

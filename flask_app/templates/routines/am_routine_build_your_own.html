@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-bs-theme="dark">
+<html lang="en">
 
 <head>
   <meta charset="UTF-8">
@@ -10,7 +10,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intro.js/7.2.0/introjs.css" integrity="sha512-4OzqLjfh1aJa7M33b5+h0CSx0Q3i9Qaxlrr1T/Z+Vz+9zs5A7GM3T3MFKXoreghi3iDOSbkPMXiMBhFO7UBW/g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
   <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='img/Enso_Blue_and_Black.jpg') }}">
-  <title>Routines Template</title>
+  <title>Routine Builder Intro</title>
 </head>
 
 <body>
@@ -18,7 +18,7 @@
   <div class="border-box">
     <!-- Top Navbar -->
     <nav
-      class="navbar navbar-expand-lg navbar-dark bg-dark w-100 m-auto d-flex justify-content-between position-sticky top-0 z-3 p-3">
+      class="navbar navbar-expand-lg w-100 m-auto d-flex justify-content-between position-sticky top-0 z-3 p-3 shadow">
       <div class="container-fluid">
         <a class="navbar-brand d-inline-flex align-items-center gap-4" href="/dashboard">
           <img src="/static/img/Enso_Blue_and_Black.jpg" class="rounded-circle" width="60" height="60"
@@ -85,7 +85,7 @@
       <!-- Main Content -->
       <div class="container-fluid">
         
-        <div class="card shadow p-2 text-center opacity-75 mb-3">
+        <div class="card shadow p-2 text-center opacity-75 mb-3 w-75">
           <div class="card-body">
             <div class="card-title">
               <h2 class="text-primary" id="routine-name">Build-Your-Own Morning Routine</h2>
@@ -120,7 +120,7 @@
           </div>
         </div>
         <!-- Drag and Drop Containers for practices -->
-        <div class="scroll-wrapper position-relative w-100">
+        <div class="scroll-wrapper position-relative w-100 opaque-white-bg">
           <!-- Scroll Left Button -->
           <button id="scroll-left"
             class="scroll-btn position-absolute top-50 start-0 translate-middle-y btn btn-secondary rounded-circle">
