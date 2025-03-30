@@ -74,7 +74,8 @@ function processGoalData(subcategoryCard) {
       goalData.description = goalDescriptionElement ? goalDescriptionElement.value.trim() : "";
       goalData.goalType = goalCard.querySelector(`#${subcategorySlug}-goal-${goalId}-type`).value;
       goalData.priority = goalCard.querySelector(`#${subcategorySlug}-goal-${goalId}-priority`).value;
-      goalData.isActive = goalCard.querySelector(`#${subcategorySlug}-goal-${goalId}-is-active`).checked;
+      // Defaulting isActive to True when saving a goal the first time, this may be subject to change depending on upcoming features
+      goalData.isActive = true;
       goalData.projectedCompletion = goalCard.querySelector(`#${subcategorySlug}-goal-${goalId}-date`).value;
 
       // Select all milestones

@@ -509,7 +509,7 @@ nextButton.addEventListener('click', (event) => {
       return
   }
 
-  function scrollToElement(element, offset = 250) {
+  function scrollToElement(element, offset = 200) {
       if (element) {
           const elementPosition = element.getBoundingClientRect().top + window.scrollY;
           window.scrollTo({ top: elementPosition - offset, behavior: 'smooth' });
