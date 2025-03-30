@@ -9,7 +9,7 @@ from flask_app.models.subcategory import Subcategory
 
 
 @app.get("/goals/<string:category_slug>")
-def set_recreation_travel_goals(category_slug):
+def set_category_goals(category_slug):
     """
     Display the goal-setting page for a specific category.
 
@@ -37,7 +37,7 @@ def set_recreation_travel_goals(category_slug):
 
 
 @app.post("/goals/<string:subcategory_slug>/save")
-def save_goals_by_subcategory(subcategory_slug=None):
+def save_goals_for_subcategory(subcategory_slug=None):
     """
     Save user-submitted goal data for a specific subcategory.
 

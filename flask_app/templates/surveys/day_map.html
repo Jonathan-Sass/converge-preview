@@ -88,7 +88,7 @@
      <div class="parallax-bg"></div>
     <div class="container-fluid m-auto mb-3 d-flex align-items-start gap-3">
       <!-- Progress Nav Sidebar -->
-      <div class="card shadow p-2 col-3 opaque-white-bg">
+      <div class="card shadow p-4 col-3 opaque-white-bg">
         <nav id="progress-navbar" class="h-100 flex-column align-items-stretch p-3">
           <h4 class="display-6 text-primary text-center">You are here.</h4>
           <hr class="border border-1 border-secondary">
@@ -115,50 +115,44 @@
       <!-- Main Content -->
       <div class="container col-9">
                                   <!-- Data-category needs to be category.category_slug to access question set-->
-        <div class="card shadow p-4 text-center mb-2 opaque-white-bg" id="survey_category" data-category="onboarding">
+        <div class="card shadow p-2 text-center mb-2 solid-white-bg" id="survey_category" data-category="onboarding">
           <div class="card-title">
             <!-- <h2 class="display-6 text-primary">Let's start with something fun.</h2> -->
           </div>
           <div data-bs-spy="scroll" data-bs-target="#progress-navbar" data-bs-smooth-scroll="true"
             class="scrollspy-example-2" tabindex="0">
-            <div class="card shadow p-2 text-center mb-3">
-              <div id="day-map"> <!-- ID matches subcategory.subcategory_slug for sidebar scrollspy -->
-                <div class="card-body">
-                  <div class="card-title">
-                    <h2 class="display-6 text-primary">What brings you here?</h2>
-                    <hr class="border border-1 border-light">
-                    <p class="card-text lead" id="survey-intro">In the following section, we will get to know a bit
-                      about your big picture goals/needs.</p>
+              <!-- ID matches subcategory.subcategory_slug for sidebar scrollspy -->
+            <div class="card shadow p-2 mb-3 solid-white-bg" id="day-map"> 
+              <div class="card-body">
+                <div class="card-title">
+                  <h2 class="display-6 text-primary">What brings you here?</h2>
+                  <hr class="border border-1 border-secondary">
+                  <p class="card-text lead" id="survey-intro">In the following section, we will get to know a bit
+                    about your big picture goals/needs.</p>
+                </div>
+                <div class="d-none mb-3" id="question-container">
+                  <div id="question" class="display-6 mb-3">Question</div>
+                  <div class="btn-group-vertical" id="answer-checkboxes" role="group"
+                    aria-label="Basic checkbox toggle button group">
                   </div>
-                  <div id="question-container" class="d-none mb-3">
-                    <div id="question" class="display-6 mb-3">Question</div>
-                    <div class="btn-group-vertical" id="answer-checkboxes" role="group"
-                      aria-label="Basic checkbox toggle button group">
-                    </div>
-                    <div id="answer-buttons" class="d-flex justify-content-evenly gap-2">
-                      <div class="btn btn-outline-light col">Answer 1</div>
-                      <div class="btn btn-outline-light col">Answer 2</div>
-                      <div class="btn btn-outline-light col">Answer 3</div>
-                      <div class="btn btn-outline-light col">Answer 4</div>
-                    </div>
+                  <div class="d-flex justify-content-evenly gap-2" id="answer-buttons">
+                    <div class="btn btn-outline-light col">Answer 1</div>
+                    <div class="btn btn-outline-light col">Answer 2</div>
+                    <div class="btn btn-outline-light col">Answer 3</div>
+                    <div class="btn btn-outline-light col">Answer 4</div>
                   </div>
-                  <div class="controls">
-                    <button id="start-btn" data-subcategory="day-map"
-                      class="btn btn-lg btn-primary">Start</button>
-                    <!-- data-topic-id should match subcategory.subcategory_slug -->
-                    <button id="next-btn" class="btn btn-lg btn-primary d-none">Next</button>
-                    <button id="finish-btn" class="btn btn-lg btn-primary d-none">Submit Answers</button>
-                    <a href="/routines/am/intro" class="btn btn-lg btn-primary d-none" id="next-section-btn">Next Section</a>
+                </div>
+                <div class="controls">
+                  <button id="start-btn" data-subcategory="day-map"
+                    class="btn btn-lg btn-primary">Start</button>
+                  <!-- data-topic-id should match subcategory.subcategory_slug -->
+                  <button id="next-btn" class="btn btn-lg btn-primary d-none">Next</button>
+                  <button id="finish-btn" class="btn btn-lg btn-primary d-none">Submit Answers</button>
+                  <a href="/routines/am/intro" class="btn btn-lg btn-primary d-none" id="next-section-btn">Next Section</a>
 
-                  </div>
                 </div>
               </div>
             </div>
-            <!-- <div class="card shadow w-100 mb-3 d-none" id="next-section-btn">
-              <div class="card-body d-flex justify-content-around">
-                <a href="/routines/am/intro" class="btn btn-primary d-none" id="next-section-btn">Next Section</a>
-              </div>
-            </div> -->
           </div>
         </div>
       </div>
