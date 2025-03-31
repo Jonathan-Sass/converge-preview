@@ -35,7 +35,7 @@ export function updateCardOrder(container) {
     const orderElement = card.querySelector('.card-order')
     if (orderElement) {
       console.log("Order element: ", orderElement)
-      orderElement.innerText = `${cardOrder}.`;
+      orderElement.innerText = `${cardOrder}`;
     } else {
       console.warn("No .card-order element found in card: ", card)
     }

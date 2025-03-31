@@ -36,14 +36,17 @@ function handleAddMilestone() {
 
   // Build the milestone HTML
   const milestoneHtml = `
-    <div class="card shadow p-2 milestone-card position-relative sortable-card"
+    <div class="card shadow d-flex flex-column p-2 milestone-card position-relative sortable-card"
       id="${subcategorySlug}-goal-${goalId}-milestone-${milestoneCount}"
       data-subcategory-slug="${subcategorySlug}" data-milestone-id="${milestoneCount}"
       data-order="1" data-goal-id="${goalId}">
+      
       <!-- Milestone order number -->
       <div class="card-title">
-        <h5 class="card-order">1.</h5>
+        <h5 class="fs-5 card-order text-primary">1</h5>
+        <hr class="w-25 m-auto mb-2">
       </div>
+      
       <!-- Milestone name input -->
       <div class="mb-3 form-floating">
         <input type="text" class="form-control"
@@ -95,17 +98,17 @@ function handleAddMilestone() {
           Separate into action items
         </label>
       </div>
+      <button class="btn btn-danger btn-sm w-50 m-auto mb-3 remove-milestone-btn">
+        Remove milestone
+      </button>
       <!-- Action Items Section for Milestone -->
-      <div class=" card shadow p-1 d-none action-item-section position-absolute text-bg-light">
+      <div class="card shadow p-1 d-none action-item-section position-absolute text-bg-light">
         <h5 class="text-primary fs-4">Action Items</h5>
         <hr class="w-25 m-auto mb-3">
         <button class="btn btn-primary btn-sm add-action-item-btn w-75 m-auto mb-3">Add
           Action Item
         </button>
       </div>
-      <button class="btn btn-danger btn-sm w-50 m-auto remove-milestone-btn">
-        Remove milestone
-      </button>
     </div>
     `;
   

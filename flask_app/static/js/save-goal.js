@@ -26,6 +26,7 @@ async function submitGoalData(data) {
 
     if (response.ok) {
       alert('Goals saved successfully!');
+      hideSaveShowNextButtons(subcategorySlug);
     } else {
       alert ('Failed to save goals.');
     }
@@ -34,6 +35,15 @@ async function submitGoalData(data) {
   }
 };
 
+function hideSaveShowNextButtons(subcategorySlug) {
+  const saveBtn = document.getElementById(`${subcategorySlug}-goals-save`);
+  const nextBtn = document.getElementById('next-section-btn');
+
+  if (saveBtn) {
+    saveBtn.classList.add('d-none');
+    nextBtn.classList.remove('d-none');
+  }
+}
 
 function validateAndProcessGoalData(event) {
   const subcategoryCard = event.target.closest(".subcategory-card");
