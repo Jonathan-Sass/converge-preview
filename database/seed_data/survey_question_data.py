@@ -145,6 +145,168 @@ survey_question_data = [
         ]
     },
     {
+        "subcategory_slug": "am-routine-map",
+        "questions": [
+            {
+              "question_slug": "has-morning-routine",
+              "question_text": "Do you currently have a morning routine?",
+              "type": "guided-choice",
+              "answers": [
+                {"answer_text": "No real routine — every morning is different", "answer_value": 0},
+                {"answer_text": "A few loose habits", "answer_value": 1},
+                {"answer_text": "A handful of consistent habits", "answer_value": 2},
+                {"answer_text": "A solid, reliable morning structure", "answer_value": 3}
+              ]
+            },
+            {
+              "question_slug": "satisfaction-with-routine",
+              "question_text": "Are you happy with your current morning routine?",
+              "type": "guided-choice",
+              "answers": [
+                {"answer_text": "Not really — I need a reset", "answer_value": 0},
+                {"answer_text": "It’s okay, but could be better", "answer_value": 1},
+                {"answer_text": "Mostly, yes", "answer_value": 2},
+                {"answer_text": "I love it and it works well for me", "answer_value": 3}
+              ]
+            },
+            {
+              "question_slug": "wake-up-feeling",
+              "question_text": "How do you usually feel when waking up?",
+              "type": "guided-choice",
+              "answers": [
+                {"answer_text": "Slow and painful", "answer_value": 0},
+                {"answer_text": "A bit sluggish", "answer_value": 1},
+                {"answer_text": "Takes a little time, but I get there", "answer_value": 2},
+                {"answer_text": "Pretty good", "answer_value": 3},
+                {"answer_text": "Energized and ready to crush the day", "answer_value": 4}
+              ]
+            },
+            {
+              "question_slug": "interested-in-resetting",
+              "question_text": "Would you be interested in adding simple practices that help reset and activate your system in the morning?",
+              "type": "guided-choice",
+              "answers": [
+                {"answer_text": "Not really", "answer_value": 0},
+                {"answer_text": "Maybe, if they’re easy", "answer_value": 1},
+                {"answer_text": "Yes, I’m curious", "answer_value": 2},
+                {"answer_text": "Absolutely — I want to feel more energized and aligned", "answer_value": 3}
+              ]
+            },
+            {
+              "question_slug": "morning-movement-preference",
+              "question_text": "Do you like to move in the morning — or is it something you’d like to start?",
+              "type": "guided-choice",
+              "answers": [
+                {"answer_text": "Not really my thing", "answer_value": 0},
+                {"answer_text": "I’d like to ease in with gentle movement or a walk", "answer_value": 1},
+                {"answer_text": "I enjoy yoga or light calisthenics", "answer_value": 2},
+                {"answer_text": "I like a full workout — cardio or strength training", "answer_value": 3}
+              ]
+            },
+            {
+              "question_slug": "interest-in-centering",
+              "question_text": "Do you feel better on mornings when you take a few moments to center yourself — mentally, emotionally, or spiritually?",
+              "type": "guided-choice",
+              "answers": [
+                {"answer_text": "Haven’t really tried it", "answer_value": 0},
+                {"answer_text": "Sometimes, if I have time", "answer_value": 1},
+                {"answer_text": "Yes, I notice a difference", "answer_value": 2},
+                {"answer_text": "Definitely — it grounds my whole day", "answer_value": 3}
+              ]
+            },
+            {
+              "question_slug": "spiritual-mindful-interest",
+              "question_text": "Are you interested in practices like meditation, breathwork, prayer, or reflection in the morning?",
+              "type": "guided-choice",
+              "answers": [
+                {"answer_text": "Not really my thing", "answer_value": 0},
+                {"answer_text": "A little bit, in theory", "answer_value": 1},
+                {"answer_text": "Yes, I’m open to trying", "answer_value": 2},
+                {"answer_text": "Definitely — it’s important to me", "answer_value": 3}
+              ]
+            },
+            {
+              "question_slug": "mental-prep-for-day",
+              "question_text": "Do you find value in mentally preparing for the day — like setting intentions, repeating affirmations, or visualizing how it’ll unfold?",
+              "type": "guided-choice",
+              "answers": [
+                {"answer_text": "Not something I think about", "answer_value": 0},
+                {"answer_text": "It might be helpful", "answer_value": 1},
+                {"answer_text": "Yes, I’ve done this and it helps", "answer_value": 2},
+                {"answer_text": "I already do something like this", "answer_value": 3}
+              ]
+            },
+            {
+              "question_slug": "personal-projects-am",
+              "question_text": "Do you make space in the morning for personal projects, writing, or a focused “deep work” block?",
+              "type": "guided-choice",
+              "answers": [
+                {"answer_text": "No — mornings are chaotic", "answer_value": 0},
+                {"answer_text": "Sometimes, when I’m lucky", "answer_value": 1},
+                {"answer_text": "I’d like to", "answer_value": 2},
+                {"answer_text": "Yes, I carve out time intentionally", "answer_value": 3}
+              ]
+            },
+            {
+              "question_slug": "morning-fueling",
+              "question_text": "What best describes your morning fueling routine?",
+              "type": "guided-choice",
+              "answers": [
+                {"answer_text": "I skip breakfast — not hungry", "answer_value": 0},
+                {"answer_text": "I skip breakfast — no time", "answer_value": 0},
+                {"answer_text": "Something quick or on the go", "answer_value": 1},
+                {"answer_text": "A light but balanced meal", "answer_value": 2},
+                {"answer_text": "A full, intentional breakfast", "answer_value": 3}
+              ]
+            },
+            {
+              "question_slug": "digital-boundaries",
+              "question_text": "Do you set boundaries around phone or screen use in the morning?",
+              "type": "guided-choice",
+              "answers": [
+                {"answer_text": "Not at all — I’m on my phone right away", "answer_value": 0},
+                {"answer_text": "I try, but it's inconsistent", "answer_value": 1},
+                {"answer_text": "I avoid screens for the first 30+ mins", "answer_value": 2},
+                {"answer_text": "I intentionally stay screen-free to start the day", "answer_value": 3}
+              ]
+            },
+            {
+              "question_slug": "morning-connection-impact",
+              "question_text": "Do you feel emotionally grounded after connecting with someone (or even a pet) in the morning?",
+              "type": "guided-choice",
+              "answers": [
+                {"answer_text": "I usually don’t think about it", "answer_value": 0},
+                {"answer_text": "I could see that helping", "answer_value": 1},
+                {"answer_text": "Yes, a little connection goes a long way", "answer_value": 2},
+                {"answer_text": "Absolutely — it’s essential to my mood", "answer_value": 3}
+              ]
+            },
+            {
+              "question_slug": "social-life-satisfaction",
+              "question_text": "Are you satisfied with the state of your current social or relational life?",
+              "type": "guided-choice",
+              "answers": [
+                {"answer_text": "I feel isolated or disconnected", "answer_value": 0},
+                {"answer_text": "It’s okay, but could use attention", "answer_value": 1},
+                {"answer_text": "I feel supported, mostly", "answer_value": 2},
+                {"answer_text": "Very fulfilled and connected", "answer_value": 3}
+              ]
+            },
+            {
+              "question_slug": "routine-intensity-preference",
+              "question_text": "Would you prefer to begin with small, easy wins — or dive into a fully structured routine if it felt meaningful and aligned?",
+              "type": "guided-choice",
+              "answers": [
+                {"answer_text": "I need something very simple to start", "answer_value": 0},
+                {"answer_text": "I’d like a few options and some guidance", "answer_value": 1},
+                {"answer_text": "I’m ready for a routine, just not overwhelming", "answer_value": 2},
+                {"answer_text": "Give me structure — I thrive with a full plan", "answer_value": 3}
+              ]
+            }
+        ]
+    },
+
+    {
         "subcategory_slug": "day-map",
         "questions": [
             {
@@ -172,7 +334,7 @@ survey_question_data = [
             },
             {
                 "question_slug": "am-routine-time-availability",
-                "question_text": "How much time do you typically for a morning routine before starting your day?",
+                "question_text": "How much time do you typically have for a morning routine before starting your day?",
                 "type": "guided-choice",
                 "answers": [
                     {"answer_text": "Less than 5 minutes", "answer_value": 0},
@@ -190,7 +352,7 @@ survey_question_data = [
                     {"answer_text": "I work a physically demanding job.", "answer_value": 1},
                     {"answer_text": "I mostly walk or engage in low intensity movement.", "answer_value": 2},
                     {"answer_text": "I am active in a variety of ways.", "answer_value": 3},
-                    {"answer_text": "I am an athlete with a structured/consistent regimen.", "answer_value": 4}
+                    {"answer_text": "I am an athlete with a structured, consistent plan.", "answer_value": 4}
                 ]
             },
             # {
