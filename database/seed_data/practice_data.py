@@ -1,9 +1,2207 @@
+"""
+practice_data: dict
+A structured dictionary of practices, organized by categories(e.g. "Grounding & Internal Reset") and subcategories(e.g. "Cold Exposure").
+Each category contains a list of practice entries, which include metadata for:
+
+- name: Name of the practice.
+- description: Short summary of the practice.
+- benefit_synopsis: Summary of health/wellness benefits.
+- recommended_durations: List of durations (as dicts).
+- impact_rating_id: Foreign key to impact rating scale.
+- difficulty_level_id: Foreign key to difficulty scale.
+- frequency: Human-readable recommendation for how often to practice.
+- is_common: Boolean to indicate prevalence among users.
+- notes: Longer explanation or context.
+- objectives: Tags used for matching with goals or user needs.
+"""
+
+
+new_practice_data = {
+
+  # CATEGORY
+  "Grounding & Internal Reset": {
+    
+    # PRACTICE SUBCATEGORY
+    "Morning Hydration": 
+    [
+      {
+        "name": "Morning Hydration",
+        "description": "Drink a full glass of water shortly after waking up.",
+        "benefit_synopsis": "Rehydrates the body, supports metabolism, and boosts energy.",
+        "recommended_durations": [
+          { "duration_label": "2 minutes" }
+        ],
+        "impact_rating_id": 4,
+        "difficulty_level_id": 1,
+        "frequency": "Every morning",
+        "is_common": True,
+        "notes": "After hours without fluids, your body is in a mild state of dehydration. Morning hydration kickstarts metabolism, improves cognitive function, and primes the digestive system.",
+        "objectives": [
+          "hydrate",
+          "boost_energy_levels",
+          "support_metabolism"
+        ]
+      },
+      {
+        "name": "Sole Hydration",
+        "description": "Add a pinch of natural sea salt or sole to your morning water.",
+        "benefit_synopsis": "Replenishes minerals and supports adrenal function.",
+        "recommended_durations": [
+          { "duration_label": "2 minutes" }
+        ],
+        "impact_rating_id": 4,
+        "difficulty_level_id": 2,
+        "frequency": "Every morning or as needed",
+        "is_common": False,
+        "notes": "Adding electrolytes or sole (a concentrated sea or himalayan salt water solution) may support hydration more effectively by aiding cellular absorption, especially if you're low in minerals after sleep.",
+        "objectives": [
+          "enhance_hydration",
+          "replenish_minerals",
+          "support_adrenal_health"
+        ]
+      },
+      {
+        "name": "Lemon Water",
+        "description": "Squeeze fresh lemon into your morning water for added benefits.",
+        "benefit_synopsis": "Aids digestion, supports liver function, and adds flavor.",
+        "recommended_durations": [
+          { "duration_label": "2 minutes" }
+        ],
+        "impact_rating_id": 3,
+        "difficulty_level_id": 1,
+        "frequency": "Every morning or as preferred",
+        "is_common": True,
+        "notes": "Lemon adds vitamin C and can help stimulate the digestive system in the morning. It may also support liver detox pathways and make hydration more enjoyable.",
+        "objectives": [
+          "aid_digestion",
+          "support_liver_health",
+          "make_hydration_enjoyable"
+        ]
+      },
+    ],
+
+    # PRACTICE SUBCATEGORY
+    "Cold Immersion": [
+      {
+        "name": "Cold Face Rinse",
+        "description": "Splash cold water on your face for a short, energizing reset.",
+        "benefit_synopsis": "Activates the diving reflex to calm your nervous system and boost alertness.",
+        "recommended_durations": [{"duration_label": "1 minute"}, {"duration_label": "2 minutes"}],
+        "impact_rating_id": 3,
+        "difficulty_level_id": 1,
+        "frequency": "Optional daily",
+        "is_common": True,
+        "notes": "Cold water on the face stimulates the vagus nerve and triggers the mammalian diving reflex, helping slow your heart rate and regulate stress.",
+        "objectives": ["reset_nervous_system", "increase_alertness", "stimulate_vagus_nerve"]
+      },
+      {
+        "name": "Cold Hand or Wrist Dip",
+        "description": "Dip your hands or wrists into cold water to stimulate a quick reset.",
+        "benefit_synopsis": "Rapidly cools the body and stimulates parasympathetic calm.",
+        "recommended_durations": [{"duration_label": "2 minutes"}, {"duration_label": "3 minutes"}],
+        "impact_rating_id": 2,
+        "difficulty_level_id": 1,
+        "frequency": "As needed",
+        "is_common": False,
+        "notes": "A low-barrier practice for people not ready for full cold exposure. Activates thermoreceptors and initiates vagal stimulation.",
+        "objectives": ["cool_down", "reduce_overwhelm", "promote_regulation"]
+      },
+      {
+        "name": "Cold Shower",
+        "description": "Take a full shower using only cold water from start to finish.",
+        "benefit_synopsis": "Boosts dopamine, sharpens focus, and strengthens stress tolerance.",
+        "recommended_durations": [
+          { "duration_label": "1 minute" },
+          { "duration_label": "2 minutes" },
+          { "duration_label": "3 minutes" }
+        ],
+        "impact_rating_id": 5,
+        "difficulty_level_id": 3,
+        "frequency": "2–5 times per week",
+        "is_common": False,
+        "notes": "Cold showers activate the sympathetic nervous system initially, followed by a calming parasympathetic rebound. They may increase dopamine by up to 250%, improve mental resilience, reduce inflammation, and promote clarity.",
+        "objectives": [
+          "boost_mood",
+          "increase_focus",
+          "build_stress_resilience"
+        ]
+      },
+      {
+        "name": "Cold Shower Finisher",
+        "description": "Finish your shower with 30–60 seconds of cold water.",
+        "benefit_synopsis": "Boosts energy, improves circulation, and builds mental toughness.",
+        "recommended_durations": [{"duration_label": "30 seconds"}, {"duration_label": "1 minute"}],
+        "impact_rating_id": 4,
+        "difficulty_level_id": 2,
+        "frequency": "Daily or every other day",
+        "is_common": True,
+        "notes": "Cold showers may increase dopamine, enhance circulation, and help train stress resilience — all with minimal time commitment.",
+        "objectives": ["boost_energy_levels", "enhance_resilience", "increase_alertness"]
+      },
+      {
+        "name": "Cold Plunge or Ice Bath",
+        "description": "Submerge your body in cold water up to your neck for a short time.",
+        "benefit_synopsis": "Reduces inflammation, boosts mood, and sharpens focus.",
+        "recommended_durations": [{"duration_label": "2 minutes"}, {"duration_label": "3 minutes"}, {"duration_label": "5 minutes"}],
+        "impact_rating_id": 5,
+        "difficulty_level_id": 3,
+        "frequency": "2–4 times per week",
+        "is_common": False,
+        "notes": "Cold immersion increases norepinephrine and dopamine, improves mood, and reduces post-exercise soreness. May enhance long-term resilience and mental clarity.",
+        "objectives": ["reduce_inflammation", "improve_mood", "build_mental_toughness"]
+      },
+      {
+        "name": "Cold Water Face Immersion",
+        "description": "Dunk your face in a bowl of ice water to quickly reset your system.",
+        "benefit_synopsis": "Activates the diving reflex and shifts your body into a calm state.",
+        "recommended_durations": [{"duration_label": "15 seconds"}, {"duration_label": "30 seconds"}],
+        "impact_rating_id": 3,
+        "difficulty_level_id": 2,
+        "frequency": "As needed",
+        "is_common": False,
+        "notes": "Used in some therapeutic settings for acute anxiety or panic. Lowers heart rate and rapidly soothes the nervous system.",
+        "objectives": ["interrupt_panic_cycle", "soothe_nervous_system", "regulate_breathing"]
+      },
+    ],
+    
+    # PRACTICE SUBCATEGORY
+    "Breathing Practices": 
+    [
+      {
+        "name": "Box Breathing",
+        "description": "Inhale for 4 seconds, hold for 4, exhale for 4, hold for 4 — repeat in a steady rhythm.",
+        "benefit_synopsis": "Balances the nervous system and reduces stress.",
+        "recommended_durations": [
+          { "duration_label": "2 minutes" },
+          { "duration_label": "4 minutes" }
+        ],
+        "impact_rating_id": 4,
+        "difficulty_level_id": 1,
+        "frequency": "As needed",
+        "is_common": True,
+        "notes": "Used by high-performers like Navy SEALs, this rhythmic breathing technique helps regulate the nervous system and create a sense of calm and control.",
+        "objectives": [
+          "regulate_nervous_system",
+          "reduce_stress",
+          "enhance_focus"
+        ]
+      },
+      {
+        "name": "4-7-8 Breathing",
+        "description": "Inhale for 4 seconds, hold for 7, exhale slowly for 8 seconds.",
+        "benefit_synopsis": "Slows heart rate and encourages deep calm.",
+        "recommended_durations": [
+          { "duration_label": "2 minutes" },
+          { "duration_label": "3 minutes" }
+        ],
+        "impact_rating_id": 4,
+        "difficulty_level_id": 2,
+        "frequency": "As needed or before bed",
+        "is_common": True,
+        "notes": "Promotes a parasympathetic state and can be especially helpful for winding down before sleep or calming anxiety.",
+        "objectives": [
+          "reduce_anxiety",
+          "promote_rest",
+          "slow_heart_rate"
+        ]
+      },
+      {
+        "name": "Coherent Breathing",
+        "description": "Breathe slowly and evenly at around 5–6 breaths per minute.",
+        "benefit_synopsis": "Promotes heart rate variability and emotional balance.",
+        "recommended_durations": [
+          { "duration_label": "5 minutes" }
+        ],
+        "impact_rating_id": 4,
+        "difficulty_level_id": 2,
+        "frequency": "Daily or during stress",
+        "is_common": False,
+        "notes": "This method synchronizes heart rate, breath, and brain rhythms — often used in trauma recovery and stress reduction protocols.",
+        "objectives": [
+          "enhance_hrv",
+          "support_emotional_regulation",
+          "stabilize_nervous_system"
+        ]
+      },
+      {
+        "name": "Physiological Sigh",
+        "description": "Take two quick inhales through the nose, then a long slow exhale through the mouth.",
+        "benefit_synopsis": "Quickly reduces anxiety and physical tension.",
+        "recommended_durations": [
+          { "duration_label": "1 minute" },
+          { "duration_label": "2 minutes" }
+        ],
+        "impact_rating_id": 3,
+        "difficulty_level_id": 1,
+        "frequency": "As needed",
+        "is_common": False,
+        "notes": "Backed by neuroscience, this technique helps offload excess CO₂ and calms both body and brain rapidly.",
+        "objectives": [
+          "release_tension",
+          "interrupt_anxiety",
+          "calm_physiology"
+        ]
+      },
+      {
+        "name": "Extended Exhale Breathing",
+        "description": "Inhale for a short count, then exhale slowly for twice as long.",
+        "benefit_synopsis": "Activates the parasympathetic system and soothes the body.",
+        "recommended_durations": [
+          { "duration_label": "2 minutes" },
+          { "duration_label": "4 minutes" }
+        ],
+        "impact_rating_id": 4,
+        "difficulty_level_id": 1,
+        "frequency": "As needed",
+        "is_common": True,
+        "notes": "Exhaling longer than you inhale signals safety to your body and helps release accumulated stress and tension.",
+        "objectives": [
+          "activate_rest_response",
+          "promote_nervous_system_reset",
+          "slow_breathing_rate"
+        ]
+      }
+    ],
+
+        # PRACTICE SUBCATEGORY
+    "Somatic Reset and Body Awareness": [
+      {
+          "name": "Progressive Muscle Relaxation",
+          "description": "Tense and release each muscle group from head to toe.",
+          "benefit_synopsis": "Releases tension and promotes bodily awareness.",
+          "recommended_durations": [
+              {"duration_label": "5 minutes"},
+              {"duration_label": "10 minutes"}
+          ],
+          "impact_rating_id": 4,
+          "difficulty_level_id": 2,
+          "frequency": "Optional or before bed",
+          "is_common": True,
+          "notes": "This classic technique helps reduce chronic muscle tension and shift awareness from racing thoughts to the physical body.",
+          "objectives": [
+              "release_physical_tension",
+              "enhance_body_awareness",
+              "reduce_stress"
+          ]
+      },
+      {
+          "name": "Full Body Shakeout",
+          "description": "Shake your arms, legs, and whole body to discharge excess energy.",
+          "benefit_synopsis": "Releases stuck energy and promotes emotional reset.",
+          "recommended_durations": [
+              {"duration_label": "1 minute"},
+              {"duration_label": "2 minutes"}
+          ],
+          "impact_rating_id": 3,
+          "difficulty_level_id": 1,
+          "frequency": "As needed",
+          "is_common": False,
+          "notes": "Used in somatic therapy and trauma-informed practices, shaking helps discharge tension and bring awareness back into the body.",
+          "objectives": [
+              "discharge_energy",
+              "interrupt_stress_response",
+              "reconnect_with_body"
+          ]
+      },
+      {
+          "name": "Body Scan (Awareness-Based)",
+          "description": "Bring gentle awareness to each part of your body from head to toe.",
+          "benefit_synopsis": "Enhances connection to the body and calms the mind.",
+          "recommended_durations": [
+              {"duration_label": "5 minutes"},
+              {"duration_label": "10 minutes"}
+          ],
+          "impact_rating_id": 4,
+          "difficulty_level_id": 2,
+          "frequency": "Daily or as needed",
+          "is_common": True,
+          "notes": "A slower, less structured scan where you simply observe sensations and reconnect with your body as it is — great for grounding and self-awareness.",
+          "objectives": [
+              "cultivate_embodiment",
+              "reduce_anxiety",
+              "improve_self_awareness"
+          ]
+      },
+      {
+          "name": "Gentle Self-Touch",
+          "description": "Place your hand over your chest, stomach, or another comforting area and pause.",
+          "benefit_synopsis": "Provides a felt sense of safety and connection.",
+          "recommended_durations": [
+              {"duration_label": "1 minute"},
+              {"duration_label": "3 minutes"}
+          ],
+          "impact_rating_id": 3,
+          "difficulty_level_id": 1,
+          "frequency": "As needed",
+          "is_common": False,
+          "notes": "Light, intentional touch (such as hand to heart or cradling the head) helps the nervous system downshift and improves internal connection.",
+          "objectives": [
+              "signal_safety",
+              "support_self_regulation",
+              "nurture_self_connection"
+          ]
+      }
+    ],
+
+        # PRACTICE SUBCATEGORY
+    "Temperature and Sensory Regulation": [
+      {
+          "name": "Cold Shower",
+          "description": "Take a full shower using only cold water from start to finish.",
+          "benefit_synopsis": "Boosts dopamine, sharpens focus, and strengthens stress tolerance.",
+          "recommended_durations": [
+              {"duration_label": "1 minute"},
+              {"duration_label": "2 minutes"},
+              {"duration_label": "3 minutes"}
+          ],
+          "impact_rating_id": 5,
+          "difficulty_level_id": 3,
+          "frequency": "2–5 times per week",
+          "is_common": False,
+          "notes": "Cold exposure increases norepinephrine and dopamine, improves mood, and reduces inflammation. Great for building mental resilience.",
+          "objectives": [
+              "boost_mood",
+              "increase_focus",
+              "build_stress_resilience"
+          ]
+      },
+      {
+          "name": "Cold Face Rinse",
+          "description": "Splash cold water on your face to quickly reset your system.",
+          "benefit_synopsis": "Triggers the diving reflex to calm and refocus.",
+          "recommended_durations": [
+              {"duration_label": "1 minute"},
+              {"duration_label": "2 minutes"}
+          ],
+          "impact_rating_id": 3,
+          "difficulty_level_id": 1,
+          "frequency": "Optional daily",
+          "is_common": True,
+          "notes": "Activates the vagus nerve and reduces sympathetic overdrive — ideal for anxiety or mental reset moments.",
+          "objectives": [
+              "reset_nervous_system",
+              "stimulate_vagus_nerve",
+              "reduce_overwhelm"
+          ]
+      },
+      {
+          "name": "Savor Something Warm",
+          "description": "Slowly enjoy a warm drink or food as a sensory ritual to calm and reset.",
+          "benefit_synopsis": "Warmth promotes safety and slows the nervous system.",
+          "recommended_durations": [
+              {"duration_label": "5 minutes"}
+          ],
+          "impact_rating_id": 3,
+          "difficulty_level_id": 1,
+          "frequency": "Optional daily",
+          "is_common": False,
+          "notes": "Drinking or holding something warm can provide grounding comfort. Used intentionally, this becomes a soothing transition practice.",
+          "objectives": [
+              "soothe_nervous_system",
+              "promote_calm",
+              "create_transition_ritual"
+          ]
+      },
+      {
+          "name": "Texture Anchor",
+          "description": "Hold or touch a grounding object like a stone, fabric, or fidget.",
+          "benefit_synopsis": "Provides sensory feedback to anchor attention.",
+          "recommended_durations": [
+              {"duration_label": "1 minute"},
+              {"duration_label": "2 minutes"}
+          ],
+          "impact_rating_id": 2,
+          "difficulty_level_id": 1,
+          "frequency": "As needed",
+          "is_common": False,
+          "notes": "Simple sensory tools like smooth stones, beads, or grounding fabrics can help shift attention back into the body when feeling scattered or anxious.",
+          "objectives": [
+              "anchor_attention",
+              "enhance_sensory_awareness",
+              "regulate_emotions"
+          ]
+      }
+    ],
+
+        # PRACTICE SUBCATEGORY
+    "Environmental Anchoring": [
+      {
+          "name": "Barefoot Grounding",
+          "description": "Step outside barefoot for a few minutes, ideally on grass, dirt, or sand.",
+          "benefit_synopsis": "Reduces stress and restores balance through contact with the Earth.",
+          "recommended_durations": [
+              {"duration_label": "5 minutes"},
+              {"duration_label": "10 minutes"}
+          ],
+          "impact_rating_id": 3,
+          "difficulty_level_id": 1,
+          "frequency": "Optional daily",
+          "is_common": False,
+          "notes": "Physical contact with the earth may help rebalance the body’s electrical field, lower cortisol, and promote presence.",
+          "objectives": [
+              "reduce_stress",
+              "enhance_presence",
+              "regulate_nervous_system"
+          ]
+      },
+      {
+          "name": "Open Window Pause",
+          "description": "Stand near an open window and take a few deep breaths while observing your surroundings.",
+          "benefit_synopsis": "Combines fresh air, light, and natural sights to ground and refresh.",
+          "recommended_durations": [
+              {"duration_label": "2 minutes"},
+              {"duration_label": "5 minutes"}
+          ],
+          "impact_rating_id": 3,
+          "difficulty_level_id": 1,
+          "frequency": "Optional daily",
+          "is_common": True,
+          "notes": "Increases light exposure, reduces stuffy indoor overstimulation, and reconnects you to natural rhythms — especially helpful in mornings.",
+          "objectives": [
+              "refresh_senses",
+              "support_natural_rhythm",
+              "promote_stillness"
+          ]
+      },
+      {
+          "name": "Touch the Earth",
+          "description": "Kneel, sit, or lie down directly on the ground and feel your body supported.",
+          "benefit_synopsis": "Connects you to the physical environment and slows internal momentum.",
+          "recommended_durations": [
+              {"duration_label": "5 minutes"}
+          ],
+          "impact_rating_id": 3,
+          "difficulty_level_id": 1,
+          "frequency": "As needed",
+          "is_common": False,
+          "notes": "This somatic-geographic practice emphasizes the weight and support of the Earth, which can be calming and grounding during stress or mental overstimulation.",
+          "objectives": [
+              "ground_body",
+              "feel_supported",
+              "reduce_internal_noise"
+          ]
+      }
+    ],
+
+        # PRACTICE SUBCATEGORY
+    "Micro Mindfulness & Sensory Check-Ins": [
+      {
+          "name": "5-4-3-2-1 Check-In",
+          "description": "Name 5 things you see, 4 you feel, 3 you hear, 2 you smell, and 1 you taste.",
+          "benefit_synopsis": "Disrupts anxious spirals and returns you to the present.",
+          "recommended_durations": [
+              {"duration_label": "2 minutes"},
+              {"duration_label": "3 minutes"}
+          ],
+          "impact_rating_id": 4,
+          "difficulty_level_id": 1,
+          "frequency": "As needed",
+          "is_common": True,
+          "notes": "This grounding technique is commonly used in anxiety therapy. It activates sensory awareness to interrupt overthinking and bring you back to the here and now.",
+          "objectives": [
+              "anchor_in_present",
+              "reduce_anxiety",
+              "engage_senses"
+          ]
+      },
+      {
+          "name": "Mindful Tea Sipping",
+          "description": "Drink water, tea, or any warm beverage slowly and with full awareness.",
+          "benefit_synopsis": "Turns a routine moment into a grounding sensory ritual.",
+          "recommended_durations": [
+              {"duration_label": "2 minutes"},
+              {"duration_label": "5 minutes"}
+          ],
+          "impact_rating_id": 3,
+          "difficulty_level_id": 1,
+          "frequency": "As needed",
+          "is_common": False,
+          "notes": "Focus on temperature, texture, and taste as you sip. Even a few breaths of mindful attention while drinking can reset mental noise.",
+          "objectives": [
+              "cultivate_micro_mindfulness",
+              "promote_presence",
+              "engage_senses"
+          ]
+      },
+      {
+          "name": "Noticing the Breath (Consciousness)",
+          "description": "Spend a minute simply observing your natural breathing rhythm.",
+          "benefit_synopsis": "Creates calm awareness without changing anything.",
+          "recommended_durations": [
+              {"duration_label": "1 minute"},
+              {"duration_label": "2 minutes"}
+          ],
+          "impact_rating_id": 3,
+          "difficulty_level_id": 1,
+          "frequency": "Anytime",
+          "is_common": True,
+          "notes": "This simple awareness shift brings you out of autopilot. Focus on the rise and fall of your breath without needing to control it.",
+          "objectives": [
+              "build_awareness",
+              "pause_autopilot",
+              "reset_focus"
+          ]
+      }
+    ],
+      
+       # PRACTICE SUBCATEGORY
+    "Stillness Practices & Restorative Postures": [
+      {
+          "name": "Lying on the Floor or other surface",
+          "description": "Lie flat on your back and let your body fully relax into the surface beneath you.",
+          "benefit_synopsis": "Helps reset overwhelm and reconnect with the body.",
+          "recommended_durations": [
+              {"duration_label": "5 minutes"},
+              {"duration_label": "10 minutes"}
+          ],
+          "impact_rating_id": 3,
+          "difficulty_level_id": 1,
+          "frequency": "As needed",
+          "is_common": True,
+          "notes": "Physical stillness offers a reset for both body and mind. The floor provides full support, signaling safety to the nervous system.",
+          "objectives": [
+              "release_tension",
+              "feel_supported",
+              "reduce_overwhelm"
+          ]
+      },
+      {
+          "name": "Legs Up the Wall",
+          "description": "Lie on your back and rest your legs vertically against a wall or surface.",
+          "benefit_synopsis": "Improves circulation and induces deep calm.",
+          "recommended_durations": [
+              {"duration_label": "5 minutes"},
+              {"duration_label": "10 minutes"}
+          ],
+          "impact_rating_id": 4,
+          "difficulty_level_id": 2,
+          "frequency": "Optional daily",
+          "is_common": False,
+          "notes": "This gentle inversion helps drain lymph, relieve lower-body fatigue, and shift the body into parasympathetic mode. Often used in restorative yoga.",
+          "objectives": [
+              "support_circulation",
+              "reset_nervous_system",
+              "induce_stillness"
+          ]
+      },
+      {
+          "name": "Seated Grounding Pause",
+          "description": "Sit with both feet planted, hands resting on your lap, and simply be still.",
+          "benefit_synopsis": "Signals a clear pause and return to presence.",
+          "recommended_durations": [
+              {"duration_label": "2 minutes"},
+              {"duration_label": "5 minutes"}
+          ],
+          "impact_rating_id": 3,
+          "difficulty_level_id": 1,
+          "frequency": "As needed",
+          "is_common": True,
+          "notes": "This is one of the lowest-barrier grounding techniques. Use during transitions, before tasks, or after overstimulation.",
+          "objectives": [
+              "reset_attention",
+              "cultivate_stillness",
+              "signal_transition"
+          ]
+      }
+    ],
+
+    # PRACTICE SUBCATEGORY
+    "Intentional Rituals": [
+      {
+          "name": "Tea Ritual",
+          "description": "Prepare and sip tea slowly, using the process as a calming, intentional moment.",
+          "benefit_synopsis": "Signals safety to the nervous system and fosters presence through sensory ritual.",
+          "recommended_durations": [
+              {"duration_label": "5 minutes"},
+              {"duration_label": "10 minutes"}
+          ],
+          "impact_rating_id": 3,
+          "difficulty_level_id": 1,
+          "frequency": "Optional daily",
+          "is_common": True,
+          "notes": "This ritual can be as simple or elaborate as you like. The act of brewing and sipping tea creates a structured pause that encourages grounding, calm, and transition into the day.",
+          "objectives": [
+              "anchor_routine",
+              "cultivate_intention",
+              "support_nervous_system"
+          ]
+      },
+      {
+        "name": "Mindful Tea Sipping",
+        "description": "Drink water, tea, or any warm beverage slowly and with full awareness.",
+        "benefit_synopsis": "Creates a pocket of mindfulness using a simple, sensory habit.",
+        "recommended_durations": [
+          { "duration_label": "2 minutes" },
+          { "duration_label": "5 minutes" }
+        ],
+        "impact_rating_id": 3,
+        "difficulty_level_id": 1,
+        "frequency": "As needed",
+        "is_common": False,
+        "notes": "This practice uses ordinary drinking moments as mindfulness anchors. The key is to slow down and focus fully on the act — the texture, temperature, and taste — to reorient attention and nervous system tone.",
+        "objectives": [
+          "ground_attention",
+          "enhance_presence",
+          "foster_micro_mindfulness"
+        ]
+      },
+      {
+          "name": "Hand-to-Heart Pause",
+          "description": "Place your hand on your chest and breathe slowly for a moment.",
+          "benefit_synopsis": "Activates calm and fosters self-connection.",
+          "recommended_durations": [
+              {"duration_label": "1 minute"},
+              {"duration_label": "2 minutes"}
+          ],
+          "impact_rating_id": 3,
+          "difficulty_level_id": 1,
+          "frequency": "Optional daily",
+          "is_common": False,
+          "notes": "This somatic cue increases heart-brain coherence and promotes a felt sense of calm and grounding.",
+          "objectives": [
+              "foster_self_connection",
+              "activate_parasympathetic_response",
+              "calm_emotions"
+          ]
+      },
+      {
+          "name": "Light a Candle or Incense",
+          "description": "Light a candle or incense with intention and take a moment to breathe and observe.",
+          "benefit_synopsis": "Creates ritual space and anchors the mind in presence.",
+          "recommended_durations": [
+              {"duration_label": "2 minutes"},
+              {"duration_label": "5 minutes"}
+          ],
+          "impact_rating_id": 3,
+          "difficulty_level_id": 1,
+          "frequency": "Optional or symbolic moments",
+          "is_common": False,
+          "notes": "Simple symbolic acts like lighting a candle help shift internal state and invite a transition into focused, calm presence.",
+          "objectives": [
+              "create_transition",
+              "set_intention",
+              "invite_calm"
+          ]
+      }
+    ],
+  },
+
+  # PRACTICE CATEGORY
+  "Mindfulness & Spirituality": {
+        # PRACTICE SUBCATEGORY
+    "Mindfulness & Observation": [
+      {
+          "name": "Anapanasati (Mindfulness of Breathing)",
+          "description": "Focus your awareness on the natural breath, observing each inhale and exhale without control.",
+          "benefit_synopsis": "Builds concentration and cultivates calm awareness.",
+          "recommended_durations": [
+              {"duration_label": "5 minutes"},
+              {"duration_label": "10 minutes"}
+          ],
+          "impact_rating_id": 4,
+          "difficulty_level_id": 1,
+          "frequency": "Optional or daily",
+          "is_common": True,
+          "notes": "A classical Buddhist meditation practice foundational in Theravāda and widely taught in secular mindfulness. The breath is used as a central anchor for attention.",
+          "objectives": [
+              "build_concentration",
+              "reduce_reactivity",
+              "anchor_attention"
+          ]
+      },
+      {
+          "name": "Zazen (Seated Zen Meditation)",
+          "description": "Sit in a stable posture and maintain open awareness, allowing thoughts and sensations to come and go.",
+          "benefit_synopsis": "Develops inner stillness and non-attachment.",
+          "recommended_durations": [
+              {"duration_label": "10 minutes"},
+              {"duration_label": "15 minutes"}
+          ],
+          "impact_rating_id": 4,
+          "difficulty_level_id": 3,
+          "frequency": "Optional or regular",
+          "is_common": True,
+          "notes": "Zazen is the core of Soto Zen practice. It's often practiced without a specific object of focus, emphasizing just sitting, stillness, and present-moment awareness.",
+          "objectives": [
+              "cultivate_stillness",
+              "observe_without_judgment",
+              "develop_non_reactivity"
+          ]
+      },
+      {
+          "name": "Vipassana (Insight Meditation)",
+          "description": "Observe bodily sensations, thoughts, and emotions with equanimity as they arise and pass.",
+          "benefit_synopsis": "Strengthens insight into impermanence and self-awareness.",
+          "recommended_durations": [
+              {"duration_label": "10 minutes"},
+              {"duration_label": "20 minutes"}
+          ],
+          "impact_rating_id": 5,
+          "difficulty_level_id": 3,
+          "frequency": "Regular or during retreats",
+          "is_common": True,
+          "notes": "Taught widely through traditions such as S.N. Goenka’s lineage. Practitioners scan awareness through the body, noting sensations and mental events without attachment.",
+          "objectives": [
+              "cultivate_insight",
+              "observe_impermanence",
+              "increase_awareness"
+          ]
+      },
+      {
+          "name": "Samatha (Calm Abiding)",
+          "description": "Focus single-pointedly on an object (commonly the breath) to calm the mind and develop stability.",
+          "benefit_synopsis": "Stabilizes attention and prepares the mind for deeper insight.",
+          "recommended_durations": [
+              {"duration_label": "10 minutes"},
+              {"duration_label": "15 minutes"}
+          ],
+          "impact_rating_id": 4,
+          "difficulty_level_id": 2,
+          "frequency": "Optional or foundational",
+          "is_common": True,
+          "notes": "This foundational practice from early Buddhist meditation focuses on concentration (samadhi) to quiet inner distractions. Often paired with insight (vipassana) in tandem.",
+          "objectives": [
+              "develop_focus",
+              "calm_the_mind",
+              "prepare_for_insight"
+          ]
+      },
+      {
+          "name": "Metta Bhavana (Loving-Kindness Meditation)",
+          "description": "Silently repeat phrases of goodwill, directing them toward yourself and others.",
+          "benefit_synopsis": "Builds compassion and softens self-judgment.",
+          "recommended_durations": [
+              {"duration_label": "5 minutes"},
+              {"duration_label": "10 minutes"}
+          ],
+          "impact_rating_id": 4,
+          "difficulty_level_id": 2,
+          "frequency": "Optional or regular",
+          "is_common": True,
+          "notes": "This classical practice develops loving-kindness (metta) through intentional phrases like 'May I be well' or 'May all beings be safe'. Often used to transform difficult emotions.",
+          "objectives": [
+              "build_compassion",
+              "increase_emotional_resilience",
+              "soften_self_judgment"
+          ]
+      },
+      {
+          "name": "Choiceless Awareness",
+          "description": "Rest in open awareness without choosing a particular object of focus.",
+          "benefit_synopsis": "Encourages spacious presence and non-reactive witnessing.",
+          "recommended_durations": [
+              {"duration_label": "10 minutes"},
+              {"duration_label": "15 minutes"}
+          ],
+          "impact_rating_id": 4,
+          "difficulty_level_id": 3,
+          "frequency": "Optional or advanced",
+          "is_common": False,
+          "notes": "This style, emphasized in some Zen and Krishnamurti traditions, involves noticing whatever arises without clinging or aversion — resting in pure awareness.",
+          "objectives": [
+              "cultivate_equanimity",
+              "witness_without_judgment",
+              "develop_spacious_mind"
+          ]
+      },
+      {
+          "name": "Mindfulness Meditation (MBSR Style)",
+          "description": "Sit quietly and observe your breath, body, sounds, and thoughts with gentle curiosity.",
+          "benefit_synopsis": "Builds awareness of the present moment without judgment.",
+          "recommended_durations": [
+              {"duration_label": "5 minutes"},
+              {"duration_label": "10 minutes"}
+          ],
+          "impact_rating_id": 4,
+          "difficulty_level_id": 1,
+          "frequency": "Optional or daily",
+          "is_common": True,
+          "notes": "Popularized by Jon Kabat-Zinn’s Mindfulness-Based Stress Reduction (MBSR), this practice blends breath focus with open awareness in a flexible, user-friendly approach.",
+          "objectives": [
+              "increase_present_moment_awareness",
+              "reduce_stress",
+              "train_non_judgmental_attention"
+          ]
+      },
+      {
+          "name": "Breath Counting",
+          "description": "Count each breath cycle up to ten, starting over if you lose track.",
+          "benefit_synopsis": "Trains mental discipline and improves sustained focus.",
+          "recommended_durations": [
+              {"duration_label": "5 minutes"},
+              {"duration_label": "10 minutes"}
+          ],
+          "impact_rating_id": 4,
+          "difficulty_level_id": 2,
+          "frequency": "Optional or focus warmup",
+          "is_common": True,
+          "notes": "A widely practiced concentration method used in many traditions. It’s deceptively simple — and highly effective for developing focus and self-awareness.",
+          "objectives": [
+              "build_concentration",
+              "improve_attention_span",
+              "increase_awareness_of_drift"
+          ]
+      },
+      {
+          "name": "Mantra Meditation (Japa)",
+          "description": "Silently or softly repeat a mantra or phrase in rhythm with your breath.",
+          "benefit_synopsis": "Calms mental chatter and connects breath with intention.",
+          "recommended_durations": [
+              {"duration_label": "10 minutes"},
+              {"duration_label": "15 minutes"}
+          ],
+          "impact_rating_id": 4,
+          "difficulty_level_id": 2,
+          "frequency": "Optional or devotional",
+          "is_common": True,
+          "notes": "Common in Hindu and Buddhist traditions. Repetition of a word like 'So Hum' or 'Om Mani Padme Hum' helps center the mind. Can be secularized using phrases like 'peace' or 'I am here'.",
+          "objectives": [
+              "quiet_the_mind",
+              "enhance_focus",
+              "cultivate_intention"
+          ]
+      },
+      {
+          "name": "Sound Awareness Meditation",
+          "description": "Rest your attention on ambient sounds, letting them come and go without judgment.",
+          "benefit_synopsis": "Expands awareness and trains receptivity.",
+          "recommended_durations": [
+              {"duration_label": "5 minutes"},
+              {"duration_label": "10 minutes"}
+          ],
+          "impact_rating_id": 3,
+          "difficulty_level_id": 1,
+          "frequency": "As needed or for sensory reset",
+          "is_common": True,
+          "notes": "Practiced in both Zen and secular mindfulness contexts. A helpful method when breath feels difficult to track or when anchoring attention outward is more accessible.",
+          "objectives": [
+              "expand_sensory_awareness",
+              "enhance_presence",
+              "reduce_internal_noise"
+          ]
+      },
+      {
+          "name": "Walking Meditation (Seated Transition Style)",
+          "description": "Mentally note the movement of your feet or legs with each step as you walk slowly and mindfully.",
+          "benefit_synopsis": "Brings mindful presence into gentle movement.",
+          "recommended_durations": [
+              {"duration_label": "5 minutes"},
+              {"duration_label": "10 minutes"}
+          ],
+          "impact_rating_id": 3,
+          "difficulty_level_id": 1,
+          "frequency": "Optional daily or post-sitting",
+          "is_common": True,
+          "notes": "Often taught after seated practice, this builds awareness during transitions. Focus on the rhythm and feel of each step, using phrases like 'lifting, placing'.",
+          "objectives": [
+              "maintain_presence_through_movement",
+              "extend_mindfulness_off_cushion",
+              "cultivate_body_awareness"
+          ]
+      },
+      {
+          "name": "Body Scan Meditation",
+          "description": "Slowly bring awareness to each part of your body, starting at your feet and moving upward.",
+          "benefit_synopsis": "Promotes embodiment and relaxation while training sustained awareness.",
+          "recommended_durations": [
+              {"duration_label": "10 minutes"},
+              {"duration_label": "20 minutes"}
+          ],
+          "impact_rating_id": 4,
+          "difficulty_level_id": 2,
+          "frequency": "Optional or before sleep",
+          "is_common": True,
+          "notes": "A foundational MBSR practice often used for stress, anxiety, and pain relief. You scan through the body non-judgmentally, noticing sensations and letting go of tension.",
+          "objectives": [
+              "enhance_body_awareness",
+              "reduce_stress",
+              "cultivate_non_judgmental_presence"
+          ]
+      },
+      {
+          "name": "RAIN Meditation",
+          "description": "Follow four steps: Recognize, Allow, Investigate, and Nurture whatever is arising.",
+          "benefit_synopsis": "Supports emotional processing with mindfulness and self-compassion.",
+          "recommended_durations": [
+              {"duration_label": "10 minutes"},
+              {"duration_label": "15 minutes"}
+          ],
+          "impact_rating_id": 5,
+          "difficulty_level_id": 3,
+          "frequency": "As needed during emotional difficulty",
+          "is_common": True,
+          "notes": "Popularized by Tara Brach, RAIN is a structured practice for staying present with difficult emotions. Ideal for users working through reactivity, grief, or stress.",
+          "objectives": [
+              "process_emotions",
+              "cultivate_self_compassion",
+              "develop_emotional_resilience"
+          ]
+      },
+      {
+          "name": "Just One Minute Meditation",
+          "description": "Take a single minute to sit still and focus gently on your breath.",
+          "benefit_synopsis": "Reduces resistance to practice and builds consistency.",
+          "recommended_durations": [
+              {"duration_label": "1 minute"}
+          ],
+          "impact_rating_id": 3,
+          "difficulty_level_id": 1,
+          "frequency": "Daily or as a reset",
+          "is_common": True,
+          "notes": "A perfect entry point for busy or hesitant beginners. One mindful minute helps establish habit, calm the nervous system, and reorient attention.",
+          "objectives": [
+              "create_micro_habit",
+              "build_consistency",
+              "reduce_mental_resistance"
+          ]
+      },
+      {
+          "name": "Mindfulness Bell Pause",
+          "description": "When you hear a bell or chime, stop and take one mindful breath.",
+          "benefit_synopsis": "Builds presence through auditory cues during daily life.",
+          "recommended_durations": [
+              {"duration_label": "1 minute"},
+              {"duration_label": "2 minutes"}
+          ],
+          "impact_rating_id": 3,
+          "difficulty_level_id": 1,
+          "frequency": "As needed or daily",
+          "is_common": True,
+          "notes": "Inspired by Thich Nhat Hanh and the Plum Village tradition, this practice uses a bell to return attention to the present. It can be used with real-world sounds or app reminders.",
+          "objectives": [
+              "build_momentary_awareness",
+              "integrate_mindfulness_into_daily_life",
+              "reset_attention"
+          ]
+      }
+    ],
+
+        # PRACTICE SUBCATEGORY
+    "Guided Awareness & Visualization": [
+      {
+          "name": "Body Scan Meditation",
+          "description": "Gently bring awareness to different parts of the body in sequence, guided by internal or external cues.",
+          "benefit_synopsis": "Increases embodiment and calms the nervous system.",
+          "recommended_durations": [
+              {"duration_label": "10 minutes"},
+              {"duration_label": "20 minutes"}
+          ],
+          "impact_rating_id": 4,
+          "difficulty_level_id": 2,
+          "frequency": "Daily or as needed",
+          "is_common": True,
+          "notes": "A central technique in MBSR and many meditation apps. This version is often guided via audio and helps train attention and presence through somatic awareness.",
+          "objectives": [
+              "enhance_body_awareness",
+              "calm_nervous_system",
+              "train_attention"
+          ]
+      },
+      {
+          "name": "Loving-Kindness (Guided Metta)",
+          "description": "Follow guided phrases of goodwill directed toward yourself and others.",
+          "benefit_synopsis": "Builds empathy, compassion, and emotional warmth.",
+          "recommended_durations": [
+              {"duration_label": "10 minutes"},
+              {"duration_label": "15 minutes"}
+          ],
+          "impact_rating_id": 4,
+          "difficulty_level_id": 2,
+          "frequency": "Optional or regular",
+          "is_common": True,
+          "notes": "Often delivered in calm, slow narration (as on apps like Calm or Headspace), this practice improves emotional balance and softens inner judgment.",
+          "objectives": [
+              "increase_self_compassion",
+              "cultivate_warmth",
+              "reduce_negative_bias"
+          ]
+      },
+      {
+          "name": "Visualization Meditation",
+          "description": "Visualize a peaceful or empowering image, like light radiating from your body or walking through a serene landscape.",
+          "benefit_synopsis": "Engages imagination to calm the mind and create positive mental states.",
+          "recommended_durations": [
+              {"duration_label": "5 minutes"},
+              {"duration_label": "10 minutes"}
+          ],
+          "impact_rating_id": 3,
+          "difficulty_level_id": 1,
+          "frequency": "Optional or during stress",
+          "is_common": True,
+          "notes": "Common in guided meditations across Calm, Insight Timer, and yoga nidra. Helps shift internal state by focusing on soothing mental imagery.",
+          "objectives": [
+              "relax_nervous_system",
+              "generate_positive_emotion",
+              "engage_imagination"
+          ]
+      },
+      {
+          "name": "Gratitude Meditation (Guided)",
+          "description": "Follow prompts to reflect on people, moments, or things you're thankful for.",
+          "benefit_synopsis": "Builds positive perspective and reduces negative spiraling.",
+          "recommended_durations": [
+              {"duration_label": "5 minutes"},
+              {"duration_label": "10 minutes"}
+          ],
+          "impact_rating_id": 3,
+          "difficulty_level_id": 1,
+          "frequency": "Daily or weekly",
+          "is_common": True,
+          "notes": "Gratitude meditations are featured in nearly every major app and positive psychology framework. They're accessible, uplifting, and neurochemically beneficial.",
+          "objectives": [
+              "increase_positive_emotion",
+              "rewire_focus",
+              "foster_resilience"
+          ]
+      },
+      {
+          "name": "Emotional Check-In",
+          "description": "Be guided through identifying, labeling, and holding space for your current emotional state.",
+          "benefit_synopsis": "Increases emotional intelligence and self-regulation.",
+          "recommended_durations": [
+              {"duration_label": "5 minutes"},
+              {"duration_label": "8 minutes"}
+          ],
+          "impact_rating_id": 4,
+          "difficulty_level_id": 1,
+          "frequency": "As needed",
+          "is_common": True,
+          "notes": "Often paired with breath awareness or light body sensing. This practice is used in modern apps (e.g. Balance, Ten Percent) and therapy-informed mindfulness sessions.",
+          "objectives": [
+              "enhance_emotional_awareness",
+              "support_self_regulation",
+              "cultivate_self_understanding"
+          ]
+      },
+      {
+          "name": "Mountain Meditation",
+          "description": "Visualize yourself as a mountain — stable, grounded, and unmoved by weather or change.",
+          "benefit_synopsis": "Builds inner strength and non-reactivity.",
+          "recommended_durations": [
+              {"duration_label": "10 minutes"}
+          ],
+          "impact_rating_id": 4,
+          "difficulty_level_id": 2,
+          "frequency": "Optional or weekly",
+          "is_common": False,
+          "notes": "Taught in MBSR and many guided series. Symbolic imagery like the mountain helps embody emotional stability during uncertainty or intensity.",
+          "objectives": [
+              "cultivate_resilience",
+              "anchor_stillness",
+              "support_emotional_grounding"
+          ]
+      },
+      {
+          "name": "Inner Sanctuary Visualization",
+          "description": "Create a vivid mental image of a personal safe space you can return to at any time.",
+          "benefit_synopsis": "Builds internal refuge and emotional safety.",
+          "recommended_durations": [
+              {"duration_label": "10 minutes"}
+          ],
+          "impact_rating_id": 3,
+          "difficulty_level_id": 2,
+          "frequency": "Optional or during stress",
+          "is_common": False,
+          "notes": "Used in trauma-informed mindfulness, this practice helps develop an internal resource for comfort, protection, or calm. Ideal for anxiety, re-centering, or grounding.",
+          "objectives": [
+              "create_safe_space",
+              "reduce_anxiety",
+              "support_emotional_recovery"
+          ]
+      },
+      {
+          "name": "7 Days of Calm (Calm App)",
+          "description": "A week-long introductory program teaching the basics of mindfulness meditation.",
+          "benefit_synopsis": "Establishes foundational meditation skills and daily practice habits.",
+          "recommended_durations": [
+              {"duration_label": "10 minutes"}
+          ],
+          "impact_rating_id": 4,
+          "difficulty_level_id": 1,
+          "frequency": "Daily for one week",
+          "is_common": True,
+          "notes": "Offered by the Calm app, this series is designed for beginners to build a consistent meditation routine.",
+          "objectives": [
+              "build_mindfulness_basics",
+              "develop_consistent_practice",
+              "reduce_stress"
+          ]
+      },
+      {
+          "name": "Basics Course (Headspace App)",
+          "description": "A 10-day course introducing fundamental meditation techniques and concepts.",
+          "benefit_synopsis": "Provides a structured introduction to meditation, enhancing focus and reducing stress.",
+          "recommended_durations": [
+              {"duration_label": "10 minutes"}
+          ],
+          "impact_rating_id": 4,
+          "difficulty_level_id": 1,
+          "frequency": "Daily for ten days",
+          "is_common": True,
+          "notes": "Available on the Headspace app, this course is tailored for newcomers to meditation.",
+          "objectives": [
+              "learn_meditation_fundamentals",
+              "increase_focus",
+              "manage_stress"
+          ]
+      },
+      {
+          "name": "Daily Meditation (Waking Up App)",
+          "description": "A new guided meditation each day, covering various themes and techniques.",
+          "benefit_synopsis": "Encourages daily mindfulness practice with diverse approaches.",
+          "recommended_durations": [
+              {"duration_label": "10 minutes"}
+          ],
+          "impact_rating_id": 4,
+          "difficulty_level_id": 1,
+          "frequency": "Daily",
+          "is_common": True,
+          "notes": "Offered by the Waking Up app, these meditations provide fresh daily content to support ongoing practice.",
+          "objectives": [
+              "maintain_daily_meditation",
+              "explore_varied_techniques",
+              "enhance_mindfulness"
+          ]
+      },
+      {
+          "name": "Sleep Stories (Calm App)",
+          "description": "Narrated tales designed to help listeners relax and drift into sleep.",
+          "benefit_synopsis": "Promotes relaxation and improves sleep quality.",
+          "recommended_durations": [
+              {"duration_label": "20 minutes"}
+          ],
+          "impact_rating_id": 4,
+          "difficulty_level_id": 1,
+          "frequency": "Nightly as needed",
+          "is_common": True,
+          "notes": "Featured in the Calm app, these stories are read by soothing voices to aid in falling asleep.",
+          "objectives": [
+              "facilitate_sleep",
+              "reduce_nighttime_anxiety",
+              "enhance_relaxation"
+          ]
+      },
+      {
+          "name": "Basics Series (10% Happier App)",
+          "description": "Introductory guided meditations focusing on mindfulness and stress reduction.",
+          "benefit_synopsis": "Helps beginners understand and practice mindfulness meditation.",
+          "recommended_durations": [
+              {"duration_label": "5 minutes"},
+              {"duration_label": "10 minutes"}
+          ],
+          "impact_rating_id": 4,
+          "difficulty_level_id": 1,
+          "frequency": "Daily",
+          "is_common": True,
+          "notes": "Provided by the 10% Happier app, this series is aimed at those new to meditation.",
+          "objectives": [
+              "introduce_mindfulness",
+              "reduce_stress",
+              "establish_meditation_habit"
+          ]
+      },
+      {
+          "name": "Mindfulness Daily (Insight Timer App)",
+          "description": "Short daily guided meditations to cultivate mindfulness throughout the day.",
+          "benefit_synopsis": "Supports the development of a consistent mindfulness practice.",
+          "recommended_durations": [
+              {"duration_label": "5 minutes"}
+          ],
+          "impact_rating_id": 4,
+          "difficulty_level_id": 1,
+          "frequency": "Daily",
+          "is_common": True,
+          "notes": "Available on the Insight Timer app, these sessions are designed for daily mindfulness reinforcement.",
+          "objectives": [
+              "cultivate_daily_mindfulness",
+              "enhance_present_moment_awareness",
+              "reduce_daily_stress"
+          ]
+      },
+      {
+          "name": "Meditation on Calm App",
+          "description": "Open the Calm app and follow any meditation that fits your current mood or intention.",
+          "benefit_synopsis": "Supports stress relief, focus, or sleep depending on session selection.",
+          "recommended_durations": [
+              {"duration_label": "10 minutes"},
+              {"duration_label": "15 minutes"}
+          ],
+          "impact_rating_id": 4,
+          "difficulty_level_id": 1,
+          "frequency": "Daily or as needed",
+          "is_common": True,
+          "notes": "Calm offers a wide variety of guided sessions — including meditations for focus, sleep, anxiety, and emotional balance. Great for users who prefer to select based on mood.",
+          "objectives": [
+              "engage_in_guided_practice",
+              "reduce_stress",
+              "enhance_mindfulness"
+          ]
+      },
+      {
+          "name": "Meditation on Headspace App",
+          "description": "Choose any session on Headspace that supports your goals — from basics to focused themes.",
+          "benefit_synopsis": "Accessible, structured meditation for beginners and returning practitioners.",
+          "recommended_durations": [
+              {"duration_label": "10 minutes"}
+          ],
+          "impact_rating_id": 4,
+          "difficulty_level_id": 1,
+          "frequency": "Daily or as needed",
+          "is_common": True,
+          "notes": "Headspace is known for its guided voice tone and structured learning paths. You can choose categories like stress, focus, sleep, or productivity based on current needs.",
+          "objectives": [
+              "follow_structured_guidance",
+              "build_consistency",
+              "improve_focus"
+          ]
+      },
+      {
+          "name": "Meditation on Waking Up App",
+          "description": "Select a daily meditation or course from the Waking Up app to build deep awareness and insight.",
+          "benefit_synopsis": "Promotes deep attention and understanding of consciousness.",
+          "recommended_durations": [
+              {"duration_label": "10 minutes"},
+              {"duration_label": "15 minutes"}
+          ],
+          "impact_rating_id": 5,
+          "difficulty_level_id": 2,
+          "frequency": "Daily or as desired",
+          "is_common": True,
+          "notes": "Waking Up offers both daily meditations and philosophical teachings on awareness and identity. Ideal for those wanting to explore consciousness more deeply.",
+          "objectives": [
+              "train_awareness",
+              "explore_conscious_experience",
+              "deepen_self_inquiry"
+          ]
+      },
+      {
+          "name": "Meditation on Insight Timer App",
+          "description": "Browse Insight Timer to find guided meditations from a global network of teachers.",
+          "benefit_synopsis": "Supports mindfulness with diverse styles and instructors.",
+          "recommended_durations": [
+              {"duration_label": "5 minutes"},
+              {"duration_label": "10 minutes"}
+          ],
+          "impact_rating_id": 4,
+          "difficulty_level_id": 1,
+          "frequency": "As desired",
+          "is_common": True,
+          "notes": "Insight Timer is free and diverse, offering meditations by teachers from many traditions and backgrounds. Choose based on voice, theme, or intention.",
+          "objectives": [
+              "access_diverse_guidance",
+              "explore_teaching_styles",
+              "support_daily_mindfulness"
+          ]
+      }
+
+    ],
+
+        # PRACTICE SUBCATEGORY
+    "Journaling & Reflection": [
+      {
+          "name": "Morning Pages",
+          "description": "Write three pages of freeform, stream-of-consciousness thoughts each morning.",
+          "benefit_synopsis": "Clears mental clutter and uncovers subconscious patterns.",
+          "recommended_durations": [
+              {"duration_label": "10 minutes"},
+              {"duration_label": "15 minutes"}
+          ],
+          "impact_rating_id": 4,
+          "difficulty_level_id": 2,
+          "frequency": "Daily",
+          "is_common": True,
+          "notes": "Popularized by Julia Cameron’s *The Artist’s Way*, this practice invites uncensored writing to clear the mind and spark creative or emotional insight.",
+          "objectives": [
+              "clear_mental_clutter",
+              "stimulate_self_reflection",
+              "support_creativity"
+          ]
+      },
+      {
+          "name": "Gratitude Journaling",
+          "description": "List three things you’re grateful for — daily or whenever needed.",
+          "benefit_synopsis": "Shifts attention toward positivity and builds emotional resilience.",
+          "recommended_durations": [
+              {"duration_label": "5 minutes"}
+          ],
+          "impact_rating_id": 3,
+          "difficulty_level_id": 1,
+          "frequency": "Daily or weekly",
+          "is_common": True,
+          "notes": "A widely practiced positive psychology method. Simple but powerful — consistency matters more than depth. Can include people, moments, or personal strengths.",
+          "objectives": [
+              "cultivate_positivity",
+              "rewire_attention",
+              "enhance_wellbeing"
+          ]
+      },
+      {
+          "name": "Evening Reflection",
+          "description": "Write about how your day went, what you learned, and how you felt.",
+          "benefit_synopsis": "Creates closure and reveals daily emotional patterns.",
+          "recommended_durations": [
+              {"duration_label": "5 minutes"},
+              {"duration_label": "10 minutes"}
+          ],
+          "impact_rating_id": 3,
+          "difficulty_level_id": 1,
+          "frequency": "Nightly or as needed",
+          "is_common": True,
+          "notes": "This is a grounded way to review your day with mindfulness. Can be paired with breathwork or used as a transition into sleep. Promotes integration and self-check-in.",
+          "objectives": [
+              "increase_self_awareness",
+              "promote_reflection",
+              "support_emotional_regulation"
+          ]
+      },
+      {
+          "name": "Values Clarification Journaling",
+          "description": "Write about what really matters to you and how you’re living in alignment with it.",
+          "benefit_synopsis": "Clarifies purpose and boosts motivation for meaningful change.",
+          "recommended_durations": [
+              {"duration_label": "10 minutes"},
+              {"duration_label": "15 minutes"}
+          ],
+          "impact_rating_id": 4,
+          "difficulty_level_id": 2,
+          "frequency": "Weekly or during goal-setting",
+          "is_common": False,
+          "notes": "A favorite in ACT (Acceptance and Commitment Therapy) and coaching. Use prompts like ‘When do I feel most alive?’ or ‘What’s been calling for more of my attention?’",
+          "objectives": [
+              "clarify_personal_values",
+              "align_actions_with_purpose",
+              "fuel_intrinsic_motivation"
+          ]
+      },
+      {
+          "name": "Reflective Prompt Journaling",
+          "description": "Answer a daily or weekly prompt that encourages self-inquiry or emotional awareness.",
+          "benefit_synopsis": "Guides attention to inner growth and key life themes.",
+          "recommended_durations": [
+              {"duration_label": "5 minutes"},
+              {"duration_label": "10 minutes"}
+          ],
+          "impact_rating_id": 3,
+          "difficulty_level_id": 1,
+          "frequency": "Daily or weekly",
+          "is_common": True,
+          "notes": "Prompts may ask things like: ‘What’s one thing I avoided today?’ or ‘What am I proud of this week?’ Often used in coaching, therapy, or growth journals.",
+          "objectives": [
+              "stimulate_self_inquiry",
+              "build_self_knowledge",
+              "support_emotional_processing"
+          ]
+      },
+      {
+          "name": "Emotion Naming & Reflection",
+          "description": "Write down what you’re feeling and explore where it’s coming from.",
+          "benefit_synopsis": "Supports emotional regulation through awareness and articulation.",
+          "recommended_durations": [
+              {"duration_label": "5 minutes"}
+          ],
+          "impact_rating_id": 3,
+          "difficulty_level_id": 1,
+          "frequency": "As needed",
+          "is_common": True,
+          "notes": "Labeling emotions and writing about them reduces their intensity. Use basic terms like ‘angry’ or more specific ones like ‘resentful’ — no need to be poetic.",
+          "objectives": [
+              "regulate_emotions",
+              "increase_emotional_clarity",
+              "reduce_reactivity"
+          ]
+      },
+      {
+          "name": "Cognitive Distortion Reframe (CBT Journaling)",
+          "description": "Identify a recurring negative thought and write out a more balanced, realistic version.",
+          "benefit_synopsis": "Increases cognitive flexibility and reduces unhelpful thought loops.",
+          "recommended_durations": [
+              {"duration_label": "5 minutes"},
+              {"duration_label": "10 minutes"}
+          ],
+          "impact_rating_id": 4,
+          "difficulty_level_id": 2,
+          "frequency": "As needed",
+          "is_common": True,
+          "notes": "One of the most effective journaling formats from CBT. Helps reduce anxiety, perfectionism, and rumination by training the brain to reframe automatic thoughts.",
+          "objectives": [
+              "reduce_cognitive_distortions",
+              "increase_self_regulation",
+              "improve_thought_clarity"
+          ]
+      },
+      {
+          "name": "ABC Thought Record (CBT)",
+          "description": "Write down the activating event (A), your belief or thought (B), and the consequence or emotion (C).",
+          "benefit_synopsis": "Builds insight into the link between thoughts, emotions, and behaviors.",
+          "recommended_durations": [
+              {"duration_label": "10 minutes"}
+          ],
+          "impact_rating_id": 4,
+          "difficulty_level_id": 2,
+          "frequency": "As needed",
+          "is_common": False,
+          "notes": "Classic CBT technique for emotional awareness and change. You can expand the model with D (dispute) and E (new effect) for deeper reappraisal.",
+          "objectives": [
+              "track_thought_emotion_patterns",
+              "increase_behavioral_insight",
+              "support_emotion_regulation"
+          ]
+      },
+      {
+          "name": "Parts Dialogue (IFS-Inspired)",
+          "description": "Write from the perspective of a part of you — such as your inner critic, protector, or inner child.",
+          "benefit_synopsis": "Fosters self-compassion and deeper understanding of internal conflicts.",
+          "recommended_durations": [
+              {"duration_label": "10 minutes"},
+              {"duration_label": "15 minutes"}
+          ],
+          "impact_rating_id": 4,
+          "difficulty_level_id": 3,
+          "frequency": "Optional or during emotional intensity",
+          "is_common": False,
+          "notes": "This practice helps create distance between your core self and reactive inner parts. Especially useful when emotions feel overwhelming or stuck.",
+          "objectives": [
+              "enhance_self_leadership",
+              "increase_internal_harmony",
+              "build_self_compassion"
+          ]
+      },
+      {
+          "name": "Limiting Belief Exploration (NLP/Coaching)",
+          "description": "Identify a limiting belief and journal about its origin, consequences, and counter-evidence.",
+          "benefit_synopsis": "Loosens fixed mindsets and supports identity growth.",
+          "recommended_durations": [
+              {"duration_label": "10 minutes"}
+          ],
+          "impact_rating_id": 4,
+          "difficulty_level_id": 2,
+          "frequency": "Optional or during transition periods",
+          "is_common": False,
+          "notes": "Used in coaching and NLP-style frameworks to rewire identity-level beliefs. Encourages intentional re-authoring of self-narrative.",
+          "objectives": [
+              "identify_limiting_beliefs",
+              "support_growth_mindset",
+              "reframe_self_identity"
+          ]
+      },
+      {
+          "name": "Trigger Journal (EMDR/Trauma-Informed)",
+          "description": "After an emotional trigger, describe what happened, how your body responded, and what memory or theme it connects to.",
+          "benefit_synopsis": "Increases trauma awareness and integrates emotional material.",
+          "recommended_durations": [
+              {"duration_label": "10 minutes"}
+          ],
+          "impact_rating_id": 5,
+          "difficulty_level_id": 3,
+          "frequency": "As needed",
+          "is_common": False,
+          "notes": "Often paired with EMDR, this journal supports emotional processing and nervous system recovery after dysregulation. Can include resourcing or breath after.",
+          "objectives": [
+              "track_triggers",
+              "build_trauma_awareness",
+              "support_emotional_integration"
+          ]
+      },
+      {
+          "name": "Letter to Self",
+          "description": "Write a letter to your past, future, or present self from a place of compassion and insight.",
+          "benefit_synopsis": "Strengthens self-connection and emotional repair.",
+          "recommended_durations": [
+              {"duration_label": "10 minutes"},
+              {"duration_label": "15 minutes"}
+          ],
+          "impact_rating_id": 4,
+          "difficulty_level_id": 1,
+          "frequency": "Optional or for reflection",
+          "is_common": True,
+          "notes": "Used in coaching, therapy, and trauma work. You might write to your younger self with encouragement, or your future self with vision and hope.",
+          "objectives": [
+              "foster_self_connection",
+              "reprocess_past_experience",
+              "cultivate_emotional_resilience"
+          ]
+      },
+      {
+          "name": "Weekly Review & Reset",
+          "description": "Reflect on the highs, lows, learnings, and patterns of the past week. Then set your intentions for the next.",
+          "benefit_synopsis": "Improves self-awareness and supports intentional weekly rhythm.",
+          "recommended_durations": [
+              {"duration_label": "10 minutes"},
+              {"duration_label": "15 minutes"}
+          ],
+          "impact_rating_id": 4,
+          "difficulty_level_id": 2,
+          "frequency": "Weekly",
+          "is_common": True,
+          "notes": "Used in productivity systems and reflective journaling alike. This format encourages continuity and pattern tracking, preventing autopilot weeks.",
+          "objectives": [
+              "integrate_weekly_experience",
+              "promote_self_direction",
+              "build_reflective_consistency"
+          ]
+      },
+      {
+          "name": "Future Self Letter",
+          "description": "Write a letter from your future self, describing who you’ve become and how you got there.",
+          "benefit_synopsis": "Builds self-belief and clarifies long-term vision.",
+          "recommended_durations": [
+              {"duration_label": "10 minutes"},
+              {"duration_label": "15 minutes"}
+          ],
+          "impact_rating_id": 4,
+          "difficulty_level_id": 2,
+          "frequency": "Optional or during life planning",
+          "is_common": False,
+          "notes": "Powerful for reorienting perspective and motivation. This is used in vision work, career coaching, and resilience training alike.",
+          "objectives": [
+              "strengthen_personal_vision",
+              "increase_motivation",
+              "enhance_self_narrative"
+          ]
+      },
+      {
+          "name": "Dream Journal",
+          "description": "Record your dreams upon waking, noting symbols, emotions, and potential meanings.",
+          "benefit_synopsis": "Builds inner awareness and supports unconscious integration.",
+          "recommended_durations": [
+              {"duration_label": "5 minutes"},
+              {"duration_label": "10 minutes"}
+          ],
+          "impact_rating_id": 3,
+          "difficulty_level_id": 2,
+          "frequency": "Daily upon waking",
+          "is_common": False,
+          "notes": "Especially helpful for creatives, introspective users, or those doing inner child or trauma work. Over time, reveals inner themes and shifts in psyche.",
+          "objectives": [
+              "increase_symbolic_awareness",
+              "connect_with_subconscious",
+              "support_inner_processing"
+          ]
+      },
+      {
+          "name": "Goal Progress Reflection",
+          "description": "Write about what you’ve done toward your goal, what’s working, and what could improve.",
+          "benefit_synopsis": "Reinforces action and keeps goals top-of-mind.",
+          "recommended_durations": [
+              {"duration_label": "5 minutes"},
+              {"duration_label": "10 minutes"}
+          ],
+          "impact_rating_id": 4,
+          "difficulty_level_id": 1,
+          "frequency": "Weekly or after key steps",
+          "is_common": True,
+          "notes": "Used in behavioral psychology and productivity systems alike. This helps users track effort and stay in proactive mode rather than discouragement or drift.",
+          "objectives": [
+              "reinforce_goal_momentum",
+              "track_barriers_and_successes",
+              "sustain_motivation"
+          ]
+      },
+      {
+          "name": "Values in Action Check-In",
+          "description": "List your core values and reflect on how they showed up (or didn’t) in recent choices.",
+          "benefit_synopsis": "Strengthens identity alignment and self-trust.",
+          "recommended_durations": [
+              {"duration_label": "5 minutes"},
+              {"duration_label": "10 minutes"}
+          ],
+          "impact_rating_id": 4,
+          "difficulty_level_id": 2,
+          "frequency": "Biweekly or monthly",
+          "is_common": False,
+          "notes": "Drawn from ACT and coaching work, this keeps deeper principles visible in day-to-day life. Helps counter distraction and misalignment.",
+          "objectives": [
+              "strengthen_values_alignment",
+              "improve_decision_making",
+              "increase_self_integrity"
+          ]
+      }
+
+    ],
+
+        # PRACTICE SUBCATEGORY
+    "Spiritual Connection & Devotion": [
+      {
+          "name": "Prayer",
+          "description": "Sit in stillness and offer silent prayer, gratitude, or surrender to a higher power.",
+          "benefit_synopsis": "Fosters humility, reverence, and trust in something greater.",
+          "recommended_durations": [
+              {"duration_label": "5 minutes"},
+              {"duration_label": "10 minutes"}
+          ],
+          "impact_rating_id": 4,
+          "difficulty_level_id": 1,
+          "frequency": "Optional or daily",
+          "is_common": True,
+          "notes": "Used in many traditions. Can include gratitude, requests for guidance, or quiet presence with the divine. No specific wording is required.",
+          "objectives": [
+              "foster_spiritual_connection",
+              "cultivate_gratitude_or_surrender",
+              "support_inner_peace"
+          ]
+      },
+      {
+          "name": "Devotional",
+          "description": "Chant, sing, or offer loving expression toward something greater.",
+          "benefit_synopsis": "Opens the heart and channels emotion into spiritual connection.",
+          "recommended_durations": [
+              {"duration_label": "10 minutes"},
+              {"duration_label": "15 minutes"}
+          ],
+          "impact_rating_id": 4,
+          "difficulty_level_id": 2,
+          "frequency": "Optional or ceremonial",
+          "is_common": False,
+          "notes": "Practiced in Bhakti Yoga, Sufi traditions, and spiritual singing. Can include personal mantras or traditional call-and-response (e.g. kirtan).",
+          "objectives": [
+              "elevate_emotional_state",
+              "connect_with_devotion",
+              "express_inner_spirit"
+          ]
+      },
+      {
+          "name": "Mantra",
+          "description": "Repeat a sacred word or phrase silently or aloud, letting it anchor your attention.",
+          "benefit_synopsis": "Calms the mind and connects breath to intention or sacred sound.",
+          "recommended_durations": [
+              {"duration_label": "5 minutes"},
+              {"duration_label": "10 minutes"}
+          ],
+          "impact_rating_id": 4,
+          "difficulty_level_id": 2,
+          "frequency": "Optional or during devotion",
+          "is_common": True,
+          "notes": "Mantras may include 'Om', 'Amen', 'Shalom', 'So Hum', or others depending on tradition. Practiced in Hinduism, Buddhism, Christianity, and universal spiritual practice.",
+          "objectives": [
+              "quiet_mental_noise",
+              "anchor_attention_spiritually",
+              "build_spiritual_focus"
+          ]
+      },
+      {
+          "name": "Read Scripture Passage",
+          "description": "Read a passage from a sacred or spiritual text and reflect on its meaning.",
+          "benefit_synopsis": "Connects you to timeless wisdom and inner reflection.",
+          "recommended_durations": [
+              {"duration_label": "5 minutes"}
+          ],
+          "impact_rating_id": 3,
+          "difficulty_level_id": 1,
+          "frequency": "Optional or weekly",
+          "is_common": True,
+          "notes": "Passages can come from the Bible, Bhagavad Gita, Tao Te Ching, Rumi, or other sources of spiritual depth. Let the reading become contemplation.",
+          "objectives": [
+              "connect_with_wisdom",
+              "expand_spiritual_perspective",
+              "support_contemplative_practice"
+          ]
+      },
+      {
+          "name": "Light a Candle",
+          "description": "Light a candle while setting an intention or offering a quiet moment of thanks.",
+          "benefit_synopsis": "Creates a moment of reverence and presence.",
+          "recommended_durations": [
+              {"duration_label": "2 minutes"},
+              {"duration_label": "5 minutes"}
+          ],
+          "impact_rating_id": 3,
+          "difficulty_level_id": 1,
+          "frequency": "Optional or ritual days",
+          "is_common": True,
+          "notes": "Used across many traditions — lighting a candle can mark a transition, remembrance, intention, or simply a sacred pause. Accessible and powerful.",
+          "objectives": [
+              "create_sacred_space",
+              "mark_intention_moment",
+              "cultivate_presence"
+          ]
+      },
+      {
+          "name": "Tend Altar",
+          "description": "Place an offering or gently care for your sacred space.",
+          "benefit_synopsis": "Fosters reverence, grounding, and symbolic connection.",
+          "recommended_durations": [
+              {"duration_label": "5 minutes"}
+          ],
+          "impact_rating_id": 3,
+          "difficulty_level_id": 2,
+          "frequency": "Optional or weekly",
+          "is_common": False,
+          "notes": "Altar tending is a physical form of spiritual expression. It encourages mindfulness, gratitude, and intention through objects and symbolic care.",
+          "objectives": [
+              "nurture_sacred_connection",
+              "honor_spiritual_space",
+              "express_gratitude"
+          ]
+      },
+      {
+          "name": "Nature Bathing",
+          "description": "Spend quiet, undistracted time in nature — walking slowly or sitting still.",
+          "benefit_synopsis": "Regulates the nervous system and opens the senses.",
+          "recommended_durations": [
+              {"duration_label": "10 minutes"},
+              {"duration_label": "20 minutes"}
+          ],
+          "impact_rating_id": 4,
+          "difficulty_level_id": 1,
+          "frequency": "Weekly or as needed",
+          "is_common": True,
+          "notes": "Inspired by the Japanese practice of shinrin-yoku. There’s no goal but to *be* — take in the sounds, colors, textures, and stillness of the natural world.",
+          "objectives": [
+              "calm_nervous_system",
+              "connect_with_nature",
+              "enhance_sensory_awareness"
+          ]
+      },
+      {
+          "name": "Touch the Earth",
+          "description": "Stand or sit with your bare feet or hands touching natural ground.",
+          "benefit_synopsis": "Supports grounding and energetic reset.",
+          "recommended_durations": [
+              {"duration_label": "5 minutes"},
+              {"duration_label": "10 minutes"}
+          ],
+          "impact_rating_id": 3,
+          "difficulty_level_id": 1,
+          "frequency": "Optional or daily",
+          "is_common": True,
+          "notes": "Sometimes called ‘earthing’ — this practice reconnects your body’s electrical system with the earth’s. Can be done on soil, grass, sand, or rock.",
+          "objectives": [
+              "support_grounding",
+              "regulate_energy",
+              "reduce_stress"
+          ]
+      },
+      {
+          "name": "Look at the Sky",
+          "description": "Pause and look at the open sky — letting your thoughts soften and your breath expand.",
+          "benefit_synopsis": "Creates spaciousness and reduces mental tension.",
+          "recommended_durations": [
+              {"duration_label": "2 minutes"},
+              {"duration_label": "5 minutes"}
+          ],
+          "impact_rating_id": 3,
+          "difficulty_level_id": 1,
+          "frequency": "Daily or when overwhelmed",
+          "is_common": True,
+          "notes": "This small act can instantly shift your nervous system and bring emotional perspective. Pairs beautifully with breath or prayer.",
+          "objectives": [
+              "increase_spaciousness",
+              "release_tension",
+              "reconnect_with_wonder"
+          ]
+      },
+      {
+          "name": "Offer to Nature",
+          "description": "Place a small offering — like a flower, stone, or breath — as a gesture of respect and gratitude.",
+          "benefit_synopsis": "Deepens reverence and symbolic connection with the earth.",
+          "recommended_durations": [
+              {"duration_label": "2 minutes"},
+              {"duration_label": "5 minutes"}
+          ],
+          "impact_rating_id": 3,
+          "difficulty_level_id": 1,
+          "frequency": "Optional or during nature walks",
+          "is_common": False,
+          "notes": "This practice exists in many traditions. You can whisper a word of thanks, leave a symbolic gift, or simply acknowledge the place around you with care.",
+          "objectives": [
+              "cultivate_reverence",
+              "practice_gratitude",
+              "connect_symbolically_with_nature"
+          ]
+      },
+      {
+          "name": "Sit with a Tree",
+          "description": "Find a tree and sit near it quietly — letting it hold your attention and stillness.",
+          "benefit_synopsis": "Builds inner calm and a sense of rootedness.",
+          "recommended_durations": [
+              {"duration_label": "5 minutes"},
+              {"duration_label": "10 minutes"}
+          ],
+          "impact_rating_id": 4,
+          "difficulty_level_id": 1,
+          "frequency": "Optional or weekly",
+          "is_common": True,
+          "notes": "Trees have a unique calming presence. Choose one that draws you in. Just sit and breathe. Some people like to rest a hand on the trunk or lean against it.",
+          "objectives": [
+              "promote_inner_stillness",
+              "build_grounded_presence",
+              "feel_part_of_nature"
+          ]
+      },
+      {
+          "name": "Past Life Reflection",
+          "description": "Sit quietly and imagine a life you've lived before — noticing themes, imagery, or lessons that arise.",
+          "benefit_synopsis": "Explores patterns and soul-level insights beyond the present lifetime.",
+          "recommended_durations": [
+              {"duration_label": "10 minutes"},
+              {"duration_label": "15 minutes"}
+          ],
+          "impact_rating_id": 3,
+          "difficulty_level_id": 3,
+          "frequency": "Optional or during spiritual inquiry",
+          "is_common": False,
+          "notes": "You don’t have to believe in reincarnation to try this — it's an exercise in symbolic memory and inner storytelling. Let imagery come gently, without force.",
+          "objectives": [
+              "explore_symbolic_self",
+              "gain_archetypal_insight",
+              "release_unconscious_patterns"
+          ]
+      },
+      {
+          "name": "Meet Your Higher Self",
+          "description": "Visualize your highest, most expanded version of you — and listen inward for guidance.",
+          "benefit_synopsis": "Connects with your inner wisdom and long-view perspective.",
+          "recommended_durations": [
+              {"duration_label": "10 minutes"}
+          ],
+          "impact_rating_id": 4,
+          "difficulty_level_id": 2,
+          "frequency": "Optional or during transition",
+          "is_common": True,
+          "notes": "You can speak to or embody this self — ask questions, receive insight, or simply observe. Often used in meditation and guided visualization work.",
+          "objectives": [
+              "strengthen_inner_guidance",
+              "connect_with_future_self",
+              "build_self_leadership"
+          ]
+      },
+      {
+          "name": "Ancestral Reflection",
+          "description": "Think about or write to an ancestor — known or unknown — and reflect on what they carried and passed on.",
+          "benefit_synopsis": "Deepens belonging and self-understanding through lineage.",
+          "recommended_durations": [
+              {"duration_label": "10 minutes"}
+          ],
+          "impact_rating_id": 4,
+          "difficulty_level_id": 2,
+          "frequency": "Optional or around transition/holidays",
+          "is_common": False,
+          "notes": "This practice can be emotional and symbolic — you're connecting with those who came before you and shaped your story, even subtly.",
+          "objectives": [
+              "connect_with_lineage",
+              "honor_inherited_strengths",
+              "release_generational_patterns"
+          ]
+      },
+      {
+          "name": "Call in a Guide",
+          "description": "Visualize a guide — spiritual, ancestral, animal, or imagined — and receive support or clarity.",
+          "benefit_synopsis": "Offers insight, support, or perspective through symbolic connection.",
+          "recommended_durations": [
+              {"duration_label": "10 minutes"}
+          ],
+          "impact_rating_id": 3,
+          "difficulty_level_id": 2,
+          "frequency": "Optional or during uncertainty",
+          "is_common": False,
+          "notes": "Your guide may appear as a light, figure, voice, or feeling. Let it emerge naturally. This is a powerful tool for intuition and symbolic problem solving.",
+          "objectives": [
+              "receive_support",
+              "build_intuitive_connection",
+              "access_alternate_perspectives"
+          ]
+      },
+      {
+          "name": "Energetic Reset",
+          "description": "Visualize clearing your body and energy field of stress, tension, or external noise.",
+          "benefit_synopsis": "Supports energetic clarity and nervous system reset.",
+          "recommended_durations": [
+              {"duration_label": "5 minutes"},
+              {"duration_label": "10 minutes"}
+          ],
+          "impact_rating_id": 4,
+          "difficulty_level_id": 1,
+          "frequency": "As needed",
+          "is_common": True,
+          "notes": "Can be imagined as light, breath, or water moving through you. Many users find this helpful after social overstimulation or tech use.",
+          "objectives": [
+              "clear_energetic_residue",
+              "support_self_regulation",
+              "restore_sense_of_self"
+          ]
+      },
+      {
+          "name": "Symbolic Dream Reflection",
+          "description": "Reflect on a recent dream and journal about its emotional tone, symbols, and messages.",
+          "benefit_synopsis": "Reveals hidden insights and emotional patterns.",
+          "recommended_durations": [
+              {"duration_label": "5 minutes"},
+              {"duration_label": "10 minutes"}
+          ],
+          "impact_rating_id": 3,
+          "difficulty_level_id": 2,
+          "frequency": "Optional or after vivid dreams",
+          "is_common": False,
+          "notes": "You don’t need to interpret dreams literally — instead, focus on how they *felt* and what patterns or themes stand out. A gentle way to access deeper layers.",
+          "objectives": [
+              "process_unconscious_content",
+              "recognize_inner_themes",
+              "expand_self_insight"
+          ]
+      },
+      {
+          "name": "Pull a Card",
+          "description": "Draw a tarot or oracle card and reflect on the message it brings.",
+          "benefit_synopsis": "Offers intuitive insight through symbol and story.",
+          "recommended_durations": [
+              {"duration_label": "5 minutes"}
+          ],
+          "impact_rating_id": 3,
+          "difficulty_level_id": 1,
+          "frequency": "Optional or when seeking clarity",
+          "is_common": True,
+          "notes": "You don’t need to ‘believe’ anything specific. The images, phrases, or archetypes often stir reflection. Let the message meet you where you are.",
+          "objectives": [
+              "invite_symbolic_insight",
+              "strengthen_self_reflection",
+              "enhance_intuitive_clarity"
+          ]
+      },
+      {
+          "name": "Consult the I Ching",
+          "description": "Open to or cast a hexagram from the I Ching and reflect on its passage.",
+          "benefit_synopsis": "Provides ancient wisdom for times of transition or uncertainty.",
+          "recommended_durations": [
+              {"duration_label": "10 minutes"}
+          ],
+          "impact_rating_id": 4,
+          "difficulty_level_id": 3,
+          "frequency": "Optional or when at a crossroads",
+          "is_common": False,
+          "notes": "The I Ching (‘Book of Changes’) offers poetic responses to life’s transitions. Use a digital version or yarrow coins, and reflect on what resonates.",
+          "objectives": [
+              "connect_with_ancient_wisdom",
+              "receive_symbolic_guidance",
+              "navigate_uncertainty"
+          ]
+      },
+      {
+          "name": "Stream-of-Consciousness Writing",
+          "description": "Let your hand move freely across the page — writing whatever flows without judgment.",
+          "benefit_synopsis": "Bypasses inner filters and reveals hidden patterns or insight.",
+          "recommended_durations": [
+              {"duration_label": "10 minutes"},
+              {"duration_label": "15 minutes"}
+          ],
+          "impact_rating_id": 4,
+          "difficulty_level_id": 1,
+          "frequency": "Optional or weekly",
+          "is_common": True,
+          "notes": "This practice is often used in creativity, trauma healing, and spiritual inquiry. Don’t edit — just let thoughts, phrases, or emotions move freely.",
+          "objectives": [
+              "access_inner_voices",
+              "release_stuck_energy",
+              "discover_unfiltered_truths"
+          ]
+      },
+      {
+          "name": "Centering Breath",
+          "description": "Take a few deep, steady breaths to bring yourself fully into the moment.",
+          "benefit_synopsis": "Anchors awareness and reduces mental noise.",
+          "recommended_durations": [
+              {"duration_label": "2 minutes"},
+              {"duration_label": "5 minutes"}
+          ],
+          "impact_rating_id": 3,
+          "difficulty_level_id": 1,
+          "frequency": "Anytime focus is needed",
+          "is_common": True,
+          "notes": "This is the most accessible and immediate presence practice — useful before conversations, creative sessions, or transitions.",
+          "objectives": [
+              "regulate_breath",
+              "return_to_the_present",
+              "prepare_for_focus"
+          ]
+      },
+      {
+          "name": "Set an Intention",
+          "description": "Pause and set a clear intention for how you want to show up today.",
+          "benefit_synopsis": "Strengthens focus, motivation, and alignment with values.",
+          "recommended_durations": [
+              {"duration_label": "2 minutes"},
+              {"duration_label": "5 minutes"}
+          ],
+          "impact_rating_id": 4,
+          "difficulty_level_id": 1,
+          "frequency": "Daily or before any important moment",
+          "is_common": True,
+          "notes": "This can be spoken, written, or simply felt — ex: 'I move with compassion today.' Great before work, movement, or spiritual practice.",
+          "objectives": [
+              "clarify_mindset",
+              "reinforce_intention",
+              "prime_daily_alignment"
+          ]
+      },
+      {
+          "name": "Focus Ritual",
+          "description": "Do a short, consistent ritual to mark the shift into focused work or presence.",
+          "benefit_synopsis": "Creates mental association and reduces resistance to starting.",
+          "recommended_durations": [
+              {"duration_label": "2 minutes"}
+          ],
+          "impact_rating_id": 3,
+          "difficulty_level_id": 1,
+          "frequency": "Before work or deep thinking",
+          "is_common": True,
+          "notes": "Light a candle, play a chime, breathe deeply — whatever signals to your mind: 'We're entering a focused state now.' Repetition is key.",
+          "objectives": [
+              "reduce_context_switching",
+              "create_attention_cue",
+              "anchor_transition_into_focus"
+          ]
+      },
+      {
+          "name": "Morning Visualization",
+          "description": "Imagine your ideal flow through the day, from morning to evening.",
+          "benefit_synopsis": "Mentally primes your actions, emotions, and outcomes.",
+          "recommended_durations": [
+              {"duration_label": "5 minutes"},
+              {"duration_label": "10 minutes"}
+          ],
+          "impact_rating_id": 4,
+          "difficulty_level_id": 2,
+          "frequency": "Each morning or before big events",
+          "is_common": True,
+          "notes": "Picture yourself staying calm, hitting your stride, moving with intention. Keep it gentle and optimistic — don’t over-script.",
+          "objectives": [
+              "strengthen_daily_mindset",
+              "visualize_successful_actions",
+              "reinforce_personal_alignment"
+          ]
+      },
+      {
+          "name": "Mirror Intention",
+          "description": "Look in the mirror and speak a chosen word or phrase that aligns with how you want to show up.",
+          "benefit_synopsis": "Builds clarity and emotional commitment to your intention.",
+          "recommended_durations": [
+              {"duration_label": "2 minutes"},
+              {"duration_label": "5 minutes"}
+          ],
+          "impact_rating_id": 4,
+          "difficulty_level_id": 2,
+          "frequency": "Optional or daily",
+          "is_common": False,
+          "notes": "Can be as simple as: 'I meet today with strength and kindness.' Eye contact with yourself reinforces emotional anchoring.",
+          "objectives": [
+              "amplify_self_direction",
+              "strengthen_embodiment",
+              "align_energy_with_intention"
+          ]
+      },
+
+    ],
+
+        # PRACTICE SUBCATEGORY - 
+        # TODO: Likely to be dissolved and joined with other subcategories.  
+    "Presence, Creativity & Intention Rituals": [
+      {
+          "name": "Draw a Mandala",
+          "description": "Create a circular design by drawing, coloring, or patterning from the center outward.",
+          "benefit_synopsis": "Supports emotional balance, inner focus, and symbolic reflection.",
+          "recommended_durations": [
+              {"duration_label": "10 minutes"},
+              {"duration_label": "20 minutes"}
+          ],
+          "impact_rating_id": 4,
+          "difficulty_level_id": 1,
+          "frequency": "Optional or during emotional reset",
+          "is_common": True,
+          "notes": "Mandalas are found in spiritual traditions worldwide — but you don’t need any training. Let the circular shape guide a calming, meditative flow of patterns, colors, or emotions.",
+          "objectives": [
+              "promote_inner_balance",
+              "express_through_pattern",
+              "anchor_attention_in_shape"
+          ]
+      },
+      {
+          "name": "Draw a Symbol",
+          "description": "Draw a shape, image, or mark that represents what you’re feeling or calling in.",
+          "benefit_synopsis": "Connects abstract emotion to tangible expression.",
+          "recommended_durations": [
+              {"duration_label": "5 minutes"},
+              {"duration_label": "10 minutes"}
+          ],
+          "impact_rating_id": 3,
+          "difficulty_level_id": 1,
+          "frequency": "Optional or during transitions",
+          "is_common": False,
+          "notes": "No need for artistic skill — just let the pen move. Symbols often carry emotional weight and can become anchors for reflection or intention.",
+          "objectives": [
+              "externalize_inner_states",
+              "spark_symbolic_awareness",
+              "activate_creative_connection"
+          ]
+      },
+      {
+          "name": "Write a Letter to the Universe",
+          "description": "Write out your thoughts, desires, or worries as if writing to a loving, listening universe.",
+          "benefit_synopsis": "Releases control and opens space for trust and surrender.",
+          "recommended_durations": [
+              {"duration_label": "10 minutes"}
+          ],
+          "impact_rating_id": 4,
+          "difficulty_level_id": 2,
+          "frequency": "Optional or during uncertainty",
+          "is_common": True,
+          "notes": "This can be written as a journal entry, a literal letter, or poetic request. You can keep it, burn it, or leave it in a sacred space. Let it be honest.",
+          "objectives": [
+              "release_attachment",
+              "clarify_intentions",
+              "invite_spiritual_support"
+          ]
+      },
+    ],
+
+        # PRACTICE SUBCATEGORY
+    "Breath-Focused Awareness": [
+
+    ],
+
+
+        # PRACTICE SUBCATEGORY
+    "Mantra, Sound & Vibration Practices": [
+
+    ],
+        
+        # PRACTICE SUBCATEGORY
+    "Walking & Movement-Based Meditation": [
+
+    ]
+  },
+  
+  # Practice Category
+},
+# "Recreation, Play & Creative Hobbies": {
+#   "":[]
+# }
+
+  # PRACTICE CATEGORY
+  # "Restoration, Relaxation & Self-Care": {
+
+  # },
+
+# "Mental Clarity & Cognitive Priming": [
+  
+# ],
+# "Movement: Exercise, Sports & Physical Activation": [
+  
+# ],
+# "Digital Boundaries & Dopamine Regulation": [
+  
+# ],
+# "Nutrition & Fuel": [
+  
+# ],
+# "Purpose, Planning, and Deep Work": [
+  
+# ],
+# "Fostering/Strengthening Connections": [
+  
+# ],
+
+
 practice_data = {
-# Health & Wellness Practices
-
-# TODO: ADD Column for 'environmental queue', allowing users to select or create queues or prompts to remind them of practices.
-
-# These will shift toward "categorical recommendations", from which users will select 
+# TODO: Consolidate the following practices into the new super duper categories above
 "AM Routine Recommendations": [
     {
         "name": "Morning Hydration",

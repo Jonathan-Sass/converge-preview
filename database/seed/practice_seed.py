@@ -128,6 +128,7 @@ def prepare_practice_data(db_categories, frequencies):
     # duration_lookup = {dur['duration_label']: dur['id'] for dur in durations}
     frequency_lookup = {freq['frequency_label']: freq['frequency_value'] for freq in frequencies}
 
+# TODO: New seed structure to account for embedded subcategories
 
     batched_data = []
 
