@@ -689,7 +689,7 @@ new_practice_data = {
   # PRACTICE CATEGORY
   "Mindfulness & Spirituality": {
         # PRACTICE SUBCATEGORY
-    "Mindfulness & Observation": [
+    "Mindfulness, Awareness & Consciousness": [
       {
           "name": "Anapanasati (Mindfulness of Breathing)",
           "description": "Focus your awareness on the natural breath, observing each inhale and exhale without control.",
@@ -2153,27 +2153,554 @@ new_practice_data = {
     ],
 
         # PRACTICE SUBCATEGORY
-    "Breath-Focused Awareness": [
-
-    ],
-
-
-        # PRACTICE SUBCATEGORY
     "Mantra, Sound & Vibration Practices": [
-
+      {
+          "name": "Mantra Repetition (Japa)",
+          "description": "Silently or softly repeat a sacred word or phrase with steady rhythm.",
+          "benefit_synopsis": "Centers the mind and connects breath with sacred sound.",
+          "recommended_durations": [
+              {"duration_label": "5 minutes"},
+              {"duration_label": "10 minutes"}
+          ],
+          "impact_rating_id": 4,
+          "difficulty_level_id": 2,
+          "frequency": "Optional or devotional",
+          "is_common": True,
+          "notes": "Traditionally practiced with mala beads or mental repetition. Common mantras include 'Om Mani Padme Hum', 'So Hum', or personal affirmations.",
+          "objectives": [
+              "focus_attention",
+              "quiet_the_mind",
+              "cultivate_intention"
+          ]
+      },
+      {
+          "name": "Chanting or Devotional Singing",
+          "description": "Sing, hum, or repeat devotional phrases with heartful presence.",
+          "benefit_synopsis": "Opens the heart and shifts emotional energy through sound.",
+          "recommended_durations": [
+              {"duration_label": "10 minutes"},
+              {"duration_label": "15 minutes"}
+          ],
+          "impact_rating_id": 4,
+          "difficulty_level_id": 2,
+          "frequency": "Optional or ritual",
+          "is_common": False,
+          "notes": "Common in Bhakti yoga and spiritual traditions. Kirtan, call-and-response, or free vocal toning can all apply. Let emotion move through voice.",
+          "objectives": [
+              "release_emotional_tension",
+              "connect_through_voice",
+              "engage_in_devotion"
+          ]
+      },
+      {
+          "name": "Bell or Singing Bowl Listening",
+          "description": "Focus on the sound of a bell or bowl, allowing it to anchor attention.",
+          "benefit_synopsis": "Promotes stillness and opens auditory awareness.",
+          "recommended_durations": [
+              {"duration_label": "5 minutes"}
+          ],
+          "impact_rating_id": 3,
+          "difficulty_level_id": 1,
+          "frequency": "As needed or for sound-based meditation",
+          "is_common": True,
+          "notes": "Can be a single strike of a bell, a singing bowl, or a short chime sequence. Listen until the sound fades completely, then return to the next tone.",
+          "objectives": [
+              "enhance_sensory_awareness",
+              "slow_the_mind",
+              "anchor_to_sound"
+          ]
+      },
+      {
+          "name": "Humming for Calm",
+          "description": "Hum softly on the exhale, letting the vibration soothe your nervous system.",
+          "benefit_synopsis": "Downregulates stress and stimulates the vagus nerve.",
+          "recommended_durations": [
+              {"duration_label": "2 minutes"},
+              {"duration_label": "5 minutes"}
+          ],
+          "impact_rating_id": 3,
+          "difficulty_level_id": 1,
+          "frequency": "As needed or during stress",
+          "is_common": True,
+          "notes": "Try 3–5 slow, steady breaths, humming on each exhale. Keep the tone soft and smooth. Great for anxiety or sensory overload.",
+          "objectives": [
+              "regulate_nervous_system",
+              "create_internal_resonance",
+              "reduce_anxiety"
+          ]
+      },
+      {
+          "name": "Breath-Linked Mantra",
+          "description": "Mentally link a short mantra to your inhale and exhale.",
+          "benefit_synopsis": "Combines rhythm, breath, and intention into a cohesive practice.",
+          "recommended_durations": [
+              {"duration_label": "5 minutes"},
+              {"duration_label": "10 minutes"}
+          ],
+          "impact_rating_id": 4,
+          "difficulty_level_id": 2,
+          "frequency": "Optional or daily",
+          "is_common": True,
+          "notes": "Classic pairings include 'So' on inhale and 'Hum' on exhale. Can also be customized with phrases like 'I am' / 'at peace'.",
+          "objectives": [
+              "synchronize_breath_and_mind",
+              "enhance_focus",
+              "deepen_internal_alignment"
+          ]
+      },
+      {
+          "name": "Vocal Toning",
+          "description": "Sustain a single tone (like 'Aaaah' or 'Om') to create internal vibration.",
+          "benefit_synopsis": "Stimulates the body through sound and calms internal noise.",
+          "recommended_durations": [
+              {"duration_label": "3 minutes"},
+              {"duration_label": "5 minutes"}
+          ],
+          "impact_rating_id": 3,
+          "difficulty_level_id": 2,
+          "frequency": "Optional or ritual",
+          "is_common": False,
+          "notes": "Choose a vowel or sound that feels resonant. Tone it slowly, letting the vibration move through your chest, throat, or head.",
+          "objectives": [
+              "create_vocal_resonance",
+              "stimulate_energy_flow",
+              "focus_through_sound"
+          ]
+      },
+      {
+          "name": "Listen to a Sound Bath or Binaural Track",
+          "description": "Close your eyes and listen to a calming soundscape or frequency-based track.",
+          "benefit_synopsis": "Induces deep relaxation and entrains brainwaves.",
+          "recommended_durations": [
+              {"duration_label": "10 minutes"},
+              {"duration_label": "20 minutes"}
+          ],
+          "impact_rating_id": 4,
+          "difficulty_level_id": 1,
+          "frequency": "As needed or during rest",
+          "is_common": True,
+          "notes": "Use headphones for binaural beats or sound bath recordings. Let the tones wash over you and reset your nervous system.",
+          "objectives": [
+              "entrain_brainwaves",
+              "reduce_cognitive_noise",
+              "promote_deep_relaxation"
+          ]
+      },
+      {
+          "name": "Affirmation-Based Mantra",
+          "description": "Repeat a positive phrase silently or aloud to reinforce desired qualities.",
+          "benefit_synopsis": "Builds self-trust and shifts internal dialogue.",
+          "recommended_durations": [
+              {"duration_label": "2 minutes"},
+              {"duration_label": "5 minutes"}
+          ],
+          "impact_rating_id": 3,
+          "difficulty_level_id": 1,
+          "frequency": "Daily or situational",
+          "is_common": True,
+          "notes": "Choose a phrase that resonates with your intention, such as 'I am grounded', 'I am enough', or 'I move with ease'. Repeat rhythmically or with breath.",
+          "objectives": [
+              "shift_inner_state",
+              "reinforce_positive_identity",
+              "anchor_self-belief"
+          ]
+      },
+      {
+        "name": "Create Your Own Mantra",
+        "description": "Choose a word or phrase that resonates with you and repeat it with breath or rhythm.",
+        "benefit_synopsis": "Personalizes intention and builds emotional resonance.",
+        "recommended_durations": [
+            {"duration_label": "2 minutes"},
+            {"duration_label": "5 minutes"}
+        ],
+        "impact_rating_id": 3,
+        "difficulty_level_id": 1,
+        "frequency": "Optional or daily",
+        "is_common": False,
+        "notes": "Your mantra can be a value ('compassion'), an intention ('trust the process'), or a phrase that helps you return to yourself. Try it silently, aloud, or with a breath rhythm.",
+        "objectives": [
+            "personalize_intention",
+            "anchor_thought_and_energy",
+            "create_ritual_through_words"
+        ]
+      },
     ],
         
         # PRACTICE SUBCATEGORY
     "Walking & Movement-Based Meditation": [
-
+      {
+          "name": "Walking Meditation",
+          "description": "Walk slowly and mindfully, placing attention on the sensation of each step.",
+          "benefit_synopsis": "Brings awareness into motion and transitions.",
+          "recommended_durations": [
+              {"duration_label": "5 minutes"},
+              {"duration_label": "10 minutes"}
+          ],
+          "impact_rating_id": 4,
+          "difficulty_level_id": 1,
+          "frequency": "Optional or post-sitting",
+          "is_common": True,
+          "notes": "Use phrases like 'lifting, stepping, placing' or simply observe the rhythm of your movement. A foundational practice in many Buddhist traditions.",
+          "objectives": [
+              "cultivate_mindful_presence",
+              "transition_between_states",
+              "build_body_awareness"
+          ]
+      },
+      {
+          "name": "Qi Gong Meditation",
+          "description": "A practice of slow, flowing movements with relaxed breathing and attention on building energy.",
+          "benefit_synopsis": "Circulates and builds energy, Cultivates relaxed focus",
+          "recommended_durations": [
+              {"duration_label": "10 minutes"},
+              {"duration_label": "20 minutes"}
+          ],
+          "impact_rating_id": 4,
+          "difficulty_level_id": 2,
+          "frequency": "Optional or energizing",
+          "is_common": False,
+          "notes": "This ancient Chinese movement meditation blends physical flow with breath and energy cultivation practices. Many beginner sequences are accessible and deeply calming.",
+          "objectives": [
+              "cultivate_energy_awareness",
+              "enhance_breath_body_synchrony",
+              "relax_while_moving"
+          ]
+      },
+      {
+          "name": "Nei Gong Practice",
+          "description": "A practice of slow, deliberate flows and postures that train alignment, mobility, and internal strength.",
+          "benefit_synopsis": "Improves posture, builds body awareness, and strengthens foundational movement patterns.",
+          "recommended_durations": [
+              {"duration_label": "10 minutes"},
+              {"duration_label": "15 minutes"}
+          ],
+          "impact_rating_id": 5,
+          "difficulty_level_id": 3,
+          "frequency": "Optional or as a deeper practice",
+          "is_common": False,
+          "notes": "Nei Gong emphasizes refined body mechanics through rooted stances, breath-aligned motion, and slow calisthenic strength. The practice enhances energy circulation and cultivates presence through movement. Accessible sequences can improve balance, flexibility, and structural resilience.",
+          "objectives": [
+              "develop_postural_integrity",
+              "enhance_body_control",
+              "strengthen_internal_alignment"
+          ]
+      },
+      {
+          "name": "Mindful Stretching",
+          "description": "Stretch gently while focusing on the sensations in your body.",
+          "benefit_synopsis": "Releases tension and anchors awareness in movement.",
+          "recommended_durations": [
+              {"duration_label": "5 minutes"},
+              {"duration_label": "10 minutes"}
+          ],
+          "impact_rating_id": 3,
+          "difficulty_level_id": 1,
+          "frequency": "Optional or post-work",
+          "is_common": True,
+          "notes": "Move slowly between stretches. Breathe steadily. Focus on how your body feels — not how far it goes.",
+          "objectives": [
+              "release_physical_tension",
+              "anchor_in_sensation",
+              "create_body_mind_connection"
+          ]
+      },
+      {
+          "name": "Intuitive Movement Meditation",
+          "description": "Let your body move freely and slowly, following internal cues rather than form.",
+          "benefit_synopsis": "Encourages embodied presence and emotional release.",
+          "recommended_durations": [
+              {"duration_label": "5 minutes"},
+              {"duration_label": "10 minutes"}
+          ],
+          "impact_rating_id": 4,
+          "difficulty_level_id": 2,
+          "frequency": "Optional or during emotional processing",
+          "is_common": False,
+          "notes": "No choreography. Let your breath lead your body. Trust the impulse to sway, shift, stretch, or pause. Great for unwinding emotion or internal disconnection.",
+          "objectives": [
+              "cultivate_embodiment",
+              "release_stored_emotion",
+              "build_movement_awareness"
+          ]
+      },
+      {
+          "name": "Posture-Based Breath Synchronization",
+          "description": "Match slow breath with simple body movements like raising arms or shifting stance.",
+          "benefit_synopsis": "Unites breath, awareness, and action in rhythmic alignment.",
+          "recommended_durations": [
+              {"duration_label": "3 minutes"},
+              {"duration_label": "5 minutes"}
+          ],
+          "impact_rating_id": 3,
+          "difficulty_level_id": 1,
+          "frequency": "As needed or to transition into mindfulness",
+          "is_common": True,
+          "notes": "Inhale while gently lifting the arms or rising slightly; exhale as you lower or return. Useful for nervous system settling and breath anchoring.",
+          "objectives": [
+              "build_breath_body_connection",
+              "reset_focus",
+              "reduce_cognitive_load"
+          ]
+        },
+        {
+            "name": "Tai Chi (Restorative Flow)",
+            "description": "Practice slow, flowing Tai Chi movements to calm the mind and balance the body.",
+            "benefit_synopsis": "Enhances balance, body awareness, and inner calm.",
+            "recommended_durations": [
+                {"duration_label": "10 minutes"},
+                {"duration_label": "20 minutes"}
+            ],
+            "impact_rating_id": 4,
+            "difficulty_level_id": 2,
+            "frequency": "Optional or regular",
+            "is_common": True,
+            "notes": "This gentle practice emphasizes breath-linked motion, rooted stances, and circular flow. Focus on quality of movement over precision. Ideal for stress relief and postural health.",
+            "objectives": [
+                "build_body_awareness",
+                "cultivate_inner_balance",
+                "reduce_stress_through_motion"
+            ]
+        },
+        {
+            "name": "Dao Yin Flow",
+            "description": "Move through breath-guided stretches and rotations to stimulate energy flow.",
+            "benefit_synopsis": "Opens the body, releases tension, and supports energy alignment.",
+            "recommended_durations": [
+                {"duration_label": "5 minutes"},
+                {"duration_label": "10 minutes"}
+            ],
+            "impact_rating_id": 4,
+            "difficulty_level_id": 2,
+            "frequency": "Optional or energizing",
+            "is_common": False,
+            "notes": "Dao Yin (道引) blends breath, intention, and stretching. Often practiced standing or seated, it's a great middle ground between static poses and flowing sequences.",
+            "objectives": [
+                "stimulate_energy_meridians",
+                "mobilize_stiffness",
+                "combine_breath_and_movement"
+            ]
+        },
+        {
+            "name": "Shaking Meditation",
+            "description": "Let your body gently shake or bounce to release tension and re-regulate your system.",
+            "benefit_synopsis": "Relieves stress and resets the nervous system.",
+            "recommended_durations": [
+                {"duration_label": "2 minutes"},
+                {"duration_label": "5 minutes"}
+            ],
+            "impact_rating_id": 4,
+            "difficulty_level_id": 1,
+            "frequency": "As needed or daily",
+            "is_common": True,
+            "notes": "Start by bouncing gently on the heels, then let spontaneous shaking emerge. Keep the jaw soft and breath steady. Great after long sitting or emotional build-up.",
+            "objectives": [
+                "release_stored_tension",
+                "regulate_nervous_system",
+                "reconnect_with_body"
+            ]
+        },
+        {
+            "name": "Gentle Dance Flow",
+            "description": "Move intuitively with soft rhythm and breath, letting music or inner feeling guide you.",
+            "benefit_synopsis": "Invites playfulness, freedom, and embodied presence.",
+            "recommended_durations": [
+                {"duration_label": "5 minutes"},
+                {"duration_label": "10 minutes"}
+            ],
+            "impact_rating_id": 3,
+            "difficulty_level_id": 1,
+            "frequency": "Optional or during creative reset",
+            "is_common": False,
+            "notes": "No choreography — just allow your body to move, sway, or stretch with gentle rhythm. Can be done in silence or with music.",
+            "objectives": [
+                "cultivate_playful_awareness",
+                "express_through_motion",
+                "build_embodied_freedom"
+            ]
+        },
+        {
+            "name": "Walking Labyrinth Meditation",
+            "description": "Walk in a simple circular or spiraling path as a symbolic journey inward and outward.",
+            "benefit_synopsis": "Focuses attention and invites reflection through movement.",
+            "recommended_durations": [
+                {"duration_label": "5 minutes"},
+                {"duration_label": "10 minutes"}
+            ],
+            "impact_rating_id": 3,
+            "difficulty_level_id": 1,
+            "frequency": "Optional or ritual-based",
+            "is_common": False,
+            "notes": "Use a real or imagined labyrinth. Walk slowly and mindfully, pausing in the center to reflect or set an intention before walking out.",
+            "objectives": [
+                "anchor_focus_in_motion",
+                "engage_in_symbolic_reflection",
+                "mark_transitions_intentionally"
+            ]
+        },
+        {
+            "name": "Breath & Gesture Flow",
+            "description": "Link simple breath cycles with hand or body gestures to center yourself.",
+            "benefit_synopsis": "Combines intention, rhythm, and movement for deepened presence.",
+            "recommended_durations": [
+                {"duration_label": "3 minutes"},
+                {"duration_label": "5 minutes"}
+            ],
+            "impact_rating_id": 3,
+            "difficulty_level_id": 1,
+            "frequency": "Optional or during transitions",
+            "is_common": True,
+            "notes": "Examples: inhale while sweeping arms up, exhale while lowering; inhale 'gather', exhale 'ground'. Use gestures like opening, releasing, or centering.",
+            "objectives": [
+                "create_movement_breath_alignment",
+                "ground_with_intention",
+                "establish_centered_focus"
+            ]
+        }
     ]
   },
-  
-  # Practice Category
-},
-# "Recreation, Play & Creative Hobbies": {
-#   "":[]
-# }
+
+# PRACTICE CATEGORY
+  "Recreation, Play & Creative Hobbies": {
+    #  PRACTICE SUBCATEGORY
+      "Visual & Craft-Based Creativity (Art, Crafts, Photography)": [
+          {
+              "name": "Draw, Sketch, Paint For Fun",
+              "description": "Doodle, sketch, or throw down some color — no rules, just creative play.",
+              "benefit_synopsis": "Reduces stress and encourages free expression.",
+              "recommended_durations": [{"duration_label": "5 minutes"}, {"duration_label": "20 minutes"}],
+              "impact_rating_id": 3,
+              "difficulty_level_id": 1,
+              "frequency": "Optional or daily",
+              "is_common": True,
+              "notes": "Use whatever tools you have — pencil, pen, markers, or watercolor. It’s not about the result, just the act of making marks.",
+              "objectives": ["express_creatively", "reduce_mental_pressure", "stimulate_flow"]
+          },
+          {
+              "name": "Practice an Art Skill",
+              "description": "Spend time practicing a technique like shading, proportions, or brushwork.",
+              "benefit_synopsis": "Improves focus and builds creative confidence.",
+              "recommended_durations": [{"duration_label": "10 minutes"}, {"duration_label": "30 minutes"}],
+              "impact_rating_id": 4,
+              "difficulty_level_id": 2,
+              "frequency": "Optional or weekly",
+              "is_common": True,
+              "notes": "Pick one element of technique to explore. Keep it casual — it’s about the reps, not perfection.",
+              "objectives": ["develop_skills", "build_focus", "gain_artistic_confidence"]
+          },
+          {
+              "name": "Pottery for Fun",
+              "description": "Get your hands into clay and shape something — a bowl, a creature, or just texture.",
+              "benefit_synopsis": "Deepens tactile engagement and grounds awareness.",
+              "recommended_durations": [{"duration_label": "15 minutes"}, {"duration_label": "30 minutes"}],
+              "impact_rating_id": 4,
+              "difficulty_level_id": 2,
+              "frequency": "Optional or recreational",
+              "is_common": False,
+              "notes": "No wheel needed — try pinch pots or hand-building with air-dry clay or real ceramic clay at a studio.",
+              "objectives": ["engage_senses", "slow_down", "explore_shape_and_form"]
+          },
+          {
+              "name": "Practice an Instrument",
+              "description": "Spend focused time refining chords, scales, or pieces on your instrument of choice.",
+              "benefit_synopsis": "Builds discipline and deepens musical fluency.",
+              "recommended_durations": [{"duration_label": "10 minutes"}, {"duration_label": "30 minutes"}],
+              "impact_rating_id": 4,
+              "difficulty_level_id": 2,
+              "frequency": "Optional or consistent",
+              "is_common": True,
+              "notes": "Try a practice ritual that works for you — metronome drills, ear training, or scales. Track progress over time.",
+              "objectives": ["develop_skill", "enhance_focus", "build_musical_fluency"]
+          },
+          {
+              "name": "Play Music (Jam Sesh)",
+              "description": "Let go and just play — improvise, mess around, or find your groove.",
+              "benefit_synopsis": "Releases creative energy and boosts mood.",
+              "recommended_durations": [{"duration_label": "10 minutes"}, {"duration_label": "30 minutes"}],
+              "impact_rating_id": 4,
+              "difficulty_level_id": 1,
+              "frequency": "Optional or energizing",
+              "is_common": True,
+              "notes": "Alone or with others, unplugged or electric, acoustic or digital. Just play.",
+              "objectives": ["have_fun_creating", "release_energy", "get_into_flow"]
+          },
+          {
+              "name": "Practice with the Band",
+              "description": "Join your band or group and run through songs, riffs, or rhythms together.",
+              "benefit_synopsis": "Strengthens coordination, timing, and connection.",
+              "recommended_durations": [{"duration_label": "20 minutes"}, {"duration_label": "45 minutes"}],
+              "impact_rating_id": 5,
+              "difficulty_level_id": 3,
+              "frequency": "Scheduled or recurring",
+              "is_common": False,
+              "notes": "Even one shared practice locks in musical chemistry and shared focus. Practice dynamics, transitions, and listening.",
+              "objectives": ["enhance_collaboration", "train_listening", "refine_timing"]
+          },
+          {
+              "name": "Art Inspiration Adventure",
+              "description": "Go out and explore art in the world — murals, galleries, or public sculpture.",
+              "benefit_synopsis": "Refuels creative vision and sparks new ideas.",
+              "recommended_durations": [{"duration_label": "15 minutes"}, {"duration_label": "1 hour"}],
+              "impact_rating_id": 3,
+              "difficulty_level_id": 1,
+              "frequency": "Optional or when creatively dry",
+              "is_common": False,
+              "notes": "Take photos, sketch what you see, or just soak it in. Visit a museum, check out local art, or browse unique design stores.",
+              "objectives": ["stimulate_inspiration", "expand_visual_language", "refill_creative_well"]
+          },
+          {
+              "name": "Photography Nature Walk",
+              "description": "Take a slow walk through nature and capture moments that move you.",
+              "benefit_synopsis": "Builds connection to environment and quiet visual mindfulness.",
+              "recommended_durations": [{"duration_label": "10 minutes"}, {"duration_label": "30 minutes"}],
+              "impact_rating_id": 3,
+              "difficulty_level_id": 1,
+              "frequency": "Optional or calming reset",
+              "is_common": True,
+              "notes": "Don’t worry about gear — your phone works fine. Look for light, shadows, shapes, or subtle motion.",
+              "objectives": ["ground_in_nature", "train_visual_awareness", "reduce_stress"]
+          },
+          {
+              "name": "Art Walk with a Theme",
+              "description": "Choose a visual theme and go find it out in the world.",
+              "benefit_synopsis": "Turns everyday walks into creative missions.",
+              "recommended_durations": [{"duration_label": "10 minutes"}, {"duration_label": "30 minutes"}],
+              "impact_rating_id": 3,
+              "difficulty_level_id": 1,
+              "frequency": "Optional or weekly",
+              "is_common": True,
+              "notes": "Themes can be color-based (like 'blue'), shape-driven ('circles'), or mood-based ('abandoned'). Document what you find however you like.",
+              "objectives": ["engage_with_environment", "practice_observational_focus", "spark_playful_exploration"]
+          }
+      ],
+
+    #  PRACTICE SUBCATEGORY
+      "Writing & Storytelling (Journaling, Poetry, Fiction)": [],
+
+    #  PRACTICE SUBCATEGORY
+      "Music & Rhythm (Instruments, Drumming, Dance)": [],
+
+    #  PRACTICE SUBCATEGORY
+      "Games & Puzzles (Board Games, Video Games, Strategy)": [],
+
+    #  PRACTICE SUBCATEGORY
+      "Tactile & Mindful Hobbies (Knitting, Coloring, Sculpting)": [],
+
+    #  PRACTICE SUBCATEGORY
+      "DIY, Gardening & Home Projects (Gardening, Repairs, Woodworking)": [],
+
+    #  PRACTICE SUBCATEGORY
+      "Food & Flavor (Cooking, Baking, Ferments, Plating)": [],
+
+    #  PRACTICE SUBCATEGORY
+      "Collections & Curated Interests (Cards, Coins, etc.)": [],
+
+    #  PRACTICE SUBCATEGORY
+      "Social Activities & Sports (Recreational Movement & Group Games)": [],
+
+    #  PRACTICE SUBCATEGORY
+      "Exploration & Experience (Outdoor Activities, Travel, Culture)": []
+  },
+
 
   # PRACTICE CATEGORY
   # "Restoration, Relaxation & Self-Care": {
@@ -2195,9 +2722,10 @@ new_practice_data = {
 # "Purpose, Planning, and Deep Work": [
   
 # ],
-# "Fostering/Strengthening Connections": [
+# "Building Connections": [
   
 # ],
+}
 
 
 practice_data = {
