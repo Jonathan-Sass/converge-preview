@@ -1,0 +1,170 @@
+Date : 2025-04-09 21:29:24
+Directory : c:\Users\jonsa\Documents\CodingProjects\Converge
+Total : 110 files,  21345 codes, 1875 comments, 1829 blanks, all 25049 lines
+
+Languages
++--------------------+------------+------------+------------+------------+------------+
+| language           | files      | code       | comment    | blank      | total      |
++--------------------+------------+------------+------------+------------+------------+
+| Python             |         46 |     11,886 |        962 |      1,135 |     13,983 |
+| HTML               |         39 |      7,415 |        641 |        324 |      8,380 |
+| JavaScript         |         14 |      1,455 |        225 |        290 |      1,970 |
+| JSON               |          3 |        254 |          0 |          3 |        257 |
+| CSS                |          1 |        154 |         44 |         38 |        236 |
+| Markdown           |          2 |        134 |          0 |         29 |        163 |
+| JSON with Comments |          1 |         14 |          0 |          0 |         14 |
+| pip requirements   |          1 |         12 |          0 |          1 |         13 |
+| toml               |          1 |         11 |          0 |          4 |         15 |
+| MS SQL             |          1 |         10 |          3 |          4 |         17 |
+| SCSS               |          1 |          0 |          0 |          1 |          1 |
++--------------------+------------+------------+------------+------------+------------+
+
+Directories
++-----------------------------------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                                                                                                          | files      | code       | comment    | blank      | total      |
++-----------------------------------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                                                                                             |        110 |     21,345 |      1,875 |      1,829 |     25,049 |
+| . (Files)                                                                                                                                     |          8 |        423 |          0 |         39 |        462 |
+| database                                                                                                                                      |         18 |      9,184 |        493 |        358 |     10,035 |
+| database\models                                                                                                                               |          1 |          0 |          0 |          1 |          1 |
+| database\schema                                                                                                                               |          1 |         10 |          3 |          4 |         17 |
+| database\seed                                                                                                                                 |          5 |        994 |        229 |        244 |      1,467 |
+| database\seed_data                                                                                                                            |         11 |      8,180 |        261 |        109 |      8,550 |
+| flask_app                                                                                                                                     |         82 |     11,530 |      1,379 |      1,427 |     14,336 |
+| flask_app (Files)                                                                                                                             |          1 |          3 |          0 |          3 |          6 |
+| flask_app\config                                                                                                                              |          2 |         79 |         46 |         18 |        143 |
+| flask_app\controllers                                                                                                                         |         11 |        585 |        166 |        262 |      1,013 |
+| flask_app\models                                                                                                                              |         13 |      1,946 |        259 |        473 |      2,678 |
+| flask_app\models_deprecated.py                                                                                                                |          2 |        101 |          1 |         23 |        125 |
+| flask_app\scss                                                                                                                                |          1 |          0 |          0 |          1 |          1 |
+| flask_app\static                                                                                                                              |         15 |      1,609 |        269 |        328 |      2,206 |
+| flask_app\static\css                                                                                                                          |          1 |        154 |         44 |         38 |        236 |
+| flask_app\static\js                                                                                                                           |         14 |      1,455 |        225 |        290 |      1,970 |
+| flask_app\templates                                                                                                                           |         37 |      7,207 |        638 |        319 |      8,164 |
+| flask_app\templates (Files)                                                                                                                   |          1 |         90 |          1 |          9 |        100 |
+| flask_app\templates\auth                                                                                                                      |          2 |        118 |          0 |         11 |        129 |
+| flask_app\templates\dashboard                                                                                                                 |          4 |      1,464 |        147 |        127 |      1,738 |
+| flask_app\templates\goals                                                                                                                     |          6 |      1,586 |        122 |         72 |      1,780 |
+| flask_app\templates\home                                                                                                                      |          4 |        509 |        197 |         17 |        723 |
+| flask_app\templates\routines                                                                                                                  |          5 |        918 |         42 |         38 |        998 |
+| flask_app\templates\surveys                                                                                                                   |          4 |        701 |         55 |         30 |        786 |
+| flask_app\templates\surveys_deprecated                                                                                                        |         11 |      1,821 |         74 |         15 |      1,910 |
+| page_templates                                                                                                                                |          2 |        208 |          3 |          5 |        216 |
++-----------------------------------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++-----------------------------------------------------------------------------------------------------------------------------------------------+--------------------+------------+------------+------------+------------+
+| filename                                                                                                                                      | language           | code       | comment    | blank      | total      |
++-----------------------------------------------------------------------------------------------------------------------------------------------+--------------------+------------+------------+------------+------------+
+| c:\Users\jonsa\Documents\CodingProjects\Converge\DB_Data_Statements.md                                                                        | Markdown           |         20 |          0 |          0 |         20 |
+| c:\Users\jonsa\Documents\CodingProjects\Converge\Pipfile                                                                                      | toml               |         11 |          0 |          4 |         15 |
+| c:\Users\jonsa\Documents\CodingProjects\Converge\Pipfile.lock                                                                                 | JSON               |        194 |          0 |          1 |        195 |
+| c:\Users\jonsa\Documents\CodingProjects\Converge\README.md                                                                                    | Markdown           |        114 |          0 |         29 |        143 |
+| c:\Users\jonsa\Documents\CodingProjects\Converge\database\models\models.py                                                                    | Python             |          0 |          0 |          1 |          1 |
+| c:\Users\jonsa\Documents\CodingProjects\Converge\database\schema\post_forward_constraints.sql                                                 | MS SQL             |         10 |          3 |          4 |         17 |
+| c:\Users\jonsa\Documents\CodingProjects\Converge\database\seed\misc_practice_data_seed.py                                                     | Python             |        242 |          8 |         14 |        264 |
+| c:\Users\jonsa\Documents\CodingProjects\Converge\database\seed\practice_seed.py                                                               | Python             |        191 |         19 |         55 |        265 |
+| c:\Users\jonsa\Documents\CodingProjects\Converge\database\seed\routine_template_seed.py                                                       | Python             |        124 |          2 |         26 |        152 |
+| c:\Users\jonsa\Documents\CodingProjects\Converge\database\seed\survey_seed.py                                                                 | Python             |        424 |        196 |        142 |        762 |
+| c:\Users\jonsa\Documents\CodingProjects\Converge\database\seed\time_interval_seed.py                                                          | Python             |         13 |          4 |          7 |         24 |
+| c:\Users\jonsa\Documents\CodingProjects\Converge\database\seed_data\generic_survey_answer_data.py                                             | Python             |        229 |         37 |          2 |        268 |
+| c:\Users\jonsa\Documents\CodingProjects\Converge\database\seed_data\goal_blueprint_data.py                                                    | Python             |          0 |          0 |          1 |          1 |
+| c:\Users\jonsa\Documents\CodingProjects\Converge\database\seed_data\habit_anchors_data.py                                                     | Python             |          0 |          0 |          1 |          1 |
+| c:\Users\jonsa\Documents\CodingProjects\Converge\database\seed_data\interests_data.py                                                         | Python             |          2 |          0 |          1 |          3 |
+| c:\Users\jonsa\Documents\CodingProjects\Converge\database\seed_data\practice_attribute_data.py                                                | Python             |        138 |          0 |         10 |        148 |
+| c:\Users\jonsa\Documents\CodingProjects\Converge\database\seed_data\practice_data.py                                                          | Python             |      5,285 |         46 |         61 |      5,392 |
+| c:\Users\jonsa\Documents\CodingProjects\Converge\database\seed_data\routine_template_data.py                                                  | Python             |        158 |          2 |          2 |        162 |
+| c:\Users\jonsa\Documents\CodingProjects\Converge\database\seed_data\strategies_data.py                                                        | Python             |          0 |          0 |          1 |          1 |
+| c:\Users\jonsa\Documents\CodingProjects\Converge\database\seed_data\subcategory_data.py                                                       | Python             |        287 |          1 |          7 |        295 |
+| c:\Users\jonsa\Documents\CodingProjects\Converge\database\seed_data\survey_branching_data.py                                                  | Python             |         12 |         33 |          6 |         51 |
+| c:\Users\jonsa\Documents\CodingProjects\Converge\database\seed_data\survey_question_data.py                                                   | Python             |      2,069 |        142 |         17 |      2,228 |
+| c:\Users\jonsa\Documents\CodingProjects\Converge\flask_app\__init__.py                                                                        | Python             |          3 |          0 |          3 |          6 |
+| c:\Users\jonsa\Documents\CodingProjects\Converge\flask_app\config\YouLeveled.code-workspace                                                   | JSON with Comments |         14 |          0 |          0 |         14 |
+| c:\Users\jonsa\Documents\CodingProjects\Converge\flask_app\config\mysqlconnection.py                                                          | Python             |         65 |         46 |         18 |        129 |
+| c:\Users\jonsa\Documents\CodingProjects\Converge\flask_app\controllers\categories.py                                                          | Python             |         17 |          0 |          7 |         24 |
+| c:\Users\jonsa\Documents\CodingProjects\Converge\flask_app\controllers\dashboards.py                                                          | Python             |         90 |          0 |         27 |        117 |
+| c:\Users\jonsa\Documents\CodingProjects\Converge\flask_app\controllers\flex_tasks.py                                                          | Python             |         39 |          0 |         13 |         52 |
+| c:\Users\jonsa\Documents\CodingProjects\Converge\flask_app\controllers\goals.py                                                               | Python             |         72 |          0 |         26 |         98 |
+| c:\Users\jonsa\Documents\CodingProjects\Converge\flask_app\controllers\practices.py                                                           | Python             |         21 |         10 |         12 |         43 |
+| c:\Users\jonsa\Documents\CodingProjects\Converge\flask_app\controllers\routine_templates.py                                                   | Python             |         18 |          0 |          6 |         24 |
+| c:\Users\jonsa\Documents\CodingProjects\Converge\flask_app\controllers\routines.py                                                            | Python             |        116 |          0 |         37 |        153 |
+| c:\Users\jonsa\Documents\CodingProjects\Converge\flask_app\controllers\subcategories.py                                                       | Python             |          1 |          0 |          1 |          2 |
+| c:\Users\jonsa\Documents\CodingProjects\Converge\flask_app\controllers\user_responses.py                                                      | Python             |          5 |          0 |          2 |          7 |
+| c:\Users\jonsa\Documents\CodingProjects\Converge\flask_app\controllers\user_surveys.py                                                        | Python             |         89 |        156 |         93 |        338 |
+| c:\Users\jonsa\Documents\CodingProjects\Converge\flask_app\controllers\users.py                                                               | Python             |        117 |          0 |         38 |        155 |
+| c:\Users\jonsa\Documents\CodingProjects\Converge\flask_app\models\action_item.py                                                              | Python             |         69 |          0 |         14 |         83 |
+| c:\Users\jonsa\Documents\CodingProjects\Converge\flask_app\models\category.py                                                                 | Python             |         84 |          1 |         18 |        103 |
+| c:\Users\jonsa\Documents\CodingProjects\Converge\flask_app\models\duration.py                                                                 | Python             |         74 |          0 |         16 |         90 |
+| c:\Users\jonsa\Documents\CodingProjects\Converge\flask_app\models\flex_task.py                                                                | Python             |        103 |          0 |         29 |        132 |
+| c:\Users\jonsa\Documents\CodingProjects\Converge\flask_app\models\goal.py                                                                     | Python             |        276 |         69 |         47 |        392 |
+| c:\Users\jonsa\Documents\CodingProjects\Converge\flask_app\models\milestone.py                                                                | Python             |         70 |          0 |         16 |         86 |
+| c:\Users\jonsa\Documents\CodingProjects\Converge\flask_app\models\practice.py                                                                 | Python             |        176 |          0 |         30 |        206 |
+| c:\Users\jonsa\Documents\CodingProjects\Converge\flask_app\models\routine.py                                                                  | Python             |        306 |         26 |         68 |        400 |
+| c:\Users\jonsa\Documents\CodingProjects\Converge\flask_app\models\routine_template.py                                                         | Python             |        117 |          0 |         22 |        139 |
+| c:\Users\jonsa\Documents\CodingProjects\Converge\flask_app\models\subcategory.py                                                              | Python             |         56 |          0 |         20 |         76 |
+| c:\Users\jonsa\Documents\CodingProjects\Converge\flask_app\models\user.py                                                                     | Python             |        156 |         93 |         51 |        300 |
+| c:\Users\jonsa\Documents\CodingProjects\Converge\flask_app\models\user_response.py                                                            | Python             |        266 |         60 |         93 |        419 |
+| c:\Users\jonsa\Documents\CodingProjects\Converge\flask_app\models\user_survey.py                                                              | Python             |        193 |         10 |         49 |        252 |
+| c:\Users\jonsa\Documents\CodingProjects\Converge\flask_app\models_deprecated.py\health_goal_deprecated.py                                     | Python             |         14 |          0 |          4 |         18 |
+| c:\Users\jonsa\Documents\CodingProjects\Converge\flask_app\models_deprecated.py\time_domain_deprecated.py                                     | Python             |         87 |          1 |         19 |        107 |
+| c:\Users\jonsa\Documents\CodingProjects\Converge\flask_app\scss\custom.scss                                                                   | SCSS               |          0 |          0 |          1 |          1 |
+| c:\Users\jonsa\Documents\CodingProjects\Converge\flask_app\static\css\style.css                                                               | CSS                |        154 |         44 |         38 |        236 |
+| c:\Users\jonsa\Documents\CodingProjects\Converge\flask_app\static\js\action-item-manager.js                                                   | JavaScript         |         87 |          2 |         15 |        104 |
+| c:\Users\jonsa\Documents\CodingProjects\Converge\flask_app\static\js\add-action-items-deprecated.js                                           | JavaScript         |         36 |          1 |          7 |         44 |
+| c:\Users\jonsa\Documents\CodingProjects\Converge\flask_app\static\js\dashboard-manager.js                                                     | JavaScript         |         75 |          1 |         20 |         96 |
+| c:\Users\jonsa\Documents\CodingProjects\Converge\flask_app\static\js\goal-manager.js                                                          | JavaScript         |        255 |          5 |         19 |        279 |
+| c:\Users\jonsa\Documents\CodingProjects\Converge\flask_app\static\js\horizontal-scroll.js                                                     | JavaScript         |         61 |          7 |         11 |         79 |
+| c:\Users\jonsa\Documents\CodingProjects\Converge\flask_app\static\js\milestone-manager.js                                                     | JavaScript         |        117 |          5 |         14 |        136 |
+| c:\Users\jonsa\Documents\CodingProjects\Converge\flask_app\static\js\routine-manager.js                                                       | JavaScript         |         69 |          8 |         15 |         92 |
+| c:\Users\jonsa\Documents\CodingProjects\Converge\flask_app\static\js\save-goal.js                                                             | JavaScript         |        135 |         39 |         30 |        204 |
+| c:\Users\jonsa\Documents\CodingProjects\Converge\flask_app\static\js\search-filter-practices.js                                               | JavaScript         |        155 |         20 |         35 |        210 |
+| c:\Users\jonsa\Documents\CodingProjects\Converge\flask_app\static\js\sortable-containers.js                                                   | JavaScript         |         33 |          3 |          8 |         44 |
+| c:\Users\jonsa\Documents\CodingProjects\Converge\flask_app\static\js\swiper.js                                                                | JavaScript         |         23 |          3 |          2 |         28 |
+| c:\Users\jonsa\Documents\CodingProjects\Converge\flask_app\static\js\timeframe-to-date.js                                                     | JavaScript         |         55 |          0 |         13 |         68 |
+| c:\Users\jonsa\Documents\CodingProjects\Converge\flask_app\static\js\ui-effects.js                                                            | JavaScript         |         12 |          5 |          6 |         23 |
+| c:\Users\jonsa\Documents\CodingProjects\Converge\flask_app\static\js\user-surveys.js                                                          | JavaScript         |        342 |        126 |         95 |        563 |
+| c:\Users\jonsa\Documents\CodingProjects\Converge\flask_app\templates\auth\login.html                                                          | HTML               |         53 |          0 |          4 |         57 |
+| c:\Users\jonsa\Documents\CodingProjects\Converge\flask_app\templates\auth\registration.html                                                   | HTML               |         65 |          0 |          7 |         72 |
+| c:\Users\jonsa\Documents\CodingProjects\Converge\flask_app\templates\dashboard\dashboard.html                                                 | HTML               |        473 |         49 |         47 |        569 |
+| c:\Users\jonsa\Documents\CodingProjects\Converge\flask_app\templates\dashboard\dashboard_intro.html                                           | HTML               |        440 |         49 |         39 |        528 |
+| c:\Users\jonsa\Documents\CodingProjects\Converge\flask_app\templates\dashboard\dashboard_intro_am_practices.html                              | HTML               |        475 |         49 |         38 |        562 |
+| c:\Users\jonsa\Documents\CodingProjects\Converge\flask_app\templates\dashboard\new_user.html                                                  | HTML               |         76 |          0 |          3 |         79 |
+| c:\Users\jonsa\Documents\CodingProjects\Converge\flask_app\templates\goals\health_goal_selector.html                                          | HTML               |        102 |          0 |          5 |        107 |
+| c:\Users\jonsa\Documents\CodingProjects\Converge\flask_app\templates\goals\quiz_health_goals.html                                             | HTML               |        303 |          3 |          2 |        308 |
+| c:\Users\jonsa\Documents\CodingProjects\Converge\flask_app\templates\goals\set_goal_intro.html                                                | HTML               |        437 |         32 |         21 |        490 |
+| c:\Users\jonsa\Documents\CodingProjects\Converge\flask_app\templates\goals\set_goal_intro_select_subcat.html                                  | HTML               |        221 |          3 |         26 |        250 |
+| c:\Users\jonsa\Documents\CodingProjects\Converge\flask_app\templates\goals\set_goals_for_category_likely_deprecated.html                      | HTML               |        347 |         78 |         18 |        443 |
+| c:\Users\jonsa\Documents\CodingProjects\Converge\flask_app\templates\goals\set_goals_template.html                                            | HTML               |        176 |          6 |          0 |        182 |
+| c:\Users\jonsa\Documents\CodingProjects\Converge\flask_app\templates\home\dashboard_OG.html                                                   | HTML               |        272 |         73 |          7 |        352 |
+| c:\Users\jonsa\Documents\CodingProjects\Converge\flask_app\templates\home\goals_dashboard_test.html                                           | HTML               |         73 |          3 |          9 |         85 |
+| c:\Users\jonsa\Documents\CodingProjects\Converge\flask_app\templates\home\index.html                                                          | HTML               |         50 |        104 |          1 |        155 |
+| c:\Users\jonsa\Documents\CodingProjects\Converge\flask_app\templates\home\intro.html                                                          | HTML               |        114 |         17 |          0 |        131 |
+| c:\Users\jonsa\Documents\CodingProjects\Converge\flask_app\templates\login_registration_deprecated.html                                       | HTML               |         90 |          1 |          9 |        100 |
+| c:\Users\jonsa\Documents\CodingProjects\Converge\flask_app\templates\routines\am_routine_build_your_own.html                                  | HTML               |        218 |         10 |          8 |        236 |
+| c:\Users\jonsa\Documents\CodingProjects\Converge\flask_app\templates\routines\am_routine_builder.html                                         | HTML               |        174 |          8 |          7 |        189 |
+| c:\Users\jonsa\Documents\CodingProjects\Converge\flask_app\templates\routines\am_routine_intro_build_your_own.html                            | HTML               |        258 |         10 |         10 |        278 |
+| c:\Users\jonsa\Documents\CodingProjects\Converge\flask_app\templates\routines\am_routine_intro_carousel.html                                  | HTML               |         87 |          6 |         11 |        104 |
+| c:\Users\jonsa\Documents\CodingProjects\Converge\flask_app\templates\routines\routines_template.html                                          | HTML               |        181 |          8 |          2 |        191 |
+| c:\Users\jonsa\Documents\CodingProjects\Converge\flask_app\templates\surveys\day_map.html                                                     | HTML               |        183 |          7 |          6 |        196 |
+| c:\Users\jonsa\Documents\CodingProjects\Converge\flask_app\templates\surveys\discipline_motivation_focus_map.html                             | HTML               |        156 |         32 |          8 |        196 |
+| c:\Users\jonsa\Documents\CodingProjects\Converge\flask_app\templates\surveys\interest-map.html                                                | HTML               |        175 |          9 |          8 |        192 |
+| c:\Users\jonsa\Documents\CodingProjects\Converge\flask_app\templates\surveys\user_orientation.html                                            | HTML               |        187 |          7 |          8 |        202 |
+| c:\Users\jonsa\Documents\CodingProjects\Converge\flask_app\templates\surveys_deprecated\survey_foundations_current_habits_patterns.html       | HTML               |        177 |          7 |          1 |        185 |
+| c:\Users\jonsa\Documents\CodingProjects\Converge\flask_app\templates\surveys_deprecated\survey_foundations_getting_to_know_you.html           | HTML               |        177 |          7 |          1 |        185 |
+| c:\Users\jonsa\Documents\CodingProjects\Converge\flask_app\templates\surveys_deprecated\survey_foundations_reflecting_purpose_motivation.html | HTML               |        177 |          7 |          1 |        185 |
+| c:\Users\jonsa\Documents\CodingProjects\Converge\flask_app\templates\surveys_deprecated\survey_foundations_social_support_accountability.html | HTML               |        177 |          7 |          1 |        185 |
+| c:\Users\jonsa\Documents\CodingProjects\Converge\flask_app\templates\surveys_deprecated\survey_getting_started.html                           | HTML               |        192 |          7 |          5 |        204 |
+| c:\Users\jonsa\Documents\CodingProjects\Converge\flask_app\templates\surveys_deprecated\survey_topic_template.html                            | HTML               |        175 |          6 |          1 |        182 |
+| c:\Users\jonsa\Documents\CodingProjects\Converge\flask_app\templates\surveys_deprecated\survey_why_define_your_purpose.html                   | HTML               |        157 |          6 |          1 |        164 |
+| c:\Users\jonsa\Documents\CodingProjects\Converge\flask_app\templates\surveys_deprecated\survey_why_define_your_values.html                    | HTML               |        150 |          7 |          1 |        158 |
+| c:\Users\jonsa\Documents\CodingProjects\Converge\flask_app\templates\surveys_deprecated\survey_why_growth_drivers.html                        | HTML               |        150 |          7 |          1 |        158 |
+| c:\Users\jonsa\Documents\CodingProjects\Converge\flask_app\templates\surveys_deprecated\survey_why_intro.html                                 | HTML               |        139 |          6 |          1 |        146 |
+| c:\Users\jonsa\Documents\CodingProjects\Converge\flask_app\templates\surveys_deprecated\survey_why_long_term_vision.html                      | HTML               |        150 |          7 |          1 |        158 |
+| c:\Users\jonsa\Documents\CodingProjects\Converge\package-lock.json                                                                            | JSON               |         52 |          0 |          1 |         53 |
+| c:\Users\jonsa\Documents\CodingProjects\Converge\package.json                                                                                 | JSON               |          8 |          0 |          1 |          9 |
+| c:\Users\jonsa\Documents\CodingProjects\Converge\page_templates\generic_with_sidebar.html                                                     | HTML               |        147 |          3 |          2 |        152 |
+| c:\Users\jonsa\Documents\CodingProjects\Converge\page_templates\thoughts_for_new_user.html                                                    | HTML               |         61 |          0 |          3 |         64 |
+| c:\Users\jonsa\Documents\CodingProjects\Converge\requirements.txt                                                                             | pip requirements   |         12 |          0 |          1 |         13 |
+| c:\Users\jonsa\Documents\CodingProjects\Converge\server.py                                                                                    | Python             |         12 |          0 |          2 |         14 |
+| Total                                                                                                                                         |                    |     21,345 |      1,875 |      1,829 |     25,049 |
++-----------------------------------------------------------------------------------------------------------------------------------------------+--------------------+------------+------------+------------+------------+
