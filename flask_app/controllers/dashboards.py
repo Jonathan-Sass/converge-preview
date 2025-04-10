@@ -40,7 +40,8 @@ def dashboard():
     dashboard_data = {
         "user": user,
         "routines": routine_data,
-        "goals": filtered_goal_data,
+        "goals": goal_data,
+        "filtered_goals": filtered_goal_data,
         "flex_tasks": flex_task_data,
         "priority_order": priority_order
     }
