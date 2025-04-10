@@ -213,6 +213,13 @@ class Goal:
     
 
     @staticmethod
+    def filter_flex_task_goals_from_goal_data(goal_data, flex_task_goal_ids):
+        """Filters a user's goals in their flex tasks from the goal_data rendered in actionable items on the dashboard"""
+        filtered_goal_data = [goal for goal in goal_data if goal.id not in flex_task_goal_ids]
+        return filtered_goal_data
+
+
+    @staticmethod
     def process_and_save_subcategory_goals_data(subcategory_goal_data):
         """Processes and saves a set of user-submitted goals, milestones, and action items."""
         try:
