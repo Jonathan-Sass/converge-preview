@@ -124,49 +124,57 @@
           
           {% for practice in routine.practices %}
           <!-- Practice Cards -->
-          <div class="practice-card card shadow p-2 text-center mb-3 col-3 sortable-card min-width-300"
-            data-practice-id="{{ practice.id }}" data-order="{{ loop.index }}" id="practice-{{ loop.index }}">
-            <!-- <div class="h5 practice-category">{{practice.practice_category }}</div> -->
-            <div class="card-body compact-card d-flex flex-column gap-2">
+          <div class="sortable-card d-flex flex-column gap-1 col-3 min-width-300">
+            <div class="card shadow p-2 mb-1 text-center">
+              <h5 class="card-title text-primary">{{ practice.practice_category }}</h5>
+            </div>
+            <div class="practice-card card shadow p-2 text-center mb-3"
+              data-practice-id="{{ practice.id }}" data-order="{{ loop.index }}" id="practice-{{ loop.index }}">
               <div class="card-header">
-                <h5 class="card-order text-primary">{{ loop.index }}. </h5>
-                <h5 class="practice-name text-primary">{{ practice.name }}</h5>
-                <span class="badge difficulty-badge d-block">Difficulty: {{ practice.difficulty }}</span>
-                <span class="badge impact-badge">{{ practice.impact_rating_description | truncate(30) }}</span>
+                <div class="d-flex m-auto gap-2 justify-content-center">
+                  <h5 class="card-order text-primary">{{ loop.index }}. </h5>
+                  <h5 class="practice-name text-primary">{{ practice.name }}</h5>
+                </div>
+                <div class="d-flex flex-column gap-1">
+                  <span class="badge bg-primary p-2 difficulty-badge">Difficulty: {{ practice.difficulty }}</span>
+                  <span class="badge bg-primary p-2 impact-badge">{{ practice.impact_rating_description | truncate(30) }}</span>
+                </div>
               </div>
-              <p class="short-description">{{ practice.description | truncate(100) }}</p>
-              <select class="form-select duration mb-2" aria-label="Default select example"
-                id="{{ practice.name }}-duration">
-                {% for duration in practice.durations %}
-                <option value="{{ duration.id }}">{{ duration.duration_label }}
-                  {% if duration.engagement_level %}
-                    ({{ duration.engagement_level }})
-                  {% endif %}
-                </option>
-                {% endfor %}
-              </select>
-              <div class="accordion accordion-flush" id="practice{{practice.id}}InfoAccordion">
-                <div class="accordion-item">
-                  <h2 class="accordion-header" id="heading{{practice.id}}">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{practice.id}}" aria-expanded="false" aria-controls="collapse{{practice.id}}">
-                      More Information
-                    </button>
-                  </h2>
-                  <div id="collapse{{practice.id}}" class="accordion-collapse collapse" aria-labelledby="heading{{practice.id}}" data-bs-parent="#practice{{ practice.id }}InfoAccordion">
-                    <div class="accordion-body">
-                      <!-- Additional practice details go here -->
-                      {% if practice.literature_summary %}
-                      <p><strong>What does literature say?</strong> {{ practice.literature_summary }}</p>
-                      {% endif %}
-                      {% if practice.notes %}
-                      <p><strong>Additional Notes:</strong> {{ practice.notes }}</p>
-                      {% endif %}
+              <div class="card-body compact-card d-flex flex-column gap-2">
+                <p class="short-description">{{ practice.description | truncate(100) }}</p>
+                <select class="form-select duration mb-2" aria-label="Default select example"
+                  id="{{ practice.name }}-duration">
+                  {% for duration in practice.durations %}
+                  <option value="{{ duration.id }}">{{ duration.duration_label }}
+                    {% if duration.engagement_level %}
+                      ({{ duration.engagement_level }})
+                    {% endif %}
+                  </option>
+                  {% endfor %}
+                </select>
+                <div class="accordion accordion-flush" id="practice{{practice.id}}InfoAccordion">
+                  <div class="accordion-item">
+                    <h2 class="accordion-header" id="heading{{practice.id}}">
+                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{practice.id}}" aria-expanded="false" aria-controls="collapse{{practice.id}}">
+                        More Information
+                      </button>
+                    </h2>
+                    <div id="collapse{{practice.id}}" class="accordion-collapse collapse" aria-labelledby="heading{{practice.id}}" data-bs-parent="#practice{{ practice.id }}InfoAccordion">
+                      <div class="accordion-body">
+                        <!-- Additional practice details go here -->
+                        {% if practice.literature_summary %}
+                        <p><strong>What does literature say?</strong> {{ practice.literature_summary }}</p>
+                        {% endif %}
+                        {% if practice.notes %}
+                        <p><strong>Additional Notes:</strong> {{ practice.notes }}</p>
+                        {% endif %}
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-              <div class="card-footer d-flex flex-column mb-2 p-3">
-                <button class="btn btn-outline-danger mb-2 remove-practice-btn">Remove</button>
+                <div class="card-footer d-flex flex-column mb-2 p-3">
+                  <button class="btn btn-outline-danger mb-2 remove-practice-btn">Remove</button>
+                </div>
               </div>
             </div>
           </div>
