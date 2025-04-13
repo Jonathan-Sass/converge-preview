@@ -43,38 +43,38 @@ class UserSurvey:
         """
         query = """
             SELECT 
-                categories.name AS category,
-                subcategories.id AS subcategory_id,
-                subcategories.name AS subcategory,
-                subcategories.subcategory_slug,
-                survey_questions.id AS question_id,
-                survey_questions.question_slug,
-                survey_questions.question_text,
-                survey_questions.type,
-                survey_answers.id AS answer_id,
-                survey_answers.answer_text, 
-                survey_answers.answer_value,
-                survey_branching.answer_value AS branch_answer_value,
-                survey_branching.next_question_id,
+                c.name AS category,
+                sc.id AS subcategory_id,
+                sc.name AS subcategory,
+                sc.subcategory_slug,
+                sq.id AS question_id,
+                sq.question_slug,
+                sq.question_text,
+                sq.type,
+                sa.id AS answer_id,
+                sa.answer_text, 
+                sa.answer_value,
+                sb.answer_value AS branch_answer_value,
+                sb.next_question_id,
                 sq_next.question_slug AS next_question_slug
             FROM 
-                survey_questions
+                survey_questions sq
             JOIN
-              subcategories ON survey_questions.subcategory_id  = subcategories.id
+              subcategories sc ON sq.subcategory_id  = sc.id
             JOIN
-              categories ON subcategories.category_id = categories.id
+              categories c ON sc.category_id = c.id
             LEFT JOIN
-                survey_question_answer_map ON survey_question_answer_map.survey_question_id = survey_questions.id
+                survey_question_answer_map sqam ON sqam.survey_question_id = sq.id
             LEFT JOIN
-                survey_answers ON survey_answers.id = survey_question_answer_map.survey_answer_id
+                survey_answers sa ON sa.id = sqam.survey_answer_id
             LEFT JOIN 
-                survey_branching ON survey_questions.id = survey_branching.survey_question_id
+                survey_branching sb ON sq.id = sb.survey_question_id
             LEFT JOIN
-                survey_questions sq_next ON survey_branching.next_question_id = sq_next.id
+                survey_questions sq_next ON sb.next_question_id = sq_next.id
             WHERE 
-                subcategories.subcategory_slug = %(subcategory)s
+                sc.subcategory_slug = %(subcategory)s
             ORDER BY
-                subcategory_id, survey_questions.id, survey_answers.id;
+                subcategory_id, sq.id, sa.id;
           """
         
         data = {
@@ -93,6 +93,54 @@ class UserSurvey:
 
         return question_set, survey_branches
 
+    def find_questions_by_id_range(start_id, end_id):
+        query = """
+          SELECT 
+                c.name AS category,
+                sc.id AS subcategory_id,
+                sc.name AS subcategory,
+                sc.subcategory_slug,
+                sq.id AS question_id,
+                sq.question_slug,
+                sq.question_text,
+                sq.type,
+                sa.id AS answer_id,
+                sa.answer_text, 
+                sa.answer_value,
+                sb.answer_value AS branch_answer_value,
+                sb.next_question_id,
+                sq_next.question_slug AS next_question_slug
+            FROM 
+                survey_questions sq
+            JOIN
+              subcategories sc ON sq.subcategory_id  = sc.id
+            JOIN
+              categories c ON sc.category_id = c.id
+            LEFT JOIN
+                survey_question_answer_map sqam ON sqam.survey_question_id = sq.id
+            LEFT JOIN
+                survey_answers sa ON sa.id = sqam.survey_answer_id
+            LEFT JOIN 
+                survey_branching sb ON sq.id = sb.survey_question_id
+            LEFT JOIN
+                survey_questions sq_next ON sb.next_question_id = sq_next.id
+            WHERE 
+                question_id BETWEEN %(start_id)s AND %(end_id)s
+            ORDER BY
+                subcategory_id, sq.id, sa.id;
+        """
+
+        data = {
+            "start_id": start_id,
+            "end_id": end_id
+        }
+
+        result = UserSurvey.db.query_db(query, data)
+        
+        question_set = UserSurvey.process_question_data_for_frontend(result)
+        survey_branches = UserSurvey.process_survey_branch_data(result)
+
+        return question_set, survey_branches
     
     def process_survey_branch_data(questions):
         """
