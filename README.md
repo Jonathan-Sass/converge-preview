@@ -1,6 +1,6 @@
 # Converge
 
-**Converge** is a customizable, neuroscience-informed framework for goal setting, habit building, and intentional daily routines. Designed to reduce cognitive overload and help users bring meaningful actions to top-of-mind awareness, Converge serves as a gentle guide for growth-oriented individuals — without promoting hustle culture or toxic productivity.
+**Converge** is a customizable, neuroscience-informed framework for goal setting, habit building, and intentional daily routines. Designed to reduce cognitive load by bringing a variety of meaningful actions into a top-of-mind space. Converge serves as a gentle guide for growth-oriented individuals — without promoting hustle culture or toxic productivity.
 
 ---
 
