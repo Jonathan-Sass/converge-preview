@@ -23,6 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let selectedAnswers = [];
     let answerData = {}
     let collectedAnswers = [];
+    let selectLimit;
 
 
 // EVENT LISTENERS FOR SURVEYS
@@ -83,7 +84,7 @@ nextButton.addEventListener('click', (event) => {
     selectedAnswers = [];
     selectedButton = null;
 
-    // console.log('Collected Answers:', collectedAnswers);
+    console.log('Collected Answers:', collectedAnswers);
 
     updateCurrentQuestionIndex()
     setNextQuestion();
@@ -118,7 +119,7 @@ nextButton.addEventListener('click', (event) => {
   });
   
   
-  // SURVEY MECHANICS LOGIC
+  // LOGIC FOR SURVEY MECHANICS
   
   async function startSurvey() {
     resetState()
@@ -226,9 +227,11 @@ nextButton.addEventListener('click', (event) => {
     } else if (currentQuestion.type === 'guided-choice') {
       renderGuidedChoice(currentQuestion);
     } else if (currentQuestion.type === 'select-any') {
-      renderCheckboxSelectAny(currentQuestion);
+      renderSelectAny(currentQuestion);
     } else if (currentQuestion.type === 'select-any-add') {
-      renderCheckboxSelectAnyAddOpenAnswer(currentQuestion);
+      renderSelectAnyAddOpenAnswer(currentQuestion);
+    } else if (currentQuestion.type.match(/^select-(\d+)$/)) {
+      renderSelectWithLimit(currentQuestion)
     } else {
       renderGenericAnswers(currentQuestion);
     }
@@ -271,106 +274,105 @@ nextButton.addEventListener('click', (event) => {
       });
   }
 
-// function renderOpenAnswerWithExamples(currentQuestion) {
-//     // const answerButtons = document.getElementById('answer-buttons');
-//     // answerButtons.innerHTML = ''; // Clear previous answers
+  function renderSelectAny(currentQuestion) {
+      // const answerContainer = document.getElementById('answer-buttons');
+      // answerContainer.innerHTML = ''; // Clear previous answers
+
+      console.log('*****currentQuestion in renderSelectAny()*****')
+      console.log(currentQuestion)
+
+      populateAnswerCheckboxes(currentQuestion);
+
+      nextButton.classList.remove('d-none');
+      answerButtons.classList.remove('d-flex');
+  };
+
+  function renderSelectAnyAddOpenAnswer(currentQuestion) {
+    // const answerContainer = document.getElementById('answer-buttons');
+    // answerContainer.innerHTML = ''; // Clear previous answers
     
-//     // console.log('***currentQuestion in renderOpenAnswerWithExamples*****')
-//     // console.log(currentQuestion)
-
-//     if (currentQuestion.answers && currentQuestion.answers.length > 0) {
-//         currentQuestion.answers.forEach(answer => {
-//             const button = document.createElement('button');
-//             button.innerText = answer.answerText;
-//             button.setAttribute('data-question-id', currentQuestion.questionId);
-//             button.setAttribute('data-answer-id', answer.answerId);
-//             button.value = answerValue;
-//             button.classList.add('btn', 'btn-outline-dark', 'd-block', 'my-3', 'w-100', 'example-answer');
-//             button.addEventListener('click', selectAnswer);
-//             answerButtons.appendChild(button);
-//             // answerButtons.classList.remove('d-flex')
-
-//         });
-//     }
-
-//     answerButtons.appendChild(createOpenAnswerInput(currentQuestion.questionId));
-
-// }
-
-  function renderCheckboxSelectAny(currentQuestion) {
-      // const answerContainer = document.getElementById('answer-buttons');
-      // answerContainer.innerHTML = ''; // Clear previous answers
-
-      console.log('*****currentQuestion in renderCheckboxSelectAny()*****')
-      console.log(currentQuestion)
-
-      currentQuestion.answers.forEach((answer, index) => {
-          const label = document.createElement('label');
-          
-          label.classList.add('btn', 'btn-outline-dark', 'mb-1','form-check-label');
-          
-          const checkbox = document.createElement('input');
-          checkbox.type = 'checkbox';
-          checkbox.classList.add('form-check-input', 'mx-2');
-          checkbox.setAttribute('data-question-id', currentQuestion.questionId);
-          checkbox.setAttribute('data-answer-id', answer.answerId)
-          checkbox.id = answer.answerId;
-          checkbox.addEventListener('click', selectAnswer);
-          checkbox.value = answer.answerValue;
-          
-          const checkboxId = `checkbox-${currentQuestion.questionId}-${index}`;
-          checkbox.id = checkboxId;
-          label.setAttribute('for', checkboxId);
-          label.appendChild(document.createTextNode(answer.answerText));
-      
-          label.prepend(checkbox);
-          // label.addEventListener('click', selectAnswer)
-          checkboxContainer.appendChild(label);
-      });
-
-      nextButton.classList.remove('d-none');
-      answerButtons.classList.remove('d-flex')
+    console.log('*****currentQuestion in renderSelectAny()*****')
+    console.log(currentQuestion)
+    
+    populateAnswerCheckboxes(currentQuestion);
+    // TODO: ADD OPEN ANSWER FUNCTIONALITY
+    // createOpenAnswerInput()
+    
+    nextButton.classList.remove('d-none');
+    answerButtons.classList.remove('d-flex')
+    
   }
 
-  function renderCheckboxSelectAnyAddOpenAnswer(currentQuestion) {
-      // const answerContainer = document.getElementById('answer-buttons');
-      // answerContainer.innerHTML = ''; // Clear previous answers
-
-      console.log('*****currentQuestion in renderCheckboxSelectAny()*****')
-      console.log(currentQuestion)
-
-      currentQuestion.answers.forEach((answer, index) => {
-          const label = document.createElement('label');
-          label.classList.add('btn', 'btn-outline-dark', 'mb-1','form-check-label');
-          
-          const checkbox = document.createElement('input');
-          checkbox.type = 'checkbox';
-          checkbox.classList.add('form-check-input', 'mx-2');
-          checkbox.setAttribute('data-question-id', currentQuestion.questionId);
-          checkbox.setAttribute('data-answer-id', answer.answerId)
-          checkbox.id = answer.answerId;
-          checkbox.addEventListener('click', selectAnswer);
-          checkbox.value = answer.answerValue;
-          
-          const checkboxId = `checkbox-${currentQuestion.questionId}-${index}`;
-          checkbox.id = checkboxId;
-          label.setAttribute('for', checkboxId);
-          label.appendChild(document.createTextNode(answer.answerText));
+  function populateAnswerCheckboxes(currentQuestion) {
+    currentQuestion.answers.forEach((answer, index) => {
+      const label = document.createElement('label');
       
-          label.prepend(checkbox);
-          // label.addEventListener('click', selectAnswer)
-          checkboxContainer.appendChild(label);
-      });
+      label.classList.add('btn', 'btn-outline-dark', 'mb-1','form-check-label');
+      
+      const checkbox = document.createElement('input');
+      checkbox.type = 'checkbox';
+      checkbox.classList.add('form-check-input', 'mx-2');
+      checkbox.setAttribute('data-question-id', currentQuestion.questionId);
+      checkbox.setAttribute('data-answer-id', answer.answerId)
+      checkbox.id = answer.answerId;
+      checkbox.addEventListener('click', selectAnswer);
+      checkbox.value = answer.answerValue;
+      
+      const checkboxId = `checkbox-${currentQuestion.questionId}-${index}`;
+      checkbox.id = checkboxId;
+      label.setAttribute('for', checkboxId);
+      label.appendChild(document.createTextNode(answer.answerText));
+  
+      label.prepend(checkbox);
+      // label.addEventListener('click', selectAnswer)
+      checkboxContainer.appendChild(label);
+    });
+  };
 
-      nextButton.classList.remove('d-none');
-      answerButtons.classList.remove('d-flex')
+  function renderSelectWithLimit(currentQuestion) {
+    const {previousAnswerIds, questionId} = collectPreviousAnswerIds()
+    const previousAnswers = previousAnswersToArray(questionId, previousAnswerIds)
+    currentQuestion.answers = previousAnswers;
 
-      // TODO: ADD OPEN ANSWER FUNCTIONALITY
+    populateAnswerCheckboxes(currentQuestion);
 
-      // Add the open answer input after checkboxes
-      // answerContainer.appendChild(createOpenAnswerInput(currentQuestion.questionId));
+    nextButton.classList.remove('d-none');
+    answerButtons.classList.remove('d-flex');
+  };
+
+  function previousAnswersToArray(questionId, previousAnswerIds) {
+    const selectWithLimitAnswers = [];
+
+    currentQuestionSet.forEach(question => {
+      if (question.questionId === questionId) {
+        question.answers.forEach(answer => {
+          if (previousAnswerIds.includes(answer.answerIds)) {
+            selectWithLimitAnswers.push(answer);
+          }
+        })
+      }
+    })
+    return selectWithLimitAnswers;
+  };
+
+  function collectPreviousAnswerIds() {
+    const previousAnswerIds = [];
+    let questionId = 0;
+
+    if (collectedAnswers.length > 1) {
+      questionId = collectedAnswers[collectedAnswers.length - 1].question_id;
+    };
+    
+    // push 
+    collectedAnswers.forEach(answer => {
+        if (answer.question_id === questionId) {
+          previousAnswerIds.push(answer.answer_id);
+        }
+    });
+
+    return {previousAnswerIds, questionId};
   }
-
+  
   function createOpenAnswerInput(currentQuestion, placeholder = 'Your answer here...') {
       const openAnswerInput = document.createElement('textarea');
       openAnswerInput.setAttribute('placeholder', placeholder);
@@ -406,85 +408,103 @@ nextButton.addEventListener('click', (event) => {
           question_id: parseInt(selectedButton.getAttribute('data-question-id'), 10), 
           answer_id: parseInt(selectedButton.getAttribute('data-answer-id'), 10), 
           answer_type: currentQuestion.type
-      } 
+      };
       
       if (questionType === 'select-any' || questionType === 'select-any-add') {
-          answerData.checkbox_id = checkboxId
-          // answerData.answer_text = selectedButton.value
-
-          const answerIndex = selectedAnswers.findIndex(
-              answer => answer.checkbox_id === checkboxId
-          );
-
-          if (answerIndex > -1) {
-              selectedAnswers = selectedAnswers.filter(
-                  answer => answer.checkbox_id !== checkboxId
-              );
-
-              selectedButton.classList.remove('btn-dark');
-              selectedButton.classList.add('btn-outline-dark');
-              // selectedAnswers.splice(answerIndex, 1);
-
-              // console.log('*****selectedAnswers in selectAnswer()*****')
-              // console.log('Spliced answerIndex:' + answerIndex);
-              // console.log(selectedAnswers)
-              // console.log('***************')
-              // console.log('   ')
-          } else {
-              selectedAnswers = [...selectedAnswers, answerData]
-              selectedButton.classList.add('btn-dark');
-              selectedButton.classList.remove('btn-outline-dark');
-              // selectedAnswers.push(answerData)
-
-              // console.log('*****selectedAnswers in selectAnswer()*****')
-              // console.log('Pushed answerIndex:' + answerIndex);
-              // console.log(selectedAnswers)
-              // console.log('***************')
-              // console.log('   ')
-
-          }
-      // } else if (questionType === 'guided-choice') {
-      //     return
-      // } else if (questionType === 'open-answer') {
-      //     return
-      } else {
-          
-          if(selectedButton.value) {
-              answerData.answer_value = parseInt(selectedButton.value)
-              answerData.answer_text = selectedButton.innerText
-          }
-          // if (selectedButton.answerText) {
-          // }
-        
-          console.log("answerData in selectAnswer: ", answerData)
-
-          // For single choice, deselect all other buttons first
-          const allButtons = document.querySelectorAll('#answer-buttons > *');
-          allButtons.forEach(button => {
-              button.classList.remove('btn-dark');
-              button.classList.add('btn-outline-dark');
-          });
-
-          // Select the clicked button
-          selectedAnswers = [answerData]
-          selectedButton.classList.add('btn-dark');
-          selectedButton.classList.remove('btn-outline-dark');
+          selectMultipleAnswers(selectedButton, checkboxId);
       
-          // console.log('*****selectedAnswers in selectAnswer()*****')
-          // console.log('selectedAnswers reset to: ');
-          // console.log(selectedAnswers)
-          // console.log('***************')
-          // console.log('   ')
-      }
+      } else if (/^select-(\d+)$/.test(questionType)) {
+          const match = currentQuestion.type.match(/^select-(\d+)$/)
+          selectLimit = parseInt(match[1], 10)  
 
-      // Show or hide the Next button based on selection
-      const anySelected = document.querySelector('.btn-dark');
-      if (anySelected) {
-          nextButton.classList.remove('d-none');
+          const isAlreadySelected = selectedAnswers.some(answer => answer.checkbox_id ===checkboxId)
+
+          if (!isAlreadySelected && selectedAnswers.length >= selectLimit) {
+            alert(`You may select no more than ${selectLimit} answers.`)
+            return
+          }  
+
+          selectMultipleAnswers(selectedButton, checkboxId)
+
       } else {
-          nextButton.classList.add('d-none');
-      }
+          selectSingleAnswer(selectedButton, checkboxId);
+          
+          // Show or hide the Next button based on selection
+          const anySelected = document.querySelector('.btn-dark');
+          
+          if (anySelected) {
+              nextButton.classList.remove('d-none');
+          } else {
+              nextButton.classList.add('d-none');
+          };
+      };
+  };
+
+  function selectMultipleAnswers(selectedButton, checkboxId) {
+    answerData.checkbox_id = checkboxId
+    // answerData.answer_text = selectedButton.value
+
+    const answerIndex = selectedAnswers.findIndex(
+        answer => answer.checkbox_id === checkboxId
+    );
+
+    if (answerIndex > -1) {
+        selectedAnswers = selectedAnswers.filter(
+            answer => answer.checkbox_id !== checkboxId
+        );
+
+        selectedButton.classList.remove('btn-dark');
+        selectedButton.classList.add('btn-outline-dark');
+        // selectedAnswers.splice(answerIndex, 1);
+
+        // console.log('*****selectedAnswers in selectAnswer()*****')
+        // console.log('Spliced answerIndex:' + answerIndex);
+        // console.log(selectedAnswers)
+        // console.log('***************')
+        // console.log('   ')
+    } else {
+        selectedAnswers = [...selectedAnswers, answerData]
+        selectedButton.classList.add('btn-dark');
+        selectedButton.classList.remove('btn-outline-dark');
+        // selectedAnswers.push(answerData)
+
+        // console.log('*****selectedAnswers in selectAnswer()*****')
+        // console.log('Pushed answerIndex:' + answerIndex);
+        // console.log(selectedAnswers)
+        // console.log('***************')
+        // console.log('   ')
+
+    }
   }
+
+  function selectSingleAnswer(selectedButton) {
+      if(selectedButton.value) {
+        answerData.answer_value = parseInt(selectedButton.value)
+        answerData.answer_text = selectedButton.innerText
+      }
+      // if (selectedButton.answerText) {
+      // }
+
+      console.log("answerData in selectAnswer: ", answerData)
+
+      // For single choice, deselect all other buttons first
+      const allButtons = document.querySelectorAll('#answer-buttons > *');
+      allButtons.forEach(button => {
+          button.classList.remove('btn-dark');
+          button.classList.add('btn-outline-dark');
+      });
+
+      // Select the clicked button
+      selectedAnswers = [answerData]
+      selectedButton.classList.add('btn-dark');
+      selectedButton.classList.remove('btn-outline-dark');
+
+      // console.log('*****selectedAnswers in selectAnswer()*****')
+      // console.log('selectedAnswers reset to: ');
+      // console.log(selectedAnswers)
+      // console.log('***************')
+      // console.log('   ')
+    }
 
   function resetState() {
       // Remove Next button and Next Section button from page
@@ -543,21 +563,3 @@ nextButton.addEventListener('click', (event) => {
 
 // CLOSING DOMContentLoaded Wrapper
 });
-
-
-// DECPRECATED FOR MORE DYNAMIC LOGIC IN selectAnswer()
-// function highlightSelectedButton(selectedButton) {
-//     if (lastSelectedButton == null) {
-//         selectedButton.classList.remove('btn-outline-dark');
-//         selectedButton.classList.add('btn-dark');
-//     } else {
-//         if (lastSelectedButton != selectedButton) {
-//             lastSelectedButton.classList.add('btn-outline-dark');
-//             lastSelectedButton.classList.remove('btn-dark');
-//             selectedButton.classList.remove('btn-outline-dark');
-//             selectedButton.classList.add('btn-dark');
-//         }
-//     }
-//     lastSelectedButton = selectedButton;
-//     return
-// }
