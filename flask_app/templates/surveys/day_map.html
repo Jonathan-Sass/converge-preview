@@ -94,14 +94,18 @@
           <hr class="border border-1 border-secondary">
           
           <nav class="nav nav-pills flex-column gap-2">
-            <a class="nav-link solid-white-bg" href="#onboarding">New User Onboarding</a>
+            <a class="nav-link active" href="#onboarding">New User Onboarding</a>
             <div class="progress mb-3 mt-1" style="height: 1rem;">
               <div id="progress-bar" class="progress-bar bg-primary" role="progressbar" style="width: 30%;"
-                aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>
             </div>
             <a class="nav-link solid-white-bg" href="#user-orientation">Orientation</a>
             <a class="nav-link solid-white-bg" href="#dashboard-intro">Dashboard Welcome</a>
             <a class="nav-link active solid-white-bg" href="#day-map">Day Map</a>
+            <div class="progress mb-3 mt-1" style="height: 1rem;">
+              <div id="survey-progress-bar" class="progress-bar bg-primary" role="progressbar" style="width: 0%;"
+                aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
             <a class="nav-link solid-white-bg" href="#am-routine-builder">AM Routine Intro</a>
             <a class="nav-link solid-white-bg" href="#dashboard-intro-am-practices">Dashboard AM Routine Intro</a>
             <a class="nav-link solid-white-bg" href="#interest-map">Interest Map</a>
@@ -142,10 +146,11 @@
                     <div class="btn btn-outline-light col">Answer 4</div>
                   </div>
                 </div>
-                <div class="controls">
+                <div class="controls d-flex justify-content-evenly">
                   <button id="start-btn" data-subcategory="day-map"
                     class="btn btn-lg btn-primary">Start</button>
                   <!-- data-topic-id should match subcategory.subcategory_slug -->
+                  <button class="btn btn-lg btn-primary d-none" id="back-btn">Back</button>
                   <button id="next-btn" class="btn btn-lg btn-primary d-none">Next</button>
                   <button id="finish-btn" class="btn btn-lg btn-primary d-none">Submit Answers</button>
                   <a href="/routines/am/intro" class="btn btn-lg btn-primary d-none" id="next-section-btn">Next Section</a>
