@@ -17,7 +17,9 @@ body {
   height: 200vh;
   background-image: url('../img/Enso_Lt_Blue.jpg');
   background-size: cover;
+  background-repeat: no-repeat;
   background-position: center;
+  background-color: #000;
   z-index: -1;
   transition: transform 0.1s ease-out;
 }

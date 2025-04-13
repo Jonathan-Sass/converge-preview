@@ -334,7 +334,7 @@ survey_question_data = [
             },
             {
                 "question_slug": "am-routine-time-availability",
-                "question_text": "How much time do you typically have for a morning routine before starting your day?",
+                "question_text": "How much time do you typically have for a morning routine beyond the essentials?",
                 "type": "guided-choice",
                 "answers": [
                     {"answer_text": "Less than 5 minutes", "answer_value": 0},
@@ -386,14 +386,16 @@ survey_question_data = [
             # },
             {
                 "question_slug": "am-focus-block-check",
-                "question_text": "Do you make time in your morning for hobbies, side projects, etc.?",
+                "question_text": "Do you make a block of time in your morning for hobbies, side projects, etc.?",
                 "type": "guided-choice",
                 "answers": [
                     {"answer_text": "No", "answer_value": 0},
-                    {"answer_text": "Yes, less than 10 minutes", "answer_value": 1},
-                    {"answer_text": "Yes, 10 - 30 minutes", "answer_value": 2},
-                    {"answer_text": "Yes, 30 - 60 minutes", "answer_value": 3},
-                    {"answer_text": "Yes, 60+ minutes", "answer_value": 4}
+                    {"answer_text": "No, but I would like to", "answer_value": 1},
+                    {"answer_text": "Yes, less than 15 minutes", "answer_value": 2},
+                    {"answer_text": "15 - 30 minutes", "answer_value": 3},
+                    {"answer_text": "30 - 45 minutes", "answer_value": 4},
+                    {"answer_text": "45 - 60 minutes", "answer_value": 5},
+                    {"answer_text": "60+ minutes", "answer_value": 6}
 
                 ]
             },
@@ -447,9 +449,9 @@ survey_question_data = [
                 "type": "guided-choice",
                 "answers": [
                     {"answer_text": "None", "answer_value": 0},
-                    {"answer_text": "Less than 5 minutes", "answer_value": 1},
-                    {"answer_text": "5-15 minutes", "answer_value": 2},
-                    {"answer_text": "15-30 minutes", "answer_value": 3},
+                    {"answer_text": "Less than 10 minutes", "answer_value": 1},
+                    {"answer_text": "10 - 20 minutes", "answer_value": 2},
+                    {"answer_text": "20 - 30 minutes", "answer_value": 3},
                     {"answer_text": "30+ minutes", "answer_value": 4}
                 ]
             },
@@ -652,6 +654,16 @@ survey_question_data = [
                     {"answer_text": "Cooking & Culinary Arts", "answer_value": 23},
                     {"answer_text": "Martial Arts & Self-Defense", "answer_value": 24}
                 ]
+            },
+            {
+                "question_slug": "top-5-personal-interests",
+                "question_text": "From your previously selected interests, which 5 are you favorite? (Select up to 5)",
+                "type": "select-5"
+            },
+            {
+                "question_slug": "top-3-personal-interests",
+                "question_text": "From your top 5, please select your top 3? (Select 3)",
+                "type": "select-3"
             },
             {
                 "question_slug": "new-skills-interest",
