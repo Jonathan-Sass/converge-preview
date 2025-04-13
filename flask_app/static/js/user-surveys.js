@@ -346,7 +346,7 @@ nextButton.addEventListener('click', (event) => {
     currentQuestionSet.forEach(question => {
       if (question.questionId === questionId) {
         question.answers.forEach(answer => {
-          if (previousAnswerIds.includes(answer.answerIds)) {
+          if (previousAnswerIds.includes(answer.answerId)) {
             selectWithLimitAnswers.push(answer);
           }
         })
@@ -413,6 +413,7 @@ nextButton.addEventListener('click', (event) => {
       if (questionType === 'select-any' || questionType === 'select-any-add') {
           selectMultipleAnswers(selectedButton, checkboxId);
       
+          // Matches any question type with the pattern 'select-#' ('select-' followed by any number)
       } else if (/^select-(\d+)$/.test(questionType)) {
           const match = currentQuestion.type.match(/^select-(\d+)$/)
           selectLimit = parseInt(match[1], 10)  
@@ -420,7 +421,8 @@ nextButton.addEventListener('click', (event) => {
           const isAlreadySelected = selectedAnswers.some(answer => answer.checkbox_id ===checkboxId)
 
           if (!isAlreadySelected && selectedAnswers.length >= selectLimit) {
-            alert(`You may select no more than ${selectLimit} answers.`)
+            e.preventDefault();
+            alert(`You may only select ${selectLimit} answers.`)
             return
           }  
 
