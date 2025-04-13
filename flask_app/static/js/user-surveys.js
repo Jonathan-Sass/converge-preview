@@ -4,6 +4,7 @@
 
 document.addEventListener('DOMContentLoaded', () => {
     const startButton = document.getElementById('start-btn')
+    const backButton = document.getElementById('back-btn')
     const nextButton = document.getElementById('next-btn')
     const finishButton = document.getElementById('finish-btn')
     const questionContainer = document.getElementById('question-container')
@@ -32,53 +33,29 @@ startButton.addEventListener('click', async (event) => {
     startSurvey();
 });
 
+backButton.addEventListener('click', (event) => {
+  if (currentQuestionIndex >= 1) {
+    currentQuestionIndex--;
+  }
+  renderSurveyQuestion(currentQuestionSet);
+});
+
 nextButton.addEventListener('click', (event) => {
     event.preventDefault();
 
+    // 
     if (currentQuestionSet[currentQuestionIndex]['type'] != 'prompt') {
         // Check if any answer has been selected
         if (selectedAnswers.length === 0 && !selectedButton) {
           alert('Please select an answer before proceeding.');
           return; // Exit if no answer is selected
         }
-    }
+    };
 
     // IF OPEN TEXT, answer.open_answer_text = text
     // ETC
 
-    // TODO: SEPARATE INTO collectAnswerData()
-    // For multiple-choice (select-any) questions, use the selectedAnswers array
-    if (selectedAnswers.length > 0) {
-        selectedAnswers.forEach(answerData => {
-            // Check if the question is already answered
-            const existingAnswerIndex = collectedAnswers.findIndex(answer => 
-                answer.question_id === answerData.question_id &&
-                answer.answer_id === answerData.answer_id &&
-                answer.answer_text === answerData.answer_text
-            );
-            if (existingAnswerIndex > -1) {
-                // Update existing answer
-                collectedAnswers[existingAnswerIndex] = answerData;
-            } else {
-                // Add new answer
-                collectedAnswers.push(answerData);
-            }
-        });
-    } else if (selectedButton) {
-        // For single-choice questions, use selectedButton
-        // answerData = {
-        //     question_id: selectedButton.getAttribute('data-question-id'),
-        //     answer_id: selectedButton.getAttribute('data-answer-id'),
-        //     answer_text: selectedButton.answer_text
-        // };
-
-        const existingAnswerIndex = collectedAnswers.findIndex(answer => answer.question_id === answerData.question_id);
-        if (existingAnswerIndex > -1) {
-            collectedAnswers[existingAnswerIndex] = answerData;
-        } else {
-            collectedAnswers.push(answerData);
-        }
-    }
+    collectAnswerDataFromSelection();
 
     // Reset selectedAnswers and selectedButton for the next question
     selectedAnswers = [];
@@ -86,9 +63,23 @@ nextButton.addEventListener('click', (event) => {
 
     console.log('Collected Answers:', collectedAnswers);
 
-    updateCurrentQuestionIndex()
+    updateCurrentQuestionIndex();
     setNextQuestion();
+    updateProgressBar();
   });
+
+  function collectAnswerDataFromSelection() {
+    // Filter out matching questionIds
+    collectedAnswers = collectedAnswers.filter(
+      answer => answer.question_id !== currentQuestion.questionId
+    );
+
+    if (selectedAnswers.length > 0) {
+      collectedAnswers.push(...selectedAnswers);
+    } else if (selectedButton) {
+      collectedAnswers.push(answerData);
+    };
+  };
   
   finishButton.addEventListener('click', async (event) => {
     const category = getCategory();
@@ -109,12 +100,13 @@ nextButton.addEventListener('click', (event) => {
         // Optionally, navigate to a results page or reset the form
       } else {
         alert('Failed to submit the quiz.');
-      }
+      };
     } catch (error) {
       alert('Error: ' + error.message);
-    }
-    finishButton.classList.add('d-none')
-    nextSectionButton.classList.remove('d-none')
+    };
+    finishButton.classList.add('d-none');
+    nextSectionButton.classList.remove('d-none');
+    backButton.classList.add('d-none');
     // window.location.href = '/goals/health/select';
   });
   
@@ -134,7 +126,7 @@ nextButton.addEventListener('click', (event) => {
       // console.log('***STARTING GAME*****')
       currentQuestionIndex = 0;
       questionContainer.classList.remove('d-none');
-  }
+  };
       
   // This function queries the DB to fetch survey questions
   async function fetchSurveyQuestions() {
@@ -173,8 +165,8 @@ nextButton.addEventListener('click', (event) => {
       
     } catch (error) {
       console.error('Error fetching survey questions:', error);
-    }
-  }
+    };
+  };
       
   function updateCurrentQuestionIndex() {
     let indexUpdated = false; 
@@ -187,16 +179,16 @@ nextButton.addEventListener('click', (event) => {
     // console.log("surveyBranches: ")
     // console.log(surveyBranches)
   
-      for (const questionBranch of surveyBranches) {
-        
-        // Check current questionId for survey_branch with matching questionId
-        if (questionBranch["questionId"] === currentQuestionSet[currentQuestionIndex]["questionId"]) {
-         console.log("matching question in surveyBranches.forEach: ", questionBranch)
-          console.log("Branch detected!")
-          // IF answer_text matches survey_branch answer_text, update currentQuestionIndex to matching index for next_question_slug
-          //  FAULTY - question["questionText"] does not exist, see above
-          if (answerData.answer_text === questionBranch["answerText"]) {
-          console.log("Answer Texts match: ", questionBranch)
+    for (const questionBranch of surveyBranches) {
+      
+      // Check current questionId for survey_branch with matching questionId
+      if (questionBranch["questionId"] === currentQuestionSet[currentQuestionIndex]["questionId"]) {
+        console.log("matching question in surveyBranches.forEach: ", questionBranch)
+        console.log("Branch detected!")
+        // IF answer_text matches survey_branch answer_text, update currentQuestionIndex to matching index for next_question_slug
+        //  FAULTY - question["questionText"] does not exist, see above
+        if (answerData.answer_text === questionBranch["answerText"]) {
+          console.log(`Answer Texts match: ${questionBranch}, branching!`)
           const targetIndex = currentQuestionSet.findIndex(q => q["questionSlug"] === questionBranch["nextQuestionSlug"])
           currentQuestionIndex = targetIndex !== -1 ? targetIndex : currentQuestionIndex + 1;
           indexUpdated = true;
@@ -204,6 +196,7 @@ nextButton.addEventListener('click', (event) => {
         }
       }
     }
+
     if (!indexUpdated) {
       console.log("Branch not detected!")
       currentQuestionIndex++;
@@ -221,7 +214,7 @@ nextButton.addEventListener('click', (event) => {
     questionElement.innerText = currentQuestion.question;  // Display the question text
     
     if (currentQuestion.type === 'prompt') {
-      renderPrompt(currentQuestion);
+      showBackAndNextButtons();
     } else if (currentQuestion.type === 'open-answer') {
       renderOpenAnswerWithExamples(currentQuestion);
     } else if (currentQuestion.type === 'guided-choice') {
@@ -237,8 +230,19 @@ nextButton.addEventListener('click', (event) => {
     }
   }
       
-  function renderPrompt(currentQuestion) {
-    nextButton.classList.remove("d-none")
+  // function renderPrompt(currentQuestion) {
+  //   backButton.classList.remove("d-none")
+  //   nextButton.classList.remove("d-none")
+  // }
+
+  function showBackAndNextButtons() {
+    if (!finishButton.classList.contains('d-none')) {
+      finishButton.classList.add('d-none');
+    }
+    
+    backButton.classList.remove('d-none');
+    nextButton.classList.remove('d-none');
+
   }
 
   function renderGenericAnswers(currentQuestion) {
@@ -283,7 +287,7 @@ nextButton.addEventListener('click', (event) => {
 
       populateAnswerCheckboxes(currentQuestion);
 
-      nextButton.classList.remove('d-none');
+      showBackAndNextButtons();
       answerButtons.classList.remove('d-flex');
   };
 
@@ -298,7 +302,7 @@ nextButton.addEventListener('click', (event) => {
     // TODO: ADD OPEN ANSWER FUNCTIONALITY
     // createOpenAnswerInput()
     
-    nextButton.classList.remove('d-none');
+    showBackAndNextButtons();
     answerButtons.classList.remove('d-flex')
     
   }
@@ -330,47 +334,32 @@ nextButton.addEventListener('click', (event) => {
   };
 
   function renderSelectWithLimit(currentQuestion) {
-    const {previousAnswerIds, questionId} = collectPreviousAnswerIds()
-    const previousAnswers = previousAnswersToArray(questionId, previousAnswerIds)
+    const previousAnswers = collectPreviousAnswers()
     currentQuestion.answers = previousAnswers;
+
+    console.log("previousAnswerVariables in renderSelectWithLimit()")
+    console.log(previousAnswers)
+    console.log(currentQuestion.answers)
 
     populateAnswerCheckboxes(currentQuestion);
 
-    nextButton.classList.remove('d-none');
+    showBackAndNextButtons();
     answerButtons.classList.remove('d-flex');
   };
 
-  function previousAnswersToArray(questionId, previousAnswerIds) {
-    const selectWithLimitAnswers = [];
-
-    currentQuestionSet.forEach(question => {
-      if (question.questionId === questionId) {
-        question.answers.forEach(answer => {
-          if (previousAnswerIds.includes(answer.answerId)) {
-            selectWithLimitAnswers.push(answer);
-          }
-        })
-      }
-    })
-    return selectWithLimitAnswers;
-  };
-
-  function collectPreviousAnswerIds() {
-    const previousAnswerIds = [];
-    let questionId = 0;
-
-    if (collectedAnswers.length > 1) {
-      questionId = collectedAnswers[collectedAnswers.length - 1].question_id;
-    };
+  function collectPreviousAnswers() {
+    if (collectedAnswers.length === 0 || currentQuestionIndex == 0) return [];
     
-    // push 
-    collectedAnswers.forEach(answer => {
-        if (answer.question_id === questionId) {
-          previousAnswerIds.push(answer.answer_id);
-        }
-    });
+    const previousQuestion = currentQuestionSet[currentQuestionIndex - 1];
+    const previousQuestionId = previousQuestion.questionId;
+    
+    const previousAnswerIds = collectedAnswers
+      .filter(answer => answer.question_id === previousQuestionId)
+      .map(answer => answer.answer_id);
+    
+    const previousAnswers = previousQuestion.answers.filter(answer => previousAnswerIds.includes(answer.answerId));
 
-    return {previousAnswerIds, questionId};
+    return previousAnswers;
   }
   
   function createOpenAnswerInput(currentQuestion, placeholder = 'Your answer here...') {
@@ -435,7 +424,7 @@ nextButton.addEventListener('click', (event) => {
           const anySelected = document.querySelector('.btn-dark');
           
           if (anySelected) {
-              nextButton.classList.remove('d-none');
+              showBackAndNextButtons();
           } else {
               nextButton.classList.add('d-none');
           };
@@ -561,6 +550,19 @@ nextButton.addEventListener('click', (event) => {
       console.log('No subcategory found in HTML');
       return null;
     }
+  }
+
+  function updateProgressBar() {
+      const surveyLength = currentQuestionSet.length;
+      const percentComplete = Math.round((currentQuestionIndex / surveyLength) * 100);
+
+      const surveyProgressBar = document.getElementById('survey-progress-bar');
+
+      surveyProgressBar.style.width = `${percentComplete}%`;
+
+      surveyProgressBar.setAttribute('aria-valuenow', percentComplete);
+
+      surveyProgressBar.textContent = `${percentComplete}%`;
   }
 
 // CLOSING DOMContentLoaded Wrapper
