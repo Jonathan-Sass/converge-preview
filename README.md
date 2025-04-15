@@ -1,23 +1,23 @@
 # Converge
 
-**Converge** is a customizable, neuroscience-informed framework for goal setting, habit building, and intentional daily routines. Designed to reduce cognitive load by bringing a variety of meaningful actions into a top-of-mind space. Converge serves as a gentle guide for growth-oriented individuals — without promoting hustle culture or toxic productivity.
+**Converge** is a customizable, neuroscience-informed framework for goal setting, habit building, and intentional daily routines. Designed to reduce cognitive load by bringing a variety of meaningful actions into a common space to increase their visibility . Converge serves as a gentle guide for growth-oriented individuals — without promoting hustle culture or toxic productivity.
 
 ---
 
-## 🚀 Features
+## Features
 
-- 🧠 A modular **goal-setting system** that breaks down complex objectives into trackable milestones and action items
-- 🔄 Personalized **routine builder** (AM, PM, Flex, and Intention routines) linked to recommended self-care practices
-- 🗺️ Value Map, Priority Map, and Interest Map to guide users into meaningful goal selection
-- 📋 Smart **survey system** to dynamically assess user needs, patterns, and focus areas
-- 🧩 Specialized modules for ADHD, anxiety, digital overuse, dopamine reset, and more
-- 🧱 **Habit Anchors**, **Strategies**, and **Barriers** to reinforce behavioral design
-- 📊 Progress tracking, streaks, and gamification elements without competitiveness
-- 🔓 Flexible goal types: active, collaborative, self-care, supportive, etc.
+- A modular **goal-setting system** that breaks down complex objectives into trackable milestones and action items
+- Personalized **routine builder** (AM, PM, Flex, and Intention routines) linked to recommended self-care practices
+- Value Map, Priority Map, and Interest Map to guide users into meaningful goal selection
+- Smart **survey system** to dynamically assess user needs, patterns, and focus areas
+- Specialized modules for ADHD, anxiety, digital overuse, dopamine reset, and more
+- **Habit Anchors**, **Strategies**, and **Barriers** to reinforce behavioral design
+- Progress tracking, streaks, and gamification elements without competitiveness
+- Flexible goal types: active, collaborative, self-care, supportive, etc.
 
 ---
 
-## 🧠 Philosophy
+## Philosophy
 
 Converge is designed for users who:
 - Want a force multiplier to organize their life and decrease cognitive load
@@ -30,7 +30,7 @@ Converge is not about “hustling harder” — it’s about sustainable progres
 
 ---
 
-## 🛠️ Tech Stack
+##  Tech Stack
 
 - **Backend:** Python (Flask)
 - **Frontend:** HTML / Vanilla JS (React planned)
@@ -40,7 +40,7 @@ Converge is not about “hustling harder” — it’s about sustainable progres
 
 ---
 
-## 📂 Project Structure
+## Project Structure
 converge/
 │
 ├── app.py                      # Main Flask app entry point
@@ -79,7 +79,7 @@ converge/
 └── .env.example                # Example environment config (optional)
 |
 
-## 📐 Schema Conventions
+## Schema Conventions
 
 Converge’s database schema is designed for flexibility, consistency, and extensibility.
 
@@ -97,7 +97,7 @@ Naming consistency helps:
 
 ---
 
-## 🧠 System Architecture
+## System Architecture
 
 The app is built with a layered, modular approach:
 
@@ -123,10 +123,10 @@ The app is built with a layered, modular approach:
 
 ---
 
-## 🛣️ Roadmap
+## Roadmap
 
-### ✅ MVP Complete or Near-Complete
-- [x] Full normalized schema with ~100+ tables
+### MVP Complete or Near-Complete
+- [x] Full normalized schema
 - [x] Survey system with branching logic and answer mapping
 - [x] Routine builder with durations and categories
 - [x] Practice seeding system with categories, objectives, and relevance scores
