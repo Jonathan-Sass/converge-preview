@@ -657,12 +657,12 @@ survey_question_data = [
             },
             {
                 "question_slug": "top-5-personal-interests",
-                "question_text": "From your previously selected interests, which 5 are you favorite? (Select up to 5)",
+                "question_text": "From your previously selected interests, select your top 5.",
                 "type": "select-5"
             },
             {
                 "question_slug": "top-3-personal-interests",
-                "question_text": "From your top 5, please select your top 3? (Select 3)",
+                "question_text": "From those top 5, select your top 3?",
                 "type": "select-3"
             },
             {

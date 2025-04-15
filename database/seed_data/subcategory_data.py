@@ -11,284 +11,110 @@ subcategory_data = {
         {"subcategory_slug": "envisioned-priority-map", "name": "Envisioned Priority Map"}
     ],
 
-
-
-
-
-    
+    # POSSIBLY DEPRECATED FIRST ITERATION OF INTRO SURVEYING
     "foundations": [
         {"subcategory_slug": "getting-to-know-you", "name": "Getting to Know You"},
-        {
-            "subcategory_slug": "current-habits-patterns",
-            "name": "Exploring Your Current Habits and Daily Patterns",
-        },
-        {
-            "subcategory_slug": "social-support-accountability",
-            "name": "Understanding Your Social Support and Accountability",
-        },
-        {
-            "subcategory_slug": "reflecting-purpose-motivation",
-            "name": "Reflecting on Your Purpose and Motivation",
-        },
+        {"subcategory_slug": "current-habits-patterns", "name": "Exploring Your Current Habits and Daily Patterns"},
+        {"subcategory_slug": "social-support-accountability", "name": "Understanding Your Social Support and Accountability"},
+        {"subcategory_slug": "reflecting-purpose-motivation", "name": "Reflecting on Your Purpose and Motivation"},
     ],
-    "your-why": [
+
+    # GENERAL CATEGORIES FOR INITIAL COMPREHENSIVE FOUNDATION
+    "health_wellness": [
+      { "subcategory_slug": "mental-health", "name": "Mental Health & Emotional Well-being" },
+      { "subcategory_slug": "physical-fitness", "name": "Physical Fitness & Activity" },
+      { "subcategory_slug": "stress-reduction", "name": "Stress Reduction & Relaxation" },
+      { "subcategory_slug": "sleep", "name": "Sleep Quality & Habits" },
+      { "subcategory_slug": "nutrition", "name": "Nutrition & Eating Habits" },
+      { "subcategory_slug": "preventative-health", "name": "Preventative Health & Checkups" },
+      { "subcategory_slug": "body-image", "name": "Body Image & Self-Acceptance" },
+      { "subcategory_slug": "sexual-reproductive-health", "name": "Reproductive & Sexual Health" },
+      { "subcategory_slug": "habit-building", "name": "Healthy Habit Formation" },
+      { "subcategory_slug": "chronic-condition", "name": "Chronic Condition Management" }
+    ],
+    "personal_development": [
+      { "subcategory_slug": "meditation-awareness", "name": "Meditation & Awareness Practices" },
+      { "subcategory_slug": "breathwork", "name": "Breathwork & Nervous System Training" },
+      { "subcategory_slug": "resilience-discipline", "name": "Resilience, Grit & Discipline" },
+      { "subcategory_slug": "movement-practices", "name": "Embodied Movement & Flow (Qi Gong, Martial Arts)" },
+      { "subcategory_slug": "mind-body-integration", "name": "Mind-Body Connection & Internal Energy Work" },
+      { "subcategory_slug": "reflection-introspection", "name": "Journaling, Shadow Work & Reflection" },
+      { "subcategory_slug": "identity-evolution", "name": "Identity Development & Personal Philosophy" }
+    ],
+    "recreation_travel": [
+      { "subcategory_slug": "recreation", "name": "Frequent Hobbies & Activities" },
+      { "subcategory_slug": "adventure-travel", "name": "Adventure & Travel" },
+      { "subcategory_slug": "group-events", "name": "Family & Group Events" },
+      { "subcategory_slug": "cultural-exploration", "name": "Cultural Exploration" },
+      { "subcategory_slug": "bucket-list", "name": "Bucket List & Dream Experiences" }
+    ],
+    "career_professional_development": [
+      { "subcategory_slug": "career-growth", "name": "Career Growth & Advancement" },
+      { "subcategory_slug": "career-transition", "name": "Career Change & Pivoting" },
+      { "subcategory_slug": "income-growth", "name": "Income Growth & Compensation" },
+      { "subcategory_slug": "skill-development", "name": "Skill Building & Certifications" },
+      { "subcategory_slug": "job-satisfaction", "name": "Job Satisfaction & Fulfillment" },
+      { "subcategory_slug": "networking", "name": "Professional Relationships & Networking" },
+      { "subcategory_slug": "work-life-balance", "name": "Work-Life Balance" },
+      { "subcategory_slug": "entrepreneurship", "name": "Entrepreneurship & Freelancing" }
+    ],
+    "social_community": [
+      { "subcategory_slug": "family", "name": "Family Relationships" },
+      { "subcategory_slug": "friendships", "name": "Friendships & Social Life" },
+      { "subcategory_slug": "romantic", "name": "Romantic Relationships" },
+      { "subcategory_slug": "workplace-social", "name": "Workplace Relationships" },
+      { "subcategory_slug": "community", "name": "Community Engagement & Volunteering" },
+      { "subcategory_slug": "social-skills", "name": "Social Skills & Confidence" },
+      { "subcategory_slug": "boundaries", "name": "Healthy Boundaries" },
+      { "subcategory_slug": "conflict-resolution", "name": "Conflict Resolution" }
+    ],
+    "spirituality_life_purpose": [
+      { "subcategory_slug": "personal-values", "name": "Personal Values & Life Purpose" },
+      { "subcategory_slug": "spiritual-practices", "name": "Spiritual Practices & Mindfulness" },
+      { "subcategory_slug": "inner-peace", "name": "Emotional Balance & Inner Peace" },
+      { "subcategory_slug": "connection-higher-power", "name": "Connection to Higher Power" },
+      { "subcategory_slug": "service-community", "name": "Service & Contribution" },
+      { "subcategory_slug": "self-discovery", "name": "Self-Discovery & Growth" },
+      { "subcategory_slug": "gratitude", "name": "Gratitude & Positive Outlook" },
+      { "subcategory_slug": "healing-release", "name": "Healing, Forgiveness & Letting Go" },
+      { "subcategory_slug": "spiritual-exploration", "name": "Spiritual Curiosity & Exploration" }
+    ],
+    "creative_expression_hobbies": [
+      { "subcategory_slug": "creative-hobbies", "name": "Creative Hobbies & Expression" },
+      { "subcategory_slug": "skill-improvement", "name": "Improving Creative Skills" },
+      { "subcategory_slug": "personal-projects", "name": "Personal Creative Projects" },
+      { "subcategory_slug": "flow-state", "name": "Creative Flow & Enjoyment" },
+      { "subcategory_slug": "long-term-creative", "name": "Long-Term Creative Goals" },
+      { "subcategory_slug": "collaborative-creative", "name": "Social & Collaborative Creativity" }
+    ],
+    "environment_success": [
+      { "subcategory_slug": "home-environment", "name": "Optimizing Physical Environment" },
+      { "subcategory_slug": "task-management", "name": "Time & Task Organization" },
+      { "subcategory_slug": "social-environment", "name": "Supportive Social Environment" },
+      { "subcategory_slug": "mental-environment", "name": "Mindset & Mental Clarity" },
+      { "subcategory_slug": "tools-resources", "name": "Leveraging Tools & Systems" },
+      { "subcategory_slug": "continuous-growth", "name": "Personal Development Systems" }
+    ],
+    "wealth_finance": [
+      { "subcategory_slug": "budgeting", "name": "Budgeting & Expense Management" },
+      { "subcategory_slug": "saving", "name": "Saving & Emergency Funds" },
+      { "subcategory_slug": "debt", "name": "Debt Management" },
+      { "subcategory_slug": "investing", "name": "Investing & Wealth Building" },
+      { "subcategory_slug": "retirement", "name": "Retirement Planning" },
+      { "subcategory_slug": "income-career", "name": "Income Growth & Career Strategy" },
+      { "subcategory_slug": "taxes", "name": "Tax Planning & Optimization" },
+      { "subcategory_slug": "financial-literacy", "name": "Financial Education & Literacy" },
+      { "subcategory_slug": "philanthropy", "name": "Charitable Giving & Philanthropy" },
+      { "subcategory_slug": "financial-independence", "name": "Financial Independence & Freedom" },
+      { "subcategory_slug": "big-purchase-planning", "name": "Large Purchase or Travel Planning" }
+    ],
+  
+  
+  # DEEP DIVES CATEGORIES FOR ADDITIONAL USER EXPLORATION/INTROSPECTION
+    "your_why": [
         {"subcategory_slug": "define-your-purpose", "name": "Define Your Purpose"},
         {"subcategory_slug": "define-your-values", "name": "Define Your Values"},
         {"subcategory_slug": "growth-drivers", "name": "Drivers of Growth"},
         {"subcategory_slug": "long-term-vision", "name": "Long-Term Vision"},
     ],
-    "health-wellness": [
-        {"subcategory_slug": "mental-health", "name": "Mental Health"},
-        {"subcategory_slug": "physical-fitness", "name": "Physical Fitness"},
-        {"subcategory_slug": "stress-relaxation", "name": "Stress and Relaxation"},
-        {"subcategory_slug": "sleep-hygiene", "name": "Sleep Hygiene"},
-        {"subcategory_slug": "nutrition-diet", "name": "Nutrition and Diet"},
-        {
-            "subcategory_slug": "preventative-checkups",
-            "name": "Preventative Health and Checkups",
-        },
-        {
-            "subcategory_slug": "body-image-self-acceptance",
-            "name": "Body Image and Self Acceptance",
-        },
-        {
-            "subcategory_slug": "reproductive-sexual-health",
-            "name": "Reproductive and Sexual Health",
-        },
-        {"subcategory_slug": "healthy-habits", "name": "Healthy Habits"},
-        {
-            "subcategory_slug": "health-education-awareness",
-            "name": "Health Education and Awareness",
-        },
-        {
-            "subcategory_slug": "chronic-disease-management",
-            "name": "Chronic Disease Management",
-        },
-        {"subcategory_slug": "holistic-health", "name": "Holistic Health"},
-        {
-            "subcategory_slug": "health-accountability-tracking",
-            "name": "Health Accountability and Tracking",
-        },
-    ],
-    "social-community": [
-        {"subcategory_slug": "family-relationships", "name": "Family Relationships"},
-        {"subcategory_slug": "friendships", "name": "Friendships"},
-        {"subcategory_slug": "romantic-relationships", "name": "Romantic Relationships"},
-        {"subcategory_slug": "workplace-relationships", "name": "Workplace Relationships"},
-        {"subcategory_slug": "community-involvement", "name": "Community Involvement"},
-        {
-            "subcategory_slug": "social-skills-development",
-            "name": "Social Skills Development",
-        },
-        {"subcategory_slug": "healthy-boundaries", "name": "Healthy Boundaries"},
-        {
-            "subcategory_slug": "relationship-growth-maintenance",
-            "name": "Relationship Growth & Maintenance",
-        },
-        {
-            "subcategory_slug": "networking-building-connections",
-            "name": "Networking and Building New Connections",
-        },
-        {"subcategory_slug": "conflict-resolution", "name": "Conflict Resolution"},
-    ],
-    "recreation-travel": [
-        {
-            "subcategory_slug": "frequent-hobbies-activities",
-            "name": "Frequent Hobbies and Activities",
-        },
-        {"subcategory_slug": "adventure-travel", "name": "Adventure and Travel"},
-        {"subcategory_slug": "family-group-events", "name": "Family and Group Events"},
-        {"subcategory_slug": "cultural-exploration", "name": "Cultural Exploration"},
-        {"subcategory_slug": "special-events", "name": "Special Events"},
-        {"subcategory_slug": "competitive-events", "name": "Competitive Events"},
-        {"subcategory_slug": "bucket-list", "name": "Bucket List"},
-    ],
-    "spirituality-life-purpose": [
-        {
-            "subcategory_slug": "personal-values-beliefs-purpose",
-            "name": "Personal Values, Beliefs and Purpose",
-        },
-        {
-            "subcategory_slug": "spiritual-practices-mindfulness",
-            "name": "Spiritual Practices and Mindfulness",
-        },
-        {
-            "subcategory_slug": "emotional-balance",
-            "name": "Emotional Balance and Inner Peace",
-        },
-        {
-            "subcategory_slug": "higher-power-connection",
-            "name": "Connection to a Higher Power",
-        },
-        {"subcategory_slug": "community-service", "name": "Service to Others and Community"},
-        {"subcategory_slug": "self-discovery-growth", "name": "Self-Discovery and Growth"},
-        {
-            "subcategory_slug": "mind-body-spirit-connection",
-            "name": "Mind-Body-Spirit Connection",
-        },
-        {
-            "subcategory_slug": "gratitude-positive-mindset",
-            "name": "Gratitude and Positive Mindset",
-        },
-        {
-            "subcategory_slug": "healing-forgiveness-letting-go",
-            "name": "Healing, Forgiveness and Letting Go",
-        },
-        {
-            "subcategory_slug": "spiritual-exploration",
-            "name": "Spiritual Exploration and Curiosity",
-        },
-        {
-            "subcategory_slug": "environmental-connection-stewardship",
-            "name": "Environmental Connection and Stewardship",
-        },
-    ],
-    "career-professional-development": [
-        {
-            "subcategory_slug": "professional-skills-continuous-learning",
-            "name": "Professional Skill Development and Continuous Learning",
-        },
-        {
-            "subcategory_slug": "career-planning-goal-setting",
-            "name": "Career Planning and Goal Setting",
-        },
-        {
-            "subcategory_slug": "leadership-management-skills",
-            "name": "Leadership and Management Skills Development",
-        },
-        {
-            "subcategory_slug": "productivity-time-management",
-            "name": "Productivity and Time Management",
-        },
-        {
-            "subcategory_slug": "professional-relationships-networking",
-            "name": "Professional Relationships and Networking",
-        },
-        {
-            "subcategory_slug": "career-transition-adaptability",
-            "name": "Career Transition and Adaptability",
-        },
-        {
-            "subcategory_slug": "financial-growth-compensation",
-            "name": "Financial Growth and Compensation",
-        },
-        {"subcategory_slug": "work-life-balance", "name": "Work-Life Balance and Well-being"},
-        {
-            "subcategory_slug": "job-satisfaction-fulfillment",
-            "name": "Job Satisfaction and Personal Fulfillment",
-        },
-        {
-            "subcategory_slug": "problem-solving-decision-making",
-            "name": "Problem-Solving and Decision-Making",
-        },
-        {
-            "subcategory_slug": "adaptation-work-environment",
-            "name": "Adaptation to Remote Work or New Work Environments",
-        },
-        {
-            "subcategory_slug": "workplace-ethics-integrity",
-            "name": "Workplace Ethics and Integrity",
-        },
-    ],
-    "creative-expression-hobbies": [
-        {
-            "subcategory_slug": "exploring-hobbies-interests",
-            "name": "Exploring New Hobbies and Interests",
-        },
-        {
-            "subcategory_slug": "hobby-creative-skills",
-            "name": "Hobby and Creative Skill Improvement",
-        },
-        {"subcategory_slug": "creative-projects", "name": "Personal Creative Projects"},
-        {
-            "subcategory_slug": "artistic-growth",
-            "name": "Artistic Growth and Self-Improvement",
-        },
-        {"subcategory_slug": "creative-problem-solving", "name": "Creative Problem-Solving"},
-        {
-            "subcategory_slug": "social-collaborative-hobbies",
-            "name": "Social and Collaborative Hobbies",
-        },
-        {
-            "subcategory_slug": "creative-expression-flow",
-            "name": "Creative Expression and Flow",
-        },
-        {"subcategory_slug": "long-term-creative-goals", "name": "Long-Term Creative Goals"},
-    ],
-    "wealth-finance": [
-        {
-            "subcategory_slug": "budgeting-expense-management",
-            "name": "Budgeting and Expense Management",
-        },
-        {"subcategory_slug": "saving-emergency-funds", "name": "Saving and Emergency Funds"},
-        {"subcategory_slug": "debt-management", "name": "Debt Management"},
-        {
-            "subcategory_slug": "investing-build-wealth",
-            "name": "Investing and Building Wealth",
-        },
-        {"subcategory_slug": "retirement-planning", "name": "Retirement Planning"},
-        {
-            "subcategory_slug": "income-growth-career-advancement",
-            "name": "Income Growth and Career Advancement",
-        },
-        {
-            "subcategory_slug": "tax-planning-optimization",
-            "name": "Tax Planning and Optimization",
-        },
-        {
-            "subcategory_slug": "wealth-protection-insurance",
-            "name": "Wealth Protection and Insurance",
-        },
-        {
-            "subcategory_slug": "financial-literacy",
-            "name": "Financial Literacy and Education",
-        },
-        {
-            "subcategory_slug": "goal-oriented-finance-planning",
-            "name": "Goal-Oriented Finance Planning",
-        },
-        {
-            "subcategory_slug": "philanthropy-charitable-giving",
-            "name": "Philanthropy and Charitable Giving",
-        },
-        {
-            "subcategory_slug": "financial-independence",
-            "name": "Financial Independence and Freedom",
-        },
-        {
-            "subcategory_slug": "large-purchase-travel-savings",
-            "name": "Large Purchase and Travel Savings Goals",
-        },
-    ],
-    "environment-success": [
-        {
-            "subcategory_slug": "physical-environment-optimization",
-            "name": "Physical Environment Optimization",
-        },
-        {"subcategory_slug": "time-task-management", "name": "Time and Task Management"},
-        {
-            "subcategory_slug": "social-environment-relationships",
-            "name": "Social Environment and Relationships",
-        },
-        {
-            "subcategory_slug": "mindset-mental-environment",
-            "name": "Mindset and Mental Environment",
-        },
-        {
-            "subcategory_slug": "success-planning-goal-setting",
-            "name": "Success Planning and Goal Setting",
-        },
-        {
-            "subcategory_slug": "leveraging-tools-resources",
-            "name": "Leveraging Tools and Resources for Success",
-        },
-        {
-            "subcategory_slug": "continuous-learning-",
-            "name": "Continuous Learning and Improvement",
-        },
-        {
-            "subcategory_slug": "workplace-career-success",
-            "name": "Workplace and Career Success",
-        },
-    ],
-}
+  }
