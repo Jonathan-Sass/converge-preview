@@ -60,7 +60,7 @@ class UserSurvey:
             FROM 
                 survey_questions sq
             JOIN
-              subcategories sc ON sq.subcategory_id  = sc.id
+              survey_subcategories sc ON sq.survey_subcategory_id  = sc.id
             JOIN
               categories c ON sc.category_id = c.id
             LEFT JOIN
@@ -113,7 +113,7 @@ class UserSurvey:
             FROM 
                 survey_questions sq
             JOIN
-              subcategories sc ON sq.subcategory_id  = sc.id
+              survey_subcategories sc ON sq.survey_subcategory_id  = sc.id
             JOIN
               categories c ON sc.category_id = c.id
             LEFT JOIN
