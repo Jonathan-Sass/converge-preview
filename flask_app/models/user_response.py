@@ -42,9 +42,9 @@ class UserResponse:
             sa.answer_text,
             sa.answer_value
           FROM
-            subcategories sc
+            survey_subcategories sc
           JOIN
-            survey_questions sq ON sc.id = sq.subcategory_id
+            survey_questions sq ON sc.id = sq.survey_subcategory_id
           JOIN
             user_responses ur on sq.id = ur.survey_question_id
           JOIN

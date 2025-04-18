@@ -62,7 +62,7 @@ class UserSurvey:
             JOIN
               survey_subcategories sc ON sq.survey_subcategory_id  = sc.id
             JOIN
-              categories c ON sc.category_id = c.id
+              survey_categories c ON sc.survey_category_id = c.id
             LEFT JOIN
                 survey_question_answer_map sqam ON sqam.survey_question_id = sq.id
             LEFT JOIN

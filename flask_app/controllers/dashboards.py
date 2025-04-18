@@ -77,7 +77,7 @@ def dashboard_intro():
     }
 
     if not user_responses:
-        return redirect("/surveys/user-orientation.html")
+        return redirect("/surveys/user-orientation")
 
     return render_template("/dashboard/dashboard_intro.html", priority_order = priority_order)
 

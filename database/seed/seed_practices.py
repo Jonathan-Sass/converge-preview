@@ -11,10 +11,49 @@ db = connectToMySQL("converge_schema")
 
 
 def seed_practices():
-    # seed practice categories
+    try:
+      seed_practice_categories(practice_categories)
+    except Exception as e:
+      print(f"Failed to seed practice categories: {e}")
+    else:
+      print("Practice categories seeded.")
+
+    try:
+      execute_practice_subcategories_seed()
+    except Exception as e:
+      print(f"Failed to seed practice subcategories: {e}")
+    else:
+      print("Practice subcategories seeded.")
+
+    try:
+      db_categories = fetch_categories()
+      db_subcategories = fetch_subcategories()
+      # get practice_durations
+      durations = fetch_durations()
+      # get engagement levels
+      engagement_levels = fetch_engagement_levels()
+      # get frequencies
+      frequencies = fetch_frequencies()
+      # prepare and batch data
+      values = prepare_practice_data(db_categories, db_subcategories, frequencies)
+      # seed practices
+      execute_practice_data_seed(values)
+    except Exception as e:
+      print(f"Failed to seed practices: {e}")
+    else:
+      print("Practices seeded.")
+
+    try:
+      recommended_durations_values = prepare_recommended_durations_data(durations, engagement_levels)
+      execute_recommended_duration_seed(recommended_durations_values)
+    except Exception as e:
+      print(f"Failed to seed recommended durations: {e}")
+    else:
+      print("Recommended durations seeded.")
+
+def test_practice_seed():
     seed_practice_categories(practice_categories)
-    seed_practice_subcategories()
-    # seed_practice_subcategories(practice_subcategories)
+    execute_practice_subcategories_seed()
 
     db_categories = fetch_categories()
     db_subcategories = fetch_subcategories()
@@ -24,31 +63,13 @@ def seed_practices():
     engagement_levels = fetch_engagement_levels()
     # get frequencies
     frequencies = fetch_frequencies()
-    # prepare and batch data
+
     values = prepare_practice_data(db_categories, db_subcategories, frequencies)
-    # seed practices
     execute_practice_data_seed(values)
 
     recommended_durations_values = prepare_recommended_durations_data(durations, engagement_levels)
     execute_recommended_duration_seed(recommended_durations_values)
-
-def test_practice_seed():
-    seed_practice_categories(practice_categories)
-    seed_practice_subcategories()
-
-    db_categories = fetch_categories()
-    db_subcategories = fetch_subcategories()
-    # get practice_durations
-    durations = fetch_durations()
-    # get engagement levels
-    engagement_levels = fetch_engagement_levels()
-    # get frequencies
-    frequencies = fetch_frequencies()
-
-    values = prepare_practice_data(db_categories, db_subcategories, frequencies)
-    execute_practice_data_seed(values)
-
-
+    
     return
 
 def seed_practice_categories(practice_categories):
@@ -73,7 +94,7 @@ def seed_practice_categories(practice_categories):
     else:
         print("Seeding practice_categories successful!")
 
-def seed_practice_subcategories():
+def execute_practice_subcategories_seed():
     """
     This function seeds practice_subcategories in the practice_subcategories table
     """
@@ -220,7 +241,6 @@ def prepare_practice_data(db_categories, db_subcategories, frequencies):
     # Create lookup dictionaries for categories, subcategories, durations, and frequencies
     category_lookup = {cat["slug"]: cat["id"] for cat in db_categories}
     subcategory_lookup = {sc["slug"]: sc["id"] for sc in db_subcategories}
-    pprint(subcategory_lookup)
     frequency_lookup = {freq['frequency_label']: freq['frequency_value'] for freq in frequencies}
 
     batched_data = []
@@ -235,18 +255,12 @@ def prepare_practice_data(db_categories, db_subcategories, frequencies):
             if practice_category_id is None:
                 print(f"Unknown category_id: {practice_category_id}")
                 continue
-            else:
-                print("*****************************")
-                print(f"Category id: {practice_category_id} found")
             
             for subcategory, practices in subcat_groups.items():
                 practice_subcategory_id = subcategory_lookup.get(subcategory)
-                print(subcategory)
                 if practice_subcategory_id is None:
                     print(f"Unknown subcategory id: {practice_subcategory_id}")
                     continue
-                else:
-                    print(f"Subcategory id: {practice_subcategory_id} found")
                 
                 for practice in practices:
                     prepared_practice_data = {
@@ -312,14 +326,14 @@ def execute_practice_data_seed(values):
 def prepare_recommended_durations_data(durations, engagement_levels):
     duration_id_lookup = {dur['duration_label']: dur['id'] for dur in durations}
     engagement_level_id_lookup = {eng_lev['level']: eng_lev['id'] for eng_lev in engagement_levels}
-    print("***Engagement levels:*****")
-    pprint(engagement_levels)
+    # print("***Engagement levels:*****")
+    # pprint(engagement_levels)
     practice_id_lookup = fetch_practice_ids()
 
-    print("Duration id lookup: ")
-    pprint(duration_id_lookup)
-    print("engagement level id lookup: ")
-    pprint(engagement_level_id_lookup)
+    # print("Duration id lookup: ")
+    # pprint(duration_id_lookup)
+    # print("engagement level id lookup: ")
+    # pprint(engagement_level_id_lookup)
 
     batched_recommended_durations = []
 

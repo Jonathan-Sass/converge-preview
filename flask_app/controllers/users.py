@@ -39,7 +39,8 @@ def seed_route():
     seed_surveys.user_survey_seed()
     seed_misc_practice_data.seed_misc_practice_data()
     seed_practices.seed_practices()
-    seed_routine_template.seed_routine_templates()
+
+    # seed_routine_template.seed_routine_templates()
 
     return render_template("dashboard/new_user.html")
 
@@ -49,7 +50,7 @@ def test_seed_route():
     """
     This route is for testing seed functions independently.
     """
-    seed_practices.test_practice_seed()
+    seed_routines.seed_routine_data()
 
     # seed_routines.seed_routine_data()
 
