@@ -1,6 +1,9 @@
 -- post_forward_constraints.sql
 -- Run this manually after forward engineering from your ERD
 
+
+-- NOTE: This script is deprecated due to revised user_flex_tasks table, but will remain here in the event of reverting table properties
+
 USE converge_schema;
 
 -- Enforce mutually exclusive milestone_id vs. action_item_id in user_flex_tasks
