@@ -62,7 +62,6 @@ class RoutineTemplate:
                 routine_templates.routine_type,
                 routine_templates.category AS routine_template_category,
                 routine_templates.notes AS routine_template_notes,
-                frequencies.frequency_label AS routine_template_frequency,
                 practices.id AS practice_id,
                 practices.name AS practice_name,
                 practices.description AS practice_description,
@@ -81,8 +80,6 @@ class RoutineTemplate:
                 engagement_levels.level AS engagement_level
             FROM
                 routine_templates
-            JOIN
-                frequencies ON routine_templates.frequency_id = frequencies.id
             JOIN
                 routine_template_practices ON routine_templates.id = routine_template_practices.routine_template_id
             JOIN
