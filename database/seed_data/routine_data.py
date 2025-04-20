@@ -22,7 +22,7 @@ routine_blocks = [
     },
     {
         "name": "Sport Specific Training",
-        "slug": "sport-specific",
+        "slug": "sport-training",
         "description": "Dedicate time block for sport specific training with targeted training routines — perfect for athletes, martial artists, and weekend warriors.",
         "tier_level": 2,
         # "icon_slug": "athlete"
