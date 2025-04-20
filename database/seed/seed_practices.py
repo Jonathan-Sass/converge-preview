@@ -8,8 +8,7 @@ import pymysql
 from pprint import pprint
 
 db = connectToMySQL("converge_schema")
-
-
+        
 def seed_practices():
     try:
       seed_practice_categories(practice_categories)

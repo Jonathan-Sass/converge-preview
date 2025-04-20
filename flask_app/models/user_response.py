@@ -101,6 +101,43 @@ class UserResponse:
         return processor_function(user_responses)
       else:
         raise ValueError(f"Unkown subcategory: {subcategory_slug}")
+  
+    def score_trait(user_value, template_value, trait_meta):
+      if trait_meta["type"] == "proximity":
+        return trait_meta["max_score"] - abs(user_value - template_value)
+      elif trait_meta["type"] == "exact":
+        return int(user_value == template_value)
+      elif trait_meta["type"] == "boolean":
+         return 1 if user_value == template_value else 0
+      else:
+        return 0
+
+    def build_scored_traits(user_responses):
+      scored_traits = {}
+
+      for question in user_responses:
+        slug = question.get("question_slug")
+        question_type = question.get("type")
+
+        if not slug or not question_type:
+          continue
+         
+        if question_type in ["yes-no", "boolean"]:
+          scored_traits[slug] = {"type": "exact"}
+        
+        # TODO: Add relevant question types to list below to ensure adequate representation of proximity-based answers
+        elif question_type in ["guided_choice", "satisfaction", "scale"]:
+          max_score = max(
+             (a.get("answer_value", 0) for a in question.get("answers", [])),
+             default = 1
+          )
+          scored_traits[slug] = {"type": "proximity", "max_score": max_score}
+        
+         # Optional: add custom scoring types
+        # elif q_type == "select-any":
+        #     scored_traits[slug] = {"type": "multi-match", "max_score": 1}
+
+        return scored_traits
       
     def process_day_map(user_responses):
       """
@@ -116,12 +153,42 @@ class UserResponse:
       print("***process_day_map***")
       
       recommended_routine_template_name = "The Grounded Start"
+      recommended_routine_template_slug = "core-reset"
       existing_routine_status = False
+      score = 0;
       
       response_values = {
             response.question_slug: response.answer_value for response in user_responses
         }
       
+      scored_traits = UserResponse.build_scored_traits(user_responses)
+      # template_traits = build_template_traits()
+
+      # Prototype for proximity-based scoring system using User Trait Profile
+      # TODO: FINISH IT!
+      user_traits = {
+         "habit_adoption_pattern": response_values.get("habit-adoption-check"),
+         "am_energy_pattern": response_values.get("am-energy-pattern"),
+         "am_routine_time_availability": response_values.get("am-routine-time-availability"),
+         "movement_level": response_values.get("daily-movement-check"),
+         "am_exercise": response_values.get("exercise-timing") == 1,
+         "has_focus_block": bool(response_values.get("am-focus-block-check"))
+      }
+      am_routine_status = response_values.get("morning_routine_check")
+
+      if am_routine_status <= 1:
+         recommended_routine_template_slug = "core-reset"
+      else:
+         for trait, trait_meta in scored_traits.items():
+            user_value = user_traits.get(trait)
+            template_value = template_traits.get(trait)
+
+            if user_value is None or template_value is None:
+               continue
+            
+            score += UserResponse.score_trait(user_value, template_value, trait_meta)
+
+
       existing_routines_check = response_values.get("existing-routines-check")
       existing_am_routines_satisfaction = response_values.get("existing-am-routines-satisfaction")
       am_routine_time_availability = response_values.get("am-routine-availability")
