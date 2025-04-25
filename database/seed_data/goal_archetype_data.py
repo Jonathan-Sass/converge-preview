@@ -1,4 +1,4 @@
-goal_blueprint_data = {
+category_archetypes = {
   "career-ladder-climber": {
     "category_slug": "career-professional-development",
     "subcategory_slug": "grow-in-current-role",
