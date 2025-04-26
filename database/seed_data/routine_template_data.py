@@ -95,6 +95,7 @@ routine_template_data = [
     },
     {
         "name": "Energized Focus",
+        "slug": "energized-focus",
         "description": "A morning routine designed to help individuals expressing ADHD symptoms or tendencies transition smoothly into the day.",
         "routine_type": "AM",
         "category": "ADHD",
@@ -112,6 +113,7 @@ routine_template_data = [
     },
     {
         "name": "Connected Start",
+        "slug": "connected-start",
         "description": "A structured routine for individuals expressing ADHD symptoms or tendencies, with an emphasis on fostering meaningful connections.",
         "routine_type": "AM",
         "category": "ADHD",
@@ -130,6 +132,7 @@ routine_template_data = [
     },
     {
         "name": "Peak Performance Start",
+        "slug": "peak-performance-start",
         "description": "A performance-driven routine focusing on hydration, movement, and mental preparation.",
         "routine_type": "AM",
         "category": "Athlete",
@@ -147,6 +150,7 @@ routine_template_data = [
     },
     {
         "name": "Momentum Builder",
+        "slug": "momentum-builder",
         "description": "A routine for ADHD athletes to harness energy and focus on training goals.",
         "routine_type": "AM",
         "category": "Athlete",
