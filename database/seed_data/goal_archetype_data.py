@@ -1,6 +1,6 @@
 category_archetypes = [
     {
-        "category_slug": "career-professional-development",
+        "goal_category_slug": "career-professional-development",
         "slug": "career-leadership-growth",
         "name": "Career Growth into Leadership Positions",
         "description": "You’re in your current field and looking to advance, expand your responsibilities, or increase your compensation or status through skill development and visibility.",
@@ -28,6 +28,7 @@ category_archetypes = [
                                 "slug": "review-company-initiatives",
                                 "name": "Review Current Company Initiatives",
                                 "description": "Check internal communications, bulletin boards, or ask managers about visible projects.",
+                                "action_item_order": 1,
                                 "estimated_time_value": 1,
                                 "estimated_time_unit": "hour"
                             },
@@ -35,6 +36,7 @@ category_archetypes = [
                                 "slug": "propose-small-initiative",
                                 "name": "Propose a Small Initiative You Could Lead",
                                 "description": "Think of an internal improvement or small project you could initiate and pitch it.",
+                                "action_item_order": 2,
                                 "estimated_time_value": 2,
                                 "estimated_time_unit": "hour"
                             }
@@ -51,6 +53,7 @@ category_archetypes = [
                                 "slug": "define-project-scope",
                                 "name": "Define Project Scope and Deliverables",
                                 "description": "Clarify goals, deliverables, timeline, and who is involved.",
+                                "action_item_order": 1,
                                 "estimated_time_value": 2,
                                 "estimated_time_unit": "hour"
                             },
@@ -58,6 +61,7 @@ category_archetypes = [
                                 "slug": "conduct-project-retrospective",
                                 "name": "Conduct a Project Retrospective",
                                 "description": "Document lessons learned and present them to leadership or your team.",
+                                "action_item_order": 2,
                                 "estimated_time_value": 2,
                                 "estimated_time_unit": "hour"
                             }
@@ -87,6 +91,7 @@ category_archetypes = [
                                 "slug": "research-leadership-courses",
                                 "name": "Research 3 Leadership Skills Courses",
                                 "description": "Find relevant online or in-person courses that fit your leadership development goals.",
+                                "action_item_order": 1,
                                 "estimated_time_value": 2,
                                 "estimated_time_unit": "hour"
                             },
@@ -94,6 +99,7 @@ category_archetypes = [
                                 "slug": "enroll-complete-course",
                                 "name": "Enroll and Complete a Leadership Course",
                                 "description": "Register, schedule time, and track progress until course completion.",
+                                "action_item_order": 2,
                                 "estimated_time_value": 10,
                                 "estimated_time_unit": "hour"
                             }
@@ -155,6 +161,7 @@ category_archetypes = [
                                 "slug": "attend-internal-events",
                                 "name": "Attend Internal Leadership Events",
                                 "description": "Sign up and participate in any available events where leadership will be present.",
+                                "action_item_order": 1,
                                 "estimated_time_value": 2,
                                 "estimated_time_unit": "hour"
                             },
@@ -162,6 +169,7 @@ category_archetypes = [
                                 "slug": "request-informational-meeting",
                                 "name": "Request One Informational Meeting",
                                 "description": "Ask for a short informational conversation with someone from leadership you admire.",
+                                "action_item_order": 2,
                                 "estimated_time_value": 1,
                                 "estimated_time_unit": "hour"
                             }
@@ -170,7 +178,7 @@ category_archetypes = [
                 ]
             },
             {
-                "category_quality_slug": "autonomy-control",
+                "category_quality_slug": "autonomy-ownership",
                 "slug": "mentor-junior-colleague",
                 "name": "Mentor or Coach a Junior Colleague",
                 "description": "Demonstrate leadership organically by mentoring a newer or less experienced team member, helping them grow while building your leadership credibility.",
@@ -218,7 +226,7 @@ category_archetypes = [
         ]
     },
     {
-        "category_slug": "career-professional-development",
+        "goal_category_slug": "career-professional-development",
         "slug": "career-skills-growth",
         "name": "Career Skills and Credentials",
         "description": "You are happy in your current field and looking to advance, expand your responsibilities, or increase your compensation or status through skill development and visibility.",
@@ -469,7 +477,7 @@ category_archetypes = [
         ]
     },
     {
-        "category_slug": "career-professional-development",
+        "goal_category_slug": "career-professional-development",
         "slug": "career-discovery",
         "name": "Career Discovery",
         "description": "You’re unsure of your long-term direction and are focused on reflection, exploration, and experimenting with potential paths that better fit your values, strengths, and lifestyle.",
@@ -632,6 +640,7 @@ category_archetypes = [
                       "slug": "review-job-descriptions",
                       "name": "Review 5–10 Job Descriptions",
                       "description": "Analyze real job postings to understand required skills, responsibilities, and work environments.",
+                      "action_item_order": 1,
                       "estimated_time_value": 2,
                       "estimated_time_unit": "hour"
                     },
@@ -639,6 +648,7 @@ category_archetypes = [
                       "slug": "watch-career-interview-videos",
                       "name": "Watch 2–3 Career Interviews or Panels",
                       "description": "Use YouTube or LinkedIn to find real professionals discussing their roles and industries.",
+                      "action_item_order": 2,
                       "estimated_time_value": 2,
                       "estimated_time_unit": "hour"
                     }
@@ -655,6 +665,7 @@ category_archetypes = [
                       "slug": "identify-network-connections",
                       "name": "Identify 5 Possible Connections",
                       "description": "Use LinkedIn, alumni networks, or social connections to find people working in your fields of interest.",
+                      "action_item_order": 1,
                       "estimated_time_value": 1,
                       "estimated_time_unit": "hour"
                     },
@@ -662,6 +673,7 @@ category_archetypes = [
                       "slug": "schedule-and-conduct-chats",
                       "name": "Schedule and Conduct 2–3 Informational Conversations",
                       "description": "Prepare 5–7 thoughtful questions and focus on learning, not asking for a job.",
+                      "action_item_order": 2,
                       "estimated_time_value": 3,
                       "estimated_time_unit": "hour"
                     }
@@ -672,7 +684,7 @@ category_archetypes = [
         ]
     },
     {
-        "category_slug": "career-professional-development",
+        "goal_category_slug": "career-professional-development",
         "slug": "career-pivot",
         "name": "Career Pivot",
         "description": "You’re preparing to move into a different role, industry, or lifestyle. Your focus is on clarity, transferable skills, and building the foundation for a successful transition.",
@@ -907,7 +919,7 @@ category_archetypes = [
         ]
     },
     {
-        "category_slug": "career-professional-development",
+        "goal_category_slug": "career-professional-development",
         "slug": "aspiring-independent-creator",
         "name": "Aspiring Independent Creator",
         "description": "You’re building or exploring a solo, creator-driven path through writing, art, music, video, education, or thought leadership. You likely value freedom, expression, and ownership.",
@@ -988,7 +1000,7 @@ category_archetypes = [
               ]
             },
             {
-              "category_quality_slug": "autonomy-control",
+              "category_quality_slug": "autonomy-ownership",
               "slug": "build-creative-practice",
               "name": "Build a Consistent Creative Practice Habit",
               "description": "Establish a lightweight, sustainable practice schedule that helps you create regularly without burnout or overwhelm.",
@@ -1080,7 +1092,7 @@ category_archetypes = [
         ]
     },
     {
-        "category_slug": "career-professional-development",
+        "goal_category_slug": "career-professional-development",
         "slug": "experienced-independent-creator",
         "name": "Experienced Independent Creator Seeking Growth",
         "description": "You are looking to expand upon an established solo, creator-driven path through writing, art, music, video, education, or thought leadership.",
@@ -1224,7 +1236,7 @@ category_archetypes = [
         ]
     },
     {
-        "category_slug": "career-professional-development",
+        "goal_category_slug": "career-professional-development",
         "slug": "creative-career-growth",
         "name": "Creative Path Growth",
         "description": "You’re already in a creative field and want to grow your reach, improve your craft, or stabilize your income while staying true to your artistic identity.",
@@ -1321,7 +1333,7 @@ category_archetypes = [
               ]
             },
             {
-              "category_quality_slug": "autonomy-control",
+              "category_quality_slug": "autonomy-ownership",
               "slug": "sustainable-creative-plan",
               "name": "Create a Sustainable Creative Work Plan",
               "description": "Design a flexible, life-giving creative practice and income system that supports both your art and your well-being long-term.",
@@ -1419,7 +1431,7 @@ category_archetypes = [
 
 old_data = {
   "career-ladder-climber": {
-    "category_slug": "career-professional-development",
+    "goal_category_slug": "career-professional-development",
     "category_quality_slug": "grow-in-current-role",
     "goal": {
       "name": "Advance to a leadership role within my team",
@@ -1514,7 +1526,7 @@ old_data = {
   },
 
   "career-pivoter": {
-    "category_slug": "career-professional-development",
+    "goal_category_slug": "career-professional-development",
     "category_quality_slug": "career-transition",
     "goal": {
       "name": "Transition into a new career field",

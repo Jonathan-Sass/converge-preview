@@ -39,4 +39,8 @@ survey_subcategory_data = {
         {"subcategory_slug": "growth-drivers", "name": "Drivers of Growth"},
         {"subcategory_slug": "long-term-vision", "name": "Long-Term Vision"},
     ],
+    "setting-goals": [
+        {"subcategory_slug": "career-professional-development-map", "name": "Career and Professional Development Map"},
+
+    ]
 }

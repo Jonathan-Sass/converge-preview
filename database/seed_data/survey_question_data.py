@@ -464,7 +464,6 @@ survey_question_data = [
             {"answer_text": "I am looking .....", "answer_value": 5}
           ]
         },
-        {}
       ]
     },
 
@@ -792,7 +791,7 @@ survey_question_data = [
     },
 
 
-# ALL QUESTION SETS BELOW DEPRECATED?!?
+# ALL QUESTION SETS BELOW DEPRECATED?!?  LOTS OF GOOD QUESTIONS HERE
 
     # {
     #     "subcategory_slug": "getting-started",

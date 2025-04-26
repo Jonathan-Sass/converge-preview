@@ -77,7 +77,8 @@ def survey_category_seed():
         VALUES
             ('onboarding', 'Onboarding', NOW(), NOW()),
             ('foundations', 'Foundations', NOW(), NOW()),
-            ('your-why', 'Defining Your Why', NOW(), NOW())
+            ('your-why', 'Defining Your Why', NOW(), NOW()),
+            ('setting-goals', 'Setting Goals', NOW(), NOW())
         ON DUPLICATE KEY UPDATE updated_at = NOW();
             """
     UserSurvey.db.query_db(query)
@@ -198,6 +199,8 @@ def prepare_survey_question_data():
         for question in subcategory["questions"]:
             answer_data = []
             answer_type = question["type"]
+            if answer_type is None:
+                raise KeyError(f"Unknown {answer_type} seeding survey_questions.")
 
             if "answers" in question:
                 for answer in question["answers"]:
