@@ -1,16 +1,16 @@
 from flask_app.config.mysqlconnection import connectToMySQL
-
-from database.seed_data.routine_data import routine_blocks
 import pymysql
 from pprint import pprint
+
+from database.seed_data.routine_data import routine_blocks
+from database.seed.seed_routine_template import seed_routine_templates
 
 db = connectToMySQL("converge_schema")
 
 def seed_routine_data():
 
-  # seed_routine_templates()
-
   seed_routine_blocks()
+  seed_routine_templates()
   return
 
 def seed_routine_blocks():
@@ -21,6 +21,7 @@ def seed_routine_blocks():
         (%s, %s, %s, %s, NOW(), NOW())
       ON DUPLICATE KEY UPDATE
         name = VALUES(name),
+        slug = slug,
         description = VALUES(description),
         tier_level = VALUES(tier_level),
         updated_at = NOW();
