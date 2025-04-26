@@ -15,7 +15,7 @@ routine_blocks = [
     # },
     {
         "name": "Expanded Core Self-Care",
-        "slug": "core-self-care",
+        "slug": "expanded-core",
         "description": "Build on your momentum with light movement, digital boundaries, and grounding spiritual practices for a more centered start.",
         "tier_level": 1,
         # "icon_slug": "expanded-core"

@@ -38,6 +38,8 @@ question types, and guidelines for reusable answer sets.
 
 # ADD QUESTIONS ABOUT SCREEN TIME AND DOPAMINE RELATED DESIRES/DRIVERS/RESPONSES
 survey_question_data = [
+    
+    
     {
       "subcategory_slug": "user-orientation",
       "questions": [
@@ -444,6 +446,28 @@ survey_question_data = [
             # },
         ]
     },
+    {
+      "subcategory_slug": "career-professional-development-map",
+      "questions": [
+        {
+          "question_slug": "career-path",
+          "question_text": "Describe your current place in your career path.",
+          "type": "guided-choice",
+          "answers": [
+            {"answer_text": "I am completely content in my professional life.", "answer_value": 0},
+            {"answer_text": "I plan on staying in my field, and would like to work toward a management position.", "answer_value": 1},
+            {"answer_text": "I plan on staying in my field, and and seek advancement through professional development.", "answer_value": 2},
+            {"answer_text": "I am planning or currently transitioning out of my current position or field.", "answer_value": 3},
+            {"answer_text": "I am pursuing training or credentials toward desired roles/fields.", "answer_value": 4},
+
+            {"answer_text": "I am not certain .", "answer_value": 3},
+            {"answer_text": "I am looking .....", "answer_value": 5}
+          ]
+        },
+        {}
+      ]
+    },
+
     {
         "subcategory_slug": "discipline-motivation-focus-map",
         "questions": [
