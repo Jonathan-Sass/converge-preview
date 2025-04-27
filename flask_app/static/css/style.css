@@ -37,7 +37,7 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6, p {
-    font-weight: 400;
+  font-weight: 400;
 }
 
 .min-width-200 {
@@ -66,81 +66,41 @@ h1, h2, h3, h4, h5, h6, p {
   z-index: 99997 !important; /* Make sure the highlighted element stays visible */
 }
 
-/* Allow clicking inside inputs during Intro.js steps */
-/*.introjs-tooltipReferenceLayers input {
-  pointer-events: none !important;
-  background: none !important;
-}*/
-
-/* .introjs-tooltipReferenceLayer,  */
-/* .introjs-helperLayer { */
-    /* pointer-events: none !important;  */
-    /* ✅ Allows clicking through overlays */
-/* } */
-
 .introjs-tooltipReferenceLayer input, 
 .introjs-helperLayer input {
     pointer-events: auto !important; /* ✅ Enables typing in input fields */
 }
+  
+.swiper-slide {
+  flex-shrink: 0; /* Prevent slides from shrinking */
+  max-width: 100%; /* Adjust width to fit content or define a specific width */
+}
 
+.milestone-card { 
+  width: calc(100% / 3);
+  max-width: 300px; 
+  min-width: 250px;
+} 
 
-/* .swiper-wrapper {
-  display: flex; /* Ensure flexbox alignment */
-  /* gap: 16px; /* Set gap between slides (16px is like Bootstrap's gap-2) */
-  /* } */ 
-  
-  .swiper-slide {
-    flex-shrink: 0; /* Prevent slides from shrinking */
-    max-width: 100%; /* Adjust width to fit content or define a specific width */
-  }
-  
-  .milestone-card { 
-    width: calc(100% / 3);
-    max-width: 300px; 
-    min-width: 250px;
-  } 
-  
-  .action-item-section {
-    top: 100%; /* Position the panel below the card */
-    left: 0;
-    width: 100%; /* Ensure the panel matches the width of the card */
-    z-index: 10; /* Ensure it appears above neighboring elements */
-  }
+.action-item-section {
+  top: 100%; /* Position the panel below the card */
+  left: 0;
+  width: 100%; /* Ensure the panel matches the width of the card */
+  z-index: 10; /* Ensure it appears above neighboring elements */
+}
   
   /* Main container */
-  .mask-container {
-      position: relative;
-      overflow-x: scroll;            /* Allow horizontal scrolling */
-      padding: 1rem;
-      scroll-behavior: smooth;
-  }
-  
-  /* .mask-container::before,
-  .mask-container::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    width: 50px; Adjust for desired fade size
-    pointer-events: none; Allow interaction with underlying cards
-    z-index: 10;
-    background: linear-gradient(to right, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0));
+.mask-container {
+    position: relative;
+    overflow-x: scroll;            /* Allow horizontal scrolling */
+    padding: 1rem;
+    scroll-behavior: smooth;
 }
-
-.mask-container::before {
-    left: 0;
-}
-
-.mask-container::after {
-    right: 0;
-    transform: rotate(180deg);
-} */
 
 /* Gray out cards partially outside the container */
 .mask-container .practice-card {
     opacity: 0.5;                  /* Default opacity for all cards */
     transition: opacity 0.3s ease;
-
 }
 
 /* Fully visible cards */
@@ -183,7 +143,7 @@ h1, h2, h3, h4, h5, h6, p {
     border: 2px dashed #007bff; /* Highlighted border for drop target */
     background-color: #ebf8ff; /* Light blue background for clarity */
     transition: background-color 0.2s ease, border-color 0.2s ease;
-} */
+}
 
 #practice-container {
     scrollbar-width: none;         /* For Firefox */
@@ -215,11 +175,6 @@ h1, h2, h3, h4, h5, h6, p {
 .scroll-btn:hover {
     opacity: 1; /* Fully visible on hover */
     transform: scale(1.1); /* Slight zoom effect */
-}
-
-/* Button Icon Size */
-.scroll-btn i {
-    font-size: 1.5rem; /* Adjust the arrow size */
 }
 
 .hide-scrollbar {
