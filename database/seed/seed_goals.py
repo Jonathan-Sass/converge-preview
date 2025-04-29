@@ -193,7 +193,6 @@ def batch_example_action_item_data(category_archetypes, category_id_lookup, goal
     batched_action_items = []
     
     for archetype in category_archetypes:
-      category_id = category_id_lookup.get(archetype["goal_category_slug"])
 
       for goal in archetype["example_goals"]:
           goal_id = goal_id_lookup.get(goal["slug"])
@@ -211,12 +210,12 @@ def batch_example_action_item_data(category_archetypes, category_id_lookup, goal
                   {
                       "example_milestone_id": milestone_id,
                       "example_goal_id": goal_id,
-                      "slug": goal["slug"],
-                      "name": goal["name"],
-                      "description": goal["description"],
-                      "action_item_order": goal.get("action_item_order", 1),
-                      "estimated_time_value": goal["estimated_time_value"],
-                      "estimated_time_unit": goal["estimated_time_unit"]
+                      "slug": action_item["slug"],
+                      "name": action_item["name"],
+                      "description": action_item["description"],
+                      "action_item_order": action_item.get("action_item_order", 1),
+                      "estimated_time_value": action_item["estimated_time_value"],
+                      "estimated_time_unit": action_item["estimated_time_unit"]
                   }
           )
 
