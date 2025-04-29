@@ -41,7 +41,7 @@ class Goal:
           SELECT
               g.id AS goal_id,
               g.user_id,
-              g.category_id,
+              g.goal_category_id,
               g.subcategory_id,
               g.name AS goal_name,
               g.description AS goal_description,
@@ -246,7 +246,7 @@ class Goal:
                     # Save goal data
                     goal_data = {
                         "user_id": user_id,
-                        "category_id": category_id,
+                        "goal_category_id": category_id,
                         "subcategory_id": subcategory_id,
                         "name": goal.get("name", "").strip(),
                         "description": goal.get("description", "").strip(),
@@ -319,7 +319,7 @@ class Goal:
 
         query = """
           INSERT INTO
-            goals (user_id, category_id, subcategory_id, name, description, goal_type, projected_completion, is_complete, priority, is_active, created_at, updated_at)
+            goals (user_id, goal_category_id, subcategory_id, name, description, goal_type, projected_completion, is_complete, priority, is_active, created_at, updated_at)
           VALUES 
             (%(user_id)s, %(category_id)s, %(subcategory_id)s, %(name)s, %(description)s, %(goal_type)s, %(projected_completion)s, %(is_complete)s, %(priority)s, %(is_active)s, NOW(), NOW())
           ON DUPLICATE KEY UPDATE
