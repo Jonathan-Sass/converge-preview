@@ -6,6 +6,7 @@ from typing import List
 from flask_app.models.user import User
 from flask_app.models.user_response import UserResponse
 from flask_app.models.routine_template import RoutineTemplate
+from flask_app.models.routine_block import RoutineBlock
 from flask_app.models.practice import Practice
 
 
@@ -24,7 +25,7 @@ class Routine:
         self.notes = data["notes"] or None
         self.created_at = data["created_at"]
         self.updated_at = data["updated_at"]
-        self.practices: List[Practice] = []
+        self.routine_blocks: List[RoutineBlock] = []
 
     def find_routines_by_user_id(user_id):
         """
@@ -50,6 +51,10 @@ class Routine:
               ur.updated_at AS routine_updated_at,
               urp.routine_id AS practice_routine_id,
               urp.position,
+              rb.id AS routine_block_id,
+              rb.name AS routine_block_name,
+              rb.description AS routine_block_description,
+              rb.tier_level AS routine_block_tier_level,
               p.id AS practice_id,
               p.name AS practice_name,
               p.description AS practice_description,
@@ -67,6 +72,8 @@ class Routine:
               user_routines ur
             LEFT JOIN 
               user_routine_practices urp ON ur.id = urp.routine_id
+            LEFT JOIN
+              routine_blocks rb ON urp.routine_block_id = rb.id
             LEFT JOIN 
               practices p ON urp.practice_id = p.id
             LEFT JOIN
@@ -85,32 +92,49 @@ class Routine:
 
         results = Routine.db.query_db(query, data)
 
-        routines = []
-
         if results:
+            return Routine.build_complete_user_routines(results, user_id)
 
-            for row in results:
-                routine = next((r for r in routines if r.id == row["routine_id"]), None)
-                if not routine:
-                    routine = Routine.build_routine_from_row(row, user_id)
-                    routines.append(routine)
 
-                practice = None
+    def build_complete_user_routines(rows, user_id):
+        routines = []
+        blocks = []
+        practices = []
 
-                practice_id = row["practice_id"]
-                if practice_id and row["practice_routine_id"] == routine.id:
-                    practice = next((p for p in routine.practices if p.id == practice_id), None)
+        routines_by_id = {}
+        blocks_by_id = {}
+        practices_by_id = {}
 
-                    if not practice:
-                        practice = Practice.build_practice_from_row(row)
-                        routine.practices.append(practice)
+        
+        for row in rows:
+            rid = row["routine_id"]
+            if rid not in routines_by_id:
+                routine = Routine.build_routine_from_row(row, user_id)
+                routines_by_id[rid] = routine
+                routines.append(routine)
+            else:
+                routine = routines_by_id[rid]
+            
+            bid = row["routine_block_id"]
+            if bid not in blocks_by_id:
+                routine_block = RoutineBlock.build_routine_block_from_row(row)
+                blocks_by_id[bid] = routine_block
+                blocks.append(routine_block)
 
-        # print("Routines in find_routines:")
-        # for routine in routines:
-        #     pprint(vars(routine))
-        #     print("Routine's practices:")
-        #     for practice in routine.practices:
-        #         pprint(vars(practice))
+                routine.routine_blocks.append(routine_block)
+            else:
+                routine_block = blocks_by_id[bid]
+
+
+            pid = row["practice_id"]
+            if pid not in practices_by_id:
+                practice = Practice.build_practice_from_row(row)
+                practices_by_id[pid] = practice
+                practices.append(practice)
+
+                routine_block.practices.append(practice)
+            else:
+                practices.append(practices_by_id[pid])
 
         return routines
     

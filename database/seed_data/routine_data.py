@@ -2,7 +2,7 @@ routine_blocks = [
     {
         "name": "Core Reset & Prime",
         "slug": "core-reset",
-        "description": "Powerful, super easy 1–2 minute physiological reset-based practices to jump start your system and your day.",
+        "description": "Super easy, powerful core practices to prime your system. (Hydration, Circadian Regulator, Stress)",
         "tier_level": 0,
         "icon_slug": "prime"
     },

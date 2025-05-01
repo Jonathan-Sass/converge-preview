@@ -50,9 +50,19 @@ practice_categories = [
 practice_subcategories = {
   "mind-body-reset": [
     {
+      "name": "Digital Boundaries",
+      "slug": "digital-boundaries",
+      "description": "Establish intentional time boundaries around digital device use to minimize distractions, reduce screen fatigue, and cultivate more mindful, focused moments throughout your day."
+    },
+    {
       "name": "Morning Hydration", 
       "slug": "am-hydration", 
       "description": "The body loses about 1 cup of water overnight through respiration alone, rehydrate to jumpstart your body.",
+    },
+    {
+      "name": "Morning Sunlight",
+      "slug": "morning-sun",
+      "description": "Exposing your eyes and skin to natural sunlight for 5–10 minutes within the first hour after waking entrains your circadian rhythm, boosts serotonin production, and initiates vitamin D synthesis for mood and immune support."
     },
     {
       "name": "Cold Exposure", 

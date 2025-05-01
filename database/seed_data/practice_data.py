@@ -22,6 +22,134 @@ practice_data = {
   "mind-body-reset": {
     
     # PRACTICE SUBCATEGORY
+    "digital-boundaries": [
+        {
+          "name": "Digital Detox",
+          "category": "mind-body-reset",
+          "subcategory": "digital-boundaries",
+          "description": "Unplug from non-essential digital devices for an extended period.",
+          "benefit_synopsis": "Resets attention, reduces screen fatigue, and enhances real-world engagement.",
+          "recommended_durations": [
+            { "duration_label": "3 hours" },
+            { "duration_label": "24 hours" },
+            { "duration_label": "1 week" },
+            { "duration_label": "1 month" }
+          ],
+          "impact_rating_id": 5,
+          "difficulty_level_id": 3,
+          "frequency": "Monthly or as needed",
+          "is_common": False,
+          "notes": "Pick a window—from an afternoon to a full weekend or longer—where you completely step away from social media, email, and streaming. Use the time for offline hobbies, nature, or deep rest.",
+          "objectives": [
+            "reset_attention",
+            "reduce_screen_fatigue",
+            "boost_presence"
+          ]
+        },
+        {
+          "name": "No Screen Mornings",
+          "category": "mind-body-reset",
+          "subcategory": "digital-boundaries",
+          "description": "Keep your phone and screens out of reach for the first hour after waking.",
+          "benefit_synopsis": "Cultivates a calm, focused start and prevents reactive scrolling.",
+          "recommended_durations": [
+            { "duration_label": "1 hour" }
+          ],
+          "impact_rating_id": 4,
+          "difficulty_level_id": 2,
+          "frequency": "Daily",
+          "is_common": True,
+          "notes": "Store your phone in another room or on airplane mode, and use that time for hydration, movement, or planning instead of digital distractions.",
+          "objectives": [
+            "boost_focus",
+            "reduce_morning_anxiety",
+            "establish_intentional_start"
+          ]
+        },
+        {
+          "name": "No Screen Evenings",
+          "category": "mind-body-reset",
+          "subcategory": "digital-boundaries",
+          "description": "Power down all screens at least 2 hours before bedtime.",
+          "benefit_synopsis": "Improves sleep quality by reducing blue light exposure and mental stimulation.",
+          "recommended_durations": [
+            { "duration_label": "2 hours" }
+          ],
+          "impact_rating_id": 4,
+          "difficulty_level_id": 1,
+          "frequency": "Daily",
+          "is_common": True,
+          "notes": "Create a no-screen ritual: read, journal, or practice light stretching instead of watching or scrolling.",
+          "objectives": [
+            "improve_sleep_quality",
+            "reduce_blue_light",
+            "enhance_relaxation"
+          ]
+        },
+        {
+          "name": "Screen Break",
+          "category": "mind-body-reset",
+          "subcategory": "digital-boundaries",
+          "description": "Step away from your screen at regular intervals throughout the day.",
+          "benefit_synopsis": "Prevents eye strain and cognitive fatigue while supporting sustained focus.",
+          "recommended_durations": [
+            { "duration_label": "10 minutes" },
+            { "duration_label": "3 hours" }
+          ],
+          "impact_rating_id": 3,
+          "difficulty_level_id": 1,
+          "frequency": "Daily",
+          "is_common": True,
+          "notes": "Use a timer or break-reminder tool to take short walks, stretch, or rest your eyes at least every hour—up to a longer midday pause.",
+          "objectives": [
+            "prevent_eye_strain",
+            "maintain_focus",
+            "reduce_fatigue"
+          ]
+        },
+        {
+          "name": "App Limits",
+          "category": "mind-body-reset",
+          "subcategory": "digital-boundaries",
+          "description": "Set daily time caps on the apps you find most distracting.",
+          "benefit_synopsis": "Helps curb compulsive checking and improves overall time management.",
+          "recommended_durations": [
+            { "duration_label": "As configured" }
+          ],
+          "impact_rating_id": 4,
+          "difficulty_level_id": 2,
+          "frequency": "Daily",
+          "is_common": False,
+          "notes": "Use built-in screen-time settings or a digital-wellness app to impose limits on apps like social media, news, or games.",
+          "objectives": [
+            "reduce_compulsive_use",
+            "improve_time_management",
+            "enhance_self_control"
+          ]
+        },
+        {
+          "name": "Social Media Limit",
+          "category": "mind-body-reset",
+          "subcategory": "digital-boundaries",
+          "description": "Restrict total daily time spent on social platforms.",
+          "benefit_synopsis": "Reduces comparison stress and frees up time for meaningful activities.",
+          "recommended_durations": [
+            { "duration_label": "As configured" }
+          ],
+          "impact_rating_id": 4,
+          "difficulty_level_id": 2,
+          "frequency": "Daily",
+          "is_common": False,
+          "notes": "Set a firm daily allowance for social apps using your device’s settings or a dedicated app, and honor that boundary.",
+          "objectives": [
+            "reduce_comparison_stress",
+            "free_time_for_productivity",
+            "enhance_wellbeing"
+          ]
+        }
+    ],
+
+    # PRACTICE SUBCATEGORY
     "am-hydration": [
       {
         "name": "Morning Hydration",
@@ -86,7 +214,108 @@ practice_data = {
     ],
 
     # PRACTICE SUBCATEGORY
+    "morning-sun": [
+      {
+        "name": "Sunrise Coffee",
+        "category": "mind-body-reset",
+        "subcategory": "morning-sun",
+        "description": "Enjoy a cup of coffee outdoors at sunrise to pair gentle caffeine stimulation with natural light exposure.",
+        "benefit_synopsis": "Early-morning light entrains your circadian clock via retinal photoreceptors, while caffeine triggers norepinephrine release for improved alertness and mood regulation.",
+        "recommended_durations": [
+          { "duration_label": "5 minutes" }
+        ],
+        "impact_rating_id": 3,
+        "difficulty_level_id": 1,
+        "frequency": "Daily",
+        "is_common": True,
+        "notes": "Sipping coffee outside activates the suprachiasmatic nucleus to sync your sleep–wake cycle and ramps up cortical arousal, supporting a smooth transition into the day.",
+        "objectives": [
+          "regulate_circadian_rhythm",
+          "boost_alertness",
+          "enhance_mood"
+        ]
+      },
+      {
+        "name": "Sunrise Walk",
+        "category": "mind-body-reset",
+        "subcategory": "morning-sun",
+        "description": "Take a brisk walk outdoors during sunrise to combine moderate aerobic activity with natural light intake.",
+        "benefit_synopsis": "Sunlight-driven serotonin release plus elevated heart rate enhances blood flow, reinforces circadian alignment, and supports cognitive performance.",
+        "recommended_durations": [
+          { "duration_label": "10 minutes" },
+          { "duration_label": "20 minutes" }
+        ],
+        "impact_rating_id": 4,
+        "difficulty_level_id": 1,
+        "frequency": "Daily",
+        "is_common": True,
+        "notes": "Walking in early light boosts endorphins, strengthens vascular function, and entrains your internal clock for better sleep quality and daytime focus.",
+        "objectives": [
+          "boost_serotonin",
+          "improve_circulation",
+          "regulate_circadian_rhythm"
+        ]
+      },
+      {
+        "name": "Sunrise Exercise",
+        "category": "mind-body-reset",
+        "subcategory": "morning-sun",
+        "description": "Perform light to moderate exercise outdoors at sunrise to blend physical activation with photic stimulation.",
+        "benefit_synopsis": "Morning light suppresses melatonin as exercise-induced BDNF and endorphins elevate energy, enhance neuroplasticity, and stabilize mood.",
+        "recommended_durations": [
+          { "duration_label": "10 minutes" },
+          { "duration_label": "20 minutes" }
+        ],
+        "impact_rating_id": 4,
+        "difficulty_level_id": 2,
+        "frequency": "Daily",
+        "is_common": True,
+        "notes": "Exercising in sunrise light amplifies the cortisol awakening response, increases brain-derived neurotrophic factor, and supports metabolic health.",
+        "objectives": [
+          "increase_bdnf",
+          "enhance_cognitive_function",
+          "stabilize_mood"
+        ]
+      },
+      {
+        "name": "Sunrise Stretch",
+        "category": "mind-body-reset",
+        "subcategory": "morning-sun",
+        "description": "Perform gentle stretches or yoga poses outdoors at sunrise to lengthen muscles while absorbing natural light.",
+        "benefit_synopsis": "Combines proprioceptive muscle activation with photic input to reduce stiffness, enhance parasympathetic tone, and set your circadian rhythm.",
+        "recommended_durations": [
+          { "duration_label": "5 minutes" },
+          { "duration_label": "10 minutes" }
+        ],
+        "impact_rating_id": 3,
+        "difficulty_level_id": 1,
+        "frequency": "Daily",
+        "is_common": True,
+        "notes": "Morning stretching in natural light increases flexibility, promotes vagal activation for stress reduction, and signals your brain that it’s time to wake up.",
+        "objectives": [
+          "enhance_flexibility",
+          "increase_vagal_tone",
+          "regulate_circadian_rhythm"
+        ]
+      }
+    ],
+
+    # PRACTICE SUBCATEGORY
     "cold-exposure": [
+      {
+        "name": "Cold Exposure",
+        "category": "mind-body-reset",
+        "subcategory": "cold-exposure",
+        "description": "Any version of cold exposure for a short, energizing reset.",
+        "benefit_synopsis": "Activates the diving reflex to calm your nervous system and boost alertness.",
+        "recommended_durations": [{"duration_label": "1 minute"}, {"duration_label": "2 minutes"}],
+        "impact_rating_id": 3,
+        "difficulty_level_id": 1,
+        "frequency": "Optional daily",
+        "is_common": True,
+        "notes": "Cold water on the face stimulates the vagus nerve and triggers the mammalian diving reflex, helping slow your heart rate and regulate stress.",
+        "objectives": ["reset_nervous_system", "increase_alertness", "stimulate_vagus_nerve"]
+      },
       {
         "name": "Cold Face Rinse",
         "category": "mind-body-reset",
@@ -587,7 +816,7 @@ practice_data = {
         # PRACTICE SUBCATEGORY
     "meditation-consciousness": [
       {
-          "name": "Mindfulness Meditation (Anapanasati)",
+          "name": "Mindfulness Meditation",
           "category": "spirituality-mindfulness",
           "subcategory": "meditation-consciousness",
           "description": "Focus your awareness on the natural breath, observing each inhale and exhale without control.",

@@ -4,6 +4,8 @@ survey_subcategory_data = {
         {"subcategory_slug": "user-orientation", "name": "User Orientation"},
         # Day Map is likely becoming morning routine builder
         {"subcategory_slug": "day-map", "name": "Day Map"},
+        {"subcategory_slug": "day-map-og", "name": "Day Map OG"},
+
         {"subcategory_slug": "am-routine-map", "name": "Morning Routine Map"},
         # Replacing day map - New core surveying simplified to match block concept
         {"subcategory_slug": "am-routine-intro-core", "name": "Core Morning Routine Builder"},

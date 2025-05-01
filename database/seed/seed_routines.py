@@ -3,14 +3,14 @@ import pymysql
 from pprint import pprint
 
 from database.seed_data.routine_data import routine_blocks
-from database.seed.seed_routine_template import seed_routine_templates
+from database.seed.seed_routine_template import seed_routine_block_templates
 
 db = connectToMySQL("converge_schema")
 
 def seed_routine_data():
 
   seed_routine_blocks()
-  seed_routine_templates()
+  seed_routine_block_templates()
   return
 
 def seed_routine_blocks():

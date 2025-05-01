@@ -44,8 +44,8 @@ survey_question_data = [
       "subcategory_slug": "user-orientation",
       "questions": [
             {
-                "question_slug": "big-picture-goals",
-                "question_text": "What are your big picture goals with Converge? Select any that apply.",
+                "question_slug": "big-picture-intentions",
+                "question_text": "What are your primary objectives with Converge? (Select any that apply)",
                 "type": "select-any",
                 "answers": [
                     {"answer_text": "Increase longevity", "answer_value": 0},
@@ -60,23 +60,81 @@ survey_question_data = [
                 ]
             },
             # {
-            #     "question_slug": "user-desired-features",
-            #     "question_text": "Which features of Converge would be most helpful to you?",
-            #     "type": "select-any",
-            #     "answers": [
-            #         {"answer_text": "Goal tracking", "answer_value": 0},
-            #         {"answer_text": "Daily reminders", "answer_value": 1},
-            #         {"answer_text": "Progress visualization", "answer_value": 2},
-            #         {"answer_text": "Guided practices", "answer_value": 3},
-            #         {"answer_text": "Social connection tools", "answer_value": 4},
-            #         {"answer_text": "Pairing with accountability partner(s)", "answer_value": 5},
-            #         {"answer_text": "Personalized insights", "answer_value": 6},
-            #         {"answer_text": "Habit streak tracking", "answer_value": 7},
-            #         {"answer_text": "Integrated scheduling", "answer_value": 8},
-            #         {"answer_text": "Gamification elements", "answer_value": 9},
-            #         {"answer_text": "Flexible routine templates", "answer_value": 10}
-            #     ]
+            #     "question_slug": "top-5-intentions",
+            #     "question_text": "Ok, if you had more than 5 selected, can you pare it down to your top 5?.",
+            #     "type": "select-5"
             # },
+            {
+                "question_slug": "top-3-intentions",
+                "question_text": "Ok great, now please identify the 3 areas most relevant/important to you.",
+                "type": "select-3"
+            },
+            {
+                "question_slug": "top-2-intentions",
+                "question_text": "Excellent, can you pick a top 2?",
+                "type": "select-2"
+            },
+            {
+                "question_slug": "top-1-intentions",
+                "question_text": "Fanastic, now is there one single shift that you think would most improve your life at this moment?",
+                "type": "select-1"
+            },
+            {
+                "question_slug": "skills_and_shifts",
+                "question_text": "Which improvements or personal shifts would benefit you most right now? (Select any that apply)",
+                "type": "select-any",
+                "answers": [
+                  {"answer_text": "Increased self-discipline", "answer_value": 0},
+                  {"answer_text": "Improved consistency in routines", "answer_value": 1},
+                  {"answer_text": "Better time management", "answer_value": 2},
+                  {"answer_text": "Enhanced productivity", "answer_value": 3},
+                  {"answer_text": "Sharper focus & concentration", "answer_value": 4},
+                  {"answer_text": "Steady growth mindset", "answer_value": 5},
+                  {"answer_text": "Improved creative thinking", "answer_value": 6},
+                  {"answer_text": "Better problem-solving skills", "answer_value": 7},
+                  {"answer_text": "Enhanced decision-making", "answer_value": 8},
+                  {"answer_text": "Boosted stress resilience", "answer_value": 9},
+                  {"answer_text": "Enhanced emotional regulation", "answer_value": 10},
+                  {"answer_text": "Reduced anxiety", "answer_value": 11},
+                  {"answer_text": "Decreased stress", "answer_value": 12},
+                  {"answer_text": "Improved mood", "answer_value": 13},
+                  {"answer_text": "Increased energy levels", "answer_value": 14},
+                  {"answer_text": "Increased fitness", "answer_value": 15},
+                  {"answer_text": "Reduced physical discomfort", "answer_value": 16},
+                  {"answer_text": "Improved sleep quality", "answer_value": 17},
+                  {"answer_text": "Increased assertiveness", "answer_value": 18},
+                  {"answer_text": "Boosted self-confidence", "answer_value": 19},
+                  {"answer_text": "Improved empathy & communication", "answer_value": 20},
+                  {"answer_text": "Improved social connectedness", "answer_value": 21},
+                  {"answer_text": "Improved work-life balance", "answer_value": 22}
+                ]
+            },
+            {
+                "question_slug": "user-preferred-features",
+                "question_text": "Which features of Converge would be most helpful to you?",
+                "type": "select-any",
+                "answers": [
+                    {"answer_text": "Goal tracking", "answer_value": 0},
+                    {"answer_text": "Daily reminders", "answer_value": 1},
+                    {"answer_text": "Progress visualization", "answer_value": 2},
+                    {"answer_text": "Guided practices", "answer_value": 3},
+                    {"answer_text": "Social groups (common interests, book clubs, etc.)", "answer_value": 4},
+                    {"answer_text": "Pairing with accountability partner(s)", "answer_value": 5},
+                    {"answer_text": "Personalized insights", "answer_value": 6},
+                    {"answer_text": "Streak tracking for practices", "answer_value": 7},
+                    {"answer_text": "Integrated scheduling", "answer_value": 8},
+                    {"answer_text": "Gamification elements", "answer_value": 9},
+                    {"answer_text": "Personalized, flexible routine templates", "answer_value": 10},
+                    {"answer_text": "Strategies personalized to your patterns and barriers.", "answer_value": 10}
+
+                ]
+            },
+            {
+                "question_slug": "user-preferred-3-features",
+                "question_text": "Ok, from those, will you identify up to 3 features that that you think will be most helpful to you?",
+                "type": "select-3"
+            },
+            # 
             # {
             #     "question_slug": "user-feedback-preference",
             #     "question_text": "How would you like Converge to provide support or encouragement?",
@@ -93,45 +151,12 @@ survey_question_data = [
             #         {"answer_text": "Self-assessment tools", "answer_value": 8}
             #     ]
             # },
-            # {
-            #     "question_slug": "motivation-level-check",
-            #     "question_text": "How motivated do you feel to improve your routines and habits right now?",
-            #     "type": "scale-1-5"
-            # },
             {
-                "question_slug": "barriers-to-change-check",
-                "question_text": "What challenges have prevented you from building or maintaining habits in the past?",
-                "type": "select-any",
-                "answers": [
-                    {"answer_text": "Lack of time or a busy schedule", "answer_value": 0},
-                    {"answer_text": "Lack of motivation or drive", "answer_value": 1},
-                    {"answer_text": "Not knowing where to start", "answer_value": 2},
-                    {"answer_text": "Difficulty sticking to routines", "answer_value": 3},
-                    {"answer_text": "No system for tracking or staying accountable", "answer_value": 4},
-                    {"answer_text": "I tend to lose interest over time", "answer_value": 5},
-                    {"answer_text": "Low energy or burnout", "answer_value": 6},
-                    {"answer_text": "Distractions or poor focus", "answer_value": 7},
-                    {"answer_text": "Negative self-talk or doubt", "answer_value": 8},
-                    {"answer_text": "Inconsistent environment or lack of support", "answer_value": 9},
-                    {"answer_text": "Other (open text input)", "answer_value": 10}
-                ]
+                "question_slug": "motivation-level-check",
+                "question_text": "How motivated do you feel to improve your routines and habits right now?",
+                "type": "scale-1-5"
             },
-            # {
-            #     "question_slug": "self-identification-style",
-            #     "question_text": "Which statement best describes you?",
-            #     "type": "guided-choice",
-            #     "answers": [
-            #         {"answer_text": "I thrive with structured routines and schedules.", "answer_value": 0},
-            #         {"answer_text": "I prefer flexibility but like to have a framework.", "answer_value": 1},
-            #         {"answer_text": "I tend to go with the flow and dislike rigid routines.", "answer_value": 2},
-            #         {"answer_text": "I’m not sure—I’m still figuring out what works for me.", "answer_value": 3}
-            #     ]
-            # },
-            {
-                "question_slug": "accountability-preference",
-                "question_text": "Would you like an accountability feature to help you stay on track?",
-                "type": "yes-no"
-            },
+          
             {
                 "question_slug": "social-engagement-preference",
                 "question_text": "How would you like to engage with other users in Converge?",
@@ -296,7 +321,70 @@ survey_question_data = [
       ]
     },
     {
-        "subcategory_slug": "day-map",
+      "subcategory_slug": "day-map",
+      "questions": [
+        {
+          "question_slug": "am-routine-comprehensiveness",
+          "question_text": "Which best describes your current morning routine? (exercise, meditation, cold, sun exposure, etc.)",
+          "type": "select-one",
+          "answers": [
+            { "answer_text": "I have no set morning routine", "answer_value": 0 },
+            { "answer_text": "I have a short routine of 1–2 activities/practices most mornings", "answer_value": 1 },
+            { "answer_text": "I do 3–4 practices most mornings", "answer_value": 2 },
+            { "answer_text": "I have a detailed, consistent morning ritual of 5 or more practices", "answer_value": 3 }
+          ]
+        },
+        {
+          "question_slug": "sleep-hygiene",
+          "question_text": "How consistent is your sleep schedule and pre-bedtime routine? (bedtime routine might include: reading, meditation, journaling, stretching, no screens, low lights, etc.)",
+          "type": "select-one",
+          "answers": [
+            { "answer_text": "My bedtime varies wildly; no wind-down ritual", "answer_value": 0 },
+            { "answer_text": "I go to bed at similar times but don’t unwind systematically", "answer_value": 1 },
+            { "answer_text": "I keep an inconsistent sleep schedule but do some winding down", "answer_value": 2 },
+            { "answer_text": "I keep a regular schedule and do basic wind-down", "answer_value": 3},
+            { "answer_text": "I follow a structured bedtime ritual", "answer_value": 4 }
+          ]
+        },
+        {
+          "question_slug": "digital-wellness",
+          "question_text": "How do you manage your daily screen-time and device use?",
+          "type": "select-one",
+          "answers": [
+            { "answer_text": "I use screens continuously without planned breaks", "answer_value": 0},
+            { "answer_text": "I sometimes step away, but it’s ad-hoc", "answer_value": 1},
+            { "answer_text": "I schedule 1–2 digital breaks during the day", "answer_value": 2},
+            { "answer_text": "I maintain strict device boundaries and regular detox periods", "answer_value": 3}
+          ]
+        },
+        {
+          "question_slug": "fuel-and-hydration",
+          "question_text": "Which best describes your approach to meals and water intake?",
+          "type": "select-one",
+          "answers": [
+            { "answer_text": "I eat/drink on the fly with no plan", "answer_value": 0},
+            { "answer_text": "I follow general healthy guidelines and sip water when thirsty", "answer_value": 1},
+            { "answer_text": "I have a structured meal & hydration schedule", "answer_value": 2},
+            { "answer_text": "I log nutrition and aim for ≥8 glasses of water", "answer_value": 3}
+          ]
+        },
+        {
+          "question_slug": "midday-recovery",
+          "question_text": "Do you experience energy slumps in the afternoon? If so, how do you handle them?",
+          "type": "select-one",
+          "answers": [
+            { "answer_text": "I don't have afternoon slumps.", "answer_value": 0},
+            { "answer_text": "I push through without breaks", "answer_value": 0},
+            { "answer_text": "I take ad-hoc breaks when fatigue hits", "answer_value": 1},
+            { "answer_text": "I plan short walks or stretch breaks", "answer_value": 2},
+            { "answer_text": "I use strategic recovery (power naps, mindfulness, movement)", "answer_value": 3}
+          ]
+        }
+
+      ]
+    },
+    {
+        "subcategory_slug": "day-map-og",
         "questions": [
             {
               "question_slug": "morning-routine-check",
@@ -470,6 +558,24 @@ survey_question_data = [
     {
         "subcategory_slug": "discipline-motivation-focus-map",
         "questions": [
+            {
+                "question_slug": "barriers-to-change-check",
+                "question_text": "What challenges have prevented you from building or maintaining habits in the past?",
+                "type": "select-any",
+                "answers": [
+                    {"answer_text": "Lack of time or a busy schedule", "answer_value": 0},
+                    {"answer_text": "Lack of motivation or drive", "answer_value": 1},
+                    {"answer_text": "Not knowing where to start", "answer_value": 2},
+                    {"answer_text": "Difficulty sticking to routines", "answer_value": 3},
+                    {"answer_text": "No system for tracking or staying accountable", "answer_value": 4},
+                    {"answer_text": "I tend to lose interest over time", "answer_value": 5},
+                    {"answer_text": "Low energy or burnout", "answer_value": 6},
+                    {"answer_text": "Distractions or poor focus", "answer_value": 7},
+                    {"answer_text": "Negative self-talk or doubt", "answer_value": 8},
+                    {"answer_text": "Inconsistent environment or lack of support", "answer_value": 9},
+                    {"answer_text": "Other (open text input)", "answer_value": 10}
+                ]
+            },
             {
                 "question_slug": "motivation-type-check",
                 "question_text": "What motivates you most to take action?",
@@ -657,7 +763,12 @@ survey_question_data = [
                     {"answer_text": "Public Speaking & Communication", "answer_value": 21},
                     {"answer_text": "Fashion & Personal Style", "answer_value": 22},
                     {"answer_text": "Cooking & Culinary Arts", "answer_value": 23},
-                    {"answer_text": "Martial Arts & Self-Defense", "answer_value": 24}
+                    {"answer_text": "Martial Arts & Self-Defense", "answer_value": 24},
+                    {"answer_text": "Content Creation & Digital Media",   "answer_value": 25},
+                    {"answer_text": "Photography & Videography",         "answer_value": 26},
+                    {"answer_text": "Podcasting & Audio Production",     "answer_value": 27},
+                    {"answer_text": "Gardening & Horticulture",          "answer_value": 28},
+                    {"answer_text": "Language Learning & Linguistics",    "answer_value": 29}
                 ]
             },
             {
