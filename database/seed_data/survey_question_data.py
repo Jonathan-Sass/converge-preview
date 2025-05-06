@@ -38,8 +38,6 @@ question types, and guidelines for reusable answer sets.
 
 # ADD QUESTIONS ABOUT SCREEN TIME AND DOPAMINE RELATED DESIRES/DRIVERS/RESPONSES
 survey_question_data = [
-    
-    
     {
       "subcategory_slug": "user-orientation",
       "questions": [
@@ -60,80 +58,85 @@ survey_question_data = [
                 ]
             },
             # {
-            #     "question_slug": "top-5-intentions",
+            #     "question_slug": "intentions-top-5",
             #     "question_text": "Ok, if you had more than 5 selected, can you pare it down to your top 5?.",
             #     "type": "select-5"
             # },
             {
-                "question_slug": "top-3-intentions",
-                "question_text": "Ok great, now please identify the 3 areas most relevant/important to you.",
-                "type": "select-3"
+              "question_slug": "intentions-top-3",
+              "question_text": "Ok great, now please identify the 3 areas most relevant/important to you.",
+              "type": "select-3"
             },
             {
-                "question_slug": "top-2-intentions",
-                "question_text": "Excellent, can you pick a top 2?",
-                "type": "select-2"
+              "question_slug": "intentions-top-1",
+              "question_text": "Fanastic, now is there one single shift that you think would most improve your life at this moment?",
+              "type": "select-1"
             },
             {
-                "question_slug": "top-1-intentions",
-                "question_text": "Fanastic, now is there one single shift that you think would most improve your life at this moment?",
-                "type": "select-1"
+              "question_slug": "skills-and-shifts",
+              "question_text": "Which improvements or personal shifts would benefit you most right now? (Select any that apply)",
+              "type": "select-any",
+              "answers": [
+                {"answer_text": "Increased self-discipline", "answer_value": 0},
+                {"answer_text": "Improved consistency in routines", "answer_value": 1},
+                {"answer_text": "Better time management", "answer_value": 2},
+                {"answer_text": "Having better systems in place", "answer_value": 3},
+                {"answer_text": "Enhanced productivity", "answer_value": 4},
+                {"answer_text": "Sharper focus & concentration", "answer_value": 5},
+                {"answer_text": "Steady growth mindset", "answer_value": 6},
+                {"answer_text": "Improved creative thinking", "answer_value": 7},
+                {"answer_text": "Better problem-solving skills", "answer_value": 8},
+                {"answer_text": "Enhanced decision-making", "answer_value": 9},
+                {"answer_text": "Boosted stress resilience", "answer_value": 10},
+                {"answer_text": "Enhanced emotional regulation", "answer_value": 11},
+                {"answer_text": "Reduced anxiety", "answer_value": 12},
+                {"answer_text": "Decreased stress", "answer_value": 13},
+                {"answer_text": "Improved mood", "answer_value": 14},
+                {"answer_text": "Increased energy levels", "answer_value": 15},
+                {"answer_text": "Increased fitness", "answer_value": 16},
+                {"answer_text": "Reduced physical discomfort", "answer_value": 17},
+                {"answer_text": "Improved sleep quality", "answer_value": 18},
+                {"answer_text": "Increased assertiveness", "answer_value": 19},
+                {"answer_text": "Boosted self-confidence", "answer_value": 20},
+                {"answer_text": "Improved empathy & communication", "answer_value": 21},
+                {"answer_text": "Improved social connectedness", "answer_value": 22},
+                {"answer_text": "Improved work-life balance", "answer_value": 23}
+              ]
             },
             {
-                "question_slug": "skills_and_shifts",
-                "question_text": "Which improvements or personal shifts would benefit you most right now? (Select any that apply)",
-                "type": "select-any",
-                "answers": [
-                  {"answer_text": "Increased self-discipline", "answer_value": 0},
-                  {"answer_text": "Improved consistency in routines", "answer_value": 1},
-                  {"answer_text": "Better time management", "answer_value": 2},
-                  {"answer_text": "Enhanced productivity", "answer_value": 3},
-                  {"answer_text": "Sharper focus & concentration", "answer_value": 4},
-                  {"answer_text": "Steady growth mindset", "answer_value": 5},
-                  {"answer_text": "Improved creative thinking", "answer_value": 6},
-                  {"answer_text": "Better problem-solving skills", "answer_value": 7},
-                  {"answer_text": "Enhanced decision-making", "answer_value": 8},
-                  {"answer_text": "Boosted stress resilience", "answer_value": 9},
-                  {"answer_text": "Enhanced emotional regulation", "answer_value": 10},
-                  {"answer_text": "Reduced anxiety", "answer_value": 11},
-                  {"answer_text": "Decreased stress", "answer_value": 12},
-                  {"answer_text": "Improved mood", "answer_value": 13},
-                  {"answer_text": "Increased energy levels", "answer_value": 14},
-                  {"answer_text": "Increased fitness", "answer_value": 15},
-                  {"answer_text": "Reduced physical discomfort", "answer_value": 16},
-                  {"answer_text": "Improved sleep quality", "answer_value": 17},
-                  {"answer_text": "Increased assertiveness", "answer_value": 18},
-                  {"answer_text": "Boosted self-confidence", "answer_value": 19},
-                  {"answer_text": "Improved empathy & communication", "answer_value": 20},
-                  {"answer_text": "Improved social connectedness", "answer_value": 21},
-                  {"answer_text": "Improved work-life balance", "answer_value": 22}
-                ]
+              "question_slug": "intentions-top-3",
+              "question_text": "Ok great, now please identify your top 3 from the list.",
+              "type": "select-3"
             },
             {
-                "question_slug": "user-preferred-features",
-                "question_text": "Which features of Converge would be most helpful to you?",
-                "type": "select-any",
-                "answers": [
-                    {"answer_text": "Goal tracking", "answer_value": 0},
-                    {"answer_text": "Daily reminders", "answer_value": 1},
-                    {"answer_text": "Progress visualization", "answer_value": 2},
-                    {"answer_text": "Guided practices", "answer_value": 3},
-                    {"answer_text": "Social groups (common interests, book clubs, etc.)", "answer_value": 4},
-                    {"answer_text": "Pairing with accountability partner(s)", "answer_value": 5},
-                    {"answer_text": "Personalized insights", "answer_value": 6},
-                    {"answer_text": "Streak tracking for practices", "answer_value": 7},
-                    {"answer_text": "Integrated scheduling", "answer_value": 8},
-                    {"answer_text": "Gamification elements", "answer_value": 9},
-                    {"answer_text": "Personalized, flexible routine templates", "answer_value": 10},
-                    {"answer_text": "Strategies personalized to your patterns and barriers.", "answer_value": 10}
-
-                ]
+              "question_slug": "intentions-top-1",
+              "question_text": "Excellent, now please select the single shift you think would improve your life the most.",
+              "type": "select-3"
             },
             {
-                "question_slug": "user-preferred-3-features",
-                "question_text": "Ok, from those, will you identify up to 3 features that that you think will be most helpful to you?",
-                "type": "select-3"
+              "question_slug": "user-preferred-features",
+              "question_text": "Which features of Converge would be most helpful to you?",
+              "type": "select-any",
+              "answers": [
+                {"answer_text": "Goal tracking", "answer_value": 0},
+                {"answer_text": "Daily reminders", "answer_value": 1},
+                {"answer_text": "Progress visualization", "answer_value": 2},
+                {"answer_text": "Guided practices", "answer_value": 3},
+                {"answer_text": "Social groups (common interests, book clubs, etc.)", "answer_value": 4},
+                {"answer_text": "Pairing with accountability partner(s)", "answer_value": 5},
+                {"answer_text": "Personalized insights", "answer_value": 6},
+                {"answer_text": "Streak tracking for practices", "answer_value": 7},
+                {"answer_text": "Integrated scheduling", "answer_value": 8},
+                {"answer_text": "Gamification elements", "answer_value": 9},
+                {"answer_text": "Personalized, flexible routine templates", "answer_value": 10},
+                {"answer_text": "Strategies personalized to your patterns and barriers.", "answer_value": 10}
+              ]
             },
+            # {
+            #     "question_slug": "user-preferred-3-features",
+            #     "question_text": "Ok, from those, will you identify up to 3 features that that you think will be most helpful to you?",
+            #     "type": "select-3"
+            # },
             # 
             # {
             #     "question_slug": "user-feedback-preference",
@@ -172,7 +175,7 @@ survey_question_data = [
         ]
     },
     {
-      "subcategory_slug": "am-routine-map",
+      "subcategory_slug": "am-routine-map-og",
       "questions": [
         {
           "question_slug": "has-morning-routine",
@@ -321,71 +324,165 @@ survey_question_data = [
       ]
     },
     {
-      "subcategory_slug": "day-map",
+      "subcategory_slug": "am-routine-map",
       "questions": [
         {
           "question_slug": "am-routine-comprehensiveness",
-          "question_text": "Which best describes your current morning routine? (exercise, meditation, cold, sun exposure, etc.)",
-          "type": "select-one",
+          "question_text": "Which best describes your current morning self-care routine? (exercise, meditation, cold, sun exposure, etc.)",
+          "type": "guided-choice",
           "answers": [
-            { "answer_text": "I have no set morning routine", "answer_value": 0 },
-            { "answer_text": "I have a short routine of 1–2 activities/practices most mornings", "answer_value": 1 },
-            { "answer_text": "I do 3–4 practices most mornings", "answer_value": 2 },
-            { "answer_text": "I have a detailed, consistent morning ritual of 5 or more practices", "answer_value": 3 }
+            { "answer_text": "Don't have one - my mornings are rushed/early.", "answer_value": 0 },
+            { "answer_text": "I have no set morning routine, it takes me a bit to get going.", "answer_value": 1 },
+            { "answer_text": "I have a short list of 1-2 things I do most mornings.", "answer_value": 2 },
+            { "answer_text": "I do 3–4 practices most mornings", "answer_value": 3 },
+            { "answer_text": "I have a detailed ritual of several things I do each morning.", "answer_value": 4 }
           ]
         },
         {
-          "question_slug": "sleep-hygiene",
-          "question_text": "How consistent is your sleep schedule and pre-bedtime routine? (bedtime routine might include: reading, meditation, journaling, stretching, no screens, low lights, etc.)",
-          "type": "select-one",
-          "answers": [
-            { "answer_text": "My bedtime varies wildly; no wind-down ritual", "answer_value": 0 },
-            { "answer_text": "I go to bed at similar times but don’t unwind systematically", "answer_value": 1 },
-            { "answer_text": "I keep an inconsistent sleep schedule but do some winding down", "answer_value": 2 },
-            { "answer_text": "I keep a regular schedule and do basic wind-down", "answer_value": 3},
-            { "answer_text": "I follow a structured bedtime ritual", "answer_value": 4 }
-          ]
-        },
-        {
-          "question_slug": "digital-wellness",
+          "question_slug": "digital-hygiene",
           "question_text": "How do you manage your daily screen-time and device use?",
-          "type": "select-one",
+          "type": "guided-choice",
           "answers": [
-            { "answer_text": "I use screens continuously without planned breaks", "answer_value": 0},
-            { "answer_text": "I sometimes step away, but it’s ad-hoc", "answer_value": 1},
-            { "answer_text": "I schedule 1–2 digital breaks during the day", "answer_value": 2},
-            { "answer_text": "I maintain strict device boundaries and regular detox periods", "answer_value": 3}
+            { "answer_text": "I use devices throughout the day without restriction.", "answer_value": 0},
+            { "answer_text": "I sometimes step away, but it’s spontaneous.", "answer_value": 1},
+            { "answer_text": "I try to maintain digital boundaries, but it is a struggle.", "answer_value": 2},
+            { "answer_text": "I maintain strict device boundaries and regular detox periods.", "answer_value": 3}
           ]
         },
         {
           "question_slug": "fuel-and-hydration",
           "question_text": "Which best describes your approach to meals and water intake?",
-          "type": "select-one",
+          "type": "guided-choice",
           "answers": [
-            { "answer_text": "I eat/drink on the fly with no plan", "answer_value": 0},
-            { "answer_text": "I follow general healthy guidelines and sip water when thirsty", "answer_value": 1},
-            { "answer_text": "I have a structured meal & hydration schedule", "answer_value": 2},
-            { "answer_text": "I log nutrition and aim for ≥8 glasses of water", "answer_value": 3}
+            { "answer_text": "I eat/drink what I want when I need.", "answer_value": 0},
+            { "answer_text": "I try to follow general healthy guidelines, but find it challenging.", "answer_value": 1},
+            { "answer_text": "I follow general healthy guidelines.", "answer_value": 2},
+            { "answer_text": "I have a structured meal & hydration plan.", "answer_value": 3},
           ]
         },
         {
           "question_slug": "midday-recovery",
           "question_text": "Do you experience energy slumps in the afternoon? If so, how do you handle them?",
-          "type": "select-one",
+          "type": "guided-choice",
           "answers": [
-            { "answer_text": "I don't have afternoon slumps.", "answer_value": 0},
-            { "answer_text": "I push through without breaks", "answer_value": 0},
-            { "answer_text": "I take ad-hoc breaks when fatigue hits", "answer_value": 1},
-            { "answer_text": "I plan short walks or stretch breaks", "answer_value": 2},
-            { "answer_text": "I use strategic recovery (power naps, mindfulness, movement)", "answer_value": 3}
+            { "answer_text": "I don't usually experience drops in energy.", "answer_value": 0},
+            { "answer_text": "I push through without breaks.", "answer_value": 1},
+            { "answer_text": "I drink coffee or caffeine.", "answer_value": 2},
+            { "answer_text": "I take breaks when fatigue hits.", "answer_value": 3},
+            { "answer_text": "I plan short walks or stretch breaks.", "answer_value": 4},
+            { "answer_text": "I use strategic recovery. (power naps, mindfulness, movement)", "answer_value": 5}
+          ]
+        },
+        {
+          "question_slug": "digital-detox-willingness",
+          "question_text": "Would you like to establish digital boundaries around device and social media usage?",
+          "type": "guided-choice",
+          "answers": [
+            {"answer_text": "Not at all, I want my devices in my life.", "answer_value": 0},
+            {"answer_text": "I might consider screen time limits or other mild boundaries.", "answer_value": 1},
+            {"answer_text": "I like to set a few firm digital boundaries.", "answer_value": 2},
+            { "answer_text": "I have established intentional structure around my device usage.", "answer_value": 3 }
+          ]
+        },
+        {
+          "question_slug": "exercise-style-preferences",
+          "question_text": "What types of physical activity do you currently enjoy or gravitate toward? Select all that apply.",
+          "type": "select-any",
+          "answers": [
+            { "answer_text": "I’m mostly sedentary right now." },
+            { "answer_text": "Social sports or active games (e.g., pickup basketball, tennis, etc.)" },
+            { "answer_text": "Cardio activities like running, cycling, or swimming" },
+            { "answer_text": "Strength training - weights, bodyweight, or resistance work" },
+            { "answer_text": "General stretching" },
+            { "answer_text": "Mobility, flexibility, or mind-body movement (e.g., yoga, Pilates)" },
+            { "answer_text": "Training for a specific sport, event, or personal milestone" },
+            { "answer_text": "I like variety and switch it up often" }
+          ]
+        },
+        {
+          "question_slug": "gaming-practice-interest",
+          "question_text": "Would you like to include precision drills or focus exercises for gaming performance?",
+          "type": "guided-choice",
+          "answers": [
+            { "answer_text": "No, I’m not a gamer", "answer_value": 0 },
+            { "answer_text": "No, thanks. I play some games, but keep it casual.", "answer_value": 1 },
+            { "answer_text": "Maybe, I do sometimes like to work on gaming skills", "answer_value": 2},
+            { "answer_text": "Yes, I regularly practice gaming drills and exercises.", "answer_value": 3 },
+          ]
+        },
+        {
+          "question_slug": "social-life-satisfaction",
+          "question_text": "Are you satisfied with the state of your current social or relational life?",
+          "type": "guided-choice",
+          "answers": [
+            {"answer_text": "I feel isolated or disconnected.", "answer_value": 0},
+            {"answer_text": "It’s okay, but could use attention.", "answer_value": 1},
+            {"answer_text": "I feel supported, mostly.", "answer_value": 2},
+            {"answer_text": "Very fulfilled and connected.", "answer_value": 3}
+          ]
+        },
+        {
+          "question_slug": "social-connection-priority",
+          "question_text": "How important is scheduling dedicated social time (calls, messages, catch‑ups)?",
+          "type": "guided-choice",
+          "answers": [
+            { "answer_text": "Not important - I wing it.", "answer_value": 0 },
+            { "answer_text": "Somewhat - I reach out when I remember.", "answer_value": 1 },
+            { "answer_text": "I’d like to plan a few social check‑ins per week.", "answer_value": 2 },
+            { "answer_text": "I would like to schedule daily connection time.", "answer_value": 3 }
+          ]
+        },
+        {
+          "question_slug": "am-spiritual-practices",
+          "question_text": "Do you regularly engage in spiritual practices? (prayer, meditation, devotion, gratitude, mantra, manifesting, etc.)",
+          "type": "guided-choice",
+          "answers": [
+            { "answer_text": "Never or almost never", "answer_value": 0 },
+            { "answer_text": "I have tried, but they're not my thing.", "answer_value": 1 },
+            { "answer_text": "Mostly prayer or devotion practices.", "answer_value": 2 },
+            { "answer_text": "I primarily practice mindfulness or a similar meditative practice.", "answer_value": 3 },
+            { "answer_text": "I have a couple consistent spiritual rituals.", "answer_value": 4 },
+            { "answer_text": "I go deep down the well of spiritual practices.", "answer_value": 5 }
+          ]
+        },
+        {
+          "question_slug": "creative-activity-frequency",
+          "question_text": "How often do you engage in creative activities (art, music, writing, etc.)?",
+          "type": "guided-choice",
+          "answers": [
+            { "answer_text": "Rarely or never", "answer_value": 0 },
+            { "answer_text": "Occasionally", "answer_value": 1 },
+            { "answer_text": "A few times a week", "answer_value": 2 },
+            { "answer_text": "Daily", "answer_value": 3 }
+          ]
+        },
+        {
+          "question_slug": "productivity-block-preference",
+          "question_text": "Would you like a morning productivity block for personal projects, personal growth (learning, reading, etc.), to‑do lists?",
+          "type": "guided-choice",
+          "answers": [
+            { "answer_text": "No, thanks.", "answer_value": 0 },
+            { "answer_text": "I usually put this type of productivity time elsewhere in the day.", "answer_value": 1 },
+            { "answer_text": "Sure, let's schedule a short block.", "answer_value": 2 },
+            { "answer_text": "Yes, I usually set aside an hour or more for this type of work.", "answer_value": 3 }
+          ]
+        },
+        {
+          "question_slug": "mindset-primer-usage",
+          "question_text": "Do you use gratitude, mantra, affirmations or visualizations to set your mindset?",
+          "type": "guided-choice",
+          "answers": [
+            { "answer_text": "Never or rarely", "answer_value": 0 },
+            { "answer_text": "Occasionally - when I really need it", "answer_value": 1 },
+            { "answer_text": "Sometimes - a few times per week", "answer_value": 2 },
+            { "answer_text": "Regularly - daily mindset practice", "answer_value": 3 }
           ]
         }
-
       ]
     },
     {
-        "subcategory_slug": "day-map-og",
-        "questions": [
+      "subcategory_slug": "day-map-og",
+      "questions": [
             {
               "question_slug": "morning-routine-check",
               "question_text": "Do you currently have an established morning routine?",
@@ -535,6 +632,23 @@ survey_question_data = [
         ]
     },
     {
+      "subcategory_slug": "pm-routine-map",
+      "questions": [
+          {
+          "question_slug": "sleep-hygiene",
+          "question_text": "How consistent is your sleep schedule and pre-bedtime routine? (bedtime routine might include: reading, meditation, journaling, stretching, no screens, low lights, etc.)",
+          "type": "guided-choice",
+          "answers": [
+            { "answer_text": "My bedtime can vary significantly; no wind-down ritual", "answer_value": 0 },
+            { "answer_text": "I go to bed at similar times but don’t unwind systematically", "answer_value": 1 },
+            { "answer_text": "I keep an inconsistent sleep schedule but do some winding down", "answer_value": 2 },
+            { "answer_text": "I keep a regular schedule and have a basic wind-down ritual", "answer_value": 3},
+            { "answer_text": "I follow a structured bedtime ritual", "answer_value": 4 }
+          ]
+        },
+      ]
+    },
+    {
       "subcategory_slug": "career-professional-development-map",
       "questions": [
         {
@@ -556,8 +670,8 @@ survey_question_data = [
     },
 
     {
-        "subcategory_slug": "discipline-motivation-focus-map",
-        "questions": [
+      "subcategory_slug": "discipline-motivation-focus-map",
+      "questions": [
             {
                 "question_slug": "barriers-to-change-check",
                 "question_text": "What challenges have prevented you from building or maintaining habits in the past?",
@@ -664,198 +778,197 @@ survey_question_data = [
         ]
     },
     {
-        "subcategory_slug": "value-map",
-        "questions": [
-            {
-                "question_slug": "core-values-selection",
-                "question_text": "Which of these values resonate most with you? (Select 7-10)",
-                "type": "select-any",
-                "answers": [
-                    {"answer_text": "Authenticity – Being true to yourself and your beliefs", "answer_value": 0},
-                    {"answer_text": "Achievement – Striving for excellence and reaching goals", "answer_value": 1},
-                    {"answer_text": "Adventure – Seeking new experiences and excitement", "answer_value": 2},
-                    {"answer_text": "Altruism – Helping others without expecting anything in return", "answer_value": 3},
-                    {"answer_text": "Balance – Maintaining harmony between different aspects of life", "answer_value": 4},
-                    {"answer_text": "Compassion – Showing kindness and empathy to others", "answer_value": 5},
-                    {"answer_text": "Community – Valuing social connections and collective well-being", "answer_value": 6},
-                    {"answer_text": "Creativity – Expressing originality and new ideas", "answer_value": 7},
-                    {"answer_text": "Curiosity – Seeking knowledge and exploring new ideas", "answer_value": 8},
-                    {"answer_text": "Discipline – Staying focused and committed to your goals", "answer_value": 9},
-                    {"answer_text": "Fairness – Treating everyone with justice and equality", "answer_value": 10},
-                    {"answer_text": "Family – Prioritizing close relationships with loved ones", "answer_value": 11},
-                    {"answer_text": "Freedom – Having the ability to make choices independently", "answer_value": 12},
-                    {"answer_text": "Friendship – Valuing meaningful and supportive relationships", "answer_value": 13},
-                    {"answer_text": "Growth – Constantly improving and developing yourself", "answer_value": 14},
-                    {"answer_text": "Health & Well-being – Taking care of your physical and mental health", "answer_value": 15},
-                    {"answer_text": "Honesty – Being truthful and transparent in all situations", "answer_value": 16},
-                    {"answer_text": "Humility – Staying modest and open to learning", "answer_value": 17},
-                    {"answer_text": "Independence – Valuing self-reliance and autonomy", "answer_value": 18},
-                    {"answer_text": "Integrity – Acting according to strong moral and ethical principles", "answer_value": 19},
-                    {"answer_text": "Justice – Standing up for fairness and equal treatment", "answer_value": 20},
-                    {"answer_text": "Kindness – Treating others with warmth and generosity", "answer_value": 21},
-                    {"answer_text": "Knowledge – Pursuing education and understanding", "answer_value": 22},
-                    {"answer_text": "Leadership – Inspiring and guiding others toward success", "answer_value": 23},
-                    {"answer_text": "Learning – Gaining new skills and knowledge throughout life", "answer_value": 24},
-                    {"answer_text": "Love – Fostering deep affection and care for others", "answer_value": 25},
-                    {"answer_text": "Loyalty – Staying faithful and committed to people and values", "answer_value": 26},
-                    {"answer_text": "Mindfulness – Being present and aware in the moment", "answer_value": 27},
-                    {"answer_text": "Openness – Being receptive to different perspectives and ideas", "answer_value": 28},
-                    {"answer_text": "Optimism – Maintaining a hopeful and positive outlook", "answer_value": 29},
-                    {"answer_text": "Passion – Bringing energy and enthusiasm to what you do", "answer_value": 30},
-                    {"answer_text": "Peace – Seeking inner calm and harmony", "answer_value": 31},
-                    {"answer_text": "Perseverance – Pushing through challenges without giving up", "answer_value": 32},
-                    {"answer_text": "Personal Development – Focusing on self-improvement", "answer_value": 33},
-                    {"answer_text": "Respect – Treating others with dignity and consideration", "answer_value": 34},
-                    {"answer_text": "Responsibility – Being accountable for your actions", "answer_value": 35},
-                    {"answer_text": "Security – Ensuring stability and safety in life", "answer_value": 36},
-                    {"answer_text": "Self-Discipline – Practicing control and consistency", "answer_value": 37},
-                    {"answer_text": "Spirituality – Connecting with something greater than yourself", "answer_value": 38},
-                    {"answer_text": "Success – Achieving meaningful goals and accomplishments", "answer_value": 39}
-                ]
-            },
-            {
-                "question_slug": "select-4-values",
-                "question_text": "From your previous list, select up to 4 that you feel are most important to you.",
-                "type": "select-4"
-            },
-            {
-                "question_slug": "select-2-values",
-                "question_text": "From your previous list, select the 2 that you feel are most important to you.",
-                "type": "select-2"
-            },
-            {
-                "question_slug": "select-top-value",
-                "question_text": "From your previous list, select up to 4 that you feel are most important to you.",
-                "type": "select-1"
-            },
-            
-        ]
+      "subcategory_slug": "value-map",
+      "questions": [
+        {
+          "question_slug": "core-values-selection",
+          "question_text": "Which of these values resonate most with you? (Select 7-10)",
+          "type": "select-any",
+          "answers": [
+            {"answer_text": "Authenticity – Being true to yourself and your beliefs", "answer_value": 0},
+            {"answer_text": "Achievement – Striving for excellence and reaching goals", "answer_value": 1},
+            {"answer_text": "Adventure – Seeking new experiences and excitement", "answer_value": 2},
+            {"answer_text": "Altruism – Helping others without expecting anything in return", "answer_value": 3},
+            {"answer_text": "Balance – Maintaining harmony between different aspects of life", "answer_value": 4},
+            {"answer_text": "Compassion – Showing kindness and empathy to others", "answer_value": 5},
+            {"answer_text": "Community – Valuing social connections and collective well-being", "answer_value": 6},
+            {"answer_text": "Creativity – Expressing originality and new ideas", "answer_value": 7},
+            {"answer_text": "Curiosity – Seeking knowledge and exploring new ideas", "answer_value": 8},
+            {"answer_text": "Discipline – Staying focused and committed to your goals", "answer_value": 9},
+            {"answer_text": "Fairness – Treating everyone with justice and equality", "answer_value": 10},
+            {"answer_text": "Family – Prioritizing close relationships with loved ones", "answer_value": 11},
+            {"answer_text": "Freedom – Having the ability to make choices independently", "answer_value": 12},
+            {"answer_text": "Friendship – Valuing meaningful and supportive relationships", "answer_value": 13},
+            {"answer_text": "Growth – Constantly improving and developing yourself", "answer_value": 14},
+            {"answer_text": "Health & Well-being – Taking care of your physical and mental health", "answer_value": 15},
+            {"answer_text": "Honesty – Being truthful and transparent in all situations", "answer_value": 16},
+            {"answer_text": "Humility – Staying modest and open to learning", "answer_value": 17},
+            {"answer_text": "Independence – Valuing self-reliance and autonomy", "answer_value": 18},
+            {"answer_text": "Integrity – Acting according to strong moral and ethical principles", "answer_value": 19},
+            {"answer_text": "Justice – Standing up for fairness and equal treatment", "answer_value": 20},
+            {"answer_text": "Kindness – Treating others with warmth and generosity", "answer_value": 21},
+            {"answer_text": "Knowledge – Pursuing education and understanding", "answer_value": 22},
+            {"answer_text": "Leadership – Inspiring and guiding others toward success", "answer_value": 23},
+            {"answer_text": "Learning – Gaining new skills and knowledge throughout life", "answer_value": 24},
+            {"answer_text": "Love – Fostering deep affection and care for others", "answer_value": 25},
+            {"answer_text": "Loyalty – Staying faithful and committed to people and values", "answer_value": 26},
+            {"answer_text": "Mindfulness – Being present and aware in the moment", "answer_value": 27},
+            {"answer_text": "Openness – Being receptive to different perspectives and ideas", "answer_value": 28},
+            {"answer_text": "Optimism – Maintaining a hopeful and positive outlook", "answer_value": 29},
+            {"answer_text": "Passion – Bringing energy and enthusiasm to what you do", "answer_value": 30},
+            {"answer_text": "Peace – Seeking inner calm and harmony", "answer_value": 31},
+            {"answer_text": "Perseverance – Pushing through challenges without giving up", "answer_value": 32},
+            {"answer_text": "Personal Development – Focusing on self-improvement", "answer_value": 33},
+            {"answer_text": "Respect – Treating others with dignity and consideration", "answer_value": 34},
+            {"answer_text": "Responsibility – Being accountable for your actions", "answer_value": 35},
+            {"answer_text": "Security – Ensuring stability and safety in life", "answer_value": 36},
+            {"answer_text": "Self-Discipline – Practicing control and consistency", "answer_value": 37},
+            {"answer_text": "Spirituality – Connecting with something greater than yourself", "answer_value": 38},
+            {"answer_text": "Success – Achieving meaningful goals and accomplishments", "answer_value": 39}
+          ]
+        },
+        {
+            "question_slug": "select-4-values",
+            "question_text": "From your previous list, select up to 4 that you feel are most important to you.",
+            "type": "select-4"
+        },
+        {
+            "question_slug": "select-2-values",
+            "question_text": "From your previous list, select the 2 that you feel are most important to you.",
+            "type": "select-2"
+        },
+        {
+            "question_slug": "select-top-value",
+            "question_text": "From your previous list, select up to 4 that you feel are most important to you.",
+            "type": "select-1"
+        }
+      ]
     },
     {
-        "subcategory_slug": "interest-map",
-        "questions": [
-            {
-                "question_slug": "personal-interests",
-                "question_text": "Which topics or activities interest you the most? (Select any that apply)",
-                "type": "select-any",
-                "answers": [
-                    {"answer_text": "Physical Fitness & Exercise", "answer_value": 0},
-                    {"answer_text": "Mental Wellness & Self-Care", "answer_value": 1},
-                    {"answer_text": "Nutrition & Healthy Eating", "answer_value": 2},
-                    {"answer_text": "Creative Arts & Expression", "answer_value": 3},
-                    {"answer_text": "Reading & Learning", "answer_value": 4},
-                    {"answer_text": "Outdoor Activities & Adventure", "answer_value": 5},
-                    {"answer_text": "Spirituality & Mindfulness", "answer_value": 6},
-                    {"answer_text": "Skill Building & Personal Development", "answer_value": 7},
-                    {"answer_text": "Career Advancement & Productivity", "answer_value": 8},
-                    {"answer_text": "Music & Performing Arts", "answer_value": 9},
-                    {"answer_text": "Technology & Innovation", "answer_value": 10},
-                    {"answer_text": "Gaming & Digital Entertainment", "answer_value": 11},
-                    {"answer_text": "Social & Community Engagement", "answer_value": 12},
-                    {"answer_text": "Travel & Cultural Exploration", "answer_value": 13},
-                    {"answer_text": "Home & Interior Design", "answer_value": 14},
-                    {"answer_text": "Sustainability & Environmentalism", "answer_value": 15},
-                    {"answer_text": "DIY & Crafting", "answer_value": 16},
-                    {"answer_text": "Entrepreneurship & Business", "answer_value": 17},
-                    {"answer_text": "Finance & Investing", "answer_value": 18},
-                    {"answer_text": "Parenting & Family Dynamics", "answer_value": 19},
-                    {"answer_text": "Science & Discovery", "answer_value": 20},
-                    {"answer_text": "Public Speaking & Communication", "answer_value": 21},
-                    {"answer_text": "Fashion & Personal Style", "answer_value": 22},
-                    {"answer_text": "Cooking & Culinary Arts", "answer_value": 23},
-                    {"answer_text": "Martial Arts & Self-Defense", "answer_value": 24},
-                    {"answer_text": "Content Creation & Digital Media",   "answer_value": 25},
-                    {"answer_text": "Photography & Videography",         "answer_value": 26},
-                    {"answer_text": "Podcasting & Audio Production",     "answer_value": 27},
-                    {"answer_text": "Gardening & Horticulture",          "answer_value": 28},
-                    {"answer_text": "Language Learning & Linguistics",    "answer_value": 29}
-                ]
-            },
-            {
-                "question_slug": "top-5-personal-interests",
-                "question_text": "From your previously selected interests, select your top 5.",
-                "type": "select-5"
-            },
-            {
-                "question_slug": "top-3-personal-interests",
-                "question_text": "From those top 5, select your top 3?",
-                "type": "select-3"
-            },
-            {
-                "question_slug": "new-skills-interest",
-                "question_text": "Are there any new skills or habits you’d like to learn? (Select any that apply)",
-                "type": "select-any",
-                "answers": [
-                    {"answer_text": "Learning a new language", "answer_value": 0},
-                    {"answer_text": "Developing better time management", "answer_value": 1},
-                    {"answer_text": "Practicing meditation or mindfulness", "answer_value": 2},
-                    {"answer_text": "Improving public speaking skills", "answer_value": 3},
-                    {"answer_text": "Mastering a musical instrument", "answer_value": 4},
-                    {"answer_text": "Building coding & programming skills", "answer_value": 5},
-                    {"answer_text": "Enhancing leadership & management abilities", "answer_value": 6},
-                    {"answer_text": "Developing financial literacy & investing habits", "answer_value": 7},
-                    {"answer_text": "Strengthening writing & storytelling skills", "answer_value": 8},
-                    {"answer_text": "Learning photography or videography", "answer_value": 9},
-                    {"answer_text": "Cooking more diverse & nutritious meals", "answer_value": 10},
-                    {"answer_text": "Starting a fitness or workout routine", "answer_value": 11},
-                    {"answer_text": "Engaging in regular journaling or self-reflection", "answer_value": 12},
-                    {"answer_text": "Exploring creative arts & painting", "answer_value": 13},
-                    {"answer_text": "Practicing social skills & networking", "answer_value": 14},
-                    {"answer_text": "Improving focus & productivity habits", "answer_value": 15},
-                    {"answer_text": "Adopting better sleep habits", "answer_value": 16},
-                    {"answer_text": "Becoming more sustainable & eco-conscious", "answer_value": 17},
-                    {"answer_text": "Training for endurance sports (e.g., running, cycling)", "answer_value": 18},
-                    {"answer_text": "Becoming skilled in negotiation & persuasion", "answer_value": 19},
-                    {"answer_text": "Developing DIY home improvement skills", "answer_value": 20},
-                    {"answer_text": "Learning self-defense & martial arts", "answer_value": 21},
-                    {"answer_text": "Starting a side business or freelance career", "answer_value": 22},
-                    {"answer_text": "Enhancing critical thinking & problem-solving", "answer_value": 23},
-                    {"answer_text": "Learning effective stress management techniques", "answer_value": 24}
-                ]
-            }
-        ]
+      "subcategory_slug": "interest-map",
+      "questions": [
+        {
+          "question_slug": "personal-interests",
+          "question_text": "Which topics or activities interest you the most? (Select any that apply)",
+          "type": "select-any",
+          "answers": [
+            {"answer_text": "Physical Fitness & Exercise", "answer_value": 0},
+            {"answer_text": "Mental Wellness & Self-Care", "answer_value": 1},
+            {"answer_text": "Nutrition & Healthy Eating", "answer_value": 2},
+            {"answer_text": "Creative Arts & Expression", "answer_value": 3},
+            {"answer_text": "Reading & Learning", "answer_value": 4},
+            {"answer_text": "Outdoor Activities & Adventure", "answer_value": 5},
+            {"answer_text": "Spirituality & Mindfulness", "answer_value": 6},
+            {"answer_text": "Skill Building & Personal Development", "answer_value": 7},
+            {"answer_text": "Career Advancement & Productivity", "answer_value": 8},
+            {"answer_text": "Music & Performing Arts", "answer_value": 9},
+            {"answer_text": "Technology & Innovation", "answer_value": 10},
+            {"answer_text": "Gaming & Digital Entertainment", "answer_value": 11},
+            {"answer_text": "Social & Community Engagement", "answer_value": 12},
+            {"answer_text": "Travel & Cultural Exploration", "answer_value": 13},
+            {"answer_text": "Home & Interior Design", "answer_value": 14},
+            {"answer_text": "Sustainability & Environmentalism", "answer_value": 15},
+            {"answer_text": "DIY & Crafting", "answer_value": 16},
+            {"answer_text": "Entrepreneurship & Business", "answer_value": 17},
+            {"answer_text": "Finance & Investing", "answer_value": 18},
+            {"answer_text": "Parenting & Family Dynamics", "answer_value": 19},
+            {"answer_text": "Science & Discovery", "answer_value": 20},
+            {"answer_text": "Public Speaking & Communication", "answer_value": 21},
+            {"answer_text": "Fashion & Personal Style", "answer_value": 22},
+            {"answer_text": "Cooking & Culinary Arts", "answer_value": 23},
+            {"answer_text": "Martial Arts & Self-Defense", "answer_value": 24},
+            {"answer_text": "Content Creation & Digital Media",   "answer_value": 25},
+            {"answer_text": "Photography & Videography",         "answer_value": 26},
+            {"answer_text": "Podcasting & Audio Production",     "answer_value": 27},
+            {"answer_text": "Gardening & Horticulture",          "answer_value": 28},
+            {"answer_text": "Language Learning & Linguistics",    "answer_value": 29}
+          ]
+        },
+        {
+            "question_slug": "top-5-personal-interests",
+            "question_text": "From your previously selected interests, select your top 5.",
+            "type": "select-5"
+        },
+        {
+            "question_slug": "top-3-personal-interests",
+            "question_text": "From those top 5, select your top 3?",
+            "type": "select-3"
+        },
+        {
+          "question_slug": "new-skills-interest",
+          "question_text": "Are there any new skills or habits you’d like to learn? (Select any that apply)",
+          "type": "select-any",
+          "answers": [
+            {"answer_text": "Learning a new language", "answer_value": 0},
+            {"answer_text": "Developing better time management", "answer_value": 1},
+            {"answer_text": "Practicing meditation or mindfulness", "answer_value": 2},
+            {"answer_text": "Improving public speaking skills", "answer_value": 3},
+            {"answer_text": "Mastering a musical instrument", "answer_value": 4},
+            {"answer_text": "Building coding & programming skills", "answer_value": 5},
+            {"answer_text": "Enhancing leadership & management abilities", "answer_value": 6},
+            {"answer_text": "Developing financial literacy & investing habits", "answer_value": 7},
+            {"answer_text": "Strengthening writing & storytelling skills", "answer_value": 8},
+            {"answer_text": "Learning photography or videography", "answer_value": 9},
+            {"answer_text": "Cooking more diverse & nutritious meals", "answer_value": 10},
+            {"answer_text": "Starting a fitness or workout routine", "answer_value": 11},
+            {"answer_text": "Engaging in regular journaling or self-reflection", "answer_value": 12},
+            {"answer_text": "Exploring creative arts & painting", "answer_value": 13},
+            {"answer_text": "Practicing social skills & networking", "answer_value": 14},
+            {"answer_text": "Improving focus & productivity habits", "answer_value": 15},
+            {"answer_text": "Adopting better sleep habits", "answer_value": 16},
+            {"answer_text": "Becoming more sustainable & eco-conscious", "answer_value": 17},
+            {"answer_text": "Training for endurance sports (e.g., running, cycling)", "answer_value": 18},
+            {"answer_text": "Becoming skilled in negotiation & persuasion", "answer_value": 19},
+            {"answer_text": "Developing DIY home improvement skills", "answer_value": 20},
+            {"answer_text": "Learning self-defense & martial arts", "answer_value": 21},
+            {"answer_text": "Starting a side business or freelance career", "answer_value": 22},
+            {"answer_text": "Enhancing critical thinking & problem-solving", "answer_value": 23},
+            {"answer_text": "Learning effective stress management techniques", "answer_value": 24}
+          ]
+        }
+      ]
     },
     {
-        "subcategory_slug": "current-priority-map",
-        "questions": [
-            {
-                "question_slug": "current-life-priorities",
-                "question_text": "Which of these areas are your biggest priorities right now? (Select up to 3)",
-                "type": "select-any",
-                "answers": [
-                    {"answer_text": "Career & Professional Growth", "answer_value": 0},
-                    {"answer_text": "Personal Growth & Education", "answer_value": 1},
-                    {"answer_text": "Health & Fitness", "answer_value": 2},
-                    {"answer_text": "Financial Stability & Wealth Building", "answer_value": 3},
-                    {"answer_text": "Family & Relationships", "answer_value": 4},
-                    {"answer_text": "Mental & Emotional Well-being", "answer_value": 5},
-                    {"answer_text": "Spiritual Growth & Inner Peace", "answer_value": 6},
-                    {"answer_text": "Leisure & Hobbies", "answer_value": 7},
-                    {"answer_text": "Community & Social Impact", "answer_value": 8},
-                    {"answer_text": "Travel & Exploration", "answer_value": 9},
-                    {"answer_text": "Creativity & Artistic Expression", "answer_value": 10},
-                    {"answer_text": "Reducing Stress & Simplifying Life", "answer_value": 11},
-                    {"answer_text": "Time Management & Productivity", "answer_value": 12},
-                    {"answer_text": "Work-Life Balance", "answer_value": 13},
-                    {"answer_text": "Building Stronger Friendships & Social Networks", "answer_value": 14},
-                    {"answer_text": "Developing Leadership & Influence", "answer_value": 15},
-                    {"answer_text": "Mindfulness & Presence", "answer_value": 16},
-                    {"answer_text": "Parenting & Family Development", "answer_value": 17},
-                    {"answer_text": "Volunteering & Philanthropy", "answer_value": 18},
-                    {"answer_text": "Self-Discipline & Habit Building", "answer_value": 19},
-                    {"answer_text": "Personal Freedom & Independence", "answer_value": 20},
-                    {"answer_text": "Environmental Consciousness & Sustainability", "answer_value": 21},
-                    {"answer_text": "Skill Building & Lifelong Learning", "answer_value": 22},
-                    {"answer_text": "Confidence & Self-Esteem", "answer_value": 23},
-                    {"answer_text": "Adventure & New Experiences", "answer_value": 24}
-                ]
-            },
-            {
-                "question_slug": "current-priority-alignment",
-                "question_text": "Do you feel like your time and energy currently reflect these priorities?",
-                "type": "yes-no"
-            }
-        ]
+      "subcategory_slug": "current-priority-map",
+      "questions": [
+        {
+          "question_slug": "current-life-priorities",
+          "question_text": "Which of these areas are your biggest priorities right now? (Select up to 3)",
+          "type": "select-any",
+          "answers": [
+              {"answer_text": "Career & Professional Growth", "answer_value": 0},
+              {"answer_text": "Personal Growth & Education", "answer_value": 1},
+              {"answer_text": "Health & Fitness", "answer_value": 2},
+              {"answer_text": "Financial Stability & Wealth Building", "answer_value": 3},
+              {"answer_text": "Family & Relationships", "answer_value": 4},
+              {"answer_text": "Mental & Emotional Well-being", "answer_value": 5},
+              {"answer_text": "Spiritual Growth & Inner Peace", "answer_value": 6},
+              {"answer_text": "Leisure & Hobbies", "answer_value": 7},
+              {"answer_text": "Community & Social Impact", "answer_value": 8},
+              {"answer_text": "Travel & Exploration", "answer_value": 9},
+              {"answer_text": "Creativity & Artistic Expression", "answer_value": 10},
+              {"answer_text": "Reducing Stress & Simplifying Life", "answer_value": 11},
+              {"answer_text": "Time Management & Productivity", "answer_value": 12},
+              {"answer_text": "Work-Life Balance", "answer_value": 13},
+              {"answer_text": "Building Stronger Friendships & Social Networks", "answer_value": 14},
+              {"answer_text": "Developing Leadership & Influence", "answer_value": 15},
+              {"answer_text": "Mindfulness & Presence", "answer_value": 16},
+              {"answer_text": "Parenting & Family Development", "answer_value": 17},
+              {"answer_text": "Volunteering & Philanthropy", "answer_value": 18},
+              {"answer_text": "Self-Discipline & Habit Building", "answer_value": 19},
+              {"answer_text": "Personal Freedom & Independence", "answer_value": 20},
+              {"answer_text": "Environmental Consciousness & Sustainability", "answer_value": 21},
+              {"answer_text": "Skill Building & Lifelong Learning", "answer_value": 22},
+              {"answer_text": "Confidence & Self-Esteem", "answer_value": 23},
+              {"answer_text": "Adventure & New Experiences", "answer_value": 24}
+          ]
+        },
+        {
+            "question_slug": "current-priority-alignment",
+            "question_text": "Do you feel like your time and energy currently reflect these priorities?",
+            "type": "yes-no"
+        }
+      ]
     },
     {
         "subcategory_slug": "envisioned-priority-map",
@@ -900,7 +1013,7 @@ survey_question_data = [
             }
         ]
     },
-
+]
 
 # ALL QUESTION SETS BELOW DEPRECATED?!?  LOTS OF GOOD QUESTIONS HERE
 
@@ -2352,4 +2465,3 @@ survey_question_data = [
     #         },
     #     ],
     # },
-]
