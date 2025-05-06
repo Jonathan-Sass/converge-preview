@@ -99,7 +99,6 @@
               <div id="progress-bar" class="progress-bar bg-primary" role="progressbar" style="width: 40%;"
                 aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
             </div>
-            <hr class="border border-dark mb-2">
             <a class="nav-link solid-white-bg" href="#user-orientation">Orientation</a>
             <a class="nav-link solid-white-bg" href="#dashboard-intro">Dashboard Welcome</a>
             <a class="nav-link solid-white-bg" href="#day-map">Day Map</a>
@@ -120,14 +119,14 @@
       <!-- Main Content -->
       <div class="container col-9">
         <!-- Data-category needs to be category.category_slug to access question set-->
-        <div class="card shadow p-4 text-center mb-2 opaque-white-bg" id="survey_category" data-category="onboarding">
+        <div class="card shadow p-5 text-center mb-2 opaque-white-bg" id="survey_category" data-category="onboarding">
           <div class="card-title">
             <!-- <h2 class="display-6 text-primary">Let's start with something fun.</h2> -->
           </div>
           <div data-bs-spy="scroll" data-bs-target="#progress-navbar" data-bs-smooth-scroll="true"
           class="scrollspy-example-2" tabindex="0">
           
-                            <!-- data-subcategory should match subcategory.subcategory_slug -->
+                            <!-- data-subcategory needs to match subcategory.subcategory_slug for question set retrieval-->
                             <!-- ID matches subcategory.subcategory_slug for sidebar scrollspy -->
             <div class="card shadow p-2 solid-white-bg" id="interest-map" data-subcategory="interest-map">
               <div class="card-body">

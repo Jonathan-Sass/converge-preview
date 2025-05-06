@@ -21,7 +21,7 @@ body {
   background-position: center;
   background-color: #000;
   z-index: -1;
-  transition: transform 0.1s ease-out;
+  transition: transform 0s ease-out;
 }
 
 .opaque-white-bg {
@@ -60,6 +60,9 @@ h1, h2, h3, h4, h5, h6, p {
 
 .introjs-overlay {
   z-index: 99998 !important; /* Ensure it sits below the tooltip */
+}
+.introjs-tooltip {
+  font-size: 16px !important;
 }
 
 .introjs-helperLayer {
