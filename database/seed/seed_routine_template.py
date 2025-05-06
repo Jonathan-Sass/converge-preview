@@ -82,7 +82,6 @@ def prepare_routine_block_templates(practices):
             "slug": routine_block_template["slug"],
             "description": routine_block_template["description"],
             "routine_type": routine_block_template["routine_type"],
-            "category": routine_block_template["category"],
             "notes": routine_block_template.get("notes", None)
         }
         batched_routine_block_templates.append(prepared_routine_block_templates)
@@ -176,15 +175,14 @@ def prepare_routine_block_template_practices_data(routine_block_templates, batch
 def execute_seed_routine_block_templates(values):
     query = """
         INSERT INTO routine_block_templates
-            (name, slug, description, routine_type, category, notes, created_at, updated_at)
+            (name, slug, description, routine_type, notes, created_at, updated_at)
         VALUES
-            (%(name)s, %(slug)s, %(description)s, %(routine_type)s, %(category)s, %(notes)s, NOW(), NOW())
+            (%(name)s, %(slug)s, %(description)s, %(routine_type)s, %(notes)s, NOW(), NOW())
         ON DUPLICATE KEY UPDATE
             name = VALUES(name),
             slug = slug,
             description = VALUES(description),
             routine_type = VALUES(routine_type),
-            category = VALUES(category),
             notes = VALUES(notes),
             updated_at = NOW();
     """

@@ -16,18 +16,18 @@ def seed_routine_data():
 def seed_routine_blocks():
     query = """
       INSERT INTO routine_blocks
-        (name, slug, description, tier_level, created_at, updated_at)
+        (name, slug, description, type, created_at, updated_at)
       VALUES 
         (%s, %s, %s, %s, NOW(), NOW())
       ON DUPLICATE KEY UPDATE
         name = VALUES(name),
         slug = slug,
         description = VALUES(description),
-        tier_level = VALUES(tier_level),
+        type = VALUES(type),
         updated_at = NOW();
     """
 
-    params = [(rb["name"], rb["slug"], rb["description"], rb["tier_level"]) for rb in routine_blocks]
+    params = [(rb["name"], rb["slug"], rb["description"], rb["type"]) for rb in routine_blocks]
     
     try:
       db.query_db(query, params, many=True)
