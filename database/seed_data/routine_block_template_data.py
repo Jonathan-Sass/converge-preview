@@ -2,171 +2,181 @@
 # These will shift to "categorical recommendations"
 routine_block_templates = [
     # AM Starter Routines for early users getting their first routines
-    {
-        "name": "Core Reset & Prime",
-        "slug": "core-reset",
-        "routine_block_slug": "core-reset",
-        "description": "A simple morning routine designed to cultivate calm, clarity, and a strong start to the day.",
-        "routine_type": "AM Starter",
-        "category": "Mindfulness & Presence",
-        "notes": "Best for users who want to feel centered before engaging with the day.",
-        "practices": [
-            {"practice_name": "No Screen Mornings", "routine_block_slug": "core-reset", "position": 1},
-            {"practice_name": "Morning Hydration", "routine_block_slug": "core-reset", "position": 2},
-            {"practice_name": "Mindfulness Meditation", "routine_block_slug": "core-reset", "position": 3}
-        ],
-        "traits": {
-          "habit_adoption_pattern": {"trait_value": 0, "is_required": 0},
-          "am_energy_pattern": {"trait_value": 0, "is_required": 0},
-          "am_routine_time_availability": {"trait_value": 0, "is_required": 0},
-          "movement_level": {"trait_value": 0, "is_required": 0},
-          "am_exercise": {"trait_value": 0, "is_required": 0},
-          "has_focus_block": {"trait_value": 0, "is_required": 0},
-        }
-    },
-]
-    # {
-    #     "name": "The Energized Start",
-    #     "slug": "energized-start",
-    #     "description": "A quick and effective routine to activate the body and mind.",
-    #     "routine_type": "AM Starter",
-    #     "category": "Energy & Activation",
-    #     "notes": "Great for those who want to shake off grogginess and start the day feeling strong.",
-    #     "practices": [
-    #         {"practice_name": "Cold Exposure", "routine_block_slug": "core-reset", "position": 1},
-    #         {"practice_name": "Morning Hydration", "routine_block_slug": "core-reset", "position": 2},
-    #         {"practice_name": "Sunrise Walk", "routine_block_slug": "core-reset", "position": 3}
-    #     ]
-    # },
-    # {
-    #     "name": "Mindful Focus Start",
-    #     "slug": "mindful-focus",
-    #     "description": "A structured start for a distraction-free and productive day.",
-    #     "routine_type": "AM Starter",
-    #     "category": "Focus & Discipline",
-    #     "notes": "Best for those who need mental clarity and structured focus time.",
-    #     "practices": [
-    #         {"practice_name": "No Screen Mornings", "routine_block_slug": "core-reset", "position": 1},
-    #         {"practice_name": "Mindfulness Meditation", "routine_block_slug": "core-reset", "position": 2},
-    #         {"practice_name": "Deep Work Session", "routine_block_slug": "productivity", "position": 3}
-    #     ]
-    # },
-    # {
-    #     "name": "The Restorative Start",
-    #     "slug": "restorative-start",
-    #     "description": "A slow and nourishing start that emphasizes self-care and stress resilience.",
-    #     "routine_type": "AM Starter",
-    #     "category": "Restoration & Self-Care",
-    #     "notes": "Ideal for those who need a calm and soothing start without pressure.",
-    #     "practices": [
-    #         {"practice_name": "Morning Hydration", "routine_block_slug": "core-reset", "position": 1},
-    #         {"practice_name": "Mindfulness Meditation", "routine_block_slug": "core-reset", "position": 2},
-    #         {"practice_name": "No Screen Mornings", "routine_block_slug": "expanded-core", "position": 3}
-    #     ]
-    # },
-    # {
-    #     "name": "Active Focus Start",
-    #     "slug": "active-focus",
-    #     "description": "A disciplined approach to morning routines, focusing on resilience and structure.",
-    #     "routine_type": "AM Starter",
-    #     "category": "Self-Discipline & Mental Strength",
-    #     "notes": "Designed for those who want to cultivate consistency and fortitude.",
-    #     "practices": [
-    #         {"practice_name": "Cold Exposure", "routine_block_slug": "core-reset", "position": 1},
-    #         {"practice_name": "Sunrise Walk", "routine_block_slug": "core-reset", "position": 2},
-    #         {"practice_name": "Deep Work Session", "routine_block_slug": "productivity", "position": 3}
-    #     ]
-    # },
 
-    # {
-    #     "name": "Balanced Start",
-    #     "slug": "balanced-start",
-    #     "description": "A simple and effective routine to kickstart the day with focus and energy.",
-    #     "routine_type": "AM",
-    #     "category":"Generic",
-    #     "notes": "Designed for flexibility; suitable for users seeking structure without complexity.",
-    #     "practices": [
-    #         {"practice_name": "No Screen Mornings", "routine_block_slug": "expanded-core", "position": 1}, 
-    #         {"practice_name": "Morning Hydration", "routine_block_slug": "core-reset", "position": 2}, 
-    #         {"practice_name": "Cold Exposure", "routine_block_slug": "core-reset", "position": 3}, 
-    #         {"practice_name": "Mindfulness Meditation", "routine_block_slug": "expanded-core", "position": 4}, 
-    #         {"practice_name": "Movement/Stretch", "routine_block_slug": "expanded-core", "position": 5}, 
-    #         {"practice_name": "Sunrise Walk", "routine_block_slug": "core-reset", "position": 6}, 
-    #         {"practice_name": "Deep Work Session", "routine_block_slug": "productivity", "position": 7}
-    #     ]
-    # },
-    # {
-    #     "name": "Energized Focus",
-    #     "slug": "energized-focus",
-    #     "description": "A morning routine designed to help individuals expressing ADHD symptoms or tendencies transition smoothly into the day.",
-    #     "routine_type": "AM",
-    #     "category": "ADHD",
-    #     "notes": "Includes sensory engagement and dopamine-building practices to maintain focus.",
-    #     "practices": [
-    #         {"practice_name": "No Screen Mornings", "routine_block_slug": "expanded-core", "position": 1},
-    #         {"practice_name": "Morning Hydration", "routine_block_slug": "core-reset", "position": 2},
-    #         {"practice_name": "Cold Exposure", "routine_block_slug": "core-reset", "position": 3}, 
-    #         {"practice_name": "Mindfulness Meditation", "routine_block_slug": "expanded-core", "position": 4},
-    #         {"practice_name": "Sunrise Walk", "routine_block_slug": "core-reset", "position": 5},
-    #         {"practice_name": "Daily Prioritization", "routine_block_slug": "productivity", "position": 6},
-    #         {"practice_name": "Gratitude Practice", "routine_block_slug": "expanded-core", "position": 7},
-    #         {"practice_name": "Deep Work Session", "routine_block_slug": "productivity", "position": 8}
-    #     ]
-    # },
-    # {
-    #     "name": "Connected Start",
-    #     "slug": "connected-start",
-    #     "description": "A structured routine for individuals expressing ADHD symptoms or tendencies, with an emphasis on fostering meaningful connections.",
-    #     "routine_type": "AM",
-    #     "category": "ADHD",
-    #     "notes": "Encourages focus and connection early in the day.",
-    #     "practices": [
-    #         {"practice_name": "No Screen Mornings", "routine_block_slug": "expanded-core", "position": 1},
-    #         {"practice_name": "Morning Hydration", "routine_block_slug": "core-reset", "position": 2},
-    #         {"practice_name": "Cold Exposure", "routine_block_slug": "core-reset", "position": 3}, 
-    #         {"practice_name": "Mindfulness Meditation", "routine_block_slug": "expanded-core", "position": 4},
-    #         {"practice_name": "Sunrise Walk", "routine_block_slug": "core-reset", "position": 5},
-    #         {"practice_name": "Gratitude or Reflection Journaling", "routine_block_slug": "expanded-core", "position": 6},
-    #         {"practice_name": "Check-In Message or Call", "routine_block_slug": "relationship-builder", "position": 7},
-    #         {"practice_name": "Daily Prioritization", "routine_block_slug": "productivity", "position": 8},
-    #         {"practice_name": "Deep Work Session", "routine_block_slug": "productivity", "position": 9}
-    #     ]
-    # },
-    # {
-    #     "name": "Peak Performance Start",
-    #     "slug": "peak-performance-start",
-    #     "description": "A performance-driven routine focusing on hydration, movement, and mental preparation.",
-    #     "routine_type": "AM",
-    #     "category": "Athlete",
-    #     "notes": "Supports physical and mental readiness for peak performance.",
-    #     "practices": [
-    #         {"practice_name": "No Screen Mornings", "routine_block_slug": "expanded-core", "position": 1},
-    #         {"practice_name": "Morning Hydration", "routine_block_slug": "core-reset", "position": 2},
-    #         {"practice_name": "Cold Exposure", "routine_block_slug": "core-reset", "position": 3},
-    #         {"practice_name": "Mindfulness Meditation", "routine_block_slug": "expanded-core", "position": 4},
-    #         {"practice_name": "Structured Training Block", "routine_block_slug": "sport-training", "position": 5},
-    #         {"practice_name": "Skill Practice or Morning Mobility", "routine_block_slug": "sport-training", "position": 6},
-    #         {"practice_name": "Performance Visualization", "routine_block_slug": "sport-training", "position": 7},
-    #         {"practice_name": "Deep Work Session", "routine_block_slug": "productivity", "position": 8}
-    #     ]
-    # },
-    # {
-    #     "name": "Momentum Builder",
-    #     "slug": "momentum-builder",
-    #     "description": "A routine for ADHD athletes to harness energy and focus on training goals.",
-    #     "routine_type": "AM",
-    #     "category": "Athlete",
-    #     "notes": "Combines physical activity with practices to reinforce focus and discipline.",
-    #     "practices": [
-    #         {"practice_name": "No Screen Mornings", "routine_block_slug": "expanded-core", "position": 1},
-    #         {"practice_name": "Morning Hydration", "routine_block_slug": "core-reset", "position": 2},
-    #         {"practice_name": "Cold Exposure", "routine_block_slug": "core-reset", "position": 3},
-    #         {"practice_name": "Mindfulness Meditation", "routine_block_slug": "expanded-core", "position": 4},
-    #         {"practice_name": "Structured Training Block", "routine_block_slug": "sport-training", "position": 5},
-    #         {"practice_name": "Skill Practice or Morning Mobility", "routine_block_slug": "sport-training", "position": 6},
-    #         {"practice_name": "Performance Visualization", "routine_block_slug": "sport-training", "position": 7},
-    #         {"practice_name": "Daily Prioritization", "routine_block_slug": "productivity", "position": 8},
-    #         {"practice_name": "Deep Work Session", "routine_block_slug": "productivity", "position": 9}
-    #     ]
-    # }
-# ]
+    # Templates for: Digital Disconnect Block
+    {
+      "name": "Keepin' It Real",
+      "slug": "keepin-it-real",
+      "routine_block_slug": "digital-disconnect",
+      "description": "Start your day clear, calm, and connected to yourself, not a screen.",
+      "routine_type": "AM",
+      "notes": "Ideal for reducing digital noise and comparison stress early in the day.",
+      "practices": [
+        {"practice_name": "Tech-Free Morning", "routine_block_slug": "digital-disconnect", "position": 1},
+        {"practice_name": "Screen Time Limit", "routine_block_slug": "digital-disconnect", "position": 2},
+        {"practice_name": "Social Media Limit", "routine_block_slug": "digital-disconnect", "position": 3}
+      ],
+      "traits": {
+        "digital-hygiene": {"trait_value": 2, "is_required": 1},
+        "digital-detox-willingness": {"trait_value": 2, "is_required": 0},
+        "am-routine-comprehensiveness": {"trait_value": 0, "is_required": 0}
+      }
+    },
+    {
+      "name": "News‑Light Boundaries",
+      "slug": "news-light-boundaries",
+      "routine_block_slug": "digital-disconnect",
+      "description": "Pair a tech‑free start with breaks and a cap on your news intake.",
+      "routine_type": "AM",
+      "notes": "Great for users who want to reduce news‑driven stress without giving up all screens.",
+      "practices": [
+        {"practice_name": "Tech-Free Morning", "routine_block_slug": "digital-disconnect", "position": 1},
+        {"practice_name": "Screen Time Limit", "routine_block_slug": "digital-disconnect", "position": 2},
+        {"practice_name": "News Limit", "routine_block_slug": "digital-disconnect", "position": 3}
+      ],
+      "traits": {
+        "digital-hygiene": {"trait_value": 3, "is_required": 1},
+        "digital-detox-willingness": {"trait_value": 2, "is_required": 0}
+      }
+    },
+    {
+      "name": "Focus‑Block Boundaries",
+      "slug": "focus-block-boundaries",
+      "routine_block_slug": "digital-disconnect",
+      "description": "Combine a phone‑free morning, screen breaks, and dedicated no‑phone focus slots.",
+      "routine_type": "AM Starter",
+      "notes": "Perfect for users aiming to preserve deep focus throughout the day.",
+      "practices": [
+        {"practice_name": "Tech‑Free Morning", "routine_block_slug": "digital-disconnect", "position": 1},
+        {"practice_name": "Screen Time Limit", "routine_block_slug": "digital-disconnect", "position": 2},
+        {"practice_name": "Phone‑Free Block", "routine_block_slug": "digital-disconnect", "position": 3}
+      ],
+      "traits": {
+        "digital-hygiene": {"trait_value": 3, "is_required": 1},
+        "digital-detox-willingness": {"trait_value": 3, "is_required": 0},
+        "has_focus_block": {"trait_value": 1, "is_required": 0}
+      }
+    },
+
+    # CORE SYSTEM PRIMER TEMPLATES
+    {
+      "name": "Basic Primer",
+      "slug": "basic-primer",
+      "routine_block_slug": "core-primers",
+      "description": "Hydrate, take a quick cold exposure, then enjoy a sunrise coffee.",
+      "routine_type": "AM Starter",
+      "notes": "A three‑step energizer to kickstart body and mind in under 5 minutes.",
+      "practices": [
+        {"practice_name": "Morning Hydration", "routine_block_slug": "core-primers", "position": 1},
+        {"practice_name": "Cold Exposure", "routine_block_slug": "core-primers", "position": 2},
+        {"practice_name": "Sunrise Beverage", "routine_block_slug": "core-primers", "position": 3}
+      ],
+      "traits": {
+        "am-routine-comprehensiveness": {"trait_value": 1, "is_required": 1},
+        "fuel-and-hydration": {"trait_value": 2, "is_required": 1}
+      }
+    },
+    {
+      "name": "Basic Primer & Walk",
+      "slug": "basic-primer-walk",
+      "routine_block_slug": "core-primers",
+      "description": "Hydrate, cold exposure, then a brief sunrise walk for gentle movement.",
+      "routine_type": "AM Starter",
+      "notes": "Adds circulation benefits to your core primer trio.",
+      "practices": [
+        {"practice_name": "Morning Hydration", "routine_block_slug": "core-primers", "position": 1},
+        {"practice_name": "Cold Exposure", "routine_block_slug": "core-primers", "position": 2},
+        {"practice_name": "Sunrise Walk", "routine_block_slug": "core-primers", "position": 3}
+      ],
+      "traits": {
+        "am-routine-comprehensiveness": {"trait_value": 1, "is_required": 1},
+        "movement_level": {"trait_value": 1, "is_required": 0}
+      }
+    },
+
+    # Templates for: Core System Builders Block
+    {
+      "name": "HIIT and Sit",
+      "slug": "hiit-and-sit",
+      "routine_block_slug": "core-system-builders",
+      "description": "High-intensity movement followed by mobility and meditation to reset body and mind.",
+      "routine_type": "Any",
+      "category": "Mind-Body Reset",
+      "notes": "Pairs a quick energy spike with grounding recovery and calm.",
+      "practices": [
+        { "practice_name": "HIIT Workout", "position": 1 },
+        { "practice_name": "Mobility Circuit", "position": 2 },
+        { "practice_name": "Mindfulness Meditation", "position": 3 }
+      ]
+    },
+    {
+      "name": "Mindful Movement",
+      "slug": "mindful-movement",
+      "routine_block_slug": "core-system-builders",
+      "description": "A mobility-focused flow with attention to presence and gratitude.",
+      "routine_type": "Any",
+      "category": "Mind-Body Reset",
+      "notes": "Ideal for morning movement or a mid-day stress release.",
+      "practices": [
+        { "practice_name": "Yoga Flow or Pilates Routine", "position": 1 },
+        { "practice_name": "Gratitude Practice", "position": 2 },
+        { "practice_name": "Mindfulness Meditation", "position": 3 }
+      ]
+    },
+    {
+      "name": "Fit & Strong",
+      "slug": "fit-and-strong",
+      "routine_block_slug": "core-system-builders",
+      "description": "A combined cardio and strength routine, finished with mindful grounding.",
+      "routine_type": "Any",
+      "category": "Mind-Body Reset",
+      "notes": "Great for days where you want to hit body and mind with purpose.",
+      "practices": [
+        { "practice_name": "Aerobic Workout", "position": 1 },
+        { "practice_name": "Strength Training", "position": 2 },
+        { "practice_name": "Breath-Based Stillness Practice", "position": 3 }
+      ]
+    },
+    {
+      "name": "Ground & Reset",
+      "slug": "ground-and-reset",
+      "routine_block_slug": "core-system-builders",
+      "description": "Gentle mobility, breath, and presence to reset the nervous system.",
+      "routine_type": "Any",
+      "category": "Mind-Body Reset",
+      "notes": "Great for evenings or high-stress days where calm is a priority.",
+      "practices": [
+        { "practice_name": "Mobility Flow", "position": 1 },
+        { "practice_name": "Box Breathing", "position": 2 },
+        { "practice_name": "Walking Reflection", "position": 3 }
+      ]
+    },
+    {
+      "name": "Resilience Circuit",
+      "slug": "resilience-circuit",
+      "routine_block_slug": "core-system-builders",
+      "description": "Light strength, mobility, and cognitive training for mental and physical resilience.",
+      "routine_type": "Any",
+      "category": "Mind-Body Reset",
+      "notes": "For days you want to train durability—body and mind together.",
+      "practices": [
+        { "practice_name": "Meditation", "position": 1 },
+        { "practice_name": "Functional Strength Primer", "position": 2 },
+        { "practice_name": "Mobility Circuit", "position": 3 }
+      ]
+    },
+    {
+      "name": "Flow & Focus",
+      "slug": "flow-and-focus",
+      "routine_block_slug": "core-system-builders",
+      "description": "A full-body movement flow followed by breath and visualization.",
+      "routine_type": "Any",
+      "category": "Mind-Body Reset",
+      "notes": "Use this block to build creative energy and mental clarity.",
+      "practices": [
+        { "practice_name": "Dynamic Mobility Flow", "position": 1 },
+        { "practice_name": "Breath Ladder", "position": 2 },
+        { "practice_name": "Visualization Practice", "position": 3 }
+      ]
+    }
+]

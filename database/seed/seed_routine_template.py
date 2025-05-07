@@ -98,7 +98,7 @@ def prepare_routine_block_templates(practices):
             
             incomplete_routine_block_template_practice_data = {
                 "routine_block_template_slug": routine_block_template["slug"], 
-                "routine_block_slug": practice["routine_block_slug"],
+                "routine_block_slug": routine_block_template["routine_block_slug"],
                 "practice_id": practice_id,
                 "position": practice["position"]
             }
