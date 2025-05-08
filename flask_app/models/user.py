@@ -132,34 +132,34 @@ class User:
         is_valid = True
 
         if len(user["first_name"].strip()) < 2:
-            flash("Please enter your first name.", "registration")
+            flash("Please enter your first name.", "first_name")
             is_valid = False
         elif not str.isalpha(user["first_name"]):
-            flash("Your first name may only contain letters.", "registration")
+            flash("Your first name may only contain letters.", "first_name")
             is_valid = False
 
         if len(user["last_name"].strip()) < 2:
-            flash("Please enter your last name.", "registration")
+            flash("Please enter your last name.", "last_name")
             is_valid = False
         elif not str.isalpha(user["last_name"]):
-            flash("Your last name may only contain letters.", "registration")
+            flash("Your last name may only contain letters.", "last_name")
             is_valid = False
 
         if not EMAIL_REGEX.match(user["email"]):
-            flash("Invalid email address!", "registration")
+            flash("Please enter a valid email address.", "email")
             is_valid = False
 
         if "password" not in user or len(user["password"].strip()) < 8:
-            flash("Your password must contain at least 8 characters.", "registration")
+            flash("Your password must contain at least 8 characters.", "password")
             is_valid = False
         elif not PASSWORD_REGEX.match(user["password"].strip()):
             flash(
                 "Your password must contain at least 1 capital letter, 1 number and 1 special character.",
-                "registration",
+                "password",
             )
             is_valid = False
         elif user["password"] != user["confirm_password"]:
-            flash("Your passwords must match.", "registration")
+            flash("Your passwords must match.", "confirm_password")
             is_valid = False
 
         return is_valid
