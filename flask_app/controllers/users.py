@@ -114,14 +114,21 @@ def registeruser():
         Redirect to new user onboarding route.
     """
     if not User.validate_registration(request.form):
+        session["temp_registration_input"] = {
+            "first_name": request.form["first_name"],
+            "last_name": request.form["last_name"],
+            "email": request.form["email"]
+        }
+
         return redirect("/register")
 
     user_in_db = User.find_by_email(request.form)
     if user_in_db is not None:
-        flash("This email is already registered, please login!", "registration")
+        flash("This email is already registered, please login.", "registration")
         return redirect("/register")
 
     pw_hash = bcrypt.generate_password_hash(request.form["password"])
+
 
     data = {
         "first_name": request.form["first_name"],
@@ -133,6 +140,8 @@ def registeruser():
     user_id = User.save(data)
     session["user_id"] = user_id
     session["first_name"] = request.form["first_name"]
+
+    session.pop("temp_registration_input", None)
 
     return redirect("/newuser")
 

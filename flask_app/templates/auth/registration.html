@@ -31,7 +31,7 @@
               {% endif %}
             {% endwith %}
             <div class="form-floating">
-              <input class="d-block mb-3 form-control" type="text" name="first_name" id="first_name" placeholder="First Name:">
+              <input class="d-block mb-3 form-control" type="text" name="first_name" id="first_name" placeholder="First Name:" value="{{ session.get('temp_registration_input', {}).get('first_name', '') }}">
               <label class="form-label" for="first_name">First Name:</label>
             </div>
             
@@ -45,7 +45,7 @@
             {% endif %}
           {% endwith %}
             <div class="form-floating">
-              <input class="d-block mb-3 form-control" type="text" name="last_name" id="last_name" placeholder="Last Name:">
+              <input class="d-block mb-3 form-control" type="text" name="last_name" id="last_name" placeholder="Last Name:" value="{{ session.get('temp_registration_input', {}).get('last_name', '') }}">
               <label class="mb-2" for="last_name">Last Name:</label>
             </div>
             
@@ -59,7 +59,7 @@
               {% endif %}
             {% endwith %}
             <div class="form-floating">
-              <input class="d-block mb-3 form-control" type="text" name="email" id="email" placeholder="Email:">
+              <input class="d-block mb-3 form-control" type="text" name="email" id="email" placeholder="Email:" value="{{ session.get('temp_registration_input', {}).get('email', '') }}">
               <label class="mb-2" for="email">Email:</label>
             </div>
             
