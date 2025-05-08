@@ -1,3 +1,6 @@
+
+> Note: This is an active solo project in early development. Commits are streamlined for rapid iteration rather than formal PR workflows.
+
 # Converge
 
 **Converge** is a customizable, neuroscience-informed framework for goal setting, habit building, and intentional daily routines. Designed to reduce cognitive load by bringing a variety of meaningful actions into a common space to increase their visibility . Converge serves as a gentle guide for growth-oriented individuals — without promoting hustle culture or toxic productivity.
