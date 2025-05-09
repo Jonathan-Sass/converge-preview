@@ -37,6 +37,7 @@ backButton.addEventListener('click', (event) => {
   if (currentQuestionIndex >= 1) {
     currentQuestionIndex--;
   }
+  resetState()
   renderSurveyQuestion(currentQuestionSet);
 });
 
@@ -86,8 +87,8 @@ nextButton.addEventListener('click', (event) => {
     
     try {
       // Send the collected answers to the backend as a single request
-      console.log('Posting to: /surveys/' + category + '/answers')
-      const response = await fetch(`/surveys/${category}/answers`, {
+      console.log('Posting to: /surveys/' + category + '/submit')
+      const response = await fetch(`/surveys/${category}/submit`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

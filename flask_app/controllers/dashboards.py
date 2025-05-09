@@ -24,7 +24,7 @@ def dashboard():
         return redirect("/")
 
     user_id = user.id
-    routine_data = Routine.find_routines_by_user_id(user_id)
+    routine_data = Routine.find_routine_blocks_by_user_id(user_id)
     goal_data = Goal.find_goals_with_milestones_and_action_items_by_user_id(user_id)
     flex_task_goal_ids = FlexTask.find_flex_tasks_goal_ids_by_user_id(user_id)
     flex_task_data = FlexTask.assemble_flex_task_data_by_goal_id(flex_task_goal_ids, goal_data)
@@ -66,7 +66,7 @@ def dashboard_intro():
     if not user:
         return redirect("/")
 
-    subcategory_slug = "user-orientation"
+    subcategory_slug = "user-objectives"
     user_responses = UserResponse.find_user_responses_by_user_id_and_subcategory_slug(user, subcategory_slug)
 
     priority_order = {
@@ -77,9 +77,43 @@ def dashboard_intro():
     }
 
     if not user_responses:
-        return redirect("/surveys/user-orientation")
+        return redirect("/surveys/user-objectives")
 
-    return render_template("/dashboard/dashboard_intro.html", priority_order = priority_order)
+    return render_template("/dashboard/dashboard_intro.html", priority_order = priority_order, user_responses = user_responses)
+
+@app.get("/dashboard/intro/digital-disconnect")
+def dashboard_intro_digital_disconnect():
+  """
+    Render the introductory dashboard page to set initial digital disconnects.
+  """
+  user = User.get_logged_in_user()
+  if not user:
+      return redirect("/")
+
+  user_id = user.id
+  routine_block_data = Routine.find_routines_by_user_id(user_id)
+  goal_data = Goal.find_goals_with_milestones_and_action_items_by_user_id(user_id)
+  flex_task_goal_ids = FlexTask.find_flex_tasks_goal_ids_by_user_id(user_id)
+  flex_task_data = FlexTask.assemble_flex_task_data_by_goal_id(flex_task_goal_ids, goal_data)
+  filtered_goal_data = Goal.filter_flex_task_goals_from_goal_data(goal_data, flex_task_goal_ids)
+
+  priority_order = {
+      1: "Urgent", 
+      2: "High", 
+      3: "Medium", 
+      4: "Low"
+  }
+
+  dashboard_data = {
+      "user": user,
+      "routine_blocks": routine_block_data,
+      "goals": goal_data,
+      "filtered_goals": filtered_goal_data,
+      "flex_tasks": flex_task_data,
+      "priority_order": priority_order
+  }
+
+  return render_template("/dashboard/dashboard_intro_am_practices.html", **dashboard_data)
 
 
 @app.get("/dashboard/intro-am-practices")
