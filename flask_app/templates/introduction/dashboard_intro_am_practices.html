@@ -126,10 +126,6 @@
             role="tab">Goals</button>
         </li>
         <li class="nav-item">
-          <button class="nav-link" id="modules-tab" data-bs-toggle="tab" data-bs-target="#modules" type="button"
-            role="tab">Modules</button>
-        </li>
-        <li class="nav-item">
           <button class="nav-link" id="metrics-tab" data-bs-toggle="tab" data-bs-target="#metrics" type="button"
             role="tab">Metrics</button>
         </li>
@@ -148,15 +144,16 @@
             <div class="card-body">
               <div class="card-title">
                 <h4 class="display-6 mb-2 text-center text-primary">Your Day at a Glance</h4>
+                <hr class="border border-light mb-3 m-auto w-100">
               </div>
               <!-- AM Routine -->
-              <div id="morning-routine" class="card shadow mb-1">
+              <div id="morning-routine" class="card shadow border mb-1">
                 <div class="card-body">
                   <div class="card-title d-flex justify-content-between">
                     <h5 class="card-title text-primary">Morning Routine</h5>
                     <a id="edit-am-routine" class="btn btn-sm btn-outline-primary" href="/routines/am/manage">Edit Routine</a>
                   </div>
-                  <hr class="border border-dark mb-3 m-auto w-100">
+                  <hr class="border border-light mb-3 m-auto w-100">
                   <ul class="list-group">
                     <!-- EXAMPLE PRACTICE FOR INTRO.JS -->
                     <!-- <li class="list-group-item d-flex justify-content-between align-items-center">
@@ -178,7 +175,10 @@
                       </div>
                       <div class="d-flex gap-2">
                         <button class="btn btn-sm btn-outline-success"
-                          onclick="markAccomplished('{{ practice.id }}')">Complete</button>
+                          onclick="markAccomplished('{{ practice.id }}')"
+                          {% if loop.index < 2 %}id="complete-am-practice-1"{% endif %}>
+                          Complete
+                        </button>
                         <button class="btn btn-sm btn-outline-warning">Edit Practice</button>
                       </div>
                     </li>
@@ -195,13 +195,16 @@
                     <h5 class="text-success">Intentions</h5>
                     <button class="btn btn-sm btn-outline-success">Edit Intentions</button>
                   </div>
-                  <hr class="border border-dark mb-3 m-auto w-100">
+                  <hr class="border border-light mb-3 m-auto w-100">
                   <ul class="list-group">
                     <li class="list-group-item d-flex justify-content-between align-items-center">
                       <span>Intention example</span>
                       <div class="">
                         <button class="btn btn-sm btn-outline-success">Thumbs Up</button>
                       </div>
+                      <!-- A button to "Ping" the intention could allow the user to signify moments they feel they are adhering to said intention -->
+                        <!-- However, might this present more a downside in the added attention toward the phone and possible emphasis on comparison? -->
+                      <!-- <button class="btn btn-sm btn-outline-success">Ping?</button> -->
                     </li>
                   </ul>
                 </div>
@@ -211,7 +214,7 @@
               <div id="flex-tasks" class="card shadow mb-1">
                 <div class="card-body">
                   <h5 class="card-title text-success">Flex Tasks</h5>
-                  <hr class="border border-dark mb-3 m-auto w-100">
+                  <hr class="border border-light mb-3 m-auto w-100">
                   <ul class="list-group" id="flex-task-list">
                     {% if flex_tasks %}
                       {% for task in flex_tasks %}
@@ -263,7 +266,7 @@
                     {% else %}
                       <li class="list-group-item align-items-center text-center">
                         <p class="lead text-success"><strong>Flex Task Sample</strong></p>
-                        <hr class="border border-dark mx-auto mt-0 w-75">
+                        <hr class="border border-light w-75 mx-auto mt-0">
                         <div class="d-flex justify-content-between">
                           <div class="d-flex gap-5">
                             <p class="lead text-light">Category</p>
@@ -287,7 +290,7 @@
                     <h5 class="text-primary">The Evening Consolidation</h5>
                     <button class="btn btn-sm btn-outline-primary">Edit Routine</button>
                   </div>
-                  <hr class="border border-dark mb-3 m-auto w-100">
+                  <hr class="border border-light mb-3 m-auto w-100">
                   <ul class="list-group">
                     {% if routines is defined and routines|length > 0 %}
                       {% for routine in routines %}
@@ -313,114 +316,14 @@
 
 
           <!-- RIGHT COLUMN -->
-          <div id="actionable-items" class="card shadow p-2 col-lg-6 opaque-white-bg">
+          <div id="actionable-items" class="card shadow col-lg-6 p-2 opaque-white-bg">
             <div class="card-body">
               <div class="card-title">
                 <h4 class="display-6 mb-2 text-center text-primary">Actionable Items</h4>
+                <hr class="border border-light mb-3 m-auto w-100">
               </div>
               <!-- Action Items -->
               <div id="action-items" class="card shadow mb-1">
-                <div class="card-body">
-                  <h5 class="card-title text-primary text-center">Goal Action Items</h5>
-                  <hr class="border border-dark mb-3 m-auto w-100">
-          
-                  <div class="accordion" id="priorityAccordion">
-                    {% for priority, label in priority_order.items() %}
-                      {% set section_id = 'priority-' ~ priority %}
-                      {% set goals_for_priority = filtered_goals | selectattr("priority", "equalto", priority) | selectattr("is_active") | list %}
-          
-                      {% if goals_for_priority %}
-                      <div class="accordion-item mb-2">
-                        <h2 class="accordion-header" id="heading-{{ section_id }}">
-                          <button class="accordion-button collapsed fw-bold text-uppercase" type="button"
-                            data-bs-toggle="collapse" data-bs-target="#collapse-{{ section_id }}"
-                            aria-expanded="false" aria-controls="collapse-{{ section_id }}">
-                            Goal Priority: {{ label }}
-                          </button>
-                        </h2>
-                        <div id="collapse-{{ section_id }}" class="accordion-collapse collapse"
-                          aria-labelledby="heading-{{ section_id }}" data-bs-parent="#priorityAccordion">
-                          <div class="accordion-body">
-          
-                            {% for goal in goals_for_priority %}
-                            <ul class="list-group mb-3" id="goal-{{ goal.id }}">
-                              <li class="list-group-item list-group-item-primary">
-                                <div class="d-flex justify-content-between align-items-center">
-                                  <strong>{{ goal.name }}</strong>
-                                  <button class="btn btn-sm btn-outline-primary"
-                                    data-action="add-to-flex"
-                                    data-goal-id="{{ goal.id }}">
-                                      Add to Flex Tasks
-                                    </button>
-                                </div>
-                              </li>
-          
-                              {% if goal.milestones %}
-                                {% for milestone in goal.milestones %}
-                                  {% if milestone.completed_at == None %}
-                                    {% if milestone.action_items %}
-                                    <!-- Milestone heading -->
-                                    <li class="list-group-item bg-light">
-                                      <strong>Milestone: {{ milestone.name }}</strong>
-                                    </li>
-          
-                                      {% for action_item in milestone.action_items %}
-                                        <li class="list-group-item ps-4 d-flex justify-content-between align-items-center">
-                                          <span>{{ action_item.name }}</span>
-                                          <button class="btn btn-sm btn-outline-success" onclick="markAccomplished('{{ action_item.id }}')">
-                                            Mark Done
-                                          </button>
-                                        </li>
-                                      {% endfor %}
-          
-                                    {% else %}
-                                      <li class="list-group-item d-flex justify-content-between align-items-center">
-                                        <span>Milestone: {{ milestone.name }}</span>
-                                        <button class="btn btn-sm btn-outline-success" onclick="markAccomplished('{{ milestone.id }}')">
-                                          Mark Done
-                                        </button>
-                                      </li>
-                                    {% endif %}
-                                  {% endif %}
-                                {% endfor %}
-                              {% endif %}
-                            </ul>
-                            {% endfor %}
-          
-                          </div>
-                        </div>
-                      </div>
-                      {% endif %}
-                    {% endfor %}
-                  </div>
-          
-                </div>
-              </div>
-
-              <!-- TO DO LIST -->
-              <div id="to-do-list" class="card shadow mb-1">
-                <div class="card-body text-center">
-                  <h5 class="card-title text-primary text-center">To Do List</h5>
-                  <hr class="border border-dark mb-3 m-auto w-100">
-                  <button class="btn btn-outline-success">Add To Do Item</button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        
-
-        <!-- Goals Tab -->
-        <div class="tab-pane fade" id="goals" role="tabpanel">
-          <!-- Copied from actionable-items, should be easily adaptable -->
-          <div id="goal-items" class="card shadow col-lg-6 p-2 opaque-white-bg">
-            <div class="card-body">
-              <div class="card-title">
-                <h4 class="display-6 mb-2 text-center text-primary">Actionable Items</h4>
-              </div>
-              <!-- Action Items -->
-              <div id="goal-list" class="card shadow mb-1">
                 <div class="card-body">
                   <h5 class="card-title text-primary text-center">Goal Action Items</h5>
                   <hr class="border border-dark mb-3 m-auto w-100">
@@ -487,7 +390,6 @@
                               {% endif %}
                             </ul>
                             {% endfor %}
-                  
                           </div>
                         </div>
                       </div>
@@ -496,12 +398,69 @@
                   </div>
                 </div>
               </div>
+
+              <!-- TO DO LIST -->
+              <div id="to-do-list" class="card shadow mb-1">
+                <div class="card-body text-center">
+                  <h5 class="card-title text-primary text-center">To Do List</h5>
+                  <hr class="border border-dark mb-3 m-auto w-100">
+                  <button class="btn btn-outline-success">Add To Do Item</button>
+                </div>
+              </div>
             </div>
-          </div>          
+          </div>
         </div>
 
 
-
+        <!-- Goals Tab -->
+        <div class="tab-pane fade" id="goals" role="tabpanel">
+          <div class="card shadow">
+            <div class="card-body">
+              <h5 class="card-title text-success">Goals Overview</h5>
+              <div class="tree-container">
+                <ul class="tree-list">
+                  {% for goal in goals %}
+                  <li class="tree-item">
+                    <div class="goal-box">
+                      <strong>{{ goal.name }}</strong>
+                      <p>{{ goal.description }}</p>
+                      <small class="text-muted">Target: {{ goal.target_date }}</small>
+                    </div>
+                    <!-- Milestones for the goal -->
+                    {% if goal.milestones %}
+                    <ul class="tree-list">
+                      {% for milestone in goal.milestones %}
+                      <li class="tree-item">
+                        <div class="milestone-box">
+                          <strong>{{ milestone.name }}</strong>
+                          <p>{{ milestone.description }}</p>
+                          <small class="text-muted">Target: {{ milestone.target_date }}</small>
+                        </div>
+                        <!-- Action Items for the milestone -->
+                        {% if milestone.action_items %}
+                        <ul class="tree-list">
+                          {% for action_item in milestone.action_items %}
+                          <li class="tree-item">
+                            <div class="action-item-box">
+                              <strong>{{ action_item.name }}</strong>
+                              <p>{{ action_item.description }}</p>
+                              <small class="text-muted">Duration: {{ action_item.estimated_time }}</small>
+                            </div>
+                          </li>
+                          {% endfor %}
+                        </ul>
+                        {% endif %}
+                      </li>
+                      {% endfor %}
+                    </ul>
+                    {% endif %}
+                  </li>
+                  {% endfor %}
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
         <!-- TRENDS TAB -->
         <div class="tab-pane fade" id="metrics" role="tabpanel">
           <div class="card shadow">
@@ -519,29 +478,92 @@
             </div>
           </div>
         </div>
-        
-        <!-- MODULES TAB -->
-        <div class="tab-pane d-flex gap-2 fade show active" id="modules" role="tabpanel">
-          <!-- Left column -->
-          <div class="card shadow col-lg-6 p-2 opaque-white-bg">
-            <div class="card-body"></div>
-          </div>
-
-          <!-- RIGHT COLUMN -->
-          <div id="" class="card shadow p-2 col-lg-6 opaque-white-bg">
-            <div class="card-body"></div>
-          </div>
-        </div>
       </div>
     </div>
   </div>
 
   <!-- JavaScript Files -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/intro.js/7.2.0/intro.js" crossorigin="anonymous"></script>
   <script src="{{ url_for('static', filename='js/ui-effects.js') }}" defer></script>
   <script src="{{ url_for('static', filename='js/dashboard-manager.js') }}" defer></script>
 
+  <!-- Intro.js Guided Tour Script -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      introJs().setOptions({
+        steps: [
+          {
+            element: '#morning-routine',
+            title: 'Morning Routine',
+            intro: 'Practices from your morning routine are displayed here.',
+            position: 'top'
+          },
+          {
+            element: '#edit-am-routine',
+            title: 'Manage Morning Routine',
+            intro: 'You can access the morning routine manager at any time here.',
+            position: 'top'
+          },
+          {
+            element: '#complete-am-practice-1',
+            title: 'Complete a Practice',
+            intro: 'Click here to mark a practice complete and track progress.',
+            position: 'top'
+          },
+          {
+            element: '#flex-tasks',
+            title: 'Flex Tasks',
+            intro: "In Converge, we use 'Flex Tasks' to bring action items from goals and other tasks to a top-of-mind space to help maintain your forward momentum.",
+            position: 'top'
+          },
+          // {
+          //   element: '#intentions',
+          //   title: 'title-text',
+          //   intro: 'intro-text',
+          //   position: 'top'
+          // },
+          {
+            element: '#action-items',
+            title: 'Milestones and Action Items',
+            intro: 'Depending on the complexity of your goals, either milestones or action items from your goals will appear here.  More on that later.',
+            position: 'top'
+          },
+          {
+            title: 'Down the Rabbit Hole We Go',
+            intro: 'Ok, next we will ask you a few more questions so that we can introduce goal setting in areas of your interest.',
+            position: 'top'
+          }
+          
+          // {
+          //   element: document.querySelector('#morning-routine'),
+          //   title: 'Morning Routine',
+          //   intro: 'Here you will see your practices from your morning routine listed. You should already see the practices you added in the last step.'
+          // },
+          // {
+          //   element: document.querySelector('#complete-example'),
+          //   title: 'Complete Button',
+          //   intro: 'When you complete a practice or action item.  Click "Complete" to track your progress and see what is next!'
+          // },
+          // {
+          //   element: document.querySelector('#edit-am-routine'),
+          //   title: 'Edit a Routine',
+          //   intro: 'The "Edit Routine" button allows you to see and edit an entire routine.'
+          // },
+          // {
+          //   element: document.querySelector('#edit-practice-example'),
+          //   title: 'Edit a Practice',
+          //   intro: 'Similarly, "Edit Practice" will allow you to view and tweak a specific practice as well as view more like it!'
+          // }
+        ],
+        tooltipClass: 'introCustomTooltip',
+        disableInteraction: true,
+        exitOnOverlayClick: false
+      }).oncomplete(function () {
+        window.location.href = '/surveys/interest-map';
+      }).start();
+    });
+  </script>
 
 </body>
-
 </html>

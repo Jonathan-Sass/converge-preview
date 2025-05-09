@@ -47,6 +47,10 @@ h1, h2, h3, h4, h5, h6, p {
   min-width: 300px;
 }
 
+.introjs-tooltip.no-buttons-tooltip .introjs-tooltipbuttons{
+  display:none;
+}
+
 .introCustomTooltip {
     color: #333333 !important; /* Sets text color to white */
     background-color: #ffffff !important; /* Sets background color to dark grey */
@@ -63,6 +67,8 @@ h1, h2, h3, h4, h5, h6, p {
 }
 .introjs-tooltip {
   font-size: 16px !important;
+  min-width: 450px !important;
+
 }
 
 .introjs-helperLayer {

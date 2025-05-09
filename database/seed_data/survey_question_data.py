@@ -39,99 +39,143 @@ question types, and guidelines for reusable answer sets.
 # ADD QUESTIONS ABOUT SCREEN TIME AND DOPAMINE RELATED DESIRES/DRIVERS/RESPONSES
 survey_question_data = [
     {
-      "subcategory_slug": "user-orientation",
+      "subcategory_slug": "user-objectives",
       "questions": [
             {
-                "question_slug": "big-picture-intentions",
-                "question_text": "What are your primary objectives with Converge? (Select any that apply)",
-                "type": "select-any",
-                "answers": [
-                    {"answer_text": "Increase longevity", "answer_value": 0},
-                    {"answer_text": "Increase quality of life", "answer_value": 1},
-                    {"answer_text": "Improve mental health", "answer_value": 2},
-                    {"answer_text": "Improve cognitive health", "answer_value": 3},
-                    {"answer_text": "Improve physical health", "answer_value": 4},
-                    {"answer_text": "Improve social connections", "answer_value": 5},
-                    {"answer_text": "Increase life balance", "answer_value": 6},
-                    {"answer_text": "Improve time management", "answer_value": 7},
-                    {"answer_text": "Reduce screentime/doom scrolling", "answer_value": 8}
-                ]
+              "question_slug": "big-picture-intentions",
+              "question_text": "What broader life goals or focus areas matter most to you right now? (Select any that apply)",
+              "type": "select-any",
+              "answers": [
+                {"answer_text": "Longevity & healthy aging", "answer_value": 0},
+                {"answer_text": "Mental health & resilience", "answer_value": 1},
+                {"answer_text": "Cognitive sharpness & performance", "answer_value": 2},
+                {"answer_text": "Physical vitality & fitness", "answer_value": 3},
+                {"answer_text": "Work-life balance", "answer_value": 4},
+                {"answer_text": "Strong relationships & social connection", "answer_value": 5},
+                {"answer_text": "Increased energy & motivation", "answer_value": 6},
+                {"answer_text": "More consistent daily routines", "answer_value": 7},
+                {"answer_text": "More clarity and focus on what matters", "answer_value": 8}
+              ]
             },
             # {
-            #     "question_slug": "intentions-top-5",
+            #     "question_slug": "objectives-top-5",
             #     "question_text": "Ok, if you had more than 5 selected, can you pare it down to your top 5?.",
             #     "type": "select-5"
             # },
             {
-              "question_slug": "intentions-top-3",
-              "question_text": "Ok great, now please identify the 3 areas most relevant/important to you.",
+              "question_slug": "objectives-top-3",
+              "question_text": "Ok great, now please identify the 3 areas most important to you.",
               "type": "select-3"
             },
             {
-              "question_slug": "intentions-top-1",
-              "question_text": "Fanastic, now is there one single shift that you think would most improve your life at this moment?",
+              "question_slug": "objectives-top-1",
+              "question_text": "Fantastic, and your number one?",
               "type": "select-1"
             },
+            # {
+            #   "question_slug": "converge-idea",
+            #   "question_text": "The idea for Converge began in the clinic, seeing the often overwhelming complexity for patients trying to apply the wealth of modern health recommendations ",
+            #   "type": "prompt"
+            # },
             {
-              "question_slug": "skills-and-shifts",
-              "question_text": "Which improvements or personal shifts would benefit you most right now? (Select any that apply)",
+              "question_slug": "wellness-shifts",
+              "question_text": "Which health or wellness shifts would you most benefit from right now? (Select any that apply)",
               "type": "select-any",
               "answers": [
-                {"answer_text": "Increased self-discipline", "answer_value": 0},
-                {"answer_text": "Improved consistency in routines", "answer_value": 1},
-                {"answer_text": "Better time management", "answer_value": 2},
-                {"answer_text": "Having better systems in place", "answer_value": 3},
-                {"answer_text": "Enhanced productivity", "answer_value": 4},
-                {"answer_text": "Sharper focus & concentration", "answer_value": 5},
-                {"answer_text": "Steady growth mindset", "answer_value": 6},
-                {"answer_text": "Improved creative thinking", "answer_value": 7},
-                {"answer_text": "Better problem-solving skills", "answer_value": 8},
-                {"answer_text": "Enhanced decision-making", "answer_value": 9},
-                {"answer_text": "Boosted stress resilience", "answer_value": 10},
-                {"answer_text": "Enhanced emotional regulation", "answer_value": 11},
-                {"answer_text": "Reduced anxiety", "answer_value": 12},
-                {"answer_text": "Decreased stress", "answer_value": 13},
-                {"answer_text": "Improved mood", "answer_value": 14},
-                {"answer_text": "Increased energy levels", "answer_value": 15},
-                {"answer_text": "Increased fitness", "answer_value": 16},
-                {"answer_text": "Reduced physical discomfort", "answer_value": 17},
-                {"answer_text": "Improved sleep quality", "answer_value": 18},
-                {"answer_text": "Increased assertiveness", "answer_value": 19},
-                {"answer_text": "Boosted self-confidence", "answer_value": 20},
-                {"answer_text": "Improved empathy & communication", "answer_value": 21},
-                {"answer_text": "Improved social connectedness", "answer_value": 22},
-                {"answer_text": "Improved work-life balance", "answer_value": 23}
+                {"answer_text": "Increased energy levels", "answer_value": 0},
+                {"answer_text": "Reduced physical discomfort or pain", "answer_value": 1},
+                {"answer_text": "Better sleep quality", "answer_value": 2},
+                {"answer_text": "Stronger social connections", "answer_value": 3},
+                {"answer_text": "Reduced anxiety", "answer_value": 4},
+                {"answer_text": "Lower stress", "answer_value": 5},
+                {"answer_text": "Improved mood", "answer_value": 7},
+                {"answer_text": "Improved fitness", "answer_value": 8},
+                {"answer_text": "Improved work-life balance", "answer_value": 9}
               ]
             },
             {
-              "question_slug": "intentions-top-3",
+              "question_slug": "shifts-top-3",
               "question_text": "Ok great, now please identify your top 3 from the list.",
               "type": "select-3"
             },
             {
-              "question_slug": "intentions-top-1",
+              "question_slug": "shifts-top-1",
               "question_text": "Excellent, now please select the single shift you think would improve your life the most.",
+              "type": "select-1"
+            },
+            # {
+            #   "question_slug": "human-malleability",
+            #   "question_text": "One of the most beautiful things about life is its adaptability",
+            #   "type": "prompt"
+            # },
+            {
+              "question_slug": "trait-skill-focus",
+              "question_text": "Which personal traits or skills would benefit you the most, if intentionally developed? (Select any that apply)",
+              "type": "select-any",
+              "answers": [ 
+                {"answer_text": "Self-discipline & follow-through", "answer_value": 0},
+                {"answer_text": "Time management & prioritization", "answer_value": 1},
+                {"answer_text": "Consistency in routines", "answer_value": 2},
+                {"answer_text": "Focus & mental clarity", "answer_value": 3},
+                {"answer_text": "Productivity & better systems", "answer_value": 4},
+                {"answer_text": "Creative or flexible thinking", "answer_value": 5},
+                {"answer_text": "Growth mindset & adaptability", "answer_value": 6},
+                {"answer_text": "Decision-making & problem-solving", "answer_value": 7},
+
+                {"answer_text": "Self-awareness & reflection", "answer_value": 8},
+                {"answer_text": "Impulse control & emotional regulation", "answer_value": 9},
+                {"answer_text": "Confidence & self-esteem", "answer_value": 10},
+                {"answer_text": "Resilience under stress", "answer_value": 11},
+                {"answer_text": "Self-compassion during setbacks", "answer_value": 12},
+
+                {"answer_text": "Assertiveness & boundary-setting", "answer_value": 13},
+                {"answer_text": "Empathy & emotional intelligence", "answer_value": 14},
+                {"answer_text": "Active listening & connection skills", "answer_value": 15},
+                {"answer_text": "Navigating conflict constructively", "answer_value": 16},
+                {"answer_text": "Living with purpose & values", "answer_value": 17}
+              ]
+            },
+
+
+            # {
+            #   "question_slug": "self-esteem-musings",
+            #   "question_text": "What is self-esteem? Well, it's how highly you esteem yourself, right? Why do you or do you not think highly of yourself? Is it because of something you aren't doing you've always wanted to and are putting energy into making that happen? We all have to ask ourselves, is it because of an external image or persona that has been placed in our minds by advertising or filtered culture? Are any of us beautiful enough, exciting enough, virtuous enough?",
+            #   "type": "prompt"
+            # },
+            {
+              "question_slug": "skill-trait-top-5",
+              "question_text": "I know that was a lot, let's do top 5 this time...",
+              "type": "select-5"
+            },
+            {
+              "question_slug": "skill-trait-top-3",
+              "question_text": "Ok great, now please identify your top 3 from the list.",
               "type": "select-3"
             },
             {
-              "question_slug": "user-preferred-features",
-              "question_text": "Which features of Converge would be most helpful to you?",
-              "type": "select-any",
-              "answers": [
-                {"answer_text": "Goal tracking", "answer_value": 0},
-                {"answer_text": "Daily reminders", "answer_value": 1},
-                {"answer_text": "Progress visualization", "answer_value": 2},
-                {"answer_text": "Guided practices", "answer_value": 3},
-                {"answer_text": "Social groups (common interests, book clubs, etc.)", "answer_value": 4},
-                {"answer_text": "Pairing with accountability partner(s)", "answer_value": 5},
-                {"answer_text": "Personalized insights", "answer_value": 6},
-                {"answer_text": "Streak tracking for practices", "answer_value": 7},
-                {"answer_text": "Integrated scheduling", "answer_value": 8},
-                {"answer_text": "Gamification elements", "answer_value": 9},
-                {"answer_text": "Personalized, flexible routine templates", "answer_value": 10},
-                {"answer_text": "Strategies personalized to your patterns and barriers.", "answer_value": 10}
-              ]
+              "question_slug": "skill-trait-top-1",
+              "question_text": "Excellent, now please select the single shift you think would improve your life the most.",
+              "type": "select-1"
             },
+            # {
+            #   "question_slug": "user-preferred-features",
+            #   "question_text": "Which features of Converge would be most helpful to you?",
+            #   "type": "select-any",
+            #   "answers": [
+            #     {"answer_text": "Goal tracking", "answer_value": 0},
+            #     {"answer_text": "Daily reminders", "answer_value": 1},
+            #     {"answer_text": "Progress visualization", "answer_value": 2},
+            #     {"answer_text": "Guided practices", "answer_value": 3},
+            #     {"answer_text": "Social groups (common interests, book clubs, etc.)", "answer_value": 4},
+            #     {"answer_text": "Pairing with accountability partner(s)", "answer_value": 5},
+            #     {"answer_text": "Personalized insights", "answer_value": 6},
+            #     {"answer_text": "Streak tracking for practices", "answer_value": 7},
+            #     {"answer_text": "Integrated scheduling", "answer_value": 8},
+            #     {"answer_text": "Gamification elements", "answer_value": 9},
+            #     {"answer_text": "Personalized, flexible routine templates", "answer_value": 10},
+            #     {"answer_text": "Strategies personalized to your patterns and barriers.", "answer_value": 10}
+            #   ]
+            # },
             # {
             #     "question_slug": "user-preferred-3-features",
             #     "question_text": "Ok, from those, will you identify up to 3 features that that you think will be most helpful to you?",
@@ -160,18 +204,18 @@ survey_question_data = [
                 "type": "scale-1-5"
             },
           
-            {
-                "question_slug": "social-engagement-preference",
-                "question_text": "How would you like to engage with other users in Converge?",
-                "type": "select-any",
-                "answers": [
-                    {"answer_text": "I prefer a private, solo experience.", "answer_value": 0},
-                    {"answer_text": "I'd like an accountability partner.", "answer_value": 1},
-                    {"answer_text": "I'd like small group challenges.", "answer_value": 2},
-                    {"answer_text": "I’d like a social feed to see others’ progress.", "answer_value": 3},
-                    {"answer_text": "I’d like occasional check-ins from Converge.", "answer_value": 4}
-                ]
-            }
+            # {
+            #     "question_slug": "social-engagement-preference",
+            #     "question_text": "How would you like to engage with other users in Converge?",
+            #     "type": "select-any",
+            #     "answers": [
+            #         {"answer_text": "I prefer a private, solo experience.", "answer_value": 0},
+            #         {"answer_text": "I'd like an accountability partner.", "answer_value": 1},
+            #         {"answer_text": "I'd like small group challenges.", "answer_value": 2},
+            #         {"answer_text": "I’d like a social feed to see others’ progress.", "answer_value": 3},
+            #         {"answer_text": "I’d like occasional check-ins from Converge.", "answer_value": 4}
+            #     ]
+            # }
         ]
     },
     {
@@ -324,18 +368,46 @@ survey_question_data = [
       ]
     },
     {
+      "subcategory_slug": "digital-hygiene-map",
+      "questions": [
+        {
+          "question_slug": "digital-hygiene",
+          "question_text": "How do you manage your daily screen-time and device use?",
+          "type": "guided-choice",
+          "answers": [
+            { "answer_text": "I use devices throughout the day without restriction.", "answer_value": 0},
+            { "answer_text": "I sometimes step away, but it’s spontaneous.", "answer_value": 1},
+            { "answer_text": "I try to maintain digital boundaries, but it is a struggle.", "answer_value": 2},
+            { "answer_text": "I maintain strict device boundaries and regular detox periods.", "answer_value": 3}
+          ]
+        },
+      ]
+    },
+    {
       "subcategory_slug": "am-routine-map",
       "questions": [
         {
-          "question_slug": "am-routine-comprehensiveness",
+          "question_slug": "am-routine-check",
           "question_text": "Which best describes your current morning self-care routine? (exercise, meditation, cold, sun exposure, etc.)",
           "type": "guided-choice",
           "answers": [
-            { "answer_text": "Don't have one - my mornings are rushed/early.", "answer_value": 0 },
+            { "answer_text": "The bare essentials.. (shower, breakfast, brush teeth if that)", "answer_value": 0 },
             { "answer_text": "I have no set morning routine, it takes me a bit to get going.", "answer_value": 1 },
             { "answer_text": "I have a short list of 1-2 things I do most mornings.", "answer_value": 2 },
             { "answer_text": "I do 3–4 practices most mornings", "answer_value": 3 },
             { "answer_text": "I have a detailed ritual of several things I do each morning.", "answer_value": 4 }
+          ]
+        },
+        {
+          "question_slug": "habit-implementation-history",
+          "question_text": "What is your historical experience with implementing new habits?",
+          "type": "guided-choice",
+          "answers": [
+            { "answer_text": "Easy, I decide what I want my habits to be and do it.", "answer_value": 0 },
+            { "answer_text": "Not bad, I can implement new habits with a bit of planning or intention.", "answer_value": 1 },
+            { "answer_text": "I can make new habits stick if I put in the effort.", "answer_value": 2 },
+            { "answer_text": "I have to work at it, and can struggle with consistency.", "answer_value": 3 },
+            { "answer_text": "It feels like I am completely out of control, no matter what I try.", "answer_value": 4 }
           ]
         },
         {
@@ -389,14 +461,14 @@ survey_question_data = [
           "question_text": "What types of physical activity do you currently enjoy or gravitate toward? Select all that apply.",
           "type": "select-any",
           "answers": [
-            { "answer_text": "I’m mostly sedentary right now." },
-            { "answer_text": "Social sports or active games (e.g., pickup basketball, tennis, etc.)" },
-            { "answer_text": "Cardio activities like running, cycling, or swimming" },
-            { "answer_text": "Strength training - weights, bodyweight, or resistance work" },
-            { "answer_text": "General stretching" },
-            { "answer_text": "Mobility, flexibility, or mind-body movement (e.g., yoga, Pilates)" },
-            { "answer_text": "Training for a specific sport, event, or personal milestone" },
-            { "answer_text": "I like variety and switch it up often" }
+            { "answer_text": "I’m mostly sedentary right now.", "answer_value": 0},
+            { "answer_text": "Social sports or active games (e.g., pickup basketball, tennis, etc.)", "answer_value": 1},
+            { "answer_text": "Cardio activities like running, cycling, or swimming", "answer_value": 2},
+            { "answer_text": "Strength training - weights, bodyweight, or resistance work", "answer_value": 3},
+            { "answer_text": "General stretching", "answer_value": 4},
+            { "answer_text": "Mobility, flexibility, or mind-body movement (e.g., yoga, Pilates)", "answer_value": 5},
+            { "answer_text": "Training for a specific sport, event, or personal milestone", "answer_value": 6},
+            { "answer_text": "I like variety and switch it up often", "answer_value": 7}
           ]
         },
         {

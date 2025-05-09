@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intro.js/7.2.0/introjs.css" integrity="sha512-4OzqLjfh1aJa7M33b5+h0CSx0Q3i9Qaxlrr1T/Z+Vz+9zs5A7GM3T3MFKXoreghi3iDOSbkPMXiMBhFO7UBW/g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='img/Enso_Blue_and_Black.jpg') }}">
+  <script defer src="/static/js/user-surveys.js"></script>
+  <title>Your Objectives</title>
+</head>
+
+<body>
+  <div class="border-box">
+    <nav
+      class="navbar navbar-expand-lg bg-light w-100 m-auto d-flex justify-content-between position-sticky top-0 z-3 p-3">
+      <div class="container-fluid">
+        <a class="navbar-brand d-inline-flex align-items-center gap-4" href="/dashboard">
+          <img src="/static/img/Enso_Blue_and_Black.jpg" class="rounded-circle" width="60" height="60"
+            alt="Converge Logo">
+          <h1 class="display-5 text-primary">Converge</h1>
+        </a>
+      </div>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDarkDropdown"
+        aria-controls="navbarNavDarkDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
+        <div class="navbar-nav">
+          <a class="nav-link active" aria-current="page" href="/home">Home</a>
+          <a class="nav-link" href="/calendar">Calendar</a>
+          <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
+            <ul class="navbar-nav">
+              <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                  Goals
+                </button>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="/goals/manager">Goal Manager</a></li>
+
+                  <li><a class="dropdown-item" href="/goals/recreation-travel">Recreation and Travel</a></li>
+                  <li><a class="dropdown-item" href="/goals/health-wellness">Health and Wellness</a></li>
+                  <li><a class="dropdown-item" href="/goals/social-community">Social and Community Engagement</a></li>
+                  <li><a class="dropdown-item" href="/goals/spirituality">Spirituality and Life Purpose</a></li>
+                  <li><a class="dropdown-item" href="/goals/career-professional-development">Career and Professional
+                      Development</a></li>
+                  <li><a class="dropdown-item" href="/goals/wealth-finance">Wealth Building and Financial Health</a>
+                  </li>
+                  <li><a class="dropdown-item" href="/goals/creative-expression-hobbies">Creative Expression and
+                      Hobbies</a></li>
+                  <li><a class="dropdown-item" href="/goals/environment-success">Environment and Success</a></li>
+                  <li><a class="dropdown-item" href="/goals">Something else here</a></li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+          <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
+            <ul class="navbar-nav">
+              <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                  Routines
+                </button>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="/routines/am/manage">AM Routine Manager</a></li>
+                  <li><a class="dropdown-item" href="/routines/pm/manage">PM Routine Manager</a></li>
+                  <li><a class="dropdown-item" href="/intentions/edit">Daily Intention Manager</a></li>
+                  <li><a class="dropdown-item" href="/practices/flex-items/manage">Flex Item</a></li>
+                  <li><a class="dropdown-item" href="/practices">Something else?</a></li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+          <a class="nav-link" href="/social">Social</a>
+          <form action="/users/logout" method="post">
+            <button class="btn btn-link" type="submit" name="logout">logout</button>
+          </form>
+        </div>
+      </div>
+    </nav>
+    <header class="card m-auto w-75 my-4 p-3 text-center bg-light shadow opacity-75">
+      <h1 class="display-2 mb-3 text-primary">Objectives</h1>
+      <p class="lead">Let's take a look at how you'd like Converge to work for you.</p>
+    </header>
+    <!-- Content and Sidebar Div-->
+     <div class="parallax-bg"></div>
+    <div class="container-fluid m-auto my-3 d-flex align-items-start gap-3">
+      <!-- Progress Nav Sidebar -->
+      <div class="card shadow p-2 col-3 opaque-white-bg">
+        <nav id="progress-navbar" class="h-100 flex-column align-items-stretch p-3">
+          <h4 class="display-6 text-primary text-center">You are here.</h4>
+          <hr class="border border-1 border-light">
+          
+          <nav class="nav nav-pills flex-column gap-2">
+            <a class="nav-link active" href="#onboarding">New User Onboarding</a>
+            <div class="progress mb-3 mt-1" style="height: 1rem;">
+              <div id="progress-bar" class="progress-bar bg-primary" role="progressbar" style="width: 40%;"
+                aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+            <a class="nav-link solid-white-bg" href="#user-objectives">Orientation</a>
+            <div class="progress mb-3 mt-1" style="height: 1rem;">
+              <div id="survey-progress-bar" class="progress-bar bg-primary" role="progressbar" style="width: 0%;"
+                aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+            <a class="nav-link solid-white-bg" href="#dashboard-intro">Dashboard Welcome</a>
+            <a class="nav-link solid-white-bg" href="#day-map">Day Map</a>
+            <a class="nav-link solid-white-bg" href="#am-routine-builder">AM Routine Intro</a>
+            <a class="nav-link solid-white-bg" href="#dashboard-intro-am-practices">Dashboard AM Routine Intro</a>
+            <a class="nav-link active solid-white-bg" href="#interest-map">Interest Map</a>
+            <a class="nav-link solid-white-bg" href="#discipline-motivation-focus-map">Discipline, Motivation & Focus Map</a>
+            <a class="nav-link solid-white-bg" href="#set-goals-intro">Goal Setting Intro</a>
+            <a class="nav-link solid-white-bg" href="#value-map">Value Map</a>
+
+          </nav>
+        </nav>
+      </div>
+      <!-- Main Content -->
+      <div class="card shadow col-9 p-5 opaque-white-bg">
+<!-- Data-category needs to be category.category_slug to access question set-->
+        <div class="card shadow p-2 text-center mb-2" id="survey_category" data-category="onboarding">
+          <div class="card-title">
+            <!-- <h2 class="display-6 text-primary">Let's start with something fun.</h2> -->
+          </div>
+          <div data-bs-spy="scroll" data-bs-target="#progress-navbar" data-bs-smooth-scroll="true"
+            class="scrollspy-example-2" tabindex="0">
+              
+<!-- ID matches subcategory.subcategory_slug for sidebar scrollspy -->
+            <div id="user-objectives" data-subcategory="user-objectives">
+              <div class="card-body">
+                <div class="card-title">
+                  <h2 class="display-6 text-primary">What brings you here?</h2>
+                  <hr class="border border-1 border-light">
+                  <p class="card-text lead" id="survey-intro">In the following section, we will get to know a bit
+                    about your big picture goals/needs.</p>
+                </div>
+                <div id="question-container" class="d-none mb-3">
+                  <div id="question" class="display-6 mb-3">Question</div>
+                  <div class="btn-group-vertical" id="answer-checkboxes" role="group"
+                    aria-label="Basic checkbox toggle button group">
+                  </div>
+                  <div id="answer-buttons" class="d-flex justify-content-evenly gap-2">
+                    <div class="btn btn-outline-light col">Answer 1</div>
+                    <div class="btn btn-outline-light col">Answer 2</div>
+                    <div class="btn btn-outline-light col">Answer 3</div>
+                    <div class="btn btn-outline-light col">Answer 4</div>
+                  </div>
+                </div>
+                <div class="controls d-flex justify-content-evenly">
+                  <button id="start-btn" data-subcategory="user-objectives" class="btn btn-lg btn-primary">Start</button>
+                  <!-- data-subcategory should match subcategory.subcategory_slug -->
+                  <button class="btn btn-lg btn-primary d-none" id="back-btn">Back</button>
+                  <button id="next-btn" class="btn btn-lg btn-primary d-none">Next</button>
+                  <button id="finish-btn" class="btn btn-lg btn-primary d-none">Submit Answers</button>
+                </div>
+              </div>
+            </div>
+            <div class="card shadow w-100 opacity-75 mb-3 d-none" id="next-section-btn">
+              <div class="card-body d-flex justify-content-around">
+                <a href="/dashboard/intro" class="btn btn-primary">Next Section</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+  crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/intro.js/7.2.0/intro.js" integrity="sha512-f26fxKZJiF0AjutUaQHNJ5KnXSisqyUQ3oyfaoen2apB1wLa5ccW3lmtaRe2jdP5kh4LF2gAHP9xQbx7wYhU5w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="{{ url_for('static', filename='/js/ui-effects.js') }}"></script>
+</script>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+
+    introJs().setOptions({
+        steps: [
+          {
+              element: '#user-objectives',
+              title: 'Take Time to Reflect',
+              intro: "We have done our best to create extensive, inclusive, and yet efficient options throughout Converge.  Take a moment to consider each option carefully to get the most out of this experience.",
+              position: 'top'
+          },
+          {
+              element: '#start-btn',
+              title: 'Identify Your Objectives With Converge?',
+              intro: "To kick things off, let's take a look at how Converge can best work for you. Have fun!",
+              position: 'auto' ,
+              nextOnTargetClick: true,
+              disableInteraction: false,
+              tooltipClass: 'no-buttons-tooltip'
+          }
+        ],
+        tooltipClass: 'introCustomTooltip',
+        // showProgress: true, // Adds progress dots to indicate step sequence
+        // disableInteraction: true // Prevents accidental clicks while onboarding
+    }).start();
+  })
+
+  document.querySelector('#start-btn').addEventListener('click', () => {
+    introJs().exit();
+  })
+</script>
+
+</html>

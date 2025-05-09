@@ -13,54 +13,35 @@
 
 <body>
   <div class="parallax-bg"></div>
-  <header class="shadow w-100 p-3 text-center position-sticky top-0 z-3 bg-light">
-    <img src="../static/img/Enso_Blue_and_Black.jpg" class="m-auto rounded-circle" width="75" height="75"
-      alt="Converge Logo">
-    <h1 class="display-5 mb-3 text-primary">Converge</h1>
+  <header class="shadow w-100 p-3 text-center opacity-75 position-sticky top-0 bg-light">
+    <!-- <img src="../static/img/Enso_Blue_and_Black.jpg" class="m-auto rounded-circle" width="75" height="75"
+      alt="Converge Logo"> -->
+    <h1 class="display-4 mb-3 text-primary">Converge</h1>
     <h4 class="lead mx-5">Converge with your potential. Converge with your dreams.</h4>
   </header>
-  <div class="container my-5 w-75">
-    <div id="infoCarousel" class="carousel slide shadow" data-bs-ride="false">
+  <div class="card shadow p-5 opaque-white-bg m-auto my-5 w-75">
+    <div id="infoCarousel" class="carousel slide shadow border border-1" data-bs-ride="false">
       <div class="carousel-inner">
-        <div class="carousel-item active" data-bs-interval="0">
-          <div class="card p-4 text-center align-items-center">
-            <h2 class="card-title text-primary">Welcome to Converge!</h2>
-            <div class="card-text">
-              <!-- <p class="lead">Do you feel generally healthy? Do you travel as much as you'd like? Do you get to do as many of your hobbies as you'd like? Do you have long term goals? Do you wish you could see these steps separated into manageable tasks? Do you feel the compulsive need to check your phone, or your social media? Does your digital world compete for your attention more than you'd like? Are you aware that the world of neuroscience is revealing a host of ways we can optimize our relationship with technology and minimize its impact on our overall well-being?</p> -->
-              <p class="lead">Our mission with Converge is to provide structure for you to get really clear on how you would like your life to look, and create a vision for getting there.</p>
-            </div>
-            <div class="text-start">
-              <ol class="list-group list-group-numbered mb-3">
-                <li class="lead list-group-item">Personalized Routines: We'll suggest science-backed routines and
-                  practices to help you feel and function your best.</li>
-                <li class="lead list-group-item">Achievable Steps: Break down your goals into microtasks and
-                  visualize your progress.</li>
-                <li class="lead list-group-item">Motivation & Progress: Track your journey, stay inspired, and turn your
-                  dreams into reality.</li>
-              </ol>
-            </div>
-            <button class="btn btn-primary w-25" data-bs-target="#infoCarousel" data-bs-slide="next">OK</button>
-          </div>
-        </div>
-        <div class="carousel-item text-center" data-bs-interval="0">
+        <div class="carousel-item active text-center" data-bs-interval="false">
           <div class="card p-4 text-center align-items-center">
             <div class="card-body">
-              <h2 class="card-title text-primary mb-3">A note from our developers...</h2>
-              <div class="card-text">
-                <p class="lead">Converge is in its infancy.</p>
-                <hr class="border border-light border-1 w-75 m-auto mb-3">
-                <p class="lead">We are working toward providing a feature-rich, engaging experience. Please be patient as we are developing our vision.</p>
-                <p class="lead">We welcome any feedback, whether it be a desired feature, or unexpected behavior and bugs.</p>
-                <hr class="border border-light border-1 w-75 m-auto mb-3">
-                <p class="lead">If you are reporting a bug, please share a screenshot of the error, and if possible, a description of what you were doing when the error occured.</p>
-                <p class="lead">Please send feedback to: <a href="mailto:info@convergeapp.com">info@convergeapp.com</a>
-                </p>
-              </div>
+              <p class="lead fs-2">Before we begin, a quick note from our developers...</p>
+              <hr class="border border-dark border-1 w-100 m-auto mb-3">
+              <p class="lead fs-3">Converge is in its infancy.</p>
+              <p class="lead fs-4">We are working toward providing an engaging, feature-rich experience.</p>
+              <p class="lead fs-4">Please be patient as we are developing our vision.</p>
+              <hr class="border border-dark border-1 w-75 m-auto mb-3">
+              <p class="lead fs-4">We welcome any feedback, be it a desired feature, or unexpected behaviors and bugs.</p>
+              <p class="lead fs-4">If reporting a bug, please send a screenshot and description of what you were doing when the error occured, if possible.</p>
+              <p class="lead fs-4">
+                Send feedback to: <a href="mailto:info@convergeapp.com">info@convergeapp.com</a>
+              </p>
+              <hr class="border border-dark border-1 w-25 m-auto mb-3">
+              <button class="btn btn-primary w-25" data-bs-target="#infoCarousel" data-bs-slide="next">OK</button>
             </div>
-            <button class="btn btn-primary w-25" data-bs-target="#infoCarousel" data-bs-slide="next">OK</button>
           </div>
         </div>
-        <div class="carousel-item text-center" data-bs-interval="0">
+        <!-- <div class="carousel-item text-center" data-bs-interval="0">
           <div class="card p-4 text-center align-items-center">
             <div class="card-body">
               <h2 class="card-title text-primary mb-3">And another note about privacy and integrity.</h2>
@@ -73,12 +54,12 @@
             </div>
             <button class="btn btn-primary w-25" data-bs-target="#infoCarousel" data-bs-slide="next">OK</button>
           </div>
-        </div>
+        </div> -->
         <div class="carousel-item" data-bs-interval="0">
           <div class="card p-4 text-center align-items-center">
             <h2 class="card-title text-primary">Get Started</h2>
             <p class="card-text lead">Click below to begin your journey!</p>
-            <a href="/surveys/user-orientation" class="btn btn-success w-25">Continue</a>
+            <a href="/surveys/user-objectives" class="btn btn-success w-25">Continue</a>
           </div>
         </div>
       </div>

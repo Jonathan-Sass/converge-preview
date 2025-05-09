@@ -1,12 +1,23 @@
 survey_subcategory_data = {
   "onboarding": [
+        {"subcategory_slug": "user-objectives", "name": "User Objectives"},
+        {"subcategory_slug": "digital-disconnect-map", "name": "Digital Disconnect Map"},
+        {"subcategory_slug": "core-primers-map", "name": "Core System Primers Map"},
+        {"subcategory_slug": "core-builders-map", "name": "Core System Builder Map"},
+
+
+
+
+
+
         {"subcategory_slug": "getting-started", "name": "Getting Started"},
-        {"subcategory_slug": "user-orientation", "name": "User Orientation"},
         # Day Map is likely becoming morning routine builder
         {"subcategory_slug": "day-map", "name": "Day Map"},
         {"subcategory_slug": "day-map-og", "name": "Day Map OG"},
-
         {"subcategory_slug": "am-routine-map", "name": "Morning Routine Map"},
+        {"subcategory_slug": "pm-routine-map", "name": "Evening Routine Map"},
+        {"subcategory_slug": "am-routine-map-og", "name": "Morning Routine Map OG"},
+
         # Replacing day map - New core surveying simplified to match block concept
         {"subcategory_slug": "am-routine-intro-core", "name": "Core Morning Routine Builder"},
         {"subcategory_slug": "am-routine-expanded-core", "name": "Expanded Core Morning Routine Builder"},
