@@ -14,23 +14,23 @@ class RoutineBlock:
     self.slug = data["slug"],
     self.name = data["name"],
     self.description = data["description"],
-    self.tier_level = data["tier_level"],
-    self.icon_slug =  data.get("icon_slug", None)
+    self.icon_slug =  data["icon_slug"],
     self.created_at = data["created_at"],
     self.updated_at = data["updated_at"],
     self.practices: List[Practice] = []
 
 
   def build_routine_block_from_row(row):
-    RoutineBlock(
+    return RoutineBlock(
       {
-        "id": row["id"],
-        "slug": row["slug"],
-        "name": row["name"],
-        "description": row["description"],
-        "tier_level": row["tier_level"],
-        "icon_slug": row.get("icon_slug", None),
-        "created_at": row["created_at"],
-        "updated_at": row["updated_at"]
+        "id": row["routine_block_id"],
+        "slug": row["routine_block_slug"],
+        "name": row["routine_block_name"],
+        "description": row["routine_block_description"],
+        "icon_slug": row.get("routine_block_icon_slug", None),
+        "created_at": row["routine_block_created_at"],
+        "updated_at": row["routine_block_updated_at"]
       }
     )
+  
+  

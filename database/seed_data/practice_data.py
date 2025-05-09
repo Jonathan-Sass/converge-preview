@@ -47,13 +47,39 @@ practice_data = {
           ]
         },
         {
-          "name": "No Screen Mornings",
+          "name": "Phone-Free Block",
           "category": "mind-body-reset",
           "subcategory": "digital-boundaries",
-          "description": "Keep your phone and screens out of reach for the first hour after waking.",
+          "description": "Designated time window to be completely free of phone use.",
+          "benefit_synopsis": "Creates mental space and reduces habitual phone checking.",
+          "recommended_durations": [
+            { "duration_label": "30 minutes" },
+            { "duration_label": "1 hour" },
+            { "duration_label": "90 minutes" },
+            { "duration_label": "2 hours" },
+          ],
+          "impact_rating_id": 4,
+          "difficulty_level_id": 2,
+          "frequency": "Daily",
+          "is_common": False,
+          "notes": "Pick a consistent time—like during meals, creative work, or before bed—and physically distance yourself from your phone or use Do Not Disturb mode.",
+          "objectives": [
+            "reduce_digital_dependency",
+            "increase_presence",
+            "enhance_wellbeing"
+          ]
+        },
+        {
+          "name": "Tech-Free Morning",
+          "category": "mind-body-reset",
+          "subcategory": "digital-boundaries",
+          "description": "Start your morning mindfully without your phone or other devices to distract you.",
           "benefit_synopsis": "Cultivates a calm, focused start and prevents reactive scrolling.",
           "recommended_durations": [
-            { "duration_label": "1 hour" }
+            { "duration_label": "30 minutes" },
+            { "duration_label": "45 minutes" },
+            { "duration_label": "1 hour" },
+            { "duration_label": "2 hours" },
           ],
           "impact_rating_id": 4,
           "difficulty_level_id": 2,
@@ -114,7 +140,10 @@ practice_data = {
           "description": "Set daily time caps on the apps you find most distracting.",
           "benefit_synopsis": "Helps curb compulsive checking and improves overall time management.",
           "recommended_durations": [
-            { "duration_label": "As configured" }
+            { "duration_label": "20 minutes" },
+            { "duration_label": "30 minutes" },
+            { "duration_label": "45 minutes" },
+            { "duration_label": "1 hour" }
           ],
           "impact_rating_id": 4,
           "difficulty_level_id": 2,
@@ -146,7 +175,52 @@ practice_data = {
             "free_time_for_productivity",
             "enhance_wellbeing"
           ]
+        },
+        {
+          "name": "Screen Time Limit",
+          "category": "mind-body-reset",
+          "subcategory": "digital-boundaries",
+          "description": "Setting daily boundaries on non-essential screen time to reduce excessive device use.",
+          "benefit_synopsis": "Lessens digital overstimulation to improve focus and wellbeing.",
+          "recommended_durations": [
+            {
+              "duration_label": "2 hours (non-work) per day"
+            }
+          ],
+          "impact_rating_id": 4,
+          "difficulty_level_id": 2,
+          "frequency": "Daily",
+          "is_common": False,
+          "notes": "Use screen-time settings or apps to enforce your limit. For example, set a digital curfew in the evening to help your mind unwind.",
+          "objectives": [
+            "reduce_overstimulation",
+            "improve_focus",
+            "enhance_wellbeing"
+          ]
+        },
+        {
+          "name": "News Limit",
+          "category": "mind-body-reset",
+          "subcategory": "digital-boundaries",
+          "description": "Establishing boundaries for daily news consumption to avoid constant updates and emotional overload.",
+          "benefit_synopsis": "Reduces stress and anxiety from news overload.",
+          "recommended_durations": [
+            {
+              "duration_label": "15 minutes twice a day"
+            }
+          ],
+          "impact_rating_id": 4,
+          "difficulty_level_id": 2,
+          "frequency": "Daily",
+          "is_common": False,
+          "notes": "Disable push notifications from news apps to avoid constant interruptions. Stick to checking updates at set times. Avoid doomscrolling, especially if news makes you anxious.",
+          "objectives": [
+            "reduce_overstimulation",
+            "improve_focus",
+            "enhance_wellbeing"
+          ]
         }
+
     ],
 
     # PRACTICE SUBCATEGORY
@@ -216,13 +290,13 @@ practice_data = {
     # PRACTICE SUBCATEGORY
     "morning-sun": [
       {
-        "name": "Sunrise Coffee",
+        "name": "Sunrise Beverage",
         "category": "mind-body-reset",
         "subcategory": "morning-sun",
-        "description": "Enjoy a cup of coffee outdoors at sunrise to pair gentle caffeine stimulation with natural light exposure.",
+        "description": "Enjoy a beverage of your choice outdoors to pair your morning beverage with natural light exposure.",
         "benefit_synopsis": "Early-morning light entrains your circadian clock via retinal photoreceptors, while caffeine triggers norepinephrine release for improved alertness and mood regulation.",
         "recommended_durations": [
-          { "duration_label": "5 minutes" }
+          { "duration_label": "1 minute", "duration_label": "2 minutes", "duration_label": "3 minutes", "duration_label": "5 minutes" }
         ],
         "impact_rating_id": 3,
         "difficulty_level_id": 1,
@@ -242,8 +316,11 @@ practice_data = {
         "description": "Take a brisk walk outdoors during sunrise to combine moderate aerobic activity with natural light intake.",
         "benefit_synopsis": "Sunlight-driven serotonin release plus elevated heart rate enhances blood flow, reinforces circadian alignment, and supports cognitive performance.",
         "recommended_durations": [
+          { "duration_label": "5 minutes" },
           { "duration_label": "10 minutes" },
-          { "duration_label": "20 minutes" }
+          { "duration_label": "20 minutes" },
+          { "duration_label": "30 minutes" },
+          { "duration_label": "45 minutes" },
         ],
         "impact_rating_id": 4,
         "difficulty_level_id": 1,
@@ -314,7 +391,7 @@ practice_data = {
         "frequency": "Optional daily",
         "is_common": True,
         "notes": "Cold water on the face stimulates the vagus nerve and triggers the mammalian diving reflex, helping slow your heart rate and regulate stress.",
-        "objectives": ["reset_nervous_system", "increase_alertness", "stimulate_vagus_nerve"]
+        "objectives": ["reset_nervous_system", "increase_alertness", "boost stress resilience", "stimulate_vagus_nerve"]
       },
       {
         "name": "Cold Face Rinse",
@@ -836,6 +913,24 @@ practice_data = {
               "anchor_attention"
           ]
       },
+      {
+            "name": "Gratitude Practice",
+            "category": "spirituality-mindfulness",
+            "subcategory": "meditation-consciousness",
+            "description": "List at least three things you are grateful for to foster a positive mindset.",
+            "benefit_synopsis": "Builds a connection with the positives in your life.",
+            "recommended_durations": [
+              {"duration_label": "5 minutes"},
+              {"duration_label": "10 minutes"}
+            ],
+            "impact_rating_id": 4,
+            "difficulty_level_id": 1,
+            "frequency": "Twice daily",
+            "is_common": True,
+            "notes": "Focusing on gratitude can reframe negative thoughts and increase life satisfaction.",
+            "benefit_synopsis": "Cultivates appreciation, boosts emotional well-being, and reduces stress.",
+            "objectives": ["cultivate_gratitude", "increase_optimism", "reduce_stress"]
+        },
       {
           "name": "Zazen (Seated Zen Meditation)",
           "category": "spirituality-mindfulness",
@@ -1402,6 +1497,8 @@ practice_data = {
     ],
 
         # PRACTICE SUBCATEGORY
+    
+    # PRACTICE SUBCATEGORY
     "journaling-reflection": [
       {
           "name": "Morning Pages",
@@ -1759,6 +1856,8 @@ practice_data = {
     ],
 
         # PRACTICE SUBCATEGORY
+    
+    # PRACTICE SUBCATEGORY
     "prayer-devotion": [
       {
           "name": "Prayer",
@@ -2262,6 +2361,8 @@ practice_data = {
 
         # PRACTICE SUBCATEGORY - 
         # TODO: Likely to be dissolved and joined with other subcategories.  
+    
+    # PRACTICE SUBCATEGORY
     "creativity-intention": [
       {
           "name": "Draw a Mandala",
@@ -2328,6 +2429,8 @@ practice_data = {
     ],
 
         # PRACTICE SUBCATEGORY
+    
+    # PRACTICE SUBCATEGORY
     "mantra-sound": [
       {
           "name": "Mantra Repetition (Japa)",
@@ -2520,6 +2623,8 @@ practice_data = {
     ],
         
         # PRACTICE SUBCATEGORY
+    
+    # PRACTICE SUBCATEGORY
     "walking-movement": [
       {
           "name": "Walking Meditation",
@@ -4187,18 +4292,7 @@ practice_data = {
   #   ],
 
   #   "Spiritual Connection & Gratitude": [
-  #       {
-  #           "name": "Gratitude Practice",
-  #           "description": "List three things you are grateful for to foster a positive mindset.",
-  #           "recommended_durations": [{"duration_label": "5 minutes"}],
-  #           "impact_rating_id": 4,
-  #           "difficulty_level_id": 1,
-  #           "frequency": "Twice daily",
-  #           "is_common": True,
-  #           "notes": "Focusing on gratitude can reframe negative thoughts and increase life satisfaction.",
-  #           "benefit_synopsis": "Cultivates appreciation, boosts emotional well-being, and reduces stress.",
-  #           "objectives": ["cultivate_gratitude", "increase_optimism", "reduce_stress"]
-  #       },
+  #       
   #       {
   #           "name": "Gratitude Journaling",
   #           "description": "Write down 3-5 things you’re grateful for each day to foster positivity.",

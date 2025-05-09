@@ -53,8 +53,10 @@ class Routine:
               urp.position,
               rb.id AS routine_block_id,
               rb.name AS routine_block_name,
+              rb.slug AS routine_block_slug,
               rb.description AS routine_block_description,
-              rb.tier_level AS routine_block_tier_level,
+              rb.created_at AS routine_block_created_at,
+              rb.updated_at AS routine_block_updated_at,
               p.id AS practice_id,
               p.name AS practice_name,
               p.description AS practice_description,
@@ -94,49 +96,6 @@ class Routine:
 
         if results:
             return Routine.build_complete_user_routines(results, user_id)
-
-
-    def build_complete_user_routines(rows, user_id):
-        routines = []
-        blocks = []
-        practices = []
-
-        routines_by_id = {}
-        blocks_by_id = {}
-        practices_by_id = {}
-
-        
-        for row in rows:
-            rid = row["routine_id"]
-            if rid not in routines_by_id:
-                routine = Routine.build_routine_from_row(row, user_id)
-                routines_by_id[rid] = routine
-                routines.append(routine)
-            else:
-                routine = routines_by_id[rid]
-            
-            bid = row["routine_block_id"]
-            if bid not in blocks_by_id:
-                routine_block = RoutineBlock.build_routine_block_from_row(row)
-                blocks_by_id[bid] = routine_block
-                blocks.append(routine_block)
-
-                routine.routine_blocks.append(routine_block)
-            else:
-                routine_block = blocks_by_id[bid]
-
-
-            pid = row["practice_id"]
-            if pid not in practices_by_id:
-                practice = Practice.build_practice_from_row(row)
-                practices_by_id[pid] = practice
-                practices.append(practice)
-
-                routine_block.practices.append(practice)
-            else:
-                practices.append(practices_by_id[pid])
-
-        return routines
     
     def find_routine_by_user_id_and_routine_type(user_id, routine_type):
         """
@@ -226,6 +185,48 @@ class Routine:
         #     pprint(vars(practice))
 
         return routine
+    
+    def build_complete_user_routines(rows, user_id):
+        routines = []
+        blocks = []
+        practices = []
+
+        routines_by_id = {}
+        blocks_by_id = {}
+        practices_by_id = {}
+
+        
+        for row in rows:
+            routine_id = row["routine_id"]
+            if routine_id not in routines_by_id:
+                routine = Routine.build_routine_from_row(row, user_id)
+                routines_by_id[routine_id] = routine
+                routines.append(routine)
+            else:
+                routine = routines_by_id[routine_id]
+            
+            block_id = row["routine_block_id"]
+            if block_id not in blocks_by_id:
+                routine_block = RoutineBlock.build_routine_block_from_row(row)
+                blocks_by_id[block_id] = routine_block
+                blocks.append(routine_block)
+
+                routine.routine_blocks.append(routine_block)
+            else:
+                routine_block = blocks_by_id[block_id]
+
+
+            pid = row["practice_id"]
+            if pid not in practices_by_id:
+                practice = Practice.build_practice_from_row(row)
+                practices_by_id[pid] = practice
+                practices.append(practice)
+
+                routine_block.practices.append(practice)
+            else:
+                practices.append(practices_by_id[pid])
+
+        return routines
 
     @staticmethod
     def build_routine_from_row(row, user_id):
@@ -275,7 +276,7 @@ class Routine:
 
             if user_responses:
             # Process responses to select routine template for the user
-              recommended_routine_template_name = UserResponse.map_user_response_to_routine_template(user_responses, subcategory_slug)
+              recommended_routine_template_name = UserResponse.map_user_response_to_routine_block_templates(user_responses, subcategory_slug)
 
         else:
             # Default routine template if no responses determine one
