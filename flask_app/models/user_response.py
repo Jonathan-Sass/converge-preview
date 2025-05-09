@@ -1,8 +1,8 @@
 from flask_app.config.mysqlconnection import connectToMySQL
-from flask_app.models.user import User
-from pprint import pprint
 from flask import session, logging
+from pprint import pprint
 
+from flask_app.models.user import User
 
 class UserResponse:
     db = connectToMySQL("converge_schema")
@@ -15,6 +15,7 @@ class UserResponse:
         self.question_slug = data["question_slug"]
         self.question_id = data["survey_question_id"]
         self.question_text = data["question_text"]
+        self.type = data["question_type"]
         self.answer_id = data["survey_answer_id"]
         self.answer_text = data["answer_text"]
         self.answer_value = data["answer_value"]
@@ -38,6 +39,7 @@ class UserResponse:
             ur.survey_question_id,
             sq.question_slug,
             sq.question_text,
+            sq.type AS question_type,
             ur.survey_answer_id,
             sa.answer_text,
             sa.answer_value
@@ -73,16 +75,48 @@ class UserResponse:
         return responses
 
 
-    def map_user_response_to_routine_template(user_responses, subcategory_slug):
+# METHODS FOR MAPPING USER RESPONSES TO ROUTINE BLOCK TEMPLATES
+    def map_user_traits(user_responses):
+      user_traits = {}
+
+      for question in user_responses:
+        slug = question.question_slug
+        question_type = question.type
+
+        if not slug or not question_type:
+          continue
+         
+        if question_type in ["yes-no", "boolean"]:
+          user_traits[slug] = {"type": "exact"}
+        
+        # TODO: Add relevant question types to list below to ensure adequate representation of proximity-based answers
+        elif question_type in ["guided_choice", "satisfaction", "scale"]:
+          max_score = max(
+             (a.get("answer_value", 0) for a in question.get("answers", [])),
+             default = 1
+          )
+          user_traits[slug] = {"type": "proximity", "max_score": max_score}
+        
+         # Optional: add custom scoring types
+        # elif q_type == "select-any":
+        #     user_traits[slug] = {"type": "multi-match", "max_score": 1}
+
+        return user_traits
+      
+    def map_template_traits(user_responses):
+        
+      return
+
+    def map_user_response_to_routine_block_templates(user_responses, subcategory_slug):
       """
         Determine which routine template to recommend based on user responses.
 
         Args:
-            user_responses (List[UserResponse]): User responses for a specific subcategory.
-            subcategory_slug (str): Slug identifying which mapping logic to apply.
+          user_responses (List[UserResponse]): User responses for a specific subcategory.
+          subcategory_slug (str): Slug identifying which mapping logic to apply.
 
         Returns:
-            str or Tuple[str, bool]: Name of the recommended routine template or a tuple including the name and a flag (e.g., for day-map).
+          str or Tuple[str, bool]: Name of the recommended routine template or a tuple including the name and a flag (e.g., for day-map).
         """
       
       print("***map_user_response_to_routine_template***")
@@ -90,7 +124,7 @@ class UserResponse:
       subcategory_processors = {
         "user-orientation": UserResponse.process_user_orientation,
         # Note: Day map also returns a variable for route selection and thus is called separately/omitted from this list.
-        # "day-map": UserResponse.process_day_map,
+        # "day-map": UserResponse.process_am_routine_map,
         "discipline-motivation-focus map": UserResponse.process_discipline_motivation_focus,
         "value-map": UserResponse.process_value_map,
       }
@@ -112,34 +146,8 @@ class UserResponse:
       else:
         return 0
 
-    def build_scored_traits(user_responses):
-      scored_traits = {}
 
-      for question in user_responses:
-        slug = question.get("question_slug")
-        question_type = question.get("type")
-
-        if not slug or not question_type:
-          continue
-         
-        if question_type in ["yes-no", "boolean"]:
-          scored_traits[slug] = {"type": "exact"}
-        
-        # TODO: Add relevant question types to list below to ensure adequate representation of proximity-based answers
-        elif question_type in ["guided_choice", "satisfaction", "scale"]:
-          max_score = max(
-             (a.get("answer_value", 0) for a in question.get("answers", [])),
-             default = 1
-          )
-          scored_traits[slug] = {"type": "proximity", "max_score": max_score}
-        
-         # Optional: add custom scoring types
-        # elif q_type == "select-any":
-        #     scored_traits[slug] = {"type": "multi-match", "max_score": 1}
-
-        return scored_traits
-      
-    def process_day_map(user_responses):
+    def process_am_routine_map(user_responses):
       """
         Analyze responses from the Day Map to recommend a morning routine.
 
@@ -150,41 +158,56 @@ class UserResponse:
             Tuple[str, bool]: Recommended routine template name and a flag indicating whether
                               the user already has a morning routine.
       """ 
-      print("***process_day_map***")
+      print("***process_am_routine_map***")
       
+      response_values = extract_response_values(user_responses)
+      user_traits = UserResponse.map_user_traits(user_responses)
+      template_traits = UserResponse.map_template_traits(user_responses)
+      existing_routine_status = UserResponse.has_existing_morning_routine(response_values)
+      
+      
+      # Set default values until seeding and scoring logic is complete
+      recommended_digital_disconnect_template = "keeping-it-real"
+      recommended_core_system_primer_template = "basic-primer-walk"
+      recommended_core_system_builder_template = "resilience-circuit"
+      recommended_auxiliary_templates = []
       recommended_routine_template_name = "The Grounded Start"
-      recommended_routine_template_slug = "core-reset"
+      recommended_routine_template_slug = None
       existing_routine_status = False
       score = 0;
       
-      response_values = {
-            response.question_slug: response.answer_value for response in user_responses
-        }
       
-      scored_traits = UserResponse.build_scored_traits(user_responses)
-      # template_traits = build_template_traits()
 
       # Prototype for proximity-based scoring system using User Trait Profile
       # TODO: FINISH IT!
       user_traits = {
-         "habit_adoption_pattern": response_values.get("habit-adoption-check"),
-         "am_energy_pattern": response_values.get("am-energy-pattern"),
-         "am_routine_time_availability": response_values.get("am-routine-time-availability"),
-         "movement_level": response_values.get("daily-movement-check"),
-         "am_exercise": response_values.get("exercise-timing") == 1,
-         "has_focus_block": bool(response_values.get("am-focus-block-check"))
+         "am_routine_check": response_values.get("am-routine-check", 0),
+         "habit_implementation_history": response_values.get("habit-implementation-history", 3),
+         "digital_hygiene": response_values.get("digital-hygiene", 0),
+         "fuel_and_hydration": response_values.get("fuel-and-hydration"),
+         "midday_recovery": response_values.get("midday-recovery"),
+         "digital_detox_willingness": response_values.get("digital-detox-willingness"),
+         "exercise_style_preferences": response_values.get("exercise-style-preferences"),
+         "gaming_practice_interest": response_values.get("gaming-practice-interest"),
+         "social_life_satisfaction": response_values.get("social-life-satisfaction"),
+         "social_connection_priority": response_values.get("social-connection-priority"),
+         "am_spiritual_practices": response_values.get("am-spiritual-practices"),
+         "creative_activity_frequency": response_values.get("creative-activity-frequency"),
+         "productivity_block_preferences": response_values.get("productivity-block-preference"),
+         "mindset_primer_usage": response_values.get("mindset-primer-usage")
       }
-      am_routine_status = response_values.get("morning_routine_check")
+      am_routine_status = response_values.get("am_routine_check")
 
-      if am_routine_status <= 1:
-         recommended_routine_template_slug = "core-reset"
-      else:
-         for trait, trait_meta in scored_traits.items():
+      if am_routine_status:
+        if am_routine_status <= 1:
+          recommended_routine_template_slug = "core-reset"
+        else:
+          for trait, trait_meta in user_traits.items():
             user_value = user_traits.get(trait)
             template_value = template_traits.get(trait)
 
             if user_value is None or template_value is None:
-               continue
+              continue
             
             score += UserResponse.score_trait(user_value, template_value, trait_meta)
 
@@ -440,7 +463,10 @@ class UserResponse:
             logging.error("Exception details:", exc_info=True)  # Log full traceback
             return False
 
-
+def extract_response_values(user_responses):
+        return {
+          response.question_slug: response.answer_value for response in user_responses
+        }
 
     # def fetch_user_and_responses_by_subcategory_slug(user, subcategory_slug_string):
     #     query = """
