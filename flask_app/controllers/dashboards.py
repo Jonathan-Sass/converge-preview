@@ -81,7 +81,7 @@ def dashboard_intro():
 
     return render_template("/dashboard/dashboard_intro.html", priority_order = priority_order, user_responses = user_responses)
 
-@app.get("/dashboard/intro/digital-disconnect")
+@app.get("/dashboard/intro/digital-disconnect-map")
 def dashboard_intro_digital_disconnect():
   """
     Render the introductory dashboard page to set initial digital disconnects.
@@ -113,12 +113,12 @@ def dashboard_intro_digital_disconnect():
       "priority_order": priority_order
   }
 
-  return render_template("/dashboard/dashboard_intro_am_practices.html", **dashboard_data)
+  return render_template("/onboarding/dashboard_intro_digital_disconnect.html", **dashboard_data)
 
 
 @app.get("/dashboard/intro-am-practices")
 def dashboard_intro_am_practices():
-    """Render the introduction page for AM practices on the dashboard.
+    """Render the onboarding page for AM practices on the dashboard.
 
     Displays routine and goal data relevant to the user's morning routine.
 

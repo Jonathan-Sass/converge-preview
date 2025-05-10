@@ -156,7 +156,7 @@ def new_user():
     if not user:
         return redirect("/")
 
-    return render_template("introduction/new_user.html")
+    return render_template("onboarding/new_user.html")
 
 
 @app.post("/users/logout")

@@ -368,19 +368,90 @@ survey_question_data = [
       ]
     },
     {
-      "subcategory_slug": "digital-hygiene-map",
+      "subcategory_slug": "digital-disconnect-map",
       "questions": [
         {
-          "question_slug": "digital-hygiene",
-          "question_text": "How do you manage your daily screen-time and device use?",
+          "question_slug": "intro_digital_environment",
+          "type": "prompt",
+          "question_text": "Let’s talk about your digital environment. How we spend our attention today shapes our brain tomorrow. Social media, endless tabs, and constant pings can rewire us to crave stimulation — but it’s possible to reclaim control."
+        },
+        {
+          "question_slug": "awareness_check",
+          "question_text": "On a typical day, how often do you check your phone without realizing it?",
           "type": "guided-choice",
           "answers": [
-            { "answer_text": "I use devices throughout the day without restriction.", "answer_value": 0},
-            { "answer_text": "I sometimes step away, but it’s spontaneous.", "answer_value": 1},
-            { "answer_text": "I try to maintain digital boundaries, but it is a struggle.", "answer_value": 2},
-            { "answer_text": "I maintain strict device boundaries and regular detox periods.", "answer_value": 3}
+            { "answer_text": "Rarely", "answer_value": 0 },
+            { "answer_text": "A few times", "answer_value": 1 },
+            { "answer_text": "All the time", "answer_value": 2 },
+            { "answer_text": "It feels automatic", "answer_value": 3 }
           ]
         },
+        {
+          "question_slug": "prompt_brain_on_screens",
+          "type": "prompt",
+          "question_text": "Your brain wasn’t built for this. Research by Dr. Anna Lembke and Dr. Andrew Huberman shows that compulsive screen use overstimulates the dopamine system, leading to cycles of fatigue, irritability, and attention loss."
+        },
+        {
+          "question_slug": "screen_fatigue_awareness",
+          "question_text": "Have you noticed it’s harder to focus or stay motivated after heavy screen use?",
+          "type": "guided-choice",
+          "answers": [
+            { "answer_text": "Yes, frequently", "answer_value": 3 },
+            { "answer_text": "Occasionally", "answer_value": 2 },
+            { "answer_text": "Not really", "answer_value": 1 },
+            { "answer_text": "I’m not sure", "answer_value": 0 }
+          ]
+        },
+        {
+          "question_slug": "prompt_pleasure_pain_cycle",
+          "type": "prompt",
+          "question_text": "The pleasure/pain seesaw is real. Repeated hits of dopamine from scrolling can reduce your brain’s baseline, leaving you less motivated and more anxious when not stimulated. (Dweck, Lembke, Huberman)"
+        },
+        {
+          "question_slug": "dopamine_deficit_symptoms",
+          "question_text": "Which of the following have you experienced more often in the last 6 months?",
+          "type": "select-any",
+          "answers": [
+            { "answer_text": "Doom-scrolling without meaning to", "answer_value": 0 },
+            { "answer_text": "Feeling restless when not on your phone", "answer_value": 1 },
+            { "answer_text": "Difficulty enjoying quiet, non-digital time", "answer_value": 2 },
+            { "answer_text": "None of these", "answer_value": 3 }
+          ]
+        },
+        {
+          "question_slug": "prompt_attention_is_life",
+          "type": "prompt",
+          "question_text": "Your attention is your life. Johann Hari says: 'The truth is, you are not weak. Your attention has been stolen.' But you can take it back — and build habits that restore presence, focus, and depth."
+        },
+        {
+          "question_slug": "digital_emotional_values",
+          "question_text": "What would you most like to feel more of in your daily life?",
+          "type": "select-one",
+          "answers": [
+            { "answer_text": "Clarity", "answer_value": 0 },
+            { "answer_text": "Calm", "answer_value": 1 },
+            { "answer_text": "Creativity", "answer_value": 2 },
+            { "answer_text": "Discipline", "answer_value": 3 },
+            { "answer_text": "Meaning", "answer_value": 4 }
+          ]
+        },
+        {
+          "question_slug": "prompt_one_boundary_change",
+          "type": "prompt",
+          "question_text": "Even one boundary can change everything. Whether it’s screen-free mornings, no social media after 8pm, or app limits, small shifts help restore your brain’s motivation system."
+        },
+        {
+          "question_slug": "digital_boundary_readiness",
+          "question_text": "What kind of digital boundary are you open to experimenting with this week?",
+          "type": "select-one",
+          "answers": [
+            { "answer_text": "Screen-free first hour of the morning", "answer_value": 0 },
+            { "answer_text": "No social media after 8pm", "answer_value": 1 },
+            { "answer_text": "1 hour of focused, phone-free work per day", "answer_value": 2 },
+            { "answer_text": "App time limits", "answer_value": 3 },
+            { "answer_text": "Not ready yet — just exploring", "answer_value": 4 }
+          ]
+        }
       ]
     },
     {

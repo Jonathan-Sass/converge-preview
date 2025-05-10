@@ -82,7 +82,7 @@
     </nav>
     <header class="card m-auto w-75 my-5 p-3 text-center bg-light shadow opacity-75">
       <h1 class="display-2 mb-3 text-primary">Digitally Disconnecting</h1>
-      <p class="fs-4">Let's take a look at your interests so we can start setting some goals in a category that matters to you.</p>
+      <p class="fs-4">Taking a look at the data on technology and the human system.</p>
     </header>
     <!-- Content and Sidebar Div-->
      <div class="parallax-bg"></div>
@@ -131,7 +131,7 @@
             <div class="card shadow p-2 solid-white-bg" id="digital-disconnect-map" data-subcategory="digital-disconnect-map">
               <div class="card-body">
                 <div class="card-title">
-                  <h2 class="display-6 text-primary">What gets you up in the morning?</h2>
+                  <h2 class="display-6 text-primary">Why digital boundaries matter.</h2>
                   <hr class="border border-1 border-secondary">
                   <!-- <p class="card-text lead" id="survey-intro">In the following section, we will get to know a bit
                     about your big picture goals/needs.</p> -->
@@ -153,7 +153,7 @@
                   <button class="btn btn-lg btn-primary d-none" id="back-btn">Back</button>
                   <button class="btn btn-lg btn-primary d-none" id="next-btn">Next</button>
                   <button class="btn btn-lg btn-primary d-none" id="finish-btn">Submit Answers</button>
-                  <a href="/surveys/discipline-motivation-focus-map" class="btn btn-primary btn-lg d-none" id="next-section-btn">Next Section</a>
+                  <a href="/dashboard/intro/digital-disconnect-map" class="btn btn-primary btn-lg d-none" id="next-section-btn">Next Section</a>
                 </div>
               </div>
             </div>
@@ -175,22 +175,23 @@
     introJs().setOptions({
         steps: [
             {
-                element: '#survey_category',
+                element: '#start-btn',
                 title: 'Digital Disconnection',
                 intro: 'We will start by looking at our relationships as humans with technology.',
-                position: 'top' 
-            },
-            {
-                element: '#start-btn',
-                title: 'Onward we go!',
-                intro: "We will have a couple quizzes in a row here before we set some goals.  Let's do this!",
-                position: 'top'
+                position: 'auto',
+                nextOnTargetClick: true,
+                disableInteraction: false,
+                tootipClass: 'no-buttons-tooltip' 
             },
         ],
-        tooltipClass: 'introCustomTooltip',
+        // tooltipClass: 'introCustomTooltip',
         // showProgress: true, // Adds progress dots to indicate step sequence
         disableInteraction: true // Prevents accidental clicks while onboarding
     }).start();
+  })
+
+  document.querySelector('#start-btn').addEventListener('click', () => {
+    introJs().exit();
   })
 </script>
 
