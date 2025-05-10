@@ -49,7 +49,7 @@ def dashboard():
     if not routine_data:
         return redirect("/dashboard/intro")
 
-    return render_template("/dashboard/dashboard.html", **dashboard_data)
+    return render_template("/home/dashboard.html", **dashboard_data)
 
 
 @app.get("/dashboard/intro")

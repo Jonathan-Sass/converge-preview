@@ -1,5 +1,12 @@
 import { updateCardOrder } from "./sortable-containers.js";
 
+// Event listener for saving the routine
+document.getElementById('save-btn').addEventListener('click', saveRoutine);
+
+document.querySelectorAll('.remove-practice-btn').forEach(button => {
+  button.addEventListener('click', removePractice)
+})
+
 // Function to collect and prepare routine data
 const collectRoutineData = () => {
   const startTimeElement = document.getElementById('routine-start-time')
@@ -36,18 +43,18 @@ const collectRoutineData = () => {
 // Function to save the routine
 const saveRoutine = () => {
   const routineData = collectRoutineData();
-
+  
   // Determine the current path
   const currentPath = window.location.pathname;
   const pathSegments = currentPath.split('/');
-
+  
   // Extract relevant segments
   const routineType = pathSegments[2]; // e.g., 'am'
   const pageType = pathSegments[3]; // e.g., 'builder' or 'intro-build-your-own'
-
+  
   // Construct the dynamic URL
   const saveUrl = `/routines/${routineType}/${pageType}/save`;
-
+  
   // Perform the fetch request
   fetch(saveUrl, {
     method: 'POST',
@@ -83,10 +90,3 @@ function removePractice(event) {
   const practiceContainer = document.getElementById('practice-container')
   updateCardOrder(practiceContainer);
 }
-
-// Event listener for saving the routine
-document.getElementById('save-btn').addEventListener('click', saveRoutine);
-
-document.querySelectorAll('.remove-practice-btn').forEach(button => {
-  button.addEventListener('click', removePractice)
-})
