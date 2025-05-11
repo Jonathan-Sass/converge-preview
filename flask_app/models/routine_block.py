@@ -11,14 +11,14 @@ class RoutineBlock:
 
   def __init__(self, data):
     """Initialize a Routine Block object"""
-    self.id = data["id"],
-    self.slug = data["slug"],
-    self.name = data["name"],
-    self.description = data["description"],
-    self.type = data["type"][0] if isinstance(data["type"], tuple) else data["type"],
-    self.icon_slug =  data["icon_slug"],
-    self.created_at = data["created_at"],
-    self.updated_at = data["updated_at"],
+    self.id = data["id"]
+    self.slug = data["slug"]
+    self.name = data["name"]
+    self.description = data["description"]
+    self.type = data["type"]
+    self.icon_slug =  data["icon_slug"]
+    self.created_at = data["created_at"]
+    self.updated_at = data["updated_at"]
     self.practices: List[Practice] = []
 
 
