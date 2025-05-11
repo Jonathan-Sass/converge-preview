@@ -51,22 +51,24 @@ def fetch_routine_block_templates():
     else:
         raise RuntimeError("No routine block templates found in database.")
 
-def fetch_routine_blocks():
+def fetch_routine_block_id_lookup():
     query = "SELECT id, slug FROM routine_blocks;"
 
     try:
-        result = db.query_db(query)
+        results = db.query_db(query)
     except Exception as e:
         print(f"Failed to retrieve routine_blocks: {e}")
     else:
         print("Routine blocks retrieved.")
-    return result
+    return {result["slug"]: result["id"] for result in results}
 
 def prepare_routine_block_templates(practices):
     """
     This function prepares and batches routine_block_template data and associated routine_block_template_practices_data
     """
+
     # frequency_lookup = {freq["frequency_label"]: freq["id"] for freq in frequencies}
+    routine_block_id_lookup = fetch_routine_block_id_lookup()
     practice_lookup = {practice["slug"]: practice["id"] for practice in practices}
     print("*****practice_lookup in prepare_routine_block_templates")
     pprint(practice_lookup)
@@ -83,6 +85,7 @@ def prepare_routine_block_templates(practices):
             # "frequency_id": frequency_lookup.get(routine_block_template["frequency"], 1),
             "name": routine_block_template["name"],
             "slug": routine_block_template["slug"],
+            "routine_block_id": routine_block_id_lookup.get(routine_block_template["routine_block_slug"]),
             "description": routine_block_template["description"],
             "routine_type": routine_block_template["routine_type"],
             "notes": routine_block_template.get("notes", None)
@@ -135,10 +138,9 @@ def prepare_routine_block_templates(practices):
     return batched_routine_block_templates, batched_incomplete_routine_block_template_practice_data, batched_block_template_trait_data
 
 def prepare_routine_block_template_practices_data(routine_block_templates, batched_incomplete_routine_block_template_practice_data):
-    routine_blocks = fetch_routine_blocks()
     
     routine_block_template_id_lookup = {rt["slug"]: rt["id"] for rt in routine_block_templates}
-    routine_block_id_lookup = {rb["slug"]: rb["id"] for rb in routine_blocks}
+    routine_block_id_lookup = fetch_routine_block_id_lookup()
     batched_routine_block_template_practice_data = []
 
     for rtp in batched_incomplete_routine_block_template_practice_data:
@@ -178,10 +180,11 @@ def prepare_routine_block_template_practices_data(routine_block_templates, batch
 def execute_seed_routine_block_templates(values):
     query = """
         INSERT INTO routine_block_templates
-            (name, slug, description, routine_type, notes, created_at, updated_at)
+            (routine_block_id, name, slug, description, routine_type, notes, created_at, updated_at)
         VALUES
-            (%(name)s, %(slug)s, %(description)s, %(routine_type)s, %(notes)s, NOW(), NOW())
+            (%(routine_block_id)s, %(name)s, %(slug)s, %(description)s, %(routine_type)s, %(notes)s, NOW(), NOW())
         ON DUPLICATE KEY UPDATE
+            routine_block_id = VALUES(routine_block_id),
             name = VALUES(name),
             slug = slug,
             description = VALUES(description),

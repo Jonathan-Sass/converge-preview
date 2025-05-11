@@ -18,7 +18,6 @@ class Practice:
             data (dict): Dictionary containing practice attributes.
         """
         self.id = data["practice_id"]
-        self.routine_id = data.get("routine_id", None)
         self.slug = data["practice_slug"]
         self.name = data["practice_name"]
         self.description = data["practice_description"]
@@ -43,7 +42,6 @@ class Practice:
         """
         return {
             "id": self.id,
-            "routine_id": self.routine_id,
             "slug": self.slug,
             "name": self.name,
             "description": self.description,
@@ -192,7 +190,6 @@ class Practice:
         return Practice(
             {
                 "practice_id": row["practice_id"],
-                "routine_id": row["practice_routine_id"],
                 "practice_slug": row["practice_slug"],
                 "practice_name": row["practice_name"],
                 "practice_description": row["practice_description"],
@@ -203,7 +200,7 @@ class Practice:
                 "practice_is_common": row["practice_is_common"],
                 "practice_notes": row["practice_notes"],
                 "literature_summary": row["literature_summary"],
-                "selected_duration": row["selected_duration"],
+                "selected_duration": row.get("selected_duration", None),
                 "created_at": row["practice_created_at"],
                 "updated_at": row["practice_updated_at"],
             }

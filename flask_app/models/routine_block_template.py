@@ -23,10 +23,10 @@ class RoutineBlockTemplate:
             data (dict): Dictionary containing routine template fields.
         """
         self.id = data["routine_block_template_id"]
+        self.routine_block_id = data["routine_block_template_routine_block_id"]
         self.name = data["routine_block_template_name"]
         self.slug = data["routine_block_template_slug"]
         self.description = data["routine_block_template_description"]
-        self.routine_type = data["routine_block_template_routine_type"]
         self.notes = data.get("routine_block_template_notes", None)
         self.practices = []
 
@@ -59,10 +59,10 @@ class RoutineBlockTemplate:
         query = """
             SELECT
                 rbt.id AS routine_block_template_id,
+                rbt.routine_block_id AS routine_block_template_routine_block_id,
                 rbt.name AS routine_block_template_name,
                 rbt.slug AS routine_block_template_slug,
                 rbt.description AS routine_block_template_description,
-                rbt.routine_type,
                 rbt.notes AS routine_block_template_notes,
                 p.id AS practice_id,
                 p.name AS practice_name,
@@ -151,9 +151,10 @@ class RoutineBlockTemplate:
         query = """
             SELECT
                 routine_block_templates.id AS routine_block_template_id,
+                routine_block_templates.routine_block_id AS routine_block_template_routine_block_id,
+                routine_block_templates.slug AS routine_block_template_slug,
                 routine_block_templates.name AS routine_block_template_name,
                 routine_block_templates.description AS routine_block_template_description,
-                routine_block_templates.routine_type,
                 routine_block_templates.notes AS routine_block_template_notes,
                 practices.id AS practice_id,
                 practices.slug AS practice_slug,
@@ -228,9 +229,9 @@ class RoutineBlockTemplate:
                 practice_map[practice_id] = practice
                 routine_block_template.practices.append(practice)
 
-            if practice["duration_id"]:
-                duration = Duration(practice)
-                practice_map[practice_id].durations.append(duration)
+            # if practice.selected_duration:
+            #     duration = Duration(practice)
+            #     practice_map[practice_id].durations.append(duration)
 
         print("*****routine_block_template in find_by_name_with_practices")
         pprint(vars(routine_block_template))

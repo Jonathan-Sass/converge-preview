@@ -100,11 +100,20 @@ def dashboard_intro_digital_disconnect():
   UserRoutineBlockPractice.save_user_routine_block_practices_from_block_template_slug(user, block_template_slug)
 
   # Load data for dashboard
-  routine_data = Routine.find_routines_by_user_id(user_id)
-  goal_data = Goal.find_goals_with_milestones_and_action_items_by_user_id(user_id)
-  flex_task_goal_ids = FlexTask.find_flex_tasks_goal_ids_by_user_id(user_id)
-  flex_task_data = FlexTask.assemble_flex_task_data_by_goal_id(flex_task_goal_ids, goal_data)
-  filtered_goal_data = Goal.filter_flex_task_goals_from_goal_data(goal_data, flex_task_goal_ids)
+  routine_block_data = RoutineBlock.find_routine_blocks_by_user_id(user_id)
+  print("*****routine_block_data in dashboard_intro_digital_disconnect")
+  for block in routine_block_data:
+    print("---- Routine Block ----")
+    pprint(vars(block))
+    if hasattr(block, "practices"):
+        print("---- Practices ----")
+        for practice in block.practices:
+            pprint(vars(practice))
+
+  # goal_data = Goal.find_goals_with_milestones_and_action_items_by_user_id(user_id)
+  # flex_task_goal_ids = FlexTask.find_flex_tasks_goal_ids_by_user_id(user_id)
+  # flex_task_data = FlexTask.assemble_flex_task_data_by_goal_id(flex_task_goal_ids, goal_data)
+  # filtered_goal_data = Goal.filter_flex_task_goals_from_goal_data(goal_data, flex_task_goal_ids)
 
   priority_order = {
       1: "Urgent", 
@@ -113,16 +122,16 @@ def dashboard_intro_digital_disconnect():
       4: "Low"
   }
 
-  dashboard_data = {
-      "user": user,
-      "routines": routine_data,
-      "goals": goal_data,
-      "filtered_goals": filtered_goal_data,
-      "flex_tasks": flex_task_data,
-      "priority_order": priority_order
-  }
+  # dashboard_data = {
+  #     "user": user,
+  #     "routine_blocks": routine_block_data,
+  #     "goals": goal_data,
+  #     "filtered_goals": filtered_goal_data,
+  #     "flex_tasks": flex_task_data,
+  #     "priority_order": priority_order
+  # }
 
-  return render_template("/onboarding/dashboard_intro_digital_disconnect.html", **dashboard_data)
+  return render_template("/onboarding/dashboard_intro_digital_disconnect.html", routine_blocks = routine_block_data, priority_order = priority_order)
 
 
 @app.get("/dashboard/intro-am-practices")
@@ -139,7 +148,9 @@ def dashboard_intro_am_practices():
         return redirect("/")
 
     user_id = user.id
-    routine_data = Routine.find_routines_by_user_id(user_id)
+    routine_block_data = RoutineBlock.find_routine_blocks_by_user_id(user_id)
+    print("*****routine_block_data in dashboard_intro_am_practices")
+    pprint(routine_block_data)
     goal_data = Goal.find_goals_with_milestones_and_action_items_by_user_id(user_id)
 
     priority_order = {
@@ -151,7 +162,7 @@ def dashboard_intro_am_practices():
 
     dashboard_data = {
         "user": user,
-        "routines": routine_data,
+        "routine_blocks": routine_block_data,
         "goals": goal_data,
         "priority_order": priority_order
     }

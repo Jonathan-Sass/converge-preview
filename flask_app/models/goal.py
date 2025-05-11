@@ -42,7 +42,7 @@ class Goal:
               g.id AS goal_id,
               g.user_id,
               g.goal_category_id,
-              g.subcategory_id,
+              g.category_quality_id,
               g.name AS goal_name,
               g.description AS goal_description,
               g.goal_type,
@@ -148,48 +148,53 @@ class Goal:
 
 
     def build_goals_with_milestones_and_action_items(results, user_id):
-        """Builds a list of Goal objects from raw SQL results, nesting milestones and action items."""
+      """Builds a list of Goal objects from raw SQL results, nesting milestones and action items."""
 
-        goals = []
+      goals = []
+      goal_map = {}
 
-        if results:
+      if results:
+          for row in results:
+              goal_id = row.get("goal_id")
+              if goal_id is None:
+                  continue
 
-            for row in results:
-                # Add goal if not already present
-                goal = next((g for g in goals if g.id == row["goal_id"]), None)
-                if not goal:
-                    goal = Goal.build_goal_from_row(row, user_id)
-                    goals.append(goal)
-                    # pprint(vars(goals[goal_id]))
+              # -- GOAL --
+              if goal_id not in goal_map:
+                  goal = Goal.build_goal_from_row(row, user_id)
+                  goal.milestones = []
+                  goal_map[goal_id] = goal
+                  goals.append(goal)
+              else:
+                  goal = goal_map[goal_id]
 
-                milestone = None
+              # -- MILESTONE --
+              milestone_id = row.get("milestone_id")
+              if milestone_id:
+                  milestone_map = getattr(goal, "_milestone_map", {})
+                  if milestone_id not in milestone_map:
+                      milestone = Milestone.build_milestone_from_row(row, milestone_id)
+                      milestone.action_items = []
+                      goal.milestones.append(milestone)
+                      milestone_map[milestone_id] = milestone
+                      goal._milestone_map = milestone_map
+                  else:
+                      milestone = milestone_map[milestone_id]
+              else:
+                  milestone = None
 
-                # Add milestone if not already present
-                milestone_id = row["milestone_id"]
-                if milestone_id and row["milestone_goal_id"] == goal.id:
-                    milestone = next((m for m in goal.milestones if m.id == milestone_id), None)
-                    if not milestone:
-                        milestone = Milestone.build_milestone_from_row(row, milestone_id)
-                        goal.milestones.append(milestone)
+              # -- ACTION ITEM --
+              action_item_id = row.get("action_item_id")
+              if milestone and action_item_id:
+                  action_item_map = getattr(milestone, "_action_item_map", {})
+                  if action_item_id not in action_item_map:
+                      action_item = ActionItem.build_action_item_from_row(row, action_item_id)
+                      milestone.action_items.append(action_item)
+                      action_item_map[action_item_id] = action_item
+                      milestone._action_item_map = action_item_map
 
-                # Add action item if not already present
-                action_item_id = row["action_item_id"]
+      return goals
 
-                if (milestone and action_item_id and row["action_item_milestone_id"] == milestone.id):
-                    action_item = next((ai for ai in milestone.action_items if ai.id == action_item_id), None)
-                    
-                    if not action_item:
-                        action_item = ActionItem.build_action_item_from_row(row, action_item_id)
-                        milestone.action_items.append(action_item)
-
-        # print("goals in find_goals_with_m_a_i:")
-        # for goal in goals:
-        #     pprint(vars(goal))
-        #     if goal.milestones:
-        #         for milestone in goal.milestones:
-        #             print("Milestone in goal")
-        #             pprint(vars(milestone))
-        return goals
 
     def build_goal_from_row(row, user_id):
         """Converts a single SQL row into a Goal object."""
@@ -197,7 +202,7 @@ class Goal:
             "id": row["goal_id"],
             "user_id": user_id,
             "category_id": row["category_id"],
-            "subcategory_id": row["subcategory_id"],
+            "category_quality_id": row["category_quality_id"],
             "name": row["goal_name"],
             "goal_description": row["goal_description"],
             "goal_type": row["goal_type"],

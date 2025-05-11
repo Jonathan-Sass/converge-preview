@@ -70,7 +70,6 @@ class UserResponse:
         responses = []
         if results:
             for result in results:
-                pprint(result)
                 responses.append(UserResponse(result))
 
         return responses
@@ -152,7 +151,7 @@ class UserResponse:
           return "micro-break-reset"
 
       # Deep fatigue, overwhelm, or trouble sleeping
-      if 3 in pain_points or screen_fatigue == 3:
+      if 3 in top_pain_points or screen_fatigue == 3:
           return "digital-detox-lite"
 
       # News-specific frustration

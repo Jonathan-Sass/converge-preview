@@ -77,7 +77,10 @@ class UserRoutineBlockPractice:
             logging.error(f"[save_user_routine_block_practices_from_block_template_slug] Template not found for slug: {block_template_slug}")
             return 0
 
-        routine_block_id = routine_block_template.id
+        print("*****routine_block_template in save_user_routine_block_practices_etc*****")
+        pprint(vars(routine_block_template))
+
+        routine_block_id = routine_block_template.routine_block_id
         practice_data = []
 
         for i, practice in enumerate(routine_block_template.practices, start=1):
