@@ -2,7 +2,7 @@ from flask_app import app
 from flask import render_template, redirect, jsonify, request
 from flask_app.models.user import User
 from flask_app.models.routine import Routine
-from flask_app.models.routine_template import RoutineTemplate
+from flask_app.models.routine_block_template import RoutineBlockTemplate
 from flask_app.models.user_response import UserResponse
 from flask_app.models.duration import Duration
 from flask_app.models.practice import Practice

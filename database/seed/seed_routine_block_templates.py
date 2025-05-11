@@ -30,7 +30,7 @@ def fetch_frequencies():
         raise RuntimeError("No frequencies found in the database.")
 
 def fetch_practices():
-    query = "SELECT id, name FROM practices;"
+    query = "SELECT id, slug FROM practices;"
 
     results = db.query_db(query)
     if results:
@@ -67,10 +67,13 @@ def prepare_routine_block_templates(practices):
     This function prepares and batches routine_block_template data and associated routine_block_template_practices_data
     """
     # frequency_lookup = {freq["frequency_label"]: freq["id"] for freq in frequencies}
-    practice_lookup = {practice["name"]: practice["id"] for practice in practices}
+    practice_lookup = {practice["slug"]: practice["id"] for practice in practices}
+    print("*****practice_lookup in prepare_routine_block_templates")
+    pprint(practice_lookup)
 
     batched_routine_block_templates = []
     batched_incomplete_routine_block_template_practice_data = []
+    # TODO: Deprecated - Finalize decision of trait irrelevance
     batched_block_template_trait_data = []
 
 
@@ -88,13 +91,13 @@ def prepare_routine_block_templates(practices):
 
         for practice in routine_block_template["practices"]:
             # Routine Template Name must be swapped for ID after Routine Templates are seeded
-            practice_name = practice["practice_name"]
-            if practice_name is None:
-                raise KeyError(f"Missing practice_name in {practice!r}")
+            practice_slug = practice["practice-slug"]
+            if practice_slug is None:
+                raise KeyError(f"Missing slug in {practice!r}")
             
-            practice_id = practice_lookup.get(practice_name)
+            practice_id = practice_lookup.get(practice_slug)
             if practice_id is None:
-                raise KeyError(f"Unknown 'practice_name' {practice_name} in {practice!r}")
+                raise KeyError(f"Unknown 'practice_slug' {practice_slug} in {practice!r}")
             
             incomplete_routine_block_template_practice_data = {
                 "routine_block_template_slug": routine_block_template["slug"], 
@@ -105,16 +108,16 @@ def prepare_routine_block_templates(practices):
             batched_incomplete_routine_block_template_practice_data.append(incomplete_routine_block_template_practice_data)
 
         # TODO: FINISH ME!
-        for trait_slug, trait_props in routine_block_template["traits"].items():
+        # for trait_slug, trait_props in routine_block_template["traits"].items():
            
-           routine_block_trait_data = {
-               "routine_block_template_slug": routine_block_template["slug"],
-               "slug": trait_slug,
-               "value": trait_props["trait_value"],
-               "is_required": bool(trait_props["is_required"]),
-               "trait_weight": trait_props.get("weight", 1)
-           }
-           batched_block_template_trait_data.append(routine_block_trait_data)
+        #    routine_block_trait_data = {
+        #        "routine_block_template_slug": routine_block_template["slug"],
+        #        "slug": trait_slug,
+        #        "value": trait_props["trait_value"],
+        #        "is_required": bool(trait_props["is_required"]),
+        #        "trait_weight": trait_props.get("weight", 1)
+        #    }
+        #    batched_block_template_trait_data.append(routine_block_trait_data)
 
     # routine_block_template_values = [
     #     (

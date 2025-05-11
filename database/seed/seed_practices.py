@@ -268,6 +268,7 @@ def prepare_practice_data(db_categories, db_subcategories, frequencies):
                         "impact_rating_id": practice["impact_rating_id"],
                         "difficulty_level_id": practice["difficulty_level_id"],
                         "frequency_id": frequency_lookup.get(practice["frequency"], 1),
+                        "slug": practice["slug"],
                         "name": pymysql.converters.escape_string(practice["name"]),
                         "description": pymysql.converters.escape_string(practice.get("description", "")),
                         "benefit_synopsis": pymysql.converters.escape_string(practice.get("benefit_synopsis", "")),
@@ -285,6 +286,7 @@ def prepare_practice_data(db_categories, db_subcategories, frequencies):
             data["impact_rating_id"], 
             data["difficulty_level_id"], 
             data["frequency_id"], 
+            data["slug"],
             data["name"], 
             data["description"], 
             data["benefit_synopsis"],
@@ -302,16 +304,17 @@ def execute_practice_data_seed(values):
     
     query = """
         INSERT INTO practices
-            (practice_category_id, practice_subcategory_id, impact_rating_id, difficulty_level_id, frequency_id, name, description, benefit_synopsis, is_common, notes, literature_summary, created_at, updated_at)
+            (practice_category_id, practice_subcategory_id, impact_rating_id, difficulty_level_id, frequency_id, slug, name, description, benefit_synopsis, is_common, notes, literature_summary, created_at, updated_at)
         VALUES
-            (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, NOW(), NOW())
+            (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, NOW(), NOW())
         ON DUPLICATE KEY UPDATE
             practice_category_id = VALUES(practice_category_id),
             practice_subcategory_id = VALUES(practice_subcategory_id),
             impact_rating_id = VALUES(impact_rating_id),
             difficulty_level_id = VALUES(difficulty_level_id),
             frequency_id = VALUES(frequency_id),
-            name = name,
+            slug = slug,
+            name = VALUES(name),
             description = VALUES(description),
             benefit_synopsis = VALUES(benefit_synopsis),
             is_common = VALUES(is_common),
@@ -338,7 +341,7 @@ def prepare_recommended_durations_data(durations, engagement_levels):
 
     for category, practices in practice_data.items():
         for practice in practices:    
-            practice_id = practice_id_lookup[practice['name']]
+            practice_id = practice_id_lookup[practice['slug']]
            
             if 'recommended_durations' in practice:
 
@@ -378,6 +381,6 @@ def execute_recommended_duration_seed(values):
         db.query_db(query, value)
 
 def fetch_practice_ids():
-    query = "SELECT id, name FROM practices"
+    query = "SELECT id, slug FROM practices"
     results = db.query_db(query)
-    return {result['name']: result['id'] for result in results}
+    return {result['slug']: result['id'] for result in results}

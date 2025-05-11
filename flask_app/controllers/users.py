@@ -5,8 +5,8 @@ from flask_app.models.user import User
 from database.seed import (
     seed_misc_practice_data,
     seed_practices,
-    seed_routine_template,
-    seed_routines,
+    seed_routine_block_templates,
+    seed_routine_blocks,
     seed_surveys,
     seed_goals
 )
@@ -40,13 +40,13 @@ def seed_route():
     seed_surveys.user_survey_seed()
     seed_misc_practice_data.seed_misc_practice_data()
     seed_practices.seed_practices()
-    seed_routines.seed_routine_data()
+    seed_routine_blocks.seed_routine_data()
     seed_goals.goal_seed()
     
 
     # seed_routine_template.seed_routine_templates()
 
-    return render_template("dashboard/new_user.html")
+    return render_template("onboarding/new_user.html")
 
 
 @app.get("/testseed")
@@ -55,11 +55,11 @@ def test_seed_route():
     This route is for testing seed functions independently.
     """
     seed_practices.seed_practices()
-    seed_routines.seed_routine_data()
+    seed_routine_blocks.seed_routine_data()
     # seed_goals.goal_seed()
     # seed_routines.seed_routine_data()
 
-    return render_template("/dashboard/new_user.html")
+    return render_template("/onboarding/new_user.html")
 
 
 @app.get("/login")

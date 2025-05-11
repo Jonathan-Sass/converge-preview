@@ -5,7 +5,7 @@ from typing import List
 
 from flask_app.models.user import User
 from flask_app.models.user_response import UserResponse
-from flask_app.models.routine_template import RoutineTemplate
+from flask_app.models.routine_block_template import RoutineBlockTemplate
 from flask_app.models.routine_block import RoutineBlock
 from flask_app.models.practice import Practice
 
@@ -49,8 +49,8 @@ class Routine:
               ur.notes AS routine_notes,
               ur.created_at AS routine_created_at,
               ur.updated_at AS routine_updated_at,
-              urp.routine_id AS practice_routine_id,
-              urp.position,
+              urbp.routine_block_id AS user_routine_block_practice_routine_block_id,
+              urbp.position,
               rb.id AS routine_block_id,
               rb.name AS routine_block_name,
               rb.slug AS routine_block_slug,
@@ -73,15 +73,15 @@ class Routine:
             FROM
               user_routines ur
             LEFT JOIN 
-              user_routine_practices urp ON ur.id = urp.routine_id
+              user_routine_block_practices urbp ON ur.id = urbp.routine_block_id
             LEFT JOIN
-              routine_blocks rb ON urp.routine_block_id = rb.id
+              routine_blocks rb ON urbp.routine_block_id = rb.id
             LEFT JOIN 
-              practices p ON urp.practice_id = p.id
+              practices p ON urbp.practice_id = p.id
             LEFT JOIN
               practice_categories pc ON p.practice_category_id = pc.id
             LEFT JOIN
-              durations d ON urp.duration_id = d.id
+              durations d ON urbp.duration_id = d.id
             LEFT JOIN
               impact_ratings ir ON p.impact_rating_id = ir.id
             LEFT JOIN

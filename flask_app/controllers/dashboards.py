@@ -4,6 +4,8 @@ from pprint import pprint
 
 from flask_app.models.user import User
 from flask_app.models.routine import Routine
+from flask_app.models.routine_block import RoutineBlock
+from flask_app.models.user_routine_block_practice import UserRoutineBlockPractice
 from flask_app.models.goal import Goal
 from flask_app.models.flex_task import FlexTask
 from flask_app.models.user_response import UserResponse
@@ -79,9 +81,9 @@ def dashboard_intro():
     if not user_responses:
         return redirect("/surveys/user-objectives")
 
-    return render_template("/dashboard/dashboard_intro.html", priority_order = priority_order, user_responses = user_responses)
+    return render_template("/onboarding/dashboard_intro.html", priority_order = priority_order, user_responses = user_responses)
 
-@app.get("/dashboard/intro/digital-disconnect-map")
+@app.get("/dashboard/intro/digital-disconnect-block")
 def dashboard_intro_digital_disconnect():
   """
     Render the introductory dashboard page to set initial digital disconnects.
@@ -91,7 +93,14 @@ def dashboard_intro_digital_disconnect():
       return redirect("/")
 
   user_id = user.id
-  routine_block_data = Routine.find_routines_by_user_id(user_id)
+
+  # Process digital disconnect responses to select a template
+  block_slug = "digital-disconnect-map"
+  block_template_slug = UserResponse.process_responses_for_routine_block_template_selection(user, block_slug)
+  UserRoutineBlockPractice.save_user_routine_block_practices_from_block_template_slug(user, block_template_slug)
+
+  # Load data for dashboard
+  routine_data = Routine.find_routines_by_user_id(user_id)
   goal_data = Goal.find_goals_with_milestones_and_action_items_by_user_id(user_id)
   flex_task_goal_ids = FlexTask.find_flex_tasks_goal_ids_by_user_id(user_id)
   flex_task_data = FlexTask.assemble_flex_task_data_by_goal_id(flex_task_goal_ids, goal_data)
@@ -106,7 +115,7 @@ def dashboard_intro_digital_disconnect():
 
   dashboard_data = {
       "user": user,
-      "routine_blocks": routine_block_data,
+      "routines": routine_data,
       "goals": goal_data,
       "filtered_goals": filtered_goal_data,
       "flex_tasks": flex_task_data,
