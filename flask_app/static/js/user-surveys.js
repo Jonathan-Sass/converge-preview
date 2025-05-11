@@ -97,7 +97,8 @@ nextButton.addEventListener('click', (event) => {
       });
       
       if (response.ok) {
-        alert('Quiz submitted successfully!');
+        // alert('Quiz submitted successfully!');
+        
         // Optionally, navigate to a results page or reset the form
       } else {
         alert('Failed to submit the quiz.');
