@@ -3,6 +3,7 @@ from flask import session, logging
 from pprint import pprint
 
 from flask_app.models.user import User
+from flask_app.models.routine_block_template import RoutineBlockTemplate
 
 class UserResponse:
     db = connectToMySQL("converge_schema")
@@ -74,68 +75,30 @@ class UserResponse:
 
         return responses
 
+    def hyphen_to_snake(hyphen_slug):
+        return
 
 # METHODS FOR MAPPING USER RESPONSES TO ROUTINE BLOCK TEMPLATES
-    def map_user_traits(user_responses):
-      user_traits = {}
-
-      for question in user_responses:
-        slug = question.question_slug
-        question_type = question.type
-
-        if not slug or not question_type:
-          continue
-         
-        if question_type in ["yes-no", "boolean"]:
-          user_traits[slug] = {"type": "exact"}
-        
-        # TODO: Add relevant question types to list below to ensure adequate representation of proximity-based answers
-        elif question_type in ["guided_choice", "satisfaction", "scale"]:
-          max_score = max(
-             (a.get("answer_value", 0) for a in question.get("answers", [])),
-             default = 1
-          )
-          user_traits[slug] = {"type": "proximity", "max_score": max_score}
-        
-         # Optional: add custom scoring types
-        # elif q_type == "select-any":
-        #     user_traits[slug] = {"type": "multi-match", "max_score": 1}
-
-        return user_traits
-      
-    def map_template_traits(user_responses):
-        
-      return
-
-    def map_user_response_to_routine_block_templates(user_responses, subcategory_slug):
-      """
-        Determine which routine template to recommend based on user responses.
-
-        Args:
-          user_responses (List[UserResponse]): User responses for a specific subcategory.
-          subcategory_slug (str): Slug identifying which mapping logic to apply.
-
-        Returns:
-          str or Tuple[str, bool]: Name of the recommended routine template or a tuple including the name and a flag (e.g., for day-map).
-        """
-      
-      print("***map_user_response_to_routine_template***")
-      
-      subcategory_processors = {
-        "user-orientation": UserResponse.process_user_orientation,
-        # Note: Day map also returns a variable for route selection and thus is called separately/omitted from this list.
-        # "day-map": UserResponse.process_am_routine_map,
-        "discipline-motivation-focus map": UserResponse.process_discipline_motivation_focus,
-        "value-map": UserResponse.process_value_map,
-      }
-
-      processor_function = subcategory_processors.get(subcategory_slug)
-
-      if processor_function:
-        return processor_function(user_responses)
-      else:
-        raise ValueError(f"Unkown subcategory: {subcategory_slug}")
-  
+    
+    # def map_user_responses(user_responses):
+    #   """
+    #     Converts a list of UserResponse objects into a snake_case dict of {question_slug: answer_value}.
+    #     Handles both single-value and multi-select answers.
+    #   """
+    #   mapped = {}
+    #   for response in user_responses:
+    #       slug = hyphen_to_snake(response.question_slug)
+    #       value = response.answer_value
+    #       if slug in mapped:
+    #           # assume it's a multi-select and append
+    #           if isinstance(mapped[slug], list):
+    #               mapped[slug].append(value)
+    #           else:
+    #               mapped[slug] = [mapped[slug], value]
+    #       else:
+    #           mapped[slug] = value
+    #   return mapped
+    
     def score_trait(user_value, template_value, trait_meta):
       if trait_meta["type"] == "proximity":
         return trait_meta["max_score"] - abs(user_value - template_value)
@@ -146,128 +109,96 @@ class UserResponse:
       else:
         return 0
 
-
-    def process_am_routine_map(user_responses):
+    def extract_response_values(user_responses):
       """
-        Analyze responses from the Day Map to recommend a morning routine.
+        Converts a list of UserResponse objects into a dict mapping question_slug → answer_value(s).
+        Handles both single and multi-response questions.
+      """
+      response_map = {}
 
-        Args:
-            user_responses (List[UserResponse]): The responses collected from the day map.
+      for response in user_responses:
+          slug = response.question_slug
+          val = response.answer_value
 
-        Returns:
-            Tuple[str, bool]: Recommended routine template name and a flag indicating whether
-                              the user already has a morning routine.
-      """ 
-      print("***process_am_routine_map***")
-      
-      response_values = extract_response_values(user_responses)
-      user_traits = UserResponse.map_user_traits(user_responses)
-      template_traits = UserResponse.map_template_traits(user_responses)
-      existing_routine_status = UserResponse.has_existing_morning_routine(response_values)
-      
-      
-      # Set default values until seeding and scoring logic is complete
-      recommended_digital_disconnect_template = "keeping-it-real"
-      recommended_core_system_primer_template = "basic-primer-walk"
-      recommended_core_system_builder_template = "resilience-circuit"
-      recommended_auxiliary_templates = []
-      recommended_routine_template_name = "The Grounded Start"
-      recommended_routine_template_slug = None
-      existing_routine_status = False
-      score = 0;
-      
-      
+          if slug in response_map:
+              # Promote to list if not already
+              if not isinstance(response_map[slug], list):
+                  response_map[slug] = [response_map[slug]]
+              response_map[slug].append(val)
+          else:
+              response_map[slug] = val
 
-      # Prototype for proximity-based scoring system using User Trait Profile
-      # TODO: FINISH IT!
-      user_traits = {
-         "am_routine_check": response_values.get("am-routine-check", 0),
-         "habit_implementation_history": response_values.get("habit-implementation-history", 3),
-         "digital_hygiene": response_values.get("digital-hygiene", 0),
-         "fuel_and_hydration": response_values.get("fuel-and-hydration"),
-         "midday_recovery": response_values.get("midday-recovery"),
-         "digital_detox_willingness": response_values.get("digital-detox-willingness"),
-         "exercise_style_preferences": response_values.get("exercise-style-preferences"),
-         "gaming_practice_interest": response_values.get("gaming-practice-interest"),
-         "social_life_satisfaction": response_values.get("social-life-satisfaction"),
-         "social_connection_priority": response_values.get("social-connection-priority"),
-         "am_spiritual_practices": response_values.get("am-spiritual-practices"),
-         "creative_activity_frequency": response_values.get("creative-activity-frequency"),
-         "productivity_block_preferences": response_values.get("productivity-block-preference"),
-         "mindset_primer_usage": response_values.get("mindset-primer-usage")
-      }
-      am_routine_status = response_values.get("am_routine_check")
+      return response_map
 
-      if am_routine_status:
-        if am_routine_status <= 1:
-          recommended_routine_template_slug = "core-reset"
-        else:
-          for trait, trait_meta in user_traits.items():
-            user_value = user_traits.get(trait)
-            template_value = template_traits.get(trait)
+    def select_digital_disconnect_template(user_responses):
+      mapped_responses = UserResponse.extract_response_values(user_responses)
 
-            if user_value is None or template_value is None:
-              continue
-            
-            score += UserResponse.score_trait(user_value, template_value, trait_meta)
-
-
-      existing_routines_check = response_values.get("existing-routines-check")
-      existing_am_routines_satisfaction = response_values.get("existing-am-routines-satisfaction")
-      am_routine_time_availability = response_values.get("am-routine-availability")
-      daily_movement_check = response_values.get("daily-movement-check")
-      exercise_frequency = response_values.get("exercise-frequency")
-      exercise_timing = response_values.get("exercise-timing")
-      am_focus_block_check = response_values.get("am-focus-block-check")
-      hobbies_check = response_values.get("hobbies-check")
-      hobbies_types = response_values.get("hobbies-types")
-      work_schedule_flexibility = response_values.get("work-schedule-flexibility")
-      evening_routine_check = response_values.get("evening-routine-check")
-      existing_pm_routines_satisfaction = response_values.get("existing-pm-routines-satisfaction")
-      pm_routine_time_availability = response_values.get("pm-routine-time-availability")
-      social_wellness_check = response_values.get("social-wellness-check")
-
-
-          # TODO: Outsource routine Template selection to another function?
-
-      # ADD TIME CONSTRAINT TO AUTO SELECT STARTER ROUTINES FOR USERS WITH LESS THAN 10 MINUTES FOR AM HABITS?
-
-      if existing_routines_check is not None and existing_am_routines_satisfaction is not None:
+      relationship = mapped_responses.get("tech-use-and-attitude", 0)
+      phone_checks = mapped_responses.get("impulsive-phone-checks", 0)
+      screen_fatigue = mapped_responses.get("screen-fatigue-awareness", 0)
+      top_pain_points = mapped_responses.get("pain-point-top-2", [])
+      is_boundary_curious = mapped_responses.get("digital-boundary-check", None)
+      pain_points = mapped_responses.get("pain-point-identification", [])
+      if not isinstance(top_pain_points, list):
+         top_pain_points = [top_pain_points]
         
-        #  User has a morning routine but is not satisfied with it
-        if existing_routines_check != 0 and existing_am_routines_satisfaction < 2:
-          
-          if daily_movement_check is not None and exercise_timing is not None and am_focus_block_check is not None:
-            
-            # User exercises in the morning, and has a morning focus block
-            if exercise_timing == 1 and am_focus_block_check > 0:
-              #  User is at least moderately active
-              if daily_movement_check >=3:
-                recommended_routine_template_name = "Peak Performance Start"
-            
-              # User is lightly active
-              if daily_movement_check < 3:
-                recommended_routine_template_name = "Energized Focus"
 
-          existing_routine_status = True
-         
+      # Strong doomscrolling + desire to change
+      if 0 in top_pain_points and relationship <= 2:
+          return "social-scroll-reset"
 
-      if existing_routines_check:
-        
-        # User does not have an existing morning routine
-        if existing_routines_check == 0:
+      # Phone anxiety or compulsive behavior
+      if 4 in top_pain_points or (1 in top_pain_points and phone_checks >= 2):
+          return "micro-break-reset"
 
-          if daily_movement_check is not None and am_focus_block_check is not None:
-          
-            # User moves daily and has a morning focus block
-            if daily_movement_check == 1 and am_focus_block_check >= 1:
-              recommended_routine_template_name = "Active Focus Start"
-           
-          existing_routine_status = False
+      # Deep fatigue, overwhelm, or trouble sleeping
+      if 3 in pain_points or screen_fatigue == 3:
+          return "digital-detox-lite"
 
-      # TODO: Ready for business logic to filter based on responses.
+      # News-specific frustration
+      if 4 == is_boundary_curious:
+          return "news-limits"
+      if 0 in top_pain_points and 4 not in pain_points and 3 <= relationship <= 4:
+          return "news-light-boundaries"
 
-      return recommended_routine_template_name, existing_routine_status
+      # Seeking structured, productive breaks
+      if is_boundary_curious in [0, 2, 5] and phone_checks >= 2:
+          return "focus-block-boundaries"
+
+      # Moderate use and wants to try limits (not deep distress)
+      if is_boundary_curious in [1, 3] or relationship == 2:
+          return "keepin-it-real"
+
+      # Not ready to commit
+      if is_boundary_curious == 6:
+          return "micro-break-reset"
+
+      # Fallback for cautious or minimal-response users
+      return "keepin-it-real"
+
+
+    def select_core_primers_template(user_responses):
+      return
+    
+    def select_core_builders_template(user_responses):
+      return
+
+    def process_responses_for_routine_block_template_selection(user_id, block_slug):
+       responses = UserResponse.find_user_responses_by_user_id_and_subcategory_slug(user_id, block_slug)
+
+       logic_map = {
+          "digital-disconnect-map": UserResponse.select_digital_disconnect_template,
+          "core-primers-map": UserResponse.select_core_primers_template,
+          "core-builders-map": UserResponse.select_core_builders_template
+       }
+
+       if block_slug in logic_map:
+          # Returns slug string of routine_block_template, due to differences in downstream
+          return logic_map[block_slug](responses)
+       else:
+          raise ValueError(f"No template selector registered for block: {block_slug}")
+
+   
 
 
     def process_discipline_motivation_focus(user_response):
@@ -299,98 +230,7 @@ class UserResponse:
 
 
     # ALSO DEPRECATED? CAN'T FIND REFERENCE TO IT ELSEWHERE IN CODE BASE, WAS LOCATED IN user_survey.py
-    @classmethod
-    def find_user_response_by_user_id_and_question_id(cls, survey_question_id):
-        """
-        Checks if the current user has already submitted a response to a specific question.
-
-        Args:
-            survey_question_id (int): ID of the survey question to check.
-
-        Returns:
-            list[dict] | None: The user response if found, otherwise None.
-        """
-        query = """
-                SELECT 
-                    user_id, 
-                    survey_question_id
-                FROM
-                    user_responses
-                WHERE 
-                    user_id= %(user_id)s
-                AND
-                    survey_question_id = %(survey_question_id)s;
-                """
-        user_response_data = {
-            'user_id': session['user_id'], 
-            'survey_question_id': survey_question_id
-        }
-        
-        return UserResponse.db(query, user_response_data)
-
-    #TODO: REMOVE - DEPRECATED FOR SCALABLE/FLEXIBLE map_user_responses_to_routine_template and process_map methods
-    @staticmethod
-    def process_responses_for_routine_template_selection(responses):
-        """
-        Legacy logic to determine a routine template from early survey structure.
-
-        Args:
-            responses (List[UserResponse]): A list of user responses.
-
-        Returns:
-            str or None: Name of selected routine template or None.
-        """
-
-        if not responses:
-            print("No responses to process")
-            return None
-
-        for response in responses:
-            pprint(response)
-
-        subcategory_slug = responses[0].subcategory_slug
-
-        if subcategory_slug == "getting-to-know-you":
-            routine_template_name = UserResponse.select_routine_template_from_getting_to_know_you_responses(responses)
-            return routine_template_name
-
-        return
-
-    @staticmethod
-    def select_routine_template_from_getting_to_know_you_responses(responses):
-        """
-        Legacy routine selector based on getting-to-know-you responses.
-
-        Args:
-            responses (List[UserResponse]): A list of user responses.
-
-        Returns:
-            str: Name of the recommended routine template.
-        """
-        # Set default template
-        recommended_routine_template = "Balanced Start"
-
-        response_values = {
-            response.question_slug: response.answer_value for response in responses
-        }
-
-        # TODO: Change to match-case syntax.
-        if response_values.get("adhd-self-assessment") >= 2:
-            if response_values.get("current-activity-level") == 4:
-                recommended_routine_template = "Momentum Builder"
-                return recommended_routine_template
-            elif response_values.get("satisfaction-relationships") < 2:
-                recommended_routine_template = "Connected Start"
-                return recommended_routine_template
-            else:
-                recommended_routine_template = "Energized Focus"
-                return recommended_routine_template
-
-        if response_values.get("current-activity-level") == 4:
-            recommended_routine_template = "Peak Performance Start"
-            return recommended_routine_template
-
-        return recommended_routine_template
+   
 
     @classmethod
     def process_user_responses_to_save(cls, collected_answers):
@@ -463,10 +303,101 @@ class UserResponse:
             logging.error("Exception details:", exc_info=True)  # Log full traceback
             return False
 
-def extract_response_values(user_responses):
-        return {
-          response.question_slug: response.answer_value for response in user_responses
-        }
+#  @classmethod
+#     def find_user_response_by_user_id_and_question_id(cls, survey_question_id):
+#         """
+#         Checks if the current user has already submitted a response to a specific question.
+
+#         Args:
+#             survey_question_id (int): ID of the survey question to check.
+
+#         Returns:
+#             list[dict] | None: The user response if found, otherwise None.
+#         """
+#         query = """
+#                 SELECT 
+#                     user_id, 
+#                     survey_question_id
+#                 FROM
+#                     user_responses
+#                 WHERE 
+#                     user_id= %(user_id)s
+#                 AND
+#                     survey_question_id = %(survey_question_id)s;
+#                 """
+#         user_response_data = {
+#             'user_id': session['user_id'], 
+#             'survey_question_id': survey_question_id
+#         }
+        
+#         return UserResponse.db(query, user_response_data)
+
+
+# def map_user_response_to_routine_block_templates(user_responses, subcategory_slug):
+    #   """
+    #     Determine which routine template to recommend based on user responses.
+
+    #     Args:
+    #       user_responses (List[UserResponse]): User responses for a specific subcategory.
+    #       subcategory_slug (str): Slug identifying which mapping logic to apply.
+
+    #     Returns:
+    #       str or Tuple[str, bool]: Name of the recommended routine template or a tuple including the name and a flag (e.g., for day-map).
+    #     """
+      
+    #   print("***map_user_response_to_routine_template***")
+      
+    #   subcategory_processors = {
+    #     "user-orientation": UserResponse.process_user_orientation,
+    #     # Note: Day map also returns a variable for route selection and thus is called separately/omitted from this list.
+    #     # "day-map": UserResponse.process_am_routine_map,
+    #     "discipline-motivation-focus map": UserResponse.process_discipline_motivation_focus,
+    #     "value-map": UserResponse.process_value_map,
+    #   }
+
+    #   processor_function = subcategory_processors.get(subcategory_slug)
+
+    #   if processor_function:
+    #     return processor_function(user_responses)
+    #   else:
+    #     raise ValueError(f"Unkown subcategory: {subcategory_slug}")
+
+
+    # @staticmethod
+    # def select_routine_template_from_getting_to_know_you_responses(responses):
+    #     """
+    #     Legacy routine selector based on getting-to-know-you responses.
+
+    #     Args:
+    #         responses (List[UserResponse]): A list of user responses.
+
+    #     Returns:
+    #         str: Name of the recommended routine template.
+    #     """
+    #     # Set default template
+    #     recommended_routine_template = "Balanced Start"
+
+    #     response_values = {
+    #         response.question_slug: response.answer_value for response in responses
+    #     }
+
+    #     # TODO: Change to match-case syntax.
+    #     if response_values.get("adhd-self-assessment") >= 2:
+    #         if response_values.get("current-activity-level") == 4:
+    #             recommended_routine_template = "Momentum Builder"
+    #             return recommended_routine_template
+    #         elif response_values.get("satisfaction-relationships") < 2:
+    #             recommended_routine_template = "Connected Start"
+    #             return recommended_routine_template
+    #         else:
+    #             recommended_routine_template = "Energized Focus"
+    #             return recommended_routine_template
+
+    #     if response_values.get("current-activity-level") == 4:
+    #         recommended_routine_template = "Peak Performance Start"
+    #         return recommended_routine_template
+
+    #     return recommended_routine_template
 
     # def fetch_user_and_responses_by_subcategory_slug(user, subcategory_slug_string):
     #     query = """
@@ -509,3 +440,157 @@ def extract_response_values(user_responses):
     #         print("No responses found for user or subcategory_id")
 
     #     return user
+
+# def map_user_traits(user_responses):
+    #   user_traits = {}
+
+    #   for question in user_responses:
+    #     slug = question.question_slug
+    #     question_type = question.type
+
+    #     if not slug or not question_type:
+    #       continue
+         
+    #     if question_type in ["yes-no", "boolean"]:
+    #       user_traits[slug] = {"type": "exact"}
+        
+    #     # TODO: Add relevant question types to list below to ensure adequate representation of proximity-based answers
+    #     elif question_type in ["guided_choice", "satisfaction", "scale"]:
+    #       max_score = max(
+    #          (a.get("answer_value", 0) for a in question.get("answers", [])),
+    #          default = 1
+    #       )
+    #       user_traits[slug] = {"type": "proximity", "max_score": max_score}
+        
+    #      # Optional: add custom scoring types
+    #     # elif q_type == "select-any":
+    #     #     user_traits[slug] = {"type": "multi-match", "max_score": 1}
+
+    #     return user_traits
+      
+    # def map_template_traits(user_responses):
+        
+    #   return
+
+     # def process_am_routine_map(user_responses):
+    #   """
+    #     Analyze responses from the Day Map to recommend a morning routine.
+
+    #     Args:
+    #         user_responses (List[UserResponse]): The responses collected from the day map.
+
+    #     Returns:
+    #         Tuple[str, bool]: Recommended routine template name and a flag indicating whether
+    #                           the user already has a morning routine.
+    #   """ 
+    #   print("***process_am_routine_map***")
+      
+    #   response_values = extract_response_values(user_responses)
+    #   user_traits = UserResponse.map_user_traits(user_responses)
+    #   template_traits = UserResponse.map_template_traits(user_responses)
+    #   existing_routine_status = UserResponse.has_existing_morning_routine(response_values)
+      
+      
+    #   # Set default values until seeding and scoring logic is complete
+    #   recommended_digital_disconnect_template = "keeping-it-real"
+    #   recommended_core_system_primer_template = "basic-primer-walk"
+    #   recommended_core_system_builder_template = "resilience-circuit"
+    #   recommended_auxiliary_templates = []
+    #   recommended_routine_template_name = "The Grounded Start"
+    #   recommended_routine_template_slug = None
+    #   existing_routine_status = False
+    #   score = 0;
+      
+      
+
+    #   # Prototype for proximity-based scoring system using User Trait Profile
+    #   # TODO: FINISH IT!
+    #   user_traits = {
+    #      "am_routine_check": response_values.get("am-routine-check", 0),
+    #      "habit_implementation_history": response_values.get("habit-implementation-history", 3),
+    #      "digital_hygiene": response_values.get("digital-hygiene", 0),
+    #      "fuel_and_hydration": response_values.get("fuel-and-hydration"),
+    #      "midday_recovery": response_values.get("midday-recovery"),
+    #      "digital_detox_willingness": response_values.get("digital-detox-willingness"),
+    #      "exercise_style_preferences": response_values.get("exercise-style-preferences"),
+    #      "gaming_practice_interest": response_values.get("gaming-practice-interest"),
+    #      "social_life_satisfaction": response_values.get("social-life-satisfaction"),
+    #      "social_connection_priority": response_values.get("social-connection-priority"),
+    #      "am_spiritual_practices": response_values.get("am-spiritual-practices"),
+    #      "creative_activity_frequency": response_values.get("creative-activity-frequency"),
+    #      "productivity_block_preferences": response_values.get("productivity-block-preference"),
+    #      "mindset_primer_usage": response_values.get("mindset-primer-usage")
+    #   }
+    #   am_routine_status = response_values.get("am_routine_check")
+
+    #   if am_routine_status:
+    #     if am_routine_status <= 1:
+    #       recommended_routine_template_slug = "core-reset"
+    #     else:
+    #       for trait, trait_meta in user_traits.items():
+    #         user_value = user_traits.get(trait)
+    #         template_value = template_traits.get(trait)
+
+    #         if user_value is None or template_value is None:
+    #           continue
+            
+    #         score += UserResponse.score_trait(user_value, template_value, trait_meta)
+
+
+    #   existing_routines_check = response_values.get("existing-routines-check")
+    #   existing_am_routines_satisfaction = response_values.get("existing-am-routines-satisfaction")
+    #   am_routine_time_availability = response_values.get("am-routine-availability")
+    #   daily_movement_check = response_values.get("daily-movement-check")
+    #   exercise_frequency = response_values.get("exercise-frequency")
+    #   exercise_timing = response_values.get("exercise-timing")
+    #   am_focus_block_check = response_values.get("am-focus-block-check")
+    #   hobbies_check = response_values.get("hobbies-check")
+    #   hobbies_types = response_values.get("hobbies-types")
+    #   work_schedule_flexibility = response_values.get("work-schedule-flexibility")
+    #   evening_routine_check = response_values.get("evening-routine-check")
+    #   existing_pm_routines_satisfaction = response_values.get("existing-pm-routines-satisfaction")
+    #   pm_routine_time_availability = response_values.get("pm-routine-time-availability")
+    #   social_wellness_check = response_values.get("social-wellness-check")
+
+
+    # # 
+    #       # TODO: Outsource routine Template selection to another function?
+
+    #   # ADD TIME CONSTRAINT TO AUTO SELECT STARTER ROUTINES FOR USERS WITH LESS THAN 10 MINUTES FOR AM HABITS?
+
+    #   if existing_routines_check is not None and existing_am_routines_satisfaction is not None:
+        
+    #     #  User has a morning routine but is not satisfied with it
+    #     if existing_routines_check != 0 and existing_am_routines_satisfaction < 2:
+          
+    #       if daily_movement_check is not None and exercise_timing is not None and am_focus_block_check is not None:
+            
+    #         # User exercises in the morning, and has a morning focus block
+    #         if exercise_timing == 1 and am_focus_block_check > 0:
+    #           #  User is at least moderately active
+    #           if daily_movement_check >=3:
+    #             recommended_routine_template_name = "Peak Performance Start"
+            
+    #           # User is lightly active
+    #           if daily_movement_check < 3:
+    #             recommended_routine_template_name = "Energized Focus"
+
+    #       existing_routine_status = True
+         
+
+    #   if existing_routines_check:
+        
+    #     # User does not have an existing morning routine
+    #     if existing_routines_check == 0:
+
+    #       if daily_movement_check is not None and am_focus_block_check is not None:
+          
+    #         # User moves daily and has a morning focus block
+    #         if daily_movement_check == 1 and am_focus_block_check >= 1:
+    #           recommended_routine_template_name = "Active Focus Start"
+           
+    #       existing_routine_status = False
+
+    #   # TODO: Ready for business logic to filter based on responses.
+
+    #   return recommended_routine_template_name, existing_routine_status

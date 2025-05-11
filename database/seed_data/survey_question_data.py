@@ -219,6 +219,98 @@ survey_question_data = [
         ]
     },
     {
+      "subcategory_slug": "digital-disconnect-map",
+      "questions": [
+        {
+          "question_slug": "tech-use-and-attitude",
+          "question_text": "How would you describe your current relationship with technology and screen time?",
+          "type": "guided-choice",
+          "answers": [
+            { "answer_text": "I use devices constantly and don’t really try to limit it", "answer_value": 0 },
+            { "answer_text": "I use tech a lot, and I know it’s too much — I’d like to change it", "answer_value": 1 },
+            { "answer_text": "I try to set limits, but it’s a struggle to follow through", "answer_value": 2 },
+            { "answer_text": "I’ve started building some boundaries, but there’s room to improve", "answer_value": 3 },
+            { "answer_text": "I have strong digital boundaries and a healthy rhythm with screens", "answer_value": 4 }
+          ]
+        },
+        {
+          "question_slug": "intro-digital-environment",
+          "type": "prompt",
+          "question_text": "The way we use technology each day shapes more than our schedule — it affects our focus, mood, energy, and even how connected we feel to ourselves."
+        },
+        {
+          "question_slug": "impulsive-phone-checks",
+          "question_text": "How often do you find yourself checking your phone without really meaning to?",
+          "type": "guided-choice",
+          "answers": [
+            { "answer_text": "Rarely — it’s a conscious choice", "answer_value": 0 },
+            { "answer_text": "A few times a day", "answer_value": 1 },
+            { "answer_text": "Often — it’s a reflex", "answer_value": 2 },
+            { "answer_text": "Constantly — I barely notice I’m doing it", "answer_value": 3 }
+          ]
+        },
+        {
+          "question_slug": "prompt-brain-on-screens",
+          "type": "prompt",
+          "question_text": "Apps and platforms are designed to grab your attention. Each ping or swipe can trigger a tiny hit of dopamine — your brain’s reward signal. Over time, this can shift how we experience boredom, focus, or rest."
+        },
+        {
+          "question_slug": "screen-fatigue-awareness",
+          "question_text": "After spending a lot of time online, how do you usually feel?",
+          "type": "guided-choice",
+          "answers": [
+            { "answer_text": "Refreshed and focused", "answer_value": 0 },
+            { "answer_text": "A bit tired or scattered", "answer_value": 1 },
+            { "answer_text": "Mentally foggy or overstimulated", "answer_value": 2 },
+            { "answer_text": "Exhausted, anxious, or drained", "answer_value": 3 },
+            { "answer_text": "No real difference", "answer_value": 4 }
+          ]
+        },
+        {
+          "question_slug": "prompt-digital-fatigue-explained",
+          "type": "prompt",
+          "question_text": "When we’re constantly switching focus or taking in rapid information, our nervous system can stay in a low-grade overdrive. That’s why even passive scrolling can leave us feeling more drained than relaxed."
+        },
+        {
+          "question_slug": "pain-point-identification",
+          "question_text": "Which of these screen-related challenges have shown up in your life?",
+          "type": "select-any",
+          "answers": [
+            { "answer_text": "Doom-scrolling news or social media", "answer_value": 0 },
+            { "answer_text": "Picking up my phone without meaning to", "answer_value": 1 },
+            { "answer_text": "Feeling drained after screen time", "answer_value": 2 },
+            { "answer_text": "Trouble winding down or sleeping", "answer_value": 3 },
+            { "answer_text": "Feeling anxious when I don’t have my phone", "answer_value": 4 },
+            { "answer_text": "None of these apply to me", "answer_value": 5 }
+          ]
+        },
+        {
+          "question_slug": "pain-point-top-2",
+          "question_text": "Which two feel like the biggest stressors or obstacles for you right now?",
+          "type": "select-2"
+        },
+        {
+          "question_slug": "prompt-relationship-reset",
+          "type": "prompt",
+          "question_text": "Digital boundaries aren’t about quitting tech — they’re about being more intentional. Even small changes, like screen-free mornings or app time limits, can free up attention and energy for the things that matter most."
+        },
+        {
+          "question_slug": "digital-boundary-check",
+          "question_text": "Which of these shifts feels most helpful or doable for you right now?",
+          "type": "select-one",
+          "answers": [
+            { "answer_text": "Screen-free first hour of the day", "answer_value": 0 },
+            { "answer_text": "No social media after a set time", "answer_value": 1 },
+            { "answer_text": "Intentional phone-free time blocks", "answer_value": 2 },
+            { "answer_text": "Limits or breaks from social media", "answer_value": 3 },
+            { "answer_text": "Limits or breaks from news", "answer_value": 4 },
+            { "answer_text": "App usage limits or time tracking", "answer_value": 5 },
+            { "answer_text": "I’m not ready to make a change right now", "answer_value": 6 }
+          ]
+        }
+      ]
+    },
+    {
       "subcategory_slug": "am-routine-map-og",
       "questions": [
         {
@@ -363,93 +455,6 @@ survey_question_data = [
             {"answer_text": "I’d like a few options and some guidance", "answer_value": 1},
             {"answer_text": "I’m ready for a routine, just not overwhelming", "answer_value": 2},
             {"answer_text": "Give me structure — I thrive with a full plan", "answer_value": 3}
-          ]
-        }
-      ]
-    },
-    {
-      "subcategory_slug": "digital-disconnect-map",
-      "questions": [
-        {
-          "question_slug": "intro_digital_environment",
-          "type": "prompt",
-          "question_text": "Let’s talk about your digital environment. How we spend our attention today shapes our brain tomorrow. Social media, endless tabs, and constant pings can rewire us to crave stimulation — but it’s possible to reclaim control."
-        },
-        {
-          "question_slug": "awareness_check",
-          "question_text": "On a typical day, how often do you check your phone without realizing it?",
-          "type": "guided-choice",
-          "answers": [
-            { "answer_text": "Rarely", "answer_value": 0 },
-            { "answer_text": "A few times", "answer_value": 1 },
-            { "answer_text": "All the time", "answer_value": 2 },
-            { "answer_text": "It feels automatic", "answer_value": 3 }
-          ]
-        },
-        {
-          "question_slug": "prompt_brain_on_screens",
-          "type": "prompt",
-          "question_text": "Your brain wasn’t built for this. Research by Dr. Anna Lembke and Dr. Andrew Huberman shows that compulsive screen use overstimulates the dopamine system, leading to cycles of fatigue, irritability, and attention loss."
-        },
-        {
-          "question_slug": "screen_fatigue_awareness",
-          "question_text": "Have you noticed it’s harder to focus or stay motivated after heavy screen use?",
-          "type": "guided-choice",
-          "answers": [
-            { "answer_text": "Yes, frequently", "answer_value": 3 },
-            { "answer_text": "Occasionally", "answer_value": 2 },
-            { "answer_text": "Not really", "answer_value": 1 },
-            { "answer_text": "I’m not sure", "answer_value": 0 }
-          ]
-        },
-        {
-          "question_slug": "prompt_pleasure_pain_cycle",
-          "type": "prompt",
-          "question_text": "The pleasure/pain seesaw is real. Repeated hits of dopamine from scrolling can reduce your brain’s baseline, leaving you less motivated and more anxious when not stimulated. (Dweck, Lembke, Huberman)"
-        },
-        {
-          "question_slug": "dopamine_deficit_symptoms",
-          "question_text": "Which of the following have you experienced more often in the last 6 months?",
-          "type": "select-any",
-          "answers": [
-            { "answer_text": "Doom-scrolling without meaning to", "answer_value": 0 },
-            { "answer_text": "Feeling restless when not on your phone", "answer_value": 1 },
-            { "answer_text": "Difficulty enjoying quiet, non-digital time", "answer_value": 2 },
-            { "answer_text": "None of these", "answer_value": 3 }
-          ]
-        },
-        {
-          "question_slug": "prompt_attention_is_life",
-          "type": "prompt",
-          "question_text": "Your attention is your life. Johann Hari says: 'The truth is, you are not weak. Your attention has been stolen.' But you can take it back — and build habits that restore presence, focus, and depth."
-        },
-        {
-          "question_slug": "digital_emotional_values",
-          "question_text": "What would you most like to feel more of in your daily life?",
-          "type": "select-one",
-          "answers": [
-            { "answer_text": "Clarity", "answer_value": 0 },
-            { "answer_text": "Calm", "answer_value": 1 },
-            { "answer_text": "Creativity", "answer_value": 2 },
-            { "answer_text": "Discipline", "answer_value": 3 },
-            { "answer_text": "Meaning", "answer_value": 4 }
-          ]
-        },
-        {
-          "question_slug": "prompt_one_boundary_change",
-          "type": "prompt",
-          "question_text": "Even one boundary can change everything. Whether it’s screen-free mornings, no social media after 8pm, or app limits, small shifts help restore your brain’s motivation system."
-        },
-        {
-          "question_slug": "digital_boundary_readiness",
-          "question_text": "What kind of digital boundary are you open to experimenting with this week?",
-          "type": "select-one",
-          "answers": [
-            { "answer_text": "Screen-free first hour of the morning", "answer_value": 0 },
-            { "answer_text": "No social media after 8pm", "answer_value": 1 },
-            { "answer_text": "1 hour of focused, phone-free work per day", "answer_value": 2 },
-            { "answer_text": "App time limits", "answer_value": 3 },
-            { "answer_text": "Not ready yet — just exploring", "answer_value": 4 }
           ]
         }
       ]
