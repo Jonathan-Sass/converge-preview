@@ -91,7 +91,7 @@ def survey_digital_disconnect_map():
 
   return render_template("/surveys/digital_disconnect_map.html")
   
-@app.get("/surveys/core-primers-map")
+@app.get("/surveys/core-primer-map")
 def survey_core_system_primers_map():
   """
   Displays the Core System Primers Map for onboarding.
@@ -100,9 +100,9 @@ def survey_core_system_primers_map():
   if not user:
     return redirect("/")
 
-  return render_template("/surveys/core_primers.html")
+  return render_template("/surveys/core_primer-map.html")
 
-@app.get("/surveys/core-builders-map")
+@app.get("/surveys/core-builder-map")
 def survey_core_system_builders_map():
   """
   Displays the Core System Builders Map for onboarding.
@@ -111,7 +111,7 @@ def survey_core_system_builders_map():
   if not user:
     return redirect("/")
 
-  return render_template("/surveys/core_builders.html")
+  return render_template("/surveys/core_builder_map.html")
 
 @app.get("/surveys/day-map")
 def survey_day_map():

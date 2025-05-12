@@ -179,7 +179,7 @@
                                       </div>
                                       <div class="d-flex gap-2">
                                         <button class="btn btn-sm btn-outline-success" onclick="markAccomplished('{{ practice.id }}')">Complete</button>
-                                        <button class="btn btn-sm btn-outline-warning">Edit Practice</button>
+                                        <button class="btn btn-sm btn-outline-warning">Edit</button>
                                       </div>
                                     </li>
                                   {% endfor %}
@@ -550,7 +550,7 @@
         disableInteraction: true,
         exitOnOverlayClick: false
       }).oncomplete(function () {
-        window.location.href = '/surveys/core-primers-map';
+        window.location.href = '/surveys/core-primer-map';
       }).start();
     });
   </script>
