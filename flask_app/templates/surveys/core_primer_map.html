@@ -10,7 +10,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intro.js/7.2.0/introjs.css" integrity="sha512-4OzqLjfh1aJa7M33b5+h0CSx0Q3i9Qaxlrr1T/Z+Vz+9zs5A7GM3T3MFKXoreghi3iDOSbkPMXiMBhFO7UBW/g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='img/Enso_Blue_and_Black.jpg') }}">
   <script defer src="/static/js/user-surveys.js"></script>
-  <title>User Interest Survey</title>
+  <title>Core System Primers</title>
 </head>
 
 <body>
@@ -81,8 +81,8 @@
       </div>
     </nav>
     <header class="card m-auto w-75 my-5 p-3 text-center bg-light shadow opacity-75">
-      <h1 class="display-2 mb-3 text-primary">Interest Map</h1>
-      <p class="fs-4">Let's take a look at your interests so we can start setting some goals in a category that matters to you.</p>
+      <h1 class="display-2 mb-3 text-primary">Digitally Disconnecting</h1>
+      <p class="fs-4">Taking a look at the data on technology and the human system.</p>
     </header>
     <!-- Content and Sidebar Div-->
      <div class="parallax-bg"></div>
@@ -94,21 +94,19 @@
           <hr class="border border-1 border-dark">
           
           <nav class="nav nav-pills flex-column gap-2">
-            <a class="nav-link active solid-white-bg" href="#onboarding">New User Onboarding</a>
+            <a class="nav-link active solid-white-bg" href="#onboarding">Fueling the Engine</a>
             <div class="progress mb-3 mt-1" style="height: 1rem;">
               <div id="progress-bar" class="progress-bar bg-primary" role="progressbar" style="width: 40%;"
                 aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
             </div>
-            <a class="nav-link solid-white-bg" href="#user-orientation">Orientation</a>
-            <a class="nav-link solid-white-bg" href="#dashboard-intro">Dashboard Welcome</a>
-            <a class="nav-link solid-white-bg" href="#day-map">Day Map</a>
-            <a class="nav-link solid-white-bg" href="#am-routine-builder">AM Routine Intro</a>
-            <a class="nav-link solid-white-bg" href="#dashboard-intro-am-practices">Dashboard AM Routine Intro</a>
-            <a class="nav-link active solid-white-bg" href="#interest-map">Interest Map</a>
+            <a class="nav-link solid-white-bg" href="#user-objectives">Objectives</a>
+            <a class="nav-link solid-white-bg" href="#digital-disconnect-map">Digital Disconnect Map</a>
+            <a class="nav-link active solid-white-bg" href="#core-primer-map">Core System Primer Map</a>
             <div class="progress mb-3 mt-1" style="height: 1rem;">
               <div id="survey-progress-bar" class="progress-bar bg-primary" role="progressbar" style="width: 0%;"
                 aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
             </div>
+            <a class="nav-link solid-white-bg" href="#core-builder-map">Core System Builder Map</a>
             <a class="nav-link solid-white-bg" href="#discipline-motivation-focus-map">Discipline, Motivation & Focus Map</a>
             <a class="nav-link solid-white-bg" href="#set-goals-intro">Goal Setting Intro</a>
             <a class="nav-link solid-white-bg" href="#value-map">Value Map</a>
@@ -128,10 +126,10 @@
           
                             <!-- data-subcategory needs to match subcategory.subcategory_slug for question set retrieval-->
                             <!-- ID matches subcategory.subcategory_slug for sidebar scrollspy -->
-            <div class="card shadow p-2 solid-white-bg" id="interest-map" data-subcategory="interest-map">
+            <div class="card shadow p-2 solid-white-bg" id="core-primer-map" data-subcategory="core-primer-map">
               <div class="card-body">
                 <div class="card-title">
-                  <h2 class="display-6 text-primary">What gets you up in the morning?</h2>
+                  <h2 class="display-6 text-primary">Why digital boundaries matter.</h2>
                   <hr class="border border-1 border-secondary">
                   <!-- <p class="card-text lead" id="survey-intro">In the following section, we will get to know a bit
                     about your big picture goals/needs.</p> -->
@@ -153,7 +151,7 @@
                   <button class="btn btn-lg btn-primary d-none" id="back-btn">Back</button>
                   <button class="btn btn-lg btn-primary d-none" id="next-btn">Next</button>
                   <button class="btn btn-lg btn-primary d-none" id="finish-btn">Submit Answers</button>
-                  <a href="/surveys/discipline-motivation-focus-map" class="btn btn-primary btn-lg d-none" id="next-section-btn">Next Section</a>
+                  <a href="/dashboard/intro/core-primer-block" class="btn btn-primary btn-lg d-none" id="next-section-btn">Next Section</a>
                 </div>
               </div>
             </div>
@@ -175,22 +173,23 @@
     introJs().setOptions({
         steps: [
             {
-                element: '#survey_category',
-                title: 'Interest Map',
-                intro: 'We will use the interest map to start your goal setting in an area relevant to you.',
-                position: 'top' 
-            },
-            {
                 element: '#start-btn',
-                title: 'Onward we go!',
-                intro: "We will have a couple quizzes in a row here before we set some goals.  Let's do this!",
-                position: 'top'
+                title: 'Digital Disconnection',
+                intro: 'We will start by looking at our relationships as humans with technology.',
+                position: 'auto',
+                nextOnTargetClick: true,
+                disableInteraction: false,
+                tootipClass: 'no-buttons-tooltip' 
             },
         ],
-        tooltipClass: 'introCustomTooltip',
+        // tooltipClass: 'introCustomTooltip',
         // showProgress: true, // Adds progress dots to indicate step sequence
         disableInteraction: true // Prevents accidental clicks while onboarding
     }).start();
+  })
+
+  document.querySelector('#start-btn').addEventListener('click', () => {
+    introJs().exit();
   })
 </script>
 
