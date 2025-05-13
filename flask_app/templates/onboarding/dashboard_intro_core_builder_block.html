@@ -110,7 +110,7 @@
     <div class="container my-4">
       <div class="card shadow text-center opacity-75 p-4 mb-4 m-auto w-75">
         <div class="card-body">
-          <h1 class="card-title text-primary fs-1 text-capitalize ">Welcome, {{ session.get('first_name', 'to Converge') }}!</h1>
+          <!-- <h1 class="card-title text-primary fs-1 text-capitalize ">Welcome, {{ session.get('first_name', 'to Converge') }}!</h1> -->
           <h2 class="display-5 text-primary">Dashboard</h2>
           <!-- <p class="lead text-secondary">.</p> -->
 
@@ -162,8 +162,8 @@
                         {% if block_practices %}
                           {% set block_color =
                             "bg-dark-subtle bg-opacity-25" if routine_block.slug == "digital-disconnect" else
-                            "bg-success-subtle bg-opacity-25" if routine_block.slug == "core-builders" else
-                            "bg-primary-subtle bg-opacity-25" if routine_block.slug == "core-primers" else
+                            "bg-success-subtle bg-opacity-25" if routine_block.slug == "core-builder" else
+                            "bg-primary-subtle bg-opacity-25" if routine_block.slug == "core-primer" else
                             "bg-light"
                           %}
 
@@ -497,34 +497,12 @@
       introJs().setOptions({
         steps: [
           {
-            title: 'Welcome to your Dashboard!',
-            intro: "This is your home base.  For now, we'll take a look at the basics.",
+            element: '#morning-routine',
+            title: 'Core System Builders',
+            intro: 'The Core System Builders Block is about injecting your morning with habits that will help you build a resilient mind and body.',
             position: 'top'
           },
-          {
-            element: '#your-day-tab',
-            title: 'Your Day Tab',
-            intro: 'Here we bring together any actionable items from your goals, practices, intentions, etc.',
-            position: 'top'
-          },
-          {
-            element: '#goals-tab',
-            title: 'Goals Tab',
-            intro: 'The "Goals" tab is your place to manage your goals and any associated milestones/action items. ',
-            position: 'top'
-          },
-          {
-            element: '#metrics-tab',
-            title: 'Metrics Tab',
-            intro: 'The metrics tab is where you can view progress and various metrics about your activities.  However, take them lightly.  In the words of Theodore Roosevelt - "Comparison is the thief of joy"',
-            position: 'top'
-          },
-          {
-            element: '#social-tab',
-            title: 'Social Tab',
-            intro: 'View and Join social groups, clubs, and more.  Find other humans with similar goals, interests, reading lists, etc., and some day soon, location!',
-            position: 'top'
-          }
+          
         ],
         tooltipClass: 'introCustomTooltip',
         disableInteraction: true,

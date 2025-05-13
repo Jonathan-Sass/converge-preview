@@ -110,7 +110,7 @@
     <div class="container my-4">
       <div class="card shadow text-center opacity-75 p-4 mb-4 m-auto w-75">
         <div class="card-body">
-          <h1 class="card-title text-primary fs-1 text-capitalize ">Welcome, {{ session.get('first_name', 'to Converge') }}!</h1>
+          <!-- <h1 class="card-title text-primary fs-1 text-capitalize ">Welcome, {{ session.get('first_name', 'to Converge') }}!</h1> -->
           <h2 class="display-5 text-primary">Dashboard</h2>
           <!-- <p class="lead text-secondary">.</p> -->
 
@@ -519,34 +519,35 @@
       introJs().setOptions({
         steps: [
           {
-            title: 'Welcome to your Dashboard!',
-            intro: "This is your home base.  For now, we'll take a look at the basics.",
+            element: '#morning-routine',
+            title: 'Routine Blocks',
+            intro: 'We have created the "block" system in the spirit of creating an easily customizable system for tweaking your routines.  Hope you like it!',
             position: 'top'
           },
           {
-            element: '#your-day-tab',
-            title: 'Your Day Tab',
-            intro: 'Here we bring together any actionable items from your goals, practices, intentions, etc.',
+            element: '#morning-routine',
+            title: 'Disconnecting From The Digital World',
+            intro: 'Here is your first block!  The Digital Disconnect Block is intended to help you take back your time from your devices.',
             position: 'top'
           },
-          {
-            element: '#goals-tab',
-            title: 'Goals Tab',
-            intro: 'The "Goals" tab is your place to manage your goals and any associated milestones/action items. ',
-            position: 'top'
-          },
-          {
-            element: '#metrics-tab',
-            title: 'Metrics Tab',
-            intro: 'The metrics tab is where you can view progress and various metrics about your activities.  However, take them lightly.  In the words of Theodore Roosevelt - "Comparison is the thief of joy"',
-            position: 'top'
-          },
-          {
-            element: '#social-tab',
-            title: 'Social Tab',
-            intro: 'View and Join social groups, clubs, and more.  Find other humans with similar goals, interests, reading lists, etc., and some day soon, location!',
-            position: 'top'
-          }
+          // {
+          //   element: '#goals-tab',
+          //   title: 'Goals Tab',
+          //   intro: 'The "Goals" tab is your place to manage your goals and any associated milestones/action items. ',
+          //   position: 'top'
+          // },
+          // {
+          //   element: '#metrics-tab',
+          //   title: 'Metrics Tab',
+          //   intro: 'The metrics tab is where you can view progress and various metrics about your activities.  However, take them lightly.  In the words of Theodore Roosevelt - "Comparison is the thief of joy"',
+          //   position: 'top'
+          // },
+          // {
+          //   element: '#social-tab',
+          //   title: 'Social Tab',
+          //   intro: 'View and Join social groups, clubs, and more.  Find other humans with similar goals, interests, reading lists, etc., and some day soon, location!',
+          //   position: 'top'
+          // }
         ],
         tooltipClass: 'introCustomTooltip',
         disableInteraction: true,

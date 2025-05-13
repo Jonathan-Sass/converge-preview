@@ -110,7 +110,7 @@
     <div class="container my-4">
       <div class="card shadow text-center opacity-75 p-4 mb-4 m-auto w-75">
         <div class="card-body">
-          <h1 class="card-title text-primary fs-1 text-capitalize ">Welcome, {{ session.get('first_name', 'to Converge') }}!</h1>
+          <!-- <h1 class="card-title text-primary fs-1 text-capitalize ">Welcome, {{ session.get('first_name', 'to Converge') }}!</h1> -->
           <h2 class="display-5 text-primary">Dashboard</h2>
           <!-- <p class="lead text-secondary">.</p> -->
 
@@ -499,11 +499,11 @@
       introJs().setOptions({
         steps: [
           {
-            title: 'Welcome to your Dashboard!',
-            intro: "This is your home base.  For now, we'll take a look at the basics.",
+            element: '#morning-routine',
+            title: 'Core System Primers',
+            intro: 'The Core System Primer Block is a super fast, 5 minute triplet that will give you a surprisingly potent supercharging to shake off that morning fog.',
             position: 'top'
           },
-          
         ],
         tooltipClass: 'introCustomTooltip',
         disableInteraction: true,
