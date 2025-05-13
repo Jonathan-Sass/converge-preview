@@ -2,8 +2,8 @@ survey_subcategory_data = {
   "onboarding": [
         {"subcategory_slug": "user-objectives", "name": "User Objectives"},
         {"subcategory_slug": "digital-disconnect-map", "name": "Digital Disconnect Map"},
-        {"subcategory_slug": "core-primers-map", "name": "Core System Primers Map"},
-        {"subcategory_slug": "core-builders-map", "name": "Core System Builder Map"},
+        {"subcategory_slug": "core-primer-map", "name": "Core System Primer Map"},
+        {"subcategory_slug": "core-builder-map", "name": "Core System Builder Map"},
 
 
 

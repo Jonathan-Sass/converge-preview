@@ -176,19 +176,92 @@ class UserResponse:
       return "keepin-it-real"
 
 
-    def select_core_primers_template(user_responses):
-      return
+    def select_core_primer_template(user_responses):
+      mapped_responses = UserResponse.extract_response_values(user_responses)
+
+      cold = mapped_responses.get("core-primer-cold-readiness", "basic")      # values: "basic", "intermediate", "advanced"
+      style = mapped_responses.get("core-primer-light-movement-style", "beverage")  # values: "beverage", "walk", "run"
+
+      # Build slug dynamically
+      slug = f"{cold}-primer"
+
+      if style == "walk":
+          slug += "-walk"
+      elif style == "run":
+          slug += "-sun-run"
+
+      return slug
+
     
-    def select_core_builders_template(user_responses):
-      return
+    def select_core_builder_template(user_responses):
+      # Map user responses to extracted values
+      mapped_responses = UserResponse.extract_response_values(user_responses)
+
+      # Extract relevant response values
+      meditation_style = mapped_responses.get("meditation-preference", None)
+      movement_type = mapped_responses.get("movement-preference", None)
+      calm_or_energy = mapped_responses.get("calm-or-energy", None)
+      strength_vs_mobility = mapped_responses.get("strength-vs-mobility", None)
+      desired_intensity = mapped_responses.get("desired-intensity", None)
+      reflection_preference = mapped_responses.get("reflection-practice", None)
+      routine_focus = mapped_responses.get("routine-focus", None)
+
+      # Handle cases where response values may be missing or in an unexpected format
+      if meditation_style is None or movement_type is None or calm_or_energy is None:
+          return "reset-and-rise"  # Fallback template if responses are incomplete or invalid
+
+      # Default case for low-intensity, balanced routines
+      if calm_or_energy == "Calming and Grounding" and desired_intensity == "Low-Intensity, Grounding":
+          return "reset-and-rise"  # For those who prefer a calming start and low effort
+
+      # User preferring high-energy movement with meditation:
+      if calm_or_energy == "Energy-Boosting Movement" and meditation_style == "Breath-Based Calm":
+          if desired_intensity == "High-Intensity, Full Body Workout":
+              return "hiit-and-sit"  # High-energy and quick workouts with meditation integration
+
+      # Balance of strength and mobility for resilience and strength training
+      if strength_vs_mobility == "Balance of Strength and Mobility" and routine_focus == "Strength and Resilience":
+          return "resilience-stack"  # Balanced, mixed focus on physical resilience and mobility
+
+      # Focusing on mindful, flowing movement and clarity
+      if meditation_style == "Mindfulness Meditation" and movement_type == "Mindful Movement with Focus":
+          return "mindful-movement"  # Mindful movement with deep presence and focus
+
+      # Seeking high energy and full-body challenge
+      if desired_intensity == "High-Intensity, Full Body Workout" and routine_focus == "High-Energy, Full-Body Challenge":
+          return "hiit-and-sit"  # High-intensity focus for full-body workout and energy boost
+
+      # Prioritizing mobility work for flexibility and joint health
+      if strength_vs_mobility == "Prioritize Mobility and Flexibility" and routine_focus == "Focused, Mindful Movement":
+          return "reset-and-rise"  # Gentle, grounding mobility with mindfulness and reflective practice
+
+      # Prioritizing strength with an integrated energy boost
+      if strength_vs_mobility == "Prioritize Strength Training" and desired_intensity == "High-Intensity, Full Body Workout":
+          return "strong-start"  # Full-body strength workout with grounding meditation
+
+      # General routine for balanced strength and mindfulness
+      if strength_vs_mobility == "Equal Focus on Both Strength and Mobility" and routine_focus == "Reset and Restore":
+          return "reset-and-rise"  # Calm, restorative routine with balanced body strength and mobility focus
+
+      # Reflection preference integration
+      if reflection_preference == "Yes, a Gratitude Practice":
+          return "mindful-movement"  # Reflective gratitude practice included in the mindful movement routine
+
+      # Fallback for moderate responses (don't fully commit but want a balanced experience)
+      if meditation_style == "Breath-Based Calm" or desired_intensity == "Balanced, with Movement and Stillness":
+          return "reset-and-rise"  # General balanced routine that integrates movement and calming practices
+
+      # Fallback to a mindful practice if no clear preference
+      return "mindful-movement"  # Default to mindful movement if no clear decision
+
 
     def process_responses_for_routine_block_template_selection(user_id, block_slug):
        responses = UserResponse.find_user_responses_by_user_id_and_subcategory_slug(user_id, block_slug)
 
        logic_map = {
           "digital-disconnect-map": UserResponse.select_digital_disconnect_template,
-          "core-primers-map": UserResponse.select_core_primers_template,
-          "core-builders-map": UserResponse.select_core_builders_template
+          "core-primer": UserResponse.select_core_primer_template,
+          "core-builder": UserResponse.select_core_builder_template
        }
 
        if block_slug in logic_map:

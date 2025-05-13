@@ -148,7 +148,7 @@
                 <h4 class="display-6 mb-2 text-center text-primary">Your Day at a Glance</h4>
               </div>
               <!-- AM Routine -->
-              <div id="morning-routine" class="card shadow border border-dark mb-1">
+              <div id="morning-routine" class="card shadow mb-1">
                 <div class="card-body">
                   <div class="card-title d-flex justify-content-between">
                     <h5 class="card-title text-primary">Morning Routine</h5>
@@ -156,40 +156,40 @@
                   </div>
                   <hr class="border border-dark mb-3 m-auto w-100">
                   {% if routine_blocks %}
-                      {% for routine_block in routine_blocks %}
-                        {% if routine_block.type == "AM" %}
-                          {% set block_practices = routine_block.practices %}
-                          {% if block_practices %}
-                            {% set block_color =
-                              "bg-dark-subtle bg-opacity-25" if routine_block.slug == "digital-disconnect" else
-                              "bg-success-subtle bg-opacity-25" if routine_block.slug == "core-builders" else
-                              "bg-primary-subtle bg-opacity-25" if routine_block.slug == "core-primers" else
-                              "bg-light"
-                            %}
+                    {% for routine_block in routine_blocks %}
+                      {% if routine_block.type == "AM" %}
+                        {% set block_practices = routine_block.practices %}
+                        {% if block_practices %}
+                          {% set block_color =
+                            "bg-dark-subtle bg-opacity-25" if routine_block.slug == "digital-disconnect" else
+                            "success-bg-subtle bg-opacity-25" if routine_block.slug == "core-builders" else
+                            "primary-bg-subtle bg-opacity-25" if routine_block.slug == "core-primers" else
+                            "bg-light"
+                          %}
 
-                            <div class="card mb-3 {{ block_color }} border-0 shadow-sm">
-                              <div class="card-body p-2">
-                                <h6 class="fw-bold text-uppercase small mb-2">{{ routine_block.name }}</h6>
-                                <ul class="list-group">
-                                  {% for practice in block_practices %}
-                                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                                      <div>
-                                        <span class="fw-bold">{{ practice.name }} - <small class="text-muted">{{ practice.impact_rating_description }}</small></span>
-                                        <small class="text-muted d-block">{{ practice.benefit_synopsis }}</small>
-                                      </div>
-                                      <div class="d-flex gap-2">
-                                        <button class="btn btn-sm btn-outline-success" onclick="markAccomplished('{{ practice.id }}')">Complete</button>
-                                        <button class="btn btn-sm btn-outline-warning">Edit</button>
-                                      </div>
-                                    </li>
-                                  {% endfor %}
-                                </ul>
-                              </div>
+                          <div class="card mb-3 {{ block_color }} border-0 shadow-sm">
+                            <div class="card-body p-2">
+                              <h6 class="fw-bold text-uppercase small mb-2">{{ routine_block.name }}</h6>
+                              <ul class="list-group">
+                                {% for practice in block_practices %}
+                                  <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <div>
+                                      <span class="fw-bold">{{ practice.name }} - <small class="text-muted">{{ practice.impact_rating_description }}</small></span>
+                                      <small class="text-muted d-block">{{ practice.benefit_synopsis }}</small>
+                                    </div>
+                                    <div class="d-flex gap-2">
+                                      <button class="btn btn-sm btn-outline-success" onclick="markAccomplished('{{ practice.id }}')">Complete</button>
+                                      <button class="btn btn-sm btn-outline-warning">Edit</button>
+                                    </div>
+                                  </li>
+                                {% endfor %}
+                              </ul>
                             </div>
-                          {% endif %}
+                          </div>
                         {% endif %}
-                      {% endfor %}
-                    {% endif %}
+                      {% endif %}
+                    {% endfor %}
+                  {% endif %}
                 </div>
               </div>
               
@@ -352,72 +352,74 @@
                   <hr class="border border-dark mb-3 m-auto w-100">
                   
                   <div class="accordion" id="priorityAccordion">
-                    {% for priority, label in priority_order.items() %}
-                      {% set section_id = 'priority-' ~ priority %}
-                      {% set goals_for_priority = goals | selectattr("priority", "equalto", priority) | selectattr("is_active") | list %}
-                      
-                      {% if goals_for_priority %}
-                      <div class="accordion-item mb-2">
-                        <h2 class="accordion-header" id="heading-{{ section_id }}">
-                          <button class="accordion-button collapsed fw-bold text-uppercase" type="button"
-                            data-bs-toggle="collapse" data-bs-target="#collapse-{{ section_id }}"
-                            aria-expanded="false" aria-controls="collapse-{{ section_id }}">
-                            Goal Priority: {{ label }}
-                          </button>
-                        </h2>
-                        <div id="collapse-{{ section_id }}" class="accordion-collapse collapse"
-                          aria-labelledby="heading-{{ section_id }}" data-bs-parent="#priorityAccordion">
-                          <div class="accordion-body">
-                            
-                            {% for goal in goals_for_priority %}
-                            <ul class="list-group mb-3" id="goal-{{ goal.id }}">
-                              <li class="list-group-item list-group-item-primary">
-                                <div class="d-flex justify-content-between align-items-center">
-                                  <strong>{{ goal.name }}</strong>
-                                  <button class="btn btn-sm btn-outline-primary"
-                                    data-action="add-to-flex"
-                                    data-goal-id="{{ goal.id }}">
-                                      Add to Flex Tasks
-                                    </button>
-                                </div>
-                              </li>
-                  
-                              {% if goal.milestones %}
-                                {% for milestone in goal.milestones %}
-                                  {% if milestone.completed_at == None %}
-                                    {% if milestone.action_items %}
-                                    <!-- Milestone heading -->
-                                    <li class="list-group-item bg-light">
-                                      <strong>Milestone: {{ milestone.name }}</strong>
-                                    </li>
-                                  
-                                      {% for action_item in milestone.action_items %}
-                                        <li class="list-group-item ps-4 d-flex justify-content-between align-items-center">
-                                          <span>{{ action_item.name }}</span>
-                                          <button class="btn btn-sm btn-outline-success" onclick="markAccomplished('{{ action_item.id }}')">
+                    {% if priority_order %}
+                      {% for priority, label in priority_order.items() %}
+                        {% set section_id = 'priority-' ~ priority %}
+                        {% set goals_for_priority = goals | selectattr("priority", "equalto", priority) | selectattr("is_active") | list %}
+                        
+                        {% if goals_for_priority %}
+                        <div class="accordion-item mb-2">
+                          <h2 class="accordion-header" id="heading-{{ section_id }}">
+                            <button class="accordion-button collapsed fw-bold text-uppercase" type="button"
+                              data-bs-toggle="collapse" data-bs-target="#collapse-{{ section_id }}"
+                              aria-expanded="false" aria-controls="collapse-{{ section_id }}">
+                              Goal Priority: {{ label }}
+                            </button>
+                          </h2>
+                          <div id="collapse-{{ section_id }}" class="accordion-collapse collapse"
+                            aria-labelledby="heading-{{ section_id }}" data-bs-parent="#priorityAccordion">
+                            <div class="accordion-body">
+                              
+                              {% for goal in goals_for_priority %}
+                              <ul class="list-group mb-3" id="goal-{{ goal.id }}">
+                                <li class="list-group-item list-group-item-primary">
+                                  <div class="d-flex justify-content-between align-items-center">
+                                    <strong>{{ goal.name }}</strong>
+                                    <button class="btn btn-sm btn-outline-primary"
+                                      data-action="add-to-flex"
+                                      data-goal-id="{{ goal.id }}">
+                                        Add to Flex Tasks
+                                      </button>
+                                  </div>
+                                </li>
+                    
+                                {% if goal.milestones %}
+                                  {% for milestone in goal.milestones %}
+                                    {% if milestone.completed_at == None %}
+                                      {% if milestone.action_items %}
+                                      <!-- Milestone heading -->
+                                      <li class="list-group-item bg-light">
+                                        <strong>Milestone: {{ milestone.name }}</strong>
+                                      </li>
+                                    
+                                        {% for action_item in milestone.action_items %}
+                                          <li class="list-group-item ps-4 d-flex justify-content-between align-items-center">
+                                            <span>{{ action_item.name }}</span>
+                                            <button class="btn btn-sm btn-outline-success" onclick="markAccomplished('{{ action_item.id }}')">
+                                              Mark Done
+                                            </button>
+                                          </li>
+                                        {% endfor %}
+                                    
+                                      {% else %}
+                                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                                          <span>Milestone: {{ milestone.name }}</span>
+                                          <button class="btn btn-sm btn-outline-success" onclick="markAccomplished('{{ milestone.id }}')">
                                             Mark Done
                                           </button>
                                         </li>
-                                      {% endfor %}
-                                  
-                                    {% else %}
-                                      <li class="list-group-item d-flex justify-content-between align-items-center">
-                                        <span>Milestone: {{ milestone.name }}</span>
-                                        <button class="btn btn-sm btn-outline-success" onclick="markAccomplished('{{ milestone.id }}')">
-                                          Mark Done
-                                        </button>
-                                      </li>
+                                      {% endif %}
                                     {% endif %}
-                                  {% endif %}
-                                {% endfor %}
-                              {% endif %}
-                            </ul>
-                            {% endfor %}
+                                  {% endfor %}
+                                {% endif %}
+                              </ul>
+                              {% endfor %}
+                            </div>
                           </div>
                         </div>
-                      </div>
-                      {% endif %}
-                    {% endfor %}
+                        {% endif %}
+                      {% endfor %}
+                    {% endif %}
                   </div>
                 </div>
               </div>

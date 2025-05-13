@@ -145,7 +145,7 @@ def dashboard_intro_core_primer_block():
   user_id = user.id
 
   # Process digital disconnect responses to select a template
-  block_slug = "core-primer-map"
+  block_slug = "core-primer"
   block_template_slug = UserResponse.process_responses_for_routine_block_template_selection(user, block_slug)
   UserRoutineBlockPractice.save_user_routine_block_practices_from_block_template_slug(user, block_template_slug)
 
@@ -165,12 +165,12 @@ def dashboard_intro_core_primer_block():
   # flex_task_data = FlexTask.assemble_flex_task_data_by_goal_id(flex_task_goal_ids, goal_data)
   # filtered_goal_data = Goal.filter_flex_task_goals_from_goal_data(goal_data, flex_task_goal_ids)
 
-  # priority_order = {
-  #     1: "Urgent", 
-  #     2: "High", 
-  #     3: "Medium", 
-  #     4: "Low"
-  # }
+  priority_order = {
+      1: "Urgent", 
+      2: "High", 
+      3: "Medium", 
+      4: "Low"
+  }
 
   dashboard_data = {
       "user": user,
@@ -178,11 +178,60 @@ def dashboard_intro_core_primer_block():
   #     "goals": goal_data,
   #     "filtered_goals": filtered_goal_data,
   #     "flex_tasks": flex_task_data,
-  #     "priority_order": priority_order
+      "priority_order": priority_order
   }
 
   return render_template("/onboarding/dashboard_intro_core_primer_block.html", **dashboard_data)
 
+@app.get("/dashboard/intro/core-builder-block")
+def dashboard_intro_core_builder_block():
+  """
+    Render the introductory dashboard page to set initial digital disconnects.
+  """
+  user = User.get_logged_in_user()
+  if not user:
+      return redirect("/")
+
+  user_id = user.id
+
+  # Process digital disconnect responses to select a template
+  block_slug = "core-builder"
+  block_template_slug = UserResponse.process_responses_for_routine_block_template_selection(user, block_slug)
+  UserRoutineBlockPractice.save_user_routine_block_practices_from_block_template_slug(user, block_template_slug)
+
+  # Load data for dashboard
+  routine_block_data = RoutineBlock.find_routine_blocks_by_user_id(user_id)
+  print("*****routine_block_data in dashboard_intro_digital_disconnect")
+  for block in routine_block_data:
+    print("---- Routine Block ----")
+    pprint(vars(block))
+    if hasattr(block, "practices"):
+        print("---- Practices ----")
+        for practice in block.practices:
+            pprint(vars(practice))
+
+  # goal_data = Goal.find_goals_with_milestones_and_action_items_by_user_id(user_id)
+  # flex_task_goal_ids = FlexTask.find_flex_tasks_goal_ids_by_user_id(user_id)
+  # flex_task_data = FlexTask.assemble_flex_task_data_by_goal_id(flex_task_goal_ids, goal_data)
+  # filtered_goal_data = Goal.filter_flex_task_goals_from_goal_data(goal_data, flex_task_goal_ids)
+
+  priority_order = {
+      1: "Urgent", 
+      2: "High", 
+      3: "Medium", 
+      4: "Low"
+  }
+
+  dashboard_data = {
+      "user": user,
+      "routine_blocks": routine_block_data,
+  #     "goals": goal_data,
+  #     "filtered_goals": filtered_goal_data,
+  #     "flex_tasks": flex_task_data,
+      "priority_order": priority_order
+  }
+
+  return render_template("/onboarding/dashboard_intro_core_builder_block.html", **dashboard_data)
 
 @app.get("/dashboard/intro-am-practices")
 def dashboard_intro_am_practices():

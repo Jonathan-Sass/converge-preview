@@ -26,7 +26,7 @@ practice_categories = [
   },
   {
     "name": "Movement & Sports", 
-    "slug": "movement-sports", 
+    "slug": "movement-sport", 
     "description": "Physical activities that build strength, mobility, and resilience - including sport-specific training, flow-based movement, and active play.",
   },
   {
@@ -157,10 +157,41 @@ practice_subcategories = {
   ],
 
   "movement-sports": [
-
-  ],
-  "movement-sports": [
-
+    {
+      "name": "Aerobic Conditioning",
+      "slug": "aerobic-conditioning",
+      "description": "Practices that elevate heart rate and support cardiovascular endurance through steady or rhythmic activity."
+    },
+    {
+      "name": "Intervals & Circuits",
+      "slug": "intervals-circuits",
+      "description": "Timed or round-based workouts combining strength, cardio, or skill work in high-effort bursts."
+    },
+    {
+      "name": "Strength Training",
+      "slug": "strength-training",
+      "description": "Build muscular force, endurance, and coordination using resistance, load, or advanced bodyweight techniques."
+    },
+    {
+      "name": "Martial Arts & Calisthenics",
+      "slug": "martial-calisthenics",
+      "description": "Integrative practices combining martial skill with bodyweight strength, coordination, and discipline training."
+    },
+    {
+      "name": "Mobility & Flexibility",
+      "slug": "mobility-flexibility",
+      "description": "Enhance joint health, posture, and movement range through dynamic mobility and focused stretching."
+    },
+    {
+      "name": "Movement Classes & Flows",
+      "slug": "movement-classes-flows",
+      "description": "Structured, often expressive classes including yoga, Pilates, dance, and flow-based somatic movement."
+    },
+    {
+      "name": "Sports and Sport-Specific Skills",
+      "slug": "sport-skill-training",
+      "description": "Playing sports or drilling/training sport-specific skills."
+    }
   ],
   "physiological-regulation": [
 

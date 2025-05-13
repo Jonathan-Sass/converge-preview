@@ -100,7 +100,7 @@ def survey_core_system_primers_map():
   if not user:
     return redirect("/")
 
-  return render_template("/surveys/core_primer-map.html")
+  return render_template("/surveys/core_primer_map.html")
 
 @app.get("/surveys/core-builder-map")
 def survey_core_system_builders_map():

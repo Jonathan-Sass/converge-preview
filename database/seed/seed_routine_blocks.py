@@ -2,7 +2,7 @@ from flask_app.config.mysqlconnection import connectToMySQL
 import pymysql
 from pprint import pprint
 
-from database.seed_data.routine_data import routine_blocks
+from database.seed_data.routine_block_data import routine_blocks
 from database.seed.seed_routine_block_templates import seed_routine_block_templates
 
 db = connectToMySQL("converge_schema")

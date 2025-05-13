@@ -8,14 +8,14 @@ routine_blocks = [
   },
   {
     "name": "Core System Primers",
-    "slug": "core-primers",
+    "slug": "core-primer",
     "description": "Super easy, powerful core practices to reset and prime your mind-body system. (Hydration, Morning Sun, Stress Resilience)",
     "type": "AM",
     "icon_slug": "core-primers"
   },
   {
     "name": "Core System Builders",
-    "slug": "core-builders",
+    "slug": "core-builder",
     "description": "Practices that build and train your mind‑body system have been shown to boost mood, resilience, focus, and overall quality of life. (includes movement, mobility, meditation, etc.)",
     "type": "AM",
     "icon_slug": "core-builders"

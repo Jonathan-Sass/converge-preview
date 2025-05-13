@@ -228,7 +228,7 @@ def fetch_frequencies():
     else:
         raise RuntimeError("No frequencies found in the database.")
 
-def prepare_practice_data(db_categories, db_subcategories, frequencies):
+def prepare_practice_data(practice_categories, practice_subcategories, frequencies):
     """
     This function batches and flattens practice_data for seeding into the practices table
 
@@ -238,8 +238,8 @@ def prepare_practice_data(db_categories, db_subcategories, frequencies):
     """
 
     # Create lookup dictionaries for categories, subcategories, durations, and frequencies
-    category_lookup = {cat["slug"]: cat["id"] for cat in db_categories}
-    subcategory_lookup = {sc["slug"]: sc["id"] for sc in db_subcategories}
+    category_lookup = {cat["slug"]: cat["id"] for cat in practice_categories}
+    subcategory_lookup = {sc["slug"]: sc["id"] for sc in practice_subcategories}
     frequency_lookup = {freq['frequency_label']: freq['frequency_value'] for freq in frequencies}
 
     batched_data = []
@@ -266,7 +266,7 @@ def prepare_practice_data(db_categories, db_subcategories, frequencies):
                         "practice_category_id": practice_category_id,
                         "practice_subcategory_id": practice_subcategory_id,
                         "impact_rating_id": practice["impact_rating_id"],
-                        "difficulty_level_id": practice["difficulty_level_id"],
+                        "difficulty_level_id": practice.get("difficulty_level_id", 2),
                         "frequency_id": frequency_lookup.get(practice["frequency"], 1),
                         "slug": practice["slug"],
                         "name": pymysql.converters.escape_string(practice["name"]),
@@ -340,7 +340,7 @@ def prepare_recommended_durations_data(durations, engagement_levels):
     batched_recommended_durations = []
 
     for category, practices in practice_data.items():
-        for practice in practices:    
+        for practice in practices:
             practice_id = practice_id_lookup[practice['slug']]
            
             if 'recommended_durations' in practice:

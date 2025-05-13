@@ -70,8 +70,8 @@ def prepare_routine_block_templates(practices):
     # frequency_lookup = {freq["frequency_label"]: freq["id"] for freq in frequencies}
     routine_block_id_lookup = fetch_routine_block_id_lookup()
     practice_lookup = {practice["slug"]: practice["id"] for practice in practices}
-    print("*****practice_lookup in prepare_routine_block_templates")
-    pprint(practice_lookup)
+    # print("*****practice_lookup in prepare_routine_block_templates")
+    # pprint(practice_lookup)
 
     batched_routine_block_templates = []
     batched_incomplete_routine_block_template_practice_data = []

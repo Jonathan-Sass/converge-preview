@@ -297,7 +297,7 @@ survey_question_data = [
         {
           "question_slug": "digital-boundary-check",
           "question_text": "Which of these shifts feels most helpful or doable for you right now?",
-          "type": "select-one",
+          "type": "guided-choice",
           "answers": [
             { "answer_text": "Screen-free first hour of the day", "answer_value": 0 },
             { "answer_text": "No social media after a set time", "answer_value": 1 },
@@ -311,319 +311,195 @@ survey_question_data = [
       ]
     },
     {
-      "subcategory_slug": "am-routine-map-og",
+      "subcategory_slug": "core-primer-map",
       "questions": [
         {
-          "question_slug": "has-morning-routine",
-          "question_text": "Do you currently have a morning routine?",
+          "question_slug": "core-primer-intro",
+          "type": "prompt",
+          "question_text": "Core primers are short, science-backed morning routines built around hydration, cold exposure, and natural light or movement. They're designed to wake up your brain and body in about 5 minutes."
+        },
+        {
+          "question_slug": "core-primer-prompt-sun-walk",
+          "type": "prompt",
+          "question_text": "Getting outside within the first hour or two of waking can dramatically shift your energy, alertness, and sleep quality. Natural light — especially sunlight in your eyes — helps reset your internal clock, boosting morning wakefulness and supporting melatonin release later that night. And when you add movement — even just a short walk — it amplifies the effect. Forward motion and optic flow (what your eyes see as you move through space) also signal to your brain that it’s time to engage. This simple combo of sunlight + walking is one of the most powerful, overlooked ways to improve mood, metabolism, and mental clarity."
+        },
+        {
+          "question_slug": "core-primer-cold-readiness",
           "type": "guided-choice",
+          "question_text": "Which best describes your comfort with cold exposure in the morning?",
           "answers": [
-            {"answer_text": "No, every morning is different", "answer_value": 0},
-            {"answer_text": "A few inconsistent habits", "answer_value": 1},
-            {"answer_text": "A handful of consistent habits", "answer_value": 2},
-            {"answer_text": "Yes, a solid, reliable morning structure", "answer_value": 3}
+            { "answer_text": "I’ve never tried it or want to start gently", "answer_value": 0 },
+            { "answer_text": "I’m up for a cold rinse or shower", "answer_value": 1 },
+            { "answer_text": "Cold plunges or full showers are already part of my routine", "answer_value": 2 }
           ]
         },
         {
-          "question_slug": "satisfaction-with-routine",
-          "question_text": "Are you happy with your current morning routine?",
+          "question_slug": "core-primer-light-movement-style",
           "type": "guided-choice",
+          "question_text": "What feels most appealing after your cold exposure?",
           "answers": [
-            {"answer_text": "Not really, I need something new", "answer_value": 0},
-            {"answer_text": "It’s okay, but could be better", "answer_value": 1},
-            {"answer_text": "Mostly, yes", "answer_value": 2},
-            {"answer_text": "I love it and it works well for me", "answer_value": 3}
+            { "answer_text": "A calm moment with a warm drink and morning light", "answer_value": 0 },
+            { "answer_text": "A short outdoor walk in the sun", "answer_value": 1 },
+            { "answer_text": "A quick jog, workout, or run in the morning light", "answer_value": 2 }
           ]
         },
         {
-          "question_slug": "interested-in-resetting",
-          "question_text": "Would you be interested in adding simple practices that help reset and activate your system in the morning?",
-          "type": "guided-choice",
-          "answers": [
-            {"answer_text": "Not really", "answer_value": 0},
-            {"answer_text": "Maybe, if they’re easy", "answer_value": 1},
-            {"answer_text": "Yes, I’m curious", "answer_value": 2},
-            {"answer_text": "Absolutely — I want to feel more energized and aligned", "answer_value": 3}
-          ]
+          "question_slug": "core-primer-light-benefits",
+          "type": "prompt",
+          "question_text": "Getting morning sunlight (especially within the first hour or two of waking) helps reset your internal clock. This improves sleep quality, energy levels, and mood — and the benefits increase when you add forward movement like walking or running."
         },
         {
-          "question_slug": "morning-movement-preference",
-          "question_text": "Do you like to move in the morning — or is it something you’d like to start?",
+          "question_slug": "core-primer-hydration-check",
           "type": "guided-choice",
+          "question_text": "Do you usually drink water within 30 minutes of waking?",
           "answers": [
-            {"answer_text": "Not really my thing", "answer_value": 0},
-            {"answer_text": "I’d like to ease in with gentle movement or a walk", "answer_value": 1},
-            {"answer_text": "I enjoy yoga or light calisthenics", "answer_value": 2},
-            {"answer_text": "I like a full workout — cardio or strength training", "answer_value": 3}
-          ]
-        },
-        {
-          "question_slug": "interest-in-centering",
-          "question_text": "Do you feel better on mornings when you take a few moments to center yourself — mentally, emotionally, or spiritually?",
-          "type": "guided-choice",
-          "answers": [
-            {"answer_text": "Haven’t really tried it", "answer_value": 0},
-            {"answer_text": "Sometimes, if I have time", "answer_value": 1},
-            {"answer_text": "Yes, I notice a difference", "answer_value": 2},
-            {"answer_text": "Definitely — it grounds my whole day", "answer_value": 3}
-          ]
-        },
-        {
-          "question_slug": "spiritual-mindful-interest",
-          "question_text": "Are you interested in practices like meditation, breathwork, prayer, or reflection in the morning?",
-          "type": "guided-choice",
-          "answers": [
-            {"answer_text": "Not really my thing", "answer_value": 0},
-            {"answer_text": "A little bit, in theory", "answer_value": 1},
-            {"answer_text": "Yes, I’m open to trying", "answer_value": 2},
-            {"answer_text": "Definitely — it’s important to me", "answer_value": 3}
-          ]
-        },
-        {
-          "question_slug": "mental-prep-for-day",
-          "question_text": "Do you find value in mentally preparing for the day — like setting intentions, repeating affirmations, or visualizing how it’ll unfold?",
-          "type": "guided-choice",
-          "answers": [
-            {"answer_text": "Not something I think about", "answer_value": 0},
-            {"answer_text": "It might be helpful", "answer_value": 1},
-            {"answer_text": "Yes, I’ve done this and it helps", "answer_value": 2},
-            {"answer_text": "I already do something like this", "answer_value": 3}
-          ]
-        },
-        {
-          "question_slug": "personal-projects-am",
-          "question_text": "Do you make space in the morning for personal projects, writing, or a focused “deep work” block?",
-          "type": "guided-choice",
-          "answers": [
-            {"answer_text": "No — mornings are chaotic", "answer_value": 0},
-            {"answer_text": "Sometimes, when I’m lucky", "answer_value": 1},
-            {"answer_text": "I’d like to", "answer_value": 2},
-            {"answer_text": "Yes, I carve out time intentionally", "answer_value": 3}
-          ]
-        },
-        {
-          "question_slug": "morning-fueling",
-          "question_text": "What best describes your morning fueling routine?",
-          "type": "guided-choice",
-          "answers": [
-            {"answer_text": "I skip breakfast — not hungry", "answer_value": 0},
-            {"answer_text": "I skip breakfast — no time", "answer_value": 0},
-            {"answer_text": "Something quick or on the go", "answer_value": 1},
-            {"answer_text": "A light but balanced meal", "answer_value": 2},
-            {"answer_text": "A full, intentional breakfast", "answer_value": 3}
-          ]
-        },
-        {
-          "question_slug": "digital-boundaries",
-          "question_text": "Do you set boundaries around phone or screen use in the morning?",
-          "type": "guided-choice",
-          "answers": [
-            {"answer_text": "Not at all — I’m on my phone right away", "answer_value": 0},
-            {"answer_text": "I try, but it's inconsistent", "answer_value": 1},
-            {"answer_text": "I avoid screens for the first 30+ mins", "answer_value": 2},
-            {"answer_text": "I intentionally stay screen-free to start the day", "answer_value": 3}
-          ]
-        },
-        {
-          "question_slug": "morning-connection-impact",
-          "question_text": "Do you feel emotionally grounded after connecting with someone (or even a pet) in the morning?",
-          "type": "guided-choice",
-          "answers": [
-            {"answer_text": "I usually don’t think about it", "answer_value": 0},
-            {"answer_text": "I could see that helping", "answer_value": 1},
-            {"answer_text": "Yes, a little connection goes a long way", "answer_value": 2},
-            {"answer_text": "Absolutely — it’s essential to my mood", "answer_value": 3}
-          ]
-        },
-        {
-          "question_slug": "social-life-satisfaction",
-          "question_text": "Are you satisfied with the state of your current social or relational life?",
-          "type": "guided-choice",
-          "answers": [
-            {"answer_text": "I feel isolated or disconnected", "answer_value": 0},
-            {"answer_text": "It’s okay, but could use attention", "answer_value": 1},
-            {"answer_text": "I feel supported, mostly", "answer_value": 2},
-            {"answer_text": "Very fulfilled and connected", "answer_value": 3}
-          ]
-        },
-        {
-          "question_slug": "routine-intensity-preference",
-          "question_text": "Would you prefer to begin with small, easy wins — or dive into a fully structured routine if it felt meaningful and aligned?",
-          "type": "guided-choice",
-          "answers": [
-            {"answer_text": "I need something very simple to start", "answer_value": 0},
-            {"answer_text": "I’d like a few options and some guidance", "answer_value": 1},
-            {"answer_text": "I’m ready for a routine, just not overwhelming", "answer_value": 2},
-            {"answer_text": "Give me structure — I thrive with a full plan", "answer_value": 3}
+            { "answer_text": "Rarely", "answer_value": 0 },
+            { "answer_text": "Sometimes", "answer_value": 1 },
+            { "answer_text": "Most days", "answer_value": 2 },
+            { "answer_text": "Always — it’s a habit", "answer_value": 3 }
           ]
         }
       ]
     },
     {
-      "subcategory_slug": "am-routine-map",
+      "subcategory_slug": "core-builder-map",
       "questions": [
         {
-          "question_slug": "am-routine-check",
-          "question_text": "Which best describes your current morning self-care routine? (exercise, meditation, cold, sun exposure, etc.)",
+          "question_slug": "meditation-introduction",
+          "question_text": "Meditation is widely studied for its ability to reduce stress, improve focus, and enhance emotional well-being. When you meditate, you activate your parasympathetic nervous system, which helps lower your heart rate, reduce stress hormones like cortisol, and promote a sense of calm. Over time, meditation has been shown to improve attention, emotional regulation, and even brain function. Regular practice can also increase gray matter in areas of the brain involved in memory, learning, and emotional control. Which meditation style resonates most with you for your morning routine?",
+          "type": "prompt"
+        },
+        {
+          "question_slug": "meditation-preference",
+          "question_text": "Which meditation style do you prefer to start your day with?",
           "type": "guided-choice",
           "answers": [
-            { "answer_text": "The bare essentials.. (shower, breakfast, brush teeth if that)", "answer_value": 0 },
-            { "answer_text": "I have no set morning routine, it takes me a bit to get going.", "answer_value": 1 },
-            { "answer_text": "I have a short list of 1-2 things I do most mornings.", "answer_value": 2 },
-            { "answer_text": "I do 3–4 practices most mornings", "answer_value": 3 },
-            { "answer_text": "I have a detailed ritual of several things I do each morning.", "answer_value": 4 }
+            { "answer_text": "Stillness and Focus", "answer_value": 0 },
+            { "answer_text": "Movement with Focus", "answer_value": 1 },
+            { "answer_text": "Breath-Based Calm", "answer_value": 2 },
+            { "answer_text": "Gratitude and Presence", "answer_value": 3 }
           ]
         },
         {
-          "question_slug": "habit-implementation-history",
-          "question_text": "What is your historical experience with implementing new habits?",
+          "question_slug": "movement-introduction",
+          "question_text": "Movement in the morning has profound effects on both the body and mind. When you engage in physical activity, you increase blood flow, boost circulation, and enhance oxygen delivery to the muscles and brain. This stimulates the release of endorphins, which are natural mood-boosting chemicals that can enhance feelings of happiness and reduce anxiety. Movement also activates the sympathetic nervous system, preparing your body for the day by increasing your heart rate and energy levels. Whether you choose high-intensity exercises for a quick burst of energy or gentle stretches to improve flexibility, movement supports both your physical and mental health. What type of movement would you prefer to start your day?",
+          "type": "prompt"
+        },
+        {
+          "question_slug": "movement-preference",
+          "question_text": "What type of movement resonates most with you for your morning routine?",
           "type": "guided-choice",
           "answers": [
-            { "answer_text": "Easy, I decide what I want my habits to be and do it.", "answer_value": 0 },
-            { "answer_text": "Not bad, I can implement new habits with a bit of planning or intention.", "answer_value": 1 },
-            { "answer_text": "I can make new habits stick if I put in the effort.", "answer_value": 2 },
-            { "answer_text": "I have to work at it, and can struggle with consistency.", "answer_value": 3 },
-            { "answer_text": "It feels like I am completely out of control, no matter what I try.", "answer_value": 4 }
+            { "answer_text": "High-Intensity, Quick Energizer", "answer_value": 0 },
+            { "answer_text": "Gentle Flow for Flexibility", "answer_value": 1 },
+            { "answer_text": "Strength Training for Resilience", "answer_value": 2 },
+            { "answer_text": "Mindful Movement with Focus", "answer_value": 3 }
           ]
         },
         {
-          "question_slug": "digital-hygiene",
-          "question_text": "How do you manage your daily screen-time and device use?",
+          "question_slug": "calm-or-energy-introduction",
+          "question_text": "Your morning routine can either focus on calming your mind and body or boosting your energy and strength. Calming practices, like meditation, activate your parasympathetic nervous system, which slows down heart rate and promotes relaxation. On the other hand, energy-boosting exercises like HIIT or strength training stimulate your sympathetic nervous system, increasing your heart rate and adrenaline to give you that feeling of readiness and alertness. Deciding what type of energy you want to bring into your morning will shape the focus of your practice. How would you like to begin your day?",
+          "type": "prompt"
+        },
+        {
+          "question_slug": "calm-or-energy",
+          "question_text": "Would you prefer to begin your day with a focus on calming the nervous system, or boosting your energy and strength?",
           "type": "guided-choice",
           "answers": [
-            { "answer_text": "I use devices throughout the day without restriction.", "answer_value": 0},
-            { "answer_text": "I sometimes step away, but it’s spontaneous.", "answer_value": 1},
-            { "answer_text": "I try to maintain digital boundaries, but it is a struggle.", "answer_value": 2},
-            { "answer_text": "I maintain strict device boundaries and regular detox periods.", "answer_value": 3}
+            { "answer_text": "Calming and Grounding", "answer_value": 0 },
+            { "answer_text": "Energy-Boosting Movement", "answer_value": 1 },
+            { "answer_text": "Balanced Movement and Calm", "answer_value": 2 }
           ]
         },
         {
-          "question_slug": "fuel-and-hydration",
-          "question_text": "Which best describes your approach to meals and water intake?",
+          "question_slug": "strength-vs-mobility-introduction",
+          "question_text": "Strength and mobility are both crucial for maintaining a healthy body. Strength training helps build muscle, improve metabolism, and enhance physical resilience. It works by putting stress on the muscles, which causes micro-tears that then rebuild stronger, increasing both muscle mass and strength over time. On the other hand, mobility exercises improve joint health, flexibility, and range of motion, which reduces the risk of injury and improves overall movement efficiency. A combination of both is ideal, but you may want to prioritize one depending on your goals. How would you like to structure your morning routine?",
+          "type": "prompt"
+        },
+        {
+          "question_slug": "strength-vs-mobility",
+          "question_text": "How important is improving your strength or mobility in your morning routine?",
           "type": "guided-choice",
           "answers": [
-            { "answer_text": "I eat/drink what I want when I need.", "answer_value": 0},
-            { "answer_text": "I try to follow general healthy guidelines, but find it challenging.", "answer_value": 1},
-            { "answer_text": "I follow general healthy guidelines.", "answer_value": 2},
-            { "answer_text": "I have a structured meal & hydration plan.", "answer_value": 3},
+            { "answer_text": "Focus on Strength Building", "answer_value": 0 },
+            { "answer_text": "Mobility and Flexibility First", "answer_value": 1 },
+            { "answer_text": "Balance of Strength and Mobility", "answer_value": 2 }
           ]
         },
         {
-          "question_slug": "midday-recovery",
-          "question_text": "Do you experience energy slumps in the afternoon? If so, how do you handle them?",
+          "question_slug": "mental-clarity-introduction",
+          "question_text": "Mental clarity and focus are essential for navigating a busy day. Techniques like breathwork and visualization have been shown to increase cognitive performance by improving oxygen flow to the brain, which enhances focus and mental acuity. Breathwork, specifically, can influence the autonomic nervous system, lowering stress and anxiety while improving mental clarity. Visualization, on the other hand, helps activate areas of the brain related to creativity and problem-solving. Would you like to integrate any of these techniques into your morning routine?",
+          "type": "prompt"
+        },
+        {
+          "question_slug": "mental-clarity-focus",
+          "question_text": "To enhance mental clarity and focus, some routines integrate visualization and other techniques. Would you like to incorporate any of the following?",
           "type": "guided-choice",
           "answers": [
-            { "answer_text": "I don't usually experience drops in energy.", "answer_value": 0},
-            { "answer_text": "I push through without breaks.", "answer_value": 1},
-            { "answer_text": "I drink coffee or caffeine.", "answer_value": 2},
-            { "answer_text": "I take breaks when fatigue hits.", "answer_value": 3},
-            { "answer_text": "I plan short walks or stretch breaks.", "answer_value": 4},
-            { "answer_text": "I use strategic recovery. (power naps, mindfulness, movement)", "answer_value": 5}
+            { "answer_text": "Focus through Breathwork", "answer_value": 0 },
+            { "answer_text": "Creative Energy and Visualization", "answer_value": 1 },
+            { "answer_text": "Mindful Presence and Stillness", "answer_value": 2 }
           ]
         },
         {
-          "question_slug": "digital-detox-willingness",
-          "question_text": "Would you like to establish digital boundaries around device and social media usage?",
+          "question_slug": "intensity-introduction",
+          "question_text": "The intensity of your morning routine can influence your body and mind throughout the day. High-intensity workouts, like HIIT, release endorphins, which are natural mood boosters, while also improving cardiovascular health and stamina. On the other hand, gentler routines, like yoga or meditation, focus on reducing stress, increasing flexibility, and enhancing mindfulness. The intensity level you choose can significantly impact your mood, focus, and energy for the rest of the day. How intense would you like your morning practice to be?",
+          "type": "prompt"
+        },
+        {
+          "question_slug": "desired-intensity",
+          "question_text": "How intense would you like your morning practice to be? This will determine the balance between relaxation and physical effort.",
           "type": "guided-choice",
           "answers": [
-            {"answer_text": "Not at all, I want my devices in my life.", "answer_value": 0},
-            {"answer_text": "I might consider screen time limits or other mild boundaries.", "answer_value": 1},
-            {"answer_text": "I like to set a few firm digital boundaries.", "answer_value": 2},
-            { "answer_text": "I have established intentional structure around my device usage.", "answer_value": 3 }
+            { "answer_text": "Low-Intensity, Grounding", "answer_value": 0 },
+            { "answer_text": "High-Intensity, Full Body Workout", "answer_value": 1 },
+            { "answer_text": "Balanced, with Movement and Stillness", "answer_value": 2 }
           ]
         },
         {
-          "question_slug": "exercise-style-preferences",
-          "question_text": "What types of physical activity do you currently enjoy or gravitate toward? Select all that apply.",
-          "type": "select-any",
+          "question_slug": "mobility-vs-strength-need-introduction",
+          "question_text": "For long-term health, it’s important to balance strength with mobility. Strength training improves muscle mass, which supports metabolic function, increases stamina, and enhances overall physical performance. Mobility exercises focus on joint health and flexibility, reducing the risk of injury and improving posture. Maintaining both strength and mobility ensures a resilient body. Which would you prefer to prioritize in your morning routine?",
+          "type": "prompt"
+        },
+        {
+          "question_slug": "mobility-vs-strength-need",
+          "question_text": "In your routine, how would you prioritize mobility versus strength?",
+          "type": "guided-choice",
           "answers": [
-            { "answer_text": "I’m mostly sedentary right now.", "answer_value": 0},
-            { "answer_text": "Social sports or active games (e.g., pickup basketball, tennis, etc.)", "answer_value": 1},
-            { "answer_text": "Cardio activities like running, cycling, or swimming", "answer_value": 2},
-            { "answer_text": "Strength training - weights, bodyweight, or resistance work", "answer_value": 3},
-            { "answer_text": "General stretching", "answer_value": 4},
-            { "answer_text": "Mobility, flexibility, or mind-body movement (e.g., yoga, Pilates)", "answer_value": 5},
-            { "answer_text": "Training for a specific sport, event, or personal milestone", "answer_value": 6},
-            { "answer_text": "I like variety and switch it up often", "answer_value": 7}
+            { "answer_text": "Prioritize Strength Training", "answer_value": 0 },
+            { "answer_text": "Prioritize Mobility and Flexibility", "answer_value": 1 },
+            { "answer_text": "Equal Focus on Both Strength and Mobility", "answer_value": 2 }
           ]
         },
         {
-          "question_slug": "gaming-practice-interest",
-          "question_text": "Would you like to include precision drills or focus exercises for gaming performance?",
+          "question_slug": "reflection-introduction",
+          "question_text": "Reflection practices, such as mindfulness and gratitude, help you process emotions, reduce stress, and improve mental well-being. Mindfulness encourages present-moment awareness, which can reduce anxiety and promote clarity, while gratitude practices activate areas of the brain related to happiness and positivity. Including these practices in your routine can set a positive tone for the day. Would you like to include a reflective practice?",
+          "type": "prompt"
+        },
+        {
+          "question_slug": "reflection-practice",
+          "question_text": "Some routines include moments of reflection to help integrate the body and mind. Would you like to include a reflective practice in your morning routine?",
           "type": "guided-choice",
           "answers": [
-            { "answer_text": "No, I’m not a gamer", "answer_value": 0 },
-            { "answer_text": "No, thanks. I play some games, but keep it casual.", "answer_value": 1 },
-            { "answer_text": "Maybe, I do sometimes like to work on gaming skills", "answer_value": 2},
-            { "answer_text": "Yes, I regularly practice gaming drills and exercises.", "answer_value": 3 },
+            { "answer_text": "Yes, a Mindful Walking Reflection", "answer_value": 0 },
+            { "answer_text": "Yes, a Gratitude Practice", "answer_value": 1 },
+            { "answer_text": "No, I prefer to stay focused on movement", "answer_value": 2 }
           ]
         },
         {
-          "question_slug": "social-life-satisfaction",
-          "question_text": "Are you satisfied with the state of your current social or relational life?",
-          "type": "guided-choice",
-          "answers": [
-            {"answer_text": "I feel isolated or disconnected.", "answer_value": 0},
-            {"answer_text": "It’s okay, but could use attention.", "answer_value": 1},
-            {"answer_text": "I feel supported, mostly.", "answer_value": 2},
-            {"answer_text": "Very fulfilled and connected.", "answer_value": 3}
-          ]
+          "question_slug": "routine-focus-introduction",
+          "question_text": "Having a clear focus for your morning routine is essential for setting intentions and achieving your goals. Whether you’re looking to reset after a stressful day or challenge yourself with a high-energy routine, your focus will guide the type of practices you include. Resetting and restoring energy helps you start the day with a clear mind, while strength-based routines build resilience and stamina. What is your primary focus for the morning?",
+          "type": "prompt"
         },
         {
-          "question_slug": "social-connection-priority",
-          "question_text": "How important is scheduling dedicated social time (calls, messages, catch‑ups)?",
+          "question_slug": "routine-focus",
+          "question_text": "What is the overall focus you want for your morning routine? This will guide the template recommendation.",
           "type": "guided-choice",
           "answers": [
-            { "answer_text": "Not important - I wing it.", "answer_value": 0 },
-            { "answer_text": "Somewhat - I reach out when I remember.", "answer_value": 1 },
-            { "answer_text": "I’d like to plan a few social check‑ins per week.", "answer_value": 2 },
-            { "answer_text": "I would like to schedule daily connection time.", "answer_value": 3 }
-          ]
-        },
-        {
-          "question_slug": "am-spiritual-practices",
-          "question_text": "Do you regularly engage in spiritual practices? (prayer, meditation, devotion, gratitude, mantra, manifesting, etc.)",
-          "type": "guided-choice",
-          "answers": [
-            { "answer_text": "Never or almost never", "answer_value": 0 },
-            { "answer_text": "I have tried, but they're not my thing.", "answer_value": 1 },
-            { "answer_text": "Mostly prayer or devotion practices.", "answer_value": 2 },
-            { "answer_text": "I primarily practice mindfulness or a similar meditative practice.", "answer_value": 3 },
-            { "answer_text": "I have a couple consistent spiritual rituals.", "answer_value": 4 },
-            { "answer_text": "I go deep down the well of spiritual practices.", "answer_value": 5 }
-          ]
-        },
-        {
-          "question_slug": "creative-activity-frequency",
-          "question_text": "How often do you engage in creative activities (art, music, writing, etc.)?",
-          "type": "guided-choice",
-          "answers": [
-            { "answer_text": "Rarely or never", "answer_value": 0 },
-            { "answer_text": "Occasionally", "answer_value": 1 },
-            { "answer_text": "A few times a week", "answer_value": 2 },
-            { "answer_text": "Daily", "answer_value": 3 }
-          ]
-        },
-        {
-          "question_slug": "productivity-block-preference",
-          "question_text": "Would you like a morning productivity block for personal projects, personal growth (learning, reading, etc.), to‑do lists?",
-          "type": "guided-choice",
-          "answers": [
-            { "answer_text": "No, thanks.", "answer_value": 0 },
-            { "answer_text": "I usually put this type of productivity time elsewhere in the day.", "answer_value": 1 },
-            { "answer_text": "Sure, let's schedule a short block.", "answer_value": 2 },
-            { "answer_text": "Yes, I usually set aside an hour or more for this type of work.", "answer_value": 3 }
-          ]
-        },
-        {
-          "question_slug": "mindset-primer-usage",
-          "question_text": "Do you use gratitude, mantra, affirmations or visualizations to set your mindset?",
-          "type": "guided-choice",
-          "answers": [
-            { "answer_text": "Never or rarely", "answer_value": 0 },
-            { "answer_text": "Occasionally - when I really need it", "answer_value": 1 },
-            { "answer_text": "Sometimes - a few times per week", "answer_value": 2 },
-            { "answer_text": "Regularly - daily mindset practice", "answer_value": 3 }
+            { "answer_text": "Reset and Restore", "answer_value": 0 },
+            { "answer_text": "Strength and Resilience", "answer_value": 1 },
+            { "answer_text": "High-Energy, Full-Body Challenge", "answer_value": 2 },
+            { "answer_text": "Focused, Mindful Movement", "answer_value": 3 }
           ]
         }
       ]
@@ -976,18 +852,18 @@ survey_question_data = [
           ]
         },
         {
-            "question_slug": "select-4-values",
-            "question_text": "From your previous list, select up to 4 that you feel are most important to you.",
+            "question_slug": "values-top-3",
+            "question_text": "From your previous list, select up to 3 that you feel are most important to you.",
             "type": "select-4"
         },
+        # {
+        #     "question_slug": "select-2-values",
+        #     "question_text": "From your previous list, select the 2 that you feel are most important to you.",
+        #     "type": "select-2"
+        # },
         {
-            "question_slug": "select-2-values",
-            "question_text": "From your previous list, select the 2 that you feel are most important to you.",
-            "type": "select-2"
-        },
-        {
-            "question_slug": "select-top-value",
-            "question_text": "From your previous list, select up to 4 that you feel are most important to you.",
+            "question_slug": "values-top-1",
+            "question_text": "From your previous list, the one that is most important to you.",
             "type": "select-1"
         }
       ]
@@ -1162,1454 +1038,3 @@ survey_question_data = [
         ]
     },
 ]
-
-# ALL QUESTION SETS BELOW DEPRECATED?!?  LOTS OF GOOD QUESTIONS HERE
-
-    # {
-    #     "subcategory_slug": "getting-started",
-    #     "questions": [
-    #         # {
-    #         #     "question_slug": "existing-routines-check",
-    #         #     "question_text": "Do you currently have an established morning routine or habits?",
-    #         #     "type": "yes-no",
-    #         # },
-    #         {
-    #             "question_slug": "existing-routines-satisfaction",
-    #             "question_text": "How satisfied are you with your current morning routine?",
-    #             "type": "satisfaction",
-    #         },
-    #         {
-    #             "question_slug": "wellness-survey-check",
-    #             "question_text": "Would you like to complete our wellness survey to see a list of suggested practices that aligns with your current wellness needs/goals?",
-    #             "type": "yes-no",
-    #         },
-    #         {
-    #             "question_slug": "assistance-building-routines-check",
-    #             "question_text": "Would you like assistance building productive routines/practices in your day? These can be as simple as a few 1 minute morning tasks to help you wake up and feel better in your day.",
-    #             "type": "yes-no",
-    #         },
-    #         {
-    #             "question_slug": "build-your-own-routine-check",
-    #             "question_text": "Would you like to enter a routine in our build-your-own routine page? This will allow you to track your progress and us to provide encouragement for your successes!",
-    #             "type": "yes-no",
-    #         },
-    #         {
-    #             "question_slug": "routine-types-interest-check",
-    #             "question_text": "What types of routines/practices would you like to build and track?",
-    #             "type": "select-any",
-    #             "answers": [
-    #                 {"answer_text": "Morning routines", "answer_value": 0},
-    #                 {"answer_text": "Daily intentions/foci", "answer_value": 1},
-    #                 {"answer_text": "Evenings routines", "answer_value": 2},
-    #             ],
-    #         },
-    #     ],
-    # },
-    # {
-    #     "subcategory_slug": "getting-to-know-you",
-    #     "questions": [
-    #         {
-    #             "question_slug": "overall-well-being-self-assessment",
-    #             "question_text": "How would you describe your overall well-being?",
-    #             "type": "guided-choice",
-    #             "answers": [
-    #                 {
-    #                     "answer_text": "I feel great physically and mentally",
-    #                     "answer_value": 6,
-    #                 },
-    #                 {
-    #                     "answer_text": "I feel good overall, with some room for improvement.",
-    #                     "answer_value": 5,
-    #                 },
-    #                 {
-    #                     "answer_text": "I feel okay, but there are areas I want to work on.",
-    #                     "answer_value": 4,
-    #                 },
-    #                 {
-    #                     "answer_text": "My mental health is generally good, but my physical health could be better.",
-    #                     "answer_value": 3,
-    #                 },
-    #                 {
-    #                     "answer_text": "My physical health is generally good, but I would like to improve my mental health.",
-    #                     "answer_value": 2,
-    #                 },
-    #                 {
-    #                     "answer_text": "I often feel tired, stressed, or unwell.",
-    #                     "answer_value": 1,
-    #                 },
-    #                 {
-    #                     "answer_text": "My physical and/or mental well-being is a constant struggle",
-    #                     "answer_value": 0,
-    #                 },
-    #             ],
-    #         },
-    #         {
-    #             "question_slug": "life-balance-satisfaction",
-    #             "question_text": "How balanced do you feel across different areas of your life, like work, personal time, and leisure?",
-    #             "type": "satisfaction-balance",
-    #         },
-    #         {
-    #             "question_slug": "energy-levels-general",
-    #             "question_text": "How would you describe your energy levels throughout a typical day?",
-    #             "type": "guided-choice",
-    #             "answers": [
-    #                 {
-    #                     "answer_text": "Consistent energy throughout the day",
-    #                     "answer_value": 7,
-    #                 },
-    #                 {
-    #                     "answer_text": "Good energy in the morning, but it fades in the afternoon",
-    #                     "answer_value": 6,
-    #                 },
-    #                 {
-    #                     "answer_text": "Low energy in the morning, improves later in the day",
-    #                     "answer_value": 5,
-    #                 },
-    #                 {
-    #                     "answer_text": "I have energy, but it often feels buzzy or hyperactive",
-    #                     "answer_value": 4,
-    #                 },
-    #                 {
-    #                     "answer_text": "I have energy when I am active, but can easily get tired or fall asleep when inactive.",
-    #                     "answer_value": 3,
-    #                 },
-    #                 {
-    #                     "answer_text": "High at night with difficulty going to sleep when I need",
-    #                     "answer_value": 2,
-    #                 },
-    #                 {"answer_text": "Varies day to day", "answer_value": 1},
-    #                 {"answer_text": "Frequently low energy all day", "answer_value": 0},
-    #             ],
-    #         },
-    #         {
-    #             "question_slug": "sleep-wake-rested",
-    #             "question_text": "Do you wake up feeling refreshed most mornings?",
-    #             "type": "frequency-day",
-    #         },
-    #         {
-    #             "question_slug": "sleep-average-nightly",
-    #             "question_text": "On average, how many hours of sleep do you get each night?",
-    #             "type": "range-hours-sleep",
-    #         },
-    #         {
-    #             "question_slug": "stress-responsibility-management",
-    #             "question_text": "How would you describe your daily workload - are you able to keep up with what's on your plate?",
-    #             "type": "guided-choice",
-    #             "answers": [
-    #                 {"answer_text": "Yes, I keep up well", "answer_value": 4},
-    #                 {
-    #                     "answer_text": "Mostly, but it can be a challenge",
-    #                     "answer_value": 3,
-    #                 },
-    #                 {
-    #                     "answer_text": "I manage, but sometimes it's too much",
-    #                     "answer_value": 2,
-    #                 },
-    #                 {"answer_text": "I often fall behind", "answer_value": 1},
-    #                 {"answer_text": "I am unsure or inconsistent", "answer_value": 0},
-    #             ],
-    #         },
-    #         {
-    #             "question_slug": "stress-frequency-overburdened",
-    #             "question_text": "How often do you feel overburdened by your to-dos and responsibilities?",
-    #             "type": "frequency",
-    #         },
-    #         {
-    #             "question_slug": "stress-resilience-self-assessment",
-    #             "question_text": "When it comes to handling stress, do you feel resilient and able to manage it effectively?",
-    #             "type": "scale-stress-resilience",
-    #         },
-    #         {
-    #             "question_slug": "stress-resilience-beliefs",
-    #             "question_text": "Do you believe that you can change your resilience to stress?",
-    #             "type": "yes-no-alittle",
-    #         },
-    #         # {
-    #         #     'question_slug': 'stress-resilience-satisfaction',
-    #         #     'question_text': "How satisfied are you with your level of resilience to stress?",
-    #         #     'type': 'satisfaction'
-    #         # },
-    #         {
-    #             "question_slug": "current-activity-level",
-    #             "question_text": "How would you describe your current activity level?",
-    #             "type": "guided-choice",
-    #             "answers": [
-    #                 {"answer_text": "Mostly sedentary.", "answer_value": 0},
-    #                 {
-    #                     "answer_text": "Some light activity, such as walking.",
-    #                     "answer_value": 1,
-    #                 },
-    #                 {"answer_text": "Casually active.", "answer_value": 2},
-    #                 {
-    #                     "answer_text": "Consistently active, including both cardio and strength training.",
-    #                     "answer_value": 3,
-    #                 },
-    #                 {
-    #                     "answer_text": "I am an athlete with structured training that includes both cardio and resistance training.",
-    #                     "answer_value": 4,
-    #                 },
-    #             ],
-    #         },
-    #         {
-    #             "question_slug": "satisfaction-current-fitness",
-    #             "question_text": "How satisfied are you with your current fitness level?",
-    #             "type": "satisfaction",
-    #         },
-    #         {
-    #             "question_slug": "satisfaction-work-situation",
-    #             "question_text": "How would you rate your satisfaction with your current work situation?",
-    #             "type": "satisfaction",
-    #         },
-    #         {
-    #             "question_slug": "satisfaction-relationships",
-    #             "question_text": "How satisfied are you with your current relationships (friends, family, partners)?",
-    #             "type": "guided-choice",
-    #             "answers": [
-    #                 {
-    #                     "answer_text": "My relationships are deeply fulfilling and provide strong emotional support and connection.",
-    #                     "answer_value": 5,
-    #                 },
-    #                 {
-    #                     "answer_text": "I feel connected and valued, but I sometimes wish for deeper emotional support or shared experiences.",
-    #                     "answer_value": 4,
-    #                 },
-    #                 {
-    #                     "answer_text": "My relationships are generally positive, but I occasionally feel distant or misunderstood.",
-    #                     "answer_value": 3,
-    #                 },
-    #                 {
-    #                     "answer_text": "I have relationships, but they don’t provide the emotional support or connection I need.",
-    #                     "answer_value": 2,
-    #                 },
-    #                 {
-    #                     "answer_text": "I often feel lonely or isolated, and I lack meaningful connections in my life.",
-    #                     "answer_value": 1,
-    #                 },
-    #             ],
-    #         },
-    #         # {
-    #         #     'question_slug': 'satisfaction-current-energy',
-    #         #     'question_text': "How satisfied are you with your typical energy level?",
-    #         #     'type': 'satisfaction'
-    #         # },
-    #         {
-    #             "question_slug": "adhd-self-assessment",
-    #             "question_text": "Have you been diagnosed with ADHD, or do you feel you might exhibit ADHD-related behaviors? Examples can include, but are not limited to: difficulty maintaining focus, easily distracted, procrastination, difficulty with organization and time management, forgetfulness, impulsive behavior, restlessness or fidgeting, difficulty completing tasks, hyperfocus on certain activities, low frustration tolerance, emotional sensitivity and mood swings, poor working memory, interrupting or speaking out of turn, struggling to listen fully, zoning out easily, forgetting social commitments or details, challenges in group dynamics, difficulty with emotional regulation, low self-esteem or social anxiety, avoidance of social situations, difficulty building or maintaining friendships",
-    #             "type": "guided-choice",
-    #             "answers": [
-    #                 {"answer_text": "Yes, I have been diagnosed.", "answer_value": 3},
-    #                 {
-    #                     "answer_text": "I think ADHD might be a factor in some of the issues I experience",
-    #                     "answer_value": 2,
-    #                 },
-    #                 {
-    #                     "answer_text": "I'm not sure/haven't explored this",
-    #                     "answer_value": 1,
-    #                 },
-    #                 {
-    #                     "answer_text": "I don't think I exhibit symptoms of ADHD",
-    #                     "answer_value": 0,
-    #                 },
-    #             ],
-    #         },
-    #         {
-    #             "question_slug": "current-am-routine",
-    #             "question_text": "Do you currently have a morning routine that you follow?",
-    #             "type": "yes-no-inconsistent",
-    #         },
-    #         {
-    #             "question_slug": "current-am-time-available",
-    #             "question_text": "How much time do you have available for a morning routine/self-care practices?",
-    #             "type": "range-mins-hours-10-2",
-    #         },
-    #         # {
-    #         #     'question_slug': 'energy-type',
-    #         #     'question_text': "How would you describe your energy patterns?",
-    #         #     'type': 'guided-choice',
-    #         #     'answers': [
-    #         #         {'answer_text': "I have the energy I need most times, most days.", 'answer_value': 0},
-    #         #         {'answer_text': "I have energy when I am active, but am tired when sedentary.", 'answer_value': 1},
-    #         #         {'answer_text': "I feel like I have mental energy, but my body can't keep up.", 'answer_value': 2},
-    #         #         {'answer_text': "I am mentally fatigued, but my body want to move.", 'answer_value': 3},
-    #         #         {'answer_text': "Both my mind and my body are fatigued.", 'answer_value': 4},
-    #         #         {'answer_text': "I can feel fatigued in the situations where I am overwhelmed or stressed.", 'answer_value': 5},
-    #         #         {'answer_text': "I am tired unless I am engaged in something of interest.", 'answer_value': 6},
-    #         #         {'answer_text': "None of the above.", 'answer_value': 7}
-    #         #     ]
-    #         # },
-    #     ],
-    # },
-    # {
-    #     "subcategory_slug": "current-habits-patterns",
-    #     "questions": [
-    #         {
-    #             "question_slug": "am-self-care-time-current",
-    #             "question_text": "Do you currently have a morning routine for personal time or self-care? If so, how much time do you set aside for it?",
-    #             "type": "guided-choice",
-    #             "answers": [
-    #                 {"answer_text": "No, none", "answer_value": 0},
-    #                 {"answer_text": "Less than 10 minutes", "answer_value": 1},
-    #                 {"answer_text": "10-20 minutes", "answer_value": 2},
-    #                 {"answer_text": "20-40 minutes", "answer_value": 3},
-    #                 {"answer_text": "40-60 minutes", "answer_value": 4},
-    #                 {"answer_text": "More than an hour", "answer_value": 5},
-    #             ],
-    #         },
-    #         {
-    #             "question_slug": "am-self-care-desire-more",
-    #             "question_text": "Do you wish you had more of this time in your morning?",
-    #             "type": "yes-no",
-    #         },
-    #         {
-    #             "question_slug": "am-self-care-ideal-morning",
-    #             "question_text": "In your ideal world, how much morning personal/self-care time would you have?",
-    #             "type": "guided-choice",
-    #             "answers": [
-    #                 {
-    #                     "answer_text": "I am not interested in morning self-care",
-    #                     "answer_value": 0,
-    #                 },
-    #                 {"answer_text": "Less than 10 minutes", "answer_value": 1},
-    #                 {"answer_text": "10-20 minutes", "answer_value": 2},
-    #                 {"answer_text": "20-40 minutes", "answer_value": 3},
-    #                 {"answer_text": "40-60 minutes", "answer_value": 4},
-    #                 {"answer_text": "More than an hour", "answer_value": 5},
-    #             ],
-    #         },
-    #         {
-    #             "question_slug": "am-self-care-barriers",
-    #             "question_text": "What are your barriers to having more morning self-care time?",
-    #             "type": "guided-choice",
-    #             "answers": [
-    #                 {
-    #                     "answer_text": "None, I make the time I need.",
-    #                     "answer_value": None,
-    #                 },
-    #                 {
-    #                     "answer_text": "Inconsistent Bedtime/Difficulty Falling Asleep",
-    #                     "answer_value": None,
-    #                 },
-    #                 {"answer_text": "Poor Sleep Quality", "answer_value": None},
-    #                 {
-    #                     "answer_text": "Late-Night Responsibilities",
-    #                     "answer_value": None,
-    #                 },
-    #                 {"answer_text": "Difficulty Waking Up", "answer_value": None},
-    #                 {"answer_text": "Early Work/Obligations", "answer_value": None},
-    #                 {"answer_text": "Overcommitted Schedule", "answer_value": None},
-    #                 {"answer_text": "Stress or Anxiety", "answer_value": None},
-    #                 {
-    #                     "answer_text": "Lack of Motivation in the Morning",
-    #                     "answer_value": None,
-    #                 },
-    #                 {"answer_text": "Evening Screen Time", "answer_value": None},
-    #                 {"answer_text": "Household Responsibilities", "answer_value": None},
-    #                 {
-    #                     "answer_text": "Busy or Unpredictable Work Schedule",
-    #                     "answer_value": None,
-    #                 },
-    #                 {"answer_text": "Long Commute", "answer_value": None},
-    #                 {
-    #                     "answer_text": "Difficulty Prioritizing Self-Care",
-    #                     "answer_value": None,
-    #                 },
-    #                 {
-    #                     "answer_text": "Unpredictable Sleep Schedule",
-    #                     "answer_value": None,
-    #                 },
-    #                 {
-    #                     "answer_text": "Need More Quiet or Private Space",
-    #                     "answer_value": None,
-    #                 },
-    #                 {"answer_text": "Fatigue or Health Issues", "answer_value": None},
-    #                 {"answer_text": "Family Disruptions", "answer_value": None},
-    #             ],
-    #         },
-    #         {
-    #             "question_slug": "daily-habits-aspirations",
-    #             "question_text": "Are there any positive daily habits you would like to implement into your day? (Select all that apply)",
-    #             "type": "select-any-add",
-    #             "answers": [
-    #                 {"answer_text": "Healthier food choices", "answer_value": None},
-    #                 {
-    #                     "answer_text": "Improved sleep schedule/hygiene",
-    #                     "answer_value": None,
-    #                 },
-    #                 {
-    #                     "answer_text": "Building an exercise regimen",
-    #                     "answer_value": None,
-    #                 },
-    #                 {
-    #                     "answer_text": "Spending more time outdoors",
-    #                     "answer_value": None,
-    #                 },
-    #                 {
-    #                     "answer_text": "Practicing mindfulness, meditation or something similar",
-    #                     "answer_value": None,
-    #                 },
-    #                 {
-    #                     "answer_text": "Daily prayer, journaling, and/or reflection",
-    #                     "answer_value": None,
-    #                 },
-    #                 {"answer_text": "Staying more hydrated", "answer_value": None},
-    #                 {
-    #                     "answer_text": "Creating a space to set clear intentions for the day",
-    #                     "answer_value": None,
-    #                 },
-    #                 {"answer_text": "Practicing gratitude", "answer_value": None},
-    #                 {
-    #                     "answer_text": "Spending more time reading or learning",
-    #                     "answer_value": None,
-    #                 },
-    #                 {
-    #                     "answer_text": "Being more present with family or friends",
-    #                     "answer_value": None,
-    #                 },
-    #                 {
-    #                     "answer_text": "Spending more quality time with family or friends",
-    #                     "answer_value": None,
-    #                 },
-    #                 {
-    #                     "answer_text": "Decluttering or organizing my space",
-    #                     "answer_value": None,
-    #                 },
-    #                 {
-    #                     "answer_text": "Positive self-talk and affirmations",
-    #                     "answer_value": None,
-    #                 },
-    #                 {
-    #                     "answer_text": "Learning new skills or hobbies",
-    #                     "answer_value": None,
-    #                 },
-    #                 {
-    #                     "answer_text": "Creating a budget or tracking finances",
-    #                     "answer_value": None,
-    #                 },
-    #                 {
-    #                     "answer_text": "Volunteering or giving back",
-    #                     "answer_value": None,
-    #                 },
-    #                 {"answer_text": "None of the above", "answer_value": None},
-    #             ],
-    #         },
-    #         {
-    #             "question_slug": "daily-habits-vices-to-change",
-    #             "question_text": "Are there any daily habits(vices) you'd like to improve upon or change? (Select all that apply)",
-    #             "type": "select-any-add",
-    #             "answers": [
-    #                 {"answer_text": "Less screen time", "answer_value": None},
-    #                 {"answer_text": "Less social media", "answer_value": None},
-    #                 {"answer_text": "Healthier food choices", "answer_value": None},
-    #                 {
-    #                     "answer_text": "Improving regulation of procrastination",
-    #                     "answer_value": None,
-    #                 },
-    #                 {
-    #                     "answer_text": "Cutting back on drinking, smoking or other substances",
-    #                     "answer_value": None,
-    #                 },
-    #                 {"answer_text": "Reduce caffeine intake", "answer_value": None},
-    #                 {"answer_text": "Reduce impulse spending", "answer_value": None},
-    #                 {
-    #                     "answer_text": "Negative self-talk or self-criticism",
-    #                     "answer_value": None,
-    #                 },
-    #                 {"answer_text": "Skip fewer meals", "answer_value": None},
-    #                 {
-    #                     "answer_text": "Multitask less or finish tasks before starting new ones",
-    #                     "answer_value": None,
-    #                 },
-    #                 {"answer_text": "None of the above", "answer_value": None},
-    #             ],
-    #         },
-    #         {
-    #             "question_slug": "daily-habits-biggest-change",
-    #             "question_text": "What is the one change that you feel would make the biggest positive impact in your life right now?",
-    #             "type": "select-any-add",
-    #             "answers": [
-    #                 {
-    #                     "answer_text": "To be populated from selected habits",
-    #                     "answer_value": None,
-    #                 }
-    #             ],
-    #         },
-    #         {
-    #             "question_slug": "headspace-presence",
-    #             "question_text": "How often do you find yourself thinking about the past and/or future?",
-    #             "type": "guided-choice",
-    #             "answers": [
-    #                 {
-    #                     "answer_text": "Very little, I tend to stay present in the moment",
-    #                     "answer_value": 4,
-    #                 },
-    #                 {
-    #                     "answer_text": "I am often dwelling in the past",
-    #                     "answer_value": 3,
-    #                 },
-    #                 {
-    #                     "answer_text": "I often find myself daydreaming about the future",
-    #                     "answer_value": 2,
-    #                 },
-    #                 {"answer_text": "It varies day-to-day", "answer_value": 1},
-    #                 {
-    #                     "answer_text": "I am very often lost in thought/daydreaming in general",
-    #                     "answer_value": 0,
-    #                 },
-    #             ],
-    #         },
-    #         {
-    #             "question_slug": "headspace-focus",
-    #             "question_text": "How would you describe your ability to stay focused and free from distractions?",
-    #             "type": "guided-choice",
-    #             "answers": [
-    #                 {"answer_text": "I have rock solid focus", "answer_value": 5},
-    #                 {
-    #                     "answer_text": "I am not easily distracted but it does happen",
-    #                     "answer_value": 4,
-    #                 },
-    #                 {
-    #                     "answer_text": "My focus is decent, but I sometimes experience inertia in getting started",
-    #                     "answer_value": 3,
-    #                 },
-    #                 {
-    #                     "answer_text": "I can find myself hyperfocused on something I really enjoy",
-    #                     "answer_value": 2,
-    #                 },
-    #                 {"answer_text": "I am easily distracted", "answer_value": 1},
-    #                 {
-    #                     "answer_text": "I have a difficult time motivating to do things I need or want to do",
-    #                     "answer_value": 0,
-    #                 },
-    #             ],
-    #         },
-    #         {
-    #             "question_slug": "headspace-responsibility-sources",
-    #             "question_text": "How many of your responsibilities are optional?",
-    #             "type": "guided-choice",
-    #             "answers": [
-    #                 {
-    #                     "answer_text": "My schedule is set in stone, non-negotiable",
-    #                     "answer_value": 0,
-    #                 },
-    #                 {
-    #                     "answer_text": "I have some wiggle room in my day",
-    #                     "answer_value": 1,
-    #                 },
-    #                 {
-    #                     "answer_text": "My schedule is fairly flexible",
-    #                     "answer_value": 2,
-    #                 },
-    #                 {
-    #                     "answer_text": "I can move just about anything I want in my day",
-    #                     "answer_value": 3,
-    #                 },
-    #             ],
-    #         },
-    #     ],
-    # },
-    # {
-    #     "subcategory_slug": "social-support-accountability",
-    #     "questions": [
-    #         # Do you have a friend or friends who have might have similar goals or be similarly interested in personal growth based daily practices who could help you form an accountability team?
-    #         {
-    #             "question_slug": "support-system-status",
-    #             "question_text": "How would you describe your support system?",
-    #             "type": "guided-choice",
-    #             "answers": [
-    #                 {
-    #                     "answer_text": "I have a very strong network of multiple people I can rely on unconditionally for support",
-    #                     "answer_value": 4,
-    #                 },
-    #                 {
-    #                     "answer_text": "I have a few close individuals or groups who are there for me in most situations",
-    #                     "answer_value": 3,
-    #                 },
-    #                 {
-    #                     "answer_text": "I have a mix of friends, family or acquaintanaces who can lend a hand or ear in specific circumstances and/or may not be consistently available",
-    #                     "answer_value": 2,
-    #                 },
-    #                 {
-    #                     "answer_text": "I have one or two people I can turn to occasionally, and they may have limited availability or resources",
-    #                     "answer_value": 1,
-    #                 },
-    #                 {
-    #                     "answer_text": "I currently have no one I feel comfortable relying on for support or assistance",
-    #                     "answer_value": 0,
-    #                 },
-    #             ],
-    #         },
-    #         {
-    #             "question_slug": "support-system-desired-expansion",
-    #             "question_text": "Are you content with your support system in its current state, or are you interested in expanding you social network/support system?",
-    #             "type": "guided-choice",
-    #             "answers": [
-    #                 {
-    #                     "answer_text": "I am content with the level of connections and support in my life and am not currently looking to expand",
-    #                     "answer_value": 5,
-    #                 },
-    #                 {
-    #                     "answer_text": "I am mostly content with my current support system but would welcome new connections if they align with my interests",
-    #                     "answer_value": 4,
-    #                 },
-    #                 {
-    #                     "answer_text": "I am actively looking to meet new people with aligned interests and values who I can integrate into my social circle",
-    #                     "answer_value": 3,
-    #                 },
-    #                 {
-    #                     "answer_text": "I am open to meeting new people, but am not quite sure where to start",
-    #                     "answer_value": 2,
-    #                 },
-    #                 {
-    #                     "answer_text": "I feel that I could use more of a support system but meeting new people can be daunting, uncomfortable or otherwise challenging",
-    #                     "answer_value": 1,
-    #                 },
-    #             ],
-    #         },
-    #         {
-    #             "question_slug": "support-system-growth-strats",
-    #             "question_text": "Identify individuals or groups in your current support network. If you’d like to broaden your support, select any of the listed potential avenues for support-seeking that most interest you",
-    #             "type": "select-any-add",
-    #             "answers": [
-    #                 {
-    #                     "answer_text": "Immediate or extended family members",
-    #                     "answer_value": None,
-    #                 },
-    #                 {
-    #                     "answer_text": "Friends you trust and who will show up for you",
-    #                     "answer_value": None,
-    #                 },
-    #                 {
-    #                     "answer_text": "Respected coworkers or professional contacts",
-    #                     "answer_value": None,
-    #                 },
-    #                 {
-    #                     "answer_text": "Online or local community and social groups, hobby groups, sport and activity-based clubs",
-    #                     "answer_value": None,
-    #                 },
-    #                 {
-    #                     "answer_text": "Friends from real life or video games",
-    #                     "answer_value": None,
-    #                 },
-    #                 {"answer_text": "A mentor or coach", "answer_value": None},
-    #                 {
-    #                     "answer_text": "Classes or skill-building groups",
-    #                     "answer_value": None,
-    #                 },
-    #                 {
-    #                     "answer_text": "A mental health professional, therapist or counselor, or support group",
-    #                     "answer_value": None,
-    #                 },
-    #                 {
-    #                     "answer_text": "Groups within a temple, church, mosque, meditation center, or other spiritual gathering space",
-    #                     "answer_value": None,
-    #                 },
-    #                 {
-    #                     "answer_text": "Pet groups or animal-related communities",
-    #                     "answer_value": None,
-    #                 },
-    #                 {
-    #                     "answer_text": "Interest-based online communities",
-    #                     "answer_value": None,
-    #                 },
-    #                 {"answer_text": "I'm not sure at the moment", "answer_value": None},
-    #                 {"answer_text": "I prefer to keep to myself", "answer_value": None},
-    #             ],
-    #         },
-    #         {
-    #             "question_slug": "support-system-preferred-type",
-    #             "question_text": "What type of support do you find most helpful?",
-    #             "type": "guided-choice",
-    #             "answers": [
-    #                 {
-    #                     "answer_text": "Emotional support (listening, empathy, encouragement)",
-    #                     "answer_value": 0,
-    #                 },
-    #                 {
-    #                     "answer_text": "Practical support (help with tasks, planning, logistics)",
-    #                     "answer_value": 1,
-    #                 },
-    #                 {
-    #                     "answer_text": "Accountability (checking in, helping me stay on track)",
-    #                     "answer_value": 2,
-    #                 },
-    #                 {
-    #                     "answer_text": "Social engagement (companionship, spending time together)",
-    #                     "answer_value": 3,
-    #                 },
-    #                 {
-    #                     "answer_text": "Advice or mentorship (guidance, problem-solving, feedback)",
-    #                     "answer_value": 4,
-    #                 },
-    #             ],
-    #         },
-    #         {
-    #             "question_slug": "support-system-comfort-asking",
-    #             "question_text": "How comfortable do you feel reaching out to others for help?",
-    #             "type": "guided-choice",
-    #             "answers": [
-    #                 {
-    #                     "answer_text": "I am very comfortable reaching out for help when I need it",
-    #                     "answer_value": 3,
-    #                 },
-    #                 {
-    #                     "answer_text": "I am comfortable, though I don't do it often",
-    #                     "answer_value": 2,
-    #                 },
-    #                 {
-    #                     "answer_text": "Somewhat uncomfortable but open to it if necessary",
-    #                     "answer_value": 1,
-    #                 },
-    #                 {
-    #                     "answer_text": "Very uncomfortable, I rarely ask for help",
-    #                     "answer_value": 0,
-    #                 },
-    #             ],
-    #         },
-    #         {
-    #             "question_slug": "support-system-goal-understanding",
-    #             "question_text": "Do you feel that your support system understands your personal goals and challenges?",
-    #             "type": "guided-choice",
-    #             "answers": [
-    #                 {
-    #                     "answer_text": "Yes, they fully understand my goals and challenges",
-    #                     "answer_value": 5,
-    #                 },
-    #                 {
-    #                     "answer_text": "The understand some of my goals, but not all",
-    #                     "answer_value": 4,
-    #                 },
-    #                 {
-    #                     "answer_text": "They know my goals but don't fully grasp my challenges",
-    #                     "answer_value": 3,
-    #                 },
-    #                 {
-    #                     "answer_text": "They know my challenges but don't know about my goals/vision",
-    #                     "answer_value": 2,
-    #                 },
-    #                 {
-    #                     "answer_text": "No, I don't feel they understand my goals or challenges",
-    #                     "answer_value": 1,
-    #                 },
-    #                 {
-    #                     "answer_text": "I haven't discussed my goals and challenges with my network",
-    #                     "answer_value": 0,
-    #                 },
-    #             ],
-    #         },
-    #     ],
-    # },
-    # {
-    #     "subcategory_slug": "reflecting-purpose-motivation",
-    #     "questions": [
-    #         {
-    #             "question_slug": "personal-landscape-purpose",
-    #             "question_text": "The following are things that inspire and motivate me, or otherwise bring joy or purpose into my life. (Select all that apply)",
-    #             "type": "select-all-add",
-    #             "answers": [
-    #                 {
-    #                     "answer_text": "Building a sense of community, both locally and online, gives me motivation and belonging",
-    #                     "answer_value": None,
-    #                 },
-    #                 {
-    #                     "answer_text": "My relationships with family and close friends give meaning and motivation to my life",
-    #                     "answer_value": None,
-    #                 },
-    #                 {
-    #                     "answer_text": "My spiritual or religious beliefs provide me with guidance, purpose, and motivation",
-    #                     "answer_value": None,
-    #                 },
-    #                 {
-    #                     "answer_text": "Finding peace, contentment, and balance in daily life is important to me",
-    #                     "answer_value": None,
-    #                 },
-    #                 {
-    #                     "answer_text": "The process of growth and learning in life brings me joy, regardless of specific outcomes",
-    #                     "answer_value": None,
-    #                 },
-    #                 {
-    #                     "answer_text": "I am motivated by self-improvement, learning new skills, or gaining knowledge",
-    #                     "answer_value": None,
-    #                 },
-    #                 {
-    #                     "answer_text": "Self-discovery and growing through adversity give me purpose",
-    #                     "answer_value": None,
-    #                 },
-    #                 {
-    #                     "answer_text": "Exploring philosophy, existential questions, or life perspectives gives me purpose",
-    #                     "answer_value": None,
-    #                 },
-    #                 {
-    #                     "answer_text": "Mindfulness, emotional resilience, or mental clarity help me stay centered and focused",
-    #                     "answer_value": None,
-    #                 },
-    #                 {
-    #                     "answer_text": "Helping others or making a positive impact, whether through work, volunteering, or kindness, is important to me",
-    #                     "answer_value": None,
-    #                 },
-    #                 {
-    #                     "answer_text": "Being a positive role model for my family or community motivates me",
-    #                     "answer_value": None,
-    #                 },
-    #                 {
-    #                     "answer_text": "Professional growth, career development, or achieving my goals motivates me",
-    #                     "answer_value": None,
-    #                 },
-    #                 {
-    #                     "answer_text": "Achieving financial stability and working toward financial goals gives me direction",
-    #                     "answer_value": None,
-    #                 },
-    #                 {
-    #                     "answer_text": "Problem-solving, innovation, and finding creative solutions energize me",
-    #                     "answer_value": None,
-    #                 },
-    #                 {
-    #                     "answer_text": "Creative activities like art, music, writing, or crafting bring me a sense of purpose",
-    #                     "answer_value": None,
-    #                 },
-    #                 {
-    #                     "answer_text": "Expressing my personality through fashion, makeup, or personal style builds my confidence",
-    #                     "answer_value": None,
-    #                 },
-    #                 {
-    #                     "answer_text": "Engaging in sports, dance, or physical activities keeps me energized",
-    #                     "answer_value": None,
-    #                 },
-    #                 {
-    #                     "answer_text": "I’m inspired by new experiences, exploration, or connecting with different cultures and ideas",
-    #                     "answer_value": None,
-    #                 },
-    #                 {
-    #                     "answer_text": "Spending time in nature, whether through outdoor activities or quiet reflection, inspires me",
-    #                     "answer_value": None,
-    #                 },
-    #                 {
-    #                     "answer_text": "Video games, online communities, or esports give me a sense of connection and accomplishment",
-    #                     "answer_value": None,
-    #                 },
-    #                 {
-    #                     "answer_text": "Connecting with my cultural heritage or traditions brings me joy and a sense of identity",
-    #                     "answer_value": None,
-    #                 },
-    #                 {
-    #                     "answer_text": "Advocating for social identities or social justice (e.g., LGBTQIA+, indigenous rights) is meaningful to me",
-    #                     "answer_value": None,
-    #                 },
-    #                 {
-    #                     "answer_text": "Advocating for causes like social justice, environmental sustainability, or animal welfare gives me purpose",
-    #                     "answer_value": None,
-    #                 },
-    #                 {
-    #                     "answer_text": "Environmental connection and stewardship bring me purpose",
-    #                     "answer_value": None,
-    #                 },
-    #                 {
-    #                     "answer_text": "Discovering and understanding my purpose brings me meaning",
-    #                     "answer_value": None,
-    #                 },
-    #             ],
-    #         },
-    #         {
-    #             "question_slug": "personal-landscape-current-strengths",
-    #             "question_text": "What are some personal strengths or qualities that you feel help you succeed through challenges?",
-    #             "type": "select-all-add",
-    #             "answers": [
-    #                 {"answer_text": "Patience", "answer_value": None},
-    #                 {"answer_text": "Discipline", "answer_value": None},
-    #                 {"answer_text": "Creativity", "answer_value": None},
-    #                 {"answer_text": "Focus", "answer_value": None},
-    #                 {"answer_text": "Positivity", "answer_value": None},
-    #                 {"answer_text": "Resilience", "answer_value": None},
-    #                 {"answer_text": "Confidence", "answer_value": None},
-    #                 {"answer_text": "Empathy", "answer_value": None},
-    #                 {"answer_text": "Adaptability", "answer_value": None},
-    #                 {"answer_text": "Emotional Intelligence", "answer_value": None},
-    #                 {"answer_text": "Mindfulness", "answer_value": None},
-    #                 {"answer_text": "Gratitude", "answer_value": None},
-    #                 {"answer_text": "Problem-Solving", "answer_value": None},
-    #                 {"answer_text": "Optimism", "answer_value": None},
-    #                 {"answer_text": "Assertiveness", "answer_value": None},
-    #                 {"answer_text": "Self-Compassion", "answer_value": None},
-    #             ],
-    #         },
-    #         {
-    #             "question_slug": "personal-landscape-desired-strengths",
-    #             "question_text": "What are personal strengths or qualities that you would like to cultivate in yourself?",
-    #             "type": "select-all-add",
-    #             "answers": [
-    #                 {"answer_text": "Patience", "answer_value": None},
-    #                 {"answer_text": "Discipline", "answer_value": None},
-    #                 {"answer_text": "Creativity", "answer_value": None},
-    #                 {"answer_text": "Focus", "answer_value": None},
-    #                 {"answer_text": "Positivity", "answer_value": None},
-    #                 {"answer_text": "Resilience", "answer_value": None},
-    #                 {"answer_text": "Confidence", "answer_value": None},
-    #                 {"answer_text": "Empathy", "answer_value": None},
-    #                 {"answer_text": "Adaptability", "answer_value": None},
-    #                 {"answer_text": "Emotional Intelligence", "answer_value": None},
-    #                 {"answer_text": "Mindfulness", "answer_value": None},
-    #                 {"answer_text": "Gratitude", "answer_value": None},
-    #                 {"answer_text": "Problem-Solving", "answer_value": None},
-    #                 {"answer_text": "Optimism", "answer_value": None},
-    #                 {"answer_text": "Assertiveness", "answer_value": None},
-    #                 {"answer_text": "Self-Compassion", "answer_value": None},
-    #             ],
-    #         },
-    #         {
-    #             "question_slug": "personal-landscape-barriers",
-    #             "question_text": "Are there potential barriers that might make reaching your goals challenging?",
-    #             "type": "select-all-add",
-    #             "answers": [
-    #                 {"answer_text": "Limited time", "answer_value": None},
-    #                 {"answer_text": "Financial limitations", "answer_value": None},
-    #                 {"answer_text": "Health challenges", "answer_value": None},
-    #                 {"answer_text": "Limited support system", "answer_value": None},
-    #                 {
-    #                     "answer_text": "Difficulty staying motivated",
-    #                     "answer_value": None,
-    #                 },
-    #                 {"answer_text": "Unclear goals or vision", "answer_value": None},
-    #             ],
-    #         },
-    #         {
-    #             "question_slug": "personal-landscape-adhd-type",
-    #             "question_text": "If you think you might have ADHD symptoms, which of the following patterns best describes your typcial experiences with attention, activitiy levels, and focus?",
-    #             "type": "guided-choice",
-    #             "answers": [
-    #                 {
-    #                     "answer_text": "Inattentive - I often struggle with focus, organization, and following through on tasks.  I may get easily distracted, lose track of details, or feel overwhelmed by organizing information",
-    #                     "answer_value": 5,
-    #                 },
-    #                 {
-    #                     "answer_text": "Hyperactive-Impulsive - I tend to feel restless or fidgey, often acting without thinking things through.  I may talk frequently, interrupt others, or find it difficult to stay still for long",
-    #                     "answer_value": 4,
-    #                 },
-    #                 {
-    #                     "answer_text": "Combined Inattentive and Hyperactive-Impulsive - I experience a mix of attention issues and hyperactivity-impulsivity.  I find it challenging to stay organized and focused and often feel a need to be active or act on impulse",
-    #                     "answer_value": 3,
-    #                 },
-    #                 {
-    #                     "answer_text": "Situational or Contextual Challenges - My attention, focus, or impulse control varies significantly depending on the situation (e.g., work, social gatherings, or high-interest activities). I may hyperfocus in some areas while struffling with others",
-    #                     "answer_value": 2,
-    #                 },
-    #                 {
-    #                     "answer_text": "Emotional Dysregulation - I experience intense emotions or mood swings that affect my realtionships and focus. I may struggle with frustration, motivation, or self-esteem, especially in social or high-pressure situations",
-    #                     "answer_value": 1,
-    #                 },
-    #                 {
-    #                     "answer_text": "None of these patterns resonate with me",
-    #                     "answer_value": 0,
-    #                 },
-    #             ],
-    #         },
-    #     ],
-    # },
-    # # DEFINING YOUR WHY
-    # {
-    #     # TODO: CHANGE QUESTION TYPES TO MATCH NEW TYPES
-    #     "subcategory_slug": "define-your-purpose",
-    #     "questions": [
-    #         {
-    #             "question_text": "What gets you up in the morning? What keeps you motivated?",
-    #             "type": "select-any-add",
-    #             "question_slug": "what-motivates-you",
-    #             "answers": [
-    #                 {
-    #                     "answer_text": "I want to provide a better life for my family.",
-    #                     "answer_value": None,
-    #                 },
-    #                 {
-    #                     "answer_text": "I feel motivated by helping others and making a positive impact in my community.",
-    #                     "answer_value": None,
-    #                 },
-    #                 {
-    #                     "answer_text": "I want to leave a lasting legacy for future generations, something meaningful that will outlive me.",
-    #                     "answer_value": None,
-    #                 },
-    #                 {
-    #                     "answer_text": "My faith gives me purpose and guides the decisions I make everyday.",
-    #                     "answer_value": None,
-    #                 },
-    #                 {
-    #                     "answer_text": "I'm committed to staying healthy so I can enjoy a long, active life with the people I love.",
-    #                     "answer_value": None,
-    #                 },
-    #                 {
-    #                     "answer_text": "I am driven by a desire to constantly improve myself and grow into the best version of me.",
-    #                     "answer_value": None,
-    #                 },
-    #                 {
-    #                     "answer_text": "My passion for work drives me, especially when I'm making a difference in people's lives.",
-    #                     "answer_value": None,
-    #                 },
-    #                 {
-    #                     "answer_text": "I feel most alive when I'm exploring the world, experiencing new cultures, and seeking adventure.",
-    #                     "answer_value": None,
-    #                 },
-    #                 {
-    #                     "answer_text": "Overcoming challenges in my life has shaped me, and now I feel driven to use my experiences to help others do the same.",
-    #                     "answer_value": None,
-    #                 },
-    #                 {
-    #                     "answer_text": "I'm in survival mode, I get up because I have to.",
-    #                     "answer_value": None,
-    #                 },
-    #             ],
-    #         },
-    #         {
-    #             "question_text": "Who or what do you feel deeply connected to?",
-    #             "type": "select-any-add",
-    #             "question_slug": "deep-connections",
-    #             "answers": [
-    #                 {
-    #                     "answer_text": "My community - helping others brings me a sense of purpose and fulfillment.",
-    #                     "answer_value": None,
-    #                 },
-    #                 {
-    #                     "answer_text": "I feel a profound connection to nature and find peace in protecting the environment.",
-    #                     "answer_value": None,
-    #                 },
-    #                 {
-    #                     "answer_text": "My creative work feels like a unique contribution to the world, expressing who I am.",
-    #                     "answer_value": None,
-    #                 },
-    #                 {
-    #                     "answer_text": "Mentoring others gives me a sense of legacy, knowing I'm making a lasting impact.",
-    #                     "answer_value": None,
-    #                 },
-    #                 {
-    #                     "answer_text": "I'm driven by my family connections — they are my foundation and a source of deep pride.",
-    #                     "answer_value": None,
-    #                 },
-    #                 {
-    #                     "answer_text": "I feel at my best when connecting with friends, sharing life’s journey together.",
-    #                     "answer_value": None,
-    #                 },
-    #                 {
-    #                     "answer_text": "Learning something new invigorates me; it keeps my mind sharp and curiosity alive.",
-    #                     "answer_value": None,
-    #                 },
-    #                 {
-    #                     "answer_text": "My faith or spiritual beliefs provide a sense of purpose and connection to something greater.",
-    #                     "answer_value": None,
-    #                 },
-    #                 {
-    #                     "answer_text": "Being in a team setting, working toward a common goal, makes me feel a strong sense of unity.",
-    #                     "answer_value": None,
-    #                 },
-    #             ],
-    #         },
-    #         {
-    #             "question_text": "Do you feel like you have uncovered your purpose in life, or are you still searching?",
-    #             "type": "guided-choice",
-    #             "question_slug": "have-you-uncovered-purpose",
-    #             "answers": [
-    #                 {
-    #                     "answer_text": "I know one or more of my purposes in life.",
-    #                     "answer_value": None,
-    #                 },
-    #                 {
-    #                     "answer_text": "I think I have identified my purpose.",
-    #                     "answer_value": None,
-    #                 },
-    #                 {
-    #                     "answer_text": "I think I am starting to uncover it, but I have more exploring to do.",
-    #                     "answer_value": None,
-    #                 },
-    #                 {"answer_text": "I am still searching.", "answer_value": None},
-    #             ],
-    #         },
-    #         {
-    #             "question_text": "When do you feel most like yourself? What activities bring you the greatest sense of authenticity?",
-    #             "type": "guided-choice",
-    #             "question_slug": "activities-greatest-authenticity",
-    #             "answers": [
-    #                 {
-    #                     "answer_text": "When I'm creating or building something that excites me.",
-    #                     "answer_value": None,
-    #                 },
-    #                 {
-    #                     "answer_text": "When I’m working out, I feel like I’m building both my body and my mental resilience.",
-    #                     "answer_value": None,
-    #                 },
-    #                 {
-    #                     "answer_text": "When I'm spending quality time with the people I care about.",
-    #                     "answer_value": None,
-    #                 },
-    #                 {
-    #                     "answer_text": "I’m at my best when I’m mentoring others, passing on my knowledge feels like I'm creating a legacy.",
-    #                     "answer_value": None,
-    #                 },
-    #                 {
-    #                     "answer_text": "I’m most energized when I’m learning something new because it keeps me curious and engaged.",
-    #                     "answer_value": None,
-    #                 },
-    #             ],
-    #         },
-    #         {
-    #             "question_text": "What current activities in your life give you a sense of purpose and fulfillment?",
-    #             "type": "guided-choice",
-    #             "question_slug": "current-activities-purpose-fulfillment",
-    #             "answers": [
-    #                 {
-    #                     "answer_text": "When I am spending quality time with my loved ones, I feel like I am truly myself",
-    #                     "answer_value": None,
-    #                 },
-    #                 {
-    #                     "answer_text": "When I am working on something creative, like painting, writing, or designing.",
-    #                     "answer_value": None,
-    #                 },
-    #                 {
-    #                     "answer_text": "I feel most fulfilled when I am helping others, whether through volunteering or supporting a friend.",
-    #                     "answer_value": None,
-    #                 },
-    #                 {
-    #                     "answer_text": "When I'm immersed in nature, hiking or just being outside, I feel grounded and at peace.",
-    #                     "answer_value": None,
-    #                 },
-    #                 {
-    #                     "answer_text": "When I'm pursuing personal growth - learning new skills or challenging myself.",
-    #                     "answer_value": None,
-    #                 },
-    #                 {
-    #                     "answer_text": "When I am engaging in deep conversations with people I care about.",
-    #                     "answer_value": None,
-    #                 },
-    #                 {
-    #                     "answer_text": "When I am fully present in the moment, like during meditation or mindfulness exercises.",
-    #                     "answer_value": None,
-    #                 },
-    #                 {
-    #                     "answer_text": "When I am exercising, especially in activities like yoga, running or strength training.",
-    #                     "answer_value": None,
-    #                 },
-    #                 {
-    #                     "answer_text": "When I am working on a project that aligns with my values and passions.",
-    #                     "answer_value": None,
-    #                 },
-    #                 {
-    #                     "answer_text": "When I'm exploring new places or experiencing different cultures.",
-    #                     "answer_value": None,
-    #                 },
-    #             ],
-    #         },
-    #         {
-    #             "question_text": "Are there things you haven't yet explored that you think might be part of your vision of a fulfilled life?",
-    #             "type": "guided-choice",
-    #             "question_slug": "unexplored-activities-fulfillment",
-    #             "answers": [
-    #                 {
-    #                     "answer_text": "Yes, I can think of one or more.",
-    #                     "answer_value": None,
-    #                 },
-    #                 {
-    #                     "answer_text": "I'm not sure, I need to think more.",
-    #                     "answer_value": None,
-    #                 },
-    #                 {
-    #                     "answer_text": "Perhaps, but I currently have many activities I enjoy that are fulfilling to me.",
-    #                     "answer_value": None,
-    #                 },
-    #                 {
-    #                     "answer_text": "I'm all set, if anything I could take on less in my day.",
-    #                     "answer_value": None,
-    #                 },
-    #             ],
-    #         },
-    #         {
-    #             "question_text": "What small steps could you take today to start exploring your sense of purpose?",
-    #             "type": "guided-choice",
-    #             "question_slug": "small-steps-toward-purpose",
-    #             "answers": [
-    #                 {
-    #                     "answer_text": "I could reflect on what truly makes me happy and aligned with my values.",
-    #                     "answer_value": None,
-    #                 },
-    #                 {
-    #                     "answer_text": "I could start writing or journaling about the things I'm passionate and energetic about to see what comes up.",
-    #                     "answer_value": None,
-    #                 },
-    #                 {
-    #                     "answer_text": "I could try a new activity or hobby to see if it clicks with me.",
-    #                     "answer_value": None,
-    #                 },
-    #                 {
-    #                     "answer_text": "I am not sure I can take on any new activities at the moment.",
-    #                     "answer_value": None,
-    #                 },
-    #             ],
-    #         },
-    #         {
-    #             "question_text": "What personal strengths or traits help you navigate difficulties?",
-    #             "type": "guided-choice",
-    #             "question_slug": "personal-strengths-navigate-difficulties",
-    #             "answers": [
-    #                 {
-    #                     "answer_text": "I am resilient and always find a way through challenges.",
-    #                     "answer_value": None,
-    #                 },
-    #                 {"answer_text": "I am adaptable.", "answer_value": None},
-    #                 {
-    #                     "answer_text": "My creativity helps me think outside the box in difficult situations.",
-    #                     "answer_value": None,
-    #                 },
-    #                 {
-    #                     "answer_text": "My resourcefulness helps me think outside the box in difficult tuations.",
-    #                     "answer_value": None,
-    #                 },
-    #                 {
-    #                     "answer_text": "I am good at letting go of the little things and focusing on the big picture.",
-    #                     "answer_value": None,
-    #                 },
-    #             ],
-    #         },
-    #     ],
-    # },
-    # {
-    #     "subcategory_slug": "define-your-values",
-    #     "questions": [
-    #         {
-    #             "question_text": "What values do you hold most dear in life?",
-    #             "type": "guided-choice",
-    #             "question_slug": "values-most-dear",
-    #             "answers": [
-    #                 {
-    #                     "answer_text": "Integrity and honesty are my highest values.",
-    #                     "answer_value": None,
-    #                 },
-    #                 {
-    #                     "answer_text": "Treating others with respect, kindness and compassion.",
-    #                     "answer_value": None,
-    #                 },
-    #                 {
-    #                     "answer_text": "Family - prioritizing family connections, care and support.",
-    #                     "answer_value": None,
-    #                 },
-    #                 {
-    #                     "answer_text": "Personal growth or professional development.",
-    #                     "answer_value": None,
-    #                 },
-    #                 {
-    #                     "answer_text": "Autonomy, independence, personal freedom.",
-    #                     "answer_value": None,
-    #                 },
-    #                 {
-    #                     "answer_text": "Accountability for my actions",
-    #                     "answer_value": None,
-    #                 },
-    #                 {
-    #                     "answer_text": "Courage - having the strength to face my fears, adversity, uncertainty.",
-    #                     "answer_value": None,
-    #                 },
-    #                 {
-    #                     "answer_text": "Maintaining balance between work, family, and personal life.",
-    #                     "answer_value": None,
-    #                 },
-    #                 {"answer_text": "Creativity.", "answer_value": None},
-    #                 {
-    #                     "answer_text": "Health - prioritizing physical and mental well-being.",
-    #                     "answer_value": None,
-    #                 },
-    #                 {
-    #                     "answer_text": "Justice - fairness, equality, a desire to do what is morally right.",
-    #                     "answer_value": None,
-    #                 },
-    #                 {
-    #                     "answer_text": "Perseverance - commitment to pursuing goals and dreams despite challenges or setbacks.",
-    #                     "answer_value": None,
-    #                 },
-    #                 {
-    #                     "answer_text": "Adventure - seeking new experiences.",
-    #                     "answer_value": None,
-    #                 },
-    #                 {
-    #                     "answer_text": "Service - helping others, contributing to the well-being of the community.",
-    #                     "answer_value": None,
-    #                 },
-    #             ],
-    #         }
-    #     ],
-    # },
-    # # TODO: POSSIBLE DATA STRUCTURE UPDATE TO UTILIZE MANY-TO-MANY TABLE, POSSIBLY ATTAINABLE WITH ONLY CHANGES TO survey_custom_answer_seed()
-    # # RECREATION AND TRAVEL
-    # {
-    #     "subcategory_slug": "frequent-hobbies-activities",
-    #     "questions": [
-    #         {
-    #             "question_text": "How often do you currently engage in hobbies or activities that bring you joy?",
-    #             "question_slug": "frequency-joyful-activities",
-    #             "type": "frequency-often",
-    #         },
-    #         {
-    #             "question_text": "Are you interested in exploring new hobbies or activities?",
-    #             "question_slug": "interest-make-time-new-activities",
-    #             "type": "yes-no-alittle",
-    #         },
-    #         {
-    #             "question_text": "What is your interest level in domestic travel?",
-    #             "question_slug": "interest-domestic-travel",
-    #             "type": "scale-interest",
-    #         },
-    #         {
-    #             "question_text": "What is your interest level in international travel?",
-    #             "question_slug": "interest-international-travel",
-    #             "type": "scale-interest",
-    #         },
-    #         {
-    #             "question_text": "How interested are you in participating in events, competitions, or skill-based activities?",
-    #             "question_slug": "interest-competitive-skill-based",
-    #             "type": "scale-interest",
-    #         },
-    #         {
-    #             "question_text": "Are you spontaneous when it comes to trying random new activities or experiences?",
-    #             "question_slug": "spontaneity-new-experiences",
-    #             "type": "scale-agree-disagree",
-    #         },
-    #         {
-    #             "question_text": "Are you interested in setting specific goals to prioritize hobbies or activities?",
-    #             "question_slug": "interest-goals-prioritizing-hobbies",
-    #             "type": "yes-no-alittle",
-    #         },
-    #         {
-    #             "question_text": "How much time per week do you currently dedicate to activities like traveling, crafting, sports, or other personal hobbies?",
-    #             "question_slug": "time-dedicated-various-activities",
-    #             "type": "range-hours-0-20+",
-    #         },
-    #         # Deprecated for lack of relevance?
-    #         # {
-    #         #     'question_text': "How much time do you spend considering your personal interests, such as traveling or exploring new hobbies?",
-    #         #     'question_slug': 'time-exploring-new-interests',
-    #         #     'type': 'scale-agree-disagree'
-    #         # },
-    #         {
-    #             "question_text": "How interested are you in pursuing hobbies like crafting or DIY projects on a regular basis?",
-    #             "question_slug": "interest-crafts-projects",
-    #             "type": "scale-interest",
-    #         },
-    #         # Open ended answer formats pending
-    #         # {
-    #         #     'question_text': "Describe an activity or hobby you’ve always wanted to explore but haven’t yet started.",
-    #         #     'slug': 'describe-unexplored-activity',
-    #         #     'type': 'open-ended'
-    #         # },
-    #         # {
-    #         #     'question_text': "What barriers, if any, prevent you from engaging in your preferred hobbies or activities?",
-    #         #     'slug': 'barriers-to-hobbies',
-    #         #     'type': 'open-ended'
-    #         # }
-    #     ],
-    # },
-    # {
-    #     "subcategory_slug": "adventure-travel",
-    #     "questions": [
-    #         {
-    #             "question_text": "How interested are you in traveling to remote or adventurous locations?",
-    #             "question_slug": "interest-remote-travel",
-    #             "type": "scale-interest",
-    #         },
-    #         {
-    #             "question_text": "How often do you participate in outdoor adventure activities like hiking, camping, or mountain climbing?",
-    #             "question_slug": "frequency-adventure-activities",
-    #             "type": "frequency",
-    #         },
-    #         {
-    #             "question_text": "Are you interested in trying extreme sports or adventure travel?",
-    #             "question_slug": "interest-extreme-sports",
-    #             "type": "yes-no",
-    #         },
-    #     ],
-    # },
-    # {
-    #     "subcategory_slug": "family-group-events",
-    #     "questions": [
-    #         {
-    #             "question_text": "How often do you plan events or activities with family or friends?",
-    #             "question_slug": "frequency-family-friend-events",
-    #             "type": "frequency",
-    #         },
-    #         {
-    #             "question_text": "What is your interest level in organizing group activities such as reunions or community events?",
-    #             "question_slug": "interest-group-activities-community-events",
-    #             "type": "scale-agree-disagree",
-    #         },
-    #         {
-    #             "question_text": "Do you enjoy being part of group activities or social gatherings?",
-    #             "question_slug": "enjoyment-group-social-activities",
-    #             "type": "yes-no",
-    #         },
-    #     ],
-    # },
-    # {
-    #     "subcategory_slug": "cultural-exploration",
-    #     "questions": [
-    #         {
-    #             "question_text": "How often do you seek out new cultural experiences (e.g., art exhibits, music, cuisine)?",
-    #             "question_slug": "frequency-new-cultural-experiences",
-    #             "type": "frequency",
-    #         },
-    #         {
-    #             "question_text": "How interested are you in learning about different cultures or traditions?",
-    #             "question_slug": "interest-cultures-traditions",
-    #             "type": "scale-agree-disagree",
-    #         },
-    #         {
-    #             "question_text": "Are you open to trying new foods, art forms, or cultural events?",
-    #             "question_slug": "interest-new-foods-events",
-    #             "type": "yes-no",
-    #         },
-    #     ],
-    # },
-    # {
-    #     "subcategory_slug": "special-events",
-    #     "questions": [
-    #         {
-    #             "question_text": "How often do you plan or attend special events (e.g., weddings, concerts, parties)?",
-    #             "question_slug": "frequency-plan-attend-special-events",
-    #             "type": "frequency",
-    #         },
-    #         {
-    #             "question_text": "How much do you enjoy organizing or hosting special events?",
-    #             "question_slug": "enjoyment-organizing-hosting-special-events",
-    #             "type": "scale-agree-disagree",
-    #         },
-    #     ],
-    # },
-    # {
-    #     "subcategory_slug": "competitive-events",
-    #     "questions": [
-    #         {
-    #             "question_text": "How often do you participate in competitive events such as races or tournaments?",
-    #             "question_slug": "frequency-competitions",
-    #             "type": "frequency",
-    #         },
-    #         {
-    #             "question_text": "How interested are you in training for or competing in an event?",
-    #             "question_slug": "interest-training-competitive-events",
-    #             "type": "scale-agree-disagree",
-    #         },
-    #         {
-    #             "question_text": "Do you have specific competitive goals you would like to achieve?",
-    #             "question_slug": "specific-competitive-goals",
-    #             "type": "yes-no",
-    #         },
-    #     ],
-    # },
-    # {
-    #     "subcategory_slug": "bucket-list",
-    #     "questions": [
-    #         {
-    #             "question_text": "How often do you think about your bucket list goals or dreams?",
-    #             "question_slug": "frequency-thinking-goals-dreams",
-    #             "type": "frequency",
-    #         },
-    #         {
-    #             "question_text": "How interested are you in working towards checking off items from your bucket list?",
-    #             "question_slug": "interest-checking-off-bucket-list",
-    #             "type": "scale-agree-disagree",
-    #         },
-    #         {
-    #             "question_text": "Do you feel motivated to take steps towards achieving your bucket list dreams?",
-    #             "question_slug": "motivation-bucket-list-dreams",
-    #             "type": "yes-no",
-    #         },
-    #     ],
-    # },

@@ -148,42 +148,48 @@
                 <h4 class="display-6 mb-2 text-center text-primary">Your Day at a Glance</h4>
               </div>
               <!-- AM Routine -->
-              <div id="morning-routine" class="card shadow border border-dark mb-1">
+              <div id="morning-routine" class="card shadow mb-1">
                 <div class="card-body">
                   <div class="card-title d-flex justify-content-between">
                     <h5 class="card-title text-primary">Morning Routine</h5>
                     <a id="edit-am-routine" class="btn btn-sm btn-outline-primary" href="/routines/am/manage">Edit Routine</a>
                   </div>
                   <hr class="border border-dark mb-3 m-auto w-100">
-                  <ul class="list-group">
-                    <!-- EXAMPLE PRACTICE FOR INTRO.JS -->
-                    <!-- <li class="list-group-item d-flex justify-content-between align-items-center">
-                      <span>Sample Practice</span>
-                      <div class="d-flex gap-2">
-                        <button id="complete-example" class="btn btn-sm btn-outline-success">Complete</button>
-                        <button id="edit-practice-example" class="btn btn-sm btn-outline-warning">Edit Practice</button>
-                      </div>
-                    </li> -->
-                    {% for routine in routines %}
-                    {% if routine.routine_type == "AM" %}
-                    {% for practice in routine.practices %}
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                      <div>
-                        <span class="fw-bold">{{ practice.name }} - <small class="text-muted">{{ practice.impact_rating_description }}</small></span>
-                        <small class="text-muted d-block">
-                          {{ practice.benefit_synopsis }}
-                        </small>
-                      </div>
-                      <div class="d-flex gap-2">
-                        <button class="btn btn-sm btn-outline-success"
-                          onclick="markAccomplished('{{ practice.id }}')">Complete</button>
-                        <button class="btn btn-sm btn-outline-warning">Edit Practice</button>
-                      </div>
-                    </li>
+                  {% if routine_blocks %}
+                    {% for routine_block in routine_blocks %}
+                      {% if routine_block.type == "AM" %}
+                        {% set block_practices = routine_block.practices %}
+                        {% if block_practices %}
+                          {% set block_color =
+                            "bg-dark-subtle bg-opacity-25" if routine_block.slug == "digital-disconnect" else
+                            "bg-success-subtle bg-opacity-25" if routine_block.slug == "core-builders" else
+                            "bg-primary-subtle bg-opacity-25" if routine_block.slug == "core-primers" else
+                            "bg-light"
+                          %}
+
+                          <div class="card mb-3 {{ block_color }} border-0 shadow-sm">
+                            <div class="card-body p-2">
+                              <h6 class="fw-bold text-uppercase small mb-2">{{ routine_block.name }}</h6>
+                              <ul class="list-group">
+                                {% for practice in block_practices %}
+                                  <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <div>
+                                      <span class="fw-bold">{{ practice.name }} - <small class="text-muted">{{ practice.impact_rating_description }}</small></span>
+                                      <small class="text-muted d-block">{{ practice.benefit_synopsis }}</small>
+                                    </div>
+                                    <div class="d-flex gap-2">
+                                      <button class="btn btn-sm btn-outline-success" onclick="markAccomplished('{{ practice.id }}')">Complete</button>
+                                      <button class="btn btn-sm btn-outline-warning">Edit</button>
+                                    </div>
+                                  </li>
+                                {% endfor %}
+                              </ul>
+                            </div>
+                          </div>
+                        {% endif %}
+                      {% endif %}
                     {% endfor %}
-                    {% endif %}
-                    {% endfor %}
-                  </ul>
+                  {% endif %}
                 </div>
               </div>
               <!-- Daily Intentions -->
@@ -326,72 +332,74 @@
                   <hr class="border border-dark mb-3 m-auto w-100">
                   
                   <div class="accordion" id="priorityAccordion">
-                    {% for priority, label in priority_order.items() %}
-                      {% set section_id = 'priority-' ~ priority %}
-                      {% set goals_for_priority = goals | selectattr("priority", "equalto", priority) | selectattr("is_active") | list %}
-                      
-                      {% if goals_for_priority %}
-                      <div class="accordion-item mb-2">
-                        <h2 class="accordion-header" id="heading-{{ section_id }}">
-                          <button class="accordion-button collapsed fw-bold text-uppercase" type="button"
-                            data-bs-toggle="collapse" data-bs-target="#collapse-{{ section_id }}"
-                            aria-expanded="false" aria-controls="collapse-{{ section_id }}">
-                            Goal Priority: {{ label }}
-                          </button>
-                        </h2>
-                        <div id="collapse-{{ section_id }}" class="accordion-collapse collapse"
-                          aria-labelledby="heading-{{ section_id }}" data-bs-parent="#priorityAccordion">
-                          <div class="accordion-body">
-                            
-                            {% for goal in goals_for_priority %}
-                            <ul class="list-group mb-3" id="goal-{{ goal.id }}">
-                              <li class="list-group-item list-group-item-primary">
-                                <div class="d-flex justify-content-between align-items-center">
-                                  <strong>{{ goal.name }}</strong>
-                                  <button class="btn btn-sm btn-outline-primary"
-                                    data-action="add-to-flex"
-                                    data-goal-id="{{ goal.id }}">
-                                      Add to Flex Tasks
-                                    </button>
-                                </div>
-                              </li>
-                  
-                              {% if goal.milestones %}
-                                {% for milestone in goal.milestones %}
-                                  {% if milestone.completed_at == None %}
-                                    {% if milestone.action_items %}
-                                    <!-- Milestone heading -->
-                                    <li class="list-group-item bg-light">
-                                      <strong>Milestone: {{ milestone.name }}</strong>
-                                    </li>
-                                  
-                                      {% for action_item in milestone.action_items %}
-                                        <li class="list-group-item ps-4 d-flex justify-content-between align-items-center">
-                                          <span>{{ action_item.name }}</span>
-                                          <button class="btn btn-sm btn-outline-success" onclick="markAccomplished('{{ action_item.id }}')">
+                    {% if priority_order %}
+                      {% for priority, label in priority_order.items() %}
+                        {% set section_id = 'priority-' ~ priority %}
+                        {% set goals_for_priority = goals | selectattr("priority", "equalto", priority) | selectattr("is_active") | list %}
+                        
+                        {% if goals_for_priority %}
+                        <div class="accordion-item mb-2">
+                          <h2 class="accordion-header" id="heading-{{ section_id }}">
+                            <button class="accordion-button collapsed fw-bold text-uppercase" type="button"
+                              data-bs-toggle="collapse" data-bs-target="#collapse-{{ section_id }}"
+                              aria-expanded="false" aria-controls="collapse-{{ section_id }}">
+                              Goal Priority: {{ label }}
+                            </button>
+                          </h2>
+                          <div id="collapse-{{ section_id }}" class="accordion-collapse collapse"
+                            aria-labelledby="heading-{{ section_id }}" data-bs-parent="#priorityAccordion">
+                            <div class="accordion-body">
+                              
+                              {% for goal in goals_for_priority %}
+                              <ul class="list-group mb-3" id="goal-{{ goal.id }}">
+                                <li class="list-group-item list-group-item-primary">
+                                  <div class="d-flex justify-content-between align-items-center">
+                                    <strong>{{ goal.name }}</strong>
+                                    <button class="btn btn-sm btn-outline-primary"
+                                      data-action="add-to-flex"
+                                      data-goal-id="{{ goal.id }}">
+                                        Add to Flex Tasks
+                                      </button>
+                                  </div>
+                                </li>
+                    
+                                {% if goal.milestones %}
+                                  {% for milestone in goal.milestones %}
+                                    {% if milestone.completed_at == None %}
+                                      {% if milestone.action_items %}
+                                      <!-- Milestone heading -->
+                                      <li class="list-group-item bg-light">
+                                        <strong>Milestone: {{ milestone.name }}</strong>
+                                      </li>
+                                    
+                                        {% for action_item in milestone.action_items %}
+                                          <li class="list-group-item ps-4 d-flex justify-content-between align-items-center">
+                                            <span>{{ action_item.name }}</span>
+                                            <button class="btn btn-sm btn-outline-success" onclick="markAccomplished('{{ action_item.id }}')">
+                                              Mark Done
+                                            </button>
+                                          </li>
+                                        {% endfor %}
+                                    
+                                      {% else %}
+                                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                                          <span>Milestone: {{ milestone.name }}</span>
+                                          <button class="btn btn-sm btn-outline-success" onclick="markAccomplished('{{ milestone.id }}')">
                                             Mark Done
                                           </button>
                                         </li>
-                                      {% endfor %}
-                                  
-                                    {% else %}
-                                      <li class="list-group-item d-flex justify-content-between align-items-center">
-                                        <span>Milestone: {{ milestone.name }}</span>
-                                        <button class="btn btn-sm btn-outline-success" onclick="markAccomplished('{{ milestone.id }}')">
-                                          Mark Done
-                                        </button>
-                                      </li>
+                                      {% endif %}
                                     {% endif %}
-                                  {% endif %}
-                                {% endfor %}
-                              {% endif %}
-                            </ul>
-                            {% endfor %}
+                                  {% endfor %}
+                                {% endif %}
+                              </ul>
+                              {% endfor %}
+                            </div>
                           </div>
                         </div>
-                      </div>
-                      {% endif %}
-                    {% endfor %}
+                        {% endif %}
+                      {% endfor %}
+                    {% endif %}
                   </div>
                 </div>
               </div>
@@ -495,36 +503,13 @@
             intro: "This is your home base.  For now, we'll take a look at the basics.",
             position: 'top'
           },
-          {
-            element: '#your-day-tab',
-            title: 'Your Day Tab',
-            intro: 'Here we bring together any actionable items from your goals, practices, intentions, etc.',
-            position: 'top'
-          },
-          {
-            element: '#goals-tab',
-            title: 'Goals Tab',
-            intro: 'The "Goals" tab is your place to manage your goals and any associated milestones/action items. ',
-            position: 'top'
-          },
-          {
-            element: '#metrics-tab',
-            title: 'Metrics Tab',
-            intro: 'The metrics tab is where you can view progress and various metrics about your activities.  However, take them lightly.  In the words of Theodore Roosevelt - "Comparison is the thief of joy"',
-            position: 'top'
-          },
-          {
-            element: '#social-tab',
-            title: 'Social Tab',
-            intro: 'View and Join social groups, clubs, and more.  Find other humans with similar goals, interests, reading lists, etc., and some day soon, location!',
-            position: 'top'
-          }
+          
         ],
         tooltipClass: 'introCustomTooltip',
         disableInteraction: true,
         exitOnOverlayClick: false
       }).oncomplete(function () {
-        window.location.href = '/surveys/day-map';
+        window.location.href = '/surveys/core-builder-map';
       }).start();
     });
   </script>
