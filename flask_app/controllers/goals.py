@@ -4,7 +4,7 @@ from pprint import pprint
 
 from flask_app.models.user import User
 from flask_app.models.goal import Goal
-from flask_app.models.category import Category
+from flask_app.models.goal_category import GoalCategory
 from flask_app.models.subcategory import Subcategory
 
 
@@ -24,9 +24,9 @@ def set_category_goals(category_slug):
         return redirect("/")
 
     user = User.get_logged_in_user()
-    category = Category.get_category_with_subcategories(category_slug)
+    category = GoalCategory.get_category_with_subcategories(category_slug)
 
-    print("*****Category with subcategories******")
+    print("*****GoalCategory with subcategories******")
     pprint(category)
     for subcategory in category.subcategories:
         pprint(subcategory)
@@ -72,7 +72,7 @@ def goals_intro_select_subcategory():
     if not user:
         return redirect("/")
 
-    categories_with_subcats = Category.get_all_categories_with_subcategories()
+    categories_with_subcats = GoalCategory.get_all_categories_with_subcategories()
 
     return render_template("/goals/set_goal_intro_select_subcat.html", categories_with_subcats=categories_with_subcats)
 

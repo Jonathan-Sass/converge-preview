@@ -5,7 +5,7 @@ import logging
 from flask_app.models.user import User
 from flask_app.models.milestone import Milestone
 from flask_app.models.action_item import ActionItem
-from flask_app.models.category import Category
+from flask_app.models.goal_category import GoalCategory
 from flask_app.models.subcategory import Subcategory
 
 

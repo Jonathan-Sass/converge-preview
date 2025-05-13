@@ -1,7 +1,7 @@
 from flask_app import app
 from flask import redirect, jsonify
 
-from flask_app.models.category import Category
+from flask_app.models.goal_category import GoalCategory
 from flask_app.models.user import User
 
 
@@ -19,5 +19,5 @@ def fetch_all_categories_with_practices():
     if not user:
         return redirect("/")
 
-    categories_with_subcats = Category.get_all_categories_with_subcategories()
+    categories_with_subcats = GoalCategory.get_all_categories_with_subcategories()
     return jsonify(categories_with_subcats)
