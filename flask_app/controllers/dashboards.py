@@ -26,7 +26,7 @@ def dashboard():
         return redirect("/")
 
     user_id = user.id
-    routine_data = Routine.find_routine_blocks_by_user_id(user_id)
+    routine_block_data = RoutineBlock.find_routine_blocks_by_user_id(user_id)
     goal_data = Goal.find_goals_with_milestones_and_action_items_by_user_id(user_id)
     flex_task_goal_ids = FlexTask.find_flex_tasks_goal_ids_by_user_id(user_id)
     flex_task_data = FlexTask.assemble_flex_task_data_by_goal_id(flex_task_goal_ids, goal_data)
@@ -41,14 +41,14 @@ def dashboard():
 
     dashboard_data = {
         "user": user,
-        "routines": routine_data,
+        "routines": routine_block_data,
         "goals": goal_data,
         "filtered_goals": filtered_goal_data,
         "flex_tasks": flex_task_data,
         "priority_order": priority_order
     }
 
-    if not routine_data:
+    if not routine_block_data:
         return redirect("/dashboard/intro")
 
     return render_template("/home/dashboard.html", **dashboard_data)

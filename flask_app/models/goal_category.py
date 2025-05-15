@@ -1,5 +1,5 @@
 from flask_app.config.mysqlconnection import connectToMySQL
-from flask_app.models.subcategory import Subcategory
+from flask_app.models.category_component import CategoryComponent
 from pprint import pprint
 
 
@@ -12,11 +12,11 @@ class GoalCategory:
 
     def __init__(self, data):
         """Initialize a GoalCategory object with basic fields and an empty category_components list."""
-        self.id = data["id"]
-        self.name = data["name"]
-        self.category_slug = data["category_slug"]
-        self.created_at = data["created_at"]
-        self.updated_at = data["updated_at"]
+        self.id = data["goal_category_id"]
+        self.name = data["goal_category_name"]
+        self.slug = data["goal_category_slug"]
+        self.created_at = data["goal_category_created_at"]
+        self.updated_at = data["goal_category_updated_at"]
         self.category_components = []
 
     @staticmethod
@@ -24,61 +24,73 @@ class GoalCategory:
         """
         Retrieve all goal_categories and their related category_components in a single query.
         Returns:
-            dict: Dictionary of goal_categories with subcategory lists grouped under each.
+            dict: Dictionary of goal_categories with category_component lists grouped under each.
         """
         query = """
           SELECT 
-            c.id AS category_id,
-            c.name AS category_name,
-            c.category_slug,
-            sc.id AS subcategory_id,
-            sc.name AS subcategory_name,
-            sc.subcategory_slug
+            gc.id AS goal_category_id,
+            gc.name AS goal_category_name,
+            gc.slug AS goal_category_slug,
+            gc.created_at AS goal_category_created_at,
+            gc.updated_at AS goal_category_updated_at,
+            cc.id AS category_component_id,
+            cc.name AS category_component_name,
+            cc.slug AS category_component_slug,
+            cc.created_at AS category_component_created_at,
+            cc.updated_at AS category_component_updated_at
           FROM
-            goal_categories c
+            goal_categories gc
           JOIN
-            category_components sc ON c.id = sc.category_id
+            category_components cc ON gc.id = cc.goal_category_id
           ORDER BY
-            category_id;
+            goal_category_id;
         """
 
         try:
             results = GoalCategory.db.query_db(query)
 
             if results:
-                goal_categories_with_subcats = {}
+                goal_categories_with_components = {}
 
                 for result in results:
-                    category_id = result["category_id"]
-                    subcategory_id = result["subcategory_id"]
+                    goal_category_id = result["goal_category_id"]
+                    category_component_id = result["category_component_id"]
 
-                    if category_id not in goal_categories_with_subcats:
-                        goal_categories_with_subcats[category_id] = {
-                            "category_slug": result["category_slug"],
-                            "category_name": result["category_name"],
+                    if goal_category_id not in goal_categories_with_components:
+                        goal_categories_with_components[goal_category_id] = GoalCategory({
+                            "goal_category_id": result["goal_category_id"],
+                            "goal_category_slug": result["goal_category_slug"],
+                            "goal_category_name": result["goal_category_name"],
+                            "goal_category_created_at": result["goal_category_created_at"],
+                            "goal_category_updated_at": result["goal_category_updated_at"],
                             "category_components": [], 
-                            "subcategory_ids": set()
-                        }
-
-                    if subcategory_id not in goal_categories_with_subcats[category_id]["subcategory_ids"]:
-                        goal_categories_with_subcats[category_id]["category_components"].append({
-                            "subcategory_id": result["subcategory_id"],
-                            "subcategory_slug": result["subcategory_slug"],
-                            "subcategory_name": result["subcategory_name"]
+                            "category_component_ids": set()
                         })
-                        goal_categories_with_subcats[category_id]["subcategory_ids"].add(subcategory_id)
+
+                    if category_component_id not in goal_categories_with_components[goal_category_id]["category_component_ids"]:
+                        goal_categories_with_components[goal_category_id]["category_components"].append(CategoryComponent({
+                            "category_component_id": result["category_component_id"],
+                            "goal_category_id": result["goal_category_id"],
+                            "category_component_slug": result["category_component_slug"],
+                            "category_component_name": result["category_component_name"],
+                            "category_component_description": result["category_component_description"],
+                            "category_component_role": result["category_component_role"],
+                            "category_component_created_at": result["category_component_created_at"],
+                            "category_component_updated_at": result["category_component_updated_at"]
+                        }))
+                        goal_categories_with_components[goal_category_id]["category_component_ids"].add(category_component_id)
 
                 # Clean up structure for output
-                cleaned_goal_categories = {
-                    key: {
-                        "category_slug": value["category_slug"],
-                        "category_name": value["category_name"],
-                        "category_components": value["category_components"]
-                    }
-                    for key, value in goal_categories_with_subcats.items()
-                }
+                # cleaned_goal_categories = {
+                #     key: {
+                #         "goal_category_slug": value["goal_category_slug"],
+                #         "goal_category_name": value["goal_category_name"],
+                #         "category_components": value["category_components"]
+                #     }
+                #     for key, value in goal_categories_with_components.items()
+                # }
 
-                return cleaned_goal_categories
+                return goal_categories_with_components
 
             return {}
 
@@ -86,17 +98,21 @@ class GoalCategory:
             raise RuntimeError(f"Error retrieving goal_categories with category_components: {e}")
 
     @staticmethod
-    def find_category_by_id(category_id):
+    def get_all_goal_categories_with_name_slug_components():
+        return
+
+    @staticmethod
+    def find_category_by_id(goal_category_id):
         """
         Retrieve a single category by its ID.
         
         Args:
-            category_id (int): The ID of the category.
+            goal_category_id (int): The ID of the category.
         
         Returns:
             list[dict]: Resulting row(s) from the query.
         """
         query = "SELECT * FROM goal_categories WHERE id = %(id)s;"
-        data = {"id": category_id}
+        data = {"id": goal_category_id}
 
         return GoalCategory.db.query_db(query, data)

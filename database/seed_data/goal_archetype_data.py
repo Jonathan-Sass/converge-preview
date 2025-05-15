@@ -7,7 +7,7 @@ category_archetypes = [
         "is_default": True,
         "example_goals": [
             {
-                "category_quality_slug": "career-growth",
+                "category_component_slug": "career-growth",
                 "slug": "expand-leadership-responsibilities",
                 "name": "Expand Leadership Responsibilities in Current Role",
                 "description": "Take on visible leadership tasks or mini-projects to grow your influence and visibility within your team or department.",
@@ -70,7 +70,7 @@ category_archetypes = [
                 ]
             },
             {
-                "category_quality_slug": "skills-development",
+                "category_component_slug": "skills-development",
                 "slug": "build-core-leadership-skills",
                 "name": "Build Core Leadership Competencies",
                 "description": "Strengthen essential leadership skills including communication, delegation, decision-making, and strategic thinking.",
@@ -124,7 +124,7 @@ category_archetypes = [
                 ]
             },
             {
-                "category_quality_slug": "professional-relationships",
+                "category_component_slug": "professional-relationships",
                 "slug": "increase-visibility-with-leadership",
                 "name": "Increase Visibility with Senior Leadership",
                 "description": "Build relationships with leadership figures in your organization to enhance your influence, credibility, and career opportunities.",
@@ -178,7 +178,7 @@ category_archetypes = [
                 ]
             },
             {
-                "category_quality_slug": "autonomy-ownership",
+                "category_component_slug": "autonomy-ownership",
                 "slug": "mentor-junior-colleague",
                 "name": "Mentor or Coach a Junior Colleague",
                 "description": "Demonstrate leadership organically by mentoring a newer or less experienced team member, helping them grow while building your leadership credibility.",
@@ -233,7 +233,7 @@ category_archetypes = [
         "is_default": True,
         "example_goals": [
             {
-                "category_quality_slug": "skills-development",
+                "category_component_slug": "skills-development",
                 "slug": "complete-professional-certification",
                 "name": "Complete a Professional Certification Relevant to Your Field",
                 "description": "Pursue and earn a recognized certification that strengthens your credibility, career trajectory, and expertise.",
@@ -294,7 +294,7 @@ category_archetypes = [
                 ]
               },
               {
-                "category_quality_slug": "skills-development",
+                "category_component_slug": "skills-development",
                 "slug": "master-new-core-skill",
                 "name": "Master a New Core Skill or Software in Your Industry",
                 "description": "Develop fluency in a new skill or software platform that is increasingly valuable in your field.",
@@ -339,7 +339,7 @@ category_archetypes = [
                 ]
               },
               {
-                "category_quality_slug": "career-identity",
+                "category_component_slug": "career-identity",
                 "slug": "create-public-portfolio",
                 "name": "Create a Public Portfolio or Project to Showcase New Skills",
                 "description": "Develop a visible work sample (e.g., portfolio, GitHub repo, case study) to demonstrate your new capabilities to peers, recruiters, or clients.",
@@ -384,7 +384,7 @@ category_archetypes = [
                 ]
               },
               {
-                "category_quality_slug": "skills-development",
+                "category_component_slug": "skills-development",
                 "slug": "earn-microcredential",
                 "name": "Earn a Badge or Microcredential in an Emerging Field",
                 "description": "Pursue a microcredential, badge, or short specialization that demonstrates cutting-edge skills relevant to future career opportunities.",
@@ -429,7 +429,7 @@ category_archetypes = [
                 ]
               },
               {
-                "category_quality_slug": "skills-development",
+                "category_component_slug": "skills-development",
                 "slug": "teach-learned-skill",
                 "name": "Teach What You've Learned to Solidify Mastery",
                 "description": "Deepen your mastery of a newly acquired skill or topic by teaching it to others in a workshop, internal training, blog post, or tutorial format.",
@@ -484,7 +484,7 @@ category_archetypes = [
         "is_default": False,
         "example_goals": [
             {
-              "category_quality_slug": "career-identity",
+              "category_component_slug": "career-identity",
               "slug": "clarify-career-values",
               "name": "Clarify Your Core Career Values and Priorities",
               "description": "Reflect deeply on the values, work styles, and environments that would make a career path feel meaningful and sustainable to you.",
@@ -529,7 +529,7 @@ category_archetypes = [
               ]
             },
             {
-              "category_quality_slug": "career-identity",
+              "category_component_slug": "career-identity",
               "slug": "explore-career-fields",
               "name": "Explore 3–5 Career Fields or Roles of Interest",
               "description": "Research different industries or roles you might be curious about without committing to a change yet.",
@@ -574,7 +574,7 @@ category_archetypes = [
               ]
             },
             {
-              "category_quality_slug": "career-identity",
+              "category_component_slug": "career-identity",
               "slug": "prototype-career-change",
               "name": "Prototype a Potential Career Change with a Low-Stakes Experiment",
               "description": "Test-drive a new field or skillset by engaging in a project, volunteer gig, or low-risk opportunity before making a major career shift.",
@@ -619,7 +619,7 @@ category_archetypes = [
               ]
             },
             {
-              "category_quality_slug": "career-identity",
+              "category_component_slug": "career-identity",
               "slug": "career-path-market-research",
               "name": "Research and Network to Explore Potential Career Paths",
               "description": "Conduct targeted research and engage with professionals in fields you're curious about to gather real-world insights and expand your career possibilities.",
@@ -691,7 +691,7 @@ category_archetypes = [
         "is_default": False,
         "example_goals": [
             {
-              "category_quality_slug": "career-identity",
+              "category_component_slug": "career-identity",
               "slug": "identify-validate-new-path",
               "name": "Identify and Validate a New Career Path",
               "description": "Clarify a realistic and meaningful career direction based on your strengths, interests, and transferable skills.",
@@ -736,7 +736,7 @@ category_archetypes = [
               ]
             },
             {
-              "category_quality_slug": "skills-development",
+              "category_component_slug": "skills-development",
               "slug": "translate-existing-skills",
               "name": "Translate Your Existing Skills to a New Industry",
               "description": "Identify and articulate how your current skills, experiences, and strengths are valuable in your target career path.",
@@ -781,7 +781,7 @@ category_archetypes = [
               ]
             },
             {
-              "category_quality_slug": "skills-development",
+              "category_component_slug": "skills-development",
               "slug": "translate-existing-skills",
               "name": "Translate Your Existing Skills to a New Industry",
               "description": "Identify and articulate how your current skills, experiences, and strengths are valuable in your target career path.",
@@ -826,7 +826,7 @@ category_archetypes = [
               ]
             },
             {
-              "category_quality_slug": "skills-development",
+              "category_component_slug": "skills-development",
               "slug": "build-entry-experience",
               "name": "Build Entry-Level Experience in a New Field",
               "description": "Take low-risk, portfolio-building steps like freelance projects, volunteer work, or online case studies to gain hands-on credibility in your target industry.",
@@ -871,7 +871,7 @@ category_archetypes = [
               ]
             },
             {
-              "category_quality_slug": "professional-relationships",
+              "category_component_slug": "professional-relationships",
               "slug": "expand-network-new-field",
               "name": "Expand Your Network in Your Target Career Field",
               "description": "Build connections in your desired industry or profession by engaging in networking activities designed for curiosity and learning, not job-hunting pressure.",
@@ -926,7 +926,7 @@ category_archetypes = [
         "is_default": False,
         "example_goals": [
             {
-              "category_quality_slug": "career-identity",
+              "category_component_slug": "career-identity",
               "slug": "define-creator-identity",
               "name": "Clarify and Define Your Creator Identity",
               "description": "Get clear on what you want to create, who you want to serve, and what makes your creative work unique and meaningful to you.",
@@ -955,7 +955,7 @@ category_archetypes = [
               ]
             },
             {
-              "category_quality_slug": "skills-development",
+              "category_component_slug": "skills-development",
               "slug": "launch-small-public-project",
               "name": "Launch Your First Small Public Project",
               "description": "Complete and publicly share a small creative project to practice finishing, publishing, and starting to build visibility.",
@@ -1000,7 +1000,7 @@ category_archetypes = [
               ]
             },
             {
-              "category_quality_slug": "autonomy-ownership",
+              "category_component_slug": "autonomy-ownership",
               "slug": "build-creative-practice",
               "name": "Build a Consistent Creative Practice Habit",
               "description": "Establish a lightweight, sustainable practice schedule that helps you create regularly without burnout or overwhelm.",
@@ -1045,7 +1045,7 @@ category_archetypes = [
               ]
             },
             {
-              "category_quality_slug": "career-identity",
+              "category_component_slug": "career-identity",
               "slug": "share-work-consistently-30-days",
               "name": "Share Your Work Consistently for 30 Days",
               "description": "Commit to sharing some aspect of your creative work publicly at least once a week for a month, focusing on authenticity and practice rather than perfection or results.",
@@ -1099,7 +1099,7 @@ category_archetypes = [
         "is_default": False,
         "example_goals": [
             {
-              "category_quality_slug": "career-growth",
+              "category_component_slug": "career-growth",
               "slug": "expand-audience-reach",
               "name": "Expand and Deepen Your Audience Reach",
               "description": "Increase the reach, engagement, and loyalty of your audience through consistent, authentic value delivery and smart platform strategy.",
@@ -1144,7 +1144,7 @@ category_archetypes = [
               ]
             },
             {
-              "category_quality_slug": "annual-income",
+              "category_component_slug": "annual-income",
               "slug": "launch-signature-product",
               "name": "Develop and Launch a Signature Product or Offering",
               "description": "Create a product, service, or offering that reflects your creative strengths and provides real value to your audience.",
@@ -1189,7 +1189,7 @@ category_archetypes = [
               ]
             },
             {
-              "category_quality_slug": "annual-income",
+              "category_component_slug": "annual-income",
               "slug": "stabilize-diversify-income",
               "name": "Stabilize and Diversify Your Creative Income Streams",
               "description": "Strengthen your financial foundation by diversifying how you earn from your creative work across multiple income streams.",
@@ -1243,7 +1243,7 @@ category_archetypes = [
         "is_default": False,
         "example_goals": [
             {
-              "category_quality_slug": "skills-development",
+              "category_component_slug": "skills-development",
               "slug": "deepen-craft-mastery",
               "name": "Deepen Mastery in Your Core Creative Craft",
               "description": "Commit to advancing your skills, techniques, and creative voice in your primary medium through deliberate practice and focused growth projects.",
@@ -1288,7 +1288,7 @@ category_archetypes = [
               ]
             },
             {
-              "category_quality_slug": "meaning-purpose",
+              "category_component_slug": "meaning-purpose",
               "slug": "align-creative-work-values",
               "name": "Align Your Creative Work with Your Deeper Values and Vision",
               "description": "Reconnect your creative career with your deeper motivations, values, and vision to prevent burnout and stay energized long-term.",
@@ -1333,7 +1333,7 @@ category_archetypes = [
               ]
             },
             {
-              "category_quality_slug": "autonomy-ownership",
+              "category_component_slug": "autonomy-ownership",
               "slug": "sustainable-creative-plan",
               "name": "Create a Sustainable Creative Work Plan",
               "description": "Design a flexible, life-giving creative practice and income system that supports both your art and your well-being long-term.",
@@ -1378,7 +1378,7 @@ category_archetypes = [
               ]
             },
             {
-              "category_quality_slug": "professional-relationships",
+              "category_component_slug": "professional-relationships",
               "slug": "build-creative-collaborations",
               "name": "Build Strategic Creative Collaborations",
               "description": "Forge authentic collaborations with other creatives to expand your skills, inspiration, network, and opportunities without losing your artistic integrity.",
@@ -1432,7 +1432,7 @@ category_archetypes = [
 old_data = {
   "career-ladder-climber": {
     "goal_category_slug": "career-professional-development",
-    "category_quality_slug": "grow-in-current-role",
+    "category_component_slug": "grow-in-current-role",
     "goal": {
       "name": "Advance to a leadership role within my team",
       "description": "Develop leadership skills and build visibility to qualify for a management or leadership position within the next 12 months.",
@@ -1527,7 +1527,7 @@ old_data = {
 
   "career-pivoter": {
     "goal_category_slug": "career-professional-development",
-    "category_quality_slug": "career-transition",
+    "category_component_slug": "career-transition",
     "goal": {
       "name": "Transition into a new career field",
       "description": "Gain clarity, build relevant skills, and take concrete steps toward entering a new professional field.",

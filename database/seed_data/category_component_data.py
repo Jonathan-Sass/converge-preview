@@ -1,4 +1,4 @@
-category_qualities = {
+category_components = {
     "career-professional-development": [
         {
           "slug": "job-satisfaction",

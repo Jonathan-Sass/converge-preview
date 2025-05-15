@@ -72,9 +72,9 @@ def goals_intro_select_subcategory():
     if not user:
         return redirect("/")
 
-    categories_with_subcats = GoalCategory.get_all_categories_with_subcategories()
+    categories_with_components = GoalCategory.get_all_goal_categories_with_category_components()
 
-    return render_template("/goals/set_goal_intro_select_subcat.html", categories_with_subcats=categories_with_subcats)
+    return render_template("/goals/set_goal_intro_select_subcat.html", categories_with_components = categories_with_components)
 
 
 @app.get("/goals/intro/<string:subcategory_slug>")

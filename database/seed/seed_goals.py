@@ -4,7 +4,7 @@ from flask import redirect
 import re
 
 from flask_app.models.user import User
-from database.seed_data.goal_quality_data import category_qualities
+from database.seed_data.category_component_data import category_components
 from database.seed_data.goal_archetype_data import category_archetypes
 
 def goal_seed():
@@ -13,7 +13,7 @@ def goal_seed():
       return redirect("/")
   
   goal_category_seed()
-  category_quality_seed()
+  category_component_seed()
   category_archetype_seed(category_archetypes)
 
   return
@@ -38,11 +38,11 @@ def goal_category_seed():
 
     return
 
-def category_quality_seed():
+def category_component_seed():
     batch_data = {}
 
     # Organize subcategories into batches by category (key)
-    for category_slug, subcategories in category_qualities.items():
+    for category_slug, subcategories in category_components.items():
         for subcategory in subcategories:
             if category_slug not in batch_data:
                 batch_data[category_slug] = []
@@ -70,7 +70,7 @@ def category_quality_seed():
 
         # Create the base query
         query = """
-        INSERT INTO category_qualities
+        INSERT INTO category_components
           (goal_category_id, slug, name, description, role, created_at, updated_at)
         VALUES
           (%s, %s, %s, %s, %s, NOW(), NOW())
@@ -91,7 +91,8 @@ def category_quality_seed():
 def category_archetype_seed(category_archetypes):
     category_id_lookup = get_goal_category_id_lookup()
     goal_id_lookup = get_example_goal_id_lookup()
-    
+    print("↪ goal_id_lookup keys:", list(goal_id_lookup.keys()))
+
     batched_milestones = []
     batched_action_items = []
     
@@ -132,7 +133,7 @@ def batch_category_archetype_data(category_archetypes, category_id_lookup):
     return batched_archetypes
 
 def batch_example_goal_data(category_archetypes, category_id_lookup):
-    category_quality_id_lookup = get_category_quality_id_lookup()
+    category_component_id_lookup = get_category_component_id_lookup()
 
     batched_goals = []
     
@@ -141,14 +142,14 @@ def batch_example_goal_data(category_archetypes, category_id_lookup):
 
       for goal in archetype["example_goals"]:
 
-          category_quality_id = category_quality_id_lookup.get(goal["category_quality_slug"])
-          if category_quality_id is None:
-            raise KeyError(f"Unknown 'category_quality_slug' {goal["category_quality_slug"]} used in category_quality_id lookup")
+          category_component_id = category_component_id_lookup.get(goal["category_component_slug"])
+          if category_component_id is None:
+            raise KeyError(f"Unknown 'category_component_slug' {goal["category_component_slug"]} used in category_component_id lookup")
           
           batched_goals.append(
               {
                   "goal_category_id": category_id,
-                  "category_quality_id": category_quality_id,
+                  "category_component_id": category_component_id,
                   "slug": goal["slug"],
                   "name": goal["name"],
                   "description": goal["description"],
@@ -167,7 +168,7 @@ def batch_example_milestone_data(category_archetypes, category_id_lookup, goal_i
     for archetype in category_archetypes:
       category_id = category_id_lookup.get(archetype["goal_category_slug"])
 
-      for goal in archetype["example_goals"]:
+      for goal in archetype["example_goals"]:          
           goal_id = goal_id_lookup.get(goal["slug"])
           if goal_id is None:
             raise KeyError(f"Unknown 'goal_slug' {goal["slug"]} used in goal_id lookup")
@@ -223,7 +224,7 @@ def batch_example_action_item_data(category_archetypes, category_id_lookup, goal
 
 def batch_archetypes_has_example_goals(category_archetypes, goal_id_lookup):
     category_archetype_id_lookup = get_category_archetype_id_lookup()
-    category_quality_id_lookup = get_category_quality_id_lookup()
+    category_component_id_lookup = get_category_component_id_lookup()
 
     batched_archetypes_has_example_goals = []
 
@@ -239,13 +240,13 @@ def batch_archetypes_has_example_goals(category_archetypes, goal_id_lookup):
             if example_goal_id is None:
                 raise KeyError(f"Unknown 'goal_slug' {goal["goal_slug"]} used in goal_id lookup")
 
-            category_quality_id = category_quality_id_lookup.get(goal["category_quality_slug"])
+            category_component_id = category_component_id_lookup.get(goal["category_component_slug"])
   
   
             batched_archetypes_has_example_goals.append({
                 "category_archetype_id": category_archetype_id,
                 "example_goal_id": example_goal_id,
-                "category_quality_id": category_quality_id,
+                "category_component_id": category_component_id,
                 "priority": goal["priority"]
             })
     
@@ -272,26 +273,26 @@ def execute_category_archetype_seed(batched_category_archetypes):
 def execute_category_archetypes_has_example_goals_seed(batched_category_archetypes_has_example_goals):
     query = """
       INSERT INTO category_archetypes_has_example_goals
-        (category_archetype_id, example_goal_id, category_quality_id, priority)
+        (category_archetype_id, example_goal_id, category_component_id, priority)
       VALUES
         (%s, %s, %s, %s)
       ON DUPLICATE KEY UPDATE
-        category_quality_id = VALUES(category_quality_id),
+        category_component_id = VALUES(category_component_id),
         priority = VALUES(priority);
     """
 
-    values = [(row["category_archetype_id"], row["example_goal_id"], row["category_quality_id"], row["priority"]) for row in batched_category_archetypes_has_example_goals]
+    values = [(row["category_archetype_id"], row["example_goal_id"], row["category_component_id"], row["priority"]) for row in batched_category_archetypes_has_example_goals]
     
     return User.db.query_db(query, values, many=True)
 
 def execute_example_goal_seed(batched_example_goals):
     query = """
       INSERT INTO example_goals
-        (goal_category_id, category_quality_id, slug, name, description, goal_type, priority, estimated_time_value, estimated_time_unit, created_at, updated_at)
+        (goal_category_id, category_component_id, slug, name, description, goal_type, priority, estimated_time_value, estimated_time_unit, created_at, updated_at)
       VALUES
         (%s, %s, %s, %s, %s, %s, %s, %s, %s, NOW(), NOW())
       ON DUPLICATE KEY UPDATE
-        category_quality_id = VALUES(category_quality_id),
+        category_component_id = VALUES(category_component_id),
         name = VALUES(name),
         description = VALUES(description),
         goal_type = VALUES(goal_type),
@@ -301,7 +302,7 @@ def execute_example_goal_seed(batched_example_goals):
         updated_at = NOW();
     """
 
-    values = [(row["goal_category_id"], row["category_quality_id"], row["slug"], row["name"], row["description"], row["goal_type"], row["priority"], row["estimated_time_value"], row["estimated_time_unit"]) for row in batched_example_goals]
+    values = [(row["goal_category_id"], row["category_component_id"], row["slug"], row["name"], row["description"], row["goal_type"], row["priority"], row["estimated_time_value"], row["estimated_time_unit"]) for row in batched_example_goals]
     
     return User.db.query_db(query, values, many=True)
 
@@ -356,17 +357,17 @@ def get_goal_category_id_lookup():
 
     return category_ids
 
-def get_category_quality_id_lookup():
-    query = "SELECT id, slug FROM category_qualities;"
+def get_category_component_id_lookup():
+    query = "SELECT id, slug FROM category_components;"
 
     results = User.db.query_db(query)
 
     if not results:
         return {}
     
-    category_quality_ids = {row["slug"]: row["id"] for row in results}
+    category_component_ids = {row["slug"]: row["id"] for row in results}
 
-    return category_quality_ids
+    return category_component_ids
 
 def get_example_goal_id_lookup():
     query = "SELECT id, slug FROM example_goals;"
