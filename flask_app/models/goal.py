@@ -6,7 +6,7 @@ from flask_app.models.user import User
 from flask_app.models.milestone import Milestone
 from flask_app.models.action_item import ActionItem
 from flask_app.models.goal_category import GoalCategory
-from flask_app.models.subcategory import Subcategory
+from flask_app.models.category_component import CategoryComponent
 
 
 class Goal:
@@ -21,7 +21,7 @@ class Goal:
         self.id = data["id"]
         self.user_id = data["user_id"]
         self.category_id = data["category_id"]
-        self.subcategory_id = data["subcategory_id"]
+        self.category_component_id = data["category_component_id"]
         self.name = data["name"]
         self.description = data["goal_description"]
         self.goal_type = data["goal_type"]
@@ -42,7 +42,7 @@ class Goal:
               g.id AS goal_id,
               g.user_id,
               g.goal_category_id,
-              g.category_quality_id,
+              g.category_component_id,
               g.name AS goal_name,
               g.description AS goal_description,
               g.goal_type,
@@ -98,7 +98,7 @@ class Goal:
               g.id AS goal_id,
               g.user_id,
               g.category_id,
-              g.subcategory_id,
+              g.category_component_id,
               g.name AS goal_name,
               g.description AS goal_description,
               g.goal_type,
@@ -202,7 +202,7 @@ class Goal:
             "id": row["goal_id"],
             "user_id": user_id,
             "category_id": row["category_id"],
-            "category_quality_id": row["category_quality_id"],
+            "category_component_id": row["category_component_id"],
             "name": row["goal_name"],
             "goal_description": row["goal_description"],
             "goal_type": row["goal_type"],
@@ -225,7 +225,7 @@ class Goal:
 
 
     @staticmethod
-    def process_and_save_subcategory_goals_data(subcategory_goal_data):
+    def process_and_save_category_component_goals_data(category_component_goal_data):
         """Processes and saves a set of user-submitted goals, milestones, and action items."""
         try:
             # Get user information
@@ -234,25 +234,25 @@ class Goal:
                 raise ValueError("User is not logged in.")
             user_id = user.id
 
-            # Find subcategory and associated IDs
-            subcategory = Subcategory.find_subcategory_by_slug(
-                subcategory_goal_data.get("subcategorySlug")
+            # Find category_component and associated IDs
+            category_component = CategoryComponent.find_category_component_by_slug(
+                category_component_goal_data.get("category_componentSlug")
             )
-            if not subcategory:
+            if not category_component:
                 raise ValueError(
-                    f"Subcategory not found for slug: {subcategory_goal_data.get('subcategorySlug')}"
+                    f"CategoryComponent not found for slug: {category_component_goal_data.get('category_componentSlug')}"
                 )
-            subcategory_id = subcategory.id
-            category_id = subcategory.category_id
+            category_component_id = category_component.id
+            category_id = category_component.category_id
 
-            # Process each goal in the subcategory
-            for goal in subcategory_goal_data.get("goals", []):
+            # Process each goal in the category_component
+            for goal in category_component_goal_data.get("goals", []):
                 try:
                     # Save goal data
                     goal_data = {
                         "user_id": user_id,
                         "goal_category_id": category_id,
-                        "subcategory_id": subcategory_id,
+                        "category_component_id": category_component_id,
                         "name": goal.get("name", "").strip(),
                         "description": goal.get("description", "").strip(),
                         "goal_type": goal.get("goalType"),
@@ -261,7 +261,7 @@ class Goal:
                         "priority": goal.get("priority"),
                         "is_active": goal.get("isActive") if goal.get("isActive") is not None else True,
                     }
-                    goal_id = Goal.save_subcategory_goals(goal_data)
+                    goal_id = Goal.save_category_component_goals(goal_data)
 
                     # Process milestones
                     for milestone in goal.get("milestones", []):
@@ -316,17 +316,17 @@ class Goal:
                     logging.error(f"Error processing goal: {goal}, Error: {e}")
 
         except Exception as e:
-            logging.critical(f"Critical error in process_and_save_subcategory_goals_data: {e}")
+            logging.critical(f"Critical error in process_and_save_category_component_goals_data: {e}")
             raise  # Optionally re-raise the exception for higher-level handling
 
-    def save_subcategory_goals(data):
+    def save_category_component_goals(data):
         """Saves a goal to the database."""
 
         query = """
           INSERT INTO
-            goals (user_id, goal_category_id, subcategory_id, name, description, goal_type, projected_completion, is_complete, priority, is_active, created_at, updated_at)
+            goals (user_id, goal_category_id, category_component_id, name, description, goal_type, projected_completion, is_complete, priority, is_active, created_at, updated_at)
           VALUES 
-            (%(user_id)s, %(category_id)s, %(subcategory_id)s, %(name)s, %(description)s, %(goal_type)s, %(projected_completion)s, %(is_complete)s, %(priority)s, %(is_active)s, NOW(), NOW())
+            (%(user_id)s, %(category_id)s, %(category_component_id)s, %(name)s, %(description)s, %(goal_type)s, %(projected_completion)s, %(is_complete)s, %(priority)s, %(is_active)s, NOW(), NOW())
           ON DUPLICATE KEY UPDATE
             updated_at = NOW();
         """
@@ -336,22 +336,22 @@ class Goal:
             return result
 
     # @staticmethod
-    # def process_and_save_subcategory_goals_data_can_haz_more_error_handling(
-    #     subcategory_goal_data,
+    # def process_and_save_category_component_goals_data_can_haz_more_error_handling(
+    #     category_component_goal_data,
     # ):
     #     user = User.get_logged_in_user()
     #     user_id = user.id
-    #     subcategory = Subcategory.find_subcategory_by_slug(
-    #         subcategory_goal_data["subcategorySlug"]
+    #     category_component = CategoryComponent.find_category_component_by_slug(
+    #         category_component_goal_data["category_componentSlug"]
     #     )
-    #     subcategory_id = subcategory.id
-    #     category_id = subcategory.category_id
+    #     category_component_id = category_component.id
+    #     category_id = category_component.category_id
 
-    #     for goal in subcategory_goal_data["goals"]:
+    #     for goal in category_component_goal_data["goals"]:
     #         goal_data = {
     #             "user_id": user_id,
     #             "category_id": category_id,
-    #             "subcategory_id": subcategory_id,
+    #             "category_component_id": category_component_id,
     #             "name": goal["name"],
     #             "description": goal["description"],
     #             "goal_type": goal["goalType"],
@@ -360,7 +360,7 @@ class Goal:
     #             "priority": goal["priority"],
     #         }
 
-    #         goal_id = Goal.save_subcategory_goals(goal_data)
+    #         goal_id = Goal.save_category_component_goals(goal_data)
 
     #         for milestone in goal["milestones"]:
     #             milestone_data = {

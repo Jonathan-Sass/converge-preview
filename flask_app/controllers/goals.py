@@ -5,7 +5,7 @@ from pprint import pprint
 from flask_app.models.user import User
 from flask_app.models.goal import Goal
 from flask_app.models.goal_category import GoalCategory
-from flask_app.models.subcategory import Subcategory
+from flask_app.models.category_component import CategoryComponent
 
 
 @app.get("/goals/<string:category_slug>")
@@ -14,7 +14,7 @@ def set_category_goals(category_slug):
     Display the goal-setting page for a specific category.
 
     Args:
-        category_slug (str): Slug used to retrieve the category and its subcategories.
+        category_slug (str): Slug used to retrieve the category and its category_components.
 
     Returns:
         Rendered HTML template for setting goals in the category.
@@ -24,25 +24,25 @@ def set_category_goals(category_slug):
         return redirect("/")
 
     user = User.get_logged_in_user()
-    category = GoalCategory.get_category_with_subcategories(category_slug)
+    category = GoalCategory.get_category_with_category_components(category_slug)
 
-    print("*****GoalCategory with subcategories******")
+    print("*****GoalCategory with category_components******")
     pprint(category)
-    for subcategory in category.subcategories:
-        pprint(subcategory)
+    for category_component in category.category_components:
+        pprint(category_component)
 
     return render_template(
         "/goals/set_goals_for_category.html", user=user, category=category
     )
 
 
-@app.post("/goals/<string:subcategory_slug>/save")
-def save_goals_for_subcategory(subcategory_slug=None):
+@app.post("/goals/<string:category_component_slug>/save")
+def save_goals_for_category_component(category_component_slug=None):
     """
-    Save user-submitted goal data for a specific subcategory.
+    Save user-submitted goal data for a specific category_component.
 
     Args:
-        subcategory_slug (str, optional): Slug of the subcategory. May be used in future refinements.
+        category_component_slug (str, optional): Slug of the category_component. May be used in future refinements.
 
     Returns:
         JSON response indicating success or failure.
@@ -51,22 +51,22 @@ def save_goals_for_subcategory(subcategory_slug=None):
     if not user:
         return redirect("/")
 
-    subcategory_goal_data = request.json
+    category_component_goal_data = request.json
 
     try:
-        result = Goal.process_and_save_subcategory_goals_data(subcategory_goal_data)
+        result = Goal.process_and_save_category_component_goals_data(category_component_goal_data)
         return jsonify({"success": True, "result": result}), 200
     except Exception as e:
         return jsonify({"success": False, "message": str(e)}), 500
 
 
-@app.get("/goals/intro/select-subcategory")
-def goals_intro_select_subcategory():
+@app.get("/goals/intro/select-category_component")
+def goals_intro_select_category_component():
     """
-    Display the goal introduction page with a list of categories and subcategories.
+    Display the goal introduction page with a list of categories and category_components.
 
     Returns:
-        Rendered HTML template allowing the user to select a subcategory to begin setting goals.
+        Rendered HTML template allowing the user to select a category_component to begin setting goals.
     """
     user = User.get_logged_in_user()
     if not user:
@@ -77,21 +77,21 @@ def goals_intro_select_subcategory():
     return render_template("/goals/set_goal_intro_select_subcat.html", categories_with_components = categories_with_components)
 
 
-@app.get("/goals/intro/<string:subcategory_slug>")
-def goals_intro(subcategory_slug):
+@app.get("/goals/intro/<string:category_component_slug>")
+def goals_intro(category_component_slug):
     """
-    Display the introductory goal-setting page for a specific subcategory.
+    Display the introductory goal-setting page for a specific category_component.
 
     Args:
-        subcategory_slug (str): The slug used to identify and retrieve the subcategory.
+        category_component_slug (str): The slug used to identify and retrieve the category_component.
 
     Returns:
-        Rendered HTML template for the subcategory goal introduction.
+        Rendered HTML template for the category_component goal introduction.
     """
     user = User.get_logged_in_user()
     if not user:
         return redirect("/")
 
-    subcategory = Subcategory.find_subcategory_by_slug(subcategory_slug)
+    category_component = CategoryComponent.find_category_component_by_slug(category_component_slug)
 
-    return render_template("/goals/set_goal_intro.html", subcategory=subcategory)
+    return render_template("/goals/set_goal_intro.html", category_component=category_component)
