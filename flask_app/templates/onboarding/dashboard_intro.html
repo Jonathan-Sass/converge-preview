@@ -525,12 +525,15 @@
             element: '#morning-routine',
             title: 'A New Kind Of Morning',
             intro: 'The morning is a powerful time for resetting and priming numerous physiological systems that help regulate and balance energy, metabolism, emotions, sleep, and more...',
-            position: 'top'
+            position: 'top',
+            tooltipClass: 'introCustomTooltip introHideXButton',
+
           },
         ],
         tooltipClass: 'introCustomTooltip',
         disableInteraction: true,
-        exitOnOverlayClick: false
+        exitOnOverlayClick: false,
+        exitOnEsc: false
       }).oncomplete(function () {
         window.location.href = '/surveys/digital-disconnect-map';
       }).start();

@@ -13,7 +13,7 @@ def seed_routine_block_templates():
     execute_seed_routine_block_templates(routine_block_template_values)
     
     routine_block_templates = fetch_routine_block_templates()
-    execute_seed_block_template_traits(routine_block_template_trait_data)
+    # execute_seed_block_template_traits(routine_block_template_trait_data)
 
     routine_block_template_practice_values = prepare_routine_block_template_practices_data(routine_block_templates, batched_incomplete_routine_block_template_practice_data)
     execute_seed_routine_block_template_practices(routine_block_template_practice_values)
