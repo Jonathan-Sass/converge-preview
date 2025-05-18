@@ -113,6 +113,17 @@ def survey_core_system_builders_map():
 
   return render_template("/surveys/core_builder_map.html")
 
+@app.get("/surveys/goal-starter-map")
+def survey_goal_starter_map():
+  """
+  Displays the Core System Builders Map for onboarding.
+  """
+  user = User.get_logged_in_user()
+  if not user:
+    return redirect("/")
+
+  return render_template("/surveys/goal_starter_map.html")
+
 @app.get("/surveys/day-map")
 def survey_day_map():
   """

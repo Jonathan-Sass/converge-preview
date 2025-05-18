@@ -41,7 +41,7 @@ def dashboard():
 
     dashboard_data = {
         "user": user,
-        "routines": routine_block_data,
+        "routine_blocks": routine_block_data,
         "goals": goal_data,
         "filtered_goals": filtered_goal_data,
         "flex_tasks": flex_task_data,

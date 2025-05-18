@@ -81,6 +81,8 @@ def seed_practice_categories(practice_categories):
       VALUES
         (%s, %s, %s, NOW(), NOW())
       ON DUPLICATE KEY UPDATE
+        name = VALUES(name),
+        description = VALUES(description),
         updated_at = NOW();
     """
 
@@ -103,6 +105,9 @@ def execute_practice_subcategories_seed():
       VALUES
         (%s, %s, %s, %s, NOW(), NOW())
       ON DUPLICATE KEY UPDATE
+        practice_category_id = VALUES(practice_category_id),
+        name = VALUES(name),
+        description = VALUES(description),
         updated_at = NOW();
     """
 

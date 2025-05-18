@@ -26,7 +26,7 @@ practice_categories = [
   },
   {
     "name": "Movement & Sports", 
-    "slug": "movement-sport", 
+    "slug": "movement-sports", 
     "description": "Physical activities that build strength, mobility, and resilience - including sport-specific training, flow-based movement, and active play.",
   },
   {

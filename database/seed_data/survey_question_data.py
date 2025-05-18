@@ -505,7 +505,7 @@ survey_question_data = [
       ]
     },
     {
-      "subcategory_slug": "day-map-og",
+      "subcategory_slug": "daily-activity-map",
       "questions": [
             {
               "question_slug": "morning-routine-check",
@@ -669,6 +669,53 @@ survey_question_data = [
             { "answer_text": "I keep a regular schedule and have a basic wind-down ritual", "answer_value": 3},
             { "answer_text": "I follow a structured bedtime ritual", "answer_value": 4 }
           ]
+        },
+      ]
+    },
+    {
+      "subcategory_slug": "goal-starter-map",
+      "questions": [
+        {
+          "question_slug": "life-position",
+          "question_text": "Which statement best describes where you are in life right now?",
+          "type": "select-one",
+          "answers": [
+            { "answer_text": "Still figuring out what I want to do.",          "answer_value": 0 },
+            { "answer_text": "Content with where I am; no big goals at the moment.", "answer_value": 1 },
+            { "answer_text": "Career‑focused and advancing on a path I love.",   "answer_value": 2 },
+            { "answer_text": "In one field but exploring something new.",        "answer_value": 3 },
+            { "answer_text": "I’ve achieved my big dreams; looking for the next chapter.", "answer_value": 4 },
+            { "answer_text": "I’m in discovery mode—seeking direction and meaning.",      "answer_value": 5 }
+          ]
+        },
+        {
+          "question_slug": "interest-areas",
+          "question_text": "What areas are you most interested in pursuing goals around? (Select up to 3)",
+          "type": "select-any",
+          "answers": [
+            { "answer_text": "Career & Professional Growth",              "answer_value": 0 },
+            { "answer_text": "Health & Fitness",                           "answer_value": 1 },
+            { "answer_text": "Personal Growth & Learning",                 "answer_value": 2 },
+            { "answer_text": "Financial Stability & Wealth Building",      "answer_value": 3 },
+            { "answer_text": "Family & Relationships",                     "answer_value": 4 },
+            { "answer_text": "Mental & Emotional Well‑Being",              "answer_value": 5 },
+            { "answer_text": "Spiritual Growth & Mindfulness",             "answer_value": 6 },
+            { "answer_text": "Creativity & Hobbies",                       "answer_value": 7 },
+            { "answer_text": "Community & Social Impact",                  "answer_value": 8 },
+            { "answer_text": "Adventure & New Experiences",                "answer_value": 9 },
+            { "answer_text": "Time Management & Productivity",             "answer_value": 10 },
+            { "answer_text": "Self‑Discipline & Habit Building",           "answer_value": 11 }
+          ]
+        },
+        {
+            "question_slug": "interest-areas-top-3",
+            "question_text": "From your previously selected interests, select your top 5.",
+            "type": "select-3"
+        },
+        {
+            "question_slug": "interest-areas-top-1",
+            "question_text": "From your previously selected interests, select your top 5.",
+            "type": "select-1"
         },
       ]
     },
@@ -909,13 +956,18 @@ survey_question_data = [
           ]
         },
         {
-            "question_slug": "top-5-personal-interests",
+            "question_slug": "personal-interests-top-5",
             "question_text": "From your previously selected interests, select your top 5.",
             "type": "select-5"
         },
         {
-            "question_slug": "top-3-personal-interests",
-            "question_text": "From those top 5, select your top 3?",
+            "question_slug": "personal-interests-top-3",
+            "question_text": "From those selected, select your top 3?",
+            "type": "select-3"
+        },
+        {
+            "question_slug": "personal-interests-top-1",
+            "question_text": "From those selected, select your top 3?",
             "type": "select-3"
         },
         {

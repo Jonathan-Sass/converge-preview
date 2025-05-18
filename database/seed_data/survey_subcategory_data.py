@@ -4,24 +4,17 @@ survey_subcategory_data = {
         {"subcategory_slug": "digital-disconnect-map", "name": "Digital Disconnect Map"},
         {"subcategory_slug": "core-primer-map", "name": "Core System Primer Map"},
         {"subcategory_slug": "core-builder-map", "name": "Core System Builder Map"},
-
-
-
-
+        {"subcategory_slug": "pm-routine-map", "name": "Evening Routine Map"},
+        {"subcategory_slug": "daily-activity-map", "name": "Daily Activity Map"},
+        {"subcategory_slug": "goal-starter-map", "name": "Goal Starter Map"},
 
 
         {"subcategory_slug": "getting-started", "name": "Getting Started"},
         # Day Map is likely becoming morning routine builder
         {"subcategory_slug": "day-map", "name": "Day Map"},
-        {"subcategory_slug": "day-map-og", "name": "Day Map OG"},
         {"subcategory_slug": "am-routine-map", "name": "Morning Routine Map"},
-        {"subcategory_slug": "pm-routine-map", "name": "Evening Routine Map"},
         {"subcategory_slug": "am-routine-map-og", "name": "Morning Routine Map OG"},
 
-        # Replacing day map - New core surveying simplified to match block concept
-        {"subcategory_slug": "am-routine-intro-core", "name": "Core Morning Routine Builder"},
-        {"subcategory_slug": "am-routine-expanded-core", "name": "Expanded Core Morning Routine Builder"},
-        {"subcategory_slug": "am-routine-builder", "name": "Morning Routine Builder"},
 
         {"subcategory_slug": "mantra-builder", "name": "Mantra Builder"},
         {"subcategory_slug": "intention-builder", "name": "Intention Builder"},

@@ -74,7 +74,7 @@ class UserSurvey:
             WHERE 
                 sc.subcategory_slug = %(subcategory)s
             ORDER BY
-                subcategory_id, sq.id, sa.id;
+                sq.id, sa.id;
           """
         
         data = {

@@ -3224,7 +3224,7 @@ practice_data = {
   # "Mental Clarity & Cognitive Priming": {},
 
     # PRACTICE CATEGORY
-  "movement-sport": {
+  "movement-sports": {
     
     # PRACTICE SUBCATEGORY
     "aerobic-conditioning": [
