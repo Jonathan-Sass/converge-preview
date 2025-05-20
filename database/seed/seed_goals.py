@@ -90,8 +90,6 @@ def category_component_seed():
 
 def category_archetype_seed(category_archetypes):
     category_id_lookup = get_goal_category_id_lookup()
-    goal_id_lookup = get_example_goal_id_lookup()
-    print("↪ goal_id_lookup keys:", list(goal_id_lookup.keys()))
 
     batched_milestones = []
     batched_action_items = []
@@ -102,6 +100,8 @@ def category_archetype_seed(category_archetypes):
     batched_goals = batch_example_goal_data(category_archetypes, category_id_lookup)
     execute_example_goal_seed(batched_goals)
     
+    goal_id_lookup = get_example_goal_id_lookup()
+    # print("↪ goal_id_lookup keys:", list(goal_id_lookup.keys()))
     batched_milestones = batch_example_milestone_data(category_archetypes, category_id_lookup, goal_id_lookup)
     execute_example_milestone_seed(batched_milestones)
 
@@ -372,11 +372,13 @@ def get_category_component_id_lookup():
 def get_example_goal_id_lookup():
     query = "SELECT id, slug FROM example_goals;"
 
-    results = User.db.query_db(query)
+    results = User.db.query_db(query) 
 
     if not results:
         return {}
     
+    pprint(results)
+
     goal_ids = {row["slug"]: row["id"] for row in results}
 
     return goal_ids
