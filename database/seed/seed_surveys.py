@@ -481,7 +481,7 @@ def generic_survey_answer_seed():
 
 def survey_branching_seed(survey_branching_data):
     query = """
-      INSERT INTO survey_branching
+      INSERT INTO survey_branches
         (survey_question_id, next_question_id, answer_value, created_at, updated_at)
       VALUES
         (%(survey_question_id)s, %(next_question_id)s, %(answer_value)s, NOW(), NOW())
@@ -499,15 +499,15 @@ def survey_branching_seed(survey_branching_data):
         if survey_question_id is None:
             print(f"Error: survey_question_slug '{branch['survey_question_slug']}' not found.")
             continue
-        if next_question_id is None and branch["next_question_slug"] != "end_survey":
+        if next_question_id is None and branch["next_question_slug"] != "end-survey":
             print(f"Error: next_question_slug '{branch['next_question_slug']}' not found.")
             continue
         if answer_value is None:
             print(f"Error: answer_text '{branch['answer_text']}' not found for question_slug '{branch['survey_question_slug']}'.")
             continue
 
-        # Handle special "end_survey" case
-        if branch["next_question_slug"] == "end_survey":
+        # Handle special "end-survey" case
+        if branch["next_question_slug"] == "end-survey":
             next_question_id = None
 
         branch_data = {

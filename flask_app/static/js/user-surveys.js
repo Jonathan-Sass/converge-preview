@@ -142,8 +142,7 @@ nextButton.addEventListener('click', (event) => {
         headers: {
           'Content-Type': 'application/json'  // Specifying the content type
         },
-        body: JSON.stringify({
-          'category': category, 
+        body: JSON.stringify({ 
           'subcategory': subcategory
         })
       });
@@ -158,7 +157,8 @@ nextButton.addEventListener('click', (event) => {
       // Parsing the response as JSON
       ({currentQuestionSet, surveyBranches } = jsonResponse);
       
-      
+      console.log("***Survey Branches in fetch***")
+      console.log(surveyBranches)
       // console.log('*****Current Question Set in fetchSurveyQuestions*****')
       // console.log(currentQuestionSet)
       
@@ -178,20 +178,28 @@ nextButton.addEventListener('click', (event) => {
   
     console.log("currentQuestion")
     console.log(currentQuestionSet[currentQuestionIndex])
-    // console.log("surveyBranches: ")
-    // console.log(surveyBranches)
+    console.log("surveyBranches: ")
+    console.log(surveyBranches)
   
     for (const questionBranch of surveyBranches) {
-      
+      console.log("questionBranchId: " + questionBranch["questionId"])
+      console.log("currentQuestionId: " + currentQuestionSet[currentQuestionIndex]["questionId"])
       // Check current questionId for survey_branch with matching questionId
       if (questionBranch["questionId"] === currentQuestionSet[currentQuestionIndex]["questionId"]) {
         console.log("matching question in surveyBranches.forEach: ", questionBranch)
         console.log("Branch detected!")
         // IF answer_text matches survey_branch answer_text, update currentQuestionIndex to matching index for next_question_slug
         //  FAULTY - question["questionText"] does not exist, see above
-        // A survey branch with a next_question_slug of "end_survey" ends the survey.
-        if (questionBranch["next_question_slug"] === "end_survey") {
-          currentQuestionIndex = currentQuestionSet.length
+        // A survey branch with a next_question_slug of "end-survey" ends the survey.
+        if (questionBranch["nextQuestionSlug"] === "end-survey") {
+          const currentQuestionSetLength = currentQuestionSet.length
+          currentQuestionIndex = currentQuestionSetLength
+          console.log("*****Branched answer ends survey.*****")
+          console.log(`currentQuestionSet Length: ${currentQuestionSetLength}`)
+          console.log(`New currentQuestionIndex: ${currentQuestionIndex}`)
+          indexUpdated = true;
+          break
+
         } else if (answerData.answer_text === questionBranch["answerText"]) {
           console.log(`Answer Texts match: ${questionBranch}, branching!`)
           const targetIndex = currentQuestionSet.findIndex(q => q["questionSlug"] === questionBranch["nextQuestionSlug"])
