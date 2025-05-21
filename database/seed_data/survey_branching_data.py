@@ -17,7 +17,7 @@ survey_branching_data = [
   {
     "survey_question_slug": "goal-category-confirmation",
     "answer_text": "Yes, that sounds good.",
-    "next_question_slug": "end_survey"
+    "next_question_slug": "end-survey"
   },
   # {
   #   "survey_question_slug": "existing-routines-check",

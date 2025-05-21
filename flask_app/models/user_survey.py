@@ -29,14 +29,14 @@ class UserSurvey:
 
     # Find a User Survey Category and User ID
     @classmethod
-    def find_questions_by_category_and_subcategory(cls, user_category_subcategory_data):
+    def find_questions_and_branches_by_subcategory(cls, user_subcategory_data):
         """
         Retrieves all questions and potential answers for a given category/subcategory pair.
         
         Also includes survey branching logic when applicable.
 
         Args:
-            user_category_subcategory_data (dict): Dictionary with 'category' and 'subcategory' keys.
+            user_category_subcategory_data (dict): Dictionary with 'subcategory' key.
 
         Returns:
             tuple: A list of structured question data for the frontend, and a list of branching rules.
@@ -54,8 +54,9 @@ class UserSurvey:
                 sa.id AS answer_id,
                 sa.answer_text, 
                 sa.answer_value,
+                sb.survey_question_id AS branch_question_id,
                 sb.answer_value AS branch_answer_value,
-                sb.next_question_id,
+                sb.next_question_id AS branch_next_question_id,
                 sq_next.question_slug AS next_question_slug
             FROM 
                 survey_questions sq
@@ -68,7 +69,7 @@ class UserSurvey:
             LEFT JOIN
                 survey_answers sa ON sa.id = sqam.survey_answer_id
             LEFT JOIN 
-                survey_branching sb ON sq.id = sb.survey_question_id
+                survey_branches sb ON sq.id = sb.survey_question_id
             LEFT JOIN
                 survey_questions sq_next ON sb.next_question_id = sq_next.id
             WHERE 
@@ -78,8 +79,7 @@ class UserSurvey:
           """
         
         data = {
-            'category': user_category_subcategory_data['category'], 
-            'subcategory': user_category_subcategory_data['subcategory']
+            'subcategory': user_subcategory_data['subcategory']
         }
 
 
@@ -90,6 +90,8 @@ class UserSurvey:
 
         # print("*****question_set in find questions by survey category and subcategory*****")
         # pprint(question_set)
+        print("***Survey Branches in find_questions_and_branches***")
+        pprint(survey_branches)
 
         return question_set, survey_branches
 
@@ -121,7 +123,7 @@ class UserSurvey:
             LEFT JOIN
                 survey_answers sa ON sa.id = sqam.survey_answer_id
             LEFT JOIN 
-                survey_branching sb ON sq.id = sb.survey_question_id
+                survey_branches sb ON sq.id = sb.survey_question_id
             LEFT JOIN
                 survey_questions sq_next ON sb.next_question_id = sq_next.id
             WHERE 
@@ -143,32 +145,40 @@ class UserSurvey:
         return question_set, survey_branches
     
     def process_survey_branch_data(questions):
-        """
-        Extracts and structures survey branching logic from a raw result set.
+      """
+      Extracts and structures survey branching logic from a raw result set.
 
-        Args:
-            questions (list[dict]): Raw joined query results including branching info.
+      Args:
+          questions (list[dict]): Raw joined query results including branching info.
 
-        Returns:
-            list[dict]: A list of branch mappings used by the frontend to control flow.
-        """
-        survey_branches = []
+      Returns:
+          list[dict]: A list of branch mappings used by the frontend to control flow.
+      """
+      survey_branches = []
 
-        for question in questions:
-            if question["branch_answer_value"] is not None and question["answer_value"] == question["branch_answer_value"]:
-                branch_data = {
-                    "questionId": question["question_id"],
-                    "surveyQuestionSlug": question["question_slug"],
-                    "answerText": question["answer_text"],
-                    "nextQuestionSlug": question["next_question_slug"]
-                }
+      print("***Processing Survey Branch Data***")
 
-                survey_branches.append(branch_data)
+      for question in questions:
+        answer_val = question.get("answer_value")
+        branch_val = question.get("branch_answer_value")
 
-        # print("survey_branches in process_survey_branch_data")
-        # pprint(survey_branches)
+        if branch_val is not None and str(answer_val) == str(branch_val):
+            next_slug = question["next_question_slug"] or "end-survey"
 
-        return survey_branches
+            branch_data = {
+                "questionId": question["question_id"],
+                "surveyQuestionSlug": question["question_slug"],
+                "answerText": question["answer_text"],
+                "nextQuestionSlug": next_slug
+            }
+
+            print(">>> BRANCH MATCH:")
+            print(branch_data)
+            survey_branches.append(branch_data)
+        else:
+            print("NO MATCH:", answer_val, "!=", branch_val)
+
+      return survey_branches
     
 
     @staticmethod

@@ -113,7 +113,7 @@ class GoalCategory:
           list[dict]: Resulting row(s) from the query.
       """
       
-      query = "SELECT * FROM goal_categories WHERE slug = %(slug);"
+      query = "SELECT * FROM goal_categories WHERE slug = %(slug)s;"
       data = {"slug": goal_category_slug}
 
       results = GoalCategory.db.query_db(query, data)

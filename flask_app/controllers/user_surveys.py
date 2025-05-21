@@ -22,19 +22,17 @@ def retrieve_survey_questions():
     if not user:
         return redirect("/")
 
-    category = request.json.get("category")
     subcategory = request.json.get("subcategory")
 
-    if not category or not subcategory:
-        return jsonify({"error": "Invalid or missing JSON data"}), 400
+    if not subcategory:
+        return jsonify({"error": "Invalid or missing subcategory JSON data"}), 400
 
-    user_category_subcategory_data = {
-        "category": category,
+    user_subcategory_data = {
         "subcategory": subcategory
     }
 
-    question_set, survey_branches = UserSurvey.find_questions_by_category_and_subcategory(
-        user_category_subcategory_data
+    question_set, survey_branches = UserSurvey.find_questions_and_branches_by_subcategory(
+        user_subcategory_data
     )
 
     return jsonify({

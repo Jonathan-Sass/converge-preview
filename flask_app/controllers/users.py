@@ -2,13 +2,15 @@ from flask_app import app
 from flask import render_template, redirect, session, request, flash
 from flask_bcrypt import Bcrypt
 from flask_app.models.user import User
+from database.seed_data.survey_branching_data import survey_branching_data
 from database.seed import (
     seed_misc_practice_data,
     seed_practices,
     seed_routine_block_templates,
     seed_routine_blocks,
     seed_surveys,
-    seed_goals
+    seed_goals,
+     
 )
 # from database.seed.survey_seed import user_survey_seed
 # from database.seed.misc_practice_data_seed import seed_misc_practice_data
@@ -54,10 +56,11 @@ def test_seed_route():
     """
     This route is for testing seed functions independently.
     """
-    seed_practices.seed_practices()
-    seed_routine_blocks.seed_routine_data()
+    # seed_practices.seed_practices()
+    # seed_routine_blocks.seed_routine_data()
     # seed_goals.goal_seed()
     # seed_routines.seed_routine_data()
+    seed_surveys.survey_branching_seed(survey_branching_data)
 
     return render_template("/onboarding/new_user.html")
 
