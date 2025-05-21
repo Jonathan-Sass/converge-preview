@@ -1,4 +1,4 @@
-# In the event that a given answer should terminate the survey, "answer_text": "end_survey"
+# In the event that a given answer should terminate the survey, "next_question_slug": "end_survey"
 
 survey_branching_data = [
   # Subcategory: Day Map
@@ -13,6 +13,17 @@ survey_branching_data = [
     "next_question_slug": "pm-routine-time-availability-prompt"
   },
 
+# Subcategory: confirm-goal-category
+  {
+    "survey_question_slug": "goal-category-confirmation",
+    "answer_text": "Yes, that sounds good.",
+    "next_question_slug": "end_survey"
+  },
+  # {
+  #   "survey_question_slug": "existing-routines-check",
+  #   "answer_text": "No",
+  #   "next_question_slug": "wellness-survey-check"
+  # },
 
   # Subcategory: Getting started
   # {

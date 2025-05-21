@@ -128,6 +128,50 @@ class UserResponse:
               response_map[slug] = val
 
       return response_map
+    
+    @staticmethod
+    def select_goal_category_from_goal_starter_map(user_responses):
+      """
+      Determines the best goal category slug based on responses to the current-focus-area questions.
+      Uses prioritization: top-1 > top-3 > full list.
+      """
+
+      mapped = UserResponse.extract_response_values(user_responses)
+
+      top_1 = mapped.get("current-focus-area-top-1", None)
+      top_3 = mapped.get("current-focus-area-top-3", [])
+      all_selected = mapped.get("current-focus-area", [])
+
+      if not isinstance(top_3, list):
+          top_3 = [top_3]
+      if not isinstance(all_selected, list):
+          all_selected = [all_selected]
+
+      # Mapping from answer_value to goal category slug
+      value_to_slug = {
+          0: "career-professional-development",
+          1: "health-wellness",
+          2: "spirituality-life-purpose",  # Personal growth proxy
+          3: "social-community",           # Family & relationships proxy
+          4: "spirituality-life-purpose",
+          5: "recreation-travel",
+          6: "creative-expression-hobbies",
+          7: "wealth-finance",
+          8: "social-community",
+          9: "environment-success",        # Productivity
+          10: "environment-success",       # Self-discipline proxy
+          # 11 is 'Not sure' — skip
+      }
+
+      def match_from(values):
+          for val in values:
+              slug = value_to_slug.get(val)
+              if slug:
+                  return slug
+          return None
+
+      # Priority: top-1 → top-3 → all
+      return match_from([top_1]) or match_from(top_3) or match_from(all_selected)
 
     def select_digital_disconnect_template(user_responses):
       mapped_responses = UserResponse.extract_response_values(user_responses)
@@ -269,8 +313,6 @@ class UserResponse:
           return logic_map[block_slug](responses)
        else:
           raise ValueError(f"No template selector registered for block: {block_slug}")
-
-   
 
 
     def process_discipline_motivation_focus(user_response):

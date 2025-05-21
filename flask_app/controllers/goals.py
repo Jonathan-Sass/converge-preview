@@ -60,7 +60,7 @@ def save_goals_for_category_component(category_component_slug=None):
         return jsonify({"success": False, "message": str(e)}), 500
 
 
-@app.get("/goals/intro/select-category_component")
+@app.get("/goals/intro/select-category-component")
 def goals_intro_select_category_component():
     """
     Display the goal introduction page with a list of categories and category_components.

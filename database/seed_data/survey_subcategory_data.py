@@ -7,6 +7,9 @@ survey_subcategory_data = {
         {"subcategory_slug": "pm-routine-map", "name": "Evening Routine Map"},
         {"subcategory_slug": "daily-activity-map", "name": "Daily Activity Map"},
         {"subcategory_slug": "goal-starter-map", "name": "Goal Starter Map"},
+        {"subcategory_slug": "activity-interest-map", "name": "Activity and Interest Map"},
+        {"subcategory_slug": "confirm-goal-category", "name": "Confirm Goal Category"},
+
 
 
         {"subcategory_slug": "getting-started", "name": "Getting Started"},

@@ -107,7 +107,7 @@
             <a class="nav-link solid-white-bg" href="#discipline-motivation-focus-map">Discipline, Motivation & Focus Map</a>
             <a class="nav-link solid-white-bg" href="#goal-starter-map">Goal Starter Map</a>
             <div class="progress mb-3 mt-1" style="height: 1rem;">
-              <div id="survey-progress-bar" class="progress-bar bg-primary" role="progressbar" style="width: 60%;"
+              <div id="survey-progress-bar" class="progress-bar bg-primary" role="progressbar" style="width: 0%;"
                 aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
             </div>
             <a class="nav-link solid-white-bg" href="#value-map">Value Map</a>
@@ -130,7 +130,7 @@
             <div class="card shadow p-2 solid-white-bg" id="goal-starter-map" data-subcategory="goal-starter-map">
               <div class="card-body">
                 <div class="card-title">
-                  <h2 class="display-6 text-primary">What are you focused on right now?</h2>
+                  <h2 class="display-6 text-primary">Where will your focused energy be most impactful?</h2>
                   <hr class="border border-1 border-secondary">
                   <!-- <p class="card-text lead" id="survey-intro">In the following section, we will get to know a bit
                     about your big picture goals/needs.</p> -->
@@ -152,7 +152,7 @@
                   <button class="btn btn-lg btn-primary d-none" id="back-btn">Back</button>
                   <button class="btn btn-lg btn-primary d-none" id="next-btn">Next</button>
                   <button class="btn btn-lg btn-primary d-none" id="finish-btn">Submit Answers</button>
-                  <a href="/surveys/discipline-motivation-focus-map" class="btn btn-primary btn-lg d-none" id="next-section-btn">Next Section</a>
+                  <a href="/surveys/confirm-goal-category" class="btn btn-primary btn-lg d-none" id="next-section-btn">Next Section</a>
                 </div>
               </div>
             </div>
@@ -175,16 +175,11 @@
         steps: [
             {
                 element: '#survey_category',
-                title: 'Interest Map',
-                intro: 'We will use the interest map to start your goal setting in an area relevant to you.',
+                title: 'Goal Starter Map',
+                intro: "We are getting ready to do some streamlined goal setting, but let's start where it matters most to you.",
                 position: 'top' 
             },
-            {
-                element: '#start-btn',
-                title: 'Onward we go!',
-                intro: "We will have a couple quizzes in a row here before we set some goals.  Let's do this!",
-                position: 'top'
-            },
+
         ],
         tooltipClass: 'introCustomTooltip',
         // showProgress: true, // Adds progress dots to indicate step sequence

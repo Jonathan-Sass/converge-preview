@@ -100,19 +100,40 @@ class GoalCategory:
     @staticmethod
     def get_all_goal_categories_with_name_slug_components():
         return
+    
+    @staticmethod
+    def find_category_by_slug(goal_category_slug):
+      """
+        Retrieves a single category by its slug.
+
+        Args:
+          goal_category_id (int): The ID of the category.
+      
+        Returns:
+          list[dict]: Resulting row(s) from the query.
+      """
+      
+      query = "SELECT * FROM goal_categories WHERE slug = %(slug);"
+      data = {"slug": goal_category_slug}
+
+      results = GoalCategory.db.query_db(query, data)
+      
+      return results[0] if results else None
 
     @staticmethod
     def find_category_by_id(goal_category_id):
-        """
-        Retrieve a single category by its ID.
-        
-        Args:
-            goal_category_id (int): The ID of the category.
-        
-        Returns:
-            list[dict]: Resulting row(s) from the query.
-        """
-        query = "SELECT * FROM goal_categories WHERE id = %(id)s;"
-        data = {"id": goal_category_id}
+      """
+      Retrieve a single category by its ID.
+      
+      Args:
+        goal_category_id (int): The ID of the category.
+      
+      Returns:
+        list[dict]: Resulting row(s) from the query.
+      """
+      query = "SELECT * FROM goal_categories WHERE id = %(id)s;"
+      data = {"id": goal_category_id}
 
-        return GoalCategory.db.query_db(query, data)
+      results = GoalCategory.db.query_db(query, data)
+      
+      return results[0] if results else None

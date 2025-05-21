@@ -3,6 +3,7 @@ from flask import render_template, redirect, session, request, flash, jsonify
 from flask_app.models.user import User
 from flask_app.models.user_survey import UserSurvey
 from flask_app.models.user_response import UserResponse
+from flask_app.models.goal_category import GoalCategory
 from database.seed import seed_surveys
 from pprint import pprint
 from datetime import datetime
@@ -123,6 +124,47 @@ def survey_goal_starter_map():
     return redirect("/")
 
   return render_template("/surveys/goal_starter_map.html")
+
+# DEPRECATED
+# @app.get("/surveys/activity-interest-map")
+# def survey_activity_interest_map():
+#   """
+#   Displays the Core System Builders Map for onboarding.
+#   """
+#   user = User.get_logged_in_user()
+#   if not user:
+#     return redirect("/")
+
+#   return render_template("/surveys/activity_interest_map.html")
+
+@app.get("/surveys/confirm-goal-category")
+def survey_confirm_goal_category():
+  """
+  Displays page to confirm a logic selected goal category.
+  """
+  user = User.get_logged_in_user()
+  if not user:
+    return redirect("/")
+  block_slug = "goal-starter-map"
+  responses = UserResponse.find_user_responses_by_user_id_and_subcategory_slug(user, block_slug)
+  session["selected_goal_category"] = UserResponse.select_goal_category_from_goal_starter_map(responses)
+  
+  goal_category = GoalCategory.find_category_by_slug(session["selected_goal_category"])
+  
+  return render_template("/surveys/confirm_goal_category.html", goal_category = goal_category)
+
+
+
+@app.get("/surveys/goals-career-professional-development-map")
+def survey_set_goals_from_archetype():
+  """
+  Displays page to confirm a logic selected goal category.
+  """
+  user = User.get_logged_in_user()
+  if not user:
+    return redirect("/")
+  
+  return render_template("/surveys/goals-career-professional-development-map.html")
 
 @app.get("/surveys/day-map")
 def survey_day_map():

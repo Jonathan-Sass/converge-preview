@@ -677,46 +677,149 @@ survey_question_data = [
       "questions": [
         {
           "question_slug": "life-position",
-          "question_text": "Which statement best describes where you are in life right now?",
+          "question_text": "Which statement best describes your current approach to your future?",
           "type": "guided-choice",
           "answers": [
-            { "answer_text": "Still figuring out what I want to do.", "answer_value": 0 },
-            { "answer_text": "Content with where I am; no big goals at the moment.", "answer_value": 1 },
-            { "answer_text": "Career‑focused and advancing on a path I love.", "answer_value": 2 },
-            { "answer_text": "In one field but exploring something new.", "answer_value": 3 },
-            { "answer_text": "I’ve achieved my big dreams; looking for the next chapter.", "answer_value": 4 },
-            { "answer_text": "I’m in discovery mode—seeking direction and meaning.", "answer_value": 5 }
+            { "answer_text": "I am happy with life, and don't feel the need to set goals toward anything in particular.", "answer_value": 0 },
+            { "answer_text": "I am still figuring out what I want my future to look like.", "answer_value": 1 },
+            { "answer_text": "I would like to do something different or learn something new, but I'm not sure where to start.", "answer_value": 2 },
+            { "answer_text": "I am building momentum in a career or path I enjoy.", "answer_value": 3 },
+            { "answer_text": "I'm in a solid career but want better balance or fulfillment.", "answer_value": 4 },
+            { "answer_text": "Currently exploring the idea of a new career path or skill set.", "answer_value": 5 },
+            { "answer_text": "I know or think I know what I want to do in my near or distant future and am currently working toward making that my reality.", "answer_value": 6 },
+            { "answer_text": "I’ve achieved my big dreams; looking for the next chapter.", "answer_value": 7 }
           ]
         },
         {
-          "question_slug": "interest-areas",
-          "question_text": "What areas are you most interested in pursuing goals around? (Select up to 3)",
+          "question_slug": "current-focus-area",
+          "question_text": "What areas of your life are you currently most focused on developing/improving?",
           "type": "select-any",
           "answers": [
-            { "answer_text": "Career & Professional Growth", "answer_value": 0 },
-            { "answer_text": "Health & Fitness", "answer_value": 1 },
+            { "answer_text": "Career Growth & Professional Skills", "answer_value": 0 },
+            { "answer_text": "Health & Wellness", "answer_value": 1 },
             { "answer_text": "Personal Growth & Learning", "answer_value": 2 },
-            { "answer_text": "Financial Stability & Wealth Building", "answer_value": 3 },
-            { "answer_text": "Family & Relationships", "answer_value": 4 },
-            { "answer_text": "Mental & Emotional Well‑Being", "answer_value": 5 },
-            { "answer_text": "Spiritual Growth & Mindfulness", "answer_value": 6 },
-            { "answer_text": "Creativity & Hobbies", "answer_value": 7 },
+            { "answer_text": "Family & Relationships", "answer_value": 3 },
+            { "answer_text": "Spiritual Growth & Mindfulness", "answer_value": 4 },
+            { "answer_text": "Adventure & New Experiences", "answer_value": 5 },
+            { "answer_text": "Creativity & Hobbies", "answer_value": 6 },
+            { "answer_text": "Income & Wealth Building", "answer_value": 7 },
             { "answer_text": "Community & Social Impact", "answer_value": 8 },
-            { "answer_text": "Adventure & New Experiences", "answer_value": 9 },
-            { "answer_text": "Time Management & Productivity", "answer_value": 10 },
-            { "answer_text": "Self‑Discipline & Habit Building", "answer_value": 11 }
+            { "answer_text": "Time Management & Productivity", "answer_value": 9 },
+            { "answer_text": "Self‑Discipline & Habit Building", "answer_value": 10 },
+            { "answer_text": "Not sure - I’m exploring and open to suggestions", "answer_value": 11 },
           ]
         },
         {
-            "question_slug": "interest-areas-top-3",
+            "question_slug": "current-focus-area-top-3",
             "question_text": "From your previously selected interests, select your top 3.",
             "type": "select-3"
         },
         {
-            "question_slug": "interest-areas-top-1",
+            "question_slug": "current-focus-area-top-1",
             "question_text": "From your previously selected interests, select your top 1.",
             "type": "select-1"
         },
+      ]
+    },
+    # {
+    #   "subcategory_slug": "activity-interest-map",
+    #   "questions": [
+    #               # TODO: Create "select-many" question type with checkbox grid?
+
+    #     {
+    #       "question_slug": "creative-interests",
+    #       "question_text": "Which of these creative or artistic activities interest you?",
+    #       "type": "select-any",
+    #       "answers": [
+    #         { "answer_text": "Drawing or painting", "answer_value": 0 },
+    #         { "answer_text": "Playing a musical instrument", "answer_value": 1 },
+    #         { "answer_text": "Singing or performing", "answer_value": 2 },
+    #         { "answer_text": "Creative writing or journaling", "answer_value": 3 },
+    #         { "answer_text": "Photography or videography", "answer_value": 4 },
+    #         { "answer_text": "Graphic design or digital art", "answer_value": 5 }
+    #       ]
+    #     },
+    #     {
+    #       "question_slug": "craft-builder-interests",
+    #       "question_text": "Do any of these hands-on or craft-based activities appeal to you?",
+    #       "type": "select-any",
+    #       "answers": [
+    #         { "answer_text": "Woodworking or DIY projects", "answer_value": 0 },
+    #         { "answer_text": "Home renovation or mechanical work", "answer_value": 1 },
+    #         { "answer_text": "Sewing, knitting, or textile arts", "answer_value": 2 },
+    #         { "answer_text": "Model building or tinkering", "answer_value": 3 },
+    #         { "answer_text": "Automotive repair or motorsports", "answer_value": 4 }
+    #       ]
+    #     },
+    #     {
+    #       "question_slug": "movement-interests",
+    #       "question_text": "Which types of physical movement do you enjoy or want to explore?",
+    #       "type": "select-any",
+    #       "answers": [
+    #         { "answer_text": "Hiking or trail running", "answer_value": 0 },
+    #         { "answer_text": "Yoga or mobility practices", "answer_value": 1 },
+    #         { "answer_text": "Martial arts or combat sports", "answer_value": 2 },
+    #         { "answer_text": "Team sports like basketball or soccer", "answer_value": 3 },
+    #         { "answer_text": "Solo fitness or strength training", "answer_value": 4 },
+    #         { "answer_text": "Dance or rhythmic movement", "answer_value": 5 }
+    #       ]
+    #     },
+    #     {
+    #       "question_slug": "exploration-interests",
+    #       "question_text": "What kinds of exploration or learning experiences interest you?",
+    #       "type": "select-any",
+    #       "answers": [
+    #         { "answer_text": "Travel and cultural experiences", "answer_value": 0 },
+    #         { "answer_text": "Language learning", "answer_value": 1 },
+    #         { "answer_text": "History, philosophy, or deep reading", "answer_value": 2 },
+    #         { "answer_text": "Spiritual or mindfulness practices", "answer_value": 3 },
+    #         { "answer_text": "Science, tech, or psychology deep dives", "answer_value": 4 }
+    #       ]
+    #     },
+    #     {
+    #       "question_slug": "digital-tech-interests",
+    #       "question_text": "Are you interested in any of the following digital or tech-based hobbies?",
+    #       "type": "select-any",
+    #       "answers": [
+    #         { "answer_text": "Coding or app/game development", "answer_value": 0 },
+    #         { "answer_text": "Video gaming or esports", "answer_value": 1 },
+    #         { "answer_text": "Digital productivity or systems building", "answer_value": 2 },
+    #         { "answer_text": "3D modeling or animation", "answer_value": 3 },
+    #         { "answer_text": "Cryptocurrency or web tech", "answer_value": 4 }
+    #       ]
+    #     }
+    #   ]
+    # },
+    {
+      "subcategory_slug": "confirm-goal-category",
+      "questions": [
+        {
+          "question_slug": "goal-category-confirmation",
+          "question_text": "Based on your previous responses, we have we have selected the category above to start setting goals.  Does this work for you?",
+          "type": "guided-choice",
+          "answers": [
+            { "answer_text": "Yes, that sounds good.", "answer_value": 1 },
+            { "answer_text": "No, I’d like to choose a different category.", "answer_value": 0 }
+          ]
+        },
+        {
+          "question_slug": "goal-category-override",
+          "question_text": "Which category would you prefer to start setting goals in?",
+          "type": "single-select",
+          "answers": [
+            { "answer_text": "Career Growth & Professional Skills", "answer_value": 0 },
+            { "answer_text": "Health & Wellness", "answer_value": 1 },
+            { "answer_text": "Personal Growth & Learning", "answer_value": 2 },
+            { "answer_text": "Family & Relationships", "answer_value": 3 },
+            { "answer_text": "Spiritual Growth & Mindfulness", "answer_value": 4 },
+            { "answer_text": "Adventure & New Experiences", "answer_value": 5 },
+            { "answer_text": "Creativity & Hobbies", "answer_value": 6 },
+            { "answer_text": "Income & Wealth Building", "answer_value": 7 },
+            { "answer_text": "Community & Social Impact", "answer_value": 8 },
+            { "answer_text": "Time Management & Productivity", "answer_value": 9 },
+            { "answer_text": "Self‑Discipline & Habit Building", "answer_value": 10 },
+          ]
+        }
       ]
     },
     {

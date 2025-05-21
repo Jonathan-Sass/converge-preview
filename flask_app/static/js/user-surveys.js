@@ -189,7 +189,10 @@ nextButton.addEventListener('click', (event) => {
         console.log("Branch detected!")
         // IF answer_text matches survey_branch answer_text, update currentQuestionIndex to matching index for next_question_slug
         //  FAULTY - question["questionText"] does not exist, see above
-        if (answerData.answer_text === questionBranch["answerText"]) {
+        // A survey branch with a next_question_slug of "end_survey" ends the survey.
+        if (questionBranch["next_question_slug"] === "end_survey") {
+          currentQuestionIndex = currentQuestionSet.length
+        } else if (answerData.answer_text === questionBranch["answerText"]) {
           console.log(`Answer Texts match: ${questionBranch}, branching!`)
           const targetIndex = currentQuestionSet.findIndex(q => q["questionSlug"] === questionBranch["nextQuestionSlug"])
           currentQuestionIndex = targetIndex !== -1 ? targetIndex : currentQuestionIndex + 1;
