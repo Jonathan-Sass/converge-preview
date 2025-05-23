@@ -5,6 +5,7 @@ from pprint import pprint
 from flask_app.models.user import User
 from flask_app.models.goal import Goal
 from flask_app.models.goal_category import GoalCategory
+from flask_app.models.user_response import UserResponse
 from flask_app.models.category_component import CategoryComponent
 
 
@@ -35,6 +36,28 @@ def set_category_goals(category_slug):
         "/goals/set_goals_for_category.html", user=user, category=category
     )
 
+@app.route("/goals/select-archetype-from-map/<string:map_slug>", methods=["POST", "GET"])
+def select_archetype_from_map(map_slug):
+    user = User.get_logged_in_user()
+    if not user:
+        return redirect("/")
+    
+    archetype_slug = UserResponse.select_archetype_from_map(user, map_slug)
+    # archetype_slug = session.get("selected_archetype_slug")
+    if not archetype_slug:
+        return redirect("/error")
+    # process based on slug
+    return redirect(f"/goals/set-from-archetype/{archetype_slug}")
+
+
+@app.post("/goals/set-from-archetype/<string:archetype_slug>")
+def set_goals_from_archetype_template(archetype_slug):
+    user = User.get_logged_in_user()
+    if not user:
+        return redirect("/")
+    
+    category_archetype = CategoryArchetype.find_archetype_by_slug(archetype_slug)
+    return
 
 @app.post("/goals/<string:category_component_slug>/save")
 def save_goals_for_category_component(category_component_slug=None):

@@ -826,20 +826,44 @@ survey_question_data = [
       "subcategory_slug": "career-professional-development-map",
       "questions": [
         {
-          "question_slug": "career-path",
-          "question_text": "Describe your current place in your career path.",
+          "question_slug": "career-current-situation",
+          "question_text": "Which of these best describes your current professional situation?",
           "type": "guided-choice",
           "answers": [
-            {"answer_text": "I am completely content in my professional life.", "answer_value": 0},
-            {"answer_text": "I plan on staying in my field, and would like to work toward a management position.", "answer_value": 1},
-            {"answer_text": "I plan on staying in my field, and and seek advancement through professional development.", "answer_value": 2},
-            {"answer_text": "I am planning or currently transitioning out of my current position or field.", "answer_value": 3},
-            {"answer_text": "I am pursuing training or credentials toward desired roles/fields.", "answer_value": 4},
-
-            {"answer_text": "I am not certain .", "answer_value": 3},
-            {"answer_text": "I am looking .....", "answer_value": 5}
+            { "answer_text": "I'm in a career I like and looking to grow or level up", "answer_value": 0 },
+            { "answer_text": "I'm mostly content but want to build specific skills or credentials", "answer_value": 1 },
+            { "answer_text": "I'm in between things or unsure what I want to do long-term", "answer_value": 2 },
+            { "answer_text": "I know I want to pivot to a new field or role", "answer_value": 3 },
+            { "answer_text": "I want to start creating and building something independently", "answer_value": 4 },
+            { "answer_text": "I'm already building something and want to grow it", "answer_value": 5 },
+            { "answer_text": "I'm a creative professional looking to grow my impact or income", "answer_value": 6 }
           ]
         },
+        {
+          "question_slug": "career-motivation",
+          "question_text": "What’s motivating you most in your career right now?",
+          "type": "select-1",
+          "answers": [
+            { "answer_text": "Increase responsibility, compensation, or leadership opportunities", "answer_value": 0 },
+            { "answer_text": "Build credibility through formal learning or certification", "answer_value": 1 },
+            { "answer_text": "Figure out what career path fits me best", "answer_value": 2 },
+            { "answer_text": "Successfully transition into something new", "answer_value": 3 },
+            { "answer_text": "Start creating something of my own", "answer_value": 4 },
+            { "answer_text": "Scale or systematize my independent work", "answer_value": 5 },
+            { "answer_text": "Expand my creative practice into a business or career", "answer_value": 6 }
+          ]
+        },
+        {
+          "question_slug": "independent-experience",
+          "question_text": "Have you already started building or creating something independently?",
+          "type": "guided-choice",
+          "answers": [
+            { "answer_text": "Not yet, but I want to", "answer_value": 0 },
+            { "answer_text": "Yes, I've started and want to grow it", "answer_value": 1 },
+            { "answer_text": "I'm not interested in working independently", "answer_value": 2 }
+          ]
+        },
+
       ]
     },
 

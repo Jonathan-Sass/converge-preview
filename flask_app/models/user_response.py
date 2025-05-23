@@ -172,6 +172,54 @@ class UserResponse:
 
       # Priority: top-1 → top-3 → all
       return match_from([top_1]) or match_from(top_3) or match_from(all_selected)
+    
+    def select_archetype_from_map(user,map_slug):
+      responses = UserResponse.find_user_responses_by_user_id_and_subcategory_slug(user, map_slug)
+
+      if not responses:
+        raise ValueError(f"No responses found for user {user.id} and map '{map_slug}'")
+
+      subcategory_slug = responses[0].get("subcategory_slug")
+      if not subcategory_slug:
+        raise ValueError("Response is missing 'subcategory_slug'")
+
+      # Dispatch table: maps subcategory slugs to the appropriate selector function
+      archetype_selector = {
+        "career-professional-development-map": select_career_archetype,
+        # Add additional subcategory → function mappings here
+        # "fitness-training-map": select_fitness_archetype,
+      }
+
+      selector_fn = archetype_selector.get(subcategory_slug)
+      if not selector_fn:
+          raise ValueError(f"No archetype selection logic defined for '{subcategory_slug}'")
+
+      return selector_fn(responses)
+
+    def select_career_archetype(responses):
+      values = UserResponse.extract_response_values(responses)
+
+      situation = values.get("career-current-situation")
+      motivation = values.get("career-motivation")
+      indie = values.get("independent-experience")
+
+      if situation == 0 and motivation == 0:
+          return "career-leadership-growth"
+      elif motivation == 1:
+          return "career-skills-credentials"
+      elif motivation == 2:
+          return "career-discovery"
+      elif motivation == 3 or situation == 3:
+          return "career-pivot"
+      elif motivation == 4 or (indie == 0 and situation == 4):
+          return "aspiring-independent-creator"
+      elif motivation == 5 or indie == 1:
+          return "experienced-independent-creator"
+      elif motivation == 6 or situation == 6:
+          return "creative-professional-growth"
+      else:
+        return "career-skills-credentials"  # fallback
+
 
     def select_digital_disconnect_template(user_responses):
       mapped_responses = UserResponse.extract_response_values(user_responses)

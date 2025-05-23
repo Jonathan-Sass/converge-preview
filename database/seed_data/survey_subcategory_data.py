@@ -9,7 +9,7 @@ survey_subcategory_data = {
         {"subcategory_slug": "goal-starter-map", "name": "Goal Starter Map"},
         {"subcategory_slug": "activity-interest-map", "name": "Activity and Interest Map"},
         {"subcategory_slug": "confirm-goal-category", "name": "Confirm Goal Category"},
-
+        {"subcategory_slug": "career-professional-development-map", "name": "Career & Professional Development Map"},
 
 
         {"subcategory_slug": "getting-started", "name": "Getting Started"},
