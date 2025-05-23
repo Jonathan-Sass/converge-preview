@@ -29,7 +29,7 @@ class UserSurvey:
 
     # Find a User Survey Category and User ID
     @classmethod
-    def find_questions_and_branches_by_subcategory(cls, user_subcategory_data):
+    def find_questions_and_branches_by_subcategory(cls, subcategory_slug):
         """
         Retrieves all questions and potential answers for a given category/subcategory pair.
         
@@ -73,13 +73,13 @@ class UserSurvey:
             LEFT JOIN
                 survey_questions sq_next ON sb.next_question_id = sq_next.id
             WHERE 
-                sc.subcategory_slug = %(subcategory)s
+                sc.subcategory_slug = %(subcategory_slug)s
             ORDER BY
                 sq.id, sa.id;
           """
         
         data = {
-            'subcategory': user_subcategory_data['subcategory']
+            'subcategory_slug': subcategory_slug
         }
 
 

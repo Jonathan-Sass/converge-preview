@@ -27,12 +27,12 @@ def retrieve_survey_questions():
     if not subcategory:
         return jsonify({"error": "Invalid or missing subcategory JSON data"}), 400
 
-    user_subcategory_data = {
-        "subcategory": subcategory
-    }
+    # user_subcategory_data = {
+    #     "subcategory": subcategory
+    # }
 
     question_set, survey_branches = UserSurvey.find_questions_and_branches_by_subcategory(
-        user_subcategory_data
+        subcategory
     )
 
     return jsonify({
@@ -149,12 +149,10 @@ def survey_confirm_goal_category():
   
   goal_category = GoalCategory.find_category_by_slug(session["selected_goal_category"])
   
-  return render_template("/surveys/confirm_goal_category.html", goal_category = goal_category)
-
-
+  return render_template("/surveys/goals_confirm_category.html", goal_category = goal_category)
 
 @app.get("/surveys/goals-career-professional-development-map")
-def survey_set_goals_from_archetype():
+def survey_career_professional_development_map():
   """
   Displays page to confirm a logic selected goal category.
   """
@@ -162,7 +160,7 @@ def survey_set_goals_from_archetype():
   if not user:
     return redirect("/")
   
-  return render_template("/surveys/goals-career-professional-development-map.html")
+  return render_template("/surveys/goals_career_professional_development_map.html")
 
 @app.get("/surveys/day-map")
 def survey_day_map():
