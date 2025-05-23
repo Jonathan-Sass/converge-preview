@@ -95,8 +95,8 @@
           
           <nav class="nav nav-pills flex-column gap-2">
             <a class="nav-link active border border-secondary-subtle shadow solid-white-bg mb-2" href="#onboarding">Getting to Know You  
-              <div class="progress my-1" style="height: 1rem;">
-                <div id="progress-bar" class="progress-bar bg-primary" role="progressbar" style="width: 10%;"
+              <div class="progress my-1 border border-light" style="height: 1rem;">
+                <div id="progress-bar" class="progress-bar bg-primary" role="progressbar" style="width: 70%;"
                 aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
               </div>
             </a>
@@ -105,7 +105,8 @@
             <a class="nav-link border border-secondary-subtle shadow solid-white-bg" href="#core-primer-map">Core System Primer Map</a>
             <a class="nav-link border border-secondary-subtle shadow solid-white-bg" href="#core-builder-map">Core System Builder Map</a>
             <a class="nav-link border border-secondary-subtle shadow solid-white-bg" href="#goal-starter-map">Goal Setting Starter Map</a>
-            <a class="nav-link border border-secondary-subtle shadow solid-white-bg" href="#confirm-goal-category">Confirm Goal Category
+            <a class="nav-link border border-secondary-subtle shadow solid-white-bg" href="#confirm-goal-category">Confirm Goal Category</a>
+            <a class="nav-link border border-secondary-subtle shadow solid-white-bg" href="#career-professional-development-map">Career & Professional Development Map
               <div class="progress my-1" style="height: 1rem;">
                 <div id="survey-progress-bar" class="progress-bar bg-primary" role="progressbar" style="width: 0%;"
                 aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
@@ -128,10 +129,10 @@
             class="scrollspy-example-2" tabindex="0">
               
 <!-- ID matches subcategory.subcategory_slug for sidebar scrollspy -->
-            <div id="confirm-goal-category" data-subcategory="confirm-goal-category">
+            <div id="career-professional-development-map" data-subcategory="career-professional-development-map">
               <div class="card-body">
                 <div class="card-title">
-                  <h2 class="display-6 text-primary">Selected Category: {{ goal_category.name }}</h2>
+                  <h2 class="display-6 text-primary">Where are you on your career journey?</h2>
                   <hr class="border border-1 border-dark">
                   <!-- <p class="card-text lead" id="survey-intro">Confi</p> -->
                 </div>
@@ -148,7 +149,7 @@
                   </div>
                 </div>
                 <div class="controls d-flex justify-content-evenly">
-                  <button id="start-btn" data-subcategory="confirm-goal-category" class="btn btn-lg btn-primary">Start</button>
+                  <button id="start-btn" data-subcategory="career-professional-development-map" class="btn btn-lg btn-primary">Start</button>
                   <!-- data-subcategory should match subcategory.subcategory_slug -->
                   <button class="btn btn-lg btn-primary d-none" id="back-btn">Back</button>
                   <button id="next-btn" class="btn btn-lg btn-primary d-none">Next</button>
@@ -158,7 +159,7 @@
             </div>
             <div class="card shadow w-100 opacity-75 mb-3 d-none" id="next-section-btn">
               <div class="card-body d-flex justify-content-around">
-                <a href="/surveys/goals-career-professional-development-map" class="btn btn-primary">Next Section</a>
+                <a href="/goals/select-archetype-from-map/career-professional-development-map" class="btn btn-primary">Next Section</a>
               </div>
             </div>
           </div>

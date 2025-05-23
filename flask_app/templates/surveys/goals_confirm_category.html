@@ -10,13 +10,13 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intro.js/7.2.0/introjs.css" integrity="sha512-4OzqLjfh1aJa7M33b5+h0CSx0Q3i9Qaxlrr1T/Z+Vz+9zs5A7GM3T3MFKXoreghi3iDOSbkPMXiMBhFO7UBW/g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='img/Enso_Blue_and_Black.jpg') }}">
   <script defer src="/static/js/user-surveys.js"></script>
-  <title>User Interest Survey</title>
+  <title>Confirm a Category to Set Goals</title>
 </head>
 
 <body>
   <div class="border-box">
     <nav
-      class="navbar shadow navbar-expand-lg bg-light w-100 m-auto d-flex justify-content-between position-sticky top-0 z-3 p-3">
+      class="navbar navbar-expand-lg bg-light w-100 m-auto d-flex justify-content-between position-sticky top-0 z-3 p-3">
       <div class="container-fluid">
         <a class="navbar-brand d-inline-flex align-items-center gap-4" href="/dashboard">
           <img src="/static/img/Enso_Blue_and_Black.jpg" class="rounded-circle" width="60" height="60"
@@ -80,9 +80,9 @@
         </div>
       </div>
     </nav>
-    <header class="card m-auto w-75 my-5 p-3 text-center bg-light shadow opacity-75">
-      <h1 class="display-2 mb-3 text-primary">Interest Map</h1>
-      <p class="fs-4">Let's take a look at your interests so we can start setting some goals in a category that matters to you.</p>
+    <header class="card m-auto w-75 my-4 p-3 text-center bg-light shadow opacity-75">
+      <h1 class="display-2 mb-3 text-primary">What Do YOU Want To Do?</h1>
+      <p class="lead">Let's make sure we are starting in the right place.</p>
     </header>
     <!-- Content and Sidebar Div-->
      <div class="parallax-bg"></div>
@@ -96,7 +96,7 @@
           <nav class="nav nav-pills flex-column gap-2">
             <a class="nav-link active border border-secondary-subtle shadow solid-white-bg mb-2" href="#onboarding">Getting to Know You  
               <div class="progress my-1" style="height: 1rem;">
-                <div id="progress-bar" class="progress-bar bg-primary" role="progressbar" style="width: 10%;"
+                <div id="progress-bar" class="progress-bar bg-primary" role="progressbar" style="width: 60%;"
                 aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
               </div>
             </a>
@@ -105,10 +105,9 @@
             <a class="nav-link border border-secondary-subtle shadow solid-white-bg" href="#core-primer-map">Core System Primer Map</a>
             <a class="nav-link border border-secondary-subtle shadow solid-white-bg" href="#core-builder-map">Core System Builder Map</a>
             <a class="nav-link border border-secondary-subtle shadow solid-white-bg" href="#goal-starter-map">Goal Setting Starter Map</a>
-            <a class="nav-link border border-secondary-subtle shadow solid-white-bg" href="#confirm-goal-category">Confirm Goal Category</a>
-            <a class="nav-link border border-secondary-subtle shadow solid-white-bg" href="#career-professional-development-map">Career & Professional Development Map
-              <div class="progress my-1" style="height: 1rem;">
-                <div id="survey-progress-bar" class="progress-bar bg-primary" role="progressbar" style="width: 0%;"
+            <a class="nav-link border border-secondary-subtle shadow solid-white-bg" href="#confirm-goal-category">Confirm Goal Category
+              <div class="progress my-1 border border-light" style="height: 1rem;">
+                <div id="survey-progress-bar" class="progress-bar bg-primary" role="progressbar" style="width: 60%;"
                 aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
               </div>
             </a>
@@ -119,31 +118,29 @@
         </nav>
       </div>
       <!-- Main Content -->
-      <div class="container col-9">
-        <!-- Data-category needs to be category.category_slug to access question set-->
-        <div class="card shadow p-5 text-center mb-2 opaque-white-bg" id="survey_category" data-category="onboarding">
+      <div class="card shadow col-9 p-5 opaque-white-bg">
+<!-- Data-category needs to be category.category_slug to access question set-->
+        <div class="card shadow p-2 text-center mb-2" id="survey_category" data-category="onboarding">
           <div class="card-title">
             <!-- <h2 class="display-6 text-primary">Let's start with something fun.</h2> -->
           </div>
           <div data-bs-spy="scroll" data-bs-target="#progress-navbar" data-bs-smooth-scroll="true"
-          class="scrollspy-example-2" tabindex="0">
-          
-                            <!-- data-subcategory needs to match subcategory.subcategory_slug for question set retrieval-->
-                            <!-- ID matches subcategory.subcategory_slug for sidebar scrollspy -->
-            <div class="card shadow p-2 solid-white-bg" id="interest-map" data-subcategory="interest-map">
+            class="scrollspy-example-2" tabindex="0">
+              
+<!-- ID matches subcategory.subcategory_slug for sidebar scrollspy -->
+            <div id="confirm-goal-category" data-subcategory="confirm-goal-category">
               <div class="card-body">
                 <div class="card-title">
-                  <h2 class="display-6 text-primary">What gets you up in the morning?</h2>
-                  <hr class="border border-1 border-secondary">
-                  <!-- <p class="card-text lead" id="survey-intro">In the following section, we will get to know a bit
-                    about your big picture goals/needs.</p> -->
+                  <h2 class="display-6 text-primary">Selected Category: {{ goal_category.name }}</h2>
+                  <hr class="border border-1 border-dark">
+                  <!-- <p class="card-text lead" id="survey-intro">Confi</p> -->
                 </div>
-                <div class="d-none mb-3" id="question-container">
-                  <div class="fs-4 mb-3" id="question">Question</div>
+                <div id="question-container" class="d-none mb-3">
+                  <div id="question" class="fs-4 mb-3">Question</div>
                   <div class="btn-group-vertical" id="answer-checkboxes" role="group"
                     aria-label="Basic checkbox toggle button group">
                   </div>
-                  <div class="d-flex justify-content-evenly gap-2" id="answer-buttons">
+                  <div id="answer-buttons" class="d-flex justify-content-evenly gap-2">
                     <div class="btn btn-outline-light col">Answer 1</div>
                     <div class="btn btn-outline-light col">Answer 2</div>
                     <div class="btn btn-outline-light col">Answer 3</div>
@@ -151,12 +148,17 @@
                   </div>
                 </div>
                 <div class="controls d-flex justify-content-evenly">
-                  <button class="btn btn-lg btn-primary" id="start-btn">Start</button>
+                  <button id="start-btn" data-subcategory="confirm-goal-category" class="btn btn-lg btn-primary">Start</button>
+                  <!-- data-subcategory should match subcategory.subcategory_slug -->
                   <button class="btn btn-lg btn-primary d-none" id="back-btn">Back</button>
-                  <button class="btn btn-lg btn-primary d-none" id="next-btn">Next</button>
-                  <button class="btn btn-lg btn-primary d-none" id="finish-btn">Submit Answers</button>
-                  <a href="/surveys/discipline-motivation-focus-map" class="btn btn-primary btn-lg d-none" id="next-section-btn">Next Section</a>
+                  <button id="next-btn" class="btn btn-lg btn-primary d-none">Next</button>
+                  <button id="finish-btn" class="btn btn-lg btn-primary d-none">Submit Answers</button>
                 </div>
+              </div>
+            </div>
+            <div class="card shadow w-100 opacity-75 mb-3 d-none" id="next-section-btn">
+              <div class="card-body d-flex justify-content-around">
+                <a href="/surveys/goals-career-professional-development-map" class="btn btn-primary">Next Section</a>
               </div>
             </div>
           </div>
@@ -171,29 +173,36 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/intro.js/7.2.0/intro.js" integrity="sha512-f26fxKZJiF0AjutUaQHNJ5KnXSisqyUQ3oyfaoen2apB1wLa5ccW3lmtaRe2jdP5kh4LF2gAHP9xQbx7wYhU5w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="{{ url_for('static', filename='/js/ui-effects.js') }}"></script>
 </script>
-<script>
+<!-- <script>
   document.addEventListener('DOMContentLoaded', function() {
 
     introJs().setOptions({
         steps: [
-            {
-                element: '#survey_category',
-                title: 'Interest Map',
-                intro: 'We will use the interest map to start your goal setting in an area relevant to you.',
-                position: 'top' 
-            },
-            {
-                element: '#start-btn',
-                title: 'Onward we go!',
-                intro: "We will have a couple quizzes in a row here before we set some goals.  Let's do this!",
-                position: 'top'
-            },
+          {
+              element: '#user-objectives',
+              title: 'Take a moment to reflect',
+              intro: "We have done our best to create extensive, inclusive, and yet efficient options throughout Converge.  Take a moment to consider each option thoughtfully to get the most out of this experience.",
+              position: 'top'
+          },
+          {
+              element: '#start-btn',
+              title: 'Identify Your Objectives With Converge?',
+              intro: "To kick things off, let's take a look at how Converge can best work for you. Have fun!",
+              position: 'auto' ,
+              nextOnTargetClick: true,
+              disableInteraction: false,
+              tooltipClass: 'no-buttons-tooltip'
+          }
         ],
         tooltipClass: 'introCustomTooltip',
         // showProgress: true, // Adds progress dots to indicate step sequence
-        disableInteraction: true // Prevents accidental clicks while onboarding
+        // disableInteraction: true // Prevents accidental clicks while onboarding
     }).start();
   })
-</script>
+
+  document.querySelector('#start-btn').addEventListener('click', () => {
+    introJs().exit();
+  })
+</script> -->
 
 </html>
