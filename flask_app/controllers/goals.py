@@ -4,6 +4,7 @@ from pprint import pprint
 
 from flask_app.models.user import User
 from flask_app.models.goal import Goal
+from flask_app.models.category_archetype import CategoryArchetype
 from flask_app.models.goal_category import GoalCategory
 from flask_app.models.user_response import UserResponse
 from flask_app.models.category_component import CategoryComponent
@@ -45,19 +46,25 @@ def select_archetype_from_map(map_slug):
     archetype_slug = UserResponse.select_archetype_from_map(user, map_slug)
     # archetype_slug = session.get("selected_archetype_slug")
     if not archetype_slug:
-        return redirect("/error")
+        return redirect(f"/surveys/goals-{map_slug}")
     # process based on slug
     return redirect(f"/goals/set-from-archetype/{archetype_slug}")
 
 
-@app.post("/goals/set-from-archetype/<string:archetype_slug>")
+@app.get("/goals/set-from-archetype/<string:archetype_slug>")
 def set_goals_from_archetype_template(archetype_slug):
     user = User.get_logged_in_user()
     if not user:
-        return redirect("/")
+        return redirect("/")        
+
+    category_archetype_data = CategoryArchetype.find_archetype_with_goals_milestones_and_action_items_by_archetype_slug(archetype_slug)
+    if not category_archetype_data:
+        category_archetype_data = CategoryArchetype.find_archetype_with_goals_milestones_and_action_items_by_archetype_slug("career-skills-growth")
+        
     
-    category_archetype = CategoryArchetype.find_archetype_by_slug(archetype_slug)
-    return
+    category_archetype = CategoryArchetype.build_archetype_with_goals_milestones_and_action_items(category_archetype_data)
+    pprint(category_archetype_data)
+    return render_template("/goals/set_category_goals_from_archetype.html", category_archetype = category_archetype)
 
 @app.post("/goals/<string:category_component_slug>/save")
 def save_goals_for_category_component(category_component_slug=None):

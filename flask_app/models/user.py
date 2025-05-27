@@ -1,6 +1,6 @@
 from flask_app.config.mysqlconnection import connectToMySQL
 from pprint import pprint
-from flask import flash, session
+from flask import flash, session, request
 import re
 
 # Regular expressions for validating email and password formats
@@ -37,6 +37,9 @@ class User:
         Returns:
             User or None: The logged-in User object, or None if not found.
         """
+        print("get_logged_in_user called from", request.path)
+
+
         user_id = session.get("user_id")
         if not user_id:
             flash("Please log in.", "login")

@@ -11,7 +11,7 @@ from pprint import pprint
 
 
 @app.get("/routines/test")
-def test_route():
+def routine_test_route():
     """
     Test route to confirm user authentication and render a test routine template.
     """
