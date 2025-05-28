@@ -12,15 +12,24 @@ class GoalCategory:
 
     def __init__(self, data):
         """Initialize a GoalCategory object with basic fields and an empty category_components list."""
-        self.id = data["goal_category_id"]
-        self.name = data["goal_category_name"]
-        self.slug = data["goal_category_slug"]
-        self.created_at = data["goal_category_created_at"]
-        self.updated_at = data["goal_category_updated_at"]
+        self.id = data["id"]
+        self.name = data["name"]
+        self.slug = data["slug"]
+        self.created_at = data["created_at"]
+        self.updated_at = data["updated_at"]
         self.category_components = []
 
-    @staticmethod
-    def get_all_goal_categories_with_category_components():
+    def build_goal_category_from_row(row):
+        return {
+            "id": row["goal_category_id"],
+            "name": row["goal_category_name"],
+            "slug": row["goal_category_slug"],
+            "created_at": row["goal_category_created_at"],
+            "updated_at": row["goal_category_updated_at"]
+        }
+
+    @classmethod
+    def get_all_goal_categories_with_category_components(cls):
         """
         Retrieve all goal_categories and their related category_components in a single query.
         Returns:
@@ -47,7 +56,7 @@ class GoalCategory:
         """
 
         try:
-            results = GoalCategory.db.query_db(query)
+            results = cls.db.query_db(query)
 
             if results:
                 goal_categories_with_components = {}
@@ -57,7 +66,7 @@ class GoalCategory:
                     category_component_id = result["category_component_id"]
 
                     if goal_category_id not in goal_categories_with_components:
-                        goal_categories_with_components[goal_category_id] = GoalCategory({
+                        goal_categories_with_components[goal_category_id] = cls({
                             "goal_category_id": result["goal_category_id"],
                             "goal_category_slug": result["goal_category_slug"],
                             "goal_category_name": result["goal_category_name"],
@@ -101,8 +110,8 @@ class GoalCategory:
     def get_all_goal_categories_with_name_slug_components():
         return
     
-    @staticmethod
-    def find_category_by_slug(goal_category_slug):
+    @classmethod
+    def find_category_by_slug(cls, goal_category_slug):
       """
         Retrieves a single category by its slug.
 
@@ -116,12 +125,12 @@ class GoalCategory:
       query = "SELECT * FROM goal_categories WHERE slug = %(slug)s;"
       data = {"slug": goal_category_slug}
 
-      results = GoalCategory.db.query_db(query, data)
+      results = cls.db.query_db(query, data)
       
       return results[0] if results else None
 
-    @staticmethod
-    def find_category_by_id(goal_category_id):
+    @classmethod
+    def find_category_by_id(cls, goal_category_id):
       """
       Retrieve a single category by its ID.
       
@@ -134,6 +143,6 @@ class GoalCategory:
       query = "SELECT * FROM goal_categories WHERE id = %(id)s;"
       data = {"id": goal_category_id}
 
-      results = GoalCategory.db.query_db(query, data)
+      results = cls.db.query_db(query, data)
       
-      return results[0] if results else None
+      return cls(results[0]) if results else None

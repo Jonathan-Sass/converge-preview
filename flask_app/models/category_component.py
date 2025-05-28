@@ -9,11 +9,41 @@ class CategoryComponent:
 
   def __init__ (self, data):
     ""
-    self.id = data["category_component_id"]
+    self.id = data["id"]
     self.goal_category_id = data["goal_category_id"]
-    self.slug = data["category_component_slug"]
-    self.name = data["category_component_name"]
-    self.description = data["category_component_description"], None
-    self.role = data["category_component_role"]
-    self.created_at = data["category_component_created_at"]
-    self.updated_at = data["category_component_updated_at"]
+    self.slug = data["slug"]
+    self.name = data["name"]
+    self.description = data["description"], None
+    self.role = data["role"]
+    self.created_at = data["created_at"]
+    self.updated_at = data["updated_at"]
+
+  @staticmethod
+  def build_category_component_from_row(row):
+    return {
+      "id": row["category_component_id"],
+      "goal_category_id": row["goal_category_id"],
+      "slug": row["category_component_slug"],
+      "name": row["category_component_name"],
+      "description": row["category_component_description"],
+      "role": row["category_component_role"],
+      "created_at": row["category_component_created_at"],
+      "updated_at": row["category_component_updated_at"],
+    }
+
+  @classmethod
+  def get_all_as_dict(cls):
+    """Retrieves all category components"""
+    query = "SELECT * FROM category_components;"
+
+    try:
+      results = cls.db.query_db(query)
+      if results:
+        return {r["id"]: cls(r) for r in results}
+      else:
+        return None
+    except Exception as e:
+      print(f"Error retrieving category components: {e}")
+      return None
+  
+    
