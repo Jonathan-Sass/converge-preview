@@ -107,6 +107,27 @@ class CategoryArchetype:
         
         return results
   
+  @classmethod
+  def build_enriched_archetype_with_category_and_components(cls, category_archetype_data):
+      """Builds an archetype complete with goals, milestones and action items as well as the associated category and category components"""
+      archetype = cls.build_archetype_with_goals_milestones_and_action_items(category_archetype_data)
+
+      enriched_archetype = cls.add_category_and_components_to_archetype(archetype)
+      return enriched_archetype
+  
+  def add_category_and_components_to_archetype(archetype):
+      category_id = archetype.goal_category_id
+      category = GoalCategory.find_category_by_id(category_id)
+
+      category_components = CategoryComponent.get_all_as_dict()
+
+      archetype.category = category
+      for goal in archetype.example_goals:
+          component_id = goal["category_component_id"]
+          goal.category_component = category_components[component_id]
+
+      return archetype
+  
   def build_archetype_with_goals_milestones_and_action_items(results):
       """Builds a list of ExampleGoal objects from raw SQL results, nesting milestones and action items."""
       archetype = CategoryArchetype.build_archetype_from_row(results[0])
@@ -154,4 +175,4 @@ class CategoryArchetype:
                       action_item_map[action_item_id] = action_item
                       milestone._action_item_map = action_item_map
 
-      return goals
+      return archetype
