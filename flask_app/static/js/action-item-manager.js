@@ -1,6 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
   initializeSeparateActionItemsListeners();
   initializeAddActionItemListeners();
+  applyInitialActionItemVisibility();
 });
 
 export function initializeSeparateActionItemsListeners() {
@@ -8,6 +9,13 @@ export function initializeSeparateActionItemsListeners() {
     checkbox.addEventListener("change", toggleActionItemSection)
   })
 }
+
+function applyInitialActionItemVisibility() {
+  document.querySelectorAll(".separate-action-items-checkbox").forEach(checkbox => {
+    toggleActionItemSection({ target: checkbox });
+  });
+}
+
 
 function toggleActionItemSection(event) {
   const checkbox = event.target;

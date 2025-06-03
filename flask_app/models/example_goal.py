@@ -23,7 +23,7 @@ class ExampleGoal:
         self.category_component_id = data["category_component_id"]
         self.slug = data["slug"]
         self.name = data["name"]
-        self.description = data["goal_description"]
+        self.description = data["description"]
         self.goal_type = data["goal_type"]
         self.priority = data["priority"]
         self.estimated_time_value = data["estimated_time_value"]

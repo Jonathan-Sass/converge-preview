@@ -37,7 +37,7 @@ def set_category_goals(category_slug):
         "/goals/set_goals_for_category.html", user=user, category=category
     )
 
-@app.route("/goals/select-archetype-from-map/<string:map_slug>", methods=["POST", "GET"])
+@app.get("/goals/select-archetype-from-map/<string:map_slug>")
 def select_archetype_from_map(map_slug):
     user = User.get_logged_in_user()
     if not user:
@@ -61,9 +61,13 @@ def set_goals_from_archetype_template(archetype_slug):
     if not category_archetype_data:
         category_archetype_data = CategoryArchetype.find_archetype_with_goals_milestones_and_action_items_by_archetype_slug("career-skills-growth")
         
-    
-    category_archetype = CategoryArchetype.build_archetype_with_goals_milestones_and_action_items(category_archetype_data)
-    pprint(category_archetype_data)
+    category_archetype = CategoryArchetype.build_enriched_archetype_with_category_and_components(category_archetype_data)
+    # category_archetype = CategoryArchetype.build_archetype_with_goals_milestones_and_action_items(category_archetype_data)
+    pprint(vars(category_archetype))
+    for goal in category_archetype.example_goals:
+      pprint(vars(goal))
+      for milestone in goal.example_milestones:
+          pprint(vars(milestone))
     return render_template("/goals/set_category_goals_from_archetype.html", category_archetype = category_archetype)
 
 @app.post("/goals/<string:category_component_slug>/save")

@@ -26,6 +26,11 @@ def root():
     return render_template("home/index.html")
 
 
+# @app.get("/test")
+# def test_route():
+#     """Renders a page for testing"""
+#     return render_template("/goals/set_category_goals_from_archetype.html")
+
 @app.get("/seed")
 def seed_route():
     """
@@ -63,7 +68,6 @@ def test_seed_route():
     seed_surveys.survey_branching_seed(survey_branching_data)
 
     return render_template("/onboarding/new_user.html")
-
 
 @app.get("/login")
 def login():

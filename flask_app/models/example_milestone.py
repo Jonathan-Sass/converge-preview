@@ -44,6 +44,7 @@ class ExampleMilestone:
                 "id": milestone_id,
                 "example_goal_id": row["example_milestone_example_goal_id"],
                 "name": row["example_milestone_name"],
+                "slug": row["example_milestone_slug"],
                 "description": row["example_milestone_description"],
                 "estimated_time_value": row["example_milestone_estimated_time_value"],
                 "estimated_time_unit": row["example_milestone_estimated_time_unit"],

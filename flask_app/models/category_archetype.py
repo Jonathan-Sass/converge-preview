@@ -67,6 +67,7 @@ class CategoryArchetype:
             em.id AS example_milestone_id,
             em.example_goal_id AS example_milestone_example_goal_id,
             em.name AS example_milestone_name,
+            em.slug AS example_milestone_slug,
             em.description AS example_milestone_description,
             em.estimated_time_value AS example_milestone_estimated_time_value,
             em.estimated_time_unit AS example_milestone_estimated_time_unit,
@@ -123,7 +124,7 @@ class CategoryArchetype:
 
       archetype.category = category
       for goal in archetype.example_goals:
-          component_id = goal["category_component_id"]
+          component_id = goal.category_component_id
           goal.category_component = category_components[component_id]
 
       return archetype
@@ -137,7 +138,7 @@ class CategoryArchetype:
 
       if results:
           for row in results:
-              goal_id = row.get("goal_id")
+              goal_id = row.get("example_goal_id")
               if goal_id is None:
                   continue
 
@@ -147,15 +148,17 @@ class CategoryArchetype:
                   goal.example_milestones = []
                   goal_map[goal_id] = goal
                   archetype.example_goals.append(goal)
+                  print("Goal in build_archetype")
+                  pprint(archetype.example_goals)
               else:
                   goal = goal_map[goal_id]
 
               # -- MILESTONE --
-              milestone_id = row.get("milestone_id")
+              milestone_id = row.get("example_milestone_id")
               if milestone_id:
                   milestone_map = getattr(goal, "_milestone_map", {})
                   if milestone_id not in milestone_map:
-                      milestone = ExampleMilestone.build_milestone_from_row(row, milestone_id)
+                      milestone = ExampleMilestone.build_example_milestone_from_row(row, milestone_id)
                       milestone.example_action_items = []
                       goal.example_milestones.append(milestone)
                       milestone_map[milestone_id] = milestone
@@ -166,11 +169,11 @@ class CategoryArchetype:
                   milestone = None
 
               # -- ACTION ITEM --
-              action_item_id = row.get("action_item_id")
+              action_item_id = row.get("example_action_item_id")
               if milestone and action_item_id:
                   action_item_map = getattr(milestone, "_action_item_map", {})
                   if action_item_id not in action_item_map:
-                      action_item = ExampleActionItem.build_action_item_from_row(row, action_item_id)
+                      action_item = ExampleActionItem.build_example_action_item_from_row(row, action_item_id)
                       milestone.example_action_items.append(action_item)
                       action_item_map[action_item_id] = action_item
                       milestone._action_item_map = action_item_map

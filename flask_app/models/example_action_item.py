@@ -24,7 +24,7 @@ class ExampleActionItem:
         self.updated_at = data["updated_at"]
 
     @staticmethod
-    def build_action_item_from_row(row, action_item_id):
+    def build_example_action_item_from_row(row, action_item_id):
         """
         Builds an ActionItem object from a row of joined SQL data.
 
