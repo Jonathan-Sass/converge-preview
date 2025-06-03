@@ -1,0 +1,83 @@
+<!-- Example Milestone Slide -->
+<div class="card shadow d-flex flex-column p-2 milestone-card position-relative sortable-card mb-2"
+  id="{{ goal.category_component.slug }}-goal-{{ goal_index }}-milestone-{{ milestone_index }}"
+  data-component-slug="{{ goal.category_component.slug }}" data-milestone-id="1"
+  data-order="1" data-goal-id="{{ goal_index }}">
+  <!-- Milestone order number -->
+  <div class="card-title">
+    <h5 class="fs-5 card-order text-primary">1</h5>
+    <hr class="w-25 m-auto mb-2">
+  </div>
+  <!-- Milestone name input -->
+  <div class="mb-3 form-floating">
+    <input type="text" class="form-control"
+      id="{{ goal.category_component.slug }}-goal-{{ goal_index }}-milestone-{{ milestone_index }}-name" value="{{ milestone.name }}" placeholder=" "
+      required>
+    <label for="{{ goal.category_component.slug }}-goal-{{ goal_index }}-milestone-{{ milestone_index }}-name"
+      class="form-label">
+      Milestone Name
+    </label>
+    <div class="invalid-feedback">Milestone name is required.</div>
+  </div>
+  <h5 class="card-title mb-2">Target completion:</h5>
+  <div class="d-flex gap-2 mb-3 projected-completion-card">
+    <div class="mb-3 w-50">
+      <input type="number" class="form-control" name="time_value"
+        id="{{ goal.category_component.slug }}-goal-{{ goal_index }}-milestone-{{ milestone_index }}-completion-value"
+        value="{{ milestone.estimated_time_value }}" placeholder="0" min="1" required>
+      <div class="invalid-feedback">Value required</div>
+    </div>
+    <div class="mb-3 w-50">
+      {% set units = {
+        'day': 'Day(s)',
+        'week': 'Week(s)',
+        'month': 'Month(s)',
+        'year': 'Year(s)'
+      } %}
+      <select class="form-select" id="{{ goal.category_component.slug }}-goal-{{ goal_index }}-milestone-{{ milestone_index }}-completion-unit" required>
+        <option value="" disabled {% if not milestone.estimated_time_unit %}selected{% endif %}>Time Unit</option>
+        {% for unit, label in units.items() %}
+          <option value="{{ unit }}" {% if milestone.estimated_time_unit == unit %}selected{% endif %}>{{ label }}</option>
+        {% endfor %}
+      </select>
+      <div class="invalid-feedback">Unit required</div>
+    </div>
+  </div>
+  <div class="form-floating mb-3">
+    <textarea class="form-control mb-2"
+      name="{{ goal.category_component.slug }}-milestone-{{ milestone_index }}-description"
+      id="{{ goal.category_component.slug }}-goal-{{ goal_index }}-milestone-{{ milestone_index }}-description" rows="3"
+      placeholder=" ">
+      {{ milestone.description }}
+      </textarea>
+    <label for="{{ goal.category_component.slug }}-goal-{{ goal_index }}-milestone-{{ milestone_index }}-description"
+      class="form-label">Description (optional)</label>
+  </div>
+  <!-- Separate Into Action Items Checkbox -->
+  <div class="form-check form-switch mb-3">
+    <input class="form-check-input toggle-panels separate-action-items-checkbox"
+      type="checkbox"
+      id="separate-action-items-{{ goal.category_component.slug }}-goal-{{ goal_index }}-milestone-{{ milestone_index }}"
+      {% if milestone.example_action_items %}checked{% endif %}>
+    <label class="form-check-label"
+      for="separate-action-items-{{ goal.category_component.slug }}-goal-{{ goal_index }}-milestone-{{ milestone_index }}">
+      Separate into action items
+    </label>
+  </div>
+  <button class="btn btn-danger btn-sm w-50 m-auto mb-3 remove-milestone-btn">
+    Remove milestone
+  </button>
+  <!-- Action Items Section for Milestone -->
+  <div
+  class="card shadow p-1 d-none action-item-section position-absolute text-bg-light mt-1">
+    <h5 class="text-primary fs-4">Action Items</h5>
+    <hr class="w-25 m-auto mb-3">
+    {% for action_item in milestone.example_action_items %}
+    {% set action_item_index = loop.index %}
+    {% include 'partials/goals/_action_item_card_from_archetype.html' %}
+    {% endfor %}
+    <button class="btn btn-primary btn-sm add-action-item-btn w-75 m-auto my-2">Add
+      Action Item
+    </button>
+  </div>
+</div>

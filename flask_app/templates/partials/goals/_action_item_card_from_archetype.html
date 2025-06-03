@@ -1,0 +1,48 @@
+<div class="card shadow p-1 m-auto mb-1">
+  <div class="mb-3 form-floating">
+    <input type="text" class="form-control action-item-name"
+      id="{{ goal.category_component.slug }}-goal-{{ goal_index }}-milestone-{{ milestone_index }}-action-item-{{ action_item_index }}-name"
+      placeholder="Action Name"
+      value="{{ action_item.name }}"
+      required>
+    <label
+      for="{{ goal.category_component.slug }}-goal-{{ goal_index }}-milestone-{{ milestone_index }}-action-item-{{ action_item_index }}-name">Action
+      Name</label>
+  </div>
+  <div class="invalid-feedback">Name is required.</div>
+  <div class="mb-3 form-floating">
+    <textarea class="form-control action-item-description"
+      id="{{ goal.category_component.slug }}-goal-{{ goal_index }}-milestone-{{ milestone_index }}-action-item-{{ action_item_index }}-description"
+      placeholder="Description (optional)">{{ action_item.description }}</textarea>
+    <label
+      for="{{ goal.category_component.slug }}-goal-{{ goal_index }}-milestone-{{ milestone_index }}-action-item-{{ action_item_index }}-description">Description
+      (optional)</label>
+  </div>
+  
+  <h6 class="card-title mb-2">Estimated time required:</h6>
+  <div class="d-flex gap-2 mb-3 projected-completion-card">
+    <input type="number" class="form-control" name="time_value"
+      id="{{ goal.category_component.slug }}-goal-{{ goal_index }}-milestone-{{ milestone_index }}-action-item-{{ action_item_index }}-estimated-time-value"
+      placeholder="0" min="1"
+      value="{{ action_item.estimated_time_value }}">
+  
+    {% set units = {
+      'day': 'Day(s)',
+      'week': 'Week(s)',
+      'month': 'Month(s)',
+      'year': 'Year(s)'
+    } %}
+    <select class="form-select" id="{{ goal.category_component.slug }}-goal-{{ goal_index }}-milestone-{{ milestone_index }}-action-item-{{ action_item_index }}-estimated-time-unit" required>
+      <option value="" disabled {% if not action_item.estimated_time_unit %}selected{% endif %}>Time Unit</option>
+      {% for unit, label in units.items() %}
+        <option value="{{ unit }}" {% if action_item.estimated_time_unit == unit %}selected{% endif %}>{{ label }}</option>
+      {% endfor %}
+    </select>
+  
+  </div>
+  <button class="btn btn-danger btn-sm remove-action-item-btn w-50 mb-2 m-auto">
+    Remove action item
+  </button>
+</div>
+  
+
