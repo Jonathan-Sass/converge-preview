@@ -83,37 +83,46 @@
         </div>
       </div>
     </nav>
-    <header class="card my-5 w-50 p-3 m-auto text-center bg-light shadow opacity-75">
-      <h1 class="display-2 mb-3 text-primary">{{ category_archetype.name }}</h1>
-      <h4 class="display-6 mx-5">A goal template to make your own.</h4>
-    </header>
-    <!-- Main Content -->
-    <div class="container-fluid">
-      <div class="card shadow w-75 p-3 opaque-white-bg m-auto">
-        <div class="card shadow w-74 m-auto mb-3 opaque-white-bg">
-          <div class="card-body">
-            <div class="card-title m-auto solid-white-bg">
-              <h6 class="display-5 text-center text-primary mb-3">Setting Effective Goals:</h6>
-              <hr class="w-100 mb-5">
-            </div>
-            <div class="card-text m-auto w-75 mb-3">
-              <ol>
-                <li class="lead">Start at the end - Get specific about the goal itself!</li>
-                <li class="lead">Work forward or backward to identify major milestones along the way.</li>
-              </ol>
-            </div>
-          </div>
-        </div>
+    <header class="card my-5 w-75 p-4 m-auto text-center bg-light shadow opacity-75">
+  <h1 class="display-4 text-primary mb-2">{{ category_archetype.category.name }}</h1>
+  <h3 class="text-secondary">Roadmap: {{ category_archetype.name }}</h3>
+  <p class="lead mt-3">We’ve outlined a suggested set of goals to help guide your progress. Review, adjust, or make them your own.</p>
+</header>
 
-        <!-- Accordion to display example goals for the archetype -->
-        <div class="category-card accordion" data-category-slug="{{ category_archetype.category.category_slug }}">
-          {% for goal in category_archetype.example_goals %}
-            {% set goal_index = loop.index %}
-            {% include 'partials/goals/_goal_card_from_archetype.html' %}
-          {% endfor %}
+<!-- Main Content -->
+<div class="container-fluid">
+  <div class="card shadow w-75 p-3 opaque-white-bg m-auto">
+    <div class="card shadow m-auto mb-4 opaque-white-bg">
+      <div class="card-body">
+        <div class="card-title text-center">
+          <h4 class="text-primary mb-2">How to Use This Goal Template</h4>
+          <hr class="w-50 m-auto mb-3">
+        </div>
+        <div class="card-text text-center w-75 m-auto">
+          <p class="lead">Each goal is part of a flexible roadmap. You can:</p>
+          <ul class="list-unstyled lead">
+            <li>✅ Edit the goals to fit your vision</li>
+            <li>✅ Reorder or rephrase milestones</li>
+            <li>✅ Add or remove steps based on what works for you</li>
+          </ul>
+          <p class="mt-3">This is your journey. We’re just helping you map the terrain.</p>
         </div>
       </div>
     </div>
+
+    <!-- Accordion of example goals -->
+    <div
+    class="category-card accordion"
+    data-category-slug="{{ category_archetype.category.category_slug }}"
+    id="category-accordion-{{ category_archetype.slug }}">
+      {% for goal in category_archetype.example_goals %}
+        {% set goal_index = loop.index %}
+        {% include 'partials/goals/_goal_card_from_archetype.html' %}
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
 </body>
 <script defer src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
