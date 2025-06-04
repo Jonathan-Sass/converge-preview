@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
   initializeCompletionTimeEventListeners();
+  triggerInitialCompletionDatePopulation();
 });
 
 export function initializeCompletionTimeEventListeners() {
@@ -11,6 +12,12 @@ export function initializeCompletionTimeEventListeners() {
     input.addEventListener("change", convertTimeframeToCompletionDate);
   })
 }
+
+function triggerInitialCompletionDatePopulation() {
+  document.querySelectorAll('[data-type="projected-completion-unit').forEach(input => {
+    convertTimeframeToCompletionDate({target: input});
+  })
+};
 
 function convertTimeframeToCompletionDate(event) {
   const projectedCompletionCard = event.target.closest(".projected-completion-card")
