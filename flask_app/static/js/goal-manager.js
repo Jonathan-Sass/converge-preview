@@ -27,239 +27,214 @@ function initializeRemoveGoalListener() {
 
 function addGoal() {
   // Retrieve the category or subcategory from data attributes
-  const subcategorySlug = this.dataset.subcategorySlug;
+  const categoryComponentSlug = this.dataset.componentSlug;
 
   // Increment a counter for the specific category or subcategory
-  const goalsContainer = document.getElementById(`${subcategorySlug}-goals-container`);
+  const goalsContainer = document.getElementById(`${categoryComponentSlug}-goals-container`);
   const goalCount = goalsContainer.querySelectorAll(".goal-card").length + 1;
   
   const goalCard = document.createElement("div")
   goalCard.classList.add("card", "shadow", "p-3", "mb-3", "goal-card");
   goalCard.dataset.goalId = goalCount;
-  goalCard.id = `${subcategorySlug}-goal-${goalCount}-card`;
+  goalCard.id = `${categoryComponentSlug}-goal-${goalCount}-card`;
   
   // Template for a new goal card
   goalCard.innerHTML = `
-    <!-- Goal Name Input -->
-    <div class="mb-3 form-floating">
-      <input type="text" class="form-control" id="${subcategorySlug}-goal-${goalCount}-name"
-        placeholder=" " name="name" autocomplete="on" required>
-      <label for="${subcategorySlug}-goal-${goalCount}-name" class="form-label">Goal
-        Name</label>
-      <div class="invalid-feedback">Name is required.</div>
-    </div>
-
-    <!-- Goal Description Input -->
-    <div class="mb-3 form-floating">
-      <textarea class="form-control" id="${subcategorySlug}-goal-${goalCount}-description"
-        rows="3" placeholder=" "></textarea>
-      <label for="${subcategorySlug}-goal-${goalCount}-description"
-        class="form-label">Description (optional)</label>
-    </div>
-
-    <!-- Goal Type Input -->
-    <div class="mb-3">
-      <label for="${subcategorySlug}-goal-${goalCount}-type" class="form-label">Goal
-        Type</label>
-      <select class="form-select" id="${subcategorySlug}-goal-${goalCount}-type" required>
-        <option value="" disabled selected>Select a Type of Goal</option>
-        <option value="active">
-          Active (goals you intend to pursue currently)
-        </option>
-        <option value="supportive">
-          Supportive (goals that directly support or enable other goals)
-        </option>
-        <option value="collaborative">
-          Collaborative (goals requiring contributions or coordination with others)
-        </option>
-        <option value="habitual">
-          Habitual (goals that involve building or maintaining habits or routine practices)
-        </option>
-        <option value="experimental">
-          Experimental (goals being explored without full commitment, to gauge interest or
-          feasability)
-        </option>
-        <option value="self-care">
-          Self-Care (goals focusing on personal well-being, mental health, or stress management)
-        </option>
-        <option value="archived">
-          Archived (goals to be pursued later, possibly those that follow other goals or steps in
-          life)
-        </option>
-      </select>
-      <div class="invalid-feedback">Please select a goal type.</div>
-    </div>
-
-    <!-- Priority Selector -->
-    <div class="mb-3">
-      <label for="${subcategorySlug}-goal-${goalCount}-priority"
-        class="form-label">Priority</label>
-      <select class="form-select" id="${subcategorySlug}-goal-${goalCount}-priority" required>
-        <option value="" disabled selected>Select priority</option>
-        <option value="4">Low</option>
-        <option value="3">Medium</option>
-        <option value="2">High</option>
-        <option value="1">Urgent</option>
-      </select>
-      <div class="invalid-feedback">Please assign a priority.</div>
-    </div>
-
-    <!-- Display as an active goal -->
-    <div class="form-check form-switch mb-3">
-      <input class="form-check-input toggle-panels goal-is-active-checkbox" type="checkbox"
-        id="{{ subcategory.subcategory_slug }}-goal-${goalCount}-is-active">
-      <label class="form-check-label" for="{{ subcategory.subcategory_slug }}-goal-${goalCount}-is-active">
-        Display goal and associated milestones/action items on dashboard?
-      </label>
-    </div>
-
-    <!-- Estimated Goal Completion Input -->
-    <div class="mb-3 text-center">
-      <p>Projected Completion</p>
-      <div
-        class="d-flex justify-content-around gap-3 align-items-center m-auto projected-completion-card">
-        <!-- Input for Time Value -->
-        <div class="col-4">
-          <label for="${subcategorySlug}-goal-${goalCount}-time-value" class="form-label">
-            Select a time from now
-          </label>
-          <div class="d-flex gap-2 align-items-center">
-            <input type="number" class="form-control w-auto"
-              id="${subcategorySlug}-goal-${goalCount}-time-value" placeholder="Enter number"
-              min="1" data-type="projected-completion-value">
-            <select class="form-select w-auto"
-              id="${subcategorySlug}-goal-${goalCount}-time-unit"
-              data-type="projected-completion-unit">
-              <option value="" disabled selected>Time unit</option>
-              <option value="day">Day(s)</option>
-              <option value="week">Week(s)</option>
-              <option value="month">Month(s)</option>
-              <option value="year">Year(s)</option>
-            </select>
-          </div>
-        </div>
-        <div class="col-1">
-          <p>OR</p>
-        </div>
-        <div class="col-4">
-          <label for="${subcategorySlug}-goal-${goalCount}-date" class="form-label">
-            Select a date
-          </label>
-          <input type="date" class="form-control"
-            id="${subcategorySlug}-goal-${goalCount}-date"
-            data-type="projected-completion-date" required>
-          <div class="invalid-feedback">Please enter a projected completion date.</div>
-        </div>
-      </div>
-    </div>
-
-    <h4 class="text-center text-primary">Let's break it down!</h4>
-    <hr class="mb-3">
-
-    <!-- Goal Milestones -->
-    <h3 class="display-6">Major Milestones</h3>
-    <p class="lead">Hint: Start with the longest time interval to work your way backwards.</p>
-    <div class="container-fluid mb-3">
-      <!-- Add Milestone Button -->
-      <div class="mb-3">
-        <button type="button" id="add-milestone" class="btn btn-primary add-milestone-btn"
-          data-subcategory-slug="${subcategorySlug}" data-goal-id="${goalCount}">
-          Add Milestone
+    <!-- Accordion container for a goal -->
+    <div class="accordion-item goal-card p-3" id="${categoryComponentSlug}-container"
+    data-component-slug="${categoryComponentSlug}">
+      <h2 class="accordion-header d-flex justify-content-between align-items-center" id="heading-${goalCount}">
+        <button class="accordion-button collapsed w-100 text-start goal-accordion-btn" type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#collapse-${goalCount}"
+          aria-expanded="false"
+          aria-controls="collapse-${goalCount}">
+          {{ goal.name or "Goal " ~ goal_index }}
+          <span class="badge bg-secondary ms-3">
+            {{ goal.category_component.name }}
+          </span>
         </button>
-      </div>
+      </h2>
 
-      <!-- Swiper Container for Milestones, (Swiper functionality in question, may opt for sortable horizonal-scroll) -->
-      <div class="swiper-container scroll-wrapper position-relative">
-        <div class="card shadow p-3 swiper-wrapper m-auto">
-          <div class="swiper-slide">
-            <!-- Dynamically Added Milestones go here -->
-            <div class="d-flex justify-content-around gap-2 milestone-section p-3 sortable-container m-auto"
-              id="${subcategorySlug}-goal-${goalCount}-milestones">
-              <!-- Example Milestone Slide -->
-              <div class="card shadow p-2 milestone-card position-relative sortable-card mb-2"
-                id="${subcategorySlug}-goal-${goalCount}-milestone-1"
-                data-subcategory-slug="${subcategorySlug}" data-milestone-id="1"
-                data-order="1" data-goal-id="${goalCount}">
-                <!-- Milestone order number -->
-                <div class="card-title">
-                  <h5 class="fs-5 card-order text-primary">1</h5>
-                  <hr class="w-25 m-auto mb-3">
-                </div>
-                <!-- Milestone name input -->
-                <div class="mb-3 form-floating">
-                  <input type="text" class="form-control"
-                    id="${subcategorySlug}-goal-${goalCount}-milestone-1-name" placeholder=" "
-                    required>
-                  <label for="${subcategorySlug}-goal-${goalCount}-milestone-1-name"
-                    class="form-label">
-                    Milestone Name
-                  </label>
-                  <div class="invalid-feedback">Milestone name is required.</div>
-                </div>
-                <h5 class="card-title mb-2">Target completion:</h5>
-                <div class="d-flex gap-2 mb-3 projected-completion-card">
-                  <div class="mb-3 w-50">
-                    <input type="number" class="form-control" name="time_value"
-                      id="${subcategorySlug}-goal-${goalCount}-milestone-1-completion-value"
-                      placeholder="0" min="1" required>
-                    <div class="invalid-feedback">Value required</div>
-                  </div>
-                  <div class="mb-3 w-50">
-                    <select class="form-select" name="time_unit"
-                      id="${subcategorySlug}-goal-${goalCount}-milestone-1-completion-unit"
-                      required>
-                      <option value=" " selected disabled hidden>Time Unit</option>
-                      <option value="day">Day(s)</option>
-                      <option value="week">Week(s)</option>
-                      <option value="month">Month(s)</option>
-                      <option value="year">Year(s)</option>
-                    </select>
-                    <div class="invalid-feedback">Unit required</div>
-                  </div>
-                </div>
-                <div class="form-floating mb-3">
-                  <textarea class="form-control mb-2"
-                    name="${subcategorySlug}-milestone[1]_description"
-                    id="${subcategorySlug}-goal-${goalCount}-milestone-1-description" rows="3"
-                    placeholder=" ">
-                    </textarea>
-                  <label for="${subcategorySlug}-goal-${goalCount}-milestone-1-description"
-                    class="form-label">Description (optional)</label>
-                </div>
-                <!-- Separate Into Action Items Checkbox -->
-                <div class="form-check form-switch mb-3">
-                  <input class="form-check-input toggle-panels separate-action-items-checkbox"
-                    type="checkbox"
-                    id="separate-action-items-${subcategorySlug}-goal-${goalCount}-milestone-1">
-                  <label class="form-check-label"
-                    for="separate-action-items-${subcategorySlug}-goal-${goalCount}-milestone-1">
-                    Separate into action items
-                  </label>
-                </div>
-                <button class="btn btn-danger btn-sm w-50 m-auto my-3 remove-milestone-btn">
-                  Remove milestone
-                </button>
-              </div>
-              <!-- Action Items Section for Milestone -->
+      <!-- Container for an example goal -->
+      <div id="collapse-${goalCount}" class="accordion-collapse collapse"
+        aria-labelledby="heading-${goalCount}"
+        data-bs-parent="#category-accordion-{{ category_archetype.slug }}">
+
+        <div class="accordion-body p-2 mb-3 solid-white-bg goal-card" id="${categoryComponentSlug}-goal-${goalCount}-card" data-goal-id="${goalCount}">
+        
+          <div class="card shadow p-3 mb-3 solid-white-bg">
+            <h4 class="display-6 text-primary text-center">Goal Details</h4>
+            <hr class="w-100 mb-3">
+            <div class="mb-3 form-floating">
+              <input type="text" class="form-control goal-name" id="${categoryComponentSlug}-goal-${goalCount}-name"
+                value="{{ goal.name }}" name="name" autocomplete="on" required>
+              <label for="${categoryComponentSlug}-goal-${goalCount}-name" class="form-label">Goal
+                Name</label>
+              <div class="invalid-feedback">Name is required.</div>
+            </div>
+            <!-- Goal Description Input -->
+            <div class="mb-3 form-floating">
+              <textarea class="form-control" id="${categoryComponentSlug}-goal-${goalCount}-description"
+                rows="3">{{ goal.description }}</textarea>
+              <label for="${categoryComponentSlug}-goal-${goalCount}-description"
+                class="form-label">Description (optional)</label>
+            </div>
+            <!-- Goal Type Input -->
+            <div class="mb-3">
+              <label for="${categoryComponentSlug}-goal-${goalCount}-type" class="form-label">Goal
+                Type</label>
+              {% set types = {
+                'active': 'Active (goals you intend to pursue currently)',
+                'supportive': 'Supportive (goals that directly support or enable other goals)',
+                'collaborative': 'Collaborative (goals requiring contributions or coordination with others)',
+                'habitual': 'Habitual (goals that involve building or maintaining habits or routine practices)',
+                'experimental': 'Experimental (goals being explored without full commitment, to gauge interest or feasibility)',
+                'self-care': 'Self-Care (goals focusing on personal well-being, mental health, or stress management)',
+                'archived': 'Archived (goals to be pursued later, possibly those that follow other goals or steps in life)'
+              } %}
+              <select class="form-select" id="${categoryComponentSlug}-goal-${goalCount}-type" required>
+                <option value="" disabled {% if not goal.goal_type %}selected{% endif %}>Select a Type of Goal</option>
+                {% for type, label in types.items() %}
+                  <option value="{{ type }}" {% if goal.goal_type == type %}selected{% endif %}>{{ label }}</option>
+                {% endfor %}
+              </select>
+              <div class="invalid-feedback">Please select a goal type.</div>
+            </div>
+            <!-- Priority Selector -->
+            <div class="mb-3">
+              <label for="${categoryComponentSlug}-goal-${goalCount}-priority"
+                class="form-label">Priority</label>
+              {% set priorities = {
+                '4': 'Low',
+                '3': 'Medium',
+                '2': 'High',
+                '1': 'Urgent'
+              } %}
+              <select class="form-select" id="${categoryComponentSlug}-goal-${goalCount}-priority" required>
+                <option value="" disabled {% if not goal.priority %}selected{% endif %}>Select Priority</option>
+                {% for priority, label in priorities.items() %}
+                  <option value="{{ priority }}" {% if goal.priority == priority %}selected{% endif %}>{{ label }}</option>
+                {% endfor %}
+              </select>
+              <div class="invalid-feedback">Please assign a priority.</div>
+            </div>
+            <!-- Display as an active goal -->
+            <!-- <div class="form-check form-switch mb-3">
+              <input class="form-check-input toggle-panels goal-is-active-checkbox" type="checkbox"
+                id="${categoryComponentSlug}-goal-${goalCount}-is-active">
+              <label class="form-check-label" for="${categoryComponentSlug}-goal-${goalCount}-is-active">
+                Display goal and associated milestones/action items on dashboard?
+              </label>
+            </div> -->
+          </div>
+          <div class="card shadow p-3 mb-3">
+            <!-- Estimated Goal Completion Input -->
+            <div class="mb-3 text-center">
+              <h4 class="display-6 text-primary">Projected Completion</h4>
+              <hr class="w-100 mb-3">
               <div
-                class=" card shadow p-1 d-none action-item-section position-absolute text-bg-light">
-                <h5 class="text-dark fs-4">Action Items</h5>
-                <hr class="w-25 m-auto mb-3">
-                <button class="btn btn-primary btn-sm add-action-item-btn w-75 m-auto mb-3">Add
-                  Action Item
-                </button>
+                class="d-flex justify-content-around gap-3 align-items-center m-auto projected-completion-card">
+                <!-- Input for Time Value -->
+                <div class="col-4">
+                  <label for="${categoryComponentSlug}-goal-${goalCount}-time-value" class="form-label">
+                    Select a time from now
+                  </label>
+                  <div class="d-flex gap-2 align-items-center">
+                    <input type="number" class="form-control w-auto"
+                      id="${categoryComponentSlug}-goal-${goalCount}-time-value" placeholder="Enter number"
+                      min="1" data-type="projected-completion-value" value="{{ goal.estimated_time_value }}">
+                    {% set units = {
+                      'day': 'Day(s)',
+                      'week': 'Week(s)',
+                      'month': 'Month(s)',
+                      'year': 'Year(s)'
+                    } %}
+                    <select class="form-select" id="${categoryComponentSlug}-goal-${goalCount}-time-unit" required>
+                      <option value="" disabled {% if not goal.estimated_time_unit %}selected{% endif %}>Time Unit</option>
+                      {% for unit, label in units.items() %}
+                        <option value="{{ unit }}" {% if goal.estimated_time_unit == unit %}selected{% endif %}>{{ label }}</option>
+                      {% endfor %}
+                    </select>
+                  </div>
+                </div>
+                <div class="col-1">
+                  <p>OR</p>
+                </div>
+                <div class="col-4">
+                  <!-- TODO: REVISIT JS FOR AUTOPOPULATE -->
+                  <label for="${categoryComponentSlug}-goal-${goalCount}-date" class="form-label">
+                    Select a date
+                  </label>
+                  <input type="date" class="form-control"
+                    id="${categoryComponentSlug}-goal-${goalCount}-date"
+                    data-type="projected-completion-date" required>
+                  <div class="invalid-feedback">Please enter a projected completion date.</div>
+                </div>
               </div>
             </div>
           </div>
+          <div class="card shadow p-3 mb-3 opaque-white-bg">
+            <!-- Goal Milestones -->
+            <div class="text-center">
+              <h4 class="display-6 text-primary">Milestones</h4>
+              <hr class="m-auto my-3 w-100">
+              <h4 class="">Let's break it down!</h4>
+              <ol>
+                <li class="lead">Fill out the card you see with the final goal, the last thing that happens when you're done with all of it.</li>
+                <li class="lead"></li>
+              </ol>
+              <p class="lead">Hint: Milestones add to the left (in front of one another).</p>
+        
+            </div>
+            <div class="container-fluid mb-3 text-center">
+              <!-- Add Milestone Button -->
+              <div class="mb-3">
+                <button type="button" id="add-milestone" class="btn btn-primary add-milestone-btn"
+                  data-component-slug="${categoryComponentSlug}" data-goal-id="${goalCount}">
+                  Add Milestone
+                </button>
+              </div>
+        
+              <!-- Swiper Container for Milestones, (Swiper functionality in question, may opt for sortable horizonal-scroll) -->
+              <div class="swiper-container scroll-wrapper position-relative">
+                <div class="card shadow swiper-wrapper m-auto">
+                  <div class="swiper-slide">
+                    <!-- Dynamically Added Milestones go here -->
+                    <div
+                      class="d-flex justify-content-left m-auto mb-2 gap-2 p-3 milestone-section sortable-container bg-secondary-subtle"
+                      id="${categoryComponentSlug}-goal-${goalCount}-milestones">        
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <button
+              class="btn btn-danger btn-lg m-auto my-3 remove-goal-btn">
+              Remove Goal
+            </button>
+          </div>
+          <div class="text-center mb-3">
+            <button type="submit" class="btn btn-primary btn-lg"
+              id="${categoryComponentSlug}-goals-save">Save Goal
+            </button>
+            <a href="/home" class="btn btn-lg btn-primary d-none" id="next-section-btn">Next Section</a>
+          </div>
         </div>
       </div>
     </div>
-    <button class="btn btn-danger btn-sm w-50 m-auto mb-3 remove-goal-btn">Remove
-      Goal</button>
+
+
+    <!-- 
+
+            </div>
+          </div>
+        </div>
+    </div> -->
     `;
   
 // Append the new goal card to the goals container
-const addGoalBtn = document.getElementById(`${subcategorySlug}-add-goal-btn`)
+const addGoalBtn = document.getElementById(`${categoryComponentSlug}-add-goal-btn`)
 goalsContainer.insertBefore(goalCard, addGoalBtn);
 
 // Reinitialize milestone and action item listeners to include new goal's milestones and action-items

@@ -2,21 +2,19 @@
 <div class="accordion-item goal-card p-3" id="{{ goal.category_component.slug }}-container"
 data-component-slug="{{ goal.category_component.slug }}">
   <h2 class="accordion-header d-flex justify-content-between align-items-center" id="heading-{{ goal_index }}">
-  <button class="accordion-button collapsed w-100 text-start" type="button"
-    data-bs-toggle="collapse"
-    data-bs-target="#collapse-{{ goal_index }}"
-    aria-expanded="false"
-    aria-controls="collapse-{{ goal_index }}">
-    {{ goal.name or "Goal " ~ goal_index }}
-    <span class="badge bg-secondary ms-3">
-      {{ goal.category_component.name }}
-    </span>
-  </button>
-</h2>
+    <button class="accordion-button collapsed w-100 text-start goal-accordion-btn" type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#collapse-{{ goal_index }}"
+      aria-expanded="false"
+      aria-controls="collapse-{{ goal_index }}">
+      {{ goal.name or "Goal " ~ goal_index }}
+      <span class="badge bg-secondary ms-3">
+        {{ goal.category_component.name }}
+      </span>
+    </button>
+  </h2>
 
   <!-- Container for an example goal -->
-
-
   <div id="collapse-{{ goal_index }}" class="accordion-collapse collapse"
     aria-labelledby="heading-{{ goal_index }}"
     data-bs-parent="#category-accordion-{{ category_archetype.slug }}">
@@ -27,7 +25,7 @@ data-component-slug="{{ goal.category_component.slug }}">
         <h4 class="display-6 text-primary text-center">Goal Details</h4>
         <hr class="w-100 mb-3">
         <div class="mb-3 form-floating">
-          <input type="text" class="form-control" id="{{ goal.category_component.slug }}-goal-{{ goal_index }}-name"
+          <input type="text" class="form-control goal-name" id="{{ goal.category_component.slug }}-goal-{{ goal_index }}-name"
             value="{{ goal.name }}" name="name" autocomplete="on" required>
           <label for="{{ goal.category_component.slug }}-goal-{{ goal_index }}-name" class="form-label">Goal
             Name</label>

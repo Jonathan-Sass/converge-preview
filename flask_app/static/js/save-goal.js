@@ -12,11 +12,11 @@ document.addEventListener("DOMContentLoaded", () => {
 async function submitGoalData(data) {
   console.log("processing and sending goal data...")
 
-  const subcategorySlug = data.subcategorySlug
+  const categorySlug = data.categorySlug
 
   try {
 
-    const response = await fetch(`/goals/${subcategorySlug}/save`, {
+    const response = await fetch(`/goals/${categorySlug}/save`, {
       method: 'POST', 
       headers: {
         'Content-Type': 'application/json',
@@ -26,7 +26,7 @@ async function submitGoalData(data) {
 
     if (response.ok) {
       alert('Goals saved successfully!');
-      hideSaveShowNextButtons(subcategorySlug);
+      hideSaveShowNextButtons(categorySlug);
     } else {
       alert ('Failed to save goals.');
     }
@@ -35,8 +35,8 @@ async function submitGoalData(data) {
   }
 };
 
-function hideSaveShowNextButtons(subcategorySlug) {
-  const saveBtn = document.getElementById(`${subcategorySlug}-goals-save`);
+function hideSaveShowNextButtons(categorySlug) {
+  const saveBtn = document.getElementById(`${categorySlug}-goals-save`);
   const nextBtn = document.getElementById('next-section-btn');
 
   if (saveBtn) {
@@ -46,26 +46,26 @@ function hideSaveShowNextButtons(subcategorySlug) {
 }
 
 function validateAndProcessGoalData(event) {
-  const subcategoryCard = event.target.closest(".subcategory-card");
+  const categoryCard = event.target.closest(".category-card");
 
-  validateAllRequiredFields(subcategoryCard);
-  processGoalData(subcategoryCard);
+  validateAllRequiredFields(categoryCard);
+  processGoalData(categoryCard);
 }
 
 
-function processGoalData(subcategoryCard) {
+function processGoalData(categoryCard) {
   
-  const subcategoryGoalsData = {
-    subcategorySlug: "",
+  const categoryGoalsData = {
+    categorySlug: "",
     goals: []
   }
   // Loop through all goal sections
-  subcategoryCard.querySelectorAll(".goal-section").forEach(goalSection => {
-    // Set subcategorySlug from goal-section
-    const subcategorySlug = goalSection.dataset.subcategorySlug;
-    subcategoryGoalsData.subcategorySlug = subcategorySlug;
+  categoryCard.querySelectorAll(".goal-section").forEach(goalSection => {
+    // Set categorySlug from goal-section
+    const categorySlug = goalSection.dataset.categorySlug;
+    categoryGoalsData.categorySlug = categorySlug;
 
-    // Loop through each goal-card for a subcategory
+    // Loop through each goal-card for a category
     goalSection.querySelectorAll(".goal-card").forEach(goalCard => {
       const goalData = {
         name: "",
@@ -79,14 +79,14 @@ function processGoalData(subcategoryCard) {
       }
       
       const goalId = goalCard.dataset.goalId;
-      goalData.name = goalCard.querySelector(`#${subcategorySlug}-goal-${goalId}-name`).value;
-      const goalDescriptionElement = goalCard.querySelector(`#${subcategorySlug}-goal-${goalId}-description`)
+      goalData.name = goalCard.querySelector(`#${categorySlug}-goal-${goalId}-name`).value;
+      const goalDescriptionElement = goalCard.querySelector(`#${categorySlug}-goal-${goalId}-description`)
       goalData.description = goalDescriptionElement ? goalDescriptionElement.value.trim() : "";
-      goalData.goalType = goalCard.querySelector(`#${subcategorySlug}-goal-${goalId}-type`).value;
-      goalData.priority = goalCard.querySelector(`#${subcategorySlug}-goal-${goalId}-priority`).value;
+      goalData.goalType = goalCard.querySelector(`#${categorySlug}-goal-${goalId}-type`).value;
+      goalData.priority = goalCard.querySelector(`#${categorySlug}-goal-${goalId}-priority`).value;
       // Defaulting isActive to True when saving a goal the first time, this may be subject to change depending on upcoming features
       goalData.isActive = true;
-      goalData.projectedCompletion = goalCard.querySelector(`#${subcategorySlug}-goal-${goalId}-date`).value;
+      goalData.projectedCompletion = goalCard.querySelector(`#${categorySlug}-goal-${goalId}-date`).value;
 
       // Select all milestones
       goalCard.querySelectorAll(".milestone-card").forEach(milestoneCard => {
@@ -98,18 +98,18 @@ function processGoalData(subcategoryCard) {
           isComplete: false,
           actionItems: []
         }
-        // console.log(`Looking for: #${subcategorySlug}-goal-${goalId}-milestone-${milestoneId}-name`)
-        milestoneData.name = milestoneCard.querySelector(`#${subcategorySlug}-goal-${goalId}-milestone-${milestoneId}-name`).value;
-        // console.log("Selector: " + milestoneCard.querySelector(`#${subcategorySlug}-goal-${goalId}-milestone-${milestoneId}-name`))
-        // milestoneData.name = milestoneCard.querySelector(`#${subcategorySlug}-goal-${goalId}-milestone-${milestoneId}-name`).value
+        // console.log(`Looking for: #${categorySlug}-goal-${goalId}-milestone-${milestoneId}-name`)
+        milestoneData.name = milestoneCard.querySelector(`#${categorySlug}-goal-${goalId}-milestone-${milestoneId}-name`).value;
+        // console.log("Selector: " + milestoneCard.querySelector(`#${categorySlug}-goal-${goalId}-milestone-${milestoneId}-name`))
+        // milestoneData.name = milestoneCard.querySelector(`#${categorySlug}-goal-${goalId}-milestone-${milestoneId}-name`).value
         
-        const milestoneDescriptionElement = milestoneCard.querySelector(`#${subcategorySlug}-goal-${goalId}-milestone-${milestoneId}-description`)
+        const milestoneDescriptionElement = milestoneCard.querySelector(`#${categorySlug}-goal-${goalId}-milestone-${milestoneId}-description`)
         milestoneData.description = milestoneDescriptionElement ? milestoneDescriptionElement.value.trim() : "";
         
         // timeValue and timeUnit conversion to projectedCompletion date
-        if (milestoneCard.querySelector(`#${subcategorySlug}-goal-${goalId}-milestone-${milestoneId}-completion-value`).value && milestoneCard.querySelector(`#${subcategorySlug}-goal-${goalId}-milestone-${milestoneId}-completion-unit`).value) {
-          const timeValue = milestoneCard.querySelector(`#${subcategorySlug}-goal-${goalId}-milestone-${milestoneId}-completion-value`).value;
-          const timeUnit = milestoneCard.querySelector(`#${subcategorySlug}-goal-${goalId}-milestone-${milestoneId}-completion-unit`).value;
+        if (milestoneCard.querySelector(`#${categorySlug}-goal-${goalId}-milestone-${milestoneId}-completion-value`).value && milestoneCard.querySelector(`#${categorySlug}-goal-${goalId}-milestone-${milestoneId}-completion-unit`).value) {
+          const timeValue = milestoneCard.querySelector(`#${categorySlug}-goal-${goalId}-milestone-${milestoneId}-completion-value`).value;
+          const timeUnit = milestoneCard.querySelector(`#${categorySlug}-goal-${goalId}-milestone-${milestoneId}-completion-unit`).value;
           milestoneData.projectedCompletion = convertTimeframeForDatabase(timeValue, timeUnit)
         }
         // TODO: REVERSE THE ARRAY BEFORE APPENDING... OR NOT?
@@ -125,13 +125,13 @@ function processGoalData(subcategoryCard) {
             isComplete: false,
           }
 
-          actionItemData.name = actionItemCard.querySelector(`#${subcategorySlug}-goal-${goalId}-milestone-${milestoneId}-action-item-${actionItemId}-name`).value;
-          const actionItemDescriptionElement = actionItemCard.querySelector(`#${subcategorySlug}-goal-${goalId}-milestone-${milestoneId}-action-item-${actionItemId}-description`);
+          actionItemData.name = actionItemCard.querySelector(`#${categorySlug}-goal-${goalId}-milestone-${milestoneId}-action-item-${actionItemId}-name`).value;
+          const actionItemDescriptionElement = actionItemCard.querySelector(`#${categorySlug}-goal-${goalId}-milestone-${milestoneId}-action-item-${actionItemId}-description`);
           actionItemData.description = actionItemDescriptionElement ? actionItemDescriptionElement.value : "";
           actionItemData.actionItemOrder = index + 1;
-          const actionItemEstimatedTimeValue = actionItemCard.querySelector(`#${subcategorySlug}-goal-${goalId}-milestone-${milestoneId}-action-item-${actionItemId}-estimated-time-value`);
+          const actionItemEstimatedTimeValue = actionItemCard.querySelector(`#${categorySlug}-goal-${goalId}-milestone-${milestoneId}-action-item-${actionItemId}-estimated-time-value`);
           actionItemData.estimatedTimeValue = actionItemEstimatedTimeValue ? parseInt(actionItemEstimatedTimeValue.value) : null;
-          const actionItemEstimatedTimeUnit = actionItemCard.querySelector(`#${subcategorySlug}-goal-${goalId}-milestone-${milestoneId}-action-item-${actionItemId}-estimated-time-unit`);
+          const actionItemEstimatedTimeUnit = actionItemCard.querySelector(`#${categorySlug}-goal-${goalId}-milestone-${milestoneId}-action-item-${actionItemId}-estimated-time-unit`);
           actionItemData.estimatedTimeUnit = actionItemEstimatedTimeUnit ? actionItemEstimatedTimeUnit.value : "";
 
           milestoneData.actionItems.push(actionItemData);
@@ -139,16 +139,16 @@ function processGoalData(subcategoryCard) {
         goalData.milestones.push(milestoneData);
       });
       console.log(goalData)
-      subcategoryGoalsData.goals.push(goalData);
-      console.log(subcategoryGoalsData.goals)
+      categoryGoalsData.goals.push(goalData);
+      console.log(categoryGoalsData.goals)
     });
-    submitGoalData(subcategoryGoalsData);
+    submitGoalData(categoryGoalsData);
   });
   return
 };
 
-function validateAllRequiredFields(subcategoryCard) {
-  const requiredFields = subcategoryCard.querySelectorAll('input[required], select[required], textarea[required]');
+function validateAllRequiredFields(categoryCard) {
+  const requiredFields = categoryCard.querySelectorAll('input[required], select[required], textarea[required]');
   let allFieldsValid = true;
 
   requiredFields.forEach(field => {

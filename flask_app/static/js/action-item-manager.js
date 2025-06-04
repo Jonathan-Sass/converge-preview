@@ -49,7 +49,7 @@ export function initializeRemoveActionItemListeners() {
 
 function handleAddActionItem() {
   const milestoneCard = this.closest(".milestone-card")
-  const subcategorySlug = milestoneCard.dataset.subcategorySlug;
+  const componentSlug = milestoneCard.dataset.componentSlug;
   const goalId = milestoneCard.dataset.goalId;
   console.log(milestoneCard)
   console.log("milestoneCard goalId for new action-item: ", goalId)
@@ -61,43 +61,46 @@ function handleAddActionItem() {
   actionItemCard.dataset.actionItemId = actionItemCount;
 
   actionItemCard.innerHTML = `
-    <div class="mb-3 form-floating">
-      <input type="text" class="form-control action-item-name"
-        id="${subcategorySlug}-goal-${goalId}-milestone-${milestoneId}-action-item-${actionItemCount}-name"
-        placeholder="Action Name" required>
-      <label
-        for="${subcategorySlug}-goal-${goalId}-milestone-${milestoneId}-action-item-${actionItemCount}-name">Action
-        Name</label>
+    <div class="card shadow p-1 m-auto mb-1">
+      <div class="mb-3 form-floating">
+        <input type="text" class="form-control action-item-name"
+          id="${componentSlug}-goal-${goalId}-milestone-${milestoneId}-action-item-${actionItemCount}-name"
+          placeholder="Action Name"
+          required>
+        <label
+          for="${componentSlug}-goal-${goalId}-milestone-${milestoneId}-action-item-${actionItemCount}-name">Action
+          Name</label>
+      </div>
       <div class="invalid-feedback">Name is required.</div>
-    </div>
-    <div class="mb-3 form-floating">
-      <textarea class="form-control action-item-description"
-        id="${subcategorySlug}-goal-${goalId}-milestone-${milestoneId}-action-item-${actionItemCount}-description"
-        placeholder="Description (optional)"></textarea>
-      <label
-        for="${subcategorySlug}-goal-${goalId}-milestone-${milestoneId}-action-item-${actionItemCount}-description">Description
-        (optional)</label>
-    </div>
+      <div class="mb-3 form-floating">
+        <textarea class="form-control action-item-description"
+          id="${componentSlug}-goal-${goalId}-milestone-${milestoneId}-action-item-${actionItemCount}-description"
+          placeholder="Description (optional)"></textarea>
+        <label
+          for="${componentSlug}-goal-${goalId}-milestone-${milestoneId}-action-item-${actionItemCount}-description">Description
+          (optional)</label>
+      </div>
+      
+      <h6 class="card-title mb-2">Estimated time required:</h6>
+      <div class="d-flex gap-2 mb-3 projected-completion-card">
+        <input type="number" class="form-control" name="time_value"
+          id="${componentSlug}-goal-${goalId}-milestone-${milestoneId}-action-item-${actionItemCount}-estimated-time-value"
+          placeholder="0" min="1">
 
-    <h6 class="card-title mb-2">Estimated time required:</h6>
-    <div class="d-flex gap-2 mb-3 projected-completion-card">
-      <input type="number" class="form-control" name="time_value"
-        id="${subcategorySlug}-goal-${goalId}-milestone-${milestoneId}-action-item-${actionItemCount}-estimated-time-value"
-        placeholder="0" min="1">
-      <select class="form-select" name="time_unit"
-        id="${subcategorySlug}-goal-${goalId}-milestone-${milestoneId}-action-item-${actionItemCount}-estimated-time-unit">
-        <option value=" " selected disabled hidden>Unit</option>
-        <option value="minute">Minute(s)</option>
-        <option value="hour">Hour(s)</option>
-        <option value="day">Day(s)</option>
-        <option value="week">Week(s)</option>
-        <option value="month">Month(s)</option>
-        <option value="year">Year(s)</option>
-      </select>
-    </div>
-    <button class="btn btn-danger btn-sm remove-action-item-btn w-50 m-auto">
-      Remove action item
-    </button>`;
+        <select class="form-select" name="time_unit"
+          id="${componentSlug}-goal-${goalId}-milestone-${milestoneId}-action-item-${actionItemCount}-estimated-time-unit"
+          required>
+          <option value=" " selected disabled hidden>Time Unit</option>
+          <option value="day">Day(s)</option>
+          <option value="week">Week(s)</option>
+          <option value="month">Month(s)</option>
+          <option value="year">Year(s)</option>
+        </select>      
+      </div>
+      <button class="btn btn-danger btn-sm remove-action-item-btn w-50 mb-2 m-auto">
+        Remove action item
+      </button>
+    </div>`;
 
   actionItemSection.insertBefore(actionItemCard, actionItemSection.querySelector(".add-action-item-btn"));
 

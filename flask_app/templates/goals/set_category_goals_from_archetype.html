@@ -84,7 +84,7 @@
       </div>
     </nav>
     <header class="card my-5 w-75 p-4 m-auto text-center bg-light shadow opacity-75">
-  <h1 class="display-4 text-primary mb-2">{{ category_archetype.category.name }}</h1>
+  <h1 class="display-4 text-primary mb-2">{{ category_archetype.category.name }} Goals</h1>
   <h3 class="text-secondary">Roadmap: {{ category_archetype.name }}</h3>
   <p class="lead mt-3">We’ve outlined a suggested set of goals to help guide your progress. Review, adjust, or make them your own.</p>
 </header>
@@ -120,6 +120,7 @@
         {% include 'partials/goals/_goal_card_from_archetype.html' %}
       {% endfor %}
     </div>
+    
   </div>
 </div>
 
