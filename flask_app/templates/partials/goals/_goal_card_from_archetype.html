@@ -108,7 +108,11 @@ data-component-slug="{{ goal.category_component.slug }}">
                   'month': 'Month(s)',
                   'year': 'Year(s)'
                 } %}
-                <select class="form-select" id="{{ goal.category_component.slug }}-goal-{{ goal_index }}-time-unit" required>
+                <select
+                  class="form-select"
+                  id="{{ goal.category_component.slug }}-goal-{{ goal_index }}-time-unit"
+                  data-type="projected-completion-unit"
+                  required>
                   <option value="" disabled {% if not goal.estimated_time_unit %}selected{% endif %}>Time Unit</option>
                   {% for unit, label in units.items() %}
                     <option value="{{ unit }}" {% if goal.estimated_time_unit == unit %}selected{% endif %}>{{ label }}</option>
@@ -132,19 +136,20 @@ data-component-slug="{{ goal.category_component.slug }}">
           </div>
         </div>
       </div>
+      <!-- Goal Milestones -->
       <div class="card shadow p-3 mb-3 opaque-white-bg">
-        <!-- Goal Milestones -->
         <div class="text-center">
           <h4 class="display-6 text-primary">Milestones</h4>
           <hr class="m-auto my-3 w-100">
-          <h4 class="">Let's break it down!</h4>
-          <ol>
-            <li class="lead">Fill out the card you see with the final goal, the last thing that happens when you're done with all of it.</li>
-            <li class="lead"></li>
-          </ol>
-          <p class="lead">Hint: Milestones add to the left (in front of one another).</p>
-    
+          <h5 class="mb-3">How to Make Milestones Matter</h5>
+          <ul class="list-unstyled lead">
+            <li>✔️ Your brain loves clear progress — break your goal into 2–4 meaningful steps.</li>
+            <li>✔️ Start with the end: what’s the last thing that happens when this goal is complete?</li>
+            <li>✔️ Work backward or forward to map out the key moments that signal progress.</li>
+            <li>✔️ Keep each step specific, doable, and motivating to keep momentum high.</li>
+          </ul>
         </div>
+
         <div class="container-fluid mb-3 text-center">
           <!-- Add Milestone Button -->
           <div class="mb-3">
@@ -179,8 +184,8 @@ data-component-slug="{{ goal.category_component.slug }}">
         </button>
       </div>
       <div class="text-center mb-3">
-        <button type="submit" class="btn btn-primary btn-lg"
-          id="{{ goal.category_component.slug }}-goals-save">Save Goal
+        <button type="submit" class="btn btn-primary btn-lg save-goal-btn"
+          id="{{ goal.category_component.slug }}-goal-{{ goal_index }}-save">Save Goal
         </button>
         <a href="/home" class="btn btn-lg btn-primary d-none" id="next-section-btn">Next Section</a>
       </div>
