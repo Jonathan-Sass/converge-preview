@@ -122,7 +122,7 @@
         <!-- Accordion of example goals -->
         <div
         class="category-card accordion"
-        data-category-slug="{{ category_archetype.category.category_slug }}"
+        data-category-slug="{{ category_archetype.category.slug }}"
         id="category-accordion-{{ category_archetype.slug }}">
           {% for goal in category_archetype.example_goals %}
             {% set goal_index = loop.index %}

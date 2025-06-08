@@ -1,11 +1,11 @@
 import { convertTimeframeForDatabase } from "./timeframe-to-date.js";
 
 document.addEventListener("DOMContentLoaded", () => {
-  const saveButtons = document.querySelectorAll("button[type='submit']");
+  const saveButtons = document.querySelectorAll(".save-goal-btn");
 
   saveButtons.forEach(button => {
     button.addEventListener("click", validateAndProcessGoalData);
-    
+    console.log("Save buttons found:", saveButtons.length)
   });
 });
 
@@ -46,6 +46,8 @@ function hideSaveShowNextButtons(categorySlug) {
 }
 
 function validateAndProcessGoalData(event) {
+  console.log("Clicked: ", event.target)
+  
   const categoryCard = event.target.closest(".category-card");
 
   validateAllRequiredFields(categoryCard);
@@ -54,20 +56,30 @@ function validateAndProcessGoalData(event) {
 
 
 function processGoalData(categoryCard) {
-  
+  console.log("processGoalData()")
   const categoryGoalsData = {
     categorySlug: "",
     goals: []
   }
   // Loop through all goal sections
-  categoryCard.querySelectorAll(".goal-section").forEach(goalSection => {
+  // categoryCard.querySelectorAll(".goal-section").forEach(goalSection => {
     // Set categorySlug from goal-section
-    const categorySlug = goalSection.dataset.categorySlug;
-    categoryGoalsData.categorySlug = categorySlug;
+    if (categoryCard) {
+      const categorySlug = categoryCard.dataset.categorySlug;
+      console.log("Category Card:", categoryCard);
+      categoryGoalsData.categorySlug = categorySlug;
+    } else {
+      console.error("categoryCard element not found.");
+    }
 
     // Loop through each goal-card for a category
-    goalSection.querySelectorAll(".goal-card").forEach(goalCard => {
+    categoryCard.querySelectorAll(".goal-card").forEach(goalCard => {
+      console.log("goalCard created: " + goalCard.id)
+
+      const componentSlug = goalCard.dataset.componentSlug
       const goalData = {
+        userId: null,
+        categoryComponentSlug: "",
         name: "",
         description: "", 
         goalType: "",
@@ -79,15 +91,16 @@ function processGoalData(categoryCard) {
       }
       
       const goalId = goalCard.dataset.goalId;
-      goalData.name = goalCard.querySelector(`#${categorySlug}-goal-${goalId}-name`).value;
-      const goalDescriptionElement = goalCard.querySelector(`#${categorySlug}-goal-${goalId}-description`)
+      goalData.name = goalCard.querySelector(`#${componentSlug}-goal-${goalId}-name`).value;
+      const goalDescriptionElement = goalCard.querySelector(`#${componentSlug}-goal-${goalId}-description`)
       goalData.description = goalDescriptionElement ? goalDescriptionElement.value.trim() : "";
-      goalData.goalType = goalCard.querySelector(`#${categorySlug}-goal-${goalId}-type`).value;
-      goalData.priority = goalCard.querySelector(`#${categorySlug}-goal-${goalId}-priority`).value;
+      goalData.goalType = goalCard.querySelector(`#${componentSlug}-goal-${goalId}-type`).value;
+      goalData.priority = goalCard.querySelector(`#${componentSlug}-goal-${goalId}-priority`).value;
       // Defaulting isActive to True when saving a goal the first time, this may be subject to change depending on upcoming features
       goalData.isActive = true;
-      goalData.projectedCompletion = goalCard.querySelector(`#${categorySlug}-goal-${goalId}-date`).value;
+      goalData.projectedCompletion = goalCard.querySelector(`#${componentSlug}-goal-${goalId}-date`).value;
 
+      // console.log("Goal Data: " + JSON.stringify(goalData, null, 2));
       // Select all milestones
       goalCard.querySelectorAll(".milestone-card").forEach(milestoneCard => {
         const milestoneId = milestoneCard.dataset.milestoneId
@@ -98,18 +111,18 @@ function processGoalData(categoryCard) {
           isComplete: false,
           actionItems: []
         }
-        // console.log(`Looking for: #${categorySlug}-goal-${goalId}-milestone-${milestoneId}-name`)
-        milestoneData.name = milestoneCard.querySelector(`#${categorySlug}-goal-${goalId}-milestone-${milestoneId}-name`).value;
-        // console.log("Selector: " + milestoneCard.querySelector(`#${categorySlug}-goal-${goalId}-milestone-${milestoneId}-name`))
-        // milestoneData.name = milestoneCard.querySelector(`#${categorySlug}-goal-${goalId}-milestone-${milestoneId}-name`).value
+        // console.log(`Looking for: #${componentSlug}-goal-${goalId}-milestone-${milestoneId}-name`)
+        milestoneData.name = milestoneCard.querySelector(`#${componentSlug}-goal-${goalId}-milestone-${milestoneId}-name`).value;
+        // console.log("Selector: " + milestoneCard.querySelector(`#${componentSlug}-goal-${goalId}-milestone-${milestoneId}-name`))
+        // milestoneData.name = milestoneCard.querySelector(`#${componentSlug}-goal-${goalId}-milestone-${milestoneId}-name`).value
         
-        const milestoneDescriptionElement = milestoneCard.querySelector(`#${categorySlug}-goal-${goalId}-milestone-${milestoneId}-description`)
+        const milestoneDescriptionElement = milestoneCard.querySelector(`#${componentSlug}-goal-${goalId}-milestone-${milestoneId}-description`)
         milestoneData.description = milestoneDescriptionElement ? milestoneDescriptionElement.value.trim() : "";
         
         // timeValue and timeUnit conversion to projectedCompletion date
-        if (milestoneCard.querySelector(`#${categorySlug}-goal-${goalId}-milestone-${milestoneId}-completion-value`).value && milestoneCard.querySelector(`#${categorySlug}-goal-${goalId}-milestone-${milestoneId}-completion-unit`).value) {
-          const timeValue = milestoneCard.querySelector(`#${categorySlug}-goal-${goalId}-milestone-${milestoneId}-completion-value`).value;
-          const timeUnit = milestoneCard.querySelector(`#${categorySlug}-goal-${goalId}-milestone-${milestoneId}-completion-unit`).value;
+        if (milestoneCard.querySelector(`#${componentSlug}-goal-${goalId}-milestone-${milestoneId}-completion-value`).value && milestoneCard.querySelector(`#${componentSlug}-goal-${goalId}-milestone-${milestoneId}-completion-unit`).value) {
+          const timeValue = milestoneCard.querySelector(`#${componentSlug}-goal-${goalId}-milestone-${milestoneId}-completion-value`).value;
+          const timeUnit = milestoneCard.querySelector(`#${componentSlug}-goal-${goalId}-milestone-${milestoneId}-completion-unit`).value;
           milestoneData.projectedCompletion = convertTimeframeForDatabase(timeValue, timeUnit)
         }
         // TODO: REVERSE THE ARRAY BEFORE APPENDING... OR NOT?
@@ -125,25 +138,24 @@ function processGoalData(categoryCard) {
             isComplete: false,
           }
 
-          actionItemData.name = actionItemCard.querySelector(`#${categorySlug}-goal-${goalId}-milestone-${milestoneId}-action-item-${actionItemId}-name`).value;
-          const actionItemDescriptionElement = actionItemCard.querySelector(`#${categorySlug}-goal-${goalId}-milestone-${milestoneId}-action-item-${actionItemId}-description`);
+          actionItemData.name = actionItemCard.querySelector(`#${componentSlug}-goal-${goalId}-milestone-${milestoneId}-action-item-${actionItemId}-name`).value;
+          const actionItemDescriptionElement = actionItemCard.querySelector(`#${componentSlug}-goal-${goalId}-milestone-${milestoneId}-action-item-${actionItemId}-description`);
           actionItemData.description = actionItemDescriptionElement ? actionItemDescriptionElement.value : "";
           actionItemData.actionItemOrder = index + 1;
-          const actionItemEstimatedTimeValue = actionItemCard.querySelector(`#${categorySlug}-goal-${goalId}-milestone-${milestoneId}-action-item-${actionItemId}-estimated-time-value`);
+          const actionItemEstimatedTimeValue = actionItemCard.querySelector(`#${componentSlug}-goal-${goalId}-milestone-${milestoneId}-action-item-${actionItemId}-estimated-time-value`);
           actionItemData.estimatedTimeValue = actionItemEstimatedTimeValue ? parseInt(actionItemEstimatedTimeValue.value) : null;
-          const actionItemEstimatedTimeUnit = actionItemCard.querySelector(`#${categorySlug}-goal-${goalId}-milestone-${milestoneId}-action-item-${actionItemId}-estimated-time-unit`);
+          const actionItemEstimatedTimeUnit = actionItemCard.querySelector(`#${componentSlug}-goal-${goalId}-milestone-${milestoneId}-action-item-${actionItemId}-estimated-time-unit`);
           actionItemData.estimatedTimeUnit = actionItemEstimatedTimeUnit ? actionItemEstimatedTimeUnit.value : "";
 
           milestoneData.actionItems.push(actionItemData);
         });
         goalData.milestones.push(milestoneData);
       });
-      console.log(goalData)
       categoryGoalsData.goals.push(goalData);
-      console.log(categoryGoalsData.goals)
+      // console.log("Goal Data:", JSON.stringify(goalData, null, 2));
     });
     submitGoalData(categoryGoalsData);
-  });
+  // });
   return
 };
 
