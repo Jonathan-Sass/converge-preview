@@ -46,4 +46,19 @@ class CategoryComponent:
       print(f"Error retrieving category components: {e}")
       return None
   
-    
+  @classmethod
+  def find_category_component_by_slug(cls, component_slug):
+    query = "SELECT * FROM category_components WHERE slug = %(slug)s"
+
+    data = {"slug": component_slug}
+
+    print(f"Component slug in find_by_slug: {component_slug}")
+
+    try: 
+      results = cls.db.query_db(data, query)
+      if results:
+        return cls(results[0])
+      else:
+        return None
+    except Exception as e:
+      print(f"Error retrieving category component by slug: {e}")

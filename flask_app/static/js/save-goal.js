@@ -91,6 +91,7 @@ function processGoalData(categoryCard) {
       }
       
       const goalId = goalCard.dataset.goalId;
+      goalData.categoryComponentSlug = componentSlug
       goalData.name = goalCard.querySelector(`#${componentSlug}-goal-${goalId}-name`).value;
       const goalDescriptionElement = goalCard.querySelector(`#${componentSlug}-goal-${goalId}-description`)
       goalData.description = goalDescriptionElement ? goalDescriptionElement.value.trim() : "";
@@ -154,6 +155,9 @@ function processGoalData(categoryCard) {
       categoryGoalsData.goals.push(goalData);
       // console.log("Goal Data:", JSON.stringify(goalData, null, 2));
     });
+
+    console.log("categoryGoalsData in JS: ")
+    console.log(categoryGoalsData.goals[0].categoryComponentSlug)
     submitGoalData(categoryGoalsData);
   // });
   return

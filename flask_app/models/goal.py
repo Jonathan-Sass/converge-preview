@@ -234,13 +234,16 @@ class Goal:
                 raise ValueError("User is not logged in.")
             user_id = user.id
 
+            component_slug = category_component_goal_data["goals"][0].get("categoryComponentSlug")
+
+            print(f"Component slug in Goal.process_and_save: {component_slug}")
+
             # Find category_component and associated IDs
-            category_component = CategoryComponent.find_category_component_by_slug(
-                category_component_goal_data.get("category_componentSlug")
-            )
+            if component_slug:
+              category_component = CategoryComponent.find_category_component_by_slug(component_slug)
             if not category_component:
                 raise ValueError(
-                    f"CategoryComponent not found for slug: {category_component_goal_data.get('category_componentSlug')}"
+                    f"CategoryComponent not found for slug: {category_component_goal_data.get('categoryComponentSlug')}"
                 )
             category_component_id = category_component.id
             category_id = category_component.category_id

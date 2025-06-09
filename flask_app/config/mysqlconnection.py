@@ -39,8 +39,7 @@ class MySQLConnection:
                 else:
                     if isinstance(data, list) and len(data) == 1:
                         data = data[0]
-                    query = cursor.mogrify(query, data)
-                    cursor.execute(query)
+                    cursor.execute(query, data)
 
                 print("Running Query:", query)
                 

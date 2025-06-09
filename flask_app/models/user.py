@@ -1,7 +1,7 @@
 from flask_app.config.mysqlconnection import connectToMySQL
 from pprint import pprint
-from flask import flash, session, request
-import re
+from flask import flash, session, request, logging
+import re, traceback
 
 # Regular expressions for validating email and password formats
 EMAIL_REGEX = re.compile(r"^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$")
@@ -65,10 +65,15 @@ class User:
         """
         query = "SELECT * FROM users WHERE id = %(id)s;"
         data = {"id": user_id}
-        result = User.db.query_db(query, data)
-        if len(result) == 0:
-            return None
-        return User(result[0])
+        try:
+          result = User.db.query_db(query, data)
+          if not result or len(result) == 0:
+              return None
+          return User(result[0])
+        except Exception as e:
+          logging.error(f"Query failed:\n{query}\nWith data:\n{data}\nError:\n{str(e)}")
+          logging.error("Stack Trace: " + traceback.format_exc())
+          return False
 
     @classmethod
     def find_all(cls):
@@ -94,11 +99,17 @@ class User:
         """
         query = "SELECT * FROM users WHERE email = %(email)s;"
         data = {"email": form_data["email"]}
-        result = User.db.query_db(query, data)
 
-        if len(result) == 0:
-            return None
-        return User(result[0])
+        try:
+          result = User.db.query_db(query, data)
+          if not result or len(result) == 0:
+              return None
+          return User(result[0])
+        except Exception as e:
+          logging.error(f"Query failed:\n{query}\nWith data:\n{data}\nError:\n{str(e)}")
+          logging.error("Stack Trace: " + traceback.format_exc())
+          return False
+
 
     @classmethod
     def save(cls, data):
