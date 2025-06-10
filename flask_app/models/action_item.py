@@ -71,12 +71,21 @@ class ActionItem:
           VALUES
             (%(goal_id)s, %(milestone_id)s, %(name)s, %(description)s, %(action_item_order)s, %(estimated_time_value)s, %(estimated_time_unit)s, %(is_complete)s, NOW(), NOW())
           ON DUPLICATE KEY UPDATE
+            name = VALUES(name),
+            description = VALUES(description),
+            action_item_order = VALUES(action_item_order),
+            estimated_time_value = VALUES(estimated_time_value),
+            estimated_time_unit = VALUES(estimated_time_unit),
+            is_complete = VALUES(is_complete),
             updated_at = NOW();
         """
 
-        result = ActionItem.db.query_db(query, data)
-
-        if result:
-            return result
-        else:
-            raise RuntimeError("Could not insert action item: " + data["name"])
+        try:
+          result = ActionItem.db.query_db(query, data)
+          return result
+        except Exception as e:
+            print(f"Error inserting action item: {e}")
+        # if result:
+        #     return result
+        # else:
+        #     raise RuntimeError("Could not insert action item: " + data["name"])

@@ -1,8 +1,7 @@
-<div class="card shadow p-1 m-auto mb-1">
+<div class="card shadow p-1 m-auto mb-1 action-item-card" data-action-item-id="{{ action_item_index }}">
   <div class="mb-3 form-floating">
     <input type="text" class="form-control action-item-name"
       id="{{ goal.category_component.slug }}-goal-{{ goal_index }}-milestone-{{ milestone_index }}-action-item-{{ action_item_index }}-name"
-      data-action-item-id="{{ action_item_index }}"
       placeholder="Action Name"
       value="{{ action_item.name }}"
       required>

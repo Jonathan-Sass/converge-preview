@@ -1,6 +1,10 @@
 import pymysql.cursors
 import logging
 import traceback
+import os
+
+DEBUG_SQL = os.getenv("DEBUG_SQL", "false").lower() == "true"
+
 
 class MySQLConnection:
     def __init__(self, db):
@@ -30,19 +34,30 @@ class MySQLConnection:
             logging.error(f"Connection lost, attempting to reconnect. Error: {str(e)}")
             self.connect()
 
-    def query_db(self, query: str, data: dict = None, many: bool=False):
+    def query_db(self, query: str, data: dict=None, many: bool=False):
         self.ensure_connection()  # Check and reconnect if needed
         with self.connection.cursor() as cursor:
             try:
                 if many and isinstance(data, list):
+                    if DEBUG_SQL:
+                        for entry in data:
+                            rendered = cursor.mogrify(query, entry).decode()
+                            print("SQL EXECUTEMANY:", rendered)
                     cursor.executemany(query, data)
                 else:
                     if isinstance(data, list) and len(data) == 1:
                         data = data[0]
+                    if DEBUG_SQL:
+                        try:
+                            rendered = cursor.mogrify(query, data).decode()
+                            print("🧠 SQL EXECUTE:", rendered)
+                        except Exception as e:
+                            print("⚠️ Could not mogrify query for logging:", e)
+
                     cursor.execute(query, data)
 
-                print("Running Query:", query)
-                
+                logging.debug(f"Executed Query: {query}")
+
                 if "insert" in query.lower():
                     self.connection.commit()
                     return cursor.lastrowid

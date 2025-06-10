@@ -52,10 +52,10 @@ class CategoryComponent:
 
     data = {"slug": component_slug}
 
-    print(f"Component slug in find_by_slug: {component_slug}")
+    # print(f"Component slug in find_by_slug: {component_slug}")
 
     try: 
-      results = cls.db.query_db(data, query)
+      results = cls.db.query_db(query, data)
       if results:
         return cls(results[0])
       else:

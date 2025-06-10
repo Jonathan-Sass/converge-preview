@@ -129,6 +129,7 @@ function processGoalData(categoryCard) {
         // TODO: REVERSE THE ARRAY BEFORE APPENDING... OR NOT?
         milestoneCard.querySelectorAll(".action-item-card").forEach((actionItemCard, index) => {
           const actionItemId = actionItemCard.dataset.actionItemId;
+          console.log(`actionItemId from card: ${actionItemId}`)
 
           const actionItemData = {
             name: "",
@@ -139,7 +140,10 @@ function processGoalData(categoryCard) {
             isComplete: false,
           }
 
-          actionItemData.name = actionItemCard.querySelector(`#${componentSlug}-goal-${goalId}-milestone-${milestoneId}-action-item-${actionItemId}-name`).value;
+          console.log(`actionItemData is looking for element id: ${componentSlug}-goal-${goalId}-milestone-${milestoneId}-action-item-${actionItemId}-name`);
+          
+          const actionItemNameElement = actionItemCard.querySelector(`#${componentSlug}-goal-${goalId}-milestone-${milestoneId}-action-item-${actionItemId}-name`).value;
+          actionItemData.name = actionItemNameElement ? actionItemNameElement.value : "";
           const actionItemDescriptionElement = actionItemCard.querySelector(`#${componentSlug}-goal-${goalId}-milestone-${milestoneId}-action-item-${actionItemId}-description`);
           actionItemData.description = actionItemDescriptionElement ? actionItemDescriptionElement.value : "";
           actionItemData.actionItemOrder = index + 1;
@@ -149,6 +153,8 @@ function processGoalData(categoryCard) {
           actionItemData.estimatedTimeUnit = actionItemEstimatedTimeUnit ? actionItemEstimatedTimeUnit.value : "";
 
           milestoneData.actionItems.push(actionItemData);
+          console.log("Milestone Action Items:")
+          console.log(JSON.stringify(milestoneData.actionItems))
         });
         goalData.milestones.push(milestoneData);
       });
@@ -156,8 +162,8 @@ function processGoalData(categoryCard) {
       // console.log("Goal Data:", JSON.stringify(goalData, null, 2));
     });
 
-    console.log("categoryGoalsData in JS: ")
-    console.log(categoryGoalsData.goals[0].categoryComponentSlug)
+    console.log("Sending goal data:")
+    console.log(JSON.stringify(categoryGoalsData))
     submitGoalData(categoryGoalsData);
   // });
   return

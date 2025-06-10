@@ -236,17 +236,17 @@ class Goal:
 
             component_slug = category_component_goal_data["goals"][0].get("categoryComponentSlug")
 
-            print(f"Component slug in Goal.process_and_save: {component_slug}")
+            # print(f"Component slug in Goal.process_and_save: {component_slug}")
 
             # Find category_component and associated IDs
             if component_slug:
               category_component = CategoryComponent.find_category_component_by_slug(component_slug)
             if not category_component:
                 raise ValueError(
-                    f"CategoryComponent not found for slug: {category_component_goal_data.get('categoryComponentSlug')}"
+                    f"CategoryComponent not found for slug: {component_slug}"
                 )
             category_component_id = category_component.id
-            category_id = category_component.category_id
+            goal_category_id = category_component.goal_category_id
 
             # Process each goal in the category_component
             for goal in category_component_goal_data.get("goals", []):
@@ -254,17 +254,17 @@ class Goal:
                     # Save goal data
                     goal_data = {
                         "user_id": user_id,
-                        "goal_category_id": category_id,
+                        "goal_category_id": goal_category_id,
                         "category_component_id": category_component_id,
                         "name": goal.get("name", "").strip(),
                         "description": goal.get("description", "").strip(),
                         "goal_type": goal.get("goalType"),
-                        "projected_completion": goal.get("projectedCompletion"),
-                        "is_complete": goal.get("isComplete", False),
                         "priority": goal.get("priority"),
                         "is_active": goal.get("isActive") if goal.get("isActive") is not None else True,
+                        "projected_completion": goal.get("projectedCompletion"),
+                        "is_complete": goal.get("isComplete", False)
                     }
-                    goal_id = Goal.save_category_component_goals(goal_data)
+                    goal_id = Goal.save_goal(goal_data)
 
                     # Process milestones
                     for milestone in goal.get("milestones", []):
@@ -273,19 +273,20 @@ class Goal:
                                 "goal_id": goal_id,
                                 "name": milestone.get("name", "").strip(),
                                 "description": milestone.get("description", "").strip(),
-                                "projected_completion": milestone.get(
-                                    "projectedCompletion"
-                                ),
+                                "projected_completion": milestone.get("projectedCompletion"),
                                 "is_complete": milestone.get("isComplete", False),
                             }
                             result = Milestone.save_milestone(milestone_data)
                             milestone_id = result if result else None
+                            
+                            print(f"Milestone saved: {milestone_id}")
 
                             if not milestone_id:
                                 logging.warning(
                                     f"Failed to save milestone for goal ID {goal_id}. Skipping related action items."
                                 )
                                 continue
+                            
 
                             # Process action items
                             for action_item in milestone.get("actionItems", []):
@@ -294,22 +295,13 @@ class Goal:
                                         "goal_id": goal_id,
                                         "milestone_id": milestone_id,
                                         "name": action_item.get("name", "").strip(),
-                                        "description": action_item.get(
-                                            "description", ""
-                                        ).strip(),
-                                        "action_item_order": action_item.get(
-                                            "actionItemOrder"
-                                        ),
-                                        "estimated_time_value": action_item.get(
-                                            "estimatedTimeValue"
-                                        ),
-                                        "estimated_time_unit": action_item.get(
-                                            "estimatedTimeUnit"
-                                        ),
-                                        "is_complete": action_item.get(
-                                            "isComplete", False
-                                        ),
+                                        "description": action_item.get("description", "").strip(),
+                                        "action_item_order": action_item.get("actionItemOrder"),
+                                        "estimated_time_value": action_item.get("estimatedTimeValue"),
+                                        "estimated_time_unit": action_item.get("estimatedTimeUnit"),
+                                        "is_complete": action_item.get("isComplete", False),
                                     }
+                                    print(f"Saving action item: {action_item_data["name"]}")
                                     ActionItem.save_action_item(action_item_data)
                                 except Exception as e:
                                     logging.error(f"Error saving action item: {action_item}, Error: {e}")
@@ -322,14 +314,14 @@ class Goal:
             logging.critical(f"Critical error in process_and_save_category_component_goals_data: {e}")
             raise  # Optionally re-raise the exception for higher-level handling
 
-    def save_category_component_goals(data):
+    def save_goal(data):
         """Saves a goal to the database."""
 
         query = """
           INSERT INTO
             goals (user_id, goal_category_id, category_component_id, name, description, goal_type, projected_completion, is_complete, priority, is_active, created_at, updated_at)
           VALUES 
-            (%(user_id)s, %(category_id)s, %(category_component_id)s, %(name)s, %(description)s, %(goal_type)s, %(projected_completion)s, %(is_complete)s, %(priority)s, %(is_active)s, NOW(), NOW())
+            (%(user_id)s, %(goal_category_id)s, %(category_component_id)s, %(name)s, %(description)s, %(goal_type)s, %(projected_completion)s, %(is_complete)s, %(priority)s, %(is_active)s, NOW(), NOW())
           ON DUPLICATE KEY UPDATE
             updated_at = NOW();
         """
