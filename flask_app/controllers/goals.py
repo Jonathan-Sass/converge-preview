@@ -50,6 +50,26 @@ def select_archetype_from_map(map_slug):
     # process based on slug
     return redirect(f"/goals/set-from-archetype/{archetype_slug}")
 
+@app.get("/goals/intro/set-from-archetype/<string:archetype_slug>")
+def set_intro_goals_from_archetype_template(archetype_slug):
+    user = User.get_logged_in_user()
+    if not user:
+        return redirect("/")
+
+    category_archetype_data = CategoryArchetype.find_archetype_with_goals_milestones_and_action_items_by_archetype_slug(archetype_slug)
+    if not category_archetype_data:
+        # Set a generic, default fall-back
+        category_archetype_data = CategoryArchetype.find_archetype_with_goals_milestones_and_action_items_by_archetype_slug("career-skills-growth")
+        
+    category_archetype = CategoryArchetype.build_enriched_archetype_with_category_and_components(category_archetype_data)
+    # category_archetype = CategoryArchetype.build_archetype_with_goals_milestones_and_action_items(category_archetype_data)
+    
+    # pprint(vars(category_archetype))
+    # for goal in category_archetype.example_goals:
+    #   pprint(vars(goal))
+    #   for milestone in goal.example_milestones:
+    #       pprint(vars(milestone))
+    return render_template("/goals/set_intro_category_goals_from_archetype.html", category_archetype = category_archetype)
 
 @app.get("/goals/set-from-archetype/<string:archetype_slug>")
 def set_goals_from_archetype_template(archetype_slug):

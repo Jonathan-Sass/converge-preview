@@ -153,8 +153,8 @@ function processGoalData(categoryCard) {
           actionItemData.estimatedTimeUnit = actionItemEstimatedTimeUnit ? actionItemEstimatedTimeUnit.value : "";
 
           milestoneData.actionItems.push(actionItemData);
-          console.log("Milestone Action Items:")
-          console.log(JSON.stringify(milestoneData.actionItems))
+          // console.log("Milestone Action Items:")
+          // console.log(JSON.stringify(milestoneData.actionItems))
         });
         goalData.milestones.push(milestoneData);
       });
@@ -162,9 +162,9 @@ function processGoalData(categoryCard) {
       // console.log("Goal Data:", JSON.stringify(goalData, null, 2));
     });
 
-    console.log("Sending goal data:")
-    console.log(JSON.stringify(categoryGoalsData))
-    submitGoalData(categoryGoalsData);
+    // console.log("Sending goal data:")
+    // console.log(JSON.stringify(categoryGoalsData))
+    // submitGoalData(categoryGoalsData);
   // });
   return
 };
