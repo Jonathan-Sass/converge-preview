@@ -121,7 +121,7 @@ def survey_goal_starter_map():
   if not user:
     return redirect("/")
 
-  return render_template("/surveys/goal_starter_map.html")
+  return render_template("/surveys/goals_starter_map.html")
 
 # DEPRECATED
 # @app.get("/surveys/activity-interest-map")

@@ -50,6 +50,19 @@ def select_archetype_from_map(map_slug):
     # process based on slug
     return redirect(f"/goals/set-from-archetype/{archetype_slug}")
 
+@app.get("/goals/intro/select-archetype-from-map/<string:map_slug>")
+def select_intro_archetype_from_map(map_slug):
+    user = User.get_logged_in_user()
+    if not user:
+        return redirect("/")
+    
+    archetype_slug = UserResponse.select_archetype_from_map(user, map_slug)
+    # archetype_slug = session.get("selected_archetype_slug")
+    if not archetype_slug:
+        return redirect(f"/surveys/goals-{map_slug}")
+    # process based on slug
+    return redirect(f"/goals/intro/set-from-archetype/{archetype_slug}")
+
 @app.get("/goals/intro/set-from-archetype/<string:archetype_slug>")
 def set_intro_goals_from_archetype_template(archetype_slug):
     user = User.get_logged_in_user()
@@ -69,7 +82,7 @@ def set_intro_goals_from_archetype_template(archetype_slug):
     #   pprint(vars(goal))
     #   for milestone in goal.example_milestones:
     #       pprint(vars(milestone))
-    return render_template("/goals/set_intro_category_goals_from_archetype.html", category_archetype = category_archetype)
+    return render_template("/onboarding/set_intro_category_goals_from_archetype.html", category_archetype = category_archetype)
 
 @app.get("/goals/set-from-archetype/<string:archetype_slug>")
 def set_goals_from_archetype_template(archetype_slug):
