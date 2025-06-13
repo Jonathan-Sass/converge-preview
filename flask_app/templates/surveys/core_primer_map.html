@@ -14,34 +14,79 @@
 </head>
 
 <body>
+  <div class="parallax-bg"></div>
   <div class="border-box">
-    <nav id="progress-navbar" class="h-100 flex-column align-items-stretch p-3">
-          <h4 class="display-6 text-primary text-center">You are here.</h4>
-          <hr class="border border-1 border-dark">
-          
-          <nav class="nav nav-pills flex-column gap-2">
-            <a class="nav-link active border border-secondary-subtle shadow solid-white-bg mb-2" href="#onboarding">Getting to Know You  
-              <div class="progress my-1" style="height: 1rem;">
-                <div id="progress-bar" class="progress-bar bg-primary" role="progressbar" style="width: 10%;"
-                aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
-            </a>
-            <a class="nav-link border border-secondary-subtle shadow solid-white-bg" href="#user-objectives">Objectives</a>
-            <a class="nav-link border border-secondary-subtle shadow solid-white-bg" href="#digital-disconnect-map">Digital Disconnect Map</a>
-            <a class="nav-link active border border-secondary-subtle shadow solid-white-bg" href="#core-primer-map">Core System Primer Map
-              <div class="progress my-1 border border-light" style="height: 1rem;">
-                <div id="survey-progress-bar" class="progress-bar bg-primary" role="progressbar" style="width: 30%;"
-                aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
-            </a>
-            <a class="nav-link border border-secondary-subtle shadow solid-white-bg" href="#core-builder-map">Core System Builder Map</a>
-            <a class="nav-link border border-secondary-subtle shadow solid-white-bg" href="#goal-starter-map">Goal Setting Starter Map</a>
-            <a class="nav-link border border-secondary-subtle shadow solid-white-bg" href="#discipline-motivation-focus-map">Discipline, Motivation & Focus Map</a>
-            <a class="nav-link border border-secondary-subtle shadow solid-white-bg" href="#set-goals-intro">Goal Setting Intro</a>
-            <a class="nav-link border border-secondary-subtle shadow solid-white-bg" href="#value-map">Value Map</a>
+    <nav class="navbar navbar-expand-lg bg-light w-100 m-auto d-flex justify-content-between position-sticky top-0 z-3 p-3">
+      <div class="container-fluid">
+        <!-- Branding (Logo + Title) -->
+        <a class="navbar-brand d-inline-flex align-items-center gap-4" href="/dashboard">
+          <img src="/static/img/Enso_Blue_and_Black.jpg" class="rounded-circle" width="60" height="60" alt="Converge Logo">
+          <h2 class="display-4 text-primary">Converge</h2>
+        </a>
+      </div>
 
-          </nav>
-        </nav>
+      <!-- Mobile Navbar Toggle Button -->
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDarkDropdown"
+        aria-controls="navbarNavDarkDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <!-- Navbar Links (Collapsible) -->
+      <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
+        <div class="navbar-nav">
+          <a class="nav-link active" aria-current="page" href="/home">Home</a>
+          <a class="nav-link" href="/calendar">Calendar</a>
+
+          <!-- Goals Dropdown Menu -->
+          <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
+            <ul class="navbar-nav">
+              <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                  Goals
+                </button>
+                <ul class="dropdown-menu dropdown-menu-dark">
+                  <li><a class="dropdown-item" href="/goals/manager">Goal Manager</a></li>
+                  <li><a class="dropdown-item" href="/goals/recreation-travel">Recreation and Travel</a></li>
+                  <li><a class="dropdown-item" href="/goals/health-wellness">Health and Wellness</a></li>
+                  <li><a class="dropdown-item" href="/goals/social-community">Social and Community Engagement</a></li>
+                  <li><a class="dropdown-item" href="/goals/spirituality">Spirituality and Life Purpose</a></li>
+                  <li><a class="dropdown-item" href="/goals/career-professional-development">Career and Professional
+                      Development</a></li>
+                  <li><a class="dropdown-item" href="/goals/wealth-finance">Wealth Building and Financial Health</a></li>
+                  <li><a class="dropdown-item" href="/goals/creative-expression-hobbies">Creative Expression and
+                      Hobbies</a></li>
+                  <li><a class="dropdown-item" href="/goals/environment-success">Environment and Success</a></li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Routines Dropdown Menu -->
+          <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
+            <ul class="navbar-nav">
+              <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                  Routines
+                </button>
+                <ul class="dropdown-menu dropdown-menu-dark">
+                  <li><a class="dropdown-item" href="/routines/am/manage">AM Routine Manager</a></li>
+                  <li><a class="dropdown-item" href="/routines/pm/manage">PM Routine Manager</a></li>
+                  <li><a class="dropdown-item" href="/intentions/edit">Daily Intention Manager</a></li>
+                  <li><a class="dropdown-item" href="/practices/flex-items/manage">Flex Item</a></li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+
+          <a class="nav-link" href="/social">Social</a>
+
+          <!-- Logout Button -->
+          <form action="/users/logout" method="post">
+            <button class="btn btn-link" type="submit" name="logout">Logout</button>
+          </form>
+        </div>
+      </div>
+    </nav>
     <header class="card m-auto w-75 my-5 p-3 text-center bg-light shadow opacity-75">
       <h1 class="display-2 mb-3 text-primary">Core System Primers</h1>
       <p class="fs-4">Powerful, super easy practices to help you feel and function your best.</p>
@@ -56,22 +101,25 @@
           <hr class="border border-1 border-dark">
           
           <nav class="nav nav-pills flex-column gap-2">
-            <a class="nav-link active solid-white-bg" href="#onboarding">Fueling the Engine</a>
-            <div class="progress mb-3 mt-1" style="height: 1rem;">
-              <div id="progress-bar" class="progress-bar bg-primary" role="progressbar" style="width: 20%;"
+            <a class="nav-link active border border-secondary-subtle shadow solid-white-bg mb-2" href="#onboarding">Getting to Know You  
+              <div class="progress my-1 border border-light" style="height: 1rem;">
+                <div id="progress-bar" class="progress-bar bg-primary" role="progressbar" style="width: 20%;"
                 aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
-            </div>
-            <a class="nav-link solid-white-bg" href="#user-objectives">Objectives</a>
-            <a class="nav-link solid-white-bg" href="#digital-disconnect-map">Digital Disconnect Map</a>
-            <a class="nav-link active solid-white-bg" href="#core-primer-map">Core System Primer Map</a>
-            <div class="progress mb-3 mt-1" style="height: 1rem;">
-              <div id="survey-progress-bar" class="progress-bar bg-primary" role="progressbar" style="width: 0%;"
+              </div>
+            </a>
+            <a class="nav-link border border-secondary-subtle shadow solid-white-bg" href="#user-objectives">Objectives</a>
+            <a class="nav-link border border-secondary-subtle shadow solid-white-bg" href="#digital-disconnect-map">Digital Disconnect Map</a>
+            <a class="nav-link active border border-secondary-subtle shadow solid-white-bg" href="#core-primer-map">Core System Primer Map
+              <div class="progress my-1" style="height: 1rem;">
+                <div id="survey-progress-bar" class="progress-bar bg-primary" role="progressbar" style="width: 0%;"
                 aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
-            </div>
-            <a class="nav-link solid-white-bg" href="#core-builder-map">Core System Builder Map</a>
-            <a class="nav-link solid-white-bg" href="#discipline-motivation-focus-map">Discipline, Motivation & Focus Map</a>
-            <a class="nav-link solid-white-bg" href="#goal-starter-map">Goal Starter Map</a>
-            <a class="nav-link solid-white-bg" href="#value-map">Value Map</a>
+              </div>
+            </a>
+            <a class="nav-link border border-secondary-subtle shadow solid-white-bg" href="#core-builder-map">Core System Builder Map</a>
+            <a class="nav-link border border-secondary-subtle shadow solid-white-bg" href="#goal-starter-map">Goal Setting Starter Map</a>
+            <a class="nav-link border border-secondary-subtle shadow solid-white-bg" href="#discipline-motivation-focus-map">Discipline, Motivation & Focus Map</a>
+            <a class="nav-link border border-secondary-subtle shadow solid-white-bg" href="#set-goals-intro">Goal Setting Intro</a>
+            <a class="nav-link border border-secondary-subtle shadow solid-white-bg" href="#value-map">Value Map</a>
 
           </nav>
         </nav>
