@@ -1,25 +1,35 @@
 document.addEventListener('DOMContentLoaded', () => {
+  findAndInitializeAddToFlexButtons()
+  findAndInitializeRemoveFromFlexButtons()
 
-  const addFlexButtons = document.querySelectorAll('[data-action="add-to-flex"]');
-  const removeFlexButtons = document.querySelectorAll('[data-action="remove-flex"]');
+  function findAndInitializeAddToFlexButtons () {
+    const addToFlexButtons = document.querySelectorAll('[data-action="add-to-flex"]');
 
-  addFlexButtons.forEach(button => {
-    button.addEventListener('click', (e) => {
-      const goalId = button.getAttribute('data-goal-id');
-      const parentElementId = `goal-${goalId}`;
-
-      addToFlexTasks({goalId, parentElementId});
+    addToFlexButtons.forEach(button => {
+      button.addEventListener('click', (e) => {
+        const goalId = button.getAttribute('data-goal-id');
+        const parentElementId = `goal-${goalId}`;
+  
+        addToFlexTasks({goalId, parentElementId});
+      });
     });
-  });
+  };
 
-  removeFlexButtons.forEach(button => {
-    button.addEventListener('click', (e) => {
-      const goalId = button.getAttribute('data-goal-id');
-      const parentElementId = `goal-${goalId}`;
+  function findAndInitializeRemoveFromFlexButtons () {
+    const removeFromFlexButtons = document.querySelectorAll('[data-action="remove-flex"]');
 
-      deleteGoalFromFlexTasks({goalId, parentElementId})
-    })
-  });
+    removeFromFlexButtons.forEach(button => {
+      button.addEventListener('click', (e) => {
+        const goalId = button.getAttribute('data-goal-id');
+        const parentElementId = `goal-${goalId}`;
+  
+        deleteGoalFromFlexTasks({goalId, parentElementId})
+      })
+    });
+  }
+
+
+
 
   function addToFlexTasks({goalId, parentElementId}) {
     if (goalId) {
@@ -30,23 +40,38 @@ document.addEventListener('DOMContentLoaded', () => {
 
   };
   
-  function moveGoalToFlexTasks(parentElementId) {
+  function moveGoalToFlexTasks(goalId, parentElementId) {
     const parentElement = document.getElementById(parentElementId);
-    const flexTaskElement = document.getElementById('flex-task-list');
+    const elementAddToFlexButton = parentElement.querySelector('[data-action="add-to-flex"]')
+    const actionableItemHeader = parentElement.querySelector('.actionable-item-header')
+    const flexTaskListElement = document.getElementById('flex-task-list');
 
-    if (parentElement && flexTaskElement) {
-      parentElement.classList.add('fade-out');
-      setTimeout(() => flexTaskElement.appendChild(parentElement), 300);
-      
+    if (!actionableItemHeader) {
+      console.error(`Could not find .flex-task-header`);
+      return;
+    }
+
+    const removeFlexTaskButton = `<button class="btn btn-sm btn-outline-primary"
+                                    data-action="remove-flex"
+                                    data-goal-id="${goalId}">
+                                      Remove
+                                  </button>`
+
+    if (parentElement && flexTaskListElement) {
+      // parentElement.classList.add('fade-out');
+      setTimeout(() => flexTaskListElement.appendChild(parentElement), 300);
+      actionableItemHeader.insertAdjacentHTML('beforeend', removeFlexTaskButton)
+      elementAddToFlexButton.remove()
+      findAndInitializeRemoveFromFlexButtons()
     };
   };
   
   function removeFlexTask(parentElementId) {
-    const parentElement = document.getElementById(parentElementId)
-
-    if (parentElement) {
-      parentElement.classList.add('fade-out');
-      setTimeout(() => parentElement.remove(), 300);
+    const flexTaskElement = document.getElementById(parentElementId)
+    
+    if (flexTaskElement) {
+      flexTaskElement.classList.add('fade-out');
+      setTimeout(() => flexTaskElement.remove(), 300);
     }
   };
 
@@ -61,7 +86,7 @@ document.addEventListener('DOMContentLoaded', () => {
       });
 
       if (response.ok) {
-        moveGoalToFlexTasks(parentElementId);
+        moveGoalToFlexTasks(goalId, parentElementId);
         alert(`Goal: ${goalId} added to Flex Tasks`);
       } else {
         alert (`Failed to add Goal: ${goalId}`);
