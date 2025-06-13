@@ -551,7 +551,12 @@
         ],
         tooltipClass: 'introCustomTooltip',
         disableInteraction: true,
-        exitOnOverlayClick: false
+        exitOnOverlayClick: false,
+        keyboardNavigation: false
+      }).onexit(function () {
+        introJS().start();
+      }).onbeforeexit(function () {
+        return false;
       }).oncomplete(function () {
         window.location.href = '/surveys/core-primer-map';
       }).start();
