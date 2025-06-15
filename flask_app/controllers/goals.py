@@ -121,10 +121,18 @@ def save_goals_for_category_component(category_component_slug=None):
         return redirect("/")
 
     category_component_goal_data = request.json
+    is_intro_flow = category_component_goal_data.get("isIntroFlow", False)
 
     try:
         result = Goal.process_and_save_category_component_goals_data(category_component_goal_data)
-        return jsonify({"success": True, "result": result}), 200
+        
+        redirect_url = "/home"if not is_intro_flow else "/dashboard/intro/first-goals" 
+        return jsonify({
+          "success": True,
+          "result": result,
+          "redirect": redirect_url
+        }), 200
+        
     except Exception as e:
         return jsonify({"success": False, "message": str(e)}), 500
 

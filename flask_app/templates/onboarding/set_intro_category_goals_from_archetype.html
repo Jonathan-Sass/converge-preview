@@ -108,6 +108,9 @@
 
     <!-- Main Content -->
     <div class="container-fluid">
+      <!-- Hidden input flags JS routing to continue with intro flow -->
+      <input type="hidden" id="is-intro-flow" value="true">
+
       <div class="card shadow w-75 p-5 opaque-white-bg m-auto">
         <div class="card shadow m-auto mb-2 p-3 opaque-white-bg">
           <div class="card-body">
@@ -123,6 +126,7 @@
         <div
         class="category-card accordion"
         data-category-slug="{{ category_archetype.category.slug }}"
+        data-is-intro-flow="true"
         id="category-accordion-{{ category_archetype.slug }}">
           {% for goal in category_archetype.example_goals %}
             {% set goal_index = loop.index %}

@@ -24,9 +24,15 @@ async function submitGoalData(data) {
       body: JSON.stringify(data)
     });
 
+    const result = await response.json();
+
     if (response.ok) {
       alert('Goals saved successfully!');
       hideSaveShowNextButtons(categorySlug);
+
+      if (result.redirect) {
+        window.location.href = result.redirect;
+      }
     } else {
       alert ('Failed to save goals.');
     }
@@ -58,19 +64,24 @@ function validateAndProcessGoalData(event) {
 function processGoalData(categoryCard) {
   console.log("processGoalData()")
   const categoryGoalsData = {
-    categorySlug: "",
+    categorySlug: categoryCard?.dataset.categorySlug || "",
+    isIntroFlow: categoryCard?.dataset.isIntroFlow === "true",
     goals: []
   }
   // Loop through all goal sections
   // categoryCard.querySelectorAll(".goal-section").forEach(goalSection => {
     // Set categorySlug from goal-section
-    if (categoryCard) {
-      const categorySlug = categoryCard.dataset.categorySlug;
-      console.log("Category Card:", categoryCard);
-      categoryGoalsData.categorySlug = categorySlug;
-    } else {
-      console.error("categoryCard element not found.");
-    }
+    // if (categoryCard) {
+    //   const categorySlug = categoryCard.dataset.categorySlug;
+    //   console.log("Category Card:", categoryCard);
+    //   categoryGoalsData.categorySlug = categorySlug;
+
+    //   if (categoryCard.dataset.isIntroFlow) {
+    //     categoryGoalsData.isIntroFlow = categoryCard.dataset.isIntroFlow
+    //   };
+    // } else {
+    //   console.error("categoryCard element not found.");
+    // }
 
     // Loop through each goal-card for a category
     categoryCard.querySelectorAll(".goal-card").forEach(goalCard => {
@@ -164,7 +175,7 @@ function processGoalData(categoryCard) {
 
     // console.log("Sending goal data:")
     // console.log(JSON.stringify(categoryGoalsData))
-    // submitGoalData(categoryGoalsData);
+    submitGoalData(categoryGoalsData);
   // });
   return
 };
@@ -196,30 +207,3 @@ function validateAllRequiredFields(categoryCard) {
 
 }
 
-// function sendToBackend(payload) {
-//   fetch("/api/save-goals", {
-//     method: "POST",
-//     headers: {
-//       "Content-Type": "application/json",
-//     },
-//     body: JSON.stringify(payload),
-//   })
-//     .then((response) => {
-//       if (!response.ok) {
-//         throw new Error("Failed to save goals");
-//       }
-//       return response.json();
-//     })
-//     .then((data) => {
-//       if(data.success) {
-//         alert("Goals saved successfully!");
-//         // window.location.href = data.redirect;
-//         } else {
-//           console.error("Save failed.  Try again.")
-//         }
-//     })
-//     .catch(error => {
-//       console.error("Error saving goals:", error);
-//       alert("There was an error saving your goals. Please try again.");
-//     });
-// }
