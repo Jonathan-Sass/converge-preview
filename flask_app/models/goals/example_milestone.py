@@ -1,7 +1,7 @@
 from flask_app.config.mysqlconnection import connectToMySQL
 from typing import List
 
-from flask_app.models.example_action_item import ExampleActionItem
+from flask_app.models.goals.example_action_item import ExampleActionItem
 
 
 class ExampleMilestone:

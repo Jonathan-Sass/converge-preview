@@ -1,5 +1,5 @@
 from flask_app.config.mysqlconnection import connectToMySQL
-from flask_app.models.category_component import CategoryComponent
+from flask_app.models.goals.category_component import CategoryComponent
 from pprint import pprint
 
 

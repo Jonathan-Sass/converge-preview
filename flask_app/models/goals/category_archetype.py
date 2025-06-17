@@ -2,12 +2,12 @@ from flask_app.config.mysqlconnection import connectToMySQL
 from pprint import pprint
 from typing import List
 import logging
-from flask_app.models.user import User
-from flask_app.models.example_goal import ExampleGoal
-from flask_app.models.example_milestone import ExampleMilestone
-from flask_app.models.example_action_item import ExampleActionItem
-from flask_app.models.goal_category import GoalCategory
-from flask_app.models.category_component import CategoryComponent
+
+from flask_app.models.goals.example_goal import ExampleGoal
+from flask_app.models.goals.example_milestone import ExampleMilestone
+from flask_app.models.goals.example_action_item import ExampleActionItem
+from flask_app.models.goals.goal_category import GoalCategory
+from flask_app.models.goals.category_component import CategoryComponent
 
 
 class CategoryArchetype:

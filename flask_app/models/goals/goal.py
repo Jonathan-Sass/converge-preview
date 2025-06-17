@@ -3,10 +3,10 @@ from pprint import pprint
 from typing import List
 import logging
 from flask_app.models.user import User
-from flask_app.models.milestone import Milestone
-from flask_app.models.action_item import ActionItem
-from flask_app.models.goal_category import GoalCategory
-from flask_app.models.category_component import CategoryComponent
+from flask_app.models.goals.milestone import Milestone
+from flask_app.models.goals.action_item import ActionItem
+from flask_app.models.goals.goal_category import GoalCategory
+from flask_app.models.goals.category_component import CategoryComponent
 
 
 class Goal:
@@ -20,7 +20,7 @@ class Goal:
     def __init__(self, data):
         self.id = data["id"]
         self.user_id = data["user_id"]
-        self.category_id = data["category_id"]
+        self.goal_category_id = data["goal_category_id"]
         self.category_component_id = data["category_component_id"]
         self.name = data["name"]
         self.description = data["goal_description"]
@@ -33,7 +33,7 @@ class Goal:
         self.updated_at = data["updated_at"]
         self.milestones: List[Milestone] = []
 
-    # CRUD methods
+    # CRUD methodsg
     
     def find_goals_with_milestones_and_action_items_by_user_id(user_id):
         """Retrieve all goals for a user along with their milestones and action items."""
@@ -97,7 +97,7 @@ class Goal:
           SELECT
               g.id AS goal_id,
               g.user_id,
-              g.category_id,
+              g.goal_category_id,
               g.category_component_id,
               g.name AS goal_name,
               g.description AS goal_description,
@@ -201,7 +201,7 @@ class Goal:
         return Goal({
             "id": row["goal_id"],
             "user_id": user_id,
-            "category_id": row["category_id"],
+            "goal_category_id": row["goal_category_id"],
             "category_component_id": row["category_component_id"],
             "name": row["goal_name"],
             "goal_description": row["goal_description"],
@@ -340,12 +340,12 @@ class Goal:
     #         category_component_goal_data["category_componentSlug"]
     #     )
     #     category_component_id = category_component.id
-    #     category_id = category_component.category_id
+    #     goal_category_id = category_component.goal_category_id
 
     #     for goal in category_component_goal_data["goals"]:
     #         goal_data = {
     #             "user_id": user_id,
-    #             "category_id": category_id,
+    #             "goal_category_id": goal_category_id,
     #             "category_component_id": category_component_id,
     #             "name": goal["name"],
     #             "description": goal["description"],
