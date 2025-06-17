@@ -6,7 +6,7 @@ from flask_app.models.user import User
 from flask_app.models.routine import Routine
 from flask_app.models.routine_block import RoutineBlock
 from flask_app.models.user_routine_block_practice import UserRoutineBlockPractice
-from flask_app.models.goal import Goal
+from flask_app.models.goals.goal import Goal
 from flask_app.models.flex_task import FlexTask
 from flask_app.models.user_response import UserResponse
 

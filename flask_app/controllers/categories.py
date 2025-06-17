@@ -1,7 +1,7 @@
 from flask_app import app
 from flask import redirect, jsonify
 
-from flask_app.models.goal_category import GoalCategory
+from flask_app.models.goals.goal_category import GoalCategory
 from flask_app.models.user import User
 
 

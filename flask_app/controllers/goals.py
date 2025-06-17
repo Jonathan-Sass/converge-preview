@@ -3,11 +3,11 @@ from flask import render_template, redirect, session, request, jsonify, flash
 from pprint import pprint
 
 from flask_app.models.user import User
-from flask_app.models.goal import Goal
-from flask_app.models.category_archetype import CategoryArchetype
-from flask_app.models.goal_category import GoalCategory
+from flask_app.models.goals.goal import Goal
+from flask_app.models.goals.category_archetype import CategoryArchetype
+from flask_app.models.goals.goal_category import GoalCategory
 from flask_app.models.user_response import UserResponse
-from flask_app.models.category_component import CategoryComponent
+from flask_app.models.goals.category_component import CategoryComponent
 
 
 @app.get("/goals/<string:category_slug>")

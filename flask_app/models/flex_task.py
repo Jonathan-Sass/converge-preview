@@ -1,6 +1,6 @@
 from flask_app.config.mysqlconnection import connectToMySQL
 from pprint import pprint
-from flask_app.models.goal import Goal
+from flask_app.models.goals.goal import Goal
 
 
 class FlexTask:

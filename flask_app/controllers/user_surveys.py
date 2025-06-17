@@ -3,7 +3,7 @@ from flask import render_template, redirect, session, request, flash, jsonify
 from flask_app.models.user import User
 from flask_app.models.user_survey import UserSurvey
 from flask_app.models.user_response import UserResponse
-from flask_app.models.goal_category import GoalCategory
+from flask_app.models.goals.goal_category import GoalCategory
 from database.seed import seed_surveys
 from pprint import pprint
 from datetime import datetime
