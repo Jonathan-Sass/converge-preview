@@ -82,6 +82,52 @@ converge/
 └── .env.example                # Example environment config (optional)
 |
 
+## 🚀 Getting Started
+
+### Requirements
+
+- Python 3.10+
+- MySQL 8.x
+- `pip` for package management
+- Virtual environment (recommended)
+
+### Setup Instructions
+
+```bash
+# 1. Clone the repository
+git clone https://github.com/Jonathan-Sass/converge-preview.git
+cd converge-preview
+
+# 2. Create and activate a virtual environment
+python -m venv .venv
+source .venv/bin/activate   # On Windows: .venv\Scripts\activate
+
+# 3. Install dependencies
+pip install -r requirements.txt
+
+# 4. Set up your environment variables
+cp .env.example .env
+# Then edit `.env` with your local MySQL credentials
+
+# 5. Create the database (in MySQL CLI or Workbench)
+# Example:
+CREATE DATABASE converge CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+# 6. Run the app
+python server.py
+
+# 7. Register a new account
+http://localhost:5000/register
+# (Use any email and password – no verification in development)
+
+# 8. Seed the database
+http://localhost:5000/seed
+# (Populates routines, goals, practices, and template data)
+
+# 9. Begin onboarding flow
+http://localhost:5000/newuser
+
+
 ## Schema Conventions
 
 Converge’s database schema is designed for flexibility, consistency, and extensibility.
