@@ -1,5 +1,10 @@
 
-> Note: This is an active solo project in early development. Commits are streamlined for rapid iteration rather than formal PR workflows.
+> Note: This is an active solo project in early development. The current user experience is severely limited by a minimalist data set being used to check functionality.  Upon completion of a few more foundational features, we will scale datasets used for selection and interaction, and the true scope of Converge will become more evident.  Please keep in mind the current limitations when viewing this preview.
+> Another Note: To test out this preview of Converge, please follow these steps:
+ - Login via "/" route - No email verification is required, password must contain:
+     -  8 characters, a Capital letter, special character, and a number
+ - Navigate to "/seed" to seed the database with necessary survey question and other data.
+ - That's it, follow the prompts and enjoy!
 
 # Converge
 
